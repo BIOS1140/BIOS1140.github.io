@@ -52,6 +52,7 @@ Green boxes summarizes important concepts from the text.
 </div>
 
 <div class = "blue">
+<<<<<<< HEAD
 
 **Additional info**
 
@@ -66,4 +67,11 @@ Blue boxes contain additional information for those that are interested. Feel fr
 ## Getting familiar with R and the console
 
 ## Scripts
+=======
+**Additional info**
+
+Blue boxes contain additional information for those that are interested. Feel free to skip these if you want.
+</div>
+
+>>>>>>> ef511047cf79d7aaa9c6e63eb9d81ff6439d08e2
 
