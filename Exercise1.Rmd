@@ -1,0 +1,69 @@
+---
+title: "Exercise 1 - Introduction to R"
+author: "Even Sletteng Garvang"
+output: 
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: pygments
+editor_options: 
+  chunk_output_type: console
+---
+
+<style type="text/css">
+
+.subtitle { font-size: 24px; }
+
+.author { font-size: 16px; 
+  font-style: italic;
+  }
+
+.date { font-size: 16px; 
+  font-style: italic;
+  }
+
+h1 { font-size: 28px; }
+
+h2 { font-size: 24px; }
+
+h3 { font-size: 20px; }
+
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+
+div.green { background-color:#cefaca; border-radius: 5px; padding: 20px;}
+</style>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, 
+                      fig.width = 5, 
+                      fig.asp = 3/4, 
+                      comment = "#>",
+                      warning = FALSE,
+                      message = FALSE,
+                      collapse = TRUE)
+```
+
+<div class = "green">
+
+**Important concept**
+
+Green boxes summarizes important concepts from the text.
+
+</div>
+
+<div class = "blue">
+
+**Additional info**
+
+Blue boxes contain additional information for those that are interested. Feel free to skip these if you want.
+
+</div>
+
+# Start using R!
+
+## Install R and Rstudio
+
+## Getting familiar with R and the console
+
+## Scripts
+
