@@ -613,7 +613,7 @@ Two important things to note here is that you have to explicitly write `nordic_d
 When you have a lot of data that belongs together, typically something you could store in an excel document and show in a table, make it into a data frame. Many things we will be doing later in this course requires that your data is in a data frame, so learn to recognize this type of object.
 :::
 
-# Functions
+# Functions {#functions}
 
 So far you have seen a handful of functions being used, like `c()`, `seq()`, `mean()` and `data.frame()` to name some. Functions are always written in the form `sometext()`. The text outside the parentheses is the function name, and whatever is inside the parentheses are called arguments. A function can be seen as a series of operations that are applied to the arguments, or simply as somewhere you put something in, and get something else in return. They can often save you a tremendous amount of time, compare for example manually calculating the mean of a 1000 numbers vs. using the `mean()` function.
 
@@ -622,7 +622,7 @@ If you want to know more about what a function does, you can write `?` and then 
 Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: `func(arg1, arg2, arg3)`. The arguments can either be input in a set order, or you can name them. Consider the following:
 
 ```{r}
-seq(1, 10, 2)
+seq(1, 10, 2) # "from" is argument no. 1, "to" is argument no. 2 etc.
 seq(from = 1, to = 10, by = 2)
 ```
 
@@ -638,11 +638,131 @@ seq(from = 1,
 
 This may not matter much for such a simple function, but it gets way easier to read long, complicated functions if it's formatted this way. You will see this formatting used quite a bit in the section about plotting, where you often have many long arguments.
 
-# Data import
+# Data import {#dataimport}
 
+_This part of the tutorial is a simplified version of [this tutorial of mine](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!_
+
+I've frequently had you imagine doing the data input for data from all countries in the world throughout this tutorial. You may already have thought manually inputting data for the entire world like we did with the Nordic countries above is time-consuming and error-prone. This is correct, and we should be able to do something smarter. Luckily, we can download data as a text file and import it into R as a data frame!
+
+## Data formats
+
+Start by downloading the file [worlddata.csv](https://PLACEHOLDER.LINK) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call _comma separated values (csv)_, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
+
+## Working directories
+
+The next step is to make R look in the same folder that your data is in. An important concept is that **R only works in one folder at a time**. You can get the folder where R is currently looking, called the working directory, by running the command
+
+```{r, eval=FALSE}
+getwd()
+```
+
+This may or may not be the folder where your text file (and/or R script) is located (probably it isn't). If R is looking in a different folder than you want it to, you need to tell it where to look, this can be done in a variety of ways, the most manual being the function `setwd()`:
+
+```{r, eval = FALSE}
+# set the working directory to the BIOS1140 folder within "Documents"
+setwd("C:/Documents/BIOS1140")
+```
+
+Another way to set the working directory (in RStudio) is by navigating to `Session > Set working directory` and choosing the folder you want. A third way is to find the "Files" tab in RStudio (in the bottom-right pane), navigate to your folder there, and click `More > Set as working directory`.
+
+**Exercise: Download the csv file to your computer (make sure you know where), and set the working directory to the same folder as the file is in.**
+
+:::{.green}
+**Important concept:** R only works in one folder at a time, this folder is called the working directory. Get your current working directory with `getwd()` and set a new working directory either with `setwd()` or by navigating in RStudio. To import a file into R it has to be in your current working directory!
+:::
+
+## Importing
+
+When importing data, there are three things you need to consider:
+
+1. Does the first row in the data contain variable names? If so, this is called a header.
+2. How are the values separated? (e.g. comma, semicolon, tab)
+3. What is the decimal marker? It is usually period `.` but can sometimes be comma `,`
+
+**Look at the file `worlddata.csv` and answer the three questions above for that file.**
+
+The function for reading data into R is `read.table()`. The first argument is the file name in quotes. It also has three more arguments^[see section \@ref(functions) if you forgot what an argument is] to answer the three questions above.
+
+1. set `header = TRUE` if the data has a header, `header = FALSE` if it doesn't.
+2. `sep =","` for comma separated values, `";"` for semicolon, `"\t"` for tab space, and much more.
+3. `dec` is the decimal marker, either `dec = "."` or `dec = ","`
+
+Now you should be able to import the data! I've made some skeleton code for you to fill out below to simplfy things.
+
+**Exercise: import `worlddata.csv` into R by filling in the blanks in the code below.**
+
+```{r, eval = FALSE}
+# fill in the blanks (after "=")
+world_data <- read.table("worlddata.csv", header = , sep = , dec = )
+```
+
+```{r, echo = FALSE}
+world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
+```
+
+If you managed to do this, you now have data for all countries in the world stored in a data frame! Try doing some operations on it to get familiar with the data. Some suggestions (remember that you can write `?functionname` to find out more about a function):
+
+* `head()` shows the first rows of the data frame
+* `summary()` gives a summary of key aspects of the data frame
+* use the `$` operator to extract columns, add or multiply them toghether, or whatever you want!
 
 
 # Plotting
 
 _This part of the tutorial is a simplified version of [this tutorial of mine](https://evengar.github.io/short-tutorials/plotting.html). If you want to know more about plotting in R, check that one out!_
+
+R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. This section is a starting point for learning about plotting in R introducing the most important methods.
+
+The basic function for plotting in R is simply `plot()`. This function will guess what kind of plot to make based on the data you provide. You can supply many arguments to the `plot()` function to get the visualisation you want, which we will gradually go through here.
+
+## Plotting vectors
+
+The simplest way of plotting in R is by plotting two vectors of equal length. One vector gives the x-value, and another gives the y-value.
+
+```{r plvec, caption = "Two vectors plotted against each other."}
+# make two vectors of equal length
+x <- 1:50
+y <- 51:100
+
+plot(x, y)
+
+```
+
+As you can see, it makes a simple plot of our data, using points as the default. If we want to make a line graph we have to specify `type = "l"`:
+
+```{r}
+plot(x, y, type = "l")
+```
+
+For all the different ´type´ arguments, see the plot-function's help page by running `?plot`.
+
+:::{.blue}
+**Tip:** Remember that when you use R's `$` operator to pick out a single column from a data frame, you create a vector. Using this, you can easily plot the columns of your data frame. Another way of doing this is introduced in section \@ref(pltdf).
+:::
+
+## Plotting data frames {#pltdf}
+
+The thing you probably will plot most often is data frames, containing your own or someone else's data. For this part we will use the `world_data` object that you imported in section \@ref(dataimport). To get an overview of the data, we first use the `summary()` function.
+
+```{r}
+summary(world_data)
+```
+
+
+We could then simply write `plot(world_data)`, which plots all the values against each other:
+
+```{r, fig.cap = "A plot of the entire data set."}
+plot(world_data)
+```
+
+Even for this relatively small data set this visualisation can be quite overwhelming. While this kind of plotting can be useful to get an overview, we often want to focus on specific relationships between our data. To plot two values against each other you use the following syntax: `plot(y_axis_variable ~ x_axis_variable, data = my_data)`^
+[the `~`character is called "tilde", if you want to google how to produce it on your keyboard].
+If we want to investigate the relationship between fertility and life expectancy in our data, we can write:
+
+```{r, fig.cap = "Life expectancy vs Fertility rate"}
+plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
+```
+
+We get a nice scatterplot of those data, showing a correlation between these variables. 
+
 
