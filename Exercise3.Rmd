@@ -65,7 +65,7 @@ In this section we will:
 The tutorial is divided into two parts:
 
 1.  A section focused on general R programming, where you learn concepts that can be used across many fields and even programming languages.
-2.  A section focused on using R for evolutionary biology.
+2.  A section focused on using R for evolutionary biology, where you apply some of the concepts you've learned in this tutorial and earlier to solve problems in evolutionary biology.
 
 In the second section, most of the code is quite straightforward, but you might encounter some more complicated code that you haven't learned enough to understand yet. This will be clearly indicated, and we only expect you to have a general sense of what's going on, not understand what every bit of the code does.
 
@@ -321,4 +321,28 @@ results
 
 We see that the first element us still 0, which isn't perfect, but good enough for now!
 
+That concludes this week's R-focused part of the tutorial. Some of the Evolutionary biology-focused part will use the concepts you have learned here, so check back here if there is a part of the code you don't understand.
+
+# Evolutionary biology
+
+## The Hardy-Weinberg model
+
+### Plotting the expected genotype frequencies
+
+(droppe hele avsnittet om "some programming tricks for the HW model)
+
+## Testing for deviations from the Hardy_Weinberg Expectation
+
+### An easier way?
+
+## Simulating genetic drift
+
+
+### A simple case of genetic drift over a single generation using the binomial distribution
+
+(droppe hele avsnittet om "Writing your own R functions")
+
+### Using a custom function to simulate drift over multiple generations
+
+Introduserer en egenlagd funksjon for å simulere drift, og sier at det er OK om de ikke forstår alt ennå. Bytter ut sapply() med for-loop, så skal det være fullt mulig for dem å skjønne hva som skjer inni funksjonen.
 
