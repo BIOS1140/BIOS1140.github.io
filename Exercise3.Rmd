@@ -31,8 +31,34 @@ h3 { font-size: 20px; }
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 
 div.green { background-color:#e4fce3; border-radius: 5px; padding: 20px;}
+
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+
 </style>
+
+<script src="js/hideOutput.js"></script>
 ```
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       fig.width = 5, 
@@ -142,6 +168,8 @@ for (element in 1:10){
 
 Here you can see more of what's actually happening. In the first round, `element` is the first element of `1:10`, i.e. 1, which is printed. Then, `element` becomes the second element of `1:10`, which is 2, and `print()` prints it. This goes on until you have looped over the entire vector, and the loop ends after printing 10. Below is what actually happens for each round of the loop.
 
+<div class="fold c">
+
 ```{r, eval = FALSE}
 print(1) # round 1, element is 1
 print(2) # round 2, element is 2
@@ -154,6 +182,8 @@ print(8)
 print(9)
 print(10)
 ```
+
+</div>
 
 Notice how many lines you saved by writing a loop! The power here comes from that it doesn't matter how long your vector is, and you can do any operation on the elements of the vector. Say we want to multiply each element of our vector `x` with 5, which we did in the start of this tutorial.
 
@@ -345,4 +375,15 @@ That concludes this week's R-focused part of the tutorial. Some of the Evolution
 ### Using a custom function to simulate drift over multiple generations
 
 Introduserer en egenlagd funksjon for å simulere drift, og sier at det er OK om de ikke forstår alt ennå. Bytter ut sapply() med for-loop, så skal det være fullt mulig for dem å skjønne hva som skjer inni funksjonen.
+
+<details><summary>Show code</summary>
+Some text
+
+```{r code}
+# even code
+print("Hello world!")
+```
+
+
+</details>
 

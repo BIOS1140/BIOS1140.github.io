@@ -32,15 +32,44 @@ h3 { font-size: 20px; }
 div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
 
 div.green { background-color:#e4fce3; border-radius: 5px; padding: 20px;}
+
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+
 </style>
+
+<script src="js/hideOutput.js"></script>
+
 ```
+
+
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, 
                       fig.width = 5, 
                       fig.asp = 3/4, 
                       comment = "#>",
                       warning = FALSE,
-                      message = FALSE)
+                      message = FALSE,
+                      collapse = TRUE)
 library(tidyverse)
 ```
 
@@ -160,12 +189,14 @@ If you were able to do this, great work! Your solution probably looked something
 
 [^1]: with the comments, I hope!
 
+<div class="fold s o">
 ```{r, eval = FALSE}
 # Norwegian population
 5465387 / (5456387 + 10185555)
 # Swedish population
 10185555 / (5465387 + 10185555)
 ```
+</div>
 
 However, there are several problems with doing it this way. First of all, 5465387 is a stupidly long number, and the probability of typing it wrong is rather high (I actually mistyped a number in the code above, can you spot the error?). Another problem is that if any of the populations change (e.g. you want to update to 2021 numbers), you would have to update it in **four different places** to make this simple change. Third: for someone looking at your code, how will they know what's happening? These numbers have no meaning without their context.
 
@@ -255,7 +286,8 @@ knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name
 
 If you solved the exercise above, you're probably tired from writing almost the same thing over and over. My solution looks something like this:
 
-```{r}
+<div class="fold s">
+```{r, results = "hide"}
 denmark_pop <- 5868927
 finland_pop <- 5572355
 iceland_pop <- 350773
@@ -277,6 +309,9 @@ denmark_proportion
 finland_proportion
 iceland_proportion
 ```
+
+</div>
+
 
 That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! Surely there has to be simpler solution? Luckily, there is.
 
@@ -314,13 +349,13 @@ my_sequence
 
 **Exercise: Store the population sizes of the Nordic countries in a vector using `c()`. Input the numbers in alphabetical order of the countries (same as in table** \@ref(tab:nordpop) **above) Assign the vector to an object with a good name.**
 
-------------------------------------------------------------------------
-
-**Solution to the exercise:**
+<div class="fold s">
 
 ```{r}
 nordic <- c(5868927, 5572355, 350773, 5465387, 10185555)
 ```
+
+</div>
 
 ### Vector properties
 
@@ -381,6 +416,13 @@ length(my_vector2)
 
 **Exercise: express the Nordic population sizes in millions by dividing all the numbers in the `nordic` vector by 10^6**
 
+<div class="fold s">
+
+```{r, eval = FALSE}
+nordic / 10^6
+```
+
+</div>
 
 #### Extracting numbers
 
@@ -406,18 +448,20 @@ mean(my_vector)
 
 Again, we'll go through what functions are and how they work shortly. There's a variety of other functions you can apply to a vector, such as `max()`, `min()` and `median()`. Try them out!
 
-### Vector exercise
 
-Use what you have learned about vectors to calculate the population proportions of all the Nordic countries in a single operation. Save it to an object with a good name.
 
-#### Solution
+**Exercise: Use what you have learned about vectors to calculate the population proportions of all the Nordic countries in a single operation. Save it to an object with a good name.**
+
 
 The solution to the exercise shows how powerful working with vectors can be.
 
+<div class="fold s">
 ```{r}
 nordic_prop <- nordic / sum(nordic)
 nordic_prop
 ```
+
+</div>
 
 This is way simpler than what we did back in section \@ref(manyobjects)! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.
 
@@ -450,6 +494,12 @@ paste("The total population of the nordic countries is", nordic_sum, "people.")
 
 **Exercise: Combine the names of the Nordic countries into a vector. Make sure the names are in the same order as in table \@ref(tab:nordpop).**
 
+<div class="fold s">
+```{r}
+nordic_names <- c("Denmark", "Finland", "Iceland", "Norway", "Sweden")
+```
+</div>
+
 One of many uses for strings is to give names to a vector. You can use the `names()` function to see a vectors names.
 
 ```{r}
@@ -459,7 +509,6 @@ names(nordic)
 As you can see, we get `NULL` here, which means that the vector elements don't have any names. We can set the names like this:
 
 ```{r}
-nordic_names <- c("Denmark", "Finland", "Iceland", "Norway", "Sweden")
 names(nordic) <- nordic_names
 nordic
 
@@ -474,6 +523,16 @@ nordic[c("Finland", "Norway")] # equivalent to nordic[c(2, 4)]
 
 
 **Exercise: Do some calculations on the now named `nordic` vector (e.g. calculate the proportions again). What happens to the names?**
+
+<div class="fold s">
+```{r}
+nordic / sum(nordic)
+
+# The names carry over to the new vector
+```
+
+
+</div>
 
 ## Data frames
 
@@ -551,6 +610,14 @@ nordic_df$area + nordic_df$population
 
 **Exercise: Calculate the population density (population/area) of the Nordic countries using the data frame and the `$` operator.**
 
+<div class="fold s">
+
+```{r}
+nordic_df$population / nordic_df$area
+```
+
+</div>
+
 ### Adding data to the data frame
 
 Adding data to the data frame can also be done with the `$` operator. Instead of referencing an existing column, you can simply write a new name after the `$`, and assign to it as a variable like so: `df$newcolumn <- c(1, 2, 3, 4, 5)`.
@@ -563,6 +630,14 @@ nordic_df
 Now you have added a column named "is_norway" to your data frame, which is kind of useless, but still cool.
 
 **Exercise: For a more useful application of creating a new column, add a population density column to `nordic_df` (using the same calculation as in the previous exercise).**
+
+<div class="fold s">
+
+```{r}
+nordic_df$pop_density <- nordic_df$population / nordic_df$area
+```
+
+</div>
 
 ### Subsetting with logical operators
 
@@ -696,9 +771,13 @@ Now you should be able to import the data! I've made some skeleton code for you 
 world_data <- read.table("worlddata.csv", header = , sep = , dec = )
 ```
 
+<div class="fold s">
+
 ```{r, echo = FALSE}
 world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
+
+</div>
 
 If you managed to do this, you now have data for all countries in the world stored in a data frame! Try doing some operations on it to get familiar with the data. Some suggestions (remember that you can write `?functionname` to find out more about a function):
 
@@ -764,5 +843,4 @@ plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
 ```
 
 We get a nice scatterplot of those data, showing a correlation between these variables. 
-
 
