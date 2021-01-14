@@ -1,0 +1,47 @@
+<style type="text/css">
+
+.subtitle { font-size: 24px; }
+
+.author { font-size: 16px; 
+  font-style: italic;
+  }
+
+.date { font-size: 16px; 
+  font-style: italic;
+  }
+
+h1 { font-size: 28px; }
+
+h2 { font-size: 24px; }
+
+h3 { font-size: 20px; }
+
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+
+div.green { background-color:#e4fce3; border-radius: 5px; padding: 20px;}
+
+.showopt {
+  background-color: #004c93;
+  color: #FFFFFF; 
+  width: 100px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle !important;
+  float: right;
+  font-family: sans-serif;
+  border-radius: 8px;
+}
+
+.showopt:hover {
+    background-color: #dfe4f2;
+    color: #004c93;
+}
+
+pre.plot {
+  background-color: white !important;
+}
+
+<script src="js/hideOutput.js"></script>
+
+</style>
+
