@@ -1451,6 +1451,7 @@ h6 {
 }
 </style>
 
+<link href="data:text/css;charset=utf-8,%3Cstyle%20type%3D%22text%2Fcss%22%3E%2Esubtitle%20%7B%20font%2Dsize%3A%2024px%3B%20%7D%2Eauthor%20%7B%20font%2Dsize%3A%2016px%3B%20font%2Dstyle%3A%20italic%3B%7D%2Edate%20%7B%20font%2Dsize%3A%2016px%3B%20font%2Dstyle%3A%20italic%3B%7Dh1%20%7B%20font%2Dsize%3A%2028px%3B%20%7Dh2%20%7B%20font%2Dsize%3A%2024px%3B%20%7Dh3%20%7B%20font%2Dsize%3A%2020px%3B%20%7Ddiv%2Eblue%20%7B%20background%2Dcolor%3A%23e6f0ff%3B%20border%2Dradius%3A%205px%3B%20padding%3A%2020px%3B%7Ddiv%2Egreen%20%7B%20background%2Dcolor%3A%23e4fce3%3B%20border%2Dradius%3A%205px%3B%20padding%3A%2020px%3B%7D%2Eshowopt%20%7Bbackground%2Dcolor%3A%20%23004c93%3Bcolor%3A%20%23FFFFFF%3B%20width%3A%20100px%3Bheight%3A%2020px%3Btext%2Dalign%3A%20center%3Bvertical%2Dalign%3A%20middle%20%21important%3Bfloat%3A%20right%3Bfont%2Dfamily%3A%20sans%2Dserif%3Bborder%2Dradius%3A%208px%3B%7D%2Eshowopt%3Ahover%20%7Bbackground%2Dcolor%3A%20%23dfe4f2%3Bcolor%3A%20%23004c93%3B%7Dpre%2Eplot%20%7Bbackground%2Dcolor%3A%20white%20%21important%3B%7D%3Cscript%20src%3D%22js%2FhideOutput%2Ejs%22%3E%3C%2Fscript%3E%3C%2Fstyle%3E" rel="stylesheet" type="text/css" />
 
 
 
@@ -1638,51 +1639,6 @@ div.tocify {
 </div>
 
 
-<style type="text/css">
-
-.subtitle { font-size: 24px; }
-
-.author { font-size: 16px; 
-  font-style: italic;
-  }
-
-.date { font-size: 16px; 
-  font-style: italic;
-  }
-
-h1 { font-size: 28px; }
-
-h2 { font-size: 24px; }
-
-h3 { font-size: 20px; }
-
-div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
-
-div.green { background-color:#e4fce3; border-radius: 5px; padding: 20px;}
-
-.showopt {
-  background-color: #004c93;
-  color: #FFFFFF; 
-  width: 100px;
-  height: 20px;
-  text-align: center;
-  vertical-align: middle !important;
-  float: right;
-  font-family: sans-serif;
-  border-radius: 8px;
-}
-
-.showopt:hover {
-    background-color: #dfe4f2;
-    color: #004c93;
-}
-
-pre.plot {
-  background-color: white !important;
-}
-
-</style>
-
 <script>$(document).ready(function() {
 
   $chunks = $('.fold');
@@ -1728,7 +1684,6 @@ pre.plot {
     $(this).siblings('code, img').slideToggle('fast', 'swing');
   });
 });</script>
-
 <div class="green">
 <p><strong>Important concept</strong></p>
 <p>Green boxes summarizes important concepts from the text.</p>
@@ -2408,11 +2363,6 @@ Figure 5.2: Life expectancy vs Fertility rate
 </p>
 </div>
 <p>We get a nice scatterplot of those data, showing a correlation between these variables.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="co"># make two vectors of equal length</span></span>
-<span id="cb53-2"><a href="#cb53-2"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">50</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a>y &lt;-<span class="st"> </span><span class="dv">51</span><span class="op">:</span><span class="dv">100</span></span>
-<span id="cb53-4"><a href="#cb53-4"></a></span>
-<span id="cb53-5"><a href="#cb53-5"></a><span class="kw">plot</span>(x, y)</span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">

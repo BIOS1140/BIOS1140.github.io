@@ -11,11 +11,14 @@ editor_options:
   chunk_output_type: console
 ---
 
-<script src="js/hideOutput.js"></script>
-
 
 ```{r setup, include=FALSE}
 source("setup.R")
+library(tidyverse)
+```
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+#include html script
 ```
 
 ::: {.green}
@@ -99,6 +102,7 @@ Comment your code liberally, so it becomes easier to understand for any person r
 
 -   use the up and down arrows to cycle through your previous commands
 -   if the `>` in the console turns into a `+`, it means that you probably forgot to close a parenthesis or a quote (try e.g. running `"hello`). You will be unable to do anything while the console is behaving like this. Press the `Esc` button to get your familiar `>` back and continue working.
+-   Spaces generally don't mean anything when doing calculations, which means `4+3` is equivalent with `4 + 3`. Use spaces to make your code easier to read.
 
 ## Scripts
 
@@ -789,3 +793,4 @@ plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
 
 We get a nice scatterplot of those data, showing a correlation between these variables. 
 
+boxplot(Life_Expectancy_at_Birth ~ Continent, data = world_data)

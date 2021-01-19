@@ -5,4 +5,3 @@ knitr::opts_chunk$set(echo = TRUE,
                       warning = FALSE,
                       message = FALSE,
                       collapse = TRUE)
-library(tidyverse)
