@@ -11,12 +11,27 @@ editor_options:
 ---
 
 
-<script src="js/hideOutput.js"></script>
-
-
 ```{r setup, include=FALSE}
 source("setup.R")
 ```
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+#include html script
+```
+
+::: {.green}
+**Important concept**
+
+Green boxes summarizes important concepts from the text.
+:::
+
+::: {.blue}
+**Additional info**
+
+Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want.
+:::
+
+**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
 
 # Introduction
 
@@ -24,9 +39,8 @@ Over the last two tutorials, we learned the basics of R and also how to manipula
 
 For the bulk of this session, we will focus on exploring the Hardy-Weinberg (HW) model and testing for deviations from Hardy-Weinberg Expectation (HWE) using R code. You will recall that the HW-model is basically an idealized model of the relationship between allele and genotype frequencies, in the absence of the action of demographic processes such as inbreeding, and evolutionary processes such as genetic drift or selection. The model therefore acts as null model for testing whether such processes have taken place. In other words, we can compare our real data to the expectation and draw inference on what demographic or evolutionary processes might be acting in the real world. As well as allowing us to flex our R abilities, examining the HW-model also requires us to perform some basic statistical analysis, particularly a goodness of fit test.
 
-In addition to the HW model and testing for deviations from HWE, we will also learn how to simulate genetic drift in R. Here we will make use of the visualisation skills we learned with ggplot2 in Chapter 2 to recreate Figure 3.7 from the textbook. We hope that this will have the dual benefit of letting you play with population parameters in order to understand genetic drift but also to help you develop your R programming skills in more detail. During the course of this session we will encounter how to write for loops, learn about vectorization and also learn a little bit about how to write your own custom functions.
+In addition to the HW model and testing for deviations from HWE, we will also learn how to simulate genetic drift in R. Here we will make use of the visualisation skills we learned with ggplot2 in Chapter 2 to recreate Figure 3.7 from the textbook. We hope that this will have the dual benefit of letting you play with population parameters in order to understand genetic drift but also to help you develop your R programming skills in more detail.
 
-In this tutorial we will be exploring the Hardy-Weinberg model (HW-model). The model is used as a null hypotheses to investigate whether a population is affected by demographic or evolutionary processes. It simply states that a population is in HW-equilibrium if one is able to predict genotype frequencies from allele frequencies, or in other words: allele-and genotype frequencies remain constant in the subsequent generation.
 
 ## What to expect
 
@@ -152,10 +166,22 @@ for (animal in animals){
 }
 ```
 
+:::{.green}
+**Important concept:**  
+Use a for-loop to do the same operation over and over on the elements of your vector. The basic structure of a for-loop looks like this:
+
+```{r, eval = FALSE}
+for (variable in vector){
+  # do something
+}
+```
+
+:::
+
 :::{.blue}
 **Tip:**
 
-You may have noticed that I've called the variable that is changing for each iteration different things in all the examples, namely `variable`, `element` and `animal`. Actually, you can call this variable anything (within reason). All you have to remember is to call it the same thing within the loop as when starting it. In other words, this works^[but is kind of dumb, don't do it]:
+You may have noticed that I've called the variable that is changing for each iteration different things in all the examples, namely `variable`, `element` and `animal`. Actually, you can call this variable anything (within reason). All you have to remember is to call it the same thing within the loop as when starting it. In other words, this works^[but it's kind of dumb, don't do it]:
 
 ```{r, eval = FALSE}
 for (whatever_you_want_to_call_the_variable in 1:10){
@@ -228,40 +254,63 @@ for (index in 2:length(animals)){ #note: starting on 2
 }
 ```
 
-How this would look if done manually is included in the footnotes of this document[^4].
+Show the code below to see how this would look if done manually.
 
-[^4]:
-    This is how the for-loop with `friends` work:
-    ```{r, eval = FALSE}
-    # first round, remember that writing animals[2 - 1] is
-    # exactly the same as writing animals[1]
-    friends <- paste(animals[2], "and", animals[2 - 1], "are friends")
-    print(friends)
-    
-    # second round
-    friends <- paste(animals[3], "and", animals[3 - 1], "are friends")
-    print(friends)
-    
-    # third round
-    friends <- paste(animals[4], "and", animals[4 - 1], "are friends")
-    print(friends)
-    
-    # fourth round
-    friends <- paste(animals[5], "and", animals[5 - 1], "are friends")
-    print(friends)
-    ```
+<div class="fold c">
+```{r, eval = FALSE}
+# first round, remember that writing animals[2 - 1] is
+# exactly the same as writing animals[1]
+friends <- paste(animals[2], "and", animals[2 - 1], "are friends")
+print(friends)
+
+# second round
+friends <- paste(animals[3], "and", animals[3 - 1], "are friends")
+print(friends)
+
+# third round
+friends <- paste(animals[4], "and", animals[4 - 1], "are friends")
+print(friends)
+
+# fourth round
+friends <- paste(animals[5], "and", animals[5 - 1], "are friends")
+print(friends)
+```
+
+</div>
 
 Now we know all we need to solve our initial problem, which we will return to in the next section.
 
 **Exercise: In addition to your country vector from before, make a corresponding vector containing continents. Use indexing with for loops and the `paste` function to print "`country` is in `continent`" for each of the countries and continents in your vector.**
 
+:::{.green}
+
+**Important concept:**  
+Use for-loops with indexing when you want to access several elements of one or more vectors at once. This is basically every time, so use indexing in your for-loops every time.
+
+:::
+
 ## Solving our problem
 
-To remind you of where we started: we want to add the adjacent elements of our vector `x` together in the smartest way possible. Below is how this can be done with for-loops. I encourage you to try to solve it yourself before looking at the solution.
+To remind you of where we started: we want to add the adjacent elements of our vector `x` together in the smartest way possible.
 
-Solution: We loop over the vector `2:length(x)`[^5]. For every round, we add `x[index]` and `x[index - 1]` and print this.
+```{r}
+x <- seq(2, 20, 2)
+```
+
+
+Below is how this can be done with for-loops. I encourage you to try to solve it yourself before looking at the solution.
+
+<details><summary>Show hint</summary>
+
+Hint: Loop over the vector `2:length(x)`[^5]. For every round, add `x[index]` and `x[index - 1]` together and print this.
+
+</details>
+
+
 
 [^5]: Something to think about: Why do we start the vector we're looping over at 2, not 1? what would happen if we started at 1? (hint: what is `1 - 1`, and does that correspond to an element in our vector?)
+
+<div class="fold s o">
 
 ```{r}
 for (index in 2:length(x)){
@@ -270,9 +319,11 @@ for (index in 2:length(x)){
 }
 ```
 
+</div>
+
 ## Storing values from a for-loop
 
-One final concept before going on to work with evolutionary biology. In the last section, we printed our results. What if we wanted to do work further with the results we got? We could copy the numbers from the console and create a new vector manually, but (like so many of my stupid suggestions throughout this tutorial) this is bothersome and doesn't scale well. The best way to store values from a for loop is to create an empty vector before the loop, and fill in that vector as we loop.
+One final concept before going on to work with evolutionary biology. In the last section, we printed our results. What if we wanted to do work further with the results we got? We could copy the numbers from the console and create a new vector manually, but (like so many of my stupid suggestions throughout these tutorials) this is bothersome and doesn't scale well. The best way to store values from a for loop is to create an empty vector before the loop, and fill in that vector as we loop.
 
 First we use the `rep()` function to create a vector containing zeros. You can read the following `rep(0, 10)` "as repeat 0, 10 times", i.e. you get a vector of 10 zeros.
 

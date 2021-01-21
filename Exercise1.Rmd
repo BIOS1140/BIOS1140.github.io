@@ -33,7 +33,7 @@ Green boxes summarizes important concepts from the text.
 Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want.
 :::
 
-**Text in bold contains small exercises to do on your own throughout the tutorial.**
+**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
 
 # Start using R!
 
@@ -783,14 +783,107 @@ We could then simply write `plot(world_data)`, which plots all the values agains
 plot(world_data)
 ```
 
-Even for this relatively small data set this visualisation can be quite overwhelming. While this kind of plotting can be useful to get an overview, we often want to focus on specific relationships between our data. To plot two values against each other you use the following syntax: `plot(y_axis_variable ~ x_axis_variable, data = my_data)`^
-[the `~`character is called "tilde", if you want to google how to produce it on your keyboard].
+Even for this relatively small data set this visualisation can be quite overwhelming. While this kind of plotting can be useful to get an overview, we often want to focus on specific relationships between our data. To plot two values against each other you use the following syntax: `plot(y_axis_variable ~ x_axis_variable, data = my_data)`^[the `~`character is called "tilde", if you want to google how to produce it on your keyboard].
 If we want to investigate the relationship between fertility and life expectancy in our data, we can write:
 
 ```{r, fig.cap = "Life expectancy vs Fertility rate"}
 plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
 ```
 
-We get a nice scatterplot of those data, showing a correlation between these variables. 
+We get a nice scatterplot of those data, showing a correlation between these variables. We could use the `type = "l"` argument here as well, but it doesn't necessarily make much sense.
 
+```{r, fig.cap = "This makes no sense!"}
+plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data, type = "l")
+```
+
+
+
+## Special plot commands (histograms, boxplots, barcharts etc.)
+
+While `plot()` is good for a lot of things, you'll want other things than scatterplots. Then you have to use different functions for making your plot:
+
+* `barplot()` for barplots
+* `hist()` for histograms
+* `boxplot` for boxplots
+
+We won't go into a lot of detail with these, but below are some examples of their usage:^[the barplot uses the `table()` function. This function takes a vector, and counts how many times a given value occur in our data, in this case the continents. Remember that you always can run `?table` if you want to know more.]
+
+```{r}
+# barplot: number of countries per continent
+barplot(table(world_data$Continent))
+
+# histogram of fertility rate
+hist(world_data$Total_Fertility_Rate)
+
+# boxplot of life expectancy divided by continent
 boxplot(Life_Expectancy_at_Birth ~ Continent, data = world_data)
+```
+
+Additionally, some functions add elements to an existing plot instead of creating a new one:
+
+* `lines()` add lines on top
+* `points()` add points on top
+
+```{r, fig.cap="Plot with added line (red) and added points (blue)"}
+
+plot(x, y, type = "l")
+lines(x, y - 5, col = "red")
+points(c(0, 10, 15), c(60, 80, 70), col = "blue")
+
+```
+
+## Customizing your plots
+
+The `plot()` (and `lines()` and `points()`) function contains a lot of arguments to customize your plots. Below is a (non-comprehensive) list of parameters and what they do:
+
+* `col` changes the color of the plot
+* `pch` changes the shape of your points
+* `lty` changes line type
+* `main` changes the title
+* `xlab` and `ylab` changes the axis labels
+
+Below is an example that uses all these arguments in a single plot, see if you can follow what happens.
+
+```{r}
+plot(x, y, 
+     type = "l",
+     main = "customization options",
+     xlab = "x-axis",
+     ylab = "y-axis")
+lines(x, y - 5, 
+      col = "red", 
+      lty = 2)
+points(c(0, 10, 15), c(60, 80, 70), 
+       col = "blue", 
+       pch = 10)
+```
+
+# Installing and loading packages
+
+So far, all the functions we have used in this tutorial is part of your R installation. However, people all around the world have developed their own custom functions, and shared them in what we call packages. During this course, we will need several of these packages, in this section you will learn how to install them.
+
+Packages in R can be installed with the function `install.packages()`. **You will only have to install a package once per computer**. Here is how to install the `ggplot2` package, which we will use next week:
+
+```{r}
+install.packages("ggplot2")
+```
+
+When a package have been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the 
+function `library()`:
+
+```{r}
+library("ggplot2")
+```
+
+Make a habit of loading all the packages you use at the top of your script, that makes it easier to follow.
+
+:::{.green}
+**Important concept:**  
+Packages contain custom functions that you will need later in this course (and during the rest of your studies and work as a biologist).
+
+* install a package with `install.packages()`
+  * you only need to do this once per computer
+* load a package with `library()`
+  * you need to do this every time you want to use that package. Load all packages you need at the top of your script
+
+:::
