@@ -356,7 +356,7 @@ If the two vectors aren't of the same length, you will get a warning, but R will
 #10*1 # here R "recycles" the vector, using the first element of 1:9
 ```
 
-Don't worry if you don't quite understand what happens when the two vectors are of unequal length. For now, just remember to keep all your vectors the same length, or something unexpected might happen! To check the length of a vector, you can use the `length()` function.
+Remember to keep all your vectors the same length, or something unexpected might happen! To check the length of a vector, you can use the `length()` function.
 
 ```{r}
 length(my_vector)
@@ -558,6 +558,8 @@ mean(nordic_df$area)
 nordic_df$area + nordic_df$population
 ```
 
+Note that the `$` syntax only works for columns, not for rows.
+
 **Exercise: Calculate the population density (population/area) of the Nordic countries using the data frame and the `$` operator.**
 
 <div class="fold s">
@@ -665,7 +667,7 @@ This may not matter much for such a simple function, but it gets way easier to r
 
 # Data import {#dataimport}
 
-_This part of the tutorial is a simplified version of [this tutorial of mine](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!_
+_This part of the tutorial is a simplified version of [this tutorial that I made](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!_
 
 I've frequently had you imagine doing the data input for data from all countries in the world throughout this tutorial. You may already have thought manually inputting data for the entire world like we did with the Nordic countries above is time-consuming and error-prone. This is correct, and we should be able to do something smarter. Luckily, we can download data as a text file and import it into R as a data frame!
 
@@ -723,7 +725,7 @@ world_data <- read.table("worlddata.csv", header = , sep = , dec = )
 
 <div class="fold s">
 
-```{r, echo = FALSE}
+```{r}
 world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
 
@@ -733,22 +735,22 @@ If you managed to do this, you now have data for all countries in the world stor
 
 * `head()` shows the first rows of the data frame
 * `summary()` gives a summary of key aspects of the data frame
-* use the `$` operator to extract columns, add or multiply them toghether, or whatever you want!
+* use the `$` operator to extract columns, add or multiply them together, or whatever you want!
 
 
 # Plotting
 
-_This part of the tutorial is a simplified version of [this tutorial of mine](https://evengar.github.io/short-tutorials/plotting.html). If you want to know more about plotting in R, check that one out!_
+_This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial that I made](https://evengar.github.io/short-tutorials/plotting.html)!_
 
-R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. This section will show some basic plotting, and you will learn more about plotting in next week.
+R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. In this section, we will only go through some very basic plotting, you will learn more about plotting next week.
 
-The basic function for plotting in R is simply `plot()`. This function will guess what kind of plot to make based on the data you provide. You can supply many arguments to the `plot()` function to get the visualisation you want, which we will gradually go through here.
+The basic function for plotting in R is simply `plot()`. This function will guess what kind of plot to make based on the data you provide. You can supply many arguments to the `plot()` function to get the visualisation you want, which we will show some examples of here.
 
 ## Plotting vectors
 
 The simplest way of plotting in R is by plotting two vectors of equal length. One vector gives the x-value, and another gives the y-value.
 
-```{r plvec, caption = "Two vectors plotted against each other."}
+```{r plvec, fig.cap = "Two vectors plotted against each other."}
 # make two vectors of equal length
 x <- 1:50
 y <- 51:100
@@ -759,84 +761,28 @@ plot(x, y)
 
 As you can see, it makes a simple plot of our data, using points as the default. If we want to make a line graph we have to specify `type = "l"`:
 
-```{r}
+```{r, fig.cap = "The same plot as above, but with a line graph instead"}
 plot(x, y, type = "l")
 ```
 
 For all the different ´type´ arguments, see the plot-function's help page by running `?plot`.
 
-:::{.blue}
-**Tip:** Remember that when you use R's `$` operator to pick out a single column from a data frame, you create a vector. Using this, you can easily plot the columns of your data frame. Another way of doing this is introduced in section \@ref(pltdf).
-:::
+You can use the functions `lines()` and `points()` to add elements to an existing plot instead of creating a new one:
 
-## Plotting data frames {#pltdf}
-
-The thing you probably will plot most often is data frames, containing your own or someone else's data. For this part we will use the `world_data` object that you imported in section \@ref(dataimport). To get an overview of the data, we first use the `summary()` function.
-
-```{r}
-summary(world_data)
-```
-
-
-We could then simply write `plot(world_data)`, which plots all the values against each other:
-
-```{r, fig.cap = "A plot of the entire data set."}
-plot(world_data)
-```
-
-Even for this relatively small data set this visualisation can be quite overwhelming. While this kind of plotting can be useful to get an overview, we often want to focus on specific relationships between our data. To plot two values against each other you use the following syntax: `plot(y_axis_variable ~ x_axis_variable, data = my_data)`^[the `~`character is called "tilde", if you want to google how to produce it on your keyboard].
-If we want to investigate the relationship between fertility and life expectancy in our data, we can write:
-
-```{r, fig.cap = "Life expectancy vs Fertility rate"}
-plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
-```
-
-We get a nice scatterplot of those data, showing a correlation between these variables.
-
-
-## Special plot commands (histograms, boxplots, barcharts etc.)
-
-While `plot()` is good for a lot of things, you'll want other things than scatterplots. Then you have to use different functions for making your plot:
-
-* `barplot()` for barplots
-* `hist()` for histograms
-* `boxplot` for boxplots
-
-We won't go into a lot of detail with these, but below are some examples of their usage:^[the barplot uses the `table()` function. This function takes a vector, and counts how many times a given value occur in our data, in this case the continents. Remember that you always can run `?table` if you want to know more.]
-
-<div class="fold c o">
-
-```{r, fig.width=9}
-# barplot: number of countries per continent
-barplot(table(world_data$Continent))
-```
-
-
-```{r}
-# histogram of fertility rate
-hist(world_data$Total_Fertility_Rate)
-```
-
-
-```{r}
-# boxplot of life expectancy divided by continent
-boxplot(Life_Expectancy_at_Birth ~ Continent, data = world_data)
-```
-
-</div>
-
-Additionally, some functions add elements to an existing plot instead of creating a new one:
-
-* `lines()` add lines on top
-* `points()` add points on top
-
-```{r, fig.cap="Plot with added line (red) and added points (blue)"}
+```{r lines-points, fig.cap="Plot with added line (red) and added points (blue)"}
 
 plot(x, y, type = "l")
 lines(x, y - 5, col = "red")
 points(c(0, 10, 15), c(60, 80, 70), col = "blue")
 
 ```
+
+You can use the `hist()` function to create simple histograms, as shown with the `Total_Fertility_Rate` column in the example below
+
+```{r, fig.cap = "Distribution of fertility rate in the countries of the world."}
+hist(world_data$Total_Fertility_Rate)
+```
+
 
 ## Customizing your plots
 
