@@ -212,6 +212,7 @@ Norway_pop
 R can't find `Norway_pop`, because it doesn't exist, only `norway_pop` does. Beware of this, as it's often a source of annoying bugs in the code.
 
 ::: {.green}
+**Important concept:**  
 Assign any and all variables to named objects. It's easier to read, and you're less likely to make mistakes. Use good variable names, and beware of case sensitivity!
 :::
 
@@ -229,7 +230,7 @@ knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name
 
 **Exercise: Do the same with all the Nordic countries that you did with Norway and Sweden. Assign each population size to an object and calculate their proportion of the total Nordic population**
 
-------------------------------------------------------------------------
+
 
 ### Problem: too many objects gets complicated {#manyobjects}
 
@@ -739,7 +740,7 @@ If you managed to do this, you now have data for all countries in the world stor
 
 _This part of the tutorial is a simplified version of [this tutorial of mine](https://evengar.github.io/short-tutorials/plotting.html). If you want to know more about plotting in R, check that one out!_
 
-R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. This section is a starting point for learning about plotting in R introducing the most important methods.
+R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. This section will show some basic plotting, and you will learn more about plotting in next week.
 
 The basic function for plotting in R is simply `plot()`. This function will guess what kind of plot to make based on the data you provide. You can supply many arguments to the `plot()` function to get the visualisation you want, which we will gradually go through here.
 
@@ -790,12 +791,7 @@ If we want to investigate the relationship between fertility and life expectancy
 plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data)
 ```
 
-We get a nice scatterplot of those data, showing a correlation between these variables. We could use the `type = "l"` argument here as well, but it doesn't necessarily make much sense.
-
-```{r, fig.cap = "This makes no sense!"}
-plot(Life_Expectancy_at_Birth ~ Total_Fertility_Rate, data = world_data, type = "l")
-```
-
+We get a nice scatterplot of those data, showing a correlation between these variables.
 
 
 ## Special plot commands (histograms, boxplots, barcharts etc.)
@@ -808,16 +804,26 @@ While `plot()` is good for a lot of things, you'll want other things than scatte
 
 We won't go into a lot of detail with these, but below are some examples of their usage:^[the barplot uses the `table()` function. This function takes a vector, and counts how many times a given value occur in our data, in this case the continents. Remember that you always can run `?table` if you want to know more.]
 
-```{r}
+<div class="fold c o">
+
+```{r, fig.width=9}
 # barplot: number of countries per continent
 barplot(table(world_data$Continent))
+```
 
+
+```{r}
 # histogram of fertility rate
 hist(world_data$Total_Fertility_Rate)
+```
 
+
+```{r}
 # boxplot of life expectancy divided by continent
 boxplot(Life_Expectancy_at_Birth ~ Continent, data = world_data)
 ```
+
+</div>
 
 Additionally, some functions add elements to an existing plot instead of creating a new one:
 
@@ -864,14 +870,14 @@ So far, all the functions we have used in this tutorial is part of your R instal
 
 Packages in R can be installed with the function `install.packages()`. **You will only have to install a package once per computer**. Here is how to install the `ggplot2` package, which we will use next week:
 
-```{r}
+```{r, eval = FALSE}
 install.packages("ggplot2")
 ```
 
 When a package have been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the 
 function `library()`:
 
-```{r}
+```{r, eval = FALSE}
 library("ggplot2")
 ```
 
