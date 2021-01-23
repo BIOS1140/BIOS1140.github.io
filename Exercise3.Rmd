@@ -37,7 +37,7 @@ _Yellow boxes contain code that you need to run in order to complete the tutoria
 
 **Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
 
-# Introduction
+# Introduction {-}
 
 Over the last two tutorials, we learned the basics of R and also how to manipulate, visualize and explore data. From this tutorial onwards, we will start change direction a little and reinforce some of the concepts of evolutionary genetics that you have been learning during the class sessions. This doesn't mean we are going to throw you in at the deep-end and expect you to be completely relaxed in R, we will still take the opportunity to work through some of the concepts of the language we have already touched upon. Again remember, it is perfectly fine to ask for assistance or to look up R code you don't understand - we use R everyday and turn to Google for solutions almost constantly!
 

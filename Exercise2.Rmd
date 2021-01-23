@@ -1,0 +1,292 @@
+---
+title: 'Building on your foundations: going further with R'
+output: 
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: pygments
+    css: "style.css"
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+source("setup.R")
+library(tidyverse)
+```
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+#include html script
+```
+
+
+# Introduction {-}
+
+In the last chapter, we got to grips with the basics of R. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. Don't worry if you feel like you haven't understood everything - this is common and perfectly normal! Learning R is very much like learning a real language in that it takes time and practice to feel 'fluent'. Even if you do feel comfortable in the language, there is no shame in asking for help or looking for more information to develop your understanding. As regular R users, we still look things up constantly and there are one or two basics which we still forget, even with over a decade of experience of using the R environment! With this in mind, a goal of these R tutorials is to re-emphasise and reinforce basic concepts throughout. We will introduce concepts but through the practical demonstrations of code, we will underline them again and again. 
+
+In future chapters, we will be using a similar approach to reinforce the evolutionary genetic concepts you have encountered in the book. However, for this chapter we remain solely in the R environment and will instead switch our focus to more advanced features of R. Advanced does not necessarily mean more complicated - but it does mean that you need to have at least been introduced to the basic concepts. We will first 'level-up' our approach to handling and manipulating data. For this, we will be borrowing heavily from the [tidyverse](https://www.tidyverse.org) - a collection of packages and principles for data science in R. We will also introduce you to more advanced plotting, comparing the two most popular apporaches for plots - `base` and `ggplot`.
+
+## What to expect
+
+In this section we are going to: 
+
+* explore more advanced methods of handling and manipulating data
+* learn how to plot data using `ggplot2`
+
+# Intro to data manipulation with tidyverse
+
+Data manipulation might seem quite a boring topic but it is actually a crucial part of data science and increasingly, bioinformatics and evolutionary biology. For the average researcher working with biological data, we would estimate that the vast majority of analysis time is spent handling the data. By handling and manipulation, we mean exploring the data, shaping it into a form we want to work with and extracting information we find important or interesting. Getting to know your data is absolutely fundamental to properly understanding it and that is why we have decided to dedicate time to it in this chapter.
+
+At this point in our tutorial, we will use a series of packages collectively known as the [tidyverse](https://www.tidyverse.org); in particularly, we will focus on functions from a tidyverse package called `dplyr`. These packages grew from the approach of [Hadley Wickham](http://hadley.nz/) - a statistician responsible for popularising fresh approaches to R and data science. As with nearly all things in R, there are many, many ways to achieve the same goal and the guidlines we give here are by no means definitive. However, we choose to introduce these principles now because in our experience of data analysis, they have greatly improved our efficiency, the clarity of our R code and the way we work with data.
+
+## What is the tidyverse?
+
+It's important to emphasize that the tidyverse set of packages can do mostly **the same as base R already can do**. So what's the difference? While base R is a collection of different methods and functions built up over years, tidyverse is designed with a specific philosophy in mind. This leads to having a consistent approach to solving problems that many find appealing. That being said, if you find you prefer the "regular" R-functions over their tidyverse equivalents, go ahead and use those instead, there's nothing wrong with that.
+
+:::{.green}
+**Important concept:**  
+The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy.
+:::
+
+## The dplyr package
+
+`dplyr` is one of the packages in the tidyverse, and is focused on manipulating data in data frames. `dplyr` at it's core consists of combining 5 different verbs for data handling:
+
+* `select()` select columns from your data
+* `filter()` filters rows based on certain criteria
+* `mutate()` creates new columns (often based on the old ones)
+* `group_by()` creates groups for summarizing data
+* `summarise()` summarises data based on the groups you have created
+
+We will go through the use of these functions shortly. You may notice that you've already learned how to `select`, `filter` and `mutate` data last week using `[]` and `$`, which is correct, and exactly what we mean when we say that base R and `tidyverse` can do the same things.
+
+
+# Using dplyr to work with your data
+
+First, we have to install and load the tidyverse.[^1]
+
+[^1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
+
+```{r, eval = FALSE}
+install.packages("tidyverse")
+library("tidyverse")
+```
+
+Together with the tidyverse, you get a built in data set called `starwars`, containing information about the characters from the Star Wars films. We will use this data set for most of this tutorial. Since it's already loaded, all you have to do to access it is run:
+
+```{r}
+starwars
+```
+
+
+:::{.blue}
+**Additional info:**
+`starwars` is a data frame like you learned about last week, but you might notice that it's printing a bit differently (e.g. with red color for `NA`, condensing the output). This is because `starwars` is a special kind of data frame introduced in the tidyverse, called a `tibble`. For all practical purposes, a tibble and a data frame is the same, so throughout this course we won't care much whether our data is contained in a tibble or a regular data frame.
+:::
+
+## The pipe
+
+The tidyverse introduces a new operator called the pipe, which looks like this `%>%`. Conceptually, the pipe allows you to do something with your data, and then send the result to a new function which does more work, sends it to the next function and so on until you're satisfied. You can for instance use the pipe like this:
+
+```{r}
+x <- 1:100
+x^2 %>% mean()
+```
+
+This is equivalent to writing:
+
+```{r}
+mean(x^2)
+```
+
+Basically, you are putting the left hand side of the pipe into the parentheses in the function on the right hand side. This may not seem useful right now, but as we will see later, this can make code much easier to read. There will be a lot of examples of using the pipe throughout this tutorial, so don't worry if you don't quite understand it yet.
+
+## Selecting colums with `select()`
+
+Lets say we want to choose the name and homeworld columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
+
+```{r, eval = FALSE, echo = TRUE}
+# with names
+starwars[, c('name', 'homeworld')]
+# with indices
+starwars[, c(1, 9)]
+```
+
+With `dplyr` we can do the following:
+
+```{r}
+select(starwars, name, homeworld)
+```
+
+The first argument here is your data, while the others are the columns you want to select. Note that you don't need to use the quotes `"` here, you generally don't need that for the `dplyr` functions.
+
+`select()` becomes even more intuitive when using the pipe:
+
+```{r, eval = FALSE, echo = TRUE}
+starwars %>% select(name, homeworld)
+```
+
+This style of code is closer to how we would write in English: "Take the `starwars` data, and select the `name` and `homeworld` columns". From now on we will write all our `dplyr` code using the pipe.
+
+If you want to omit a column, you can use `-` in front of its name:
+
+```{r, eval = FALSE}
+# choose all columns BUT name
+starwars %>% select(-name)
+```
+
+`select` also has additional ways of selecting columns, some examples of this is shown below:
+
+```{r, eval = FALSE}
+# choose only columns containing an underscore
+starwars %>% select(contains("_"))
+# choose only columns beginning with "s"
+starwars %>% select(starts_with("s"))
+# choose only columns ending with "color"
+starwars %>% select(ends_with("color"))
+```
+
+**Exercise: Use `select()` to select numeric columns, i.e. all the columns that contain numbers. You can do this manually by looking at the columns. If you want a challenge, see if you can figure out how to automatically select numeric columns from your data.**
+
+:::{.fold .s}
+```{r, eval = FALSE}
+# manual method:
+starwars %>% select(height, mass, birth_year)
+
+# challenge:
+starwars %>% select(where(is.numeric))
+
+```
+
+:::
+
+## Filtering colums using `filter()`
+
+Last week, you learned to filter a data set based on some criterion using the square brackets `[]`. To filter out only the humans from the `starwars` data set, you could write:
+
+```{r, eval = FALSE}
+starwars[starwars$species == "Human", ]
+```
+
+`dplyr`'s `filter()` function does the same thing, but with a slightly different syntax:
+
+```{r, eval = FALSE}
+starwars %>% filter(species == "Human")
+```
+
+This looks quite similar to using the square brackets, one notable difference being that you don't need to use `starwars$` within `filter()`, the function already understands that we are working with `starwars`.
+
+Like with base R, you can use this to filter with the other logical operators as well, like `>` and `!=`:
+
+```{r, eval = FALSE}
+# get people lower than 1m tall
+starwars %>% filter(height < 100)
+
+# get all non-humans
+starwars %>% filter(species != "Human")
+```
+
+You can also filter using several criteria at once, simply separate the logical statements with a comma:
+
+
+```{r, eval = FALSE}
+# get all non-humans lower than 1m
+starwars %>% filter(height < 100, species != "Human")
+```
+
+### Combining `filter()` and `select()`
+
+The real power of the pipe shows when you chain several operations together. To both filter and select from your data, simply first do the filtering and then pipe the result to `select`:[^2]
+
+[^2]:
+    Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe filtering and selecting looks like this:
+    
+    ```{r}
+    select(filter(starwars, height < 100), name, height, birth_year)
+    ```
+    
+
+```{r}
+starwars %>% filter(height < 100) %>% 
+  select(name, height, birth_year)
+```
+
+Again, the code looks like how you would explain what you're doing: "take the starwars data, filter based on height, and select the name, height and birth_year columns". Note that you can have a line break after a pipe like you can inside parentheses, your code will still continue running.
+
+**Exercise: use `filter()` to choose all the people that has "Naboo" as `homeworld`. Select homeworld, skin_color and eye_color and print the result.**
+
+## Creating new columns with `mutate()`
+
+Last week you learned that you can create new columns of a data frame with `$`:
+
+```{r}
+# create a new column
+starwars$mass_per_cm <- starwars$mass / starwars$height
+
+# select columns for printing
+starwars %>% select(name, mass_per_cm)
+```
+
+Again, `dplyr` has a verb to do the same thing, called `mutate()`. The same operation as above using `mutate()` looks like this:
+
+```{r}
+# create new column and select columns
+starwars %>% mutate(mass_per_cm = mass/height) %>%
+  select(name, mass_per_cm)
+```
+
+Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write `starwars$` in front of all your columns. Like you've previously encountered with `data.frame()`, you can choose what to name the arguments of `mutate()`, and these names become your column names.
+
+## Grouped summaries with `group_by()` and `summarise()`
+
+Imagine that you want to calculate the mean height of the people (and droids) in the `starwars` data set. You could use `mean()` on the column to achieve this (note the use of `na.rm` since the height column contains `NA`s):
+
+```{r}
+mean(starwars$height, na.rm = TRUE)
+```
+
+But what if you want to calculate the mean height separately for e.g. the different species? One way to do this is to do a _grouped summary_. Your group is the `species` column, and your summary statistic is `mean`. We create groups using the `group_by()` function:
+
+```{r}
+starwars %>% group_by(species)
+```
+
+Notice that nothing has changed in the data, but at the top you can see the text `# Groups:   species [38]`, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of `group_by()` is together with `summarise()`, which does a summary based on the groups you've created:
+
+```{r}
+starwars %>% 
+  group_by(species) %>% #create group
+  summarise(mean_height = mean(height, na.rm = TRUE)) # calculate summary statistic
+```
+
+Note how again the argument name becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
+
+```{r}
+starwars %>% 
+  group_by(species) %>%
+  summarise(mean_height = mean(height, na.rm = TRUE),
+            median_height = median(height, na.rm = TRUE),
+            sd_height = sd(height, na.rm = TRUE))
+```
+
+We can even group by several variables, creating more detailed summaries:
+
+```{r}
+starwars %>%
+  group_by(homeworld, sex) %>%
+  summarise(mean_height = mean(height, na.rm = TRUE))
+```
+
+
+### Counting how many observations we have in our groups with `tally()`
+
+When we have created our groups, we can also use the `tally()` function to count the number of observations we have in the groups:
+
+```{r}
+starwars %>% 
+  group_by(species) %>%
+  tally()
+```
+
+## Using everything we've learned in a single pipe, and a `dplyr` exercise
+
