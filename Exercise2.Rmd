@@ -99,11 +99,20 @@ This is equivalent to writing:
 mean(x^2)
 ```
 
-Basically, you are putting the left hand side of the pipe into the parentheses in the function on the right hand side. This may not seem useful right now, but as we will see later, this can make code much easier to read. There will be a lot of examples of using the pipe throughout this tutorial, so don't worry if you don't quite understand it yet.
+Basically, you are putting the left hand side of the pipe into the parentheses in the function on the right hand side. This may not seem useful right now, but as we will see later, this can make code much easier to read. 
+
+You can also assign the results of your pipe to an object like any ordinary calculation:
+
+```{r}
+x2_mean <- x^2 %>% mean()
+```
+
+
+There will be a lot of examples of using the pipe throughout this tutorial, so don't worry if you don't quite understand it yet.
 
 ## Selecting colums with `select()`
 
-Lets say we want to choose the name and homeworld columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
+Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
 
 ```{r, eval = FALSE, echo = TRUE}
 # with names
@@ -118,7 +127,7 @@ With `dplyr` we can do the following:
 select(starwars, name, homeworld)
 ```
 
-The first argument here is your data, while the others are the columns you want to select. Note that you don't need to use the quotes `"` here, you generally don't need that for the `dplyr` functions.
+The first argument here is your data, while the others are the columns you want to select. Note that you don't need to use the quotes `"` here, you generally don't need those for the `dplyr` functions.
 
 `select()` becomes even more intuitive when using the pipe:
 
@@ -146,15 +155,15 @@ starwars %>% select(starts_with("s"))
 starwars %>% select(ends_with("color"))
 ```
 
-**Exercise: Use `select()` to select numeric columns, i.e. all the columns that contain numbers. You can do this manually by looking at the columns. If you want a challenge, see if you can figure out how to automatically select numeric columns from your data.**
+**Exercise: Use `select()` to select numeric columns, i.e. all the columns that contain numbers, and save it to an object with a meaningful name. You can do this manually by looking at the columns. If you want a challenge, see if you can figure out how to automatically select numeric columns from your data.**
 
 :::{.fold .s}
 ```{r, eval = FALSE}
 # manual method:
-starwars %>% select(height, mass, birth_year)
+sw_hmb <- starwars %>% select(height, mass, birth_year)
 
 # challenge:
-starwars %>% select(where(is.numeric))
+sw_hmb <- starwars %>% select(where(is.numeric))
 
 ```
 
@@ -190,7 +199,7 @@ You can also filter using several criteria at once, simply separate the logical 
 
 
 ```{r, eval = FALSE}
-# get all non-humans lower than 1m
+# get all non-humans shorter than 1m
 starwars %>% filter(height < 100, species != "Human")
 ```
 
@@ -211,9 +220,17 @@ starwars %>% filter(height < 100) %>%
   select(name, height, birth_year)
 ```
 
-Again, the code looks like how you would explain what you're doing: "take the starwars data, filter based on height, and select the name, height and birth_year columns". Note that you can have a line break after a pipe like you can inside parentheses, your code will still continue running.
+Again, the code looks like how you would explain what you're doing: "take the starwars data, filter based on height, and select the `name`, `height` and `birth_year` columns". Note that you can have a line break after a pipe like you can inside parentheses, your code will still continue running.
 
-**Exercise: use `filter()` to choose all the people that has "Naboo" as `homeworld`. Select homeworld, skin_color and eye_color and print the result.**
+**Exercise: use `filter()` to choose all the people that has "Naboo" as `homeworld`. Select name, skin_color and eye_color and save the result to an object.**
+
+:::{.fold .s}
+```{r}
+sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
+  select(name, skin_color, eye_color)
+```
+
+:::
 
 ## Creating new columns with `mutate()`
 
@@ -259,7 +276,7 @@ starwars %>%
   summarise(mean_height = mean(height, na.rm = TRUE)) # calculate summary statistic
 ```
 
-Note how again the argument name becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
+Note how again, like in `data.frame` and `mutate()`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
 
 ```{r}
 starwars %>% 
@@ -288,5 +305,142 @@ starwars %>%
   tally()
 ```
 
+This can be useful to get an overview of your data^[for example, you could realise that it doesn't make sense to calculate mean and standard deviation when you only have a single value, like we've done quite a bit]
+
 ## Using everything we've learned in a single pipe, and a `dplyr` exercise
+
+The advantage (and sometimes, the disadvantage) of pipes is that you can do everything you want in a single operation[^4]. Below is an example using everything we've learned so far in a single pipe.
+
+[^4]: In practice, it's probably smart to make an object of your intermediary results every now and then.
+
+```{r}
+starwars %>%
+  select(-films, -vehicles, -starships) %>%
+  filter(species == "Human") %>%
+  group_by(sex) %>%
+  summarise(mean_height = mean(height, na.rm = TRUE))
+```
+
+**Exercise: Explain to another student what happens in the code above (or write it down if you're doing this on your own).**
+
+**Exercise: Take the starwars data set, filter so you keep all that are _below the mean height_. Then, calculate the mean height of these short individuals, grouped by homeworld.**
+
+
+<details><summary>Show hint</summary>
+
+You can supply the mean height to the logical statement inside `filter()`. Your filtering step should then look like this: `filter(height < mean(height, na.rm = TRUE))`
+
+</details>
+
+:::{.fold .s}
+```{r}
+starwars %>%
+  filter(height < mean(height, na.rm = TRUE)) %>%
+  group_by(homeworld) %>%
+  summarise(mean_height = mean(height, na.rm = TRUE))
+```
+:::
+
+
+# Plotting your data with `ggplot2`
+
+In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields. 
+
+As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use `demo(graphics)` to have a look). However `ggplot2` is extremely flexible and takes quite a different approach to plotting compared to baseR.
+
+## The three things you need in a ggplot
+
+You need three basic elements to construct a ggplot:[^5]
+
+[^5]: There are more you _could_ use, but these three are the ones that are strictly necessary.
+
+1. **Data:** this is your data set, and it _has to be contained in a data frame._
+2. **Variables:** You need variables to plot on the x and y axes (mapping of variables)
+3. **Geometry:** You need some graphics in your plot: points, lines, boxplots, histograms etc.
+
+Let's now use these three elements step-by-step to build up our plot. In our example, we want to make a scatterplot (plot with points) of height vs. mass in our `starwars` data set.
+
+### Data
+
+First, we try supplying our data, `starwars`. The data is provided as an argument to the `ggplot()` function.
+
+```{r}
+ggplot(data = starwars)
+```
+
+As you can see, this results in a completely empty plot (because, like I said, we need two more things).
+
+### Variables
+
+The variables are provided to the `mapping` argument of `ggplot()`. For reasons we won't discuss here, **the variables always have to be contained within the function `aes()`**. Let's try providing variables to our plot:
+
+```{r}
+ggplot(data = starwars, mapping = aes(x = height, y = mass))
+```
+
+Now we're getting somewhere! We have axes now, but we're still missing our points. Time to add the geometry.
+
+### Geometry
+
+The geometry of a ggplot aren't provided to the `ggplot()` function as arguments. Instead, a separate function is added to the plot using `+`. All the functions for adding geometry start with `geom_`, and the one for points is called `geom_point()`. We add this to our plot:
+
+```{r}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) + geom_point()
+```
+
+Wohoo, we now have the plot we set out to make! There's an obvious outlier in the `mass` department, which we'll deal with later.
+
+The philosophy behind adding geometry with a `+` is that you build up your plot, layer by layer. We could for example add lines in addition to points in our plot:
+
+```{r}
+ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
+  geom_point() + 
+  geom_line()
+```
+
+We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.[^6] Notice how we can have line breaks in our code after the `+`, the plot still executes.
+
+[^6]:
+    Like this!
+    
+    ```{r}
+    ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
+      geom_point() + 
+      geom_line() +
+      geom_text(aes(label = name)) +
+      geom_boxplot() +
+      geom_violin() +
+      geom_smooth()
+    ```
+    
+    I know, I know, I did say "meaningful"
+    
+Before we continue, we should investigate our outlier, and remove it from our data to better see the pattern between mass and height.
+
+**Exercise: Use the `dplyr` tools you learned earlier to find out who the outlier is, and make a subset of the data without that individual. Then, remake the plot with your subsetted data.**
+
+<details><summary>Show hint</summary>
+
+You know that the individual in question is really heavy. Use `filter()` on the `mass` column to find it!
+
+</details>
+
+:::{.fold .s}
+
+```{r}
+# find individuals with mass larger than 1000
+starwars %>% filter(mass > 1000)
+
+# If you’ve seen Star Wars, the answer to this shouldn’t be a huge surprise… 
+# Let’s filter him out of the data
+
+starwars2 <- starwars %>% filter(mass < 1000)
+
+# and plot it
+
+ggplot(data = starwars2, mapping = aes(x = height, y = mass)) + geom_point()
+```
+
+
+:::
 
