@@ -1,0 +1,10 @@
+depth	acartia	calanus	harpacticoida	oithona	oncaea	temora
+0	0	3	0	2	0	0
+2	1	0	0	6	1	0
+4	1	0	0	7	0	1
+6	27	0	1	0	0	2
+8	11	0	2	6	0	3
+10	17	0	3	0	0	2
+12	13	0	1	0	0	1
+14	7	0	13	0	0	0
+16	6	0	6	0	0	1
