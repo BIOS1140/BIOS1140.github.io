@@ -554,7 +554,7 @@ One of the best ways to get your head around a concept like genetic drift and ho
 
 To demonstrate a simple case of drift, we'll use the example from the book. We have a population of $N$ = 8 individuals and we will focus on a single locus $A$ with two alleles, $A_1$ and $A_2$. We will assume both alleles are equally common in the population - i.e. $p = q$ = 0.5. Our little population is in HWE such that there are two of each $A_1A_1$ and  $A_2A_2$ homozygotes and four $A_1A_2$ heterozygotes. 
 
-To simulate drift, we need to allow individuals to mate at random. In the book you will recall we used a coin-flipping experiment to sample our alleles to form genotypes, since both alleles have a frequency of 0.5. This is essentially a form of **binomial sampling**. We can easily recreate this in R using the `rbinom` function to sample the binomial distribution.
+To simulate drift, we need to allow individuals to mate at random. In the book you will recall we used a coin-flipping experiment to sample our alleles to form genotypes, since both alleles have a frequency of 0.5. This is essentially a form of **binomial sampling**. We can do this kind of sampling in R with the `rbinom()` function.
 
 The `rbinom()` function essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, `rbinom()` allows for changing these probabilities. Simplified, the following code says: "flip 1 coin (`n`) 16 times (`size`) with a probability of 0.5 (`prob`) for getting heads". The output is the number of heads we got.
 
@@ -565,7 +565,7 @@ rbinom(n = 1, size = 16, prob = 0.5)
 
 Run this code a few times, and observe that the results are different each time, because the `rbinom()` function samples randomly.
 
-In our example, the output of `rbinom` could represent the number of $A_1$ alleles in the next generation -- so we could easily work out $p´$ and $q´$. We can use the following code to calculate the number of $A_1$ in generation 2:
+In our example, the output of `rbinom` could represent the number of $A_1$ alleles in the next generation -- so we could easily work out $p´$ and $q´$, i.e. $p$ and $q$ in the next generation). We can use the following code to calculate the number of $A_1$ in generation 2:
 
 ```{r, echo = TRUE}
 # set population size
