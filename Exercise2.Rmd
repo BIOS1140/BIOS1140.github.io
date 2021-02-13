@@ -780,7 +780,7 @@ copeplot
 
 </details>
 
-# Going further
+# Going further {-}
 
 As normal, R has a huge range of freely available resources online that can help you learn more about data manipulation, the tidyverse, ggplot2 and scripting. Here we point you to a few below that you might be interested in. 
 

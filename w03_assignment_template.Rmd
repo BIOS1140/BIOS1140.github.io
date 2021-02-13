@@ -1,0 +1,64 @@
+---
+title: "Week 3 assignment"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+## 1 -- for-loops
+
+a. Create one vector containing names of 4 animals you feel strongly about. Create another vector that contains what you feel about the animal. Use a for-loop to print the animal and the feeling together (like in section 1.3 of the tutorial). Example output:
+
+```{}
+"Pangolins are amazing"
+# and similarly for 3 more animals
+```
+
+```{r}
+# your code here
+```
+
+
+b. A bacterial population grows with 10% every day. The first day, we have 10 bacteria per $mm^2$. Use a for loop to calculate the number of bacteria each day for 100 days, and plot the result. How many bacteria do we have per $mm^2$ on the last day?
+
+```{r}
+# your code here
+```
+
+
+## 2 -- Hardy Weinberg Equilibrium
+
+You genotype a species of grasshoppers along a north south transect across the European Alps. Near Munich, Germany, north of the Alps you sample 120 individuals; near Innsbruck, Austria, within the Alps you sample 122 individuals; near Verona, Italy, south of the Alps you sample 118 individuals. you find the following number of each genotype:
+
+* Munich: 6 (a1a1), 33 (a1a2), 81 (a2a2)
+* Innsbruck: 20 (a1a1), 59 (a1a2), 43 (a2a2)
+* Verona: 65 (a1a1), 39 (a1a2), 14 (a2a2)
+
+a. Using the r code we learnt during the tutorial, calculate the allele frequencies in each population. Then test (statistically) whether there is a deviation from Hardy-Weinberg equilibrium in each of them. If any of the populations deviate, what could be the cause of the deviation?
+
+```{r}
+# your code here
+```
+
+_your answer here_
+
+b. In the statistical test in the previous question we use the Hardy Weinberg model as a _null model_. Explain what this means.
+
+_your answer here_
+
+## 3 -- Genetic drift
+
+a. Using the for-loop from the tutorial as a starting point, simulate drift over 2000 generations for a population of 100 individuals. Make 3 simulations,and use initial $p$s of 0.3, 0.5 and 0.9 respectively. Plot your results.
+
+```{r}
+# your code here
+```
+
+
+b. How does altering p from 0.3, 0.5 and 0.9 alter the outcome of the simulations? Which is more likely to go to fixation?
+
+_your answer here_
