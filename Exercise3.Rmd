@@ -30,12 +30,6 @@ _Green boxes summarises important concepts from the text._
 _Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want._
 :::
 
-
-:::{.yellow}
-**Advanced code**  
-_Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand._
-:::
-
 **Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
 
 # Introduction {-}
@@ -523,7 +517,7 @@ Well, just from eyeballing this matrix, we see that there is a difference betwee
 
 When we use a statistical test like the Chi-squared test, we want to find out how likely it is that we would get our observed values when we assume that our null hypothesis is true. Here, our null hypothesis is the Hardy-Weinberg expectation ($p^2$, $2pq$, $q^2$). These are the genotype frequencies we would expect to see if the population was in Hardy-Weinberg equilibrium. If the difference between the observed data and the expectation from the null hypothesis is large enough, we can say that it is statistically significant. What is "large enough" is what our chi squared test will tell us -- this is where the p-value comes in. If we get a low p-value, we can reject the null hypothesis and conclude that our population is not in Hardy-Weinberg equilibrium.
 
-A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. A p-value of 0.5 means there is a 50% probability that we would get these results if the null hypothesis was true. Another way to look at it is that if we sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours (our more extreme results, meaning a larger difference between the observed and the expected genotypes) 50% of the time. The cut-off for saying that a result is statistically significant is typically a p-value below 0.05. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.  
+A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. A p-value of 0.5 means there is a 50% probability that we would get these results if the null hypothesis was true. Another way to look at it is that if we sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours (our more extreme results, meaning a larger difference between the observed and the expected genotypes) 50% of the time. The cut-off for saying that a result is statistically significant is typically a p-value below 0.05. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.^[Keep in mind that the value 0.05 is arbitrary, and that other (often lower) values are often used in other fields. Researchers simply decided that 5% is an acceptable degree of error. This also means that 5% of studies conducted (where the statistics are done correctly) will come to the wrong conclusion.]
 
 In the book, we calculated our chi-squared manually. In R, we can simply use the function chisq.test():
 
@@ -677,54 +671,64 @@ p
 
 Note that I assigned the population size `N`, the number of generations `ngen` and the initial frequency of $A_1$ `p_init` to named objects. This way, if you want to change either of these, you only need to change them in one place!
 
-### Wrapping the simulation in a function (advanced)
+### Visualizing drift
 
-_The code in this section contains creating your own custom functions, which you won't learn about until next week. This code is marked with a yellow box, and don't worry if you don't understand it yet, hopefully you will next week!_
+Now that we our for-loop to simulate data across generations, we can easily do this for different population sizes. Let's simulate 1000 generations of drift for three populations of 10, 100 and 1000 individuals. We'll keep the initial allele frequency, `p` at 0.5 in all cases. We will then combine them all into a `data.frame` alongside the number of generations. I will skip most of the comments in the code here so the code doesn't take up too much space, but remember that you can look at the code in the previous section if you wonder what something does.
 
-For your convenience, we have wrapped our simulation in a custom function. Run the code in the yellow box to be able to use the function.
+First, for a population size of 10, storing the results to an object called `n10`
 
-:::{.yellow}
+```{r sim-loop10}
+# Population size 10
+N <- 10
+ngen <- 1000
+p_init <- 0.5
 
-**Advanced code**
+n10 <- rep(NA, ngen)
+n10[1] <- p_init
 
-_You need to run the code below in order to complete the tutorial, but you don't need to understand it._
-
-```{r sim-fun}
-drift_sim <- function(N, p_init, ngen){
-  # create vector for storing results
-  p <- rep(NA, ngen)
-  # set first element to initial p
-  p[1] <- p_init
-
-  for (i in 2:ngen){
-    # sample number of A1 alleles based on p in previous generation
-    nA1 <- rbinom(1, 2*N, p[i-1])
-    # set frequency of A1 as p in the current generation
-    p[i] <- nA1 / (2*N)
-  }
-  
-  return(p)
+for (i in 2:ngen){
+  nA1 <- rbinom(1, 2*N, n10[i-1])
+  n10[i] <- nA1 / (2*N)
 }
 ```
 
-:::
+Then we do the same for a population size of 100.
 
-After running the code above, you can run the same simulation as earlier using our new `drift_sim()` function like this:
+```{r sim-loop100}
+# Population size 100
+N <- 100
+ngen <- 1000
+p_init <- 0.5
 
-```{r}
-drift_sim(N = 8, p_init = 0.5, ngen = 100)
+n100 <- rep(NA, ngen)
+n100[1] <- p_init
+
+for (i in 2:ngen){
+  nA1 <- rbinom(1, 2*N, n100[i-1])
+  n100[i] <- nA1 / (2*N)
+}
 ```
 
-### Visualizing drift
+And finally for population size 1000.
 
-Now that we have a function to simulate data across generations, we can easily do this for different population sizes. Let's simulate 1000 generations of drift for three populations of 10, 100 and 1000 individuals. We'll keep the initial allele frequency, `p` at 0.5 in all cases. We will then combine them all into a `data.frame` alongside the number of generations.
+```{r sim-loop1000}
+# Population size 1000
+N <- 1000
+ngen <- 1000
+p_init <- 0.5
+
+n1000 <- rep(NA, ngen)
+n1000[1] <- p_init
+
+for (i in 2:ngen){
+  nA1 <- rbinom(1, 2*N, n1000[i-1])
+  n1000[i] <- nA1 / (2*N)
+}
+```
+
+As you may remember, we need to make it into a data frame in order to plot it with `ggplot2`. We also add a column called `g` that contains the number of generations.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
-# simulate drift for three different population sizes
-n10 <- drift_sim(N = 10, p_init = 0.5, ngen = 1000)
-n100 <- drift_sim(N = 100, p_init = 0.5, ngen = 1000)
-n1000 <- drift_sim(N = 1000, p_init = 0.5, ngen = 1000)
-
 # get number of generations
 g <- seq(1, 1000, 1)
 
