@@ -37,3 +37,215 @@ _Yellow boxes contain code that you need to run in order to complete the tutoria
 
 
 **Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
+
+
+
+# Introduction {-}
+
+Understanding natural selection is fundamental to properly understanding evolution. The basics of natural selection are relatively straightforward but surprisingly easily misunderstood. Our aim with this practical session is to use the R environment to actually demonstrate some models of selection and to also simulate evolution by natural selection. Thus we hope you'll start to see how R can be useful for helping you grasp difficult theoretical concepts as well as handling data.
+
+## What to expect {-}
+
+In this section we will: 
+
+* Learn about creating your own functions in R
+* recreate fitness functions in R to develop our understanding of natural selection
+* use the one-locus viability model of selection to simulate evolution
+* model directional selection, overdominance and underdominance
+* continue to practice your R skills
+
+## Getting started {-}
+
+The first thing we need to do is set up the R environment. We won't be using anything other than base R and the `tidyverse` package today. So you'll need to load the latter.
+
+```{r, eval = TRUE, echo = TRUE, results = "hide"}
+library(tidyverse)
+```
+
+# R programming: Making custom functions
+
+## Motivation
+
+In last week's tutorial and exercises, you used a for-loop to simulate genetic drift. Although the for-loop saved you thousands of lines of code compared to writing out the simulation manually, you still had to copy and paste the for loop itself many times. You had to write it 3 times for the tutorial and another 3 times for the assignment, just changing a single number each time! You may have thought that there has to be a better way of doing this, and there is! You can make this simpler by making your own custom functions, which you will learn about in the R-part of this tutorial.
+
+## Function basics
+
+You have already used a lot of functions in R, with names like `mean()`, `sum()` and `ggplot()`. Common for these is that they take some input---arguments---does something with that input and returns the result. For making your own function, you need three things:
+
+* A name for your function. This could be anything, but like for variables it's best to give them a sensible name.
+* The arguments to your function. These are the values that you want to be able to change each time you run the function.
+* What the function does with the arguments and what it returns. This is called the "body" of the function.
+
+A basic custom function typically looks like this
+
+```{r, eval = FALSE}
+
+function_name <- function(argument1, argument2){
+  #the body of the function is inside curly brackets
+  #here you do something with argument1 and argument2, for example:
+  product <- argument1 * argument2
+  
+  # functions typically end with returning some value
+  return(product)
+}
+
+```
+
+Note that the name of the function and arguments can be whatever you'd like. You can also have as many arguments as you want, separated by comma.
+
+It may be easier to understand a function with a simple example. The following function takes an argument, and prints it:
+
+```{r}
+print_arg <- function(argument){
+  
+  # make a string explaining what the argument is
+  sentence <- paste("the argument is:", argument)
+  
+  # return the string
+  return(sentence)
+}
+```
+
+Note that when you run this code, nothing happens. But now you can call your new function with any argument:
+
+```{r}
+print_arg(5)
+print_arg("horse")
+print_arg(pi > exp(1))
+```
+
+You can also reference the argument by name when calling the function, like you learned about in week 1.
+
+```{r}
+print_arg(argument = "zebra")
+```
+
+
+While this particular function is quite useless, notice how much typing you have saved already. We will move on to some more useful functions shortly, after an exercise.
+
+**Exercise: create a new function called `print_args()` that takes two arguments as input, and returns the text "the first argument is [argument1] and the second is [argument2]".**
+
+:::{.fold .s}
+```{r, eval = FALSE}
+print_args <- function(argument1, argument2){
+  # make a string
+  sentence <- paste("the first argument is:", argument1, "and the second is", argument2)
+  # return the string
+  return(sentence)
+}
+
+# test the code
+
+print_args(5, "horse")
+```
+
+:::
+
+A more useful function is often one that does some calculations. Here's an example of a function that takes two arguments and divides the first by the other.
+
+```{r}
+divide <- function(numerator, denominator){
+  return(numerator/denominator)
+}
+
+divide(5, 3)
+divide(10, 0)
+# oops
+```
+
+
+**Exercise: create a function that takes two arguments and returns the sum of those arguments**
+
+## Example: calculating genotype frequencies
+
+In last week's exercise, you used the following snippet of code to calculate genotype frequencies from allele frequencies:
+
+```{r}
+# first we set the frequencies
+p <- 0.8
+q <- 1 - p 
+
+# calculate the expected genotype frequencies (_e denotes expected)
+A1A1_e <- p^2
+A1A2_e <- 2 * (p * q)
+A2A2_e <- q^2
+# show the genotype frequencies in the console
+c(A1A1_e, A1A2_e, A2A2_e)
+```
+
+This is something I imagine you will do often in this course and later in life if you pursue evolutionary biology, so it would make sense to make it into a function. I will let you try to do it on your own before showing you how to do this. Use the hints if you get stuck!
+
+**Exercise: create a function that takes a single argument, `p`, and returns the expected genotype frequencies according to the Hardy-Weinberg expectation.**
+
+<details><summary>Show hint</summary>
+Start by wrapping the whole code snippet above inside the curly brackets of a function.
+</details>
+
+<details><summary>Show another hint</summary>
+Wrap `return()` around the vector containing the three expected frequencies. Also, remember that you should be able to change p, so you should not have the line `p <- 0.8` in the body of the function.
+</details>
+
+:::{.fold .s}
+
+```{r}
+calc_geno <- function(p){
+  
+  # calculate q from p
+  q <- 1 - p 
+  
+  # calculate the expected genotype frequencies (_e denotes expected)
+  A1A1_e <- p^2
+  A1A2_e <- 2 * (p * q)
+  A2A2_e <- q^2
+  
+  # return the genotype frequencies
+  return(c(A1A1_e, A1A2_e, A2A2_e))
+}
+```
+
+:::
+
+When testing your function, it should show the following output:
+
+```{r}
+calc_geno(0.2)
+calc_geno(0.5)
+calc_geno(0.7)
+```
+
+## Creating a function of the drift simulation
+
+Just to remind you, this is the code we used last week for the simulation:
+
+```{r, eval = FALSE}
+# set population size
+N <- 8
+
+# set number of generations
+ngen <- 100
+
+# set initial frequency of A1
+p_init <- 0.5
+
+# create vector for storing results
+p <- rep(NA, ngen)
+# set first element to initial p
+p[1] <- p_init
+
+
+for (i in 2:ngen){
+  # sample number of A1 alleles based on p in previous generation
+  nA1 <- rbinom(1, 2*N, p[i-1])
+  
+  # set frequency of A1 as p in the current generation
+  p[i] <- nA1 / (2*N)
+}
+
+p
+```
+
+Notice that there are three parameters we will probably want to be able to change for each simulation: `N`, `ngen` and `p_init`. It makes sense, then, to make these into parameters.
+
+**Exercise: Make the above drift simulation into a function. It should take three arguments: `N`, `ngen` and `p_init`, and return a vector of p's for each generation.**
+
+HINT
