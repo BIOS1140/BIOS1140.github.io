@@ -390,7 +390,7 @@ q <- 1 - p
 A1A1_e <- p^2
 A1A2_e <- 2 * (p * q)
 A2A2_e <- q^2
-# show the allele frequencies in the console
+# show the genotype frequencies in the console
 c(A1A1_e, A1A2_e, A2A2_e)
 # since these are genotype frequencies, they should also sum to 1 - you can check this like so
 sum(c(A1A1_e, A1A2_e, A2A2_e))
