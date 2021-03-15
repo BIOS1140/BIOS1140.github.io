@@ -1,0 +1,39 @@
+---
+title: "The  Theory of Natural Selection"
+output: 
+  bookdown::html_document2:
+    toc: true
+    toc_float: true
+    highlight: pygments
+    css: "style.css"
+editor_options: 
+  chunk_output_type: console
+---
+
+
+```{r setup, include=FALSE}
+source("setup.R")
+```
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+#include html script
+```
+
+
+::: {.green}
+**Important concept:**  
+_Green boxes summarises important concepts from the text._
+:::
+
+::: {.blue}
+**Additional info**  
+_Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want._
+:::
+
+:::{.yellow}
+**Advanced code**  
+_Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand._
+:::
+
+
+**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
