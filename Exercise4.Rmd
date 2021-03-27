@@ -6,6 +6,7 @@ output:
     toc_float: true
     highlight: pygments
     css: "style.css"
+  bookdown::pdf_document2: default
 editor_options: 
   chunk_output_type: console
 ---
