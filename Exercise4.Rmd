@@ -100,7 +100,7 @@ A basic custom function typically looks like this:
 
 function_name <- function(argument){
   #the body of the function is inside curly brackets
-  #here you do something with argument1 and argument2, for example:
+  #here you do something with the arguments, for example:
   result <- argument^2 
   
   # functions typically end with returning some value
@@ -132,7 +132,7 @@ print_arg <- function(argument){
 }
 ```
 
-Note that when you run this code, nothing happens. But now you can call your new function with any argument:
+When you run this code, nothing is printed, but the function has been saved. You can now call your new function with any argument.
 
 ```{r}
 print_arg(5)
@@ -342,7 +342,7 @@ for (i in 2:ngen){
 p
 ```
 
-Notice that there are three parameters we will probably want to be able to change for each simulation: `N`, `ngen` and `p_init`. It makes sense, then, to make these into parameters.
+Notice that there are three parameters we will probably want to be able to change for each simulation: `N`, `ngen` and `p_init`. It makes sense, then, to make these into function arguments.
 
 **Exercise: Make the above drift simulation into a function. It should take three arguments: `N`, `ngen` and `p_init`, and return a vector of p's for each generation.**
 
@@ -383,7 +383,7 @@ That concludes the R-part of this tutorial! The rest of the tutorial will be abo
 
 ## Understanding fitness
 
-What do we mean by **fitness**? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotpes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness. 
+What do we mean by **fitness**? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness. 
 
 ### Absolute, relative and marginal fitness
 
@@ -400,7 +400,7 @@ rel_fit <- a/max_fit
 
 Note here that when defining our vector `a`, we also actually named each element of it. Names work a little differently in vectors to how they do in a `data.frame`. For example, `a$A1A1` will not work. However `a["A1A1"]` does. 
 
-Returning to the population genetics, we formulated things a little differently to how you first encountered this example in the main text, in order to demonstrate some R code. Nonetheless, the results and the general process are the same. Essentially, we define fitness relative to the maximum fitness. Since both $A_1A_1$ and $A_1A_2$ produce the highest number of offspring, their fitness is 1 whereas $A_2A_2$ has a lower relative fitness.
+When calculating relative fitness, we define fitness relative to the maximum fitness. Since both $A_1A_1$ and $A_1A_2$ produce the highest number of offspring, their fitness is 1 whereas $A_2A_2$ has a lower relative fitness.
 
 We might also want to calculate the **mean population fitness**, denoted as $\overline{w}$. This is essentially the sum of the relative fitness of each genotype multiplied by the genotype frequency. With R, calculating this is simple - we simply multiply a vector of genotype frequencies with the relative fitness and sum the result. We do this below:
 
@@ -448,7 +448,7 @@ Now that we have the basics in place in terms of calculating fitness, we can go 
 
 ## One-locus model of viability selection
 
-When we talk about viability, we simply mean that individuals with different genotypes will vary in their probability of survivng until they are able to reproduce. Variation in viability will therefore effect the ability of individuals to reproduce and thus pass on their genes to the next generation. In other words, allele frequencies will change as a result of selection.
+When we talk about viability, we simply mean that individuals with different genotypes will vary in their probability of surviving until they are able to reproduce. Variation in viability will therefore effect the ability of individuals to reproduce and thus pass on their genes to the next generation. In other words, allele frequencies will change as a result of selection.
 
 To model this, we will use a locus $A$ with alleles $A_1$ and $A_2$ - each with a frequency $p$ and $q$. From the last section, we have the relative fitness of the genotypes with $w_{11}$, $w_{12}$ and $w_{22}$. For simplicity we will assume that fitness remains constant and that the frequency of the zygotes at each generation are in line with the Hardy-Weinberg expectation. Like in the book, we summarise the basics in the table below:
 
@@ -505,7 +505,7 @@ selection_model_simple <- function(p, rel_fit){
 }
 ```
 
-With this simple function, we can play around with the initial frequency of the $A_1$ allele and the relative fitness of the 3 genotypes. Try a few different values for yourself to see.
+With this function, we can play around with the initial frequency of the $A_1$ allele and the relative fitness of the 3 genotypes. Try a few different values for yourself to see.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # keeping the initial frequency constant
@@ -514,15 +514,17 @@ selection_model_simple(p = 0.5, rel_fit = c(1, 1, 0.5))
 selection_model_simple(p = 0.5, rel_fit = c(1, 1, 0.3))
 ```
 
-To get a good idea of how the model works, what we really want to do is examine its change in frequency over time. We will initialise two values - the intial frequency `p` and the number of generations we want to simulate selection for, `n_gen`. Like the simulation we made last week, this can be done with a for-loop.
+We now have a function that calculates the change in p after one generation. To get a better idea of how the model works, we want to see how p changes over multiple generations. We will initialise three values -- the intial frequency `p`, the number of generations we want to simulate selection for, `n_gen`, and a vector of relative fitness. Like the simulation we made last week, this can be done with a for-loop.
 
-```{r, eval = TRUE, echo = TRUE, results = "hide"}
+```{r, eval = TRUE, echo = TRUE}
 # first initialise the values
 p_init <- 0.5
 ngen <- 100
 rel_fit <- c(1, 1, 0.75)
 
+# make an empty vector to store the values of p
 p <- rep(NA, ngen)
+# set the first element of p
 p[1] <- p_init
 
 for(i in 2:ngen){
@@ -535,14 +537,14 @@ p
 The change in allele frequency is now stored in your object `p`. This can easily be plotted straight away with base R's `plot()`:
 
 ```{r}
-plot(p, type = "l")
+plot(p, type = "l", xlab = "Generation")
 ```
 
 
 
 ### Visualising selection with different parameters.
 
-We already know that R's visualisation capabilities are extremely important for developing an understanding of data and concepts. So let's combine our programming and visualisation skills to demonstrate how varying the parameters really effect the outcome of our model.
+Now, let's combine our programming and visualisation skills to demonstrate how varying the parameters really effect the outcome of our model.
 
 First things first, we will take our simulation from the previous section and make it into it's own function `selection_sim`. Like before, paste the entire code into the body, and convert the relevant objects to arguments.
 
@@ -566,7 +568,6 @@ Note here how we have a custom function wrapped inside another custom function. 
 Anyway, now we can easily simulate selection over multiple generations. For example:
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
-# Test the selection simulator
 selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.75), ngen = 1000)
 ```
 
@@ -692,7 +693,7 @@ All these modeling results will be very useful in the next sections.
 
 To understand a selection model like the one we have just developed, it can be useful to see whether a rare mutant is able to establish in a population where the alternative allele is nearly fixed. This is the basis of **invasion fitness analysis**.
 
-We can do this using a simple case where heterozygotes have a greater advantage than homozygotes. Using our newly modified `selection_model` function, we can test this by setting our relative fitness to show a higher relative fitness in heterozygotes and setting `p` to a high frequency, close to 1.
+We can do this using a case where heterozygotes have a greater advantage than homozygotes. Using our newly modified `selection_model` function, we can test this by setting our relative fitness to show a higher relative fitness in heterozygotes and setting `p` to a high frequency, close to 1.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # keeping the initial frequency constant
@@ -763,7 +764,7 @@ All of these curves are S-shaped to some extent - so the transition from high to
 
 Earlier on, we learned a bit about heterozygote advantage. This also referred to as **overdominance** - i.e. when the fitness of the heterozygote is higher than either homozygyote. However, we also touched upon the fact that this can only be stable in under certain conditions - i.e. $w{_1}^* = w{_2}^*$. We also learned that when $p$ or $q$ were 0 (i.e. the population is fixed for either allele), these equilibria are unstable. So at what allele frequency is the population in a stable equilibria?
 
-Previously we simulated data but this time, we are going to run our selection model for a range of values of $p$ and see where mean population fitness, $\overline{w}$ is maximised. Then we'll visualise it make it clearer to ourselves. As with the book, we will set relative fitness as 0.2, 1 and 0.4 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
+Previously we simulated data but this time, we are going to run our selection model for a range of values of $p$ and see where mean population fitness, $\overline{w}$ is maximised. Then we'll visualise it to make it clearer to ourselves. As with the book, we will set relative fitness as 0.2, 1 and 0.4 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
 
 :::{.yellow}
 **Advanced code:**  
@@ -787,7 +788,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-We can see mean population fitness is maximised at 0.42. This is the stable point on our 2D adaptive landscape.
+We can see mean population fitness is maximised at around 0.4. This is the stable point on our 2D adaptive landscape.
 
 **Underdominance** is the opposite of overdominance - i.e. it is heterozygote disadvantage. In short, relative fitness of the heterozygote is lower than either homozygote. Once again, we can visualise the stable equilibrium for a model of overdominance using more or less exactly the same code as before. All we really need to change is the relative fitness which we will set to 0.9, 0.3 and 1 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
 
@@ -814,7 +815,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-Here we see a scenario where underdominance is at a stable equilibria at $p$ = 0.53. 
+Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5. 
 
 ## Study questions
 
