@@ -68,58 +68,52 @@ library(tidyverse)
 
 Last week you learned a bit about creating your own functions, and hopefully saw how useful they can be for simplifying your work flow. This week you will learn more about how they work, and some tricks for using functions efficiently.
 
-Let's use the `selection_model_simple()` function we made in last week's tutorial as an example. It takes $p$ in the current generation, along with the relative fitness, and returns $p_t$, i.e. $p$ in the next generation
+As an example, let's use a simple function that takes radius and height as an input, and calculates the volume of a cylinder ($\pi r^2h$).
 
 ```{r}
-selection_model_simple <- function(p, rel_fit){
-  # define q
-  q <- 1 - p 
-  # calculate genotype frequencies (under HWE)
-  gf <- c(p^2, 2*(p*q), q^2)
-  
-  # calculate mean pop fitness
-  w_bar <- sum(rel_fit*gf)
-  
-  # calculate marginal allele frequencies
-  w1 <- (p*rel_fit[1]) + (q*rel_fit[2])
-  w2 <- (p*rel_fit[2]) + (q*rel_fit[3])
-  
-  # calculate freq of p in the next generation
-  p_t <- (p*w1)/w_bar
-  
-  # return the results
-  return(p_t)
+cyl_vol <- function(r, h){
+  return(pi * r^2 * h)
 }
 ```
 
-This can be used for a single value of `p`:
+First, let's use it for a single value of `r` and `h`.
 
 ```{r}
-# make a rel fit object to use for all models
-rel_fit <- c(1, 1, 0.7)
-p <- 0.3
-selection_model_simple(p, rel_fit)
+# radius 3, height 8
+r <- 3
+h <- 8
+cyl_vol(r, h)
 ```
 
-However, due to how R treats vectors, it can also be used for a vector of p-values!
+Let's say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can  supply a vector of heights as the second argument, and do these 10 calculations in a single operation!
 
 ```{r}
-# create p-values from 0.1 to 0.9 in steps of 0.1
-p <- seq(0.1, 0.9, 0.1)
-# calculate genotype frequencies for all values of p!
-selection_model_simple(p, rel_fit)
+# radius 3, height 1:10
+r <- 3
+h <- 1:10
+cyl_vol(r, h)
 ```
 
 This is part of what we call _vectorisation_, taking a single function and applying it to a vector of values.
 
+We can even supply two vectors, one for `r` and 1 for `h` if we want to vary both radius and height.
+
+```{r}
+r <- 10:1
+h <- 1:10
+cyl_vol(r, h)
+```
+
+Note that this calculates volume for $r=10, h=1$, then $r=9, h=2$ and so on, not for all combinations of the vectors.
+
 :::{.green}
 **Important concept:**  
-Many functions can be applied to a vector of values instead of a single value. This is a quick and simple way of running a lot of functions at the same time. Notice how the function call `selection_model_simple(p, rel_fit)` is exactly the same for single values and vectors!
+Many functions can be applied to a vector of values instead of a single value. This is a quick and simple way of running a lot of functions at the same time. Notice how the function call `cyl_vol(r, h)` is exactly the same for single values and vectors!
 :::
 
 :::{.blue}
 **Tip:**  
-Notice that you could also have used a for loop to use the function on a range of p-values. If you have experience with other programming languages, e.g. Python, you're probably used to do it that way! In R, however, vectorising functions is often faster than using for-loops if your vectors get really large.
+Notice that you could also have used a for loop to use the function on a range of values. If you have experience with other programming languages, e.g. Python, you're probably used to do it that way! In R, however, vectorising functions is often faster than using for-loops if your vectors get really large. In some cases it's also easier both to read and write.
 :::
 
 ## The `apply()` function
@@ -378,7 +372,7 @@ Let's test our function on the allele frequencies we calculated with our `calc_a
 calc_fst(af_american, af_druze)
 ```
 
-This should be the same as you got before, but with a lot less work. Next, we'll look at applying a function to a bigger dataset with `apply()`. 
+This should be the same as you got before, but with a lot less work. Next, we'll look at applying the function to a bigger data set with `apply()`. 
 
 ### Applying functions to matrices and data frames
 
@@ -403,13 +397,11 @@ What we have is the counts of allleles but what we actually want is the allele f
 calc_af(lct_counts[1, 2:4])
 ```
 
-Great! So this works well. Now let's get $p$ (the frequency of the T allele) for all the populations. We can do this extremely fast and easily using the `apply()` function that you learned about in the R-section. Note that the data needs to be columns 2 through 4 of the data, and the second argument needs to be `1` since we're working on rows.
+Great! So this works well. Now let's get $p$ (the frequency of the T allele) for all the populations. We can do using the `apply()` function that you learned about in the R-section. Note that the data needs to be columns 2 through 4 of the data, and the second argument needs to be `1` since we're working on rows.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", messages = FALSE}
 p <- apply(lct_counts[,2:4], 1, calc_af)
 ```
-
-
 
 We can now combine our vector of allele frequencies with the population names to create a data.frame of frequencies. Like so
 
@@ -417,7 +409,7 @@ We can now combine our vector of allele frequencies with the population names to
 lct_freq <- data.frame(pop = lct_counts$pop, p)
 ```
 
-Now we can easily calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^2].
+Now we can calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^2].
 
 [^2]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
 
@@ -444,7 +436,7 @@ Here we see *F*~ST~ is substantially lower. Allele frequency differences are low
 
 Next, we will combine vectorisation and our custom functions to calculate *F*~ST~ for a series of SNPs in the vicinity of the *LCT* gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data [here](https://evolutionarygenetics.github.io/LCT_snps.tsv)
 
-**Read in the file `LCT_snps.tsv`.**
+**Exercise: Read in the file `LCT_snps.tsv`.**
 
 :::{.fold .s}
 
