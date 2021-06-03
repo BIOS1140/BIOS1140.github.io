@@ -44,7 +44,11 @@ It's important to emphasize that the tidyverse set of packages can do mostly **t
 
 ::: {.green}
 **Important concept:**\
-The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy.
+The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy. Some key points of this philosophy is:
+
+- The name of all functions that transform data are verbs
+- The `data` argument is always the first argument of the functions, so it's easy to use in a pipeline (more on this later).
+
 :::
 
 ## The dplyr package
@@ -244,6 +248,8 @@ starwars %>% mutate(mass_per_cm = mass/height) %>%
 
 Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write `starwars$` in front of all your columns. Like you've previously encountered with `data.frame()`, you can choose what to name the arguments of `mutate()`, and these names become your column names.
 
+Another thing to note is that the above pipeline with `mutate()` doesn't store the new column `mass_per_cm`. For that you need to use the assignment arrow and create a new object, e.g. `starwars2 <- starwars %>% mutate(...)`. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them. 
+
 ## Grouped summaries with `group_by()` and `summarise()`
 
 Imagine that you want to calculate the mean height of the people (and droids) in the `starwars` data set. You could use `mean()` on the column to achieve this (note the use of `na.rm` since the height column contains `NA`s):
@@ -283,6 +289,8 @@ starwars %>%
   group_by(homeworld, sex) %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
 ```
+
+Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
 
 ### Counting how many observations we have in our groups with `tally()`
 
@@ -367,7 +375,7 @@ As you can see, this results in a completely empty plot (because, like I said, w
 
 ### Variables
 
-The variables are provided to the `mapping` argument of `ggplot()`. For reasons we won't discuss here, **the variables always have to be contained within the function `aes()`**. Let's try providing variables to our plot:
+The variables are provided to the `mapping` argument of `ggplot()`. For reasons we won't discuss here, **all variables always have to be contained within the function `aes()`**. Let's try providing variables to our plot:
 
 ```{r}
 ggplot(data = starwars, mapping = aes(x = height, y = mass))
