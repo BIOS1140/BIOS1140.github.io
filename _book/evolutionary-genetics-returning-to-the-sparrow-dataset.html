@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8.2 Evolutionary genetics: Returning to the sparrow dataset | R tutorials in BIOS1140</title>
+  <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8.2 Evolutionary genetics: Returning to the sparrow dataset | R tutorials in BIOS1140" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8.2 Evolutionary genetics: Returning to the sparrow dataset | R tutorials in BIOS1140" />
+  
+  <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
+
+
+<meta name="date" content="2021-06-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-programming-visualizing-complex-data.html"/>
+<link rel="next" href="study-questions-5.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R tutorials for the course BIOS1140</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console</a></li>
+<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats</a></li>
+<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories</a></li>
+<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R</a>
+<ul>
+<li class="chapter" data-level="" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html#what-to-expect-1"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects</a></li>
+<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
+<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#more-ggplot-examples"><i class="fa fa-check"></i><b>2.3.4</b> More ggplot examples</a></li>
+<li class="chapter" data-level="2.3.5" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.5</b> Saving your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency</a>
+<ul>
+<li class="chapter" data-level="" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html#what-to-expect-2"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>3.3</b> Study questions</a></li>
+<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#what-to-expect-3"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties</a></li>
+<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies</a></li>
+<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
+<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
+<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#what-to-expect-4"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="5.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> R-programming: Vectorisation</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#more-on-functions-vectorisation"><i class="fa fa-check"></i><b>5.1.1</b> More on functions: vectorisation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.2</b> The <code>apply()</code> function</a></li>
+<li class="chapter" data-level="5.1.3" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.3</b> The <code>ifelse()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html"><i class="fa fa-check"></i><b>5.2</b> Evolutionary biology: F<sub>ST</sub></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#understanding-fst---the-fixation-index"><i class="fa fa-check"></i><b>5.2.1</b> Understanding <em>F</em><sub>ST</sub> - the fixation index</a></li>
+<li class="chapter" data-level="5.2.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#visualising-fst-along-a-chromosome"><i class="fa fa-check"></i><b>5.2.2</b> Visualising <em>F</em><sub>ST</sub> along a chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>5.3</b> Study questions</a></li>
+<li class="chapter" data-level="5.4" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html"><i class="fa fa-check"></i><b>6</b> Multilocus Evolution</a>
+<ul>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="6.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html"><i class="fa fa-check"></i><b>6.1</b> Tools for investigating differences between groups</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#exploring-group-differences"><i class="fa fa-check"></i><b>6.1.1</b> Exploring group differences</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.1.2</b> Analysis of variance (ANOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html"><i class="fa fa-check"></i><b>6.2</b> Performing a QTL analysis in bedbugs</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#bedbugs-pesticide-resistance-and-study-design"><i class="fa fa-check"></i><b>6.2.1</b> Bedbugs, pesticide resistance and study design</a></li>
+<li class="chapter" data-level="6.2.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#linking-anova-to-our-qtl-analysis"><i class="fa fa-check"></i><b>6.2.2</b> Linking ANOVA to our QTL analysis</a></li>
+<li class="chapter" data-level="6.2.3" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#testing-the-same-genotype-phenotype-association-with-anova"><i class="fa fa-check"></i><b>6.2.3</b> Testing the same genotype phenotype association with ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>6.3</b> Study questions</a></li>
+<li class="chapter" data-level="6.4" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html"><i class="fa fa-check"></i><b>7</b> Inferring Evolutionary Processes from Sequence Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#what-to-expect-6"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#getting-started-3"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="7.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>7.1</b> Working with DNA sequence data</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>7.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="7.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>7.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>7.1.3</b> Calculating basic sequence statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Working with a larger dataset</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>7.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="7.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>7.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>7.3</b> Calculating statistics at the whole genome level</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>7.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>7.3.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="7.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>7.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="7.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>7.3.4</b> Performing a sliding window analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>7.4</b> Study questions</a></li>
+<li class="chapter" data-level="7.5" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="speciation-genomics.html"><a href="speciation-genomics.html"><i class="fa fa-check"></i><b>8</b> Speciation Genomics</a>
+<ul>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#what-to-expect-7"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#getting-started-4"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="8.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html"><i class="fa fa-check"></i><b>8.1</b> R programming: Visualizing complex data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>8.1.1</b> Faceting</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>8.2</b> Evolutionary genetics: Returning to the sparrow dataset</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>8.2.1</b> Reading in the sparrow vcf</a></li>
+<li class="chapter" data-level="8.2.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>8.2.2</b> Examining the variant data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#setting-up-sliding-windows"><i class="fa fa-check"></i><b>8.2.3</b> Setting up sliding windows</a></li>
+<li class="chapter" data-level="8.2.4" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.2.4</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
+<li class="chapter" data-level="8.2.5" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#visualising-the-data"><i class="fa fa-check"></i><b>8.2.5</b> Visualising the data</a></li>
+<li class="chapter" data-level="8.2.6" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.2.6</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="8.2.7" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.2.7</b> Investigating recombination rate variation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>8.3</b> Study questions</a></li>
+<li class="chapter" data-level="8.4" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html"><i class="fa fa-check"></i><b>9</b> Reconstructing the Past</a>
+<ul>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#what-to-expect-8"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#getting-started-5"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="9.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Phylogenetics in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>9.1.1</b> Storing trees in R</a></li>
+<li class="chapter" data-level="9.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>9.1.2</b> Plotting trees</a></li>
+<li class="chapter" data-level="9.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>9.1.4</b> A simple example with real data - avian phylogenetics</a></li>
+<li class="chapter" data-level="9.1.5" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>9.1.5</b> Constructing trees with R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>9.2</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>9.2.1</b> Village dogs as an insight to dog domestication</a></li>
+<li class="chapter" data-level="9.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>9.2.2</b> Reading the data into R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>9.2.3</b> Performing a PCA</a></li>
+<li class="chapter" data-level="9.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>9.2.4</b> Visualising the PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>9.3</b> Study questions</a></li>
+<li class="chapter" data-level="9.4" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html"><i class="fa fa-check"></i><b>10</b> Advancing Further in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#what-to-expect-9"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="10.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>10.1</b> Advanced features of RStudio</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
+<li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
+<li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
+<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html"><i class="fa fa-check"></i><b>10.2</b> Control flow - <code>for</code>, <code>else</code>, <code>if</code> and <code>ifelse</code></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#if-and-else"><i class="fa fa-check"></i><b>10.2.1</b> <code>if</code> and <code>else</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#ifelse---a-single-line-alternative"><i class="fa fa-check"></i><b>10.2.2</b> <code>ifelse</code> - a single line alternative</a></li>
+<li class="chapter" data-level="10.2.3" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#for-loops"><i class="fa fa-check"></i><b>10.2.3</b> <code>for</code> loops</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="vectorisation.html"><a href="vectorisation.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.3.2" data-path="vectorisation.html"><a href="vectorisation.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.3.3" data-path="vectorisation.html"><a href="vectorisation.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.6" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
+<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evolutionary-genetics-returning-to-the-sparrow-dataset" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Evolutionary genetics: Returning to the sparrow dataset</h2>
+<script src="js/hideOutput.js"></script>
+<p>In the last session, we used the <code>PopGenome</code> package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house, Italian and Spanish sparrows with data from <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.</p>
+<div id="reading-in-the-sparrow-vcf" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Reading in the sparrow vcf</h3>
+<p>The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the <a href="https://evolutionarygenetics.github.io//Chapter7.html">last session</a> but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.</p>
+<ul>
+<li>First, download the <a href="https://evolutionarygenetics.github.io/sparrow_chr8_downsample.vcf.gz">VCF</a></li>
+<li>Next, make a directory in your working directory (use <code>getwd</code> if you don’t know where that is) and call it <code>sparrow_snps</code></li>
+<li>Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the <a href="https://theunarchiver.com/">Unarchiver</a> (Mac OS X) or <a href="https://www.7-zip.org/">7zip</a> (Windows).</li>
+<li>Make sure <strong>only</strong> the uncompressed file is present in the directory.</li>
+</ul>
+<p>With these steps carried out, you can read this data in like so:</p>
+<p><strong>MAC</strong></p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb339-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><strong>WINDOWS</strong></p>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb340-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Like last time, we then need to read the file with population information, and attach that to our <code>sparrows</code> object.</p>
+<div class="yellow">
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb341-1" aria-hidden="true" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb341-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb341-2" aria-hidden="true" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
+<span id="cb341-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb341-3" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
+</div>
+</div>
+<div id="examining-the-variant-data" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Examining the variant data</h3>
+<p>Remember, you can look the data we have read in using the following command:</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
+<p>In this case, you can see that from the <code>n.sites</code> that the final site is at position 49,693,117. The actual chromosome is 49,693,984 long - so this confirms variants span the entire chromosome. Note that <code>n.sites</code> is a bit counter-intuitive here, it would only make sense as the number of sites if we had called nucleotides at <strong>every single position in the genome</strong> - but since this is a variant call format, only containing polymorphic positions then obviously this is not the case. Furthermore, the data has actually been subset in order to make it more manageable for our purposes today.</p>
+<p>Nonetheless, it is still substantial, from the <code>n.biallelic.sites</code> we can see there are 91,312 bilallelic SNPs and from <code>n.polyallelic.sites</code>, there are 1092 positions with more than two alleles. So in total we have:</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb343-1" aria-hidden="true" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
+<p>A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.</p>
+</div>
+<div id="setting-up-sliding-windows" class="section level3" number="8.2.3">
+<h3><span class="header-section-number">8.2.3</span> Setting up sliding windows</h3>
+<p>So far, this will start to seem quite familiar! We learned in the last session that per-SNP estimates of statistics such as <span class="math inline">\(\pi\)</span> can often be extremely noisy when you are calculating them on very large numbers of markers. As well as this, there are issues with the fact that SNP positions in close proximity are not always independent due to recombination - this is a theme we will return too shortly. So for this reason, it is often better to use a <strong>sliding-window</strong> approach - i.e. split the genome into windows of a particular size and then calculate the mean for a statistic within that window.</p>
+<p>We know already that chromosome 8 is 49,693,984 bp long, so we can get an idea of how many sliding windows we would generate by using some R code. We’ll set our sliding window to be 100,000 bp wide - or 100 Kb. We will also set a <strong>step</strong> or <strong>jump</strong> for our window of 25,000 bp - or 25Kb.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set chromosome size</span></span>
+<span id="cb344-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-2" aria-hidden="true" tabindex="-1"></a>chr8 <span class="ot">&lt;-</span> <span class="dv">49693984</span></span>
+<span id="cb344-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb344-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set window size and window jump</span></span>
+<span id="cb344-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-5" aria-hidden="true" tabindex="-1"></a>window_size <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb344-6"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb344-6" aria-hidden="true" tabindex="-1"></a>window_jump <span class="ot">&lt;-</span> <span class="dv">25000</span></span></code></pre></div>
+<p>We use these values to set up our sliding windows for our sparrows dataset using the <code>PopGenome</code> function, <code>sliding.window.transform</code></p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a sliding window dataset</span></span>
+<span id="cb345-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb345-2" aria-hidden="true" tabindex="-1"></a>sparrows_sw <span class="ot">&lt;-</span> <span class="fu">sliding.window.transform</span>(sparrows, <span class="at">width =</span> window_size, <span class="at">jump =</span> window_jump, <span class="at">type =</span> <span class="dv">2</span>)</span>
+<span id="cb345-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb345-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |            :            |            :            | 100 %</span></span>
+<span id="cb345-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb345-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |===================================================| ;-)</span></span></code></pre></div>
+<p>Last week we calculated the window positions along the chromosome for you (inside a yellow box). This week, however, we will show you how you can use basic R commands to find these. We begin by making a sequence from 1 to the length of chromosome 8, with steps equal to our window size using <code>seq()</code>.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use seq to find the start points of each window</span></span>
+<span id="cb346-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb346-2" aria-hidden="true" tabindex="-1"></a>window_start <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> chr8, <span class="at">by =</span> window_jump)</span></code></pre></div>
+<p>Then we can find the end point of each window by adding the window size to each element of the vector.</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add the size of the window to each start point </span></span>
+<span id="cb347-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb347-2" aria-hidden="true" tabindex="-1"></a>window_stop <span class="ot">&lt;-</span> window_start <span class="sc">+</span> window_size</span></code></pre></div>
+<p>Now we have generated two vectors: <code>window_start</code> and <code>window_stop</code>. The windows in the chromosome run from the positions in <code>window_start</code> to the corresponding position in <code>window_stop</code> For example, the first window runs from 1 to 100 Kb (i.e., <code>window_start[1]</code> to <code>window_stop[1]</code>), the second window from 25 Kb to 125 Kb (<code>window_start[2]</code> to <code>window_stop[2]</code>) and so on.</p>
+<p><em>However</em>, there is an issue here. Some of the windows stop <em>after</em> the end of the chromosome (compare e.g. <code>chr8</code> with the final stop position <code>window_stop[length(window_stop)]</code><a href="going-further-9.html#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>), so we need to remove these. You can use the following code and logical operations to see that all windows start before the end of the chromosome but that because of how we generated the stop windows, this is not the case for the stop positions<a href="going-further-9.html#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>.</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="co"># no windows start before the end of chromosome 8</span></span>
+<span id="cb348-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb348-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(window_start <span class="sc">&gt;</span> chr8)</span>
+<span id="cb348-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="co"># but some window stop positions do occur past the final point</span></span>
+<span id="cb348-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb348-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(window_stop <span class="sc">&gt;</span> chr8)</span></code></pre></div>
+<p>In fact, there are 4 windows that are beyond the end of the chromosome. To remove them, we can use the same logical operations as above, just this time within square brackets to drop those positions.</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove windows from the start and stop vectors</span></span>
+<span id="cb349-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb349-2" aria-hidden="true" tabindex="-1"></a>window_start <span class="ot">&lt;-</span> window_start[window_stop <span class="sc">&lt;</span> chr8]</span>
+<span id="cb349-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb349-3" aria-hidden="true" tabindex="-1"></a>window_stop <span class="ot">&lt;-</span> window_stop[window_stop <span class="sc">&lt;</span> chr8]</span></code></pre></div>
+<p>Here we wrapped our logical operation <code>window_stop &lt; chr8</code> in square brackets, which tells R to return the elements of the vector where this condition is <code>TRUE</code>. Also note that we have to remove the <strong>start</strong> windows that meet this condition too. Why? Well because we are using a sliding window and our window size is 100 kb, the window starting at 49,675,001 will come close to the end of the chromosome.</p>
+<p>Actually, this highlights an important point, our final window actually falls <strong>short</strong> of the end of the chromosome. You can check this like so:</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb350-1" aria-hidden="true" tabindex="-1"></a>chr8 <span class="sc">-</span> window_stop[<span class="fu">length</span>(window_stop)]</span></code></pre></div>
+<p>This is something to be aware of, since our final window falls short of the end of the chromosome, we may not be including all our variants. This is not necessarily wrong, but it is important to note.</p>
+<p>Anyway, although a little long-winded, this sliding window section is important as it will be useful for plotting later. For now, we will save our sliding window start/stop positions as a <code>data.frame</code>. We’ll also calculate the midpoint for each window.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save as a data.frame</span></span>
+<span id="cb351-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb351-2" aria-hidden="true" tabindex="-1"></a>windows <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">start =</span> window_start, <span class="at">stop =</span> window_stop, </span>
+<span id="cb351-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb351-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">mid =</span> window_start <span class="sc">+</span> (window_stop<span class="sc">-</span>window_start)<span class="sc">/</span><span class="dv">2</span>)</span></code></pre></div>
+</div>
+<div id="calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation" class="section level3" number="8.2.4">
+<h3><span class="header-section-number">8.2.4</span> Calculating sliding window estimates of nucleotide diversity and differentiation</h3>
+<p>Now that we have set up the data, the population information and the sliding windows, it is quite straightforward for us to calculate some statistics we are interested in. In this case, we are going to calculate nucleotide diversity (i.e. <span class="math inline">\(\pi\)</span>) and <em>F</em><sub>ST</sub>. We will also generate a third statistic, <em>d</em><sub>XY</sub>, which is the absolute nucleotide divergence between two populations.</p>
+<p>First we will calculate <span class="math inline">\(\pi\)</span>. Handily, the following command also sets up what we need for <em>d</em><sub>XY</sub>.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate diversity statistics</span></span>
+<span id="cb352-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb352-2" aria-hidden="true" tabindex="-1"></a>sparrows_sw <span class="ot">&lt;-</span> <span class="fu">diversity.stats</span>(sparrows_sw, <span class="at">pi =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb352-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |            :            |            :            | 100 %</span></span>
+<span id="cb352-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb352-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |===================================================| ;-)</span></span></code></pre></div>
+<p>Next we will calculate <em>F</em><sub>ST</sub>, which again is very straight forward with a single command.</p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate diversity statistics</span></span>
+<span id="cb353-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb353-2" aria-hidden="true" tabindex="-1"></a>sparrows_sw <span class="ot">&lt;-</span> <span class="fu">F_ST.stats</span>(sparrows_sw, <span class="at">mode =</span> <span class="st">&quot;nucleotide&quot;</span>)</span>
+<span id="cb353-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |            :            |            :            | 100 %</span></span>
+<span id="cb353-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb353-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |===================================================| ;-)</span></span></code></pre></div>
+<p>Note that here we use <code>mode = "nucleotide"</code> to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that’s it for calculating the statistics! As you will see in the next section, extracting them from the <code>sparrows_sw</code> object is actually more difficult than generating them…</p>
+<div id="extracting-statistics-for-visualisation" class="section level4" number="8.2.4.1">
+<h4><span class="header-section-number">8.2.4.1</span> Extracting statistics for visualisation</h4>
+<p>Since we ran our analysis on a sliding-window basis, we should have estimates of <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> for each window. What we want to do now is extract all our statistics and place them in a single <code>data.frame</code> for easier downstream visualisation - this will let us identify how these statistics are interrelated.</p>
+<p>The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful, and you will learn a bit more about them in the last course week.</p>
+<div class="yellow">
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract nucleotide diversity and correct for window size</span></span>
+<span id="cb354-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-2" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> sparrows_sw<span class="sc">@</span>nuc.diversity.within<span class="sc">/</span><span class="dv">100000</span></span>
+<span id="cb354-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-3" aria-hidden="true" tabindex="-1"></a><span class="co"># make population name vector</span></span>
+<span id="cb354-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-4" aria-hidden="true" tabindex="-1"></a>pops <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bactrianus&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;italian&quot;</span>, <span class="st">&quot;spanish&quot;</span>, <span class="st">&quot;tree&quot;</span>)</span>
+<span id="cb354-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set population names</span></span>
+<span id="cb354-6"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-6" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(nd) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(pops, <span class="st">&quot;_pi&quot;</span>)</span>
+<span id="cb354-7"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-8"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-8" aria-hidden="true" tabindex="-1"></a><span class="co"># extract fst values</span></span>
+<span id="cb354-9"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-9" aria-hidden="true" tabindex="-1"></a>fst <span class="ot">&lt;-</span> <span class="fu">t</span>(sparrows_sw<span class="sc">@</span>nuc.F_ST.pairwise)</span>
+<span id="cb354-10"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-11"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-11" aria-hidden="true" tabindex="-1"></a><span class="co"># extract dxy - pairwise absolute nucleotide diversity</span></span>
+<span id="cb354-12"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-12" aria-hidden="true" tabindex="-1"></a>dxy <span class="ot">&lt;-</span> <span class="fu">get.diversity</span>(sparrows_sw, <span class="at">between =</span> T)[[<span class="dv">2</span>]]<span class="sc">/</span><span class="dv">100000</span></span>
+<span id="cb354-13"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-14"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-14" aria-hidden="true" tabindex="-1"></a><span class="do">## Name the fst and dxy columns properly</span></span>
+<span id="cb354-15"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-15" aria-hidden="true" tabindex="-1"></a><span class="co"># get column names </span></span>
+<span id="cb354-16"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-16" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">colnames</span>(fst)</span>
+<span id="cb354-17"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-17" aria-hidden="true" tabindex="-1"></a><span class="co"># replace &quot;pop&quot; with the proper names of the populations</span></span>
+<span id="cb354-18"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(pops)){</span>
+<span id="cb354-19"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-19" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="fu">paste0</span>(<span class="st">&quot;pop&quot;</span>, i), pops[i], x)</span>
+<span id="cb354-20"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb354-21"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-21" aria-hidden="true" tabindex="-1"></a><span class="co"># replace forward slash with underline</span></span>
+<span id="cb354-22"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-22" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sub</span>(<span class="st">&quot;/&quot;</span>, <span class="st">&quot;_&quot;</span>, x)</span>
+<span id="cb354-23"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-23" aria-hidden="true" tabindex="-1"></a><span class="co"># set column names of fst and dxy</span></span>
+<span id="cb354-24"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-24" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(fst) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(x, <span class="st">&quot;_fst&quot;</span>)</span>
+<span id="cb354-25"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-25" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(dxy) <span class="ot">&lt;-</span> <span class="fu">paste0</span>(x, <span class="st">&quot;_dxy&quot;</span>)</span>
+<span id="cb354-26"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb354-27"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-27" aria-hidden="true" tabindex="-1"></a><span class="do">## Combine all data with the windows object we made earlier</span></span>
+<span id="cb354-28"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb354-28" aria-hidden="true" tabindex="-1"></a>sparrow_data <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(<span class="fu">data.frame</span>(windows, nd, fst, dxy))</span></code></pre></div>
+</div>
+<p>We now have the data frame <code>sparrow_data</code>, take a look at it to ensure that it looks correct (be aware of any errors you might get while running the code in yellow above). The data contain window positions as well as nucleotide diversity <span class="math inline">\(\pi\)</span> and the two pairwise measures F<sub>ST</sub> and d<sub>xy</sub> for all pairs of populations. Now we can finally investigate differences between the populations!</p>
+</div>
+</div>
+<div id="visualising-the-data" class="section level3" number="8.2.5">
+<h3><span class="header-section-number">8.2.5</span> Visualising the data</h3>
+<p>For the purposes of this session, we will focus mainly on the difference between house and spanish sparrows. However, since we now have all our data in a tidy <code>data.frame</code>, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let’s say we want to look at mean nucleotide diversity, we can do that like so:</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select nucleotide diversity data and calculate means</span></span>
+<span id="cb355-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb355-2" aria-hidden="true" tabindex="-1"></a>sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">summarise_all</span>(mean)</span></code></pre></div>
+<p>A lot of this will be familiar from before but to clarify, we used <code>select()</code> and <code>contains()</code> to select columns from our main dataset that contain the string <code>"pi"</code>—i.e. nucleotide diversity columns. We then used <code>summarise_all</code> and <code>mean</code> to calculate the mean value for all of the columns we selected. From the output above, we can see that the house and the Italian sparrow have the highest levels of nucleotide diversity.</p>
+<p>We could also quite easily plot if we wanted to. However, to do this, we need to use <code>pivot_longer</code> on the data to get all species in one column, and all <span class="math inline">\(\pi\)</span> values in another<a href="going-further-9.html#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a>. Note how we can supply <code>contains("pi")</code> inside <code>pivot_longer()</code> to specify which columns to include.</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gather the data</span></span>
+<span id="cb356-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-2" aria-hidden="true" tabindex="-1"></a>pi_g <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span></span>
+<span id="cb356-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;pi&quot;</span>)</span>
+<span id="cb356-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make a boxplot</span></span>
+<span id="cb356-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pi_g, <span class="fu">aes</span>(species, pi)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="cn">NULL</span>)</span>
+<span id="cb356-6"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb356-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-26-1.png" width="768" /></p>
+<p>This makes it much clearer how nucleotide diversity differs among the species.</p>
+<div id="visualising-patterns-along-the-chromosome" class="section level4" number="8.2.5.1">
+<h4><span class="header-section-number">8.2.5.1</span> Visualising patterns along the chromosome</h4>
+<p>Let’s have a look at how <em>F</em><sub>ST</sub> between house and spanish sparrows varies along chromosome 8. We can do this very simply with <code>ggplot</code>.</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb357-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb357-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb357-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
+<span id="cb357-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb357-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-27-1.png" width="768" /></p>
+<p>From this plot, it is very clear there is a huge peak in <em>F</em><sub>ST</sub> around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region…</p>
+<p>How can we investiage this? The easiest thing to do is to plot <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.</p>
+<p>First, let’s get the data we are interested in:</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data of interest</span></span>
+<span id="cb358-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb358-2" aria-hidden="true" tabindex="-1"></a>hs <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(mid, house_pi, spanish_pi, house_spanish_fst, house_spanish_dxy)</span></code></pre></div>
+<p>To keep things simple, we’ve thrown everything out we don’t need. Next, we need to use <code>pivot_longer</code> in order to rearrange our <code>data.frame</code> so that we can plot it properly.</p>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use gather to rearrange everything</span></span>
+<span id="cb359-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb359-2" aria-hidden="true" tabindex="-1"></a>hs_g <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(hs, <span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<p>Here, we use <code>-mid</code> to tell the function we want to leave this out of the pivoting and use <code>names_to = "stat"</code> to make it clear we are arranging our data by the statistics we have calculated, <code>values_to = "value"</code> is just a name for the values of each of our statistics.</p>
+<p>Now we can plot everything together:</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb360-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb360-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb360-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb360-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb360-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" /></p>
+<p>OK so it should be immediately obvious that this plot is really unhelpful. We see the <em>F</em><sub>ST</sub> data again, but since that is on such a different scale to estimates of <span class="math inline">\(\pi\)</span> and <em>d</em><sub>XY</sub>, we can’t see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with <code>facet_grid</code> in the beginning of this tutorial! Remember that we can specify independent y-axes with <code>scales = "free_y"</code>, and set <code>ncol = 1</code> to get all plots below each other.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
+<span id="cb361-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb361-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb361-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb361-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb361-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb361-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb361-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb361-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-31-1.png" width="768" /></p>
+<p>However, before we examine our plot in detail, it would also be easier if we rearranged everything so <em>F</em><sub>ST</sub> came at the top, <span class="math inline">\(\pi\)</span> beneath it and then finally, <em>d</em>_XY_. We can use the function <code>fct_relevel()</code> for manually reordering the factors to achieve this:</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb362-1" aria-hidden="true" tabindex="-1"></a>new_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;house_spanish_fst&quot;</span>, <span class="st">&quot;house_pi&quot;</span>, <span class="st">&quot;spanish_pi&quot;</span>, <span class="st">&quot;house_spanish_dxy&quot;</span>)</span>
+<span id="cb362-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb362-2" aria-hidden="true" tabindex="-1"></a>hs_g<span class="sc">$</span>stat <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(hs_g<span class="sc">$</span>stat, new_order)</span></code></pre></div>
+<p>We can now replot our figure with the new order:</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
+<span id="cb363-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb363-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb363-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb363-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb363-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb363-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb363-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb363-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" /></p>
+<p>Examining the plot we created, it is pretty clear that the large peak in <em>F</em><sub>ST</sub> on our chromosome is matched by two regions of low nucleotide diversity in the house and Spanish sparrow, <em>d</em><sub>XY</sub> is also very low in the same region.</p>
+<p>The signal here is quite clear - what could explain it? Low recombination regions in the genome are one potential explanation. The reason for this is that in a low recombination region, <strong>background selection</strong> and also <strong>selective sweeps</strong> can remove variation at polymorphic positions that are closely linked to the target of selection. Selection of this kind in either the house or the Spanish lineages AFTER they have split into different species will reduce <span class="math inline">\(\pi\)</span> in these regions and since <em>F</em><sub>ST</sub> is a relative measure of differentiation, it will potentially be inflated.</p>
+<p>This is an important issue as it means that we cannot reliably use <em>F</em><sub>ST</sub> to identify genes involved in reproductive isolation from a genome scan. By comparing <em>F</em><sub>ST</sub> to <em>d</em><sub>XY</sub> here, we see the latter is also reduced in this region, which again suggests it is likely that some sort of genome structure might be responsible for the peak in <em>F</em><sub>ST</sub> we see. One way to investigate this is examine the recombination rate variation along chromosome 8 - which we will do in the next section.</p>
+</div>
+</div>
+<div id="interlude-relative-vs.-absolute-measures-of-nucleotide-diversity" class="section level3 blue" number="8.2.6">
+<h3><span class="header-section-number">8.2.6</span> Interlude: relative vs. absolute measures of nucleotide diversity</h3>
+<p>We have mentioned a couple of times that <em>F</em><sub>ST</sub> is a <em>relative</em> measure of nucleotide differences, while <em>d</em><sub>xy</sub> is an <em>absolute</em> measure. But what does this mean? According to <a href="https://en.wikipedia.org/wiki/Fixation_index#Estimation">Wikipedia</a>, a simple way of estimating F<sub>ST</sub> (there are many ways to do this) is using the formula:</p>
+<p><span class="math display">\[ F_{ST} = \frac{\pi_{between} - \pi_{within}}{\pi_{between}} \]</span></p>
+<p>Thus, <em>F</em><sub>ST</sub> takes into account not only the nucleotide diversity <em>between</em> the populations, but also the diversity <em>within</em> the populations. So, what if the diversity within is very low, for example 0? Putting that into the formula above, we see that no matter what <span class="math inline">\(\pi_{between}\)</span> is, <em>F</em><sub>ST</sub> will be 1.</p>
+<p>In other words, <em>F</em><sub>ST</sub> is sensitive to the variation within each population, which is something you should be aware of before drawing conclusions. <em>d</em><sub>xy</sub> does not take the diversity within into account, and is thus an <em>absolute</em> measure of differences.</p>
+</div>
+<div id="investigating-recombination-rate-variation" class="section level3" number="8.2.7">
+<h3><span class="header-section-number">8.2.7</span> Investigating recombination rate variation</h3>
+<p>To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromoosme 8. This was originally estimated from a house sparrow linkage map, published by <a href="http://advances.sciencemag.org/content/3/6/e1602996">Elgvin et al (2018)</a> and you can download the data <a href="https://evolutionarygenetics.github.io/chr8_recomb.tsv">here</a>. We will read the data in like normal</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb364-1" aria-hidden="true" tabindex="-1"></a>rrate <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./chr8_recomb.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<p>Since the recombination rate is the same number of rows as our main dataset, we can just add it as a column.</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign recombination rate to full sparrow dataset</span></span>
+<span id="cb365-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb365-2" aria-hidden="true" tabindex="-1"></a>sparrow_data<span class="sc">$</span>recomb <span class="ot">&lt;-</span> rrate<span class="sc">$</span>recomb</span></code></pre></div>
+<p>Now we are ready to see whether the variation in nucleotide diversity and <em>F</em><sub>ST</sub> can be explained by recombination rate. Let’s plot how it varies along the genome.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot for recombination rate</span></span>
+<span id="cb366-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb366-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, recomb)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb366-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb366-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
+<span id="cb366-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb366-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" /></p>
+<p>To explain this a little, we have plotted recombination rate in <strong>centiMorgans per Megabase</strong> - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our <em>F</em><sub>ST</sub> peak occurs. to confirm this, we will plot both statistics together.</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data and gather</span></span>
+<span id="cb367-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-2" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> </span>
+<span id="cb367-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mid, house_spanish_fst, recomb) <span class="sc">%&gt;%</span></span>
+<span id="cb367-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb367-5"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a facet plot</span></span>
+<span id="cb367-6"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hr, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb367-7"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb367-8"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
+<span id="cb367-9"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb367-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-37-1.png" width="768" /></p>
+<p>When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the <a href="https://en.wikipedia.org/wiki/Centromere">centromere</a> is likely to be present here.</p>
+<p>Now that we have recombination data read into R, we can also explore the relationships between recombination rate and other statistics in more detail. To demonstrate this, we will plot the joint distribution of recombination rate and <em>F</em><sub>ST</sub> between house and Spanish sparrows.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot recombination rate and fst</span></span>
+<span id="cb368-2"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb368-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(recomb, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb368-3"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb368-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F[ST])))</span>
+<span id="cb368-4"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#cb368-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-38-1.png" width="768" /></p>
+<p>Clearly there is a bias here - higher <em>F</em><sub>ST</sub> values are found in regions of low recombination. Although this doesn’t completely invalidate the use of <em>F</em><sub>ST</sub> in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and Spanish sparrows.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="37">
+<li id="fn37"><p>Note that here, <code>length(window_stop)</code> in the square brackets means we are evaluating the final value in the <code>window_stop</code> vector.<a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<li id="fn38"><p>remember that <code>window_stop &gt; chr8</code> gives a vector of the same length as <code>window_stop</code>, containing <code>TRUE</code> if the corresponding element of <code>window_stop</code> is larger than<code>chr8</code>, and <code>FALSE</code> if it is smaller. <code>sum()</code> treats each <code>TRUE</code> as 1 and each <code>FALSE</code> as 0, so it can effectively be used to count the number of <code>TRUE</code>s in a vector, as we do here.<a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#fnref38" class="footnote-back">↩︎</a></p></li>
+<li id="fn39"><p>It may have been a while since the last time you saw <code>pivot_longer()</code>. If you have forgotten how it works or why we use it, remember that you can always go back to <a href="PLACEHOLDER">Week 2</a>.<a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#fnref39" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-programming-visualizing-complex-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="study-questions-5.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
