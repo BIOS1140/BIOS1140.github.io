@@ -1,40 +1,19 @@
----
-title: "Inferring evolutionary processes from sequence data"
-output: 
-  bookdown::pdf_document2: default
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-editor_options: 
-  chunk_output_type: console
----
+# Inferring Evolutionary Processes from Sequence Data
+
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-::: {.green}
-**Important concept:**\
-*Green boxes summarises important concepts from the text.*
-:::
+```{r setup, include=FALSE}
+source("setup.R")
+library(tidyverse)
+```
 
-::: {.blue}
-**Additional info**\
-*Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want.*
-:::
-
-::: {.yellow}
-**Advanced code**\
-*Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand.*
-:::
-
-# Introduction {.unnumbered}
 
 In this session, we will be learning how to work with DNA sequence data in R. So far, much of the work we have done has used allelic based models where we have considered individual markers, rather than sequences as a whole. However, DNA sequence data allows us to take into account information at more than a single site - i.e. we also incorporate our understanding of invariant sites too. For this reason, a number of different statistics are often used when handling sequencing data.
 
 Today we will focus on inferring the number of segregating sites, nucleotide diversity and Tajima's D. We focus on simpler statistics because the aim of today is also to familiarise you with working with large-scale, genome datasets. So we will begin with a relatively straightforward example with just a few sequences, before moving onto a larger dataset and then eventually looking at patterns of nucleotide diversity at the scale of an entire chromosome. This is an important precursor for what is to come in the following two sessions, where we will be focusing more and more on genomic data.
 
-## What to expect {.unnumbered}
+### What to expect {.unnumbered}
 
 Today we won't introduce any new R-concepts, but jump straight into the action with some tools for handling sequence data. In this section we will:
 
@@ -42,7 +21,7 @@ Today we won't introduce any new R-concepts, but jump straight into the action w
 -   learn how to calculate these statistics on real data
 -   perform a genome scan analysis using these statistics
 
-## Getting started {.unnumbered}
+### Getting started {.unnumbered}
 
 The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` but also we will need three additional packages for this session - `ape`, `pegas` and `PopGenome`. To install these packages, use the following commands
 
@@ -65,11 +44,15 @@ library(PopGenome)
 
 Remember that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data. All three packages [`ape`](http://ape-package.ird.fr/), [`pegas`](http://ape-package.ird.fr/pegas.html) and [`PopGenome`](https://popgenome.weebly.com/) are really useful for handling genetic data in R - follow the links for more information about each of them. Remember that you always can access the help page of any function with `?`.
 
-# Working with DNA sequence data
+## Working with DNA sequence data
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 For the first part of the tutorial, we learn about how to handle **DNA sequence** data in R. To keep things simple at this stage, we will use a relatively small dataset. Once we have some familiarity with sequence data and the statistics we can calculate from it, we will learn how to handle data derived from whole genome sequencing. For much of this first part of the tutorial, we will use a series of functions in `ape` and also some from `pegas`.
 
-## Reading sequence data into R.
+### Reading sequence data into R.
 
 The first thing we will learn to do today is to read seqeunce data into R. Unlike in the previous tutorials, it doesn't make much sense to store sequence data as a `data.frame`, so we need to use functions specifically designed for the purpose such as `read.dna`. We will be reading in a [**FASTA** which is a standard file format for sequencing data](https://en.wikipedia.org/wiki/FASTA_format). FASTA files can vary slightly, but the basic format is the same. The file we will use today can be downloaded [here](https://evolutionarygenetics.github.io/example.fas).
 
@@ -91,7 +74,7 @@ This will create an object, `mydna` which is an `ape` specific structure called 
 
 In the meantime, have a look at the `mydna` object and see what information is printed to the R console.
 
-## Exploring DNA sequence data
+### Exploring DNA sequence data
 
 As you will have just seen, when you call the `mydna` object, you only get a summary in the R console. What if you actually want to look at the sequences? One way to do this is to use the `as.alignment` function - like so:
 
@@ -99,7 +82,7 @@ As you will have just seen, when you call the `mydna` object, you only get a sum
 myalign <- as.alignment(mydna)
 ```
 
-This function converts our `DNAbin` object into an `alignment` - which is essentially a list with different elements - i.e `nb` - the number of sequences, `seq` - the actual sequences themselves, `nam` - the names of the sequences. 
+This function converts our `DNAbin` object into an `alignment` - which is essentially a list with different elements - i.e `nb` - the number of sequences, `seq` - the actual sequences themselves, `nam` - the names of the sequences.
 
 `alignment` object is convenient in that you can access information the way you are used to, e.g. with the `$` operator. You can look at the sequences as a character vector using the following R code:
 
@@ -117,9 +100,9 @@ Note that in this case, we used `alview` directly on our `mydna` object - **not*
 
 **NOTE** it is important that we make clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
 
-## Calculating basic sequence statistics
+### Calculating basic sequence statistics
 
-### Base composition
+#### Base composition
 
 Using a couple of standard `pegas` functions, we can get some more information about our sequences. For example, we can calculate the frequency of the four nucleotides in our dataset:
 
@@ -139,7 +122,7 @@ To break down GC content even further, this is equivalent to:
 sum(base.freq(mydna)[c(2, 3)])
 ```
 
-### Segregating sites
+#### Segregating sites
 
 Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can actually count:
 
@@ -166,7 +149,7 @@ L <- 40
 s <- S/L
 ```
 
-### Nucleotide diversity
+#### Nucleotide diversity
 
 Nucleotide diversity or $\Pi$ is the average number of pairwise differences between sequences in a population or sample. We can calculate it using the following formula:
 
@@ -208,7 +191,11 @@ Unlike the number of segregating sites, this estimate is already standardised to
 
 The `nuc.div` function therefore corrects for these missing bases and shortens the total length of our sequence by two. This therefore changes the final estimate of $\pi$ it produces. Of course, manually counting differences between sequences and finding sequence lengths and adjusting for Ns is time-consuming and error-prone, so you will always be using the `nuc.div()` function directly when working with large data sets (doing it manually, however, may help you understand the theory behind).
 
-# Working with a larger dataset
+## Working with a larger dataset
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 As we have seen in previous tutorials, R packages often come with nice, ready-to-use datasets. `ape` and `pegas` are no exception. We will turn to the `woodmouse` dataset next to learn how we can work with larger data than just 3, 40 bp sequences. To load the data, you need to do the following:
 
@@ -241,11 +228,11 @@ woodmouse[, 1:100]
 
 In the next section, we will use this to demonstrate how sample size can influence our estimates of nucleotide diversity and segregating sites.
 
-## Sample size and sequence statistics
+### Sample size and sequence statistics
 
-First of all, let's turn our attention to the number of segregating sites. How does using different numbers of sequences effect this? We can loop through different values of the maximum number of sequences. So we will first use 2 sequences, then 3, then 4 and so on, until we use all 15.[^1]
+First of all, let's turn our attention to the number of segregating sites. How does using different numbers of sequences effect this? We can loop through different values of the maximum number of sequences. So we will first use 2 sequences, then 3, then 4 and so on, until we use all 15.[^exercise7-1]
 
-[^1]: Take a look at the code and see if you understand the following: why did we initialise the `ss` vector with 14 values, not 15? Why do we use `i+1` for subsetting the `woodmouse` data? Are there other ways we could have done this?
+[^exercise7-1]: Take a look at the code and see if you understand the following: why did we initialise the `ss` vector with 14 values, not 15? Why do we use `i+1` for subsetting the `woodmouse` data? Are there other ways we could have done this?
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 
@@ -301,7 +288,7 @@ plot(2:15, nd, col = "blue", xlab = "No of sequences", ylab = expression(pi), la
 
 There is no obvious relationship here - nucleotide diversity is an estimate of the average difference among sequences so it only becomes more precise with increased numbers of sequences - it is not so easily biased. Unlike segregating sites, polymorphisms are also not equally weighted; rare polymorphisms only contribute slightly to nucleotide diversity as most sequences will be similar at this position, whereas more common polymorphisms mean most sequences will differ at a position.
 
-## Inferring evolutionary processes using Tajima's *D*
+### Inferring evolutionary processes using Tajima's *D*
 
 The number of segregating sites and $\pi$ are essentially estimates of the population mutation rate $\theta$ - i.e. $4N_e\mu$. Under ideal conditions - i.e. neutrality, our two estimates of $\theta$ should be equivalent to one another. Differences between these estimates suggest either the action of selection or some kind of demographic change.
 
@@ -315,7 +302,7 @@ tajima.test(woodmouse)
 This produces a list with three elements. The first is an estimate of Tajima's *D* and the other two are p-values assessing the significance of the statistic. Remember that to say whether a statistic is significant or not, the commonly used (arbitrary) threshold is p\<0.05. The two p-values are both similar here and also both show that there is no significant deviation from zero.
 
 ::: {.blue}
-### A bit more about $\pi$, $s$ and Tajima's D
+#### A bit more about $\pi$, $s$ and Tajima's D
 
 In the assignment, you will be asked to explain and interpret Tajima's D. To get you started, we will briefly explain what we are testing for with a Tajima test, and how $\pi$ and $s$ can differ relative to each other. You can read more about the interpretation of---and math behind---Tajima's D in the course book.
 
@@ -340,13 +327,17 @@ $\pi$, however, will differ. In population 1, the total number of pairwise diffe
 This is just a quick example and does not go into the biological significance of these differences (which you need to understand for this week's assignment). For that, you will need to consult the book and lectures for this course.
 :::
 
-# Calculating statistics at the whole genome level
+## Calculating statistics at the whole genome level
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 So far we have calculated descriptive statistics from two sets of sequence data. This is obviously useful to demonstrate how these statistics work and reinforcing our understanding of them. However, in modern evolutionary genetics, we are often working with much larger datasets than what we have dealt with so far. As sequencing technology becomes cheaper, faster and more accessible, we are regularly working with genome-scale data. This has implications for how we handle data and also how we interpret it and use it to test hypotheses or make some form of evolutionary inference.
 
 In this section of the tutorial, we will use a package called `PopGenome` to read variants called from **whole genome resequencing data** into R and then we will calculate nucleotide diversity within and among populations and also along a single chromosome. **A word of caution** `PopGenome` is a very useful package, but it is not always the most user friendly, so we have done our best to simplify matters as much as possible here.
 
-## Reading in variant data
+### Reading in variant data
 
 The data we are going to be working with for this section is a set of **SNP** calls from whole-genome resequencing of *Passer* sparrows. It was originally used in a study on the evolution of human commensalism in the house sparrow by [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). In the dataset there are SNPs from four sparrow species - the house sparrow, the Italian sparrow, the Spanish sparrow, the tree sparrow and also data from a house sparrow sub-species known as the Bactrianus sparrow.
 
@@ -399,7 +390,7 @@ sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
 
 This also demonstrates one other important point about `PopGenome`, the `sparrows` object is a complicated structure called a `GENOME` object (use `class(sparrows)` to see this). Unlike other R structures we have seen so far, we need to use `@` to access some parts of it. This is a little confusing, but you can think of it in acting in a similar way to the `$` operator we used to access columns of a `data.frame`.
 
-## Calculating nucleotide diversity statistics
+### Calculating nucleotide diversity statistics
 
 So, let's recap so far. We have over 90,000 SNPs from chromsome 8 of 129 sparrows from five different species. With the `PopGenome` package, we can now very quickly and easily calculate nucleotide diversity for every single one of these SNPs. We will do this like so:
 
@@ -425,7 +416,7 @@ sparrow_nd <- data.frame(position, sparrow_nuc_div, row.names = NULL)
 
 Take a look at the `sparrows_nd` data frame. One thing to note here: our `sparrow_nd` data.frame is 91,312 rows - this is the same as the number of biallelic SNPs, which tells us that `PopGenome` only calculates nucleotide diversity on these positions, not those with more than two alleles.
 
-## Visualising nucleotide diversity along the chromosome
+### Visualising nucleotide diversity along the chromosome
 
 We can now visualise the nucleotide diversity for the house sparrow along the whole of chromosome 8. Since we set up a data.frame in the last section, this can readily be done with `ggplot2`.
 
@@ -437,13 +428,13 @@ Hmm - this is not the most visually appealing figure and it is also not particul
 
 This is often the case when working with high-density genome data. One solution is to use a sliding window analyis in order to try and capture the average variation across a chromosome. We will learn how to do this in the next section.
 
-## Performing a sliding window analysis
+### Performing a sliding window analysis
 
 We will learn more about sliding windows next week, so in this section we will more or less rush through the code and focus on the results. A sliding window analysis groups the data into (overlapping) bins, or "windows". We can then calculate some summary statistic---$\pi$ in our example---on each window instead of on each singe nucleotide. With our data, this means that instead of 90,000 plus estimates of nucleotide diversity, we will get as many as we have windows! This kind of summary significantly reduces noise in the data, so it is possible to visualise the trends along the genome.
 
-The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$. [^3] Finally, we transform the data to be ready for plotting
+The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$. [^exercise7-2] Finally, we transform the data to be ready for plotting
 
-[^3]: is this an accurate way to put it? Or is it in the category "easy to follow, but not quite correct"?
+[^exercise7-2]: is this an accurate way to put it? Or is it in the category "easy to follow, but not quite correct"?
 
 ::: {.yellow}
 ```{r, results = 'hide'}
@@ -463,9 +454,9 @@ sparrow_nd_sw <- data.frame(position, sparrow_nuc_div_sw, row.names = NULL)
 ```
 :::
 
-Look at the generated data frame. This time, the number of rows in the data frame corresponds to number of windows, rather than number of SNPs. Now we can make a more informative visualisation than the previous one, using `ggplot2`. We choose the `house` column (house sparrow population) for this visualisation, but feel free to test out with the other populations as well[^2].
+Look at the generated data frame. This time, the number of rows in the data frame corresponds to number of windows, rather than number of SNPs. Now we can make a more informative visualisation than the previous one, using `ggplot2`. We choose the `house` column (house sparrow population) for this visualisation, but feel free to test out with the other populations as well[^exercise7-3].
 
-[^2]: Next week you will learn how to visualise all at once! Yay!
+[^exercise7-3]: Next week you will learn how to visualise all at once! Yay!
 
 ```{r, eval = TRUE, echo = TRUE, message = FALSE}
 ggplot(sparrow_nd_sw, aes(position, house)) + geom_line(colour = "blue") + theme_light()

@@ -1,10 +1,4 @@
 base
-methods
-datasets
-utils
-grDevices
-graphics
-stats
 ape
 phangorn
 ade4
@@ -18,4 +12,3 @@ purrr
 dplyr
 stringr
 forcats
-parallel

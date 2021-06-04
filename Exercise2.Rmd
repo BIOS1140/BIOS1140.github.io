@@ -1,39 +1,35 @@
----
-title: 'Building on your foundations: going further with R'
-output: 
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-editor_options: 
-  chunk_output_type: console
----
+# Building on your foundations: going further with R
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-
-# Introduction {.unnumbered}
+```{r setup, include=FALSE}
+source("setup.R")
+library(tidyverse)
+```
 
 In the last chapter, we got to grips with the basics of R. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. Don't worry if you feel like you haven't understood everything - this is common and perfectly normal! Learning R is very much like learning a real language in that it takes time and practice to feel 'fluent'. Even if you do feel comfortable in the language, there is no shame in asking for help or looking for more information to develop your understanding. As regular R users, we still look things up constantly and there are one or two basics which we still forget, even with over a decade of experience of using the R environment! With this in mind, a goal of these R tutorials is to re-emphasise and reinforce basic concepts throughout. We will introduce concepts but through the practical demonstrations of code, we will underline them again and again.
 
 In future chapters, we will be using a similar approach to reinforce the evolutionary genetic concepts you have encountered in the book. However, for this chapter we remain solely in the R environment and will instead switch our focus to more advanced features of R. Advanced does not necessarily mean more complicated - but it does mean that you need to have at least been introduced to the basic concepts. We will first 'level-up' our approach to handling and manipulating data. For this, we will be borrowing heavily from the [tidyverse](https://www.tidyverse.org) - a collection of packages and principles for data science in R. We will also introduce you to more advanced plotting, comparing the two most popular apporaches for plots - `base` and `ggplot`.
 
-## What to expect {-}
+### What to expect {.unnumbered}
 
 In this section we are going to:
 
 -   explore more advanced methods of handling and manipulating data
 -   learn how to plot data using `ggplot2`
 
-# Intro to data manipulation with tidyverse
+## Intro to data manipulation with tidyverse
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 Data manipulation might seem quite a boring topic but it is actually a crucial part of data science and increasingly, bioinformatics and evolutionary biology. For the average researcher working with biological data, we would estimate that the vast majority of analysis time is spent handling the data. By handling and manipulation, we mean exploring the data, shaping it into a form we want to work with and extracting information we find important or interesting. Getting to know your data is absolutely fundamental to properly understanding it and that is why we have decided to dedicate time to it in this chapter.
 
 At this point in our tutorial, we will use a series of packages collectively known as the [tidyverse](https://www.tidyverse.org); in particularly, we will focus on functions from a tidyverse package called `dplyr`. These packages grew from the approach of [Hadley Wickham](http://hadley.nz/) - a statistician responsible for popularising fresh approaches to R and data science. As with nearly all things in R, there are many, many ways to achieve the same goal and the guidlines we give here are by no means definitive. However, we choose to introduce these principles now because in our experience of data analysis, they have greatly improved our efficiency, the clarity of our R code and the way we work with data.
 
-## What is the tidyverse?
+### What is the tidyverse?
 
 It's important to emphasize that the tidyverse set of packages can do mostly **the same as base R already can do**. So what's the difference? While base R is a collection of different methods and functions built up over years, tidyverse is designed with a specific philosophy in mind. This leads to having a consistent approach to solving problems that many find appealing. That being said, if you find you prefer the "regular" R-functions over their tidyverse equivalents, go ahead and use those instead, there's nothing wrong with that.
 
@@ -41,12 +37,11 @@ It's important to emphasize that the tidyverse set of packages can do mostly **t
 **Important concept:**\
 The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy. Some key points of this philosophy is:
 
-- The name of all functions that transform data are verbs
-- The `data` argument is always the first argument of the functions, so it's easy to use in a pipeline (more on this later).
-
+-   The name of all functions that transform data are verbs
+-   The `data` argument is always the first argument of the functions, so it's easy to use in a pipeline (more on this later).
 :::
 
-## The dplyr package
+### The dplyr package
 
 `dplyr` is one of the packages in the tidyverse, and is focused on manipulating data in data frames. `dplyr` at it's core consists of combining 5 different verbs for data handling:
 
@@ -58,16 +53,25 @@ The tidyverse packages can do more or less exactly the same as base R. The diffe
 
 We will go through the use of these functions shortly. You may notice that you've already learned how to `select`, `filter` and `mutate` data last week using `[]` and `$`, which is correct, and exactly what we mean when we say that base R and `tidyverse` can do the same things.
 
-# Using dplyr to work with your data
+## Using dplyr to work with your data
 
-First, we have to install and load the tidyverse.[^1]
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-[^1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
+
+First, we have to install and load the tidyverse.[^exercise2-1]
+
+[^exercise2-1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
 
 ```{r, eval = FALSE}
 install.packages("tidyverse")
-library("tidyverse")
+library(tidyverse)
 ```
+
+```{r, echo=FALSE}
+library(tidyverse)
+```
+
 
 Together with the tidyverse, you get a built in data set called `starwars`, containing information about the characters from the Star Wars films. We will use this data set for most of this tutorial. Since it's already loaded, all you have to do to access it is run:
 
@@ -79,7 +83,7 @@ starwars
 **Additional info:** `starwars` is a data frame like you learned about last week, but you might notice that it's printing a bit differently (e.g. with red color for `NA`, condensing the output). This is because `starwars` is a special kind of data frame introduced in the tidyverse, called a `tibble`. For all practical purposes, a tibble and a data frame is the same, so throughout this course we won't care much whether our data is contained in a tibble or a regular data frame.
 :::
 
-## The pipe
+### The pipe
 
 The tidyverse introduces a new operator called the pipe, which looks like this `%>%`. Conceptually, the pipe allows you to do something with your data, and then send the result to a new function which does more work, sends it to the next function and so on until you're satisfied. You can for instance use the pipe like this:
 
@@ -104,7 +108,7 @@ x2_mean <- x^2 %>% mean()
 
 There will be a lot of examples of using the pipe throughout this tutorial, showing how it can make quite complex code readable.
 
-## Selecting colums with `select()`
+### Selecting colums with `select()`
 
 Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
 
@@ -162,7 +166,7 @@ sw_hmb <- starwars %>% select(where(is.numeric))
 ```
 :::
 
-## Filtering colums using `filter()`
+### Filtering colums using `filter()`
 
 Last week, you learned to filter a data set based on some criterion using the square brackets `[]`. To filter out only the humans from the `starwars` data set, you could write:
 
@@ -195,11 +199,11 @@ You can also filter using several criteria at once, simply separate the logical 
 starwars %>% filter(height < 100, species != "Human")
 ```
 
-### Combining `filter()` and `select()`
+#### Combining `filter()` and `select()`
 
-The real power of the pipe shows when you chain several operations together. To both filter and select from your data, simply first do the filtering and then pipe the result to `select`:[^2]
+The real power of the pipe shows when you chain several operations together. To both filter and select from your data, simply first do the filtering and then pipe the result to `select`:[^exercise2-2]
 
-[^2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe filtering and selecting looks like this:
+[^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe filtering and selecting looks like this:
 
     ```{r}
     select(filter(starwars, height < 100), name, height, birth_year)
@@ -221,7 +225,7 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 ```
 :::
 
-## Creating new columns with `mutate()`
+### Creating new columns with `mutate()`
 
 Last week you learned that you can create new columns of a data frame with `$`:
 
@@ -243,9 +247,9 @@ starwars %>% mutate(mass_per_cm = mass/height) %>%
 
 Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write `starwars$` in front of all your columns. Like you've previously encountered with `data.frame()`, you can choose what to name the arguments of `mutate()`, and these names become your column names.
 
-Another thing to note is that the above pipeline with `mutate()` doesn't store the new column `mass_per_cm`. For that you need to use the assignment arrow and create a new object, e.g. `starwars2 <- starwars %>% mutate(...)`. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them. 
+Another thing to note is that the above pipeline with `mutate()` doesn't store the new column `mass_per_cm`. For that you need to use the assignment arrow and create a new object, e.g. `starwars2 <- starwars %>% mutate(...)`. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them.
 
-## Grouped summaries with `group_by()` and `summarise()`
+### Grouped summaries with `group_by()` and `summarise()`
 
 Imagine that you want to calculate the mean height of the people (and droids) in the `starwars` data set. You could use `mean()` on the column to achieve this (note the use of `na.rm` since the height column contains `NA`s):
 
@@ -287,7 +291,7 @@ starwars %>%
 
 Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
 
-### Counting how many observations we have in our groups with `tally()`
+#### Counting how many observations we have in our groups with `tally()`
 
 When we have created our groups, we can also use the `tally()` function to count the number of observations we have in the groups:
 
@@ -297,15 +301,15 @@ starwars %>%
   tally()
 ```
 
-This can be useful to get an overview of your data[^3]
+This can be useful to get an overview of your data[^exercise2-3]
 
-[^3]: for example, you could realise that it doesn't make sense to calculate mean and standard deviation when you only have a single value, like we've done quite a bit
+[^exercise2-3]: for example, you could realise that it doesn't make sense to calculate mean and standard deviation when you only have a single value, like we've done quite a bit
 
-## Using everything we've learned in a single pipe, and a `dplyr` exercise
+### Using everything we've learned in a single pipe, and a `dplyr` exercise
 
-One advantage of pipes is that you can do everything you want in a single operation[^4]. Below is an example using everything we've learned so far in a single pipe.
+One advantage of pipes is that you can do everything you want in a single operation[^exercise2-4]. Below is an example using everything we've learned so far in a single pipe.
 
-[^4]: In practice, it's probably smart to make an object of your intermediary results every now and then.
+[^exercise2-4]: In practice, it's probably smart to make an object of your intermediary results every now and then.
 
 ```{r}
 starwars %>%
@@ -340,17 +344,21 @@ starwars %>%
 ```
 :::
 
-# Plotting your data with `ggplot2`
+## Plotting your data with `ggplot2`
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
 
 As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use `demo(graphics)` to have a look). However `ggplot2` is extremely flexible and takes quite a different approach to plotting compared to baseR.
 
-## The three things you need in a ggplot
+### The three things you need in a ggplot
 
-You need three basic elements to construct a ggplot:[^5]
+You need three basic elements to construct a ggplot:[^exercise2-5]
 
-[^5]: There are more you *could* use, but these three are the ones that are strictly necessary.
+[^exercise2-5]: There are more you *could* use, but these three are the ones that are strictly necessary.
 
 1.  **Data:** this is your data set, and it *has to be contained in a data frame.*
 2.  **Variables:** You need variables to plot on the x and y axes (mapping of variables)
@@ -358,7 +366,7 @@ You need three basic elements to construct a ggplot:[^5]
 
 Let's now use these three elements step-by-step to build up our plot. In our example, we want to make a scatterplot (plot with points) of height vs. mass in our `starwars` data set.
 
-### Data
+#### Data
 
 First, we try supplying our data, `starwars`. The data is provided as an argument to the `ggplot()` function.
 
@@ -368,7 +376,7 @@ ggplot(data = starwars)
 
 As you can see, this results in a completely empty plot (because, like I said, we need two more things).
 
-### Variables
+#### Variables
 
 The variables are provided to the `mapping` argument of `ggplot()`. For reasons we won't discuss here, **all variables always have to be contained within the function `aes()`**. Let's try providing variables to our plot:
 
@@ -378,7 +386,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass))
 
 Now we're getting somewhere! We have axes now, but we're still missing our points. Time to add the geometry.
 
-### Geometry
+#### Geometry
 
 The geometry of a ggplot aren't provided to the `ggplot()` function as arguments. Instead, a separate function is added to the plot using `+`. All the functions for adding geometry start with `geom_`, and the one for points is called `geom_point()`. We add this to our plot:
 
@@ -396,9 +404,9 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_smooth()  #add regression line
 ```
 
-We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.[^6] Notice how we can have line breaks in our code after the `+`, the plot still executes.
+We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.[^exercise2-6] Notice how we can have line breaks in our code after the `+`, the plot still executes.
 
-[^6]: Like this!
+[^exercise2-6]: Like this!
 
     ```{r}
     ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
@@ -412,16 +420,16 @@ We could keep adding layers like this forever, as long as we felt we had some me
 
     I know, I know, I did say "meaningful"
 
-:::{.green}
-**Important concept:**  
+::: {.green}
+**Important concept:**\
 You need 3 things for a ggplot:
 
-1. **data** in a data frame (the `data` argument of `ggplot()`)
-2. **variables** -- which columns of your data do you want to plot? (the `mapping` argument of `ggplot()`, needs to be wrapped in `aes()`)
-3. **geometry** -- how do you want to represent your variables (separate functions, starting with `geom_`). You can add as many layers of geometry as you'd like.
+1.  **data** in a data frame (the `data` argument of `ggplot()`)
+2.  **variables** -- which columns of your data do you want to plot? (the `mapping` argument of `ggplot()`, needs to be wrapped in `aes()`)
+3.  **geometry** -- how do you want to represent your variables (separate functions, starting with `geom_`). You can add as many layers of geometry as you'd like.
 :::
 
-### Interlude: filtering out the outlier
+#### Interlude: filtering out the outlier
 
 Before we continue, we should investigate our outlier, and remove it from our data to better see the pattern between mass and height.
 
@@ -456,8 +464,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 :::
 
-
-## Storing ggplots in objects
+### Storing ggplots in objects
 
 A very useful feature of ggplots is that they can be stored in objects just like any other data. We will test this with the `starwars2` data frame we created above.
 
@@ -468,8 +475,7 @@ sw_plot
 
 We can now use this object as a base, and make different plots by adding `geom`s:
 
-:::{.fold .o}
-
+::: {.fold .o}
 ```{r}
 # plot with points
 sw_plot + geom_point()
@@ -478,14 +484,13 @@ sw_plot + geom_line()
 # plot with regression line
 sw_plot + geom_smooth()
 ```
-
 :::
 
 If you plan to make several plots with the same data and variables, you should save the basic plot to an object to avoid repeating yourself.
 
-## Customizing your plots
+### Customizing your plots
 
-### General customization
+#### General customization
 
 So far, we've been using the `geom_` functions without arguments, but they actually take many of the same arguments as `plot()`. This means that you can use `col` to change color, `pch` to change point shape and `lty` to change line type:
 
@@ -502,18 +507,10 @@ sw_pts_ln <- sw_plot +
 sw_pts_ln
 ```
 
-Adding title and labels can be done by adding a separate function, `labs()`. `labs()` has, among others, the arguments `x`, `y`, `title` and `subtitle`, doing exactly what you would expect:[^7]
+Adding title and labels can be done by adding a separate function, `labs()`. `labs()` has, among others, the arguments `x`, `y`, `title` and `subtitle`, doing exactly what you would expect:[^exercise2-7]
 
-```{r}
-sw_pts_ln +
-  labs(x = "Height (cm)",
-       y = "Mass (kg)",
-       title = "Heigt vs. mass in the Star Wars universe",
-       subtitle = "A part of the BIOS1140 ggplot tutorial")
-```
+[^exercise2-7]: Notice how our plot is built up layer by layer. Just to remind you, here's how the code for our plot would look without creating intermediary objects:
 
-[^7]:
-    Notice how our plot is built up layer by layer. Just to remind you, here's how the code for our plot would look without creating intermediary objects:
     ```{r}
     ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
       geom_line(col = "steelblue", lty = 2) +
@@ -525,7 +522,15 @@ sw_pts_ln +
       
     ```
 
-### Mapping variables to colors, shapes etc.
+```{r}
+sw_pts_ln +
+  labs(x = "Height (cm)",
+       y = "Mass (kg)",
+       title = "Heigt vs. mass in the Star Wars universe",
+       subtitle = "A part of the BIOS1140 ggplot tutorial")
+```
+
+#### Mapping variables to colors, shapes etc.
 
 The modifications you've learned so far are nice for making plots pretty, but the real power of using colors and other aesthetics comes when they can contain additional information about your data. Here we introduce a powerful concept in `ggplot2` for doing this: **You can map data to more than just your axis labels**. In the following plot, the points are colored by their value in the `species` column, rather than all having the same color:
 
@@ -536,8 +541,8 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, col = species)) +
 
 One important thing to note here is that your variable has to be within `aes()` in your plot. Note that **variable names do not need quotes**. It's easy to get confused about when to put something inside `aes()` and not, but the general rule is:
 
-* If you're mapping color (or shape, linetype) to a **variable** in your data set, the `col` argument must be inside `aes()`.
-* If you're giving everything the same color (or shape, linetype), the `col` argument must be outside of `aes()`.
+-   If you're mapping color (or shape, linetype) to a **variable** in your data set, the `col` argument must be inside `aes()`.
+-   If you're giving everything the same color (or shape, linetype), the `col` argument must be outside of `aes()`.
 
 In this sense, mapping variables to e.g. color is no different than mapping to your x and y axes (which you would always wrap inside `aes()`)
 
@@ -558,42 +563,45 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-:::{.green}
-
-**Important concept:**  
+::: {.green}
+**Important concept:**\
 Variables can be mapped to aesthetics like color and point shape the same way they can be mapped to axes. Whenever you do this, you have to have your mapping within the `aes()` function. You can use the `mapping` argument of `ggplot()` to make your mapping global (i.e. for the entire plot), or the `mapping` argument of a geom to make the mapping exclusive to that geom.
-
 :::
 
-**Exercise: Make a scatter plot (plot with points) of height vs. birth year in the Star Wars data. Color the points by species. Add a single (linear) regression line that is _not_ colored by species.**
+**Exercise: Make a scatter plot (plot with points) of height vs. birth year in the Star Wars data. Color the points by species. Add a single (linear) regression line that is *not* colored by species.**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
 
 Map color within the `geom_point()` function in order to avoid having your regression line colored by species
 
 </details>
 
-:::{.fold .s .o}
+::: {.fold .s .o}
 ```{r}
 ggplot(data = starwars, mapping = aes(x = birth_year, y = height)) +
   geom_point(mapping = aes(col = species)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
-
 :::
 
-## More ggplot examples
+### More ggplot examples
 
 There are many different ways to visualise data using `ggplot2` beyond the standard scatter plot we have already seen. For a full list with reproducible examples, you should see the [ggplot2 manual](http://ggplot2.tidyverse.org/reference/). However, we will demonstrate a selection here and also get more of an idea of why `ggplot2` is so flexible.
 
-:::{.blue}
-**Tip:**  
+::: {.blue}
+**Tip:**\
 From now on, we will no longer explicitly write the names of the `data` and `mapping` arguments. Instead, we will go with argument order, as explained in the tutorial last week. `data` is the first argument of `ggplot()` and `mapping` is the second. Remember that you can always recognize the `mapping` argument since it always contains the `aes()` function. Similarly, `x` and `y` are always the first and second arguments respectively of `aes()`.
 
-This means that ```ggplot(data = starwars, mapping = aes(x = height, y = mass))``` can just as well be written ```ggplot(starwars, aes(height, mass))```
+This means that `ggplot(data = starwars, mapping = aes(x = height, y = mass))` can just as well be written `ggplot(starwars, aes(height, mass))`
 :::
 
-### Visualising data distributions
+#### Visualising data distributions
 
 First of all, what if we want to look at the distribution of our data? For exampe, we could have looked at the distribution of mass in our dataset and spotted that Jabba was an issue before making our scatter plot. One way to do this would have been to plot a histogram using the `geom_histogram` layer.
 
@@ -610,7 +618,7 @@ sw_massplot + geom_density()
 
 Both of these visualisations clearly shows both outliers and the distribution of our data.
 
-### Comparing data distributions
+#### Comparing data distributions
 
 Perhaps we want to compare mass among the different species in our data? One way we can do this is with a boxplot like we did in Chapter 1. `ggplot2` makes this easy using the `geom_boxplot()` layer.
 
@@ -621,9 +629,9 @@ sw_mass_species + geom_boxplot()
 
 Hmm - although this plot is detailed and we can still see there is a clear outlier, it is difficult to really see much more. This is an important point of data visualisation, you need to think what you hope those viewing the plot can learn from it.
 
-Using the data handling skills we learned earlier in this session, let's subset our data and visualise it again using `geom_boxplot()`. To get started, we will compare the mass of humans, droids and ewoks.[^8]
+Using the data handling skills we learned earlier in this session, let's subset our data and visualise it again using `geom_boxplot()`. To get started, we will compare the mass of humans, droids and ewoks.[^exercise2-8]
 
-[^8]: The `|` inside `filter()` in the code means "or". So our logical statement can be read as: `species` is "Human" OR `species` is "Droid" OR `species` is "Ewok".
+[^exercise2-8]: The `|` inside `filter()` in the code means "or". So our logical statement can be read as: `species` is "Human" OR `species` is "Droid" OR `species` is "Ewok".
 
 ```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 # subset data
@@ -638,18 +646,22 @@ Clearly, Ewoks have a much lower mass than either droids or humans - but note he
 
 **Exercise: Use tools from `dplyr` to count the number of observations for each species in our `hde` subset**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
 
 Use `group_by()` and `tally()`
 
 </details>
 
-:::{.fold .s .o}
-
+::: {.fold .s .o}
 ```{r, eval = TRUE, warning = FALSE, message = FALSE}
 hde %>% group_by(species) %>% tally()
 ```
-
 :::
 
 We could also visualise the solution from the exercise as a barplot with `ggplot2`, using geom_bar(). For example:
@@ -660,7 +672,7 @@ ggplot(hde, aes(species)) + geom_bar()
 
 You will learn more about ggplots, how to customise them and different geoms throughout this course. For now, we hope you see how flexible and powerful `ggplot2` is for making visualisations!
 
-## Saving your plots
+### Saving your plots
 
 You can save your ggplot to a file using the function `ggsave()`. At the very least, you need to provide a plot object and a file name (with extension).
 
@@ -673,10 +685,13 @@ hde_boxplot <- ggplot(hde, aes(species, mass)) +
 ggsave("hde_boxplot.png", hde_boxplot)
 ```
 
+## Reshaping data with pivot_longer()
 
-# Reshaping data with pivot_longer()
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-## Wide and long format
+
+### Wide and long format
 
 Let's say you have some biological data (finally, wohoo!), and want to plot it using `ggplot2`. There are (at least) two ways your data can be formatted:
 
@@ -686,16 +701,25 @@ knitr::include_graphics("figs/long_wide.PNG")
 
 These two formats are commonly referred to as "wide" and "long" respectively. If you want to make some plot that is e.g. colored by species in this data, **the data needs to be in long format**, i.e. the variable you are grouping by has to be contained in a single column. Data can be converted from wide to long using the tidyverse function `pivot_longer()`.
 
-## Import example data
+### Import example data
 
 Let's import a data set to use as our example. Download `copepods.txt` [here](PLACEHOLDER). The data contains counts of different copepod taxa from outside Drøbak.
 
 **Exercise: download the data and import it into R. Is this data "wide" or "long"?**
-<details><summary>Show hint</summary>
+
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
+
 Use the `read.table()` function. The data is tabulator separated with a header. Remember to work in the correct working directory!
+
 </details>
 
-:::{.fold .s}
+::: {.fold .s}
 ```{r, eval = FALSE}
 copepods <- read.table("copepods.txt", header = TRUE, sep = "\t")
 ```
@@ -711,8 +735,7 @@ Take a look at the data and how it's structured:
 copepods
 ```
 
-
-## Reshape the data
+### Reshape the data
 
 As you hopefully figured out, this data is in so-called wide format, and we need to make it long with `pivot_longer()`. `pivot_longer()` has two important arguments called `names_to` and `values_to`. In our case `names_to` is the name of the new column of species, and `values_to` is the name of the new column where our values go. In addition, you need to provide the columns that you want to reshape. We can reshape this data like this:
 
@@ -733,27 +756,38 @@ copepods_long <- copepods %>%
 
 That sure is more convenient than explicitly selecting all the columns we want (in our case, anyway)!
 
-## Plot the data
+### Plot the data
 
 Now we can plot the data! By now, you should know enough ggplot to attempt this yourself.
 
 **Exercise: Make a plot where you have depth on the x-axis and count on the y-axis, and color by species. Experiment with using some different geoms and find the most suitable for visualising your data. When you've settled on a geom, create a title and axis labels, and save your finished plot with `ggsave()`**
 
-<details><summary>Show some geom ideas</summary>
+<details>
+
+<summary>
+
+Show some geom ideas
+
+</summary>
 
 Try these, and see how they look for your data!
 
-* `geom_point()`
-* `geom_jitter()` (what is the difference between this and `geom_point()`?)
-* `geom_col()` (tip: use `fill` aesthetic instead of `col`)
-* `geom_boxplot()` (does this make sense?)
-* `geom_line()`
-* `geom_area()` (use `fill` for this one too)
-
+-   `geom_point()`
+-   `geom_jitter()` (what is the difference between this and `geom_point()`?)
+-   `geom_col()` (tip: use `fill` aesthetic instead of `col`)
+-   `geom_boxplot()` (does this make sense?)
+-   `geom_line()`
+-   `geom_area()` (use `fill` for this one too)
 
 </details>
 
-<details><summary>Show code and plots</summary>
+<details>
+
+<summary>
+
+Show code and plots
+
+</summary>
 
 ```{r, cache = TRUE}
 depthplot <- ggplot(copepods_long, aes(depth, count, col = species))
@@ -780,15 +814,14 @@ copeplot <- ggplot(copepods_long, aes(-depth, count)) +
 copeplot
 ```
 
-
 </details>
 
-# Going further {-}
+## Going further
 
-As normal, R has a huge range of freely available resources online that can help you learn more about data manipulation, the tidyverse, ggplot2 and scripting. Here we point you to a few below that you might be interested in. 
+As normal, R has a huge range of freely available resources online that can help you learn more about data manipulation, the tidyverse, ggplot2 and scripting. Here we point you to a few below that you might be interested in.
 
-* [Datacamp has an free introduction to using tidyverse packages to manipulate data](https://www.datacamp.com/courses/introduction-to-the-tidyverse)
-* [Hadley Wickham & Garrett Grolemund have written the definitive, freely available online book on using R for data manipulation - this is the 'bible' of the tidyverse approach and includes a section on ggplot2](http://r4ds.had.co.nz/)
-* [There is also a Datacamp course on ggpot2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1?tap_a=5644-dce66f&tap_s=213362-c9f98c)
-* [Winston Chang's R Graphic's Cookbook is also an excellent resource for using ggplot2 for data visualisation](http://www.cookbook-r.com/)
-* [A detailed software carpentry guide to R scripting](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)
+-   [Datacamp has an free introduction to using tidyverse packages to manipulate data](https://www.datacamp.com/courses/introduction-to-the-tidyverse)
+-   [Hadley Wickham & Garrett Grolemund have written the definitive, freely available online book on using R for data manipulation - this is the 'bible' of the tidyverse approach and includes a section on ggplot2](http://r4ds.had.co.nz/)
+-   [There is also a Datacamp course on ggpot2](https://www.datacamp.com/courses/data-visualization-with-ggplot2-1?tap_a=5644-dce66f&tap_s=213362-c9f98c)
+-   [Winston Chang's R Graphic's Cookbook is also an excellent resource for using ggplot2 for data visualisation](http://www.cookbook-r.com/)
+-   [A detailed software carpentry guide to R scripting](https://swcarpentry.github.io/r-novice-inflammation/06-best-practices-R/)

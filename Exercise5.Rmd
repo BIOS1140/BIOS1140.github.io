@@ -1,53 +1,27 @@
----
-title: "Detecting Natural Selection"
-output: 
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-  bookdown::pdf_document2: default
-editor_options: 
-  chunk_output_type: console
----
-
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-::: {.green}
-**Important concept:**  
-_Green boxes summarises important concepts from the text._
-:::
-
-::: {.blue}
-**Additional info**  
-_Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want._
-:::
-
-:::{.yellow}
-**Advanced code**  
-_Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand._
-:::
+```{r setup, include=FALSE}
+source("setup.R")
+library(tidyverse)
+```
 
 
-**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
+# Detecting Natural Selection
 
-# Introduction {-}
+In the last section, we spent a lot of time on the theoretical basis of natural selection. In this section, we will once again learn about selection, but this time our focus will be much more empirically based. In particular, we are going to use R to demonstrate the utility of *F*~ST~ (i.e. genetic differentiation among populations) as a means to infer selection in the genome. This means we will be returning to some of the things you learned about in Chapter 3 in order to properly understand F-statistics. We'll also return to the idea of empirical and statistical distributions in order to underline the basic concepts behind how we can do this. Finally, we will take some actual genome-wide *F*~ST~ data and visualise it in order to demonstrate just how a genome scan approach might identify genomic regions under selection.
 
-In the last section, we spent a lot of time on the theoretical basis of natural selection. In this section, we will once again learn about selection, but this time our focus will be much more empirically based. In particular, we are going to use R to demonstrate the utility of *F*~ST~ (i.e. genetic differentiation among populations) as a means to infer selection in the genome. This means we will be returning to some of the things you learned about in Chapter 3 in order to properly understand F-statistics. We'll also return to the idea of empirical and statistical distributions in order to underline the basic concepts behind how we can do this. Finally, we will take some actual genome-wide *F*~ST~ data and visualise it in order to demonstrate just how a genome scan approach might identify genomic regions under selection. 
+### What to expect {.unnumbered}
 
+In this section we will:
 
-## What to expect {-}
+-   Learn more about functions in R
+-   Learn about the `ifelse()` function
+-   develop our understanding of *F*-statistics
+-   visualise *F*~ST~ across the genome and use it to detect potential divergent selection
+-   learn about empirical and statistical distributions in R
 
-In this section we will: 
-
-* Learn more about functions in R
-* Learn about the `ifelse()` function
-* develop our understanding of *F*-statistics
-* visualise *F*~ST~ across the genome and use it to detect potential divergent selection
-* learn about empirical and statistical distributions in R
-
-## Getting started {-}
+### Getting started {.unnumbered}
 
 The first thing we need to do is set up the R environment. We won't be using anything other than base R and the `tidyverse` package today. So you'll need to load the latter.
 
@@ -55,9 +29,13 @@ The first thing we need to do is set up the R environment. We won't be using any
 library(tidyverse)
 ```
 
-# R-programming
+## R-programming: Vectorisation
 
-## More on functions: vectorisation
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
+
+### More on functions: vectorisation
 
 Last week you learned a bit about creating your own functions, and hopefully saw how useful they can be for simplifying your work flow. This week you will learn more about how they work, and some tricks for using functions efficiently.
 
@@ -103,29 +81,29 @@ p <- seq(0.1, 0.9, 0.1)
 selection_model_simple(p, rel_fit)
 ```
 
-This is part of what we call _vectorisation_, taking a single function and applying it to a vector of values.
+This is part of what we call *vectorisation*, taking a single function and applying it to a vector of values.
 
-:::{.green}
-**Important concept:**  
+::: {.green}
+**Important concept:**\
 Many functions can be applied to a vector of values instead of a single value. This is a quick and simple way of running a lot of functions at the same time. Notice how the function call `selection_model_simple(p, rel_fit)` is exactly the same for single values and vectors!
 :::
 
-:::{.blue}
-**Tip:**  
+::: {.blue}
+**Tip:**\
 Notice that you could also have used a for loop to use the function on a range of p-values. If you have experience with other programming languages, e.g. Python, you're probably used to do it that way! In R, however, vectorising functions is often faster than using for-loops if your vectors get really large.
 :::
 
-## The `apply()` function
+### The `apply()` function
 
-The `apply()` function is a tool to further vectorise your functions that works with matrices and data frames. `apply()` will _apply a function to either each row or each column of your data frame/matrix_. The general structure of using `apply()` is:
+The `apply()` function is a tool to further vectorise your functions that works with matrices and data frames. `apply()` will *apply a function to either each row or each column of your data frame/matrix*. The general structure of using `apply()` is:
 
 ```{r, eval = FALSE}
 apply(data, row_or_colwise, function_name)
 ```
 
-Where the second argument is either `1` for operating on each row or `2` for operating on each column[^1].
+Where the second argument is either `1` for operating on each row or `2` for operating on each column[^exercise5-1].
 
-[^1]: It can be tricky to remember which is which of these, so don't worry if you find yourself looking at the help page with `?apply` all the time, I sure do! Also, a general rule of thumb is that in R, _rows always comes before columns_, like when you extract values from a data frame with square brackets `[]`. 
+[^exercise5-1]: It can be tricky to remember which is which of these, so don't worry if you find yourself looking at the help page with `?apply` all the time, I sure do! Also, a general rule of thumb is that in R, *rows always comes before columns*, like when you extract values from a data frame with square brackets `[]`.
 
 The best way to show how it works is probably through an example. Consider if you have the following data frame of species counts, where each column contains counts for a species, and each row is a location.
 
@@ -153,28 +131,36 @@ Great! Notice how `mean` should be written without parentheses when using it ins
 
 **Exercise: use `apply()` calculate the mean count of each species, i.e. the means of the columns in your data.**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
+
 Use `2` as the second argument to work with columns instead of rows.
+
 </details>
 
-:::{.fold .s}
+::: {.fold .s}
 ```{r}
 apply(species, 2, mean)
 ```
 :::
 
-:::{.green}
-**Important concept:**  
+::: {.green}
+**Important concept:**\
 Use `apply()` to use a function on either all rows (`1`) or all columns (`2`) of a data frame/matrix.
 :::
 
 This section has been a small taste on what R can do when you vectorise your functions. Vectorisation can be a bit tricky to wrap your head around in the beginning, but if you keep using it it eventually becomes a very useful tool for performing a lot of calculations simultaneously.
 
-## The `ifelse()` function {#ifelse}
+### The `ifelse()` function {#ifelse}
 
 Say that you have a vector with values, and you want to group them somehow. For example, you have a vector of numbers between 0 and 10, and want to label the values that are larger than 5.
 
-:::{.yellow}
+::: {.yellow}
 ```{r}
 # generate 10 numbers between 0 and 10
 set.seed(14)
@@ -201,7 +187,7 @@ This means that to get "high" and "low" for our values, we can write:
 ifelse(x > 5, "high", "low")
 ```
 
-### `ifelse()` examples
+#### `ifelse()` examples
 
 `ifelse()` can be used for a lot of things, here are a couple of more examples:
 
@@ -226,32 +212,36 @@ ifelse(animals == "horse", "actual horse", "almost horse")
 
 This usage can be convenient when plotting values, as you will see in the evolution-part of the tutorial.
 
-# Evolutionary biology: F~ST~
+## Evolutionary biology: F~ST~
 
-## Understanding *F*~ST~ - the fixation index
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-### What is *F*~ST~?
 
-*F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*~ST essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
+### Understanding *F*~ST~ - the fixation index
 
-Ultimately, it is quite a simple statistic to understand but it can sometimes take time to properly grasp. So we will go over the basics properly here. One of the most confusing things about *F*~ST is that are several different ways to define it. For ease of undersanding, we will use a simple formulation: 
+#### What is *F*~ST~?
+
+*F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*\~ST essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
+
+Ultimately, it is quite a simple statistic to understand but it can sometimes take time to properly grasp. So we will go over the basics properly here. One of the most confusing things about *F*\~ST is that are several different ways to define it. For ease of undersanding, we will use a simple formulation:
 
 $F_{ST} = \displaystyle \frac{H_T - H_S}{H_T}$
 
-For simplicity, imagine we are examining two populations only. With this formulate, $H_T$ is the **expected heterozygosity** when the two populations are considered as one large meta-population. $H_S$ is the **average expected heterozygosity** in the two populations. 
+For simplicity, imagine we are examining two populations only. With this formulate, $H_T$ is the **expected heterozygosity** when the two populations are considered as one large meta-population. $H_S$ is the **average expected heterozygosity** in the two populations.
 
 You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
 
-### A worked example of *F*~ST~ in humans
+#### A worked example of *F*~ST~ in humans
 
-As an illustrative example, we will calculate *F*~ST~ for the SNP rs4988235 associated with lactase persistence in humans. This SNP is located ~14 Kb upstream of the *LCT* gene on Chromosome 2 and is biallelic for C/T; a T at this position is strongly associated with the ability to digest milk in adulthood. We sample 80 people each from two populations which differ in the frequency of lactase persistence - Americans of European descent and Druze people from Israel. The counts of genotypes are shown in the table below. Note that these data are modified from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). 
+As an illustrative example, we will calculate *F*~ST~ for the SNP rs4988235 associated with lactase persistence in humans. This SNP is located \~14 Kb upstream of the *LCT* gene on Chromosome 2 and is biallelic for C/T; a T at this position is strongly associated with the ability to digest milk in adulthood. We sample 80 people each from two populations which differ in the frequency of lactase persistence - Americans of European descent and Druze people from Israel. The counts of genotypes are shown in the table below. Note that these data are modified from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
-|Population | TT | CT | CC |
-|:----------|:---|:---|:---|
-|American   | 48 | 28 | 4  |          
-|Druze      | 0  | 3  | 77 |
+| Population | TT  | CT  | CC  |
+|:-----------|:----|:----|:----|
+| American   | 48  | 28  | 4   |
+| Druze      | 0   | 3   | 77  |
 
-Knowing these numbers, we will first calculate the allele frequences in each population. We will use $p$ to denote the frequency of the T allele at this locus. 
+Knowing these numbers, we will first calculate the allele frequences in each population. We will use $p$ to denote the frequency of the T allele at this locus.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # set up genotype counts
@@ -304,12 +294,11 @@ fst <- (ht - hs)/ht
 
 If your calculations were correct, then you should have an *F*~ST~ estimate of 0.59 - this is very high for between two human populations. One way to interpret the *F*~ST~ value we have here is that 59% of genetic variance we observe differs between populations. Since population can explain such a large difference in this case, we might expect selection to be responsible...
 
-### Writing a set of *F*~ST~ functions
+#### Writing a set of *F*~ST~ functions
 
 The code in the previous section was useful to demonstrate how we can calculate *F*~ST~, but it would be a lot of work to run through this every single time we want estimate the statistic for a locus. This being R, we can of course easily create a function that will do all of the leg work for us! We will take the code we wrote out in the last section and use it here to write two functions that we can use when we want to calculate *F*~ST~. Note that for simplicity, we will only write functions that work for **two populations**.
 
 First, we will write a function called `calc_af` which will take genotype counts from a population and calculate allele frequencies. This will probably be similar to the function you made in last week's assignment.
-
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # a simple function to calculate allele frequencies in two populations
@@ -322,7 +311,7 @@ calc_af <- function(counts){
 }
 ```
 
-Since it is very straightforward for use to calculate the frequency of the second allele once we have the frequency of the first (i.e. $q = 1- p$), our `calc_af` function will only calculate $p$ for both populations. Let's test it on the data from our previous example. 
+Since it is very straightforward for use to calculate the frequency of the second allele once we have the frequency of the first (i.e. $q = 1- p$), our `calc_af` function will only calculate $p$ for both populations. Let's test it on the data from our previous example.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # testing our function on the american/druze example
@@ -330,7 +319,7 @@ af_american <- calc_af(c(48, 28, 4))
 af_druze <- calc_af(c(0, 3, 77))
 ```
 
-So now that we have a function that calculates allele frequencies in the two populations, we can write our `calc_fst` function to take these frequencies and calculate *F*~ST~ from them. 
+So now that we have a function that calculates allele frequencies in the two populations, we can write our `calc_fst` function to take these frequencies and calculate *F*~ST~ from them.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # a function to calculate fst
@@ -364,25 +353,32 @@ calc_fst <- function(p_1, p_2){
 }
 ```
 
-Let's test our function on the allele frequencies we calculated with our `calc_af` function. 
+Let's test our function on the allele frequencies we calculated with our `calc_af` function.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # testing our function on the american/druze example
 calc_fst(af_american, af_druze)
 ```
 
-This should be the same as you got before, but with a lot less work. Next, we'll look at applying a function to a bigger dataset with `apply()`. 
+This should be the same as you got before, but with a lot less work. Next, we'll look at applying a function to a bigger dataset with `apply()`.
 
-### Applying functions to matrices and data frames
+#### Applying functions to matrices and data frames
 
 Extending our *LCT* and lactase persistence example, let's get some data from multiple human populations. You can download the data [here](https://evolutionarygenetics.github.io/lct_count.tsv)
 
 **Import the data into R using the `read.table()` function. If you're unsure about how you do this, remember that you can go back and check in the tutorial from the first week**
 
-<details><summary>Show hint</summary>
-The data is separated by tabulator (`"\t"`), and has a header.
-</details>
+<details>
 
+<summary>
+
+Show hint
+
+</summary>
+
+The data is separated by tabulator (`"\t"`), and has a header.
+
+</details>
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
@@ -402,17 +398,15 @@ Great! So this works well. Now let's get $p$ (the frequency of the T allele) for
 p <- apply(lct_counts[,2:4], 1, calc_af)
 ```
 
-
-
 We can now combine our vector of allele frequencies with the population names to create a data.frame of frequencies. Like so
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 lct_freq <- data.frame(pop = lct_counts$pop, p)
 ```
 
-Now we can easily calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^2].
+Now we can easily calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^exercise5-2].
 
-[^2]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
+[^exercise5-2]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 # extract frequencies
@@ -422,7 +416,7 @@ af_eastasian <- filter(lct_freq, pop == "East_Asian")
 calc_fst(af_euram$p, af_eastasian$p)
 ```
 
-As with our previous example, we can see *F*~ST~  is actually pretty high between these populations for this SNP. What about if we compared East Asians with the Bedouin people from Israel?
+As with our previous example, we can see *F*~ST~ is actually pretty high between these populations for this SNP. What about if we compared East Asians with the Bedouin people from Israel?
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 # extract frequencies
@@ -431,20 +425,18 @@ af_bedouin <- filter(lct_freq, pop == "Bedouin_Negev_Israel")
 calc_fst(af_eastasian$p, af_bedouin$p)
 ```
 
-Here we see *F*~ST~ is substantially lower. Allele frequency differences are lower between these populations. 
+Here we see *F*~ST~ is substantially lower. Allele frequency differences are lower between these populations.
 
-## Visualising *F*~ST~ along a chromosome
+### Visualising *F*~ST~ along a chromosome
 
 Next, we will combine vectorisation and our custom functions to calculate *F*~ST~ for a series of SNPs in the vicinity of the *LCT* gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data [here](https://evolutionarygenetics.github.io/LCT_snps.tsv)
 
 **Read in the file `LCT_snps.tsv`.**
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 lct_snps <- read.table("LCT_snps.tsv", header = TRUE, sep = "\t")
 ```
-
 :::
 
 This data is also from from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the *LCT* gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.
@@ -487,9 +479,7 @@ lct_stop <- 136311220
 lct_mid <- (lct_start + lct_stop)/2
 ```
 
-
-All we need to do to add it to our plot is add the `geom_vline()` geom. 
-
+All we need to do to add it to our plot is add the `geom_vline()` geom.
 
 ```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 a <- a + geom_vline(xintercept = lct_mid, lty = 2, col = "blue")
@@ -502,20 +492,37 @@ This is a perfect opportunity to use the `ifelse()` function we learned about in
 
 **Exercise: add a column named `status` to `lct_snps` using `ifelse()`. The column should contain "Yes" if the id is rs4988235, and "No" if it's not.**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
+
 Start with `lct_snps$status <-` to assign the result to a new column.
-</details>
-<details><summary>Show another hint</summary>
-The logical statement you need to use is `lct_snps$snp_id == "rs4988235"`
+
 </details>
 
-:::{.fold .s}
+<details>
+
+<summary>
+
+Show another hint
+
+</summary>
+
+The logical statement you need to use is `lct_snps$snp_id == "rs4988235"`
+
+</details>
+
+::: {.fold .s}
 ```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 lct_snps$status <- if_else(lct_snps$snp_id == "rs4988235", "Yes", "No")
 ```
 :::
 
-Now to highlight the SNP on our plot. We can make it big and colored this by mapping it to both the `col` and `size` aesthetic. 
+Now to highlight the SNP on our plot. We can make it big and colored this by mapping it to both the `col` and `size` aesthetic.
 
 ```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 a <- ggplot(lct_snps, aes(coord, fst, col = status, size = status)) + geom_point()
@@ -533,7 +540,7 @@ a + scale_colour_manual(values = c("black", "red"))
 
 In the next section, we'll demonstrate how we can use the distribution of *F*~ST~ to identify **outliers** as potential targets of selection.
 
-### Identifying outliers in our *F*~ST~ distribution
+#### Identifying outliers in our *F*~ST~ distribution
 
 How can we identify outliers in our *F*~ST~ data? First of all, we can look at the distribution of our data by making a histogram of `fst`.
 
@@ -562,7 +569,7 @@ a <- ggplot(lct_snps, aes(fst)) + geom_histogram(binwidth = 0.05)
 a + geom_vline(xintercept = threshold, colour = "red", lty = 2, size = 1)
 ```
 
-Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the `ifelse()` function. 
+Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the `ifelse()` function.
 
 ```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
 lct_snps$outlier <- ifelse(lct_snps$fst > threshold, "Outlier", "Non-outlier")
@@ -578,7 +585,7 @@ a <- a + theme_light() + theme(legend.position = "bottom")
 a
 ```
 
-So now our potential outlier SNPs are marked on the figure. There are only 5 of them but they all occur just upstream from the *LCT* locus. 
+So now our potential outlier SNPs are marked on the figure. There are only 5 of them but they all occur just upstream from the *LCT* locus.
 
 We cannot say for certain that these SNPs have increased *F*~ST~ values because of selection - other processes such as genetic drift or demographic history (i.e. a bottleneck in one of the two populations) might be responsible. However, given our knowledge that *LCT* is involved in lactase persistence, we can at least hypothesise that this is the case.
 
@@ -590,7 +597,6 @@ For study questions on this tutorial, download the `Chapter5_R_questions.R` from
 
 ## Going further
 
-* [Graham Coop's notes on F statistics](http://cooplab.github.io/popgen-notes/#summarizing-population-structure)
-* [A detailed tutorial on calculating population differentiation with several R-based population genetic packages](https://popgen.nescent.org/2015-12-15-microsatellite-differentiation.html)
-* [A nice, thorough exploration of the normal distribution using R functions and plotting](http://seankross.com/notes/dpqr/)
-
+-   [Graham Coop's notes on F statistics](http://cooplab.github.io/popgen-notes/#summarizing-population-structure)
+-   [A detailed tutorial on calculating population differentiation with several R-based population genetic packages](https://popgen.nescent.org/2015-12-15-microsatellite-differentiation.html)
+-   [A nice, thorough exploration of the normal distribution using R functions and plotting](http://seankross.com/notes/dpqr/)

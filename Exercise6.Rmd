@@ -1,56 +1,33 @@
----
-title: "Multilocus evolution"
-output: 
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-  bookdown::pdf_document2: default
-editor_options: 
-  chunk_output_type: console
----
+# Multilocus Evolution
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-
-::: {.green}
-**Important concept:**  
-_Green boxes summarises important concepts from the text._
-:::
-
-::: {.blue}
-**Additional info**  
-_Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want._
-:::
-
-:::{.yellow}
-**Advanced code**  
-_Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand._
-:::
+```{r setup, include=FALSE}
+source("setup.R")
+library(tidyverse)
+```
 
 ```{r, eval = TRUE, echo = FALSE, message=FALSE, warning = FALSE}
 library(tidyverse)
 library(qtl)
 ```
 
-# Introduction {-}
 
 In this tutorial, we are going to first go through some tips on how to compare groups in R, and learn the basics of using analysis of variance or ANOVA. We will learn how ANOVA is used to determine whether the means of groups are significantly different from one another. We will then see an example of sophisticated use of ANOVA in evolutionary genetics by performing a QTL analysis using the package `qtl`. To do this, we will use data from an F2 cross experiment on the common bed bug *Cimex lectularius* conducted by Fountain et al. Finally we will return to ANOVA in order to demonstrate that such an approach underlies our QTL analysis. There are some quite advanced R analyses here but we have taken the time to break things down and explain them in detail.
 
-## What to expect {-}
+### What to expect {.unnumbered}
 
-In this tutorial we will: 
+In this tutorial we will:
 
-* learn some R-tricks for investigating differences between groups
-* learn to test for differences between groups with ANOVA
-* perform a QTL analysis on pesticide resistance in bedbugs
-* verify our QTL analysis with ANOVA
+-   learn some R-tricks for investigating differences between groups
+-   learn to test for differences between groups with ANOVA
+-   perform a QTL analysis on pesticide resistance in bedbugs
+-   verify our QTL analysis with ANOVA
 
 The evolutionary biology-part of the tutorial makes heavy use of the `qtl` package. You will see a lot of functions you have never seen before, and that are specific to working with a particular kind of data. You don't need to understand exactly how these functions work, but you should have a general understanding of what they do. Sometimes additional information is provided in the footnotes. Remember that you can always access function help pages with `?`.
 
-## Getting started {-}
+### Getting started {.unnumbered}
 
 The first thing we need to do is set up the R environment. Today we'll be using the `tidyverse` package once again but we will also use another package called `qtl`. First we will need to install this new package. (Remember that you only need to do this once, so you can comment out or delete the line below after installing).
 
@@ -58,7 +35,9 @@ The first thing we need to do is set up the R environment. Today we'll be using 
 install.packages("qtl")
 ```
 
-Once it is installed, we will clear the R environment with `rm(list = ls())`[^1] and then load the two packages.
+Once it is installed, we will clear the R environment with `rm(list = ls())`[^exercise6-1] and then load the two packages.
+
+[^exercise6-1]: Note that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 # clear the R environment
@@ -67,13 +46,15 @@ library(tidyverse)
 library(qtl)
 ```
 
-[^1]: Note that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data.
+## Tools for investigating differences between groups
 
-# Tools for investigating differences between groups
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 Comparing traits between different groups is an important part of evolutionary biology (and biology as a whole). For example, you often want to compare traits in different species, or different genotypes or sexes within a species. This section will teach you some R and statistics tools to do this.
 
-## Exploring group differences
+### Exploring group differences
 
 For this section, we will use the `iris` data set, which is built in with your R installation. The data are already in R, so you can look at it by running:
 
@@ -83,7 +64,7 @@ iris
 
 Take a look at the `iris` dataset. The data frame contains four measurements (`Sepal.Length`, `Sepal.Width`, `Petal.Length` and `Petal.Width`) and also a fifth column, `Species` which lets us know the species for each observation. For our investigation, we will use species as a grouping (as it's the only group present in the data).
 
-### Investigating with dplyr
+#### Investigating with dplyr
 
 A great tool for working with groups is (perhaps unsurprisingly) the `group_by()` function in `dplyr` that you learned about in the second week of this course. We can for example count the number of observations of each species with `group_by()` and `tally()`:
 
@@ -101,11 +82,10 @@ iris %>%
   summarise(mean_petal_length = mean(Petal.Length))
 ```
 
-There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes[^2].
+There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes[^exercise6-2].
 
-[^2]: 
-    We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.
-    
+[^exercise6-2]: We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.
+
     ```{r}
     iris %>%
       group_by(Species) %>%
@@ -113,10 +93,8 @@ There appears to be a difference in petal length between species. We could also 
                 median_petal_length = median(Petal.Length),
                 sd_petal_length = sd(Petal.Length))
     ```
-    
-    
 
-### Visualising differences
+#### Visualising differences
 
 Looking at numbers like we did above is well and good, but good visualisations can often tell you more than summary statistics. A good way of visualising group differences is with a boxplot. This can be plotted in ggplot by adding `geom_boxplot()`:
 
@@ -127,37 +105,33 @@ ggplot(iris, aes(Species, Petal.Length)) +
 
 A boxplot can be a bit difficult to read if you've never seen one before, but here are the key features:
 
-* The thick line in the middle of the box is the median
-* The boundaries of the box are the 1st and 3rd quartile, i.e., half of your data is contained within the box[^3]
-* The lines outside the box are the range of non-outlier data, and the points are outliers
+-   The thick line in the middle of the box is the median
+-   The boundaries of the box are the 1st and 3rd quartile, i.e., half of your data is contained within the box[^exercise6-3]
+-   The lines outside the box are the range of non-outlier data, and the points are outliers
 
+[^exercise6-3]: Remember that in `ggplot2`, we can add more layers of geometry if we want to add information to our visualisation. Below, I've added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.
 
-A boxplot is good at showing the distribution in the data. From this plot, we can see that the species obviously differ in this trait. But how large differences do we need to make confident conclusions? This is where statistic testing comes in[^4].
-
-[^3]: 
-    Remember that in `ggplot2`, we can add more layers of geometry if we want to add information to our visualisation. Below, I've added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.
-    
-    :::{.fold .c .o}
-    
+    ::: {.fold .c .o}
     ```{r}
     ggplot(iris, aes(Species, Petal.Length)) +
       geom_boxplot() +
       geom_jitter() # geom_jitter to prevent points from overlapping
     ```
-    
     :::
 
-[^4]: Like in Section 2.2 in week 3, where we tested for deviations from the Hardy-Weinberg expectation with a Chi-squared test.
+A boxplot is good at showing the distribution in the data. From this plot, we can see that the species obviously differ in this trait. But how large differences do we need to make confident conclusions? This is where statistic testing comes in[^exercise6-4].
 
-## Analysis of variance (ANOVA)
+[^exercise6-4]: Like in Section 2.2 in week 3, where we tested for deviations from the Hardy-Weinberg expectation with a Chi-squared test.
 
-### What is ANOVA?
+### Analysis of variance (ANOVA)
 
-Analysis of variance or ANOVA is the name given to a family of statistical tests which we can use to test the differences among means from a sample. If you are familiar with a **t-test**, it is similar in the sense that it allows you to compare means; however unlike a t-test, ANOVA allows a comparison among multiple groups rather than just two. ANOVA and its related tests are also often referred to as **linear models** in R. 
+#### What is ANOVA?
+
+Analysis of variance or ANOVA is the name given to a family of statistical tests which we can use to test the differences among means from a sample. If you are familiar with a **t-test**, it is similar in the sense that it allows you to compare means; however unlike a t-test, ANOVA allows a comparison among multiple groups rather than just two. ANOVA and its related tests are also often referred to as **linear models** in R.
 
 ANOVA and linear models are actually a very important group of tests and we employ them regularly in evolutionary biology. Indeed, ANOVA is essentially the basis of the QTL analysis which we will perform during the latter part of the tutorial. ANOVA also has another link to evolutionary biology - it was developed by [R.A Fisher](https://en.wikipedia.org/wiki/Ronald_Fisher) who was part of the [modern synthesis](https://en.wikipedia.org/wiki/Modern_synthesis_(20th_century)) of population genetics and evolutionary theory.
 
-### Using ANOVA to test for differences between groups 
+#### Using ANOVA to test for differences between groups
 
 We can see from our boxplot that there appears to be some difference in petal length between species. Using ANOVA, we can formally test this. ANOVA is essentially a way to test whether the **means** of different groups are equal. Another way of putting it is that we're testing if the variation **between groups** is larger than variation **within groups**.
 
@@ -167,9 +141,9 @@ To conduct an ANOVA in R, we will use the function `aov()` to create an object w
 model <- aov(Petal.Length ~ Species, data = iris)
 ```
 
-Above, we used a formula as our first argument `Petal.Length ~ Species`[^5]. This is essentially like saying, "How does petal length vary with species"? This part of our argument to `aov` specifies what we are actually testing. We also added `data = iris` to specify that we are using the `iris` data for this calculation.
+Above, we used a formula as our first argument `Petal.Length ~ Species`[^exercise6-5]. This is essentially like saying, "How does petal length vary with species"? This part of our argument to `aov` specifies what we are actually testing. We also added `data = iris` to specify that we are using the `iris` data for this calculation.
 
-[^5]: The character `~` is called "tilde", in case you want to google how to produce it on your keyboard. In general, the tilde can be read as "modeled by", in this case "petal length modeled by species".
+[^exercise6-5]: The character `~` is called "tilde", in case you want to google how to produce it on your keyboard. In general, the tilde can be read as "modeled by", in this case "petal length modeled by species".
 
 Next we can examine the output of our model, to get an understanding of what it shows. To do this, we need to use a special function, `summary()`:
 
@@ -177,23 +151,23 @@ Next we can examine the output of our model, to get an understanding of what it 
 summary(model)
 ```
 
-By using `summary`, we return an ANOVA table. The first row of the table is for `Species`. The two last values in this row are an **F** statistic and a **p-value**. We will return to what the F statistic actually means in a short while. 
+By using `summary`, we return an ANOVA table. The first row of the table is for `Species`. The two last values in this row are an **F** statistic and a **p-value**. We will return to what the F statistic actually means in a short while.
 
-Let's focus instead on the *p*-value. This is essentially a way of determining whether the results we see could be explained by chance. It is a test of **significance** --- we did something similar with the Chi-squared test back in Chapter 3. In the biological sciences, we have an arbitrary cutoff for a *p*-value, set at 0.05. If our *p*-value is lower than this, then we can say that our dependent variable is significantly different among the groups. 
+Let's focus instead on the *p*-value. This is essentially a way of determining whether the results we see could be explained by chance. It is a test of **significance** --- we did something similar with the Chi-squared test back in Chapter 3. In the biological sciences, we have an arbitrary cutoff for a *p*-value, set at 0.05. If our *p*-value is lower than this, then we can say that our dependent variable is significantly different among the groups.
 
 Here we can see that our *p*-value is small---less than 2 x 10^-16^---which tells us that petal length is **signficiantly different** between species. The asterisks after the *p* value are also there to tell us this - `***` simply means that our *p*-value is close to zero.
 
-### ANOVA and the proportion of variance explained
+#### ANOVA and the proportion of variance explained
 
-So far, we have learned about ANOVA in it's simplest form - i.e. to test for differences among means. But this is not the only way we can think about it and the clue is in the name - it analyses **variance**. What do we mean by this? To illustrate it, let's have a look at the **total** distribution of `Petal.Length` from the `iris` data. We can do this using a histogram (with `geom_histogram()`[^6]).
+So far, we have learned about ANOVA in it's simplest form - i.e. to test for differences among means. But this is not the only way we can think about it and the clue is in the name - it analyses **variance**. What do we mean by this? To illustrate it, let's have a look at the **total** distribution of `Petal.Length` from the `iris` data. We can do this using a histogram (with `geom_histogram()`[^exercise6-6]).
 
-[^6]: Note how `geom_histogram()` only uses a single aesthetic (x). `ggplot` makes the y-axis for you, by counting the number of observations in each bin.
+[^exercise6-6]: Note how `geom_histogram()` only uses a single aesthetic (x). `ggplot` makes the y-axis for you, by counting the number of observations in each bin.
 
 ```{r, eval = TRUE, message = FALSE}
 ggplot(iris, aes(Petal.Length)) + geom_histogram()
 ```
 
-So, this time we are visualising petal length for all species grouped as one. Imagine for a moment you **didn't know** that we have three species in our dataset. It is pretty obvious from this plot that there is a lot variation in petal length - there appear to be at least two and maybe three peaks in the data. 
+So, this time we are visualising petal length for all species grouped as one. Imagine for a moment you **didn't know** that we have three species in our dataset. It is pretty obvious from this plot that there is a lot variation in petal length - there appear to be at least two and maybe three peaks in the data.
 
 What might explain why there is so much variation? Well of course, we know there are actually three species included in these measurements. So, if we split our dataset into different species, can that **explain the variance we observe**? This is another way to think of ANOVA - as way of measuring the variance explained by how we split up the dataset.
 
@@ -207,11 +181,15 @@ summary.lm(model)
 
 There is a lot of information here! However, you should focus on the last two lines of the output. On the very last line, you will see the *F* statistic and *p*-value from when we called `summary(model)`. Above that are two values of another statistic called the **R-squared** or *R*^2^.
 
-Our *R*^2^ is 0.94 which essentially means that by grouping our data by species, we explain 94% of the variance in petal length. So clearly, species has a very important role in explaining the morphological differences in our data. One biological explanation for this is that genetic basis for petal length might be different between the species. We will see in the next section how we can apply a more advanced version of ANOVA to actually determine the genetic basis of a trait. 
+Our *R*^2^ is 0.94 which essentially means that by grouping our data by species, we explain 94% of the variance in petal length. So clearly, species has a very important role in explaining the morphological differences in our data. One biological explanation for this is that genetic basis for petal length might be different between the species. We will see in the next section how we can apply a more advanced version of ANOVA to actually determine the genetic basis of a trait.
 
-# Performing a QTL analysis in bedbugs
+## Performing a QTL analysis in bedbugs
 
-## Bedbugs, pesticide resistance and study design
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
+
+### Bedbugs, pesticide resistance and study design
 
 We are going to use the `qtl` package in R to perform a basic QTL analysis on pesticide resistance on an **F2 intercross** in bedbugs, *Cimex lectularius*. Note that all the data we use here come from [Fountain et al (2016)](http://www.g3journal.org/content/6/12/4059).
 
@@ -219,9 +197,9 @@ Bed bugs are an human ectoparasite that have experienced a population boom in th
 
 In their study, Fountain et al crossed two strains of bedbugs. one resistant to the pesticide and the other susceptible. Using a resistant female and susceptible male, they created an F1 generation and then crossed two randomly selected F1 offspring, ultimately producing 90 F2 individuals. They then exposed the F2s to pytheroid insecticide and scored their resistance to it. The pesticide disrupts motor function, so F2s were scored either as susceptible (unable to right themselves if turned over), partially resistant (able to right themselves but walk with some difficulty) and resistant (walk normally, no apparent effect on motor control).
 
-The two grandparents, the two F1 parents and the 90 F2s were then genotyped using RAD-sequencing. RAD-sequences were mapped to a draft bedbug genome and then SNPs were called from 12 962 RAD tags. During their analysis, the authors discarded some individuals and markers so the dataset we are working is a subset of the original data. 
+The two grandparents, the two F1 parents and the 90 F2s were then genotyped using RAD-sequencing. RAD-sequences were mapped to a draft bedbug genome and then SNPs were called from 12 962 RAD tags. During their analysis, the authors discarded some individuals and markers so the dataset we are working is a subset of the original data.
 
-### Reading in the bedbug data
+#### Reading in the bedbug data
 
 First we need to download the data, which is [here](https://evolutionarygenetics.github.io/bedbugs_cross_data.csv)
 
@@ -234,16 +212,15 @@ bedbugs <- read.cross(format = "csv", dir = "",
                       estimate.map = FALSE)
 ```
 
-When you run this command, you will see that we read in the data from 71 individuals and 334 markers. Strangely, there are only two phenotypes here. This isn't right, there should be three, so we will need to correct this later. As mentioned in the introduction, the specifics of the functions in the `qtl` package, like `read.cross()`, are not that important at this point, but see the footnotes for some details.[^7]
+When you run this command, you will see that we read in the data from 71 individuals and 334 markers. Strangely, there are only two phenotypes here. This isn't right, there should be three, so we will need to correct this later. As mentioned in the introduction, the specifics of the functions in the `qtl` package, like `read.cross()`, are not that important at this point, but see the footnotes for some details.[^exercise6-7]
 
-[^7]: 
-    Let's break down what we did here - we used `qtl`'s `read.cross` function to read in our cross data. We specified the format as a comma-separated variable file, we specified the directory the data is in (left blank here because it is in the same directory we are working in) and also the path to the file.
+[^exercise6-7]: Let's break down what we did here - we used `qtl`'s `read.cross` function to read in our cross data. We specified the format as a comma-separated variable file, we specified the directory the data is in (left blank here because it is in the same directory we are working in) and also the path to the file.
 
     We also specified how our genotypes are encoded using the `genotypes` argument and importantly, we specified `estimate.map = FALSE` to ensure that we are only reading in the data and not creating a linkage map at this stage. It is worth noting at this point that `qtl` is an extremely powerful and complex package with a lot of options and functions. At the end of the tutorial, we will point you towards other resources that can help you learn more about it, but for now we can ignore these options. However if you are interested in learning a little more, you can learn more about these arguments by looking at the help like so: `?read.cross`.
 
 Try typing in `bedbugs` to see what you get in the R console. You'll see a lot of summary information on the cross object we created when we red in the data. Again, it says there are only 2 phenotypes...
 
-### Correcting the phenotypes 
+#### Correcting the phenotypes
 
 So, we need to correct the phenotypes. Let's first take a look at what is stored so far. The stucture of `bedbugs` is rather complex, but we can look at the stored values with `$`, as we would for a data frame.
 
@@ -252,28 +229,28 @@ So, we need to correct the phenotypes. Let's first take a look at what is stored
 bedbugs$pheno
 ```
 
-Aha, the reason R says there are 2 phenotypes is because there are two columns in the phenotype data.frame - one called `id` and the other called `res`.[^8] This second variable is the resistance (i.e. S = susceptible, PR = partially resistant and R = resistant). We can extract the `res` column from `bedbugs$pheno` using _an additional_ `$`, and store this to an object.
+Aha, the reason R says there are 2 phenotypes is because there are two columns in the phenotype data.frame - one called `id` and the other called `res`.[^exercise6-8] This second variable is the resistance (i.e. S = susceptible, PR = partially resistant and R = resistant). We can extract the `res` column from `bedbugs$pheno` using *an additional* `$`, and store this to an object.
+
+[^exercise6-8]: Incidentally, how did we know to use `$pheno` to access the phenotypic data? Using the `objects` function on the `bedbugs` object - i.e. `objects(bedbugs)` will give us a rundown of what we can access inside.
 
 ```{r, message=FALSE}
 # Assign resistance as an environmental variable
 res <- bedbugs$pheno$res
 ```
 
-[^8]: Incidentally, how did we know to use `$pheno` to access the phenotypic data? Using the `objects` function on the `bedbugs` object - i.e. `objects(bedbugs)` will give us a rundown of what we can access inside.
+#### Exploring the data
 
-### Exploring the data
-
-Now our data is read into the R environment and we have everything setup, a good first start is to get an idea of what is going on with our data. We have learned already how good it is to plot data, and luckily for us, `qtl` has a number of functions to make this straightforward. Let's use the `plotMissing` function 
+Now our data is read into the R environment and we have everything setup, a good first start is to get an idea of what is going on with our data. We have learned already how good it is to plot data, and luckily for us, `qtl` has a number of functions to make this straightforward. Let's use the `plotMissing` function
 
 ```{r base_missing, echo=TRUE}
 plotMissing(bedbugs)
 ```
 
-Let's break this plot down. Since this data is the finalised data from Fountain et al., we already have 14 linkage groups assembled - hence the 14 vertical 'blocks' across the plot. When there is a black tile, we have missing data - and the markers are plotted along the x-axis. 
+Let's break this plot down. Since this data is the finalised data from Fountain et al., we already have 14 linkage groups assembled - hence the 14 vertical 'blocks' across the plot. When there is a black tile, we have missing data - and the markers are plotted along the x-axis.
 
-It takes a bit of practice to get used to reading these sort of plots, but essentially you can see that there are several individuals which are lacking genotypes across multiple markers by looking at the black tiles. 
+It takes a bit of practice to get used to reading these sort of plots, but essentially you can see that there are several individuals which are lacking genotypes across multiple markers by looking at the black tiles.
 
-### Examining the linkage map
+#### Examining the linkage map
 
 Now we have explored the data, our next step is to actually look at the linkage map. A linkage map is the position of markers in the genome in terms of their recombination distance from one another - i.e. how many recombination events occur between them. Lets take a look at a summary of the linkage map. Note that sometimes, a linkage map is also referred to as a **genetic map**.
 
@@ -284,14 +261,11 @@ summaryMap(bedbugs)
 
 This returns a `data.frame` where each row is a linkage group and the four columns are:
 
-*`n.mar` - the number of markers
-*`length` - the length of the linkage group in centimorgans (see below)
-*`ave.spacing` - the average spacing between markers (in centimorgans)
-*`max.spacing` - the maximum spacing between markers (in centimorgans)
+*`n.mar` - the number of markers* `length` - the length of the linkage group in centimorgans (see below) *`ave.spacing` - the average spacing between markers (in centimorgans)* `max.spacing` - the maximum spacing between markers (in centimorgans)
 
 We can see that that the 334 markers are spread across 14 linkage groups. Spacing of markers here is shown in **centimorgans** and the total length of the linkage map is 407 cM. Recall that a single centimorgan represents the probability that of 0.01 that a recombination event in one generation. Alternatively you could think of it as one recombination event every 100 generations.
 
-Next we can take a look at the linkage map itself. 
+Next we can take a look at the linkage map itself.
 
 ```{r plot_map, echo=TRUE}
 plotMap(bedbugs, show.marker.names = FALSE, main = "Bedbug linkage map")
@@ -299,7 +273,7 @@ plotMap(bedbugs, show.marker.names = FALSE, main = "Bedbug linkage map")
 
 This is a visualisation of the data from the summary table - i.e. it is the spacing and distribution of markers. There are 14 groups and we see the markers laid out on each of them. The further apart the markers are, the greater the probability that there will be a recombination event between them.
 
-### Performing a QTL analysis
+#### Performing a QTL analysis
 
 With the linkage map in place, we can now attempt to actually map out pesticide resistance. Let's take a look at the distribution of phenotypes.
 
@@ -332,7 +306,7 @@ You might see a warning here, but don't worry too much about that since we are o
 summary(bedbugs_scan, threshold = 3)
 ```
 
-Calling `summary` on the scan object shows us a single marker on linkage group 12 (referred to a chromsome here) at 21.9 cM may be a QTL. It also returns something called a `lod` - this is a LOD score and for this marker it is 6.84. 
+Calling `summary` on the scan object shows us a single marker on linkage group 12 (referred to a chromsome here) at 21.9 cM may be a QTL. It also returns something called a `lod` - this is a LOD score and for this marker it is 6.84.
 
 Let's plot the LOD distribution to get a better idea of what is going on.
 
@@ -344,15 +318,17 @@ You can see quite clearly that whatever the LOD is, it is much higher on linkage
 
 **What do we mean by a LOD score?** It is beyond the scope of the tutorial to go in to too much detail about this, but LOD stands for logarithim of the odds ratio. It is essentially the ratio between a model where a QTL exists at a marker and one where there is no QTL at all. So, if a LOD is 0 or close to 0, then there is essentially no evidence a QTL is present. However, if a QTL is present and explains variance in the phenotype then the LOD score is expected to be higher, as it is at this marker.
 
-## Linking ANOVA to our QTL analysis
+### Linking ANOVA to our QTL analysis
 
-Now that we have performed a QTL analysis and learned about ANOVA, we will try to bring the two together to demonstrate how they are closely related... as well as demonstrating the importance of statistics in evolutionary genetics! 
+Now that we have performed a QTL analysis and learned about ANOVA, we will try to bring the two together to demonstrate how they are closely related... as well as demonstrating the importance of statistics in evolutionary genetics!
 
-### Exploring the phenotype-genotype association
+#### Exploring the phenotype-genotype association
 
-A good way to summarise this data is to see it in a table. The following code summarises the association between different geno- and phenotypes for our locus. [^9]
+A good way to summarise this data is to see it in a table. The following code summarises the association between different geno- and phenotypes for our locus. [^exercise6-9]
 
-:::{.yellow}
+[^exercise6-9]: This code extracts the phenotype information and also the marker information for the QTL and used the function `factor` to turn them in to `factor` variables - where there is a label for each category of the data ([see here for a reminder of what a factor is](https://evolutionarygenetics.github.io/Introduction.html)). We then made everything into a `data.frame` for later.
+
+::: {.yellow}
 ```{r pheno_geno_table, echo = TRUE, results = "hide", fig.show="hide"}
 # pheno - 1 is partially resistant, 2 is resistant, 3 is susceptible
 phenotype <- factor(bedbugs$pheno$res, labels = c("partial resistance", "resistant", "susceptible"))
@@ -368,28 +344,22 @@ table(qtl_df)
 ```
 :::
 
-[^9]: This code extracts the phenotype information and also the marker information for the QTL and used the function `factor` to turn them in to `factor` variables - where there is a label for each category of the data ([see here for a reminder of what a factor is](https://evolutionarygenetics.github.io/Introduction.html)). We then made everything into a `data.frame` for later. 
+Now we have a table where we can see the numbers of each resistance phenotype for each genotype[^exercise6-10]. It is fairly clear from this table and the figure if a bedbug has an A allele at this locus, it is more likely to be susceptible to the pesticide. In contrast, most BB individuals are resistant.
 
-Now we have a table where we can see the numbers of each resistance phenotype for each genotype[^11]. It is fairly clear from this table and the figure if a bedbug has an A allele at this locus, it is more likely to be susceptible to the pesticide. In contrast, most BB individuals are resistant.
+[^exercise6-10]: Visualising this data can also be useful to see the associations. I have attempted a couple of different ones, but there is no single best way to do this. See if you can come up with a better one yourself!
 
-[^11]: 
-    Visualising this data can also be useful to see the associations. I have attempted a couple of different ones, but there is no single best way to do this. See if you can come up with a better one yourself!
-  
-    :::{.fold .c .o}
-  
+    ::: {.fold .c .o}
     ```{r}
     ggplot(qtl_df, aes(phenotype, qtl_marker)) + geom_jitter(height = 0.2, width = 0.2)
     ggplot(qtl_df, aes(phenotype, fill = qtl_marker)) + geom_bar()
     ```
-
     :::
-    
-    
-## Testing the same genotype phenotype association with ANOVA
 
-Last but not least. We can test the same association with ANOVA. To do this, we are going to read in some data [we prepared for you earlier](https://evolutionarygenetics.github.io/qtl_df.tsv)[^10].
+### Testing the same genotype phenotype association with ANOVA
 
-[^10]: If you're curious, `stringsAsFactors = TRUE` is necessary here to explixitly tell R that the text columns are _factors_, a special way of encoding groups in R. We need to do this to turn the phenotypes into numeric values later. 
+Last but not least. We can test the same association with ANOVA. To do this, we are going to read in some data [we prepared for you earlier](https://evolutionarygenetics.github.io/qtl_df.tsv)[^exercise6-11].
+
+[^exercise6-11]: If you're curious, `stringsAsFactors = TRUE` is necessary here to explixitly tell R that the text columns are *factors*, a special way of encoding groups in R. We need to do this to turn the phenotypes into numeric values later.
 
 ```{r, echo = TRUE, results = "hide"}
 qtl_df2 <- read.table("./qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
@@ -399,7 +369,7 @@ Feel free to take a look at this - it is essentially the same data as before, bu
 
 **Idé: gi dem datasettet med qtl og non-qtl, men uten å si hvilken som er hvilken. Så kan det være en oppgave å finne ut hvilken av dem som henger sammen med fenotype.**
 
-Let's use ANOVA to test whether variation in genotype can explain the variation in phenotype. 
+Let's use ANOVA to test whether variation in genotype can explain the variation in phenotype.
 
 ```{r, echo = TRUE, results = "hide"}
 model1 <- aov(as.numeric(phenotype) ~ qtl_marker, data = qtl_df2)
@@ -407,7 +377,7 @@ model1 <- aov(as.numeric(phenotype) ~ qtl_marker, data = qtl_df2)
 
 This is exactly same as the ANOVA we ran earlier with one exception. Like with `scanone` when we did our QTL analysis, `aov` requires that the phenotype data is stored as a `numeric`. So to deal with this we need to add the `as.numeric` function.
 
-Finally, let's call `summary` on our model output to see whether there is a significant effect of the QTL marker on our phenotype. 
+Finally, let's call `summary` on our model output to see whether there is a significant effect of the QTL marker on our phenotype.
 
 ```{r, echo = TRUE, results = "hide"}
 summary.lm(model1)
@@ -420,21 +390,8 @@ Quite clearly there is a significant difference between genotypes at this marker
 For study questions on this tutorial, download the `Chapter6_R_questions.R` from Canvas or find it [here](https://evolutionarygenetics.github.io/Chapter6_R_questions.R).
 
 ## Going further
-* [John H McDonald's brilliant online statistics handbook and its section on ANOVA](http://www.biostathandbook.com/onewayanova.html)
-* [A detailed tutorial on ANOVA in R](http://www.understandingdata.net/2017/05/11/anova-tables-in-r/)
-* [Graham Coop's notes on recombination and correlations between loci](http://cooplab.github.io/popgen-notes/#correlations-between-loci-linkage-disequilibrium-and-recombination)
-* [The R qtl package website and associated tutorials](http://www.rqtl.org/)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+-   [John H McDonald's brilliant online statistics handbook and its section on ANOVA](http://www.biostathandbook.com/onewayanova.html)
+-   [A detailed tutorial on ANOVA in R](http://www.understandingdata.net/2017/05/11/anova-tables-in-r/)
+-   [Graham Coop's notes on recombination and correlations between loci](http://cooplab.github.io/popgen-notes/#correlations-between-loci-linkage-disequilibrium-and-recombination)
+-   [The R qtl package website and associated tutorials](http://www.rqtl.org/)
