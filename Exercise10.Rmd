@@ -11,14 +11,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-```{r setup, include=FALSE}
-source("setup.R")
-```
-
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-#include html script
-```
-
 ::: {.green}
 **Important concept:**\
 *Green boxes summarises important concepts from the text.*
@@ -39,7 +31,11 @@ source("setup.R")
 library(tidyverse)
 ```
 
-## Introduction
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
+
+# Introduction
 
 Throughout these tutorials, we have introduced you to evolutionary genetic concepts using R. By now, you should have some familiarity with the versatility of R for data analysis and what is possible with it. We have gone from manipulating vectors and dataframes to processing genome-resequencing data and calculating population genomic statistics. With a course as broad as this, we understand it is difficult to feel like you fully understand every aspect of the analyses you are conducting - there is obviously a lot to learn! Ultimately, it is impossible for you to achieve this within a single course, using R properly takes experience and practice. Indeed, we'd argue that there is no real mastery of R, it is a tool with which you are always able to learn new things. We learn all the time in R and we have been using it for quite some time!
 

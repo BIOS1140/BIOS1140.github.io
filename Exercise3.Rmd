@@ -10,13 +10,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-
-```{r setup, include=FALSE}
-source("setup.R")
-```
-
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-#include html script
 ```
 
 
