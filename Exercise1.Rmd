@@ -1,5 +1,5 @@
 ---
-title: "Exercise 1 - Introduction to R"
+title: "Introduction to R"
 author: "Even Sletteng Garvang"
 output: 
   bookdown::html_document2:
