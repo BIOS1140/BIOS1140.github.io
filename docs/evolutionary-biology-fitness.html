@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4.2 Evolutionary biology: fitness | R tutorials in BIOS1140</title>
+  <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4.2 Evolutionary biology: fitness | R tutorials in BIOS1140" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4.2 Evolutionary biology: fitness | R tutorials in BIOS1140" />
+  
+  <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="r-programming-making-custom-functions.html"/>
+<link rel="next" href="study-questions-1.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R tutorials for the course BIOS1140</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console</a></li>
+<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats</a></li>
+<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories</a></li>
+<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R</a>
+<ul>
+<li class="chapter" data-level="" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html#what-to-expect-1"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects</a></li>
+<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
+<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#more-ggplot-examples"><i class="fa fa-check"></i><b>2.3.4</b> More ggplot examples</a></li>
+<li class="chapter" data-level="2.3.5" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.5</b> Saving your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency</a>
+<ul>
+<li class="chapter" data-level="" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html#what-to-expect-2"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>3.3</b> Study questions</a></li>
+<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#what-to-expect-3"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties</a></li>
+<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies</a></li>
+<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
+<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
+<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#what-to-expect-4"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="5.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> R-programming: Vectorisation</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#more-on-functions-vectorisation"><i class="fa fa-check"></i><b>5.1.1</b> More on functions: vectorisation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.2</b> The <code>apply()</code> function</a></li>
+<li class="chapter" data-level="5.1.3" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.3</b> The <code>ifelse()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html"><i class="fa fa-check"></i><b>5.2</b> Evolutionary biology: F<sub>ST</sub></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#understanding-fst---the-fixation-index"><i class="fa fa-check"></i><b>5.2.1</b> Understanding <em>F</em><sub>ST</sub> - the fixation index</a></li>
+<li class="chapter" data-level="5.2.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#visualising-fst-along-a-chromosome"><i class="fa fa-check"></i><b>5.2.2</b> Visualising <em>F</em><sub>ST</sub> along a chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>5.3</b> Study questions</a></li>
+<li class="chapter" data-level="5.4" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html"><i class="fa fa-check"></i><b>6</b> Multilocus Evolution</a>
+<ul>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="6.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html"><i class="fa fa-check"></i><b>6.1</b> Tools for investigating differences between groups</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#exploring-group-differences"><i class="fa fa-check"></i><b>6.1.1</b> Exploring group differences</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.1.2</b> Analysis of variance (ANOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html"><i class="fa fa-check"></i><b>6.2</b> Performing a QTL analysis in bedbugs</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#bedbugs-pesticide-resistance-and-study-design"><i class="fa fa-check"></i><b>6.2.1</b> Bedbugs, pesticide resistance and study design</a></li>
+<li class="chapter" data-level="6.2.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#linking-anova-to-our-qtl-analysis"><i class="fa fa-check"></i><b>6.2.2</b> Linking ANOVA to our QTL analysis</a></li>
+<li class="chapter" data-level="6.2.3" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#testing-the-same-genotype-phenotype-association-with-anova"><i class="fa fa-check"></i><b>6.2.3</b> Testing the same genotype phenotype association with ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>6.3</b> Study questions</a></li>
+<li class="chapter" data-level="6.4" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html"><i class="fa fa-check"></i><b>7</b> Inferring Evolutionary Processes from Sequence Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#what-to-expect-6"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#getting-started-3"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="7.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>7.1</b> Working with DNA sequence data</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>7.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="7.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>7.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>7.1.3</b> Calculating basic sequence statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Working with a larger dataset</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>7.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="7.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>7.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>7.3</b> Calculating statistics at the whole genome level</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>7.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>7.3.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="7.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>7.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="7.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>7.3.4</b> Performing a sliding window analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>7.4</b> Study questions</a></li>
+<li class="chapter" data-level="7.5" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="speciation-genomics.html"><a href="speciation-genomics.html"><i class="fa fa-check"></i><b>8</b> Speciation Genomics</a>
+<ul>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#what-to-expect-7"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#getting-started-4"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="8.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html"><i class="fa fa-check"></i><b>8.1</b> R programming: Visualizing complex data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>8.1.1</b> Faceting</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>8.2</b> Evolutionary genetics: Returning to the sparrow dataset</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>8.2.1</b> Reading in the sparrow vcf</a></li>
+<li class="chapter" data-level="8.2.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>8.2.2</b> Examining the variant data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#setting-up-sliding-windows"><i class="fa fa-check"></i><b>8.2.3</b> Setting up sliding windows</a></li>
+<li class="chapter" data-level="8.2.4" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.2.4</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
+<li class="chapter" data-level="8.2.5" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#visualising-the-data"><i class="fa fa-check"></i><b>8.2.5</b> Visualising the data</a></li>
+<li class="chapter" data-level="8.2.6" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.2.6</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="8.2.7" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.2.7</b> Investigating recombination rate variation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>8.3</b> Study questions</a></li>
+<li class="chapter" data-level="8.4" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html"><i class="fa fa-check"></i><b>9</b> Reconstructing the Past</a>
+<ul>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#what-to-expect-8"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#getting-started-5"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="9.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Phylogenetics in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>9.1.1</b> Storing trees in R</a></li>
+<li class="chapter" data-level="9.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>9.1.2</b> Plotting trees</a></li>
+<li class="chapter" data-level="9.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>9.1.4</b> A simple example with real data - avian phylogenetics</a></li>
+<li class="chapter" data-level="9.1.5" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>9.1.5</b> Constructing trees with R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>9.2</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>9.2.1</b> Village dogs as an insight to dog domestication</a></li>
+<li class="chapter" data-level="9.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>9.2.2</b> Reading the data into R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>9.2.3</b> Performing a PCA</a></li>
+<li class="chapter" data-level="9.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>9.2.4</b> Visualising the PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>9.3</b> Study questions</a></li>
+<li class="chapter" data-level="9.4" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html"><i class="fa fa-check"></i><b>10</b> Advancing Further in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#what-to-expect-9"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="10.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>10.1</b> Advanced features of RStudio</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
+<li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
+<li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
+<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html"><i class="fa fa-check"></i><b>10.2</b> Control flow - <code>for</code>, <code>else</code>, <code>if</code> and <code>ifelse</code></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#if-and-else"><i class="fa fa-check"></i><b>10.2.1</b> <code>if</code> and <code>else</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#ifelse---a-single-line-alternative"><i class="fa fa-check"></i><b>10.2.2</b> <code>ifelse</code> - a single line alternative</a></li>
+<li class="chapter" data-level="10.2.3" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#for-loops"><i class="fa fa-check"></i><b>10.2.3</b> <code>for</code> loops</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="vectorisation.html"><a href="vectorisation.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.3.2" data-path="vectorisation.html"><a href="vectorisation.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.3.3" data-path="vectorisation.html"><a href="vectorisation.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.6" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
+<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="evolutionary-biology-fitness" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Evolutionary biology: fitness</h2>
+<script src="js/hideOutput.js"></script>
+<div id="understanding-fitness" class="section level3" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Understanding fitness</h3>
+<p>What do we mean by <strong>fitness</strong>? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype <span class="math inline">\(A_1A_1\)</span> produces more offspring than <span class="math inline">\(A_2A_2\)</span> because of a trait the locus produces, we can say <span class="math inline">\(A_1A_1\)</span> has a higher fitness.</p>
+<div id="absolute-relative-and-marginal-fitness" class="section level4" number="4.2.1.1">
+<h4><span class="header-section-number">4.2.1.1</span> Absolute, relative and marginal fitness</h4>
+<p>So we might talk about <strong>absolute fitness</strong> - e.g. the expected reproductive success of <span class="math inline">\(A_1A_1\)</span>. In population genetic models though, we more often than not refer to <strong>relative fitness</strong> - i.e. how fit genotypes are relative to one another. To denote relative fitness, we will follow the notation in the main text - i.e. <span class="math inline">\(w_{ij}\)</span> for <span class="math inline">\(A_iA_j\)</span>. Assuming locus <span class="math inline">\(A\)</span> with two alleles, on average genotypes <span class="math inline">\(A_1A_1\)</span> and <span class="math inline">\(A_1A_2\)</span> produce 16 offspring each, whereas <span class="math inline">\(A_2A_2\)</span> produces 11 offspring on average. We calculate relative fitness as follows:</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="evolutionary-biology-fitness.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the number of offspring per genotype</span></span>
+<span id="cb191-2"><a href="evolutionary-biology-fitness.html#cb191-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A1A1 =</span> <span class="dv">16</span>, <span class="at">A1A2 =</span> <span class="dv">16</span>, <span class="at">A2A2 =</span> <span class="dv">11</span>)</span>
+<span id="cb191-3"><a href="evolutionary-biology-fitness.html#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="co"># find the maximum fitness</span></span>
+<span id="cb191-4"><a href="evolutionary-biology-fitness.html#cb191-4" aria-hidden="true" tabindex="-1"></a>max_fit <span class="ot">&lt;-</span> <span class="fu">max</span>(a)</span>
+<span id="cb191-5"><a href="evolutionary-biology-fitness.html#cb191-5" aria-hidden="true" tabindex="-1"></a><span class="co"># determine the relative fitness</span></span>
+<span id="cb191-6"><a href="evolutionary-biology-fitness.html#cb191-6" aria-hidden="true" tabindex="-1"></a>rel_fit <span class="ot">&lt;-</span> a<span class="sc">/</span>max_fit</span></code></pre></div>
+<p>Note here that when defining our vector <code>a</code>, we also actually named each element of it. Names work a little differently in vectors to how they do in a <code>data.frame</code>. For example, <code>a$A1A1</code> will not work. However <code>a["A1A1"]</code> does.</p>
+<p>When calculating relative fitness, we define fitness relative to the maximum fitness. Since both <span class="math inline">\(A_1A_1\)</span> and <span class="math inline">\(A_1A_2\)</span> produce the highest number of offspring, their fitness is 1 whereas <span class="math inline">\(A_2A_2\)</span> has a lower relative fitness.</p>
+<p>We might also want to calculate the <strong>mean population fitness</strong>, denoted as <span class="math inline">\(\overline{w}\)</span>. This is essentially the sum of the relative fitness of each genotype multiplied by the genotype frequency. With R, calculating this is simple - we simply multiply a vector of genotype frequencies with the relative fitness and sum the result. We do this below:</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="evolutionary-biology-fitness.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the genotype frequencies - note different way to define!</span></span>
+<span id="cb192-2"><a href="evolutionary-biology-fitness.html#cb192-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">A1A1 =</span> <span class="fl">0.65</span>, <span class="at">A1A2 =</span> <span class="fl">0.15</span>, <span class="at">A2A2 =</span> <span class="fl">0.2</span>)</span>
+<span id="cb192-3"><a href="evolutionary-biology-fitness.html#cb192-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate mean population fitness</span></span>
+<span id="cb192-4"><a href="evolutionary-biology-fitness.html#cb192-4" aria-hidden="true" tabindex="-1"></a>w_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(rel_fit <span class="sc">*</span> geno_freq)</span></code></pre></div>
+<p>So far, we have dealt with fitness for genotypes. This makes sense because selection acts on genotypes (and the phenotypes they convey). But what if we want to define the fitness of a specific allele? In this case, things become a bit more complicated because allelic fitness depends on the genotype the allele finds itself in. In our previous example, <span class="math inline">\(A_2\)</span> has a high fitness when it is in the heterozygous <span class="math inline">\(A_1A_2\)</span> genotype, but not when it is homozygous.</p>
+<p>To account for this, we estimate <strong>marginal fitness</strong> for a given allele <span class="math inline">\(i\)</span> as <span class="math inline">\(w^{*}_i\)</span>. So for two alleles, the marginal fitness is:</p>
+<ul>
+<li><span class="math inline">\(w^{*}_1 = pw_{11} + qw_{12}\)</span></li>
+<li><span class="math inline">\(w^{*}_1 = pw_{12} + qw_{22}\)</span></li>
+</ul>
+<p>Where <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the frequencies for <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in <em>AND</em> the frequency of those genotypes. Let’s calculate the fitness of our alleles using R.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="evolutionary-biology-fitness.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first calculate the allele frequencies</span></span>
+<span id="cb193-2"><a href="evolutionary-biology-fitness.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="co"># define the total number of alleles</span></span>
+<span id="cb193-3"><a href="evolutionary-biology-fitness.html#cb193-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(a)</span>
+<span id="cb193-4"><a href="evolutionary-biology-fitness.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p</span></span>
+<span id="cb193-5"><a href="evolutionary-biology-fitness.html#cb193-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> ((a[<span class="st">&quot;A1A1&quot;</span>] <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">+</span> a[<span class="st">&quot;A1A2&quot;</span>])<span class="sc">/</span>n</span>
+<span id="cb193-6"><a href="evolutionary-biology-fitness.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate q</span></span>
+<span id="cb193-7"><a href="evolutionary-biology-fitness.html#cb193-7" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
+<span id="cb193-8"><a href="evolutionary-biology-fitness.html#cb193-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb193-9"><a href="evolutionary-biology-fitness.html#cb193-9" aria-hidden="true" tabindex="-1"></a><span class="do">## now calculate the marginal fitness</span></span>
+<span id="cb193-10"><a href="evolutionary-biology-fitness.html#cb193-10" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A1&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>])</span>
+<span id="cb193-11"><a href="evolutionary-biology-fitness.html#cb193-11" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A2A2&quot;</span>])</span></code></pre></div>
+<p>Note again that we are explicitly naming elements of the vector to make the mathematics here clearer to you. However this can cause some annoying names to follow around your data. Take a look at <code>w1</code> and <code>w2</code> - you should see they have genotype names. The names still hang about because we used them right from the start, so we also remove them here by assigning a <code>NULL</code>:</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="evolutionary-biology-fitness.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strip names</span></span>
+<span id="cb194-2"><a href="evolutionary-biology-fitness.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(w1) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb194-3"><a href="evolutionary-biology-fitness.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(w2) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb194-4"><a href="evolutionary-biology-fitness.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(p) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb194-5"><a href="evolutionary-biology-fitness.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(q) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code></pre></div>
+<p>Now that we have the basics in place in terms of calculating fitness, we can go on to create a one-locus model of viability selection.</p>
+</div>
+</div>
+<div id="one-locus-model-of-viability-selection" class="section level3" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> One-locus model of viability selection</h3>
+<p>When we talk about viability, we simply mean that individuals with different genotypes will vary in their probability of surviving until they are able to reproduce. Variation in viability will therefore effect the ability of individuals to reproduce and thus pass on their genes to the next generation. In other words, allele frequencies will change as a result of selection.</p>
+<p>To model this, we will use a locus <span class="math inline">\(A\)</span> with alleles <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> - each with a frequency <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span>. From the last section, we have the relative fitness of the genotypes with <span class="math inline">\(w_{11}\)</span>, <span class="math inline">\(w_{12}\)</span> and <span class="math inline">\(w_{22}\)</span>. For simplicity we will assume that fitness remains constant and that the frequency of the zygotes at each generation are in line with the Hardy-Weinberg expectation. Like in the book, we summarise the basics in the table below:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Genotype</th>
+<th align="left">Zygote frequency</th>
+<th align="left">Fitness</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_1A_1\)</span></td>
+<td align="left"><span class="math inline">\(p^2\)</span></td>
+<td align="left"><span class="math inline">\(w_{11}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(A_1A_2\)</span></td>
+<td align="left"><span class="math inline">\(2pq\)</span></td>
+<td align="left"><span class="math inline">\(w_{12}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_2A_2\)</span></td>
+<td align="left"><span class="math inline">\(q^2\)</span></td>
+<td align="left"><span class="math inline">\(w_{22}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>In our model, we will calculate <span class="math inline">\(p_{t+1}\)</span> the frequency of allele <span class="math inline">\(A_1\)</span> after a single generation of selection. This depends on three things: <span class="math inline">\(p\)</span> - the allele frequency before selection, <span class="math inline">\(w_1{^*}\)</span>, the marginal fitness of the <span class="math inline">\(A_1\)</span> allele and the difference between this and <span class="math inline">\(\overline{w}\)</span>, the mean population fitness. So our model is basicaly:</p>
+<p><span class="math inline">\(P_{t+1} = \displaystyle \frac{pw_1^*}{\overline{w}}\)</span></p>
+<p>We will use our previous results to calculate how <span class="math inline">\(p\)</span> changes after a round of selection:</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="evolutionary-biology-fitness.html#cb195-1" aria-hidden="true" tabindex="-1"></a>p_t <span class="ot">&lt;-</span> (p<span class="sc">*</span>w1)<span class="sc">/</span>w_bar</span></code></pre></div>
+<p>If you compare <code>p</code> and <code>p_t</code>, you will see how the frequency in <code>p</code> changed as a result of selection. In fact, this is <span class="math inline">\(\Delta p\)</span>. In R, we can easily calculate it as:</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="evolutionary-biology-fitness.html#cb196-1" aria-hidden="true" tabindex="-1"></a>delta_p <span class="ot">&lt;-</span> p_t <span class="sc">-</span> p </span></code></pre></div>
+<p>If everything worked correctly, your <code>delta_p</code> should be <code>0.0372093</code>.</p>
+<div id="simulating-selection-under-the-one-locus-model" class="section level4" number="4.2.2.1">
+<h4><span class="header-section-number">4.2.2.1</span> Simulating selection under the one-locus model</h4>
+<p>So far, we have recreated the model for a single generation to try and understand how it works. But the beauty of R is that we can easily change the parameters to see how this will vary the change in frequency of our allele. The easiest way to do this is if we write a function that neatly summarises the code we have already explored - then all we need to do to see how the parameters have an effect is simply alter the arguments we give our function.</p>
+<p>We will now write a function that takes the initial frequency of p and a vector consisting of the relative fitness of each genotype. This function will then calculate the allele frequencies, the mean population fitness and the marginal fitness of the alleles. Note how this is essentially all the code we have made so far pasted into the body of a function, and <code>p</code> and <code>rel_fit</code> is turned into arguments.</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="evolutionary-biology-fitness.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple function to demonstrate the one locus selection model</span></span>
+<span id="cb197-2"><a href="evolutionary-biology-fitness.html#cb197-2" aria-hidden="true" tabindex="-1"></a>selection_model_simple <span class="ot">&lt;-</span> <span class="cf">function</span>(p, rel_fit){</span>
+<span id="cb197-3"><a href="evolutionary-biology-fitness.html#cb197-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define q</span></span>
+<span id="cb197-4"><a href="evolutionary-biology-fitness.html#cb197-4" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
+<span id="cb197-5"><a href="evolutionary-biology-fitness.html#cb197-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate genotype frequencies (under HWE)</span></span>
+<span id="cb197-6"><a href="evolutionary-biology-fitness.html#cb197-6" aria-hidden="true" tabindex="-1"></a>  gf <span class="ot">&lt;-</span> <span class="fu">c</span>(p<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span><span class="sc">*</span>(p<span class="sc">*</span>q), q<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb197-7"><a href="evolutionary-biology-fitness.html#cb197-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb197-8"><a href="evolutionary-biology-fitness.html#cb197-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate mean pop fitness</span></span>
+<span id="cb197-9"><a href="evolutionary-biology-fitness.html#cb197-9" aria-hidden="true" tabindex="-1"></a>  w_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(rel_fit<span class="sc">*</span>gf)</span>
+<span id="cb197-10"><a href="evolutionary-biology-fitness.html#cb197-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb197-11"><a href="evolutionary-biology-fitness.html#cb197-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate marginal allele frequencies</span></span>
+<span id="cb197-12"><a href="evolutionary-biology-fitness.html#cb197-12" aria-hidden="true" tabindex="-1"></a>  w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">1</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">2</span>])</span>
+<span id="cb197-13"><a href="evolutionary-biology-fitness.html#cb197-13" aria-hidden="true" tabindex="-1"></a>  w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">2</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">3</span>])</span>
+<span id="cb197-14"><a href="evolutionary-biology-fitness.html#cb197-14" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb197-15"><a href="evolutionary-biology-fitness.html#cb197-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate freq of p in the next generation</span></span>
+<span id="cb197-16"><a href="evolutionary-biology-fitness.html#cb197-16" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p<span class="sc">*</span>w1)<span class="sc">/</span>w_bar</span>
+<span id="cb197-17"><a href="evolutionary-biology-fitness.html#cb197-17" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb197-18"><a href="evolutionary-biology-fitness.html#cb197-18" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the results</span></span>
+<span id="cb197-19"><a href="evolutionary-biology-fitness.html#cb197-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p_t)</span>
+<span id="cb197-20"><a href="evolutionary-biology-fitness.html#cb197-20" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>With this function, we can play around with the initial frequency of the <span class="math inline">\(A_1\)</span> allele and the relative fitness of the 3 genotypes. Try a few different values for yourself to see.</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="evolutionary-biology-fitness.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keeping the initial frequency constant</span></span>
+<span id="cb198-2"><a href="evolutionary-biology-fitness.html#cb198-2" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model_simple</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.75</span>))</span>
+<span id="cb198-3"><a href="evolutionary-biology-fitness.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model_simple</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.5</span>))</span>
+<span id="cb198-4"><a href="evolutionary-biology-fitness.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model_simple</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.3</span>))</span></code></pre></div>
+<p>We now have a function that calculates the change in p after one generation. To get a better idea of how the model works, we want to see how p changes over multiple generations. We will initialise three values – the intial frequency <code>p</code>, the number of generations we want to simulate selection for, <code>n_gen</code>, and a vector of relative fitness. Like the simulation we made last week, this can be done with a for-loop.</p>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="evolutionary-biology-fitness.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first initialise the values</span></span>
+<span id="cb199-2"><a href="evolutionary-biology-fitness.html#cb199-2" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb199-3"><a href="evolutionary-biology-fitness.html#cb199-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb199-4"><a href="evolutionary-biology-fitness.html#cb199-4" aria-hidden="true" tabindex="-1"></a>rel_fit <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.75</span>)</span>
+<span id="cb199-5"><a href="evolutionary-biology-fitness.html#cb199-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-6"><a href="evolutionary-biology-fitness.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="co"># make an empty vector to store the values of p</span></span>
+<span id="cb199-7"><a href="evolutionary-biology-fitness.html#cb199-7" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb199-8"><a href="evolutionary-biology-fitness.html#cb199-8" aria-hidden="true" tabindex="-1"></a><span class="co"># set the first element of p</span></span>
+<span id="cb199-9"><a href="evolutionary-biology-fitness.html#cb199-9" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb199-10"><a href="evolutionary-biology-fitness.html#cb199-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-11"><a href="evolutionary-biology-fitness.html#cb199-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb199-12"><a href="evolutionary-biology-fitness.html#cb199-12" aria-hidden="true" tabindex="-1"></a>  p[i] <span class="ot">&lt;-</span> <span class="fu">selection_model_simple</span>(<span class="at">p =</span> p[i<span class="dv">-1</span>], <span class="at">rel_fit =</span> rel_fit)</span>
+<span id="cb199-13"><a href="evolutionary-biology-fitness.html#cb199-13" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb199-14"><a href="evolutionary-biology-fitness.html#cb199-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-15"><a href="evolutionary-biology-fitness.html#cb199-15" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb199-16"><a href="evolutionary-biology-fitness.html#cb199-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.5000000 0.5333333 0.5640423 0.5921796 0.6178702 0.6412807 0.6625963</span></span>
+<span id="cb199-17"><a href="evolutionary-biology-fitness.html#cb199-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [8] 0.6820065 0.6996947 0.7158338 0.7305825 0.7440850 0.7564708 0.7678555</span></span>
+<span id="cb199-18"><a href="evolutionary-biology-fitness.html#cb199-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [15] 0.7783419 0.7880212 0.7969742 0.8052725 0.8129793 0.8201508 0.8268370</span></span>
+<span id="cb199-19"><a href="evolutionary-biology-fitness.html#cb199-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [22] 0.8330821 0.8389255 0.8444025 0.8495445 0.8543796 0.8589331 0.8632276</span></span>
+<span id="cb199-20"><a href="evolutionary-biology-fitness.html#cb199-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [29] 0.8672836 0.8711195 0.8747520 0.8781961 0.8814655 0.8845726 0.8875289</span></span>
+<span id="cb199-21"><a href="evolutionary-biology-fitness.html#cb199-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [36] 0.8903445 0.8930290 0.8955911 0.8980385 0.9003786 0.9026181 0.9047631</span></span>
+<span id="cb199-22"><a href="evolutionary-biology-fitness.html#cb199-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [43] 0.9068193 0.9087920 0.9106860 0.9125058 0.9142555 0.9159390 0.9175599</span></span>
+<span id="cb199-23"><a href="evolutionary-biology-fitness.html#cb199-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [50] 0.9191216 0.9206271 0.9220794 0.9234812 0.9248349 0.9261430 0.9274078</span></span>
+<span id="cb199-24"><a href="evolutionary-biology-fitness.html#cb199-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [57] 0.9286312 0.9298152 0.9309616 0.9320723 0.9331487 0.9341924 0.9352049</span></span>
+<span id="cb199-25"><a href="evolutionary-biology-fitness.html#cb199-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [64] 0.9361876 0.9371416 0.9380682 0.9389686 0.9398438 0.9406948 0.9415227</span></span>
+<span id="cb199-26"><a href="evolutionary-biology-fitness.html#cb199-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] 0.9423282 0.9431125 0.9438761 0.9446200 0.9453448 0.9460513 0.9467402</span></span>
+<span id="cb199-27"><a href="evolutionary-biology-fitness.html#cb199-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [78] 0.9474120 0.9480675 0.9487072 0.9493316 0.9499413 0.9505367 0.9511185</span></span>
+<span id="cb199-28"><a href="evolutionary-biology-fitness.html#cb199-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [85] 0.9516870 0.9522427 0.9527859 0.9533172 0.9538369 0.9543453 0.9548429</span></span>
+<span id="cb199-29"><a href="evolutionary-biology-fitness.html#cb199-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [92] 0.9553299 0.9558067 0.9562736 0.9567309 0.9571789 0.9576179 0.9580481</span></span>
+<span id="cb199-30"><a href="evolutionary-biology-fitness.html#cb199-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [99] 0.9584699 0.9588833</span></span></code></pre></div>
+<p>The change in allele frequency is now stored in your object <code>p</code>. This can easily be plotted straight away with base R’s <code>plot()</code>:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="evolutionary-biology-fitness.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Generation&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+</div>
+<div id="visualising-selection-with-different-parameters." class="section level4" number="4.2.2.2">
+<h4><span class="header-section-number">4.2.2.2</span> Visualising selection with different parameters.</h4>
+<p>Now, let’s combine our programming and visualisation skills to demonstrate how varying the parameters really effect the outcome of our model.</p>
+<p>First things first, we will take our simulation from the previous section and make it into it’s own function <code>selection_sim</code>. Like before, paste the entire code into the body, and convert the relevant objects to arguments.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="evolutionary-biology-fitness.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="do">## make a simulator function</span></span>
+<span id="cb201-2"><a href="evolutionary-biology-fitness.html#cb201-2" aria-hidden="true" tabindex="-1"></a>selection_sim_simple <span class="ot">&lt;-</span> <span class="cf">function</span>(p_init, rel_fit, ngen){</span>
+<span id="cb201-3"><a href="evolutionary-biology-fitness.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb201-4"><a href="evolutionary-biology-fitness.html#cb201-4" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb201-5"><a href="evolutionary-biology-fitness.html#cb201-5" aria-hidden="true" tabindex="-1"></a>  p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb201-6"><a href="evolutionary-biology-fitness.html#cb201-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb201-7"><a href="evolutionary-biology-fitness.html#cb201-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb201-8"><a href="evolutionary-biology-fitness.html#cb201-8" aria-hidden="true" tabindex="-1"></a>    p[i] <span class="ot">&lt;-</span> <span class="fu">selection_model_simple</span>(<span class="at">p =</span> p[i<span class="dv">-1</span>], <span class="at">rel_fit =</span> rel_fit)</span>
+<span id="cb201-9"><a href="evolutionary-biology-fitness.html#cb201-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb201-10"><a href="evolutionary-biology-fitness.html#cb201-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb201-11"><a href="evolutionary-biology-fitness.html#cb201-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb201-12"><a href="evolutionary-biology-fitness.html#cb201-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Note here how we have a custom function wrapped inside another custom function. This is a really useful concept, and allows for easier use and maintenance of your code. More on this in the assignment!</p>
+<p>Anyway, now we can easily simulate selection over multiple generations. For example:</p>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="evolutionary-biology-fitness.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_sim_simple</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.75</span>), <span class="at">ngen =</span> <span class="dv">1000</span>)</span></code></pre></div>
+<p>So, now we will perform 4 simulations for 200 generations, keeping our initial frequency of <code>p</code> at 0.5. However, we will alter the relative fitness of the <span class="math inline">\(A_2A_2\)</span> genotype from 0.2 to 0.8.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="evolutionary-biology-fitness.html#cb203-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-2"><a href="evolutionary-biology-fitness.html#cb203-2" aria-hidden="true" tabindex="-1"></a>sim_02 <span class="ot">&lt;-</span> <span class="fu">selection_sim_simple</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.2</span>), <span class="at">ngen =</span> <span class="dv">200</span>)</span>
+<span id="cb203-3"><a href="evolutionary-biology-fitness.html#cb203-3" aria-hidden="true" tabindex="-1"></a>sim_04 <span class="ot">&lt;-</span> <span class="fu">selection_sim_simple</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.4</span>), <span class="at">ngen =</span> <span class="dv">200</span>)</span>
+<span id="cb203-4"><a href="evolutionary-biology-fitness.html#cb203-4" aria-hidden="true" tabindex="-1"></a>sim_06 <span class="ot">&lt;-</span> <span class="fu">selection_sim_simple</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.6</span>), <span class="at">ngen =</span> <span class="dv">200</span>)</span>
+<span id="cb203-5"><a href="evolutionary-biology-fitness.html#cb203-5" aria-hidden="true" tabindex="-1"></a>sim_08 <span class="ot">&lt;-</span> <span class="fu">selection_sim_simple</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.8</span>), <span class="at">ngen =</span> <span class="dv">200</span>)</span></code></pre></div>
+<p>Now we have made 4 simulations. To plot these with <code>ggplot()</code>, we need to make them into a data frame and convert them to long form with <code>pivot_longer()</code>. See the tutorial from week 2 if you’re unsure about why we do this.</p>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="evolutionary-biology-fitness.html#cb204-1" aria-hidden="true" tabindex="-1"></a>sel_sims <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb204-2"><a href="evolutionary-biology-fitness.html#cb204-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">g =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">200</span>, <span class="co"># number of generations</span></span>
+<span id="cb204-3"><a href="evolutionary-biology-fitness.html#cb204-3" aria-hidden="true" tabindex="-1"></a>  sim_02,</span>
+<span id="cb204-4"><a href="evolutionary-biology-fitness.html#cb204-4" aria-hidden="true" tabindex="-1"></a>  sim_04,</span>
+<span id="cb204-5"><a href="evolutionary-biology-fitness.html#cb204-5" aria-hidden="true" tabindex="-1"></a>  sim_06,</span>
+<span id="cb204-6"><a href="evolutionary-biology-fitness.html#cb204-6" aria-hidden="true" tabindex="-1"></a>  sim_08</span>
+<span id="cb204-7"><a href="evolutionary-biology-fitness.html#cb204-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb204-8"><a href="evolutionary-biology-fitness.html#cb204-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb204-9"><a href="evolutionary-biology-fitness.html#cb204-9" aria-hidden="true" tabindex="-1"></a><span class="co"># use gather to rearrange for plotting</span></span>
+<span id="cb204-10"><a href="evolutionary-biology-fitness.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="co"># note the use of -g to select all the other columns</span></span>
+<span id="cb204-11"><a href="evolutionary-biology-fitness.html#cb204-11" aria-hidden="true" tabindex="-1"></a>sel_sims_l <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(sel_sims, <span class="sc">-</span>g, <span class="at">names_to =</span> <span class="st">&quot;rel_fit&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
+<p>Then we can plot the data.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="evolutionary-biology-fitness.html#cb205-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-2"><a href="evolutionary-biology-fitness.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sel_sims_l, <span class="fu">aes</span>(<span class="at">x =</span> g, <span class="at">y =</span> p, <span class="at">col =</span> rel_fit)) <span class="sc">+</span></span>
+<span id="cb205-3"><a href="evolutionary-biology-fitness.html#cb205-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span> <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>So you can see from this plot that as the difference between the marginal fitness of <span class="math inline">\(A_1\)</span> and the mean population fitness <span class="math inline">\(\overline{w}\)</span> decreases, the proportional increase in allele frequency per generation slows down. More plainly, we can see that when <span class="math inline">\(w_{22}\)</span> is 0.8, the increase in p per generation is slower than when <span class="math inline">\(w_{22}\)</span> is 0.2.</p>
+</div>
+<div id="getting-more-from-our-selection-functions" class="section level4" number="4.2.2.3">
+<h4><span class="header-section-number">4.2.2.3</span> Getting more from our selection functions</h4>
+<p>Let’s take another look at our <code>selection_model_simple()</code> function.</p>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="evolutionary-biology-fitness.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keeping the initial frequency constant</span></span>
+<span id="cb206-2"><a href="evolutionary-biology-fitness.html#cb206-2" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model_simple</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">0.7</span>))</span></code></pre></div>
+<p>You will recall that when we defined the code for this function, we actually calculated quite a lot of stuff inside it - the frequency of the <span class="math inline">\(A_2\)</span> allele, the genotype frequencies, mean population fitness and marginal frequencies. But the only thing we used <code>return</code> to write out was the frequency of <span class="math inline">\(p\)</span> in the next generation.</p>
+<p>What if we want to extend our function to give us everything we calculated? This will be very useful for the upcoming sections where we will need all these parameters. The code below creates two updated functions for simulating selection. The difference is that instead of outputting a single value, we get a lot of extra information about fitness parameters. The functions are a bit more complicated than what you’ve seen so far, however, so don’t worry if you don’t understand everything that’s happening.</p>
+<div class="yellow">
+<p><strong>Advanced code:</strong><br />
+<em>You need to run this code to complete the tutorial, but you don’t need to understand it.</em></p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="evolutionary-biology-fitness.html#cb207-1" aria-hidden="true" tabindex="-1"></a>selection_model <span class="ot">&lt;-</span> <span class="cf">function</span>(p, rel_fit){</span>
+<span id="cb207-2"><a href="evolutionary-biology-fitness.html#cb207-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define q</span></span>
+<span id="cb207-3"><a href="evolutionary-biology-fitness.html#cb207-3" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
+<span id="cb207-4"><a href="evolutionary-biology-fitness.html#cb207-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate genotype frequencies (under HWE)</span></span>
+<span id="cb207-5"><a href="evolutionary-biology-fitness.html#cb207-5" aria-hidden="true" tabindex="-1"></a>  gf <span class="ot">&lt;-</span> <span class="fu">c</span>(p<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span><span class="sc">*</span>(p<span class="sc">*</span>q), q<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb207-6"><a href="evolutionary-biology-fitness.html#cb207-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb207-7"><a href="evolutionary-biology-fitness.html#cb207-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate mean pop fitness</span></span>
+<span id="cb207-8"><a href="evolutionary-biology-fitness.html#cb207-8" aria-hidden="true" tabindex="-1"></a>  w_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(rel_fit<span class="sc">*</span>gf)</span>
+<span id="cb207-9"><a href="evolutionary-biology-fitness.html#cb207-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb207-10"><a href="evolutionary-biology-fitness.html#cb207-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate marginal allele frequencies</span></span>
+<span id="cb207-11"><a href="evolutionary-biology-fitness.html#cb207-11" aria-hidden="true" tabindex="-1"></a>  w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">1</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">2</span>])</span>
+<span id="cb207-12"><a href="evolutionary-biology-fitness.html#cb207-12" aria-hidden="true" tabindex="-1"></a>  w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">2</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">3</span>])</span>
+<span id="cb207-13"><a href="evolutionary-biology-fitness.html#cb207-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb207-14"><a href="evolutionary-biology-fitness.html#cb207-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate freq of p in the next generation</span></span>
+<span id="cb207-15"><a href="evolutionary-biology-fitness.html#cb207-15" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p<span class="sc">*</span>w1)<span class="sc">/</span>w_bar</span>
+<span id="cb207-16"><a href="evolutionary-biology-fitness.html#cb207-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb207-17"><a href="evolutionary-biology-fitness.html#cb207-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make vector for output</span></span>
+<span id="cb207-18"><a href="evolutionary-biology-fitness.html#cb207-18" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">p =</span> p, <span class="at">q =</span> q, <span class="at">w_bar =</span> w_bar, </span>
+<span id="cb207-19"><a href="evolutionary-biology-fitness.html#cb207-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">w1 =</span> w1, <span class="at">w2 =</span> w2, <span class="at">p_t =</span> p_t)</span>
+<span id="cb207-20"><a href="evolutionary-biology-fitness.html#cb207-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb207-21"><a href="evolutionary-biology-fitness.html#cb207-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the results</span></span>
+<span id="cb207-22"><a href="evolutionary-biology-fitness.html#cb207-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb207-23"><a href="evolutionary-biology-fitness.html#cb207-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="evolutionary-biology-fitness.html#cb208-1" aria-hidden="true" tabindex="-1"></a>selection_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(p_init, rel_fit, ngen){</span>
+<span id="cb208-2"><a href="evolutionary-biology-fitness.html#cb208-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb208-3"><a href="evolutionary-biology-fitness.html#cb208-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set first generation</span></span>
+<span id="cb208-4"><a href="evolutionary-biology-fitness.html#cb208-4" aria-hidden="true" tabindex="-1"></a>  mod_pars <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">selection_model</span>(<span class="at">p =</span> p_init, <span class="at">rel_fit =</span> rel_fit))</span>
+<span id="cb208-5"><a href="evolutionary-biology-fitness.html#cb208-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb208-6"><a href="evolutionary-biology-fitness.html#cb208-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate for n generations</span></span>
+<span id="cb208-7"><a href="evolutionary-biology-fitness.html#cb208-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb208-8"><a href="evolutionary-biology-fitness.html#cb208-8" aria-hidden="true" tabindex="-1"></a>    mod_pars <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mod_pars, <span class="fu">selection_model</span>(<span class="at">p =</span> mod_pars[i<span class="dv">-1</span>, <span class="st">&quot;p_t&quot;</span>], <span class="at">rel_fit =</span> rel_fit))</span>
+<span id="cb208-9"><a href="evolutionary-biology-fitness.html#cb208-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb208-10"><a href="evolutionary-biology-fitness.html#cb208-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb208-11"><a href="evolutionary-biology-fitness.html#cb208-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make generations object</span></span>
+<span id="cb208-12"><a href="evolutionary-biology-fitness.html#cb208-12" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>ngen</span>
+<span id="cb208-13"><a href="evolutionary-biology-fitness.html#cb208-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb208-14"><a href="evolutionary-biology-fitness.html#cb208-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the result as a data frame</span></span>
+<span id="cb208-15"><a href="evolutionary-biology-fitness.html#cb208-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(g, mod_pars)))</span>
+<span id="cb208-16"><a href="evolutionary-biology-fitness.html#cb208-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<p> </p>
+<p>Our new <code>selection_model()</code> outputs a vector of useful values. The element <code>p_t</code> denotes <span class="math inline">\(p\)</span> in the next generation, which was the output of the old <code>selection_model_simple()</code>.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="evolutionary-biology-fitness.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model</span>(<span class="at">p =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">0.7</span>))</span>
+<span id="cb209-2"><a href="evolutionary-biology-fitness.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         p         q     w_bar        w1        w2       p_t </span></span>
+<span id="cb209-3"><a href="evolutionary-biology-fitness.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.5000000 0.5000000 0.8750000 0.9000000 0.8500000 0.5142857</span></span></code></pre></div>
+<p>The new <code>selection_sim()</code> returns a data frame, with 1 generation per row, and the fitness parameters in columns.</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="evolutionary-biology-fitness.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_sim</span>(<span class="at">p_init =</span> <span class="fl">0.5</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.8</span>, <span class="dv">1</span>, <span class="fl">0.7</span>), <span class="at">ngen =</span> <span class="dv">5</span>)</span>
+<span id="cb210-2"><a href="evolutionary-biology-fitness.html#cb210-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   g         p         q     w_bar        w1        w2       p_t</span></span>
+<span id="cb210-3"><a href="evolutionary-biology-fitness.html#cb210-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 1 0.5000000 0.5000000 0.8750000 0.9000000 0.8500000 0.5142857</span></span>
+<span id="cb210-4"><a href="evolutionary-biology-fitness.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 2 0.5142857 0.4857143 0.8763265 0.8971429 0.8542857 0.5265021</span></span>
+<span id="cb210-5"><a href="evolutionary-biology-fitness.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 3 0.5265021 0.4734979 0.8772990 0.8946996 0.8579506 0.5369449</span></span>
+<span id="cb210-6"><a href="evolutionary-biology-fitness.html#cb210-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4 4 0.5369449 0.4630551 0.8780120 0.8926110 0.8610835 0.5458728</span></span>
+<span id="cb210-7"><a href="evolutionary-biology-fitness.html#cb210-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5 5 0.5458728 0.4541272 0.8785351 0.8908254 0.8637618 0.5535093</span></span></code></pre></div>
+<p>All these modeling results will be very useful in the next sections.</p>
+</div>
+<div id="can-a-rare-mutant-establish-in-a-population" class="section level4" number="4.2.2.4">
+<h4><span class="header-section-number">4.2.2.4</span> Can a rare mutant establish in a population?</h4>
+<p>To understand a selection model like the one we have just developed, it can be useful to see whether a rare mutant is able to establish in a population where the alternative allele is nearly fixed. This is the basis of <strong>invasion fitness analysis</strong>.</p>
+<p>We can do this using a case where heterozygotes have a greater advantage than homozygotes. Using our newly modified <code>selection_model</code> function, we can test this by setting our relative fitness to show a higher relative fitness in heterozygotes and setting <code>p</code> to a high frequency, close to 1.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="evolutionary-biology-fitness.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keeping the initial frequency constant</span></span>
+<span id="cb211-2"><a href="evolutionary-biology-fitness.html#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model</span>(<span class="at">p =</span> <span class="fl">0.99</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="dv">1</span>, <span class="fl">0.8</span>))</span></code></pre></div>
+<p>We see here that <code>w_bar</code> is around 0.7 - which we would expect given the frequency of <span class="math inline">\(A_1\)</span> (i.e <code>p</code>) and the relative fitness. Invasion fitness of <span class="math inline">\(A_2\)</span> is equivalent to the marginal fitness for the allele - so 0.99 here - close to 1, the relative fitness for the <span class="math inline">\(A_1A_2\)</span> heterozygote.</p>
+<p>When invasion fitness is greater than resident mean population fitness, the model is not at a stable equilibrium as an allele can easily invade and increase in frequency. What would happen if the frequency of <span class="math inline">\(A_2\)</span> was almost fixed?</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="evolutionary-biology-fitness.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keeping the initial frequency constant</span></span>
+<span id="cb212-2"><a href="evolutionary-biology-fitness.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="fu">selection_model</span>(<span class="at">p =</span> <span class="fl">0.01</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="dv">1</span>, <span class="fl">0.8</span>))</span></code></pre></div>
+<p>In this case, <code>w_bar</code> (the resident fitness) is higher than when the <span class="math inline">\(A_1\)</span> allele is fixed, however the marginal fitness of the <span class="math inline">\(A_1\)</span> allele (the invasion fitness) is higher than this - so in this scenarion <span class="math inline">\(A_1\)</span> could easily invade and increase in frequency too.</p>
+<p>In order for the equilibrium to be stable with heterozygote advantage, the marginal fitness of the two alleles should equal one another. We will return to this in a short while.</p>
+</div>
+</div>
+<div id="directional-selection" class="section level3" number="4.2.3">
+<h3><span class="header-section-number">4.2.3</span> Directional selection</h3>
+<p>Earlier, we simulated selection in order to understand our model. This was an example of <strong>directional selection</strong>. Now we are going to explore that in more detail - in particular, we want to see how genotypic fitness can alter the outcome of selection. We can visualise this using an <strong>adaptive landscape</strong>. Here we will use a simplified, 2D landscape - i.e. a plot of mean population fitness <span class="math inline">\(\overline{w}\)</span> against the allele frequency <span class="math inline">\(p\)</span>.</p>
+<p>To simplify our analyses, we will use three different scenarios. In each of them, we will start with a <span class="math inline">\(p\)</span> of 0.01, and we will simulate 50 generations. In all cases <span class="math inline">\(A_1A_1\)</span> will have the highest relative fitness of 1 and <span class="math inline">\(A_2A_2\)</span> the lowest of 0.2. The only thing we will vary is the relative fitness of the heterozygote <span class="math inline">\(A_1A_2\)</span>. Therefore we are simulating three types of genotypic fitness:</p>
+<ul>
+<li>dominance (<span class="math inline">\(w_{12} = w_{11}\)</span>)</li>
+<li>additive inheritance (<span class="math inline">\(w_{12} = \displaystyle \frac{w_{11} + w_{22}}{2}\)</span>)</li>
+<li>recessive (<span class="math inline">\(w_{12} = w_{22}\)</span>)</li>
+</ul>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="evolutionary-biology-fitness.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set generations</span></span>
+<span id="cb213-2"><a href="evolutionary-biology-fitness.html#cb213-2" aria-hidden="true" tabindex="-1"></a>n_gen <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb213-3"><a href="evolutionary-biology-fitness.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="co"># run simulations</span></span>
+<span id="cb213-4"><a href="evolutionary-biology-fitness.html#cb213-4" aria-hidden="true" tabindex="-1"></a>dom <span class="ot">&lt;-</span> <span class="fu">selection_sim</span>(<span class="at">p =</span> <span class="fl">0.01</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="fl">0.2</span>), n_gen)</span>
+<span id="cb213-5"><a href="evolutionary-biology-fitness.html#cb213-5" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="fu">selection_sim</span>(<span class="at">p =</span> <span class="fl">0.01</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.6</span>, <span class="fl">0.2</span>), n_gen)</span>
+<span id="cb213-6"><a href="evolutionary-biology-fitness.html#cb213-6" aria-hidden="true" tabindex="-1"></a>rec <span class="ot">&lt;-</span> <span class="fu">selection_sim</span>(<span class="at">p =</span> <span class="fl">0.01</span>, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>), n_gen)</span></code></pre></div>
+<p>We’ll take a brief break from the tidyverse approach now and plot this in base R. This is just because we want you to focus on what we are modelling, rather than reshaping the data too much. Don’t worry too much about how this plot is created, the important thing is analysing the result!</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="evolutionary-biology-fitness.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intialise plot</span></span>
+<span id="cb214-2"><a href="evolutionary-biology-fitness.html#cb214-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb214-3"><a href="evolutionary-biology-fitness.html#cb214-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Frequency - p&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Mean pop fitness&quot;</span>, <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb214-4"><a href="evolutionary-biology-fitness.html#cb214-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add curves for each case</span></span>
+<span id="cb214-5"><a href="evolutionary-biology-fitness.html#cb214-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dom<span class="sc">$</span>p, dom<span class="sc">$</span>w_bar, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb214-6"><a href="evolutionary-biology-fitness.html#cb214-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(add<span class="sc">$</span>p, add<span class="sc">$</span>w_bar, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb214-7"><a href="evolutionary-biology-fitness.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(rec<span class="sc">$</span>p, rec<span class="sc">$</span>w_bar, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>What does this show us? Well firstly, you might remember that this figure is more or less identical to <strong>Figure 4.2</strong> in the main textbook. The <strong>blue line</strong> is our case of dominance - i.e. both <span class="math inline">\(A_1A_1\)</span> and <span class="math inline">\(A_1A_2\)</span> identical, higher relative fitness compared to <span class="math inline">\(A_2A_2\)</span>. In this case, the frequency of the <span class="math inline">\(A_1\)</span> allele quickly increases but slows down as the allele reaches fixation - hence the plateau at higher values of <span class="math inline">\(p\)</span>. The <strong>green</strong> curve shows the recessive case. The increase in <span class="math inline">\(A_1\)</span> is lower when <span class="math inline">\(p\)</span> is low because then the new mutant genotype is more likely to occur in heterozygotes. However as the frequency increases (i.e. <span class="math inline">\(p\)</span> goes up), the mean population fitness increases rapidly two. In contrast, the additive case - in <strong>red</strong> - is just a linear increase with frequency.</p>
+<p>We can try looking at the results of these simulations in a slgithly different way - to see how the frequency of <span class="math inline">\(A_1\)</span> alters over the 50 generations we simulated it for. Again we will use base R code to achieve this.</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="evolutionary-biology-fitness.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># intialise plot</span></span>
+<span id="cb215-2"><a href="evolutionary-biology-fitness.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="cn">NULL</span>, <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, n_gen), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>), </span>
+<span id="cb215-3"><a href="evolutionary-biology-fitness.html#cb215-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Time (generations)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Frequency - p&quot;</span>, <span class="at">las =</span> <span class="dv">1</span>)</span>
+<span id="cb215-4"><a href="evolutionary-biology-fitness.html#cb215-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add curves for each case</span></span>
+<span id="cb215-5"><a href="evolutionary-biology-fitness.html#cb215-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dom<span class="sc">$</span>g, dom<span class="sc">$</span>p, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb215-6"><a href="evolutionary-biology-fitness.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dom<span class="sc">$</span>g, add<span class="sc">$</span>p, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb215-7"><a href="evolutionary-biology-fitness.html#cb215-7" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(dom<span class="sc">$</span>g, rec<span class="sc">$</span>p, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;green&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>All of these curves are S-shaped to some extent - so the transition from high to low frequency is rapit but the approach to fixation is much slower. The most marked difference is in the <strong>green</strong> line - the recessive case. Here, it takes time for <span class="math inline">\(A_1\)</span> alleles to occur in <span class="math inline">\(A_1A_1\)</span> homozygotes, so the new mutation remains at low frequency for quite a number of generations.</p>
+</div>
+<div id="over-and-underdominance" class="section level3" number="4.2.4">
+<h3><span class="header-section-number">4.2.4</span> Over and underdominance</h3>
+<p>Earlier on, we learned a bit about heterozygote advantage. This also referred to as <strong>overdominance</strong> - i.e. when the fitness of the heterozygote is higher than either homozygyote. However, we also touched upon the fact that this can only be stable in under certain conditions - i.e. <span class="math inline">\(w{_1}^* = w{_2}^*\)</span>. We also learned that when <span class="math inline">\(p\)</span> or <span class="math inline">\(q\)</span> were 0 (i.e. the population is fixed for either allele), these equilibria are unstable. So at what allele frequency is the population in a stable equilibria?</p>
+<p>Previously we simulated data but this time, we are going to run our selection model for a range of values of <span class="math inline">\(p\)</span> and see where mean population fitness, <span class="math inline">\(\overline{w}\)</span> is maximised. Then we’ll visualise it to make it clearer to ourselves. As with the book, we will set relative fitness as 0.2, 1 and 0.4 for the <span class="math inline">\(A_1A_1\)</span>, <span class="math inline">\(A_1A_2\)</span> and <span class="math inline">\(A_2A_2\)</span> genotypes.</p>
+<div class="yellow">
+<p><strong>Advanced code:</strong></p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="evolutionary-biology-fitness.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the range of p</span></span>
+<span id="cb216-2"><a href="evolutionary-biology-fitness.html#cb216-2" aria-hidden="true" tabindex="-1"></a>p_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb216-3"><a href="evolutionary-biology-fitness.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="co"># run selection_model for all values of p</span></span>
+<span id="cb216-4"><a href="evolutionary-biology-fitness.html#cb216-4" aria-hidden="true" tabindex="-1"></a>overdom <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(p_range, <span class="cf">function</span>(z) <span class="fu">selection_model</span>(<span class="at">p =</span> z, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="dv">1</span>, <span class="fl">0.4</span>)))</span></code></pre></div>
+</div>
+<p>The code above runs <code>selection_model()</code> for a range of values of <span class="math inline">\(p\)</span>, and wraps the result in a data frame. Now this can be visualised with ggplot to see the stable equilibrium.</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="evolutionary-biology-fitness.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise plot</span></span>
+<span id="cb217-2"><a href="evolutionary-biology-fitness.html#cb217-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(overdom, <span class="fu">aes</span>(p, w_bar)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb217-3"><a href="evolutionary-biology-fitness.html#cb217-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb217-4"><a href="evolutionary-biology-fitness.html#cb217-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Frequency of A1 - p&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Mean population fitness&quot;</span>)</span>
+<span id="cb217-5"><a href="evolutionary-biology-fitness.html#cb217-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>We can see mean population fitness is maximised at around 0.4. This is the stable point on our 2D adaptive landscape.</p>
+<p><strong>Underdominance</strong> is the opposite of overdominance - i.e. it is heterozygote disadvantage. In short, relative fitness of the heterozygote is lower than either homozygote. Once again, we can visualise the stable equilibrium for a model of overdominance using more or less exactly the same code as before. All we really need to change is the relative fitness which we will set to 0.9, 0.3 and 1 for the <span class="math inline">\(A_1A_1\)</span>, <span class="math inline">\(A_1A_2\)</span> and <span class="math inline">\(A_2A_2\)</span> genotypes.</p>
+<p>First, we run the model over different values of <span class="math inline">\(p\)</span>.</p>
+<div class="yellow">
+<p><strong>Advanced code:</strong></p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="evolutionary-biology-fitness.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set the range of p</span></span>
+<span id="cb218-2"><a href="evolutionary-biology-fitness.html#cb218-2" aria-hidden="true" tabindex="-1"></a>p_range <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb218-3"><a href="evolutionary-biology-fitness.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="co"># run selection_model for all values of p</span></span>
+<span id="cb218-4"><a href="evolutionary-biology-fitness.html#cb218-4" aria-hidden="true" tabindex="-1"></a>underdom <span class="ot">&lt;-</span> <span class="fu">map_dfr</span>(p_range, <span class="cf">function</span>(z) <span class="fu">selection_model</span>(<span class="at">p =</span> z, <span class="at">rel_fit =</span> <span class="fu">c</span>(<span class="fl">0.9</span>, <span class="fl">0.3</span>, <span class="dv">1</span>)))</span></code></pre></div>
+</div>
+<p>Then we plot it using <code>ggplot2</code>!</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="evolutionary-biology-fitness.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise plot</span></span>
+<span id="cb219-2"><a href="evolutionary-biology-fitness.html#cb219-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(underdom, <span class="fu">aes</span>(p, w_bar)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">size =</span> <span class="fl">1.5</span>)</span>
+<span id="cb219-3"><a href="evolutionary-biology-fitness.html#cb219-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</span>
+<span id="cb219-4"><a href="evolutionary-biology-fitness.html#cb219-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Frequency of A1 - p&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Mean population fitness&quot;</span>)</span>
+<span id="cb219-5"><a href="evolutionary-biology-fitness.html#cb219-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="Exercise4_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>Here we see a scenario where underdominance is at a stable equilibria when <span class="math inline">\(p\)</span> is slightly above 0.5.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="r-programming-making-custom-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="study-questions-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
