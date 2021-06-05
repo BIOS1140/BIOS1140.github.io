@@ -1,6 +1,5 @@
 --- 
 title: "R tutorials in BIOS1140"
-author: "Mark Ravinet, Even Garvang, Solveig Brochmann"
 date: "2021-06-05"
 site: bookdown::bookdown_site
 documentclass: book
