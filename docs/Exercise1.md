@@ -878,7 +878,7 @@ I've frequently had you imagine doing the data input for data from all countries
 
 ### Data formats
 
-Start by downloading the file [worlddata.csv](https://PLACEHOLDER.LINK) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
+Start by downloading the file [worlddata.csv](https://bios1140.github.io/data/worlddata.csv) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
 
 ### Working directories
 
@@ -940,6 +940,9 @@ world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
 :::
 
+
+
+
 If you managed to do this, you now have data for all countries in the world stored in a data frame! Try doing some operations on it to get familiar with the data. Some suggestions (remember that you can write `?functionname` to find out more about a function):
 
 -   `head()` shows the first rows of the data frame
@@ -984,8 +987,8 @@ plot(x, y, type = "l")
 ```
 
 <div class="figure">
-<img src="Exercise1_files/figure-html/unnamed-chunk-56-1.png" alt="The same plot as above, but with a line graph instead" width="672" />
-<p class="caption">(\#fig:unnamed-chunk-56)The same plot as above, but with a line graph instead</p>
+<img src="Exercise1_files/figure-html/unnamed-chunk-57-1.png" alt="The same plot as above, but with a line graph instead" width="672" />
+<p class="caption">(\#fig:unnamed-chunk-57)The same plot as above, but with a line graph instead</p>
 </div>
 
 For all the different ´type´ arguments, see the plot-function's help page by running `?plot`.
@@ -1013,8 +1016,8 @@ hist(world_data$Total_Fertility_Rate)
 ```
 
 <div class="figure">
-<img src="Exercise1_files/figure-html/unnamed-chunk-57-1.png" alt="Distribution of fertility rate in the countries of the world." width="672" />
-<p class="caption">(\#fig:unnamed-chunk-57)Distribution of fertility rate in the countries of the world.</p>
+<img src="Exercise1_files/figure-html/unnamed-chunk-58-1.png" alt="Distribution of fertility rate in the countries of the world." width="672" />
+<p class="caption">(\#fig:unnamed-chunk-58)Distribution of fertility rate in the countries of the world.</p>
 </div>
 
 ### Customizing your plots
@@ -1044,7 +1047,7 @@ points(c(0, 10, 15), c(60, 80, 70),
        pch = 10)
 ```
 
-<img src="Exercise1_files/figure-html/unnamed-chunk-58-1.png" width="672" />
+<img src="Exercise1_files/figure-html/unnamed-chunk-59-1.png" width="672" />
 
 ## Installing and loading packages
 
@@ -1056,7 +1059,7 @@ So far, all the functions we have used in this tutorial is part of your R instal
 
 [^exercise1-6]: There are thousands of packages available for use in R, doing anything imaginable. See for example the package [`ggbernie`](https://github.com/R-CoderDotCom/ggbernie) which is dedicated to plotting US senator Bernie Sanders, and allows me to make plots like this:
 
-    <img src="Exercise1_files/figure-html/unnamed-chunk-59-1.png" width="672" />
+    <img src="Exercise1_files/figure-html/unnamed-chunk-60-1.png" width="672" />
 
 Packages in R can be installed with the function `install.packages()`. **You will only have to install a package once per computer**. Here is how to install the `ggplot2` package, which we will use next week:
 

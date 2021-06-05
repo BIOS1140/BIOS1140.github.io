@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -575,7 +574,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb254-2"><a href="evolutionary-biology-fst.html#cb254-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
 <span id="cb254-3"><a href="evolutionary-biology-fst.html#cb254-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>()</span>
 <span id="cb254-4"><a href="evolutionary-biology-fst.html#cb254-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 <p>What are we seeing here? Quite clearly, there is a an increase in <em>F</em><sub>ST</sub> along the chromosome, with a few SNPs showing extremely high values. It might make things a bit clearer if we mark on our plot the midpoint of the <em>LCT</em> gene. We know the gene occurs between 136,261,885 bp and 136,311,220 bp on Chromsome 2 (<a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg18&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr2%3A136261885-136311220&amp;hgsid=690775201_Cttqx4oVutDVGra183ZtAUFm6z2W">from the UCSC Genome Browser</a>). So first we will find the midpoint of the gene.</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="evolutionary-biology-fst.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the start and stop positions of the gene</span></span>
 <span id="cb255-2"><a href="evolutionary-biology-fst.html#cb255-2" aria-hidden="true" tabindex="-1"></a>lct_start <span class="ot">&lt;-</span> <span class="dv">136261885</span></span>
@@ -585,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>All we need to do to add it to our plot is add the <code>geom_vline()</code> geom.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="evolutionary-biology-fst.html#cb256-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb256-2"><a href="evolutionary-biology-fst.html#cb256-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>When the mid point of the gene is marked, it is clear that there is an increase in <em>F</em><sub>ST</sub> just upstream from the <em>LCT</em> gene. Perhaps we want to highlight the SNP that we calculated <em>F</em><sub>ST</sub> for in our first example?</p>
 <p>This is a perfect opportunity to use the <code>ifelse()</code> function we learned about in Section <a href="r-programming-vectorisation.html#ifelse">5.1.3</a>. We can make a new column in our data based on whether or not <code>lct_snps$snp_id</code> is exactly equal to “rs4988235”.</p>
 <p><strong>Exercise: add a column named <code>status</code> to <code>lct_snps</code> using <code>ifelse()</code>. The column should contain “Yes” if the id is rs4988235, and “No” if it’s not.</strong></p>
@@ -610,16 +609,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb258-3"><a href="evolutionary-biology-fst.html#cb258-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb258-4"><a href="evolutionary-biology-fst.html#cb258-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
 <span id="cb258-5"><a href="evolutionary-biology-fst.html#cb258-5" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 <p>Now we see, our focal SNP is highlighted in the plot. We’ll change the colours to make it a little bit clearer.</p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="evolutionary-biology-fst.html#cb259-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>In the next section, we’ll demonstrate how we can use the distribution of <em>F</em><sub>ST</sub> to identify <strong>outliers</strong> as potential targets of selection.</p>
 <div id="identifying-outliers-in-our-fst-distribution" class="section level4" number="5.2.2.1">
 <h4><span class="header-section-number">5.2.2.1</span> Identifying outliers in our <em>F</em><sub>ST</sub> distribution</h4>
 <p>How can we identify outliers in our <em>F</em><sub>ST</sub> data? First of all, we can look at the distribution of our data by making a histogram of <code>fst</code>.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="evolutionary-biology-fst.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(fst)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>)</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
 <p>Now, it’s apparent that some values are way larger than the rest, but where do we set the threshold? One way to do it is to set some arbitrary value, and say that all values larger than this should be considered outliers. This can for instance be that we mark the highest 5% as outliers. In R, we can get this value with the <code>quantile()</code> function.</p>
 <p>In the following example, we make a vector of numbers from 0 to 100, and use the quantile function to find the highest 5% (or lowest 95%).</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="evolutionary-biology-fst.html#cb261-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">200</span></span>
@@ -633,7 +632,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb262-3"><a href="evolutionary-biology-fst.html#cb262-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot histogram with threshold marked</span></span>
 <span id="cb262-4"><a href="evolutionary-biology-fst.html#cb262-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(fst)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>)</span>
 <span id="cb262-5"><a href="evolutionary-biology-fst.html#cb262-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> threshold, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
 <p>Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the <code>ifelse()</code> function.</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="evolutionary-biology-fst.html#cb263-1" aria-hidden="true" tabindex="-1"></a>lct_snps<span class="sc">$</span>outlier <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(lct_snps<span class="sc">$</span>fst <span class="sc">&gt;</span> threshold, <span class="st">&quot;Outlier&quot;</span>, <span class="st">&quot;Non-outlier&quot;</span>)</span></code></pre></div>
 <p>Take a look at the <code>lct_snps</code> data frame - you should now see an additional column which is a character vector with the status of each locus as either outlier or non-outlier. Next we can incorporate this into our plotting:</p>
@@ -642,7 +641,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb264-3"><a href="evolutionary-biology-fst.html#cb264-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
 <span id="cb264-4"><a href="evolutionary-biology-fst.html#cb264-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
 <span id="cb264-5"><a href="evolutionary-biology-fst.html#cb264-5" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
-<p><img src="Exercise5_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>So now our potential outlier SNPs are marked on the figure. There are only 5 of them but they all occur just upstream from the <em>LCT</em> locus.</p>
 <p>We cannot say for certain that these SNPs have increased <em>F</em><sub>ST</sub> values because of selection - other processes such as genetic drift or demographic history (i.e. a bottleneck in one of the two populations) might be responsible. However, given our knowledge that <em>LCT</em> is involved in lactase persistence, we can at least hypothesise that this is the case.</p>
 <p>One important point to note here is that the threshold we set to identify a SNP as being potentially under selection is <strong>entirely arbitrary</strong>. In a way this line of thinking forces us to think of selection acting in some binary way on some SNPs and not others. This is obviously not the case. Still, for SNP data like this an <em>F</em><sub>ST</sub> scan can be a very useful tool.</p>

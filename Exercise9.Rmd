@@ -409,13 +409,20 @@ In order to run our PCA analysis, we will need to use `adegenet`. However, the f
 We will need a [**plink raw file**](https://evolutionarygenetics.github.io/village_subsample.raw) and also a [**plink map file**](https://evolutionarygenetics.github.io/village_subsample.map) for our dog data. Follow the links to download the data and then use the `read.PLINK` function below to read them in. (if you're on a mac, and think this goes too slowly, try changing the `parallel` argument to `TRUE`)
 
 ::: {.yellow}
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE, warning = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE, warning = FALSE}
 # read in the dog data
 dogs <- read.PLINK(file = "./village_subsample.raw", 
                    map.file = "./village_subsample.map", parallel = FALSE,
                    chunkSize = 2000)
 ```
 :::
+
+```{r, eval = TRUE, echo = FALSE, results = 'hidden', message = FALSE, warning = FALSE}
+# read in the dog data
+dogs <- read.PLINK(file = "docs/data/village_subsample.raw", 
+                   map.file = "docs/data/village_subsample.map", parallel = FALSE,
+                   chunkSize = 2000)
+```
 
 Running the function will create a `genlight` object - a special data structure for `adegenet`. If you call the `dogs` object, you will see some summary information and also the number of individuals and markers. As you will see, we have subsampled this data to make it more feasible to run an analysis in R.
 
@@ -473,10 +480,16 @@ ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
 
 OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://evolutionarygenetics.github.io/village_dogs.tsv). Then read it in like so:
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 # read in village dog data
 village_data <- read_delim("./village_dogs.tsv", delim = "\t")
 ```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hidden', message = FALSE}
+# read in village dog data
+village_data <- read_delim("docs/data/village_dogs.tsv", delim = "\t")
+```
+
 
 Take a moment to look at this. It has three columns, `id`, `breed` and `location`. Our `my_pca` object also has an id column, so we need to join the two datasets. Luckily, this is really easy with a `tidyverse` function called `left_join`:
 
@@ -497,7 +510,7 @@ So from this PCA, what can we deduce? Well an immediate obvious pattern is that 
 
 The picture may be even clearer if we use the full dataset. Since this is very large, we cannot perform this PCA in R. However, we have conducted this for you and you can find the full PCA dataset [here](https://evolutionarygenetics.github.io/full_village_dogs_pca.tsv). You can also find the eigenvectors [here](https://evolutionarygenetics.github.io/full_village.eigenval). To give you a head start, you can read in the eigenvalues like so:
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 full_village_eigenval <- scan("./full_village.eigenval")
 ```
 

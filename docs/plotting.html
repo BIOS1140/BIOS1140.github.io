@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -417,8 +416,8 @@ Figure 1.1: Two vectors plotted against each other.
 </div>
 <p>As you can see, it makes a simple plot of our data, using points as the default. If we want to make a line graph we have to specify <code>type = "l"</code>:</p>
 <div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="plotting.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, y, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-56"></span>
-<img src="Exercise1_files/figure-html/unnamed-chunk-56-1.png" alt="The same plot as above, but with a line graph instead" width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-57"></span>
+<img src="Exercise1_files/figure-html/unnamed-chunk-57-1.png" alt="The same plot as above, but with a line graph instead" width="672" />
 <p class="caption">
 Figure 1.2: The same plot as above, but with a line graph instead
 </p>
@@ -437,8 +436,8 @@ Figure 1.3: Plot with added line (red) and added points (blue)
 </div>
 <p>You can use the <code>hist()</code> function to create simple histograms, as shown with the <code>Total_Fertility_Rate</code> column of <code>world_data</code> in the example below</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="plotting.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(world_data<span class="sc">$</span>Total_Fertility_Rate)</span></code></pre></div>
-<div class="figure"><span id="fig:unnamed-chunk-57"></span>
-<img src="Exercise1_files/figure-html/unnamed-chunk-57-1.png" alt="Distribution of fertility rate in the countries of the world." width="672" />
+<div class="figure"><span id="fig:unnamed-chunk-58"></span>
+<img src="Exercise1_files/figure-html/unnamed-chunk-58-1.png" alt="Distribution of fertility rate in the countries of the world." width="672" />
 <p class="caption">
 Figure 1.4: Distribution of fertility rate in the countries of the world.
 </p>
@@ -466,7 +465,7 @@ Figure 1.4: Distribution of fertility rate in the countries of the world.
 <span id="cb60-9"><a href="plotting.html#cb60-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(<span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">15</span>), <span class="fu">c</span>(<span class="dv">60</span>, <span class="dv">80</span>, <span class="dv">70</span>), </span>
 <span id="cb60-10"><a href="plotting.html#cb60-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, </span>
 <span id="cb60-11"><a href="plotting.html#cb60-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">10</span>)</span></code></pre></div>
-<p><img src="Exercise1_files/figure-html/unnamed-chunk-58-1.png" width="672" /></p>
+<p><img src="Exercise1_files/figure-html/unnamed-chunk-59-1.png" width="672" /></p>
 </div>
 </div>
             </section>

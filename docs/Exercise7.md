@@ -390,6 +390,9 @@ sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, 
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
+
+
+
 We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://evolutionarygenetics.github.io/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data, and updates the `sparrows` object.
 
 ::: {.yellow}
@@ -400,6 +403,8 @@ populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
 :::
+
+
 
 So we just read a variant data from an entire chromosome into R. Before we move on, let's take a look at what we have actually created with our `sparrows` object. If you call the `sparrows` object, you will not really see anything that informative, since it is a very complex data structure. However with the `get.sum.data` function, we can learn a bit more about it.
 
@@ -456,7 +461,7 @@ We can now visualise the nucleotide diversity for the house sparrow along the wh
 ggplot(sparrow_nd, aes(position, house)) + geom_point()
 ```
 
-<img src="Exercise7_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="Exercise7_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 Hmm - this is not the most visually appealing figure and it is also not particularly informative. Why is that? Well one of the issues here is that we have calculated nucleotide diversity for each biallelic SNP position so there is a lot of noise and the signal from the data is not clear.
 
@@ -498,7 +503,7 @@ Look at the generated data frame. This time, the number of rows in the data fram
 ggplot(sparrow_nd_sw, aes(position, house)) + geom_line(colour = "blue") + theme_light()
 ```
 
-<img src="Exercise7_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="Exercise7_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 This is much more informative than our per SNP figure from before. What is more, we can see clearly there are several regions on this chromosome where there is a signficant reduction in nucleotide diversity, particularly around 30 Mb. We cannot say exactly what might be causing this without inferring other statistics or examining other data, but one possibility is that this is a region of reduced recombination where selection has led to a reduction in diversity. If it is shared with other sparrow species, it might suggest some kind of genome structure such as a centromere - where recombination rates are usually lower.
 

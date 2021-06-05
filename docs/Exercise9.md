@@ -492,6 +492,11 @@ We will need a [**plink raw file**](https://evolutionarygenetics.github.io/villa
 dogs <- read.PLINK(file = "./village_subsample.raw", 
                    map.file = "./village_subsample.map", parallel = FALSE,
                    chunkSize = 2000)
+```
+:::
+
+
+```
 #> 
 #>  Reading PLINK raw format into a genlight object... 
 #> 
@@ -504,7 +509,6 @@ dogs <- read.PLINK(file = "./village_subsample.raw",
 #> 
 #> ...done.
 ```
-:::
 
 Running the function will create a `genlight` object - a special data structure for `adegenet`. If you call the `dogs` object, you will see some summary information and also the number of individuals and markers. As you will see, we have subsampled this data to make it more feasible to run an analysis in R.
 
@@ -565,7 +569,7 @@ We can then easily plot this using `ggplot`.
 ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
 OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://evolutionarygenetics.github.io/village_dogs.tsv). Then read it in like so:
 
@@ -574,6 +578,9 @@ OK - so this plot looks interesting, but it is lacking some key information - na
 # read in village dog data
 village_data <- read_delim("./village_dogs.tsv", delim = "\t")
 ```
+
+
+
 
 Take a moment to look at this. It has three columns, `id`, `breed` and `location`. Our `my_pca` object also has an id column, so we need to join the two datasets. Luckily, this is really easy with a `tidyverse` function called `left_join`:
 
@@ -592,7 +599,7 @@ a <- ggplot(village_pca, aes(PC1, PC2, colour = location)) + geom_point() + them
 a + theme(legend.position = "bottom")
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-46-1.png" width="672" />
 
 So from this PCA, what can we deduce? Well an immediate obvious pattern is that dogs from Central and Eastern Asia are quite divergent from other geographic locations. Similarly, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
 

@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -498,9 +497,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li id="fn31"><p>Visualising this data can also be useful to see the associations. I have attempted a couple of different ones, but there is no single best way to do this. See if you can come up with a better one yourself!</p>
 <div class="fold c o">
 <div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="going-further-9.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, qtl_marker)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="Exercise6_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p><img src="Exercise6_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="going-further-9.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, <span class="at">fill =</span> qtl_marker)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
-<p><img src="Exercise6_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
+<p><img src="Exercise6_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
 </div>
 <a href="performing-a-qtl-analysis-in-bedbugs.html#fnref31" class="footnote-back">↩︎</a></li>
 <li id="fn32"><p>If you’re curious, <code>stringsAsFactors = TRUE</code> is necessary here to explixitly tell R that the text columns are <em>factors</em>, a special way of encoding groups in R. We need to do this to turn the phenotypes into numeric values later.<a href="performing-a-qtl-analysis-in-bedbugs.html#fnref32" class="footnote-back">↩︎</a></p></li>

@@ -380,9 +380,14 @@ The data is separated by tabulator (`"\t"`), and has a header.
 
 </details>
 
-```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
 ```
+
+```{r, echo = FALSE}
+lct_counts <- read.table("docs/data/lct_count.tsv", header = TRUE, sep = "\t")
+```
+
 
 You should now have a data frame in your R environment with allele counts for the SNP rs4988235 for 53 populations. Again, these data are all from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
@@ -434,10 +439,14 @@ Next, we will combine vectorisation and our custom functions to calculate *F*~ST
 **Read in the file `LCT_snps.tsv`.**
 
 ::: {.fold .s}
-```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 lct_snps <- read.table("LCT_snps.tsv", header = TRUE, sep = "\t")
 ```
 :::
+
+```{r, eval = TRUE, echo = FALSE, results = "hide", message = FALSE}
+lct_snps <- read.table("docs/data/LCT_snps.tsv", header = TRUE, sep = "\t")
+```
 
 This data is also from from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the *LCT* gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.
 

@@ -427,6 +427,9 @@ The data is separated by tabulator (`"\t"`), and has a header.
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
 ```
 
+
+
+
 You should now have a data frame in your R environment with allele counts for the SNP rs4988235 for 53 populations. Again, these data are all from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
 What we have is the counts of allleles but what we actually want is the allele frequency for T - that is how we can calculate *F*~ST~. We can use our `calc_af()` function for this, so let's try this function out on counts for a single population. We use indexing here to select the first row and only columns 2:4, since our function is only expecting the count data, not the population name.
@@ -488,6 +491,8 @@ lct_snps <- read.table("LCT_snps.tsv", header = TRUE, sep = "\t")
 ```
 :::
 
+
+
 This data is also from from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the *LCT* gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.
 
 Since we have the allele frequencies, we can easily calculate *F*~ST~ for each of these SNPs. For our example here, we will do this between `european_americans` and `east_asians`. First of all, let's use our `calc_fst` function on just a single SNP.
@@ -522,7 +527,7 @@ a <- a + theme_light()
 a
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 What are we seeing here? Quite clearly, there is a an increase in *F*~ST~ along the chromosome, with a few SNPs showing extremely high values. It might make things a bit clearer if we mark on our plot the midpoint of the *LCT* gene. We know the gene occurs between 136,261,885 bp and 136,311,220 bp on Chromsome 2 ([from the UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg18&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr2%3A136261885-136311220&hgsid=690775201_Cttqx4oVutDVGra183ZtAUFm6z2W)). So first we will find the midpoint of the gene.
 
@@ -543,7 +548,7 @@ a <- a + geom_vline(xintercept = lct_mid, lty = 2, col = "blue")
 a
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 When the mid point of the gene is marked, it is clear that there is an increase in *F*~ST~ just upstream from the *LCT* gene. Perhaps we want to highlight the SNP that we calculated *F*~ST~ for in our first example?
 
@@ -593,7 +598,7 @@ a <- a + theme_light() + theme(legend.position = "none")
 a
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 Now we see, our focal SNP is highlighted in the plot. We'll change the colours to make it a little bit clearer.
 
@@ -602,7 +607,7 @@ Now we see, our focal SNP is highlighted in the plot. We'll change the colours t
 a + scale_colour_manual(values = c("black", "red"))
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
 In the next section, we'll demonstrate how we can use the distribution of *F*~ST~ to identify **outliers** as potential targets of selection.
 
@@ -615,7 +620,7 @@ How can we identify outliers in our *F*~ST~ data? First of all, we can look at t
 ggplot(lct_snps, aes(fst)) + geom_histogram(binwidth = 0.05)
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-43-1.png" width="672" />
 
 Now, it's apparent that some values are way larger than the rest, but where do we set the threshold? One way to do it is to set some arbitrary value, and say that all values larger than this should be considered outliers. This can for instance be that we mark the highest 5% as outliers. In R, we can get this value with the `quantile()` function.
 
@@ -642,7 +647,7 @@ a <- ggplot(lct_snps, aes(fst)) + geom_histogram(binwidth = 0.05)
 a + geom_vline(xintercept = threshold, colour = "red", lty = 2, size = 1)
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the `ifelse()` function.
 
@@ -662,7 +667,7 @@ a <- a + theme_light() + theme(legend.position = "bottom")
 a
 ```
 
-<img src="Exercise5_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="Exercise5_files/figure-html/unnamed-chunk-47-1.png" width="672" />
 
 So now our potential outlier SNPs are marked on the figure. There are only 5 of them but they all occur just upstream from the *LCT* locus.
 

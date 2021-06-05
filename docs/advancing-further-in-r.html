@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 Advancing Further in R | R tutorials in BIOS1140</title>
+  <title>Week 10 Advancing Further in R | R tutorials in BIOS1140</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 Advancing Further in R | R tutorials in BIOS1140" />
+  <meta property="og:title" content="Week 10 Advancing Further in R | R tutorials in BIOS1140" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,11 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 Advancing Further in R | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="Week 10 Advancing Further in R | R tutorials in BIOS1140" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -396,7 +395,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="advancing-further-in-r" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> Advancing Further in R</h1>
+<h1><span class="header-section-number">Week 10</span> Advancing Further in R</h1>
 <script src="js/hideOutput.js"></script>
 <p>Throughout these tutorials, we have introduced you to evolutionary genetic concepts using R. By now, you should have some familiarity with the versatility of R for data analysis and what is possible with it. We have gone from manipulating vectors and dataframes to processing genome-resequencing data and calculating population genomic statistics. With a course as broad as this, we understand it is difficult to feel like you fully understand every aspect of the analyses you are conducting - there is obviously a lot to learn! Ultimately, it is impossible for you to achieve this within a single course, using R properly takes experience and practice. Indeed, we’d argue that there is no real mastery of R, it is a tool with which you are always able to learn new things. We learn all the time in R and we have been using it for quite some time!</p>
 <p>Nonetheless, there are obviously basics that you can master and that you can build upon in your own work, research and analysis. You are already familiar with many of the most important of these - data structures, how to use functions, how to manipulate and visualise data. How can we go further, to giving you an introduction to some more advanced techniques in R? In this final session, will take a step back from population and evolutionary genetics to focus once more on how R itself works, except this time we will focus mainly on programming. We will return to some R programming topics you have actually already encountered but in more detail, with more of a focus on explaining them piece-by-piece.</p>
@@ -413,14 +412,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-6" class="section level3 unnumbered">
 <h3>Getting started</h3>
 <p>As always, we need to set up our R environment. We’ll load <code>tidyverse</code> as usual and that’s the only package we will use today.</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="advancing-further-in-r.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
-<span id="cb415-2"><a href="advancing-further-in-r.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb415-3"><a href="advancing-further-in-r.html#cb415-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb415-4"><a href="advancing-further-in-r.html#cb415-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install new packages</span></span>
-<span id="cb415-5"><a href="advancing-further-in-r.html#cb415-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># if not already installed</span></span>
-<span id="cb415-6"><a href="advancing-further-in-r.html#cb415-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb415-7"><a href="advancing-further-in-r.html#cb415-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb415-8"><a href="advancing-further-in-r.html#cb415-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="advancing-further-in-r.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
+<span id="cb416-2"><a href="advancing-further-in-r.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb416-3"><a href="advancing-further-in-r.html#cb416-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb416-4"><a href="advancing-further-in-r.html#cb416-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install new packages</span></span>
+<span id="cb416-5"><a href="advancing-further-in-r.html#cb416-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>) <span class="co"># if not already installed</span></span>
+<span id="cb416-6"><a href="advancing-further-in-r.html#cb416-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb416-7"><a href="advancing-further-in-r.html#cb416-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb416-8"><a href="advancing-further-in-r.html#cb416-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 </div>
 </div>
             </section>

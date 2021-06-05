@@ -46,7 +46,7 @@ We start by reading in the data (see if you manage to do this yourself before lo
 ::: {.fold .c}
 
 ```r
-d <- read.table("worlddata.csv", header = TRUE, sep = ",")
+d <- read.table("docs/data/worlddata.csv", header = TRUE, sep = ",")
 ```
 :::
 
@@ -154,6 +154,9 @@ sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, 
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
+
+
+
 Like last time, we then need to read the file with population information, and attach that to our `sparrows` object.
 
 ::: {.yellow}
@@ -164,6 +167,9 @@ populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
 :::
+
+
+
 
 ### Examining the variant data
 
@@ -366,7 +372,7 @@ a <- ggplot(pi_g, aes(species, pi)) + geom_boxplot() + theme_light() + xlab(NULL
 a
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-26-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-28-1.png" width="768" />
 
 This makes it much clearer how nucleotide diversity differs among the species.
 
@@ -381,7 +387,7 @@ a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-27-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-29-1.png" width="768" />
 
 From this plot, it is very clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
@@ -414,7 +420,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-32-1.png" width="768" />
 
 OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.
 
@@ -427,7 +433,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-31-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" />
 
 However, before we examine our plot in detail, it would also be easier if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
 
@@ -448,7 +454,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-35-1.png" width="768" />
 
 Examining the plot we created, it is pretty clear that the large peak in *F*~ST~ on our chromosome is matched by two regions of low nucleotide diversity in the house and Spanish sparrow, *d*~XY~ is also very low in the same region.
 
@@ -477,6 +483,8 @@ To check whether variation in recombination might explain the pattern we observe
 rrate <- read_delim("./chr8_recomb.tsv", delim = "\t")
 ```
 
+
+
 Since the recombination rate is the same number of rows as our main dataset, we can just add it as a column.
 
 
@@ -495,7 +503,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-39-1.png" width="768" />
 
 To explain this a little, we have plotted recombination rate in **centiMorgans per Megabase** - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our *F*~ST~ peak occurs. to confirm this, we will plot both statistics together.
 
@@ -512,7 +520,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-37-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-40-1.png" width="768" />
 
 When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the [centromere](https://en.wikipedia.org/wiki/Centromere) is likely to be present here.
 
@@ -526,7 +534,7 @@ a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-38-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-41-1.png" width="768" />
 
 Clearly there is a bias here - higher *F*~ST~ values are found in regions of low recombination. Although this doesn't completely invalidate the use of *F*~ST~ in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and Spanish sparrows.
 

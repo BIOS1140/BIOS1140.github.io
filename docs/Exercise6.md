@@ -243,6 +243,9 @@ bedbugs <- read.cross(format = "csv", dir = "",
                       estimate.map = FALSE)
 ```
 
+
+
+
 When you run this command, you will see that we read in the data from 71 individuals and 334 markers. Strangely, there are only two phenotypes here. This isn't right, there should be three, so we will need to correct this later. As mentioned in the introduction, the specifics of the functions in the `qtl` package, like `read.cross()`, are not that important at this point, but see the footnotes for some details.[^exercise6-7]
 
 [^exercise6-7]: Let's break down what we did here - we used `qtl`'s `read.cross` function to read in our cross data. We specified the format as a comma-separated variable file, we specified the directory the data is in (left blank here because it is in the same directory we are working in) and also the path to the file.
@@ -404,13 +407,13 @@ Now we have a table where we can see the numbers of each resistance phenotype fo
     ggplot(qtl_df, aes(phenotype, qtl_marker)) + geom_jitter(height = 0.2, width = 0.2)
     ```
     
-    <img src="Exercise6_files/figure-html/unnamed-chunk-16-1.png" width="672" />
+    <img src="Exercise6_files/figure-html/unnamed-chunk-17-1.png" width="672" />
     
     ```r
     ggplot(qtl_df, aes(phenotype, fill = qtl_marker)) + geom_bar()
     ```
     
-    <img src="Exercise6_files/figure-html/unnamed-chunk-16-2.png" width="672" />
+    <img src="Exercise6_files/figure-html/unnamed-chunk-17-2.png" width="672" />
     :::
 
 ### Testing the same genotype phenotype association with ANOVA
@@ -421,8 +424,11 @@ Last but not least. We can test the same association with ANOVA. To do this, we 
 
 
 ```r
-qtl_df2 <- read.table("./qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
+qtl_df2 <- read.table("qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
 ```
+
+
+
 
 Feel free to take a look at this - it is essentially the same data as before, but this time there is also the genotype data for a marker which is not a QTL.
 

@@ -225,7 +225,7 @@ Assign any and all variables to named objects. It's easier to read, and you're l
 Let's expand our little Norway-Sweden project to all the Nordic countries. Table \@ref(tab:nordpop) shows the populations of all the Nordic countries.
 
 ```{r nordpop, echo = FALSE}
-nordic_tab <- read.csv("nordic_data.csv")
+nordic_tab <- read.csv("docs/data/nordic_data.csv")
 
 knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name", "Population")], col.names = c("Country", "Population"), row.names = FALSE,
              caption = "Population sizes of the nordic countries.")
@@ -730,7 +730,7 @@ I've frequently had you imagine doing the data input for data from all countries
 
 ### Data formats
 
-Start by downloading the file [worlddata.csv](https://PLACEHOLDER.LINK) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
+Start by downloading the file [worlddata.csv](https://bios1140.github.io/data/worlddata.csv) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
 
 ### Working directories
 
@@ -783,10 +783,15 @@ world_data <- read.table("worlddata.csv", header = , sep = , dec = )
 ```
 
 ::: {.fold .s}
-```{r}
+```{r, eval = FALSE}
 world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
 :::
+
+```{r, echo = FALSE}
+world_data <- read.table("docs/data/worlddata.csv", header = TRUE, sep = ",", dec = ".")
+```
+
 
 If you managed to do this, you now have data for all countries in the world stored in a data frame! Try doing some operations on it to get familiar with the data. Some suggestions (remember that you can write `?functionname` to find out more about a function):
 

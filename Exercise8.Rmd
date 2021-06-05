@@ -46,7 +46,7 @@ We start by reading in the data (see if you manage to do this yourself before lo
 
 ::: {.fold .c}
 ```{r}
-d <- read.table("worlddata.csv", header = TRUE, sep = ",")
+d <- read.table("docs/data/worlddata.csv", header = TRUE, sep = ",")
 ```
 :::
 
@@ -128,19 +128,31 @@ sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, 
 
 **WINDOWS**
 
-```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
+sparrows <- readData("docs/data/sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
+```
+
 
 Like last time, we then need to read the file with population information, and attach that to our `sparrows` object.
 
 ::: {.yellow}
-```{r, results = 'hide'}
+```{r, eval = FALSE, results = 'hide'}
 sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
 :::
+
+```{r, echo = FALSE, results = 'hide'}
+sparrow_info <- read_delim("docs/data/sparrow_pops.txt", delim = "\t")
+populations <- split(sparrow_info$ind, sparrow_info$pop)
+sparrows <- set.populations(sparrows, populations, diploid = T)
+```
+
 
 ### Examining the variant data
 
@@ -411,8 +423,12 @@ In other words, *F*~ST~ is sensitive to the variation within each population, wh
 
 To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromoosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://evolutionarygenetics.github.io/chr8_recomb.tsv). We will read the data in like normal
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 rrate <- read_delim("./chr8_recomb.tsv", delim = "\t")
+```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hidden', message = FALSE}
+rrate <- read_delim("docs/data/chr8_recomb.tsv", delim = "\t")
 ```
 
 Since the recombination rate is the same number of rows as our main dataset, we can just add it as a column.

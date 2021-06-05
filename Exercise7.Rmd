@@ -360,19 +360,30 @@ sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, 
 
 **ON WINDOWS**
 
-```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
+sparrows <- readData("docs/data/sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
+```
+
 
 We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://evolutionarygenetics.github.io/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data, and updates the `sparrows` object.
 
 ::: {.yellow}
-```{r, results = 'hide'}
+```{r, eval = FALSE, results = 'hide'}
 sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
 :::
+
+```{r, echo = FALSE, results = 'hide'}
+sparrow_info <- read_delim("docs/data/sparrow_pops.txt", delim = "\t")
+populations <- split(sparrow_info$ind, sparrow_info$pop)
+sparrows <- set.populations(sparrows, populations, diploid = T)
+```
 
 So we just read a variant data from an entire chromosome into R. Before we move on, let's take a look at what we have actually created with our `sparrows` object. If you call the `sparrows` object, you will not really see anything that informative, since it is a very complex data structure. However with the `get.sum.data` function, we can learn a bit more about it.
 

@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -495,7 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="testing-the-same-genotype-phenotype-association-with-anova" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Testing the same genotype phenotype association with ANOVA</h3>
 <p>Last but not least. We can test the same association with ANOVA. To do this, we are going to read in some data <a href="https://evolutionarygenetics.github.io/qtl_df.tsv">we prepared for you earlier</a><a href="going-further-9.html#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>.</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb291-1" aria-hidden="true" tabindex="-1"></a>qtl_df2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./qtl_df.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb291-1" aria-hidden="true" tabindex="-1"></a>qtl_df2 <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_df.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Feel free to take a look at this - it is essentially the same data as before, but this time there is also the genotype data for a marker which is not a QTL.</p>
 <p><strong>Idé: gi dem datasettet med qtl og non-qtl, men uten å si hvilken som er hvilken. Så kan det være en oppgave å finne ut hvilken av dem som henger sammen med fenotype.</strong></p>
 <p>Let’s use ANOVA to test whether variation in genotype can explain the variation in phenotype.</p>

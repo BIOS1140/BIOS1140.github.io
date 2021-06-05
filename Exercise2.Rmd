@@ -726,7 +726,7 @@ copepods <- read.table("copepods.txt", header = TRUE, sep = "\t")
 :::
 
 ```{r, echo = FALSE}
-copepods <- read.table("data/copepods.txt", header = TRUE, sep = "\t")
+copepods <- read.table("docs/data/copepods.txt", header = TRUE, sep = "\t")
 ```
 
 Take a look at the data and how it's structured:

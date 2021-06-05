@@ -205,12 +205,20 @@ First we need to download the data, which is [here](https://evolutionarygenetics
 
 Since we loaded the `qtl` package at the start of the tutorial, we can now read in the data using the `read.cross()` function.
 
-```{r read_data, message=FALSE, message = FALSE, results = "hide"}
+```{r read_data, eval = FALSE, message=FALSE, message = FALSE, results = "hide"}
 bedbugs <- read.cross(format = "csv", dir = "",
                       file = "./bedbugs_cross_data.csv", 
                       genotypes = c("AA", "AB", "BB"), 
                       estimate.map = FALSE)
 ```
+
+```{r, echo = FALSE, message=FALSE, message = FALSE, results = "hide"}
+bedbugs <- read.cross(format = "csv", dir = "",
+                      file = "./docs/data/bedbugs_cross_data.csv", 
+                      genotypes = c("AA", "AB", "BB"), 
+                      estimate.map = FALSE)
+```
+
 
 When you run this command, you will see that we read in the data from 71 individuals and 334 markers. Strangely, there are only two phenotypes here. This isn't right, there should be three, so we will need to correct this later. As mentioned in the introduction, the specifics of the functions in the `qtl` package, like `read.cross()`, are not that important at this point, but see the footnotes for some details.[^exercise6-7]
 
@@ -361,9 +369,14 @@ Last but not least. We can test the same association with ANOVA. To do this, we 
 
 [^exercise6-11]: If you're curious, `stringsAsFactors = TRUE` is necessary here to explixitly tell R that the text columns are *factors*, a special way of encoding groups in R. We need to do this to turn the phenotypes into numeric values later.
 
-```{r, echo = TRUE, results = "hide"}
-qtl_df2 <- read.table("./qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
+```{r, echo = TRUE, eval = FALSE, results = "hide"}
+qtl_df2 <- read.table("qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
 ```
+
+```{r, echo = FALSE, results = "hide"}
+qtl_df2 <- read.table("docs/data/qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
+```
+
 
 Feel free to take a look at this - it is essentially the same data as before, but this time there is also the genotype data for a marker which is not a QTL.
 

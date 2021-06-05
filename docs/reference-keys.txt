@@ -1,9 +1,9 @@
 tab:nordpop
 tab:nord-more
 fig:plvec
-fig:unnamed-chunk-56
-fig:lines-points
 fig:unnamed-chunk-57
+fig:lines-points
+fig:unnamed-chunk-58
 fig:unnamed-chunk-52
 fig:unnamed-chunk-29
 fig:unnamed-chunk-45

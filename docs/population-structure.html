@@ -21,7 +21,6 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Mark Ravinet, Even Garvang, Solveig Brochmann" />
 
 
 <meta name="date" content="2021-06-05" />
@@ -413,65 +412,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="population-structure.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the dog data</span></span>
 <span id="cb405-2"><a href="population-structure.html#cb405-2" aria-hidden="true" tabindex="-1"></a>dogs <span class="ot">&lt;-</span> <span class="fu">read.PLINK</span>(<span class="at">file =</span> <span class="st">&quot;./village_subsample.raw&quot;</span>, </span>
 <span id="cb405-3"><a href="population-structure.html#cb405-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.file =</span> <span class="st">&quot;./village_subsample.map&quot;</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb405-4"><a href="population-structure.html#cb405-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">chunkSize =</span> <span class="dv">2000</span>)</span>
-<span id="cb405-5"><a href="population-structure.html#cb405-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb405-6"><a href="population-structure.html#cb405-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Reading PLINK raw format into a genlight object... </span></span>
-<span id="cb405-7"><a href="population-structure.html#cb405-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb405-8"><a href="population-structure.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb405-9"><a href="population-structure.html#cb405-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Reading loci information... </span></span>
-<span id="cb405-10"><a href="population-structure.html#cb405-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb405-11"><a href="population-structure.html#cb405-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Reading and converting genotypes... </span></span>
-<span id="cb405-12"><a href="population-structure.html#cb405-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; .</span></span>
-<span id="cb405-13"><a href="population-structure.html#cb405-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Building final object... </span></span>
-<span id="cb405-14"><a href="population-structure.html#cb405-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb405-15"><a href="population-structure.html#cb405-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ...done.</span></span></code></pre></div>
+<span id="cb405-4"><a href="population-structure.html#cb405-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">chunkSize =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
+<pre><code>#&gt; 
+#&gt;  Reading PLINK raw format into a genlight object... 
+#&gt; 
+#&gt; 
+#&gt;  Reading loci information... 
+#&gt; 
+#&gt;  Reading and converting genotypes... 
+#&gt; .
+#&gt;  Building final object... 
+#&gt; 
+#&gt; ...done.</code></pre>
 <p>Running the function will create a <code>genlight</code> object - a special data structure for <code>adegenet</code>. If you call the <code>dogs</code> object, you will see some summary information and also the number of individuals and markers. As you will see, we have subsampled this data to make it more feasible to run an analysis in R.</p>
 </div>
 <div id="performing-a-pca" class="section level3" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Performing a PCA</h3>
 <p>With <code>adegenet</code>, we can perform PCA on our genomic data with the <code>glPCA</code> function.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="population-structure.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform pca on dogs</span></span>
-<span id="cb406-2"><a href="population-structure.html#cb406-2" aria-hidden="true" tabindex="-1"></a>dogs_pca <span class="ot">&lt;-</span> <span class="fu">glPca</span>(dogs, <span class="at">parallel =</span> T, <span class="at">nf =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="population-structure.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform pca on dogs</span></span>
+<span id="cb407-2"><a href="population-structure.html#cb407-2" aria-hidden="true" tabindex="-1"></a>dogs_pca <span class="ot">&lt;-</span> <span class="fu">glPca</span>(dogs, <span class="at">parallel =</span> T, <span class="at">nf =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p>Here again we use <code>parallel = T</code> to use parallel processing. We also use <code>nf = 20</code> in order to tell the function we want to retain 2 principal components.</p>
 <p>Let’s take a moment to look at the output of our PCA analysis.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="population-structure.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at pca object</span></span>
-<span id="cb407-2"><a href="population-structure.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(dogs_pca)</span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="population-structure.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at pca object</span></span>
+<span id="cb408-2"><a href="population-structure.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(dogs_pca)</span></code></pre></div>
 <p>Our <code>dogs_pca</code> object is a list with four elements. We can ignore <code>call</code> - that is just the call to the function we performed above. <code>eig</code> returns the eigenvalues for all the principal components calculated (not just the ones retained). We can use this to get an idea of how much of the variance each principal compnent explains and we will do so in a moment. <code>loadings</code> is a matrix of how the SNPs load onto the PC scores - i.e. how their changes in allele frequency effect the position of the data points along the axis. Finally the <code>scores</code> matrix is the actual principal component scores for each individual, allowing us to actually see how the invidivudals are distributed in our analysis.</p>
 <p>For now, let’s have a look at how much variance our principal components explain. First, we need to convert our eigenvectors into percentages of variance explained.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="population-structure.html#cb408-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> dogs_pca<span class="sc">$</span>eig</span>
-<span id="cb408-2"><a href="population-structure.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percentage of variance explained</span></span>
-<span id="cb408-3"><a href="population-structure.html#cb408-3" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> (eig<span class="sc">/</span><span class="fu">sum</span>(eig))<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="population-structure.html#cb409-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> dogs_pca<span class="sc">$</span>eig</span>
+<span id="cb409-2"><a href="population-structure.html#cb409-2" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate percentage of variance explained</span></span>
+<span id="cb409-3"><a href="population-structure.html#cb409-3" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> (eig<span class="sc">/</span><span class="fu">sum</span>(eig))<span class="sc">*</span><span class="dv">100</span></span></code></pre></div>
 <p>From examining <code>eig</code>, we can see how much variance each principal component explains. So for example, PC1 explains 4.59% of the variance and PC2 3.04%. Each PC cumulatively explains more of the variance until all 100% of it is explained. You can see this by running <code>sum(eig)</code> and seeing that the total is 100.</p>
 <p>A total of 7.63% for the first two vectors sounds small, but it is actually quite an appreciable amount of variance. Typically, we would concentrate on the PC components that together account for at least 10% of the variance.</p>
 </div>
 <div id="visualising-the-pca" class="section level3" number="9.2.4">
 <h3><span class="header-section-number">9.2.4</span> Visualising the PCA</h3>
 <p>Plotting a PCA is the best way to properly interpret it, so we will do this now. The first thing we should do is extract the <strong>principal component scores</strong> from the data.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="population-structure.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an id vector</span></span>
-<span id="cb409-2"><a href="population-structure.html#cb409-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">row.names</span>(dogs_pca<span class="sc">$</span>scores)</span>
-<span id="cb409-3"><a href="population-structure.html#cb409-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get the pc scores - only the first two for now</span></span>
-<span id="cb409-4"><a href="population-structure.html#cb409-4" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> dogs_pca<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb409-5"><a href="population-structure.html#cb409-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a tibble</span></span>
-<span id="cb409-6"><a href="population-structure.html#cb409-6" aria-hidden="true" tabindex="-1"></a>my_pca <span class="ot">&lt;-</span> <span class="fu">as.tibble</span>(<span class="fu">data.frame</span>(id, pc))</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="population-structure.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create an id vector</span></span>
+<span id="cb410-2"><a href="population-structure.html#cb410-2" aria-hidden="true" tabindex="-1"></a>id <span class="ot">&lt;-</span> <span class="fu">row.names</span>(dogs_pca<span class="sc">$</span>scores)</span>
+<span id="cb410-3"><a href="population-structure.html#cb410-3" aria-hidden="true" tabindex="-1"></a><span class="co"># get the pc scores - only the first two for now</span></span>
+<span id="cb410-4"><a href="population-structure.html#cb410-4" aria-hidden="true" tabindex="-1"></a>pc <span class="ot">&lt;-</span> dogs_pca<span class="sc">$</span>scores[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb410-5"><a href="population-structure.html#cb410-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a tibble</span></span>
+<span id="cb410-6"><a href="population-structure.html#cb410-6" aria-hidden="true" tabindex="-1"></a>my_pca <span class="ot">&lt;-</span> <span class="fu">as.tibble</span>(<span class="fu">data.frame</span>(id, pc))</span></code></pre></div>
 <p>We can then easily plot this using <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="population-structure.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
-<span id="cb410-2"><a href="population-structure.html#cb410-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_pca, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="Exercise9_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="population-structure.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
+<span id="cb411-2"><a href="population-structure.html#cb411-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(my_pca, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p><img src="Exercise9_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
 <p>OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it <a href="https://evolutionarygenetics.github.io/village_dogs.tsv">here</a>. Then read it in like so:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="population-structure.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in village dog data</span></span>
-<span id="cb411-2"><a href="population-structure.html#cb411-2" aria-hidden="true" tabindex="-1"></a>village_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./village_dogs.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="population-structure.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in village dog data</span></span>
+<span id="cb412-2"><a href="population-structure.html#cb412-2" aria-hidden="true" tabindex="-1"></a>village_data <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./village_dogs.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Take a moment to look at this. It has three columns, <code>id</code>, <code>breed</code> and <code>location</code>. Our <code>my_pca</code> object also has an id column, so we need to join the two datasets. Luckily, this is really easy with a <code>tidyverse</code> function called <code>left_join</code>:</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="population-structure.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join pca and village dog data</span></span>
-<span id="cb412-2"><a href="population-structure.html#cb412-2" aria-hidden="true" tabindex="-1"></a>village_pca <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(village_data, my_pca, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="population-structure.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join pca and village dog data</span></span>
+<span id="cb413-2"><a href="population-structure.html#cb413-2" aria-hidden="true" tabindex="-1"></a>village_pca <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(village_data, my_pca, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 <p>Now we can easily plot the PCA using <code>ggplot</code> and at the same time, colour the points by the location they were sampled in.</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="population-structure.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
-<span id="cb413-2"><a href="population-structure.html#cb413-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(village_pca, <span class="fu">aes</span>(PC1, PC2, <span class="at">colour =</span> location)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_light</span>()</span>
-<span id="cb413-3"><a href="population-structure.html#cb413-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
-<p><img src="Exercise9_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="population-structure.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
+<span id="cb414-2"><a href="population-structure.html#cb414-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(village_pca, <span class="fu">aes</span>(PC1, PC2, <span class="at">colour =</span> location)) <span class="sc">+</span> <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">theme_light</span>()</span>
+<span id="cb414-3"><a href="population-structure.html#cb414-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise9_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
 <p>So from this PCA, what can we deduce? Well an immediate obvious pattern is that dogs from Central and Eastern Asia are quite divergent from other geographic locations. Similarly, African and European dogs seem to form their own clusters. In the original paper, <a href="http://www.pnas.org/content/112/44/13639">Shannon et al. (2015)</a> suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.</p>
 <p>The picture may be even clearer if we use the full dataset. Since this is very large, we cannot perform this PCA in R. However, we have conducted this for you and you can find the full PCA dataset <a href="https://evolutionarygenetics.github.io/full_village_dogs_pca.tsv">here</a>. You can also find the eigenvectors <a href="https://evolutionarygenetics.github.io/full_village.eigenval">here</a>. To give you a head start, you can read in the eigenvalues like so:</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="population-structure.html#cb414-1" aria-hidden="true" tabindex="-1"></a>full_village_eigenval <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">&quot;./full_village.eigenval&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="population-structure.html#cb415-1" aria-hidden="true" tabindex="-1"></a>full_village_eigenval <span class="ot">&lt;-</span> <span class="fu">scan</span>(<span class="st">&quot;./full_village.eigenval&quot;</span>)</span></code></pre></div>
 </div>
 </div>
             </section>
