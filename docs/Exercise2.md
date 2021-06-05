@@ -988,7 +988,7 @@ These two formats are commonly referred to as "wide" and "long" respectively. If
 
 ### Import example data
 
-Let's import a data set to use as our example. Download `copepods.txt` [here](PLACEHOLDER). The data contains counts of different copepod taxa from outside Drøbak.
+Let's import a data set to use as our example. Download `copepods.txt` [here](https://bios1140.github.io/data/copepods.txt). The data contains counts of different copepod taxa from outside Drøbak.
 
 **Exercise: download the data and import it into R. Is this data "wide" or "long"?**
 

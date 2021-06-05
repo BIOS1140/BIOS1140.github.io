@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="applying-functions-to-matrices-and-data-frames" class="section level4" number="5.2.1.4">
 <h4><span class="header-section-number">5.2.1.4</span> Applying functions to matrices and data frames</h4>
-<p>Extending our <em>LCT</em> and lactase persistence example, let’s get some data from multiple human populations. You can download the data <a href="https://evolutionarygenetics.github.io/lct_count.tsv">here</a></p>
+<p>Extending our <em>LCT</em> and lactase persistence example, let’s get some data from multiple human populations. You can download the data <a href="https://bios1140.github.io/data/lct_count.tsv">here</a></p>
 <p><strong>Import the data into R using the <code>read.table()</code> function. If you’re unsure about how you do this, remember that you can go back and check in the tutorial from the first week</strong></p>
 <details>
 <summary>
@@ -556,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="visualising-fst-along-a-chromosome" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Visualising <em>F</em><sub>ST</sub> along a chromosome</h3>
-<p>Next, we will combine vectorisation and our custom functions to calculate <em>F</em><sub>ST</sub> for a series of SNPs in the vicinity of the <em>LCT</em> gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data <a href="https://evolutionarygenetics.github.io/LCT_snps.tsv">here</a></p>
+<p>Next, we will combine vectorisation and our custom functions to calculate <em>F</em><sub>ST</sub> for a series of SNPs in the vicinity of the <em>LCT</em> gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data <a href="https://bios1140.github.io/data/LCT_snps.tsv">here</a></p>
 <p><strong>Read in the file <code>LCT_snps.tsv</code>.</strong></p>
 <div class="fold s">
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="evolutionary-biology-fst.html#cb250-1" aria-hidden="true" tabindex="-1"></a>lct_snps <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;LCT_snps.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>

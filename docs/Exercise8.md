@@ -133,7 +133,7 @@ In the last session, we used the `PopGenome` package to calculate sliding window
 
 The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](https://evolutionarygenetics.github.io//Chapter7.html) but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
 
--   First, download the [VCF](https://evolutionarygenetics.github.io/sparrow_chr8_downsample.vcf.gz)
+-   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
 -   Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the [Unarchiver](https://theunarchiver.com/) (Mac OS X) or [7zip](https://www.7-zip.org/) (Windows).
 -   Make sure **only** the uncompressed file is present in the directory.
@@ -157,7 +157,7 @@ sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, F
 
 
 
-Like last time, we then need to read the file with population information, and attach that to our `sparrows` object.
+Like last time, we then need to read the file with population information, and attach that to our `sparrows` object. You should have the file available from last week's tutorial, otherwise it can be downloaded [here](https://bios1140.github.io/data/sparrow_pops.txt).
 
 ::: {.yellow}
 
@@ -476,7 +476,7 @@ In other words, *F*~ST~ is sensitive to the variation within each population, wh
 
 ### Investigating recombination rate variation
 
-To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromoosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://evolutionarygenetics.github.io/chr8_recomb.tsv). We will read the data in like normal
+To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromoosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://bios1140.github.io/data/chr8_recomb.tsv). We will read the data in like normal
 
 
 ```r

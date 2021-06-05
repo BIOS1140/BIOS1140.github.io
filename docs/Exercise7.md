@@ -53,7 +53,7 @@ For the first part of the tutorial, we learn about how to handle **DNA sequence*
 
 ### Reading sequence data into R.
 
-The first thing we will learn to do today is to read seqeunce data into R. Unlike in the previous tutorials, it doesn't make much sense to store sequence data as a `data.frame`, so we need to use functions specifically designed for the purpose such as `read.dna`. We will be reading in a [**FASTA** which is a standard file format for sequencing data](https://en.wikipedia.org/wiki/FASTA_format). FASTA files can vary slightly, but the basic format is the same. The file we will use today can be downloaded [here](https://evolutionarygenetics.github.io/example.fas).
+The first thing we will learn to do today is to read seqeunce data into R. Unlike in the previous tutorials, it doesn't make much sense to store sequence data as a `data.frame`, so we need to use functions specifically designed for the purpose such as `read.dna`. We will be reading in a [**FASTA** which is a standard file format for sequencing data](https://en.wikipedia.org/wiki/FASTA_format). FASTA files can vary slightly, but the basic format is the same. The file we will use today can be downloaded [here](https://bios1140.github.io/data/example.fas).
 
 Before we actually read this file into R, let's take a look at it:
 
@@ -369,7 +369,7 @@ The data comes in two parts. We'll deal with the actual SNP data first. This is 
 
 One thing you should know about VCF files though is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
 
--   First, download the [VCF](https://evolutionarygenetics.github.io/sparrow_chr8_downsample.vcf.gz)
+-   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
 -   Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the [Unarchiver](https://theunarchiver.com/) (Mac OS X) or [7zip](https://www.7-zip.org/) (Windows).
 -   Make sure **only** the uncompressed file is present in the directory.
@@ -393,7 +393,7 @@ sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, F
 
 
 
-We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://evolutionarygenetics.github.io/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data, and updates the `sparrows` object.
+We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data, and updates the `sparrows` object.
 
 ::: {.yellow}
 

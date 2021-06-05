@@ -231,7 +231,7 @@ The two grandparents, the two F1 parents and the 90 F2s were then genotyped usin
 
 #### Reading in the bedbug data
 
-First we need to download the data, which is [here](https://evolutionarygenetics.github.io/bedbugs_cross_data.csv)
+First we need to download the data, which is [here](https://bios1140.github.io/data/bedbugs_cross_data.csv)
 
 Since we loaded the `qtl` package at the start of the tutorial, we can now read in the data using the `read.cross()` function.
 

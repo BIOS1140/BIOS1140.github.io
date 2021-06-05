@@ -405,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The two grandparents, the two F1 parents and the 90 F2s were then genotyped using RAD-sequencing. RAD-sequences were mapped to a draft bedbug genome and then SNPs were called from 12 962 RAD tags. During their analysis, the authors discarded some individuals and markers so the dataset we are working is a subset of the original data.</p>
 <div id="reading-in-the-bedbug-data" class="section level4" number="6.2.1.1">
 <h4><span class="header-section-number">6.2.1.1</span> Reading in the bedbug data</h4>
-<p>First we need to download the data, which is <a href="https://evolutionarygenetics.github.io/bedbugs_cross_data.csv">here</a></p>
+<p>First we need to download the data, which is <a href="https://bios1140.github.io/data/bedbugs_cross_data.csv">here</a></p>
 <p>Since we loaded the <code>qtl</code> package at the start of the tutorial, we can now read in the data using the <code>read.cross()</code> function.</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-1" aria-hidden="true" tabindex="-1"></a>bedbugs <span class="ot">&lt;-</span> <span class="fu">read.cross</span>(<span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">dir =</span> <span class="st">&quot;&quot;</span>,</span>
 <span id="cb277-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file =</span> <span class="st">&quot;./bedbugs_cross_data.csv&quot;</span>, </span>

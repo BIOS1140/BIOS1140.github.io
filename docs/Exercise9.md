@@ -483,7 +483,7 @@ The researchers used a SNP chip and previously published data to collate variant
 
 In order to run our PCA analysis, we will need to use `adegenet`. However, the full dataset is much too large to read, so instead we will use a smaller subsetted dataset. We will read in a special format of SNP data produced by a program called [PLINK](https://www.cog-genomics.org/plink/1.9/). Don't worry too much about the data format for now - our main aim is to get it into R. However, feel free to explore the PLINK website if you are interested.
 
-We will need a [**plink raw file**](https://evolutionarygenetics.github.io/village_subsample.raw) and also a [**plink map file**](https://evolutionarygenetics.github.io/village_subsample.map) for our dog data. Follow the links to download the data and then use the `read.PLINK` function below to read them in. (if you're on a mac, and think this goes too slowly, try changing the `parallel` argument to `TRUE`)
+We will need a [**plink raw file**](https://bios1140.github.io/data/village_subsample.raw) and also a [**plink map file**](https://bios1140.github.io/data/village_subsample.map) for our dog data. Follow the links to download the data and then use the `read.PLINK` function below to read them in. (if you're on a mac, and think this goes too slowly, try changing the `parallel` argument to `TRUE`)
 
 ::: {.yellow}
 
@@ -571,7 +571,7 @@ ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
-OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://evolutionarygenetics.github.io/village_dogs.tsv). Then read it in like so:
+OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
 
 
 ```r
