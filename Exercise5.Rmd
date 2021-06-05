@@ -364,7 +364,7 @@ This should be the same as you got before, but with a lot less work. Next, we'll
 
 #### Applying functions to matrices and data frames
 
-Extending our *LCT* and lactase persistence example, let's get some data from multiple human populations. You can download the data [here](https://evolutionarygenetics.github.io/lct_count.tsv)
+Extending our *LCT* and lactase persistence example, let's get some data from multiple human populations. You can download the data [here](https://bios1140.github.io/data/lct_count.tsv)
 
 **Import the data into R using the `read.table()` function. If you're unsure about how you do this, remember that you can go back and check in the tutorial from the first week**
 
@@ -434,7 +434,7 @@ Here we see *F*~ST~ is substantially lower. Allele frequency differences are low
 
 ### Visualising *F*~ST~ along a chromosome
 
-Next, we will combine vectorisation and our custom functions to calculate *F*~ST~ for a series of SNPs in the vicinity of the *LCT* gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data [here](https://evolutionarygenetics.github.io/LCT_snps.tsv)
+Next, we will combine vectorisation and our custom functions to calculate *F*~ST~ for a series of SNPs in the vicinity of the *LCT* gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data [here](https://bios1140.github.io/data/LCT_snps.tsv)
 
 **Read in the file `LCT_snps.tsv`.**
 
