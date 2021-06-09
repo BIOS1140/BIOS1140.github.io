@@ -1,0 +1,72 @@
+phenotype	qtl_marker	non_qtl
+partial resistance	AB	AB
+partial resistance	AB	BB
+partial resistance	AB	AB
+partial resistance	AB	AA
+partial resistance	AB	BB
+partial resistance	BB	AB
+partial resistance	AB	AB
+partial resistance	BB	AB
+partial resistance	AB	AB
+resistant	AB	AB
+resistant	BB	AA
+resistant	BB	BB
+resistant	BB	AB
+resistant	AB	AB
+resistant	BB	AA
+resistant	BB	AB
+resistant	BB	AB
+resistant	BB	AB
+resistant	BB	AB
+resistant	BB	AB
+resistant	BB	BB
+resistant	BB	BB
+resistant	BB	AA
+resistant	BB	AB
+resistant	BB	AB
+resistant	BB	AA
+resistant	BB	BB
+resistant	BB	AB
+resistant	BB	BB
+resistant	AB	AA
+susceptible	AA	AB
+susceptible	AA	AA
+susceptible	AA	BB
+susceptible	AB	BB
+susceptible	AA	BB
+susceptible	AA	AB
+susceptible	AB	AB
+susceptible	AA	AB
+susceptible	AB	BB
+susceptible	AA	BB
+susceptible	AA	AB
+susceptible	AB	AA
+susceptible	AB	AB
+susceptible	AA	BB
+susceptible	AB	AB
+susceptible	AB	BB
+susceptible	AA	BB
+susceptible	AA	AB
+susceptible	AB	AA
+susceptible	AB	AA
+susceptible	AB	AB
+susceptible	AA	AB
+susceptible	AB	AB
+susceptible	AB	AB
+susceptible	AA	AB
+susceptible	AA	AB
+susceptible	AA	AB
+susceptible	AA	BB
+susceptible	AA	AB
+susceptible	AA	BB
+susceptible	AA	BB
+susceptible	AB	BB
+susceptible	AB	BB
+susceptible	AB	AA
+susceptible	AB	AB
+susceptible	AB	BB
+susceptible	AB	BB
+susceptible	AB	AB
+susceptible	AA	AB
+susceptible	AA	AB
+susceptible	AA	AB

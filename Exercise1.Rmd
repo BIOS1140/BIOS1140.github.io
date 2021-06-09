@@ -1,70 +1,47 @@
----
-title: "Exercise 1 - Introduction to R"
-author: "Even Sletteng Garvang"
-output: 
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-editor_options: 
-  chunk_output_type: console
----
+# Introduction to R
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
 ```{r setup, include=FALSE}
 source("setup.R")
 library(tidyverse)
 ```
 
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-#include html script
-```
 
-::: {.green}
-**Important concept**
-
-Green boxes summarizes important concepts from the text.
-:::
-
-::: {.blue}
-**Additional info**
-
-Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want.
-:::
-
-**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
-
-# Introduction {-}
-
-For modern evolutionary biologists, handling large amounts of data is a fundamental skill. Familiarity with a programming language, particularly one that makes it straightforward to visualise, explore and filter data is the best way to achieve this ability. There are many different types of programming and scripting languages; the entire concept may seem daunting at first, especially if you have never encountered it before. This is natural, many other biologists applying scripting tools on a daily basis have started from similar first principles. A little patience with the basics of any form of programming and you will soon be able to do much more than you thought possible. 
+For modern evolutionary biologists, handling large amounts of data is a fundamental skill. Familiarity with a programming language, particularly one that makes it straightforward to visualise, explore and filter data is the best way to achieve this ability. There are many different types of programming and scripting languages; the entire concept may seem daunting at first, especially if you have never encountered it before. This is natural, many other biologists applying scripting tools on a daily basis have started from similar first principles. A little patience with the basics of any form of programming and you will soon be able to do much more than you thought possible.
 
 For this section, we will be introducing you to R, a statistical programming language and environment that is widely used in the biological sciences. R is flexible, clear and easy to learn. It also extremely good for producing quick, high quality visualisations of data, which makes it very useful for anyone trying to explore their data. Perhaps the greatest strength of R is its focus on statistics - this makes it an excellent tool for carrying out and learning statistical analysis. R is also used for data analysis beyond evolutionary biology - it forms the basis of data science for companies such as Google, Facebook and Twitter, among many others. If you find yourself wondering why you are learning a programming language, it is worth remembering this point - familiarity with R and scripting will provide you with a very flexible and useful skill.
 
-We believe the best way to get an idea of what R is and what it is capable of is to dive straight in. There really is no better way to learn and understand than to demonstrate the workings of the language to yourself. As a brief overview, we will show the utmost basics here before moving onto more advanced topics in the next chapter. We will also introduce some basic statistical concepts for which R makes visualisation and understanding straightforward. Together these first two chapters will form the foundations for applying R to more evolutionary genetics focused questions. 
+We believe the best way to get an idea of what R is and what it is capable of is to dive straight in. There really is no better way to learn and understand than to demonstrate the workings of the language to yourself. As a brief overview, we will show the utmost basics here before moving onto more advanced topics in the next chapter. We will also introduce some basic statistical concepts for which R makes visualisation and understanding straightforward. Together these first two chapters will form the foundations for applying R to more evolutionary genetics focused questions.
 
-## What to expect
+### What to expect {.unnumbered}
 
-In this section we are going to: 
+In this section we are going to:
 
-* learn what R is, and start using R as a tool
-* understand how to handle data structures in R
-* get familiar with plotting and visualising data
-* handle datasets and reading in data
-* loading packages
+-   learn what R is, and start using R as a tool
+-   understand how to handle data structures in R
+-   get familiar with plotting and visualising data
+-   handle datasets and reading in data
+-   loading packages
 
-# Start using R!
+## Start using R!
 
-## Install R and Rstudio
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-To begin, you should download and install R from the [CRAN](https://cran.r-project.org/). This is the online hub for the R language and it stands for Comprehensive R Archive Network. Be sure to download the correct R installation for your operating system. 
+
+### Install R and Rstudio
+
+To begin, you should download and install R from the [CRAN](https://cran.r-project.org/). This is the online hub for the R language and it stands for Comprehensive R Archive Network. Be sure to download the correct R installation for your operating system.
 
 We also strongly recommend you install [RStudio](https://www.rstudio.com/), a front-end for R. This utility makes working in the R environment a lot more straightforward, standardises things across operating systems and has many helpful features. For the purposes of these tutorials, we will assume you are using RStudio.
 
-With both R and RStudio installed, start Rstudio and we will begin! 
+With both R and RStudio installed, start Rstudio and we will begin!
 
-## Getting familiar with R and the console
+### Getting familiar with R and the console
 
-### R as a calculator
+#### R as a calculator
 
 In the bottom left you will see a `>` where you can input text. This is called the console, and you can directly interact with R through this. Try inputting a number, or any calculation you can think of, and then press `enter`. For example:
 
@@ -88,7 +65,7 @@ You can also use parentheses as you would on a normal scientific calculator:
 
 You have now learned how R can be used as a calculator!
 
-### Text input {#textinput}
+#### Text input {#textinput}
 
 If you input text into the console, however, you will get the following:
 
@@ -109,7 +86,7 @@ The error message reason for this will be apparent later in this tutorial. To ge
 -   `"hello"` or `'hello'` rather than just `hello`
 :::
 
-### Comments
+#### Comments
 
 If you input a `#`, R will ignore whatever comes after on the same line. This means you can write entire lines of comments, or write comments after your calculations:
 
@@ -121,13 +98,13 @@ If you input a `#`, R will ignore whatever comes after on the same line. This me
 
 Comment your code liberally, so it becomes easier to understand for any person reading your code. That person is often your future self, and you'd be surprised to learn how unreadable uncommented code can be, even if you wrote it yourself! Fortunately, you will never end up in that situation, since from now on you will be commenting everything you do (because I said so).
 
-### Some additional tips about the console
+#### Some additional tips about the console
 
 -   use the up and down arrows to cycle through your previous commands
 -   if the `>` in the console turns into a `+`, it means that you probably forgot to close a parenthesis or a quote (try e.g. running `"hello`). You will be unable to do anything while the console is behaving like this. Press the `Esc` button to get your familiar `>` back and continue working.
 -   Spaces generally don't mean anything when doing calculations, which means `4+3` is equivalent with `4 + 3`. Use spaces to make your code easier to read.
 
-## Scripts
+### Scripts
 
 Doing small operations in the console is all well and good, but once you've done something a bit more complex than adding numbers you will want to save what you did in some way. You could use the up-arrow in the console to recall the things you did (even if you close and reopen RStudio), but imagine if the thing you want to recall was a thousand operations ago. That's a whole lot of button pressing! The most convenient way to store what you have done in R is by writing a script.
 
@@ -141,13 +118,17 @@ Working in a script is almost exactly the same as working in the console: You wr
 Whenever you start a new project, create a script for that project. Save your script in a meaningful location with a meaningful name so it will be easy to find later.
 :::
 
-# R essentials
+## R essentials
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 In this part of the tutorial, we will learn the fundamentals of R programming, while investigating the demographics of the Nordic countries. All numbers are the 2020 populations taken from the [International Data Base (IDB)](https://www.census.gov/data-tools/demo/idb/#/table) from the US government.
 
-## Assigning to objects
+### Assigning to objects
 
-### Problem: numbers are complicated
+#### Problem: numbers are complicated
 
 Let's start by looking at Norway and Sweden. Say you want to find out what proportion the Norwegian population makes up of the total population of Norway plus Sweden. Conceptually, it looks something like this:
 
@@ -157,9 +138,9 @@ $$\frac{Norwegian\ population}{Norwegian\ population+Swedish\ population}$$
 
 ------------------------------------------------------------------------
 
-If you were able to do this, great work! Your solution probably looked something like this[^1]:
+If you were able to do this, great work! Your solution probably looked something like this[^exercise1-1]:
 
-[^1]: with the comments, I hope!
+[^exercise1-1]: with the comments, I hope!
 
 ::: {.fold .s .o}
 ```{r, eval = FALSE}
@@ -174,7 +155,7 @@ However, there are several problems with doing it this way. First of all, 546538
 
 Now we're finally getting to the first taste of why R is more powerful than a regular calculator: we can give our numbers simple names.
 
-### Solution: assign the complicated numbers to named objects
+#### Solution: assign the complicated numbers to named objects
 
 What if you could write some text instead of our stupidly large numbers? Something like `norway_pop` instead of 5465387? Luckily, you can! You can do the following to give your variables a name:
 
@@ -185,9 +166,9 @@ norway_pop <- 5465387
 sweden_pop <- 10185555
 ```
 
-This is called assignment, and is done using the arrow `<-`[^2]. You have now created a named object, which is a very powerful tool. Your objects behave exactly like the numbers that are stored in them (try e.g. `norway_pop*2` or `sweden_pop+4445`). This means that we can now simply write:
+This is called assignment, and is done using the arrow `<-`[^exercise1-2]. You have now created a named object, which is a very powerful tool. Your objects behave exactly like the numbers that are stored in them (try e.g. `norway_pop*2` or `sweden_pop+4445`). This means that we can now simply write:
 
-[^2]: You can also use `=` instead of `<-` . If you know another programming language already, like Python, this may feel more natural. I like to use the arrow to remind my muscle memory that I'm working in R, but it makes absolutely no difference which you use, so use whichever you like!
+[^exercise1-2]: You can also use `=` instead of `<-` . If you know another programming language already, like Python, this may feel more natural. I like to use the arrow to remind my muscle memory that I'm working in R, but it makes absolutely no difference which you use, so use whichever you like!
 
 ```{r}
 norway_pop / (norway_pop + sweden_pop)
@@ -218,15 +199,15 @@ sweden_proportion
 If you have experience with Python, you would have printed the objects using `print(norway_proportion)`. In R we don't have to explicitly use `print()`. An object (or any calculation for that matter) is automatically printed when we run it. R does have a `print()` function, though, that can be used if you want to be explicit about printing something.
 :::
 
-### Notes about naming variables
+#### Notes about naming variables
 
 You should always give your variables sensible names. In the code above, we could have saved ourselves some typing by e.g. calling the populations `x` and `y` respectively. However, this quickly becomes a nightmare to read when scripts get long, so even though `norway_pop` takes longer to write than `x`, you should go with `norway_pop` so it's possible to understand what's going on in your script.
 
 You can name your variables just about anything, but there are some characters you can't use in their names. Notably, spaces, dashes and a lot of special characters cant' be used, and the name cannot start with a number. If you stick to letters, underscores and numbers (except in the beginning), you should be fine!
 
-Another thing to note about variable names is that they are case sensitive, for instance meaning that `A` can contain something completely different than `a`. In the code above, we used all-lowercase variable names, so what happens if we try to run the object `Norway_pop`[^3]?
+Another thing to note about variable names is that they are case sensitive, for instance meaning that `A` can contain something completely different than `a`. In the code above, we used all-lowercase variable names, so what happens if we try to run the object `Norway_pop`[^exercise1-3]?
 
-[^3]: As a side note, whenever you wonder "what happens if I do ...", try it! The worst thing that can happen if you try something is that you get an error, the best thing is that you learn something useful.
+[^exercise1-3]: As a side note, whenever you wonder "what happens if I do ...", try it! The worst thing that can happen if you try something is that you get an error, the best thing is that you learn something useful.
 
 ```{r, error = TRUE}
 Norway_pop
@@ -239,12 +220,12 @@ R can't find `Norway_pop`, because it doesn't exist, only `norway_pop` does. Bew
 Assign any and all variables to named objects. It's easier to read, and you're less likely to make mistakes. Use good variable names, and beware of case sensitivity!
 :::
 
-## Vectors
+### Vectors
 
 Let's expand our little Norway-Sweden project to all the Nordic countries. Table \@ref(tab:nordpop) shows the populations of all the Nordic countries.
 
 ```{r nordpop, echo = FALSE}
-nordic_tab <- read.csv("nordic_data.csv")
+nordic_tab <- read.csv("docs/data/nordic_data.csv")
 
 knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name", "Population")], col.names = c("Country", "Population"), row.names = FALSE,
              caption = "Population sizes of the nordic countries.")
@@ -253,7 +234,7 @@ knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name
 
 **Exercise: Do the same with all the Nordic countries that you did with Norway and Sweden. Assign each population size to an object and calculate their proportion of the total Nordic population**
 
-### Problem: too many objects gets complicated {#manyobjects}
+#### Problem: too many objects gets complicated {#manyobjects}
 
 If you solved the exercise above, you're probably tired from writing almost the same thing over and over. My solution looks something like this:
 
@@ -284,7 +265,7 @@ iceland_proportion
 
 That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! Surely there has to be simpler solution? Luckily, there is.
 
-### Solution: Store it in a vector!
+#### Solution: Store it in a vector!
 
 R has a data type called vector, which can store multiple values at once. In our case, this means that we can store the populations of all the Nordic countries in one vector. Let's look at some different ways to make a vector. The following lines all create a vector containing the numbers 1 through 10.
 
@@ -324,14 +305,14 @@ nordic <- c(5868927, 5572355, 350773, 5465387, 10185555)
 ```
 :::
 
-:::{.blue}
-**Additional information:**  
-Those of you who learned programming in BIOS1100 might remember that in python we mainly used _lists_ when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways - in both, all the elements need to be of the same type (numeric/string/logical), and you can access elements by their index in the same way. There are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!)
+::: {.blue}
+**Additional information:**\
+Those of you who learned programming in BIOS1100 might remember that in python we mainly used *lists* when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways - in both, all the elements need to be of the same type (numeric/string/logical), and you can access elements by their index in the same way. There are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!)
 :::
 
-### Vector properties
+#### Vector properties
 
-#### Mathematical operations
+##### Mathematical operations
 
 When you have a vector of numbers, you can apply all the same mathematical operations that you can on a single number. The operation is then applied to each element of the vector separately. Try it!
 
@@ -393,7 +374,7 @@ nordic / 10^6
 ```
 :::
 
-#### Extracting numbers
+##### Extracting numbers
 
 Having all numbers stored in one place is great, but what if you want to use just one of them? We use square brackets `[]` to access numbers inside vectors. You put the index of the element you want to extract inside the square brackets like this: `my_vector[1]`. This will extract the first element from the vector, `my_vector[2]` will extract the second. On our `nordic` vector, we could for instance do the following:
 
@@ -406,7 +387,7 @@ We can also select multiple numbers, by inputting a vector inside the square bra
 
 **Exercise: extract elements 2 through 4 from the `nordic` vector. Then, extract only the Scandinavian countries, and store them in an object with a good name.**
 
-#### Getting the sum and mean of a vector
+##### Getting the sum and mean of a vector
 
 You can do a variety of operations on vectors in addition to using the mathemathical operators `+`, `-`, `*` and `/`. Two of the most common operations are calculating the sum and the mean of all the numbers in the vector. With the `sum()` and `mean()` functions.
 
@@ -435,7 +416,7 @@ This is way simpler than what we did back in section \@ref(manyobjects)! Also, i
 If you have many values that go together, store them together in a vector. You can do a variety of mathematical operations on vectors, but make sure that all vectors have the same length!
 :::
 
-## Strings
+### Strings
 
 As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
 
@@ -495,7 +476,7 @@ nordic / sum(nordic)
 ```
 :::
 
-## Logical values {#logical}
+### Logical values {#logical}
 
 R has some words that have special meaning, two of these are what we call logical (or boolean) values: `TRUE` and `FALSE`. These are often the result of checking if some condition is true or not, using logical operators.
 
@@ -540,7 +521,7 @@ sum(names(nordic) != "Norway")
 
 **Exercise: play around with the logical operators so you get a feel for how they work. Ask questions like: "is sum(3, 4) the same as 3+4?" or "which is larger, 10\^6 or 6\^10?", and answer them using logical operators.**
 
-### NA
+#### NA
 
 R also has another important special value, `NA`, which stands for "not available". It is mostly used to indicate missing data in data sets. One important property of `NA` is that any operation involving `NA` returns `NA`.
 
@@ -560,11 +541,11 @@ mean(c(3, 5, 10, NA), na.rm = TRUE)
 ::: {.green}
 **Important concept:** `TRUE`, `FALSE` and `NA` are examples of special values in R.
 
-* `TRUE` and `FALSE` are called logical (or boolean) values, and are often the result of using logical operators like `==`, `>`, `!=` etc. `TRUE` and `FALSE` behave as 1 and 0 respectively when used inside e.g. the `sum()` function.
-* `NA` indicates missing data. Any operation involving `NA` returns `NA`
+-   `TRUE` and `FALSE` are called logical (or boolean) values, and are often the result of using logical operators like `==`, `>`, `!=` etc. `TRUE` and `FALSE` behave as 1 and 0 respectively when used inside e.g. the `sum()` function.
+-   `NA` indicates missing data. Any operation involving `NA` returns `NA`
 :::
 
-## Functions {#functions}
+### Functions {#functions}
 
 So far you have seen a handful of functions being used, like `c()`, `seq()` and `mean()` to name some. Functions are always written in the form `functionname()`. The text outside the parentheses is the function name, and whatever is inside the parentheses are called arguments. A function can be seen as a series of operations that are applied to the arguments, or simply as somewhere you put something in, and get something else in return. They can often save you a tremendous amount of time, compare for example manually calculating the mean of a 1000 numbers vs. using the `mean()` function.
 
@@ -589,11 +570,12 @@ seq(from = 1,
 
 This may not matter much for such a simple function, but it gets way easier to read long, complicated functions if it's formatted this way. You will see this formatting in our next section about data frames.
 
-## Data frames
+### Data frames
 
 Let's return to investigating more aspects of the Nordic countries, after all there's more to a country than just it's population size. Table \@ref(tab:nord-more) shows some additional information about the Nordic countries:
 
 ```{r nord-more, echo = FALSE}
+library(tidyverse, quietly = TRUE)
 nordic_tab %>%
   select(Country.Area.Name, Population, Area..sq.km., Life.Expectancy.at.Birth) %>%
   knitr::kable(
@@ -610,11 +592,11 @@ nordic_area <- c(42434, 303815, 100250, 304282, 410335)
 
 However, as the number of variables increase, you can get quite a lot of vectors! Luckily there's a way to keep everything together, in what R calls a data frame.
 
-### Creating a data frame
+#### Creating a data frame
 
-A data frame is conceptually similar to the table above. You have columns of different variables, and rows of observations of these variables. If you have a number of vectors (of the same length!), you can combine these into a data frame with the function `data.frame()`:[^4]
+A data frame is conceptually similar to the table above. You have columns of different variables, and rows of observations of these variables. If you have a number of vectors (of the same length!), you can combine these into a data frame with the function `data.frame()`:[^exercise1-4]
 
-[^4]:  You can see here that the names of `nordic` carries over when making the data frame. This results in the names of the countries stored in what seems to be a nameless column. These are the row names, and can be accessed with `row.names(nordic_df)`
+[^exercise1-4]: You can see here that the names of `nordic` carries over when making the data frame. This results in the names of the countries stored in what seems to be a nameless column. These are the row names, and can be accessed with `row.names(nordic_df)`
 
 ```{r}
 nordic_df <- data.frame(country = nordic_names, 
@@ -625,7 +607,7 @@ nordic_df
 
 The arguments of `data.frame()` are kind of special in that you can name them whatever you want. Your argument names (i.e. the text before the equal sign) determine the names of the columns in your data frame.
 
-### Extracting the data within the data frame
+#### Extracting the data within the data frame
 
 You previously learned that you can access data in a vector using square brackets `[]`, and the same goes for data frames. However, we now have two dimensions (rows and columns) instead of just 1. The syntax for extracting from a data frame is `df[row, column]`. For instance, to get the area (column 3) of Finland (row 2), we can run:
 
@@ -677,7 +659,7 @@ nordic_df$population / nordic_df$area
 ```
 :::
 
-### Adding data to the data frame
+#### Adding data to the data frame
 
 Adding data to the data frame can also be done with the `$` operator. Instead of referencing an existing column, you can simply write a new name after the `$`, and assign to it as a variable like so: `df$newcolumn <- c(1, 2, 3, 4, 5)`.
 
@@ -696,7 +678,7 @@ nordic_df$pop_density <- nordic_df$population / nordic_df$area
 ```
 :::
 
-### Subsetting with logical operators
+#### Subsetting with logical operators
 
 Sometimes you don't know exactly which rows you want to extract from your data. For example, you may want all countries with an area below 300 000 km^2^, or all countries that aren't Norway. For this, we can use the logical operators that you learned about in section \@ref(logical).
 
@@ -725,13 +707,10 @@ Two important things to note here is that you have to explicitly write `nordic_d
 
 **Exercise: make a subset of your data containing all the countries with population density of more than 18 (using the `pop_density` column you created in the previous exercise).**
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r}
 nordic_df[nordic_df$pop_density > 18, ]
 ```
-
-
 :::
 
 ::: {.green}
@@ -739,19 +718,21 @@ nordic_df[nordic_df$pop_density > 18, ]
 When you have a lot of data that belongs together, typically something you could store in an excel document and show in a table, make it into a data frame. Many things we will be doing later in this course requires that your data is in a data frame, so learn to recognize this type of object.
 :::
 
+## Data import {#dataimport}
 
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-# Data import {#dataimport}
 
 *This part of the tutorial is a simplified version of [this tutorial that I made](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!*
 
 I've frequently had you imagine doing the data input for data from all countries in the world throughout this tutorial. You may already have thought manually inputting data for the entire world like we did with the Nordic countries above is time-consuming and error-prone. This is correct, and we should be able to do something smarter. Luckily, we can download data as a text file and import it into R as a data frame!
 
-## Data formats
+### Data formats
 
-Start by downloading the file [worlddata.csv](https://PLACEHOLDER.LINK) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
+Start by downloading the file [worlddata.csv](https://bios1140.github.io/data/worlddata.csv) and make sure you know where on your computer it's downloaded to (suggestion: the same folder as your R script). Open the file in a plain text editor on your computer (e.g. Notepad on Windows or TextEdit on Mac). You can see that we have one row of variable names, and then one row of data for each country. The values are separated by comma making this what we call *comma separated values (csv)*, which is a very common format to store data in. Data entries can also be separated by e.g. spaces, tabs, semicolon and much more. All of these can be imported into R, but you always need to be aware how your data are formatted.
 
-## Working directories
+### Working directories
 
 The next step is to make R look in the same folder that your data is in. An important concept is that **R only works in one folder at a time**. You can get the folder where R is currently looking, called the working directory, by running the command
 
@@ -774,7 +755,7 @@ Another way to set the working directory (in RStudio) is by navigating to `Sessi
 **Important concept:** R only works in one folder at a time, this folder is called the working directory. Get your current working directory with `getwd()` and set a new working directory either with `setwd()` or by navigating in RStudio. To import a file into R it has to be in your current working directory!
 :::
 
-## Importing
+### Importing
 
 When importing data, there are three things you need to consider:
 
@@ -784,9 +765,9 @@ When importing data, there are three things you need to consider:
 
 **Look at the file `worlddata.csv` and answer the three questions above for that file.**
 
-The function for reading data into R is `read.table()`. The first argument is the file name in quotes. It also has three more arguments[^5] to answer the three questions above.
+The function for reading data into R is `read.table()`. The first argument is the file name in quotes. It also has three more arguments[^exercise1-5] to answer the three questions above.
 
-[^5]: see section \@ref(functions) if you forgot what an argument is
+[^exercise1-5]: see section \@ref(functions) if you forgot what an argument is
 
 1.  set `header = TRUE` if the data has a header, `header = FALSE` if it doesn't.
 2.  `sep =","` for comma separated values, `";"` for semicolon, `"\t"` for tab space, and much more.
@@ -802,10 +783,15 @@ world_data <- read.table("worlddata.csv", header = , sep = , dec = )
 ```
 
 ::: {.fold .s}
-```{r}
+```{r, eval = FALSE}
 world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
 :::
+
+```{r, echo = FALSE}
+world_data <- read.table("docs/data/worlddata.csv", header = TRUE, sep = ",", dec = ".")
+```
+
 
 If you managed to do this, you now have data for all countries in the world stored in a data frame! Try doing some operations on it to get familiar with the data. Some suggestions (remember that you can write `?functionname` to find out more about a function):
 
@@ -813,7 +799,11 @@ If you managed to do this, you now have data for all countries in the world stor
 -   `summary()` gives a summary of key aspects of the data frame
 -   use the `$` operator to extract columns, add or multiply them together, or whatever you want!
 
-# Plotting
+## Plotting
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
 
 *This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial that I made](https://evengar.github.io/short-tutorials/plotting.html)!*
 
@@ -821,7 +811,7 @@ R is a powerful tool for visualizing your data. You can make almost any kind of 
 
 The basic function for plotting in R is simply `plot()`. This function will guess what kind of plot to make based on the data you provide. You can supply many arguments to the `plot()` function to get the visualisation you want, which we will show some examples of here.
 
-## Plotting vectors
+### Plotting vectors
 
 The simplest way of plotting in R is by plotting two vectors of equal length. One vector gives the x-value, and another gives the y-value.
 
@@ -858,7 +848,7 @@ You can use the `hist()` function to create simple histograms, as shown with the
 hist(world_data$Total_Fertility_Rate)
 ```
 
-## Customizing your plots
+### Customizing your plots
 
 The `plot()` (and `lines()` and `points()`) function contains a lot of arguments to customize your plots. Below is a (non-comprehensive) list of parameters and what they do:
 
@@ -884,17 +874,19 @@ points(c(0, 10, 15), c(60, 80, 70),
        pch = 10)
 ```
 
-# Installing and loading packages
+## Installing and loading packages
 
-So far, all the functions we have used in this tutorial is part of your R installation. However, people all around the world have developed their own custom functions, and shared them in what we call packages[^6]. During this course, we will need several of these packages, in this section you will learn how to install and load them.
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-[^6]: 
-    There are thousands of packages available for use in R, doing anything imaginable. See for example the package [`ggbernie`](https://github.com/R-CoderDotCom/ggbernie) which is dedicated to plotting US senator Bernie Sanders, and allows me to make plots like this:
-    
+
+So far, all the functions we have used in this tutorial is part of your R installation. However, people all around the world have developed their own custom functions, and shared them in what we call packages[^exercise1-6]. During this course, we will need several of these packages, in this section you will learn how to install and load them.
+
+[^exercise1-6]: There are thousands of packages available for use in R, doing anything imaginable. See for example the package [`ggbernie`](https://github.com/R-CoderDotCom/ggbernie) which is dedicated to plotting US senator Bernie Sanders, and allows me to make plots like this:
+
     ```{r, echo = FALSE}
     ggplot(starwars %>% filter(mass<500), aes(mass, height)) + ggbernie::geom_bernie(bernie = "sitting")
     ```
-    
 
 Packages in R can be installed with the function `install.packages()`. **You will only have to install a package once per computer**. Here is how to install the `ggplot2` package, which we will use next week:
 
@@ -911,7 +903,7 @@ library("ggplot2")
 Make a habit of loading all the packages you use at the top of your script, that makes it easier to follow.
 
 ::: {.green}
-**Important concept:**  
+**Important concept:**\
 Packages contain custom functions that you will need later in this course (and during the rest of your studies and work as a biologist).
 
 -   install a package with `install.packages()`
@@ -923,15 +915,12 @@ Packages contain custom functions that you will need later in this course (and d
     -   you need to do this every time you want to use that package. Load all packages you need at the top of your script
 :::
 
-# Going further {-}
+## Going further
 
-Since R is so widely used, there are many excellent resources out there to help you learn your way. Our introduction is just one of them and so here we point you towards some good examples for developing and honing your understanding of working with R. 
+Since R is so widely used, there are many excellent resources out there to help you learn your way. Our introduction is just one of them and so here we point you towards some good examples for developing and honing your understanding of working with R.
 
-* [Datacamp has an excellent, free introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
-* [The R Core team provide an indepth introduction to R on CRAN](https://cran.r-project.org/)
-* [Emmanuel Paradis has a good R guide for beginners](https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf)
-* [A beginners guide to R packages](https://www.datacamp.com/community/tutorials/r-packages-guide#what)
-* [A simple guide to base R graphics](https://ramnathv.github.io/pycon2014-r/visualize/base_graphics.html)
-
-
-# Footnotes {-}
+-   [Datacamp has an excellent, free introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+-   [The R Core team provide an indepth introduction to R on CRAN](https://cran.r-project.org/)
+-   [Emmanuel Paradis has a good R guide for beginners](https://cran.r-project.org/doc/contrib/Paradis-rdebuts_en.pdf)
+-   [A beginners guide to R packages](https://www.datacamp.com/community/tutorials/r-packages-guide#what)
+-   [A simple guide to base R graphics](https://ramnathv.github.io/pycon2014-r/visualize/base_graphics.html)

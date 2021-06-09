@@ -1,61 +1,27 @@
----
-title: "The  Theory of Natural Selection"
-output: 
-  bookdown::html_document2:
-    toc: true
-    toc_float: true
-    highlight: pygments
-    css: "style.css"
-  bookdown::pdf_document2: default
-editor_options: 
-  chunk_output_type: console
----
+# The Theory of Natural Selection
 
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
 ```{r setup, include=FALSE}
 source("setup.R")
+library(tidyverse)
 ```
 
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-#include html script
-```
-
-
-::: {.green}
-**Important concept:**  
-_Green boxes summarises important concepts from the text._
-:::
-
-::: {.blue}
-**Additional info**  
-_Blue boxes contain small tips and additional information for those that are interested. What's in these is hopefully useful, but not mandatory. Feel free to skip these if you want._
-:::
-
-:::{.yellow}
-**Advanced code**  
-_Yellow boxes contain code that you need to run in order to complete the tutorial, but that you don't necessarily need to understand._
-:::
-
-
-**Text in bold contains small exercises to do on your own throughout the tutorial. These are for your own understanding only, so you don't need to hand them in.**
-
-
-
-# Introduction {-}
 
 Understanding natural selection is fundamental to properly understanding evolution. The basics of natural selection are relatively straightforward but surprisingly easily misunderstood. Our aim with this practical session is to use the R environment to actually demonstrate some models of selection and to also simulate evolution by natural selection. Thus we hope you'll start to see how R can be useful for helping you grasp difficult theoretical concepts as well as handling data.
 
-## What to expect {-}
+### What to expect {.unnumbered}
 
-In this section we will: 
+In this section we will:
 
-* Learn about creating your own functions in R
-* recreate fitness functions in R to develop our understanding of natural selection
-* use the one-locus viability model of selection to simulate evolution
-* model directional selection, overdominance and underdominance
-* continue to practice your R skills
+-   Learn about creating your own functions in R
+-   recreate fitness functions in R to develop our understanding of natural selection
+-   use the one-locus viability model of selection to simulate evolution
+-   model directional selection, overdominance and underdominance
+-   continue to practice your R skills
 
-## Getting started {-}
+### Getting started {.unnumbered}
 
 The first thing we need to do is set up the R environment. We won't be using anything other than base R and the `tidyverse` package today. So you'll need to load the latter.
 
@@ -63,9 +29,13 @@ The first thing we need to do is set up the R environment. We won't be using any
 library(tidyverse)
 ```
 
-# R programming: Making custom functions
+## R programming: Making custom functions
 
-## Motivation
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
+
+### Motivation
 
 In last week's tutorial and assignment, you used a for-loop to simulate genetic drift. If you did the assignment, you are probably tired of seeing code-snippets looking like this or similar:
 
@@ -83,16 +53,15 @@ for (i in 2:ngen){
 }
 ```
 
-
 Although the for-loop saved you thousands of lines of code compared to writing out the simulation manually, you still had to copy and paste the for loop itself many times. You had to write it 3 times for the tutorial and another 3 times for the assignment, just changing a single number each time! You may have thought that there has to be a better way of doing this, and there is! You can make this simpler by making your own custom functions, which you will learn about in the R-part of this tutorial.
 
-## Function basics
+### Function basics
 
 You have already used a lot of functions in R, with names like `mean()`, `sum()` and `ggplot()`. Common for these is that they take some input---arguments---does something with that input and returns the result. For making your own function, you need three things:
 
-* A name for your function. This could be anything, but it's best to give them a sensible name.
-* The arguments to your function. These are the values that you want to be able to change each time you run the function.
-* What the function does with the arguments and what it returns. This is called the "body" of the function.
+-   A name for your function. This could be anything, but it's best to give them a sensible name.
+-   The arguments to your function. These are the values that you want to be able to change each time you run the function.
+-   What the function does with the arguments and what it returns. This is called the "body" of the function.
 
 A basic custom function typically looks like this:
 
@@ -111,13 +80,12 @@ function_name <- function(argument){
 
 The above function will take an input value, square it, and return the result. You can now use the function by writing `function_name(somevalue)`, like you would with the functions you've encountered so far. The arguments go into the parentheses of `function()`, and the body is inside curly brackets. The value to return is wrapped inside `return()` Note that the name of the function and arguments can be whatever you'd like. You can also have as many arguments as you want, separated by comma.
 
-:::{.green}
-**Important concept:**  
-Custom functions makes a piece of code reusable, either for doing something many times, or for using for other purposes later. A function takes one or more _arguments_, does something with the arguments in the _body_ and _returns_ the result.
-
+::: {.green}
+**Important concept:**\
+Custom functions makes a piece of code reusable, either for doing something many times, or for using for other purposes later. A function takes one or more *arguments*, does something with the arguments in the *body* and *returns* the result.
 :::
 
-## A simple example
+### A simple example
 
 Let's make a simple function that allows you to see clearly what the function is doing. The following function takes an argument, and prints it in a sentence:
 
@@ -156,7 +124,7 @@ While this particular function is quite useless, notice how much typing you have
 
 **Exercise: create a new function called `print_args()` that takes two arguments as input, and returns the text "the first argument is [argument1] and the second is [argument2]".**
 
-:::{.fold .s}
+::: {.fold .s}
 ```{r}
 print_args <- function(argument1, argument2){
   # make a string
@@ -169,10 +137,9 @@ print_args <- function(argument1, argument2){
 
 print_args(5, "horse")
 ```
-
 :::
 
-## Some important function properties
+### Some important function properties
 
 One important thing about functions is that any objects you create **only exist inside the function**. This means that even though the above function creates an object named `sentence`, and we've run the function many times, there is no object called sentence in your R session:
 
@@ -203,16 +170,15 @@ return_vector <- function(x, y){
 return_vector(2, 4)
 ```
 
-:::{.green}
-**Important concept:**  
+::: {.green}
+**Important concept:**
 
-* Any variables you create inside a function only exists within that function.
+-   Any variables you create inside a function only exists within that function.
 
-* If you want to return more than 1 value, you need to bind the values together in e.g. a vector.
-
+-   If you want to return more than 1 value, you need to bind the values together in e.g. a vector.
 :::
 
-## A slightly more useful example
+### A slightly more useful example
 
 A more useful function is often one that does some calculations and returns the result. Here's an example of a function that takes two arguments and divides the first by the other.
 
@@ -227,21 +193,18 @@ divide(10, 0)
 # oops
 ```
 
-
 **Exercise: create a function that takes two arguments and returns the sum of those arguments**
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r}
 add <- function(x, y){
   result <- x + y
   return(result)
 }
 ```
-
 :::
 
-## Example: calculating genotype frequencies
+### Example: calculating genotype frequencies
 
 In last week's tutorial, you used the following snippet of code to calculate genotype frequencies from allele frequencies:
 
@@ -262,16 +225,31 @@ This is something I imagine you will do often in this course and later in life i
 
 **Exercise: create a function that takes a single argument, `p`, and returns the expected genotype frequencies according to the Hardy-Weinberg expectation.**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
+
 Start by wrapping the whole code snippet above inside the curly brackets of a function.
+
 </details>
 
-<details><summary>Show another hint</summary>
+<details>
+
+<summary>
+
+Show another hint
+
+</summary>
+
 Remember that you can only return 1 object, so you need to make the genotype frequencies into a vector. Also, remember that you should be able to change p, so you should not have the line `p <- 0.8` in the body of the function.
+
 </details>
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r}
 calc_geno <- function(p){
   
@@ -288,7 +266,6 @@ calc_geno <- function(p){
   return(geno_freq)
 }
 ```
-
 :::
 
 When testing your function, it should show the following output:
@@ -301,17 +278,16 @@ calc_geno(0.7)
 
 Congratulations, you have now made your first truly useful function! Any time you need to calculate genotype frequencies from allele frequencies from now on, it will be a breeze!
 
-:::{.green}
-**Important concept:**  
+::: {.green}
+**Important concept:**\
 Making a function isn't all that hard when you get used to it. A general recipe for converting code into a function is:
 
-1. Paste your code inside the function body.
-2. Make any objects you want to be able to change into an argument of the function (`p` in this example). Remember to remove those objects from the body of the function to avoid overwriting your arguments.
-3. Wrap your result in `return()`.
-
+1.  Paste your code inside the function body.
+2.  Make any objects you want to be able to change into an argument of the function (`p` in this example). Remember to remove those objects from the body of the function to avoid overwriting your arguments.
+3.  Wrap your result in `return()`.
 :::
 
-## Creating a function of the drift simulation
+### Creating a function of the drift simulation
 
 Now we're ready to make a function to simulate drift. Just to remind you, this is the code we used last week for the simulation:
 
@@ -346,12 +322,19 @@ Notice that there are three parameters we will probably want to be able to chang
 
 **Exercise: Make the above drift simulation into a function. It should take three arguments: `N`, `ngen` and `p_init`, and return a vector of p's for each generation.**
 
-<details><summary>Show hint</summary>
+<details>
+
+<summary>
+
+Show hint
+
+</summary>
+
 Use the three steps from the previous section: paste the code into the body, turn `N`, `ngen` and `p_init` into arguments and return your result.
+
 </details>
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r}
 drift_sim <- function(N, ngen, p_init){
 
@@ -372,20 +355,23 @@ drift_sim <- function(N, ngen, p_init){
   return(p)
 }
 ```
-
 :::
 
 That concludes the R-part of this tutorial! The rest of the tutorial will be about fitness and selection, but will make use of functions for exploring this. Remember to check back here if you become unsure about how functions work!
 
 **Exercise: when working through the rest of the tutorial, think once in a while: "Will I need to do this many times? Could I make this code into a function? How would I do that?"**
 
-# Evolutionary biology
+## Evolutionary biology: fitness
 
-## Understanding fitness
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
-What do we mean by **fitness**? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness. 
 
-### Absolute, relative and marginal fitness
+### Understanding fitness
+
+What do we mean by **fitness**? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness.
+
+#### Absolute, relative and marginal fitness
 
 So we might talk about **absolute fitness** - e.g. the expected reproductive success of $A_1A_1$. In population genetic models though, we more often than not refer to **relative fitness** - i.e. how fit genotypes are relative to one another. To denote relative fitness, we will follow the notation in the main text - i.e. $w_{ij}$ for $A_iA_j$. Assuming locus $A$ with two alleles, on average genotypes $A_1A_1$ and $A_1A_2$ produce 16 offspring each, whereas $A_2A_2$ produces 11 offspring on average. We calculate relative fitness as follows:
 
@@ -398,7 +384,7 @@ max_fit <- max(a)
 rel_fit <- a/max_fit
 ```
 
-Note here that when defining our vector `a`, we also actually named each element of it. Names work a little differently in vectors to how they do in a `data.frame`. For example, `a$A1A1` will not work. However `a["A1A1"]` does. 
+Note here that when defining our vector `a`, we also actually named each element of it. Names work a little differently in vectors to how they do in a `data.frame`. For example, `a$A1A1` will not work. However `a["A1A1"]` does.
 
 When calculating relative fitness, we define fitness relative to the maximum fitness. Since both $A_1A_1$ and $A_1A_2$ produce the highest number of offspring, their fitness is 1 whereas $A_2A_2$ has a lower relative fitness.
 
@@ -414,9 +400,9 @@ w_bar <- sum(rel_fit * geno_freq)
 So far, we have dealt with fitness for genotypes. This makes sense because selection acts on genotypes (and the phenotypes they convey). But what if we want to define the fitness of a specific allele? In this case, things become a bit more complicated because allelic fitness depends on the genotype the allele finds itself in. In our previous example, $A_2$ has a high fitness when it is in the heterozygous $A_1A_2$ genotype, but not when it is homozygous.
 
 To account for this, we estimate **marginal fitness** for a given allele $i$ as $w^{*}_i$. So for two alleles, the marginal fitness is:
- 
-* $w^{*}_1 = pw_{11} + qw_{12}$
-* $w^{*}_1 = pw_{12} + qw_{22}$
+
+-   $w^{*}_1 = pw_{11} + qw_{12}$
+-   $w^{*}_1 = pw_{12} + qw_{22}$
 
 Where $p$ and $q$ are the frequencies for $A_1$ and $A_2$ respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in *AND* the frequency of those genotypes. Let's calculate the fitness of our alleles using R.
 
@@ -446,23 +432,23 @@ names(q) <- NULL
 
 Now that we have the basics in place in terms of calculating fitness, we can go on to create a one-locus model of viability selection.
 
-## One-locus model of viability selection
+### One-locus model of viability selection
 
 When we talk about viability, we simply mean that individuals with different genotypes will vary in their probability of surviving until they are able to reproduce. Variation in viability will therefore effect the ability of individuals to reproduce and thus pass on their genes to the next generation. In other words, allele frequencies will change as a result of selection.
 
 To model this, we will use a locus $A$ with alleles $A_1$ and $A_2$ - each with a frequency $p$ and $q$. From the last section, we have the relative fitness of the genotypes with $w_{11}$, $w_{12}$ and $w_{22}$. For simplicity we will assume that fitness remains constant and that the frequency of the zygotes at each generation are in line with the Hardy-Weinberg expectation. Like in the book, we summarise the basics in the table below:
 
-|Genotype | Zygote frequency | Fitness |
-|:-------|:---------|:-------|
-|$A_1A_1$ | $p^2$     | $w_{11}$  |           
-|$A_1A_2$ | $2pq$     | $w_{12}$   |
-|$A_2A_2$ | $q^2$     | $w_{22}$   |
+| Genotype | Zygote frequency | Fitness  |
+|:---------|:-----------------|:---------|
+| $A_1A_1$ | $p^2$            | $w_{11}$ |
+| $A_1A_2$ | $2pq$            | $w_{12}$ |
+| $A_2A_2$ | $q^2$            | $w_{22}$ |
 
 In our model, we will calculate $p_{t+1}$ the frequency of allele $A_1$ after a single generation of selection. This depends on three things: $p$ - the allele frequency before selection, $w_1{^*}$, the marginal fitness of the $A_1$ allele and the difference between this and $\overline{w}$, the mean population fitness. So our model is basicaly:
 
 $P_{t+1} = \displaystyle \frac{pw_1^*}{\overline{w}}$
 
-We will use our previous results to calculate how $p$ changes after a round of selection:  
+We will use our previous results to calculate how $p$ changes after a round of selection:
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 p_t <- (p*w1)/w_bar
@@ -476,7 +462,7 @@ delta_p <- p_t - p
 
 If everything worked correctly, your `delta_p` should be `0.0372093`.
 
-### Simulating selection under the one-locus model
+#### Simulating selection under the one-locus model
 
 So far, we have recreated the model for a single generation to try and understand how it works. But the beauty of R is that we can easily change the parameters to see how this will vary the change in frequency of our allele. The easiest way to do this is if we write a function that neatly summarises the code we have already explored - then all we need to do to see how the parameters have an effect is simply alter the arguments we give our function.
 
@@ -540,9 +526,7 @@ The change in allele frequency is now stored in your object `p`. This can easily
 plot(p, type = "l", xlab = "Generation")
 ```
 
-
-
-### Visualising selection with different parameters.
+#### Visualising selection with different parameters.
 
 Now, let's combine our programming and visualisation skills to demonstrate how varying the parameters really effect the outcome of our model.
 
@@ -609,9 +593,9 @@ ggplot(sel_sims_l, aes(x = g, y = p, col = rel_fit)) +
 
 So you can see from this plot that as the difference between the marginal fitness of $A_1$ and the mean population fitness $\overline{w}$ decreases, the proportional increase in allele frequency per generation slows down. More plainly, we can see that when $w_{22}$ is 0.8, the increase in p per generation is slower than when $w_{22}$ is 0.2.
 
-### Getting more from our selection functions
+#### Getting more from our selection functions
 
-Let's take another look at our `selection_model_simple()` function. 
+Let's take another look at our `selection_model_simple()` function.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # keeping the initial frequency constant
@@ -622,9 +606,9 @@ You will recall that when we defined the code for this function, we actually cal
 
 What if we want to extend our function to give us everything we calculated? This will be very useful for the upcoming sections where we will need all these parameters. The code below creates two updated functions for simulating selection. The difference is that instead of outputting a single value, we get a lot of extra information about fitness parameters. The functions are a bit more complicated than what you've seen so far, however, so don't worry if you don't understand everything that's happening.
 
-:::{.yellow}
-**Advanced code:**  
-_You need to run this code to complete the tutorial, but you don't need to understand it._
+::: {.yellow}
+**Advanced code:**\
+*You need to run this code to complete the tutorial, but you don't need to understand it.*
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 selection_model <- function(p, rel_fit){
@@ -670,10 +654,9 @@ selection_sim <- function(p_init, rel_fit, ngen){
   return(as.data.frame(cbind(g, mod_pars)))
 }
 ```
-
 :::
 
-\ 
+ 
 
 Our new `selection_model()` outputs a vector of useful values. The element `p_t` denotes $p$ in the next generation, which was the output of the old `selection_model_simple()`.
 
@@ -689,7 +672,7 @@ selection_sim(p_init = 0.5, rel_fit = c(0.8, 1, 0.7), ngen = 5)
 
 All these modeling results will be very useful in the next sections.
 
-### Can a rare mutant establish in a population?
+#### Can a rare mutant establish in a population?
 
 To understand a selection model like the one we have just developed, it can be useful to see whether a rare mutant is able to establish in a population where the alternative allele is nearly fixed. This is the basis of **invasion fitness analysis**.
 
@@ -700,7 +683,7 @@ We can do this using a case where heterozygotes have a greater advantage than ho
 selection_model(p = 0.99, rel_fit = c(0.7, 1, 0.8))
 ```
 
-We see here that `w_bar` is around 0.7 - which we would expect given the frequency of $A_1$ (i.e `p`) and the relative fitness. Invasion fitness of $A_2$ is equivalent to the marginal fitness for the allele - so 0.99 here - close to 1, the relative fitness for the $A_1A_2$ heterozygote. 
+We see here that `w_bar` is around 0.7 - which we would expect given the frequency of $A_1$ (i.e `p`) and the relative fitness. Invasion fitness of $A_2$ is equivalent to the marginal fitness for the allele - so 0.99 here - close to 1, the relative fitness for the $A_1A_2$ heterozygote.
 
 When invasion fitness is greater than resident mean population fitness, the model is not at a stable equilibrium as an allele can easily invade and increase in frequency. What would happen if the frequency of $A_2$ was almost fixed?
 
@@ -709,19 +692,19 @@ When invasion fitness is greater than resident mean population fitness, the mode
 selection_model(p = 0.01, rel_fit = c(0.7, 1, 0.8))
 ```
 
-In this case, `w_bar` (the resident fitness) is higher than when the $A_1$ allele is fixed, however the marginal fitness of the $A_1$ allele (the invasion fitness) is higher than this - so in this scenarion $A_1$ could easily invade and increase in frequency too. 
+In this case, `w_bar` (the resident fitness) is higher than when the $A_1$ allele is fixed, however the marginal fitness of the $A_1$ allele (the invasion fitness) is higher than this - so in this scenarion $A_1$ could easily invade and increase in frequency too.
 
 In order for the equilibrium to be stable with heterozygote advantage, the marginal fitness of the two alleles should equal one another. We will return to this in a short while.
 
-## Directional selection
+### Directional selection
 
 Earlier, we simulated selection in order to understand our model. This was an example of **directional selection**. Now we are going to explore that in more detail - in particular, we want to see how genotypic fitness can alter the outcome of selection. We can visualise this using an **adaptive landscape**. Here we will use a simplified, 2D landscape - i.e. a plot of mean population fitness $\overline{w}$ against the allele frequency $p$.
 
 To simplify our analyses, we will use three different scenarios. In each of them, we will start with a $p$ of 0.01, and we will simulate 50 generations. In all cases $A_1A_1$ will have the highest relative fitness of 1 and $A_2A_2$ the lowest of 0.2. The only thing we will vary is the relative fitness of the heterozygote $A_1A_2$. Therefore we are simulating three types of genotypic fitness:
 
-* dominance ($w_{12} = w_{11}$)
-* additive inheritance ($w_{12} = \displaystyle \frac{w_{11} + w_{22}}{2}$)
-* recessive ($w_{12} = w_{22}$)
+-   dominance ($w_{12} = w_{11}$)
+-   additive inheritance ($w_{12} = \displaystyle \frac{w_{11} + w_{22}}{2}$)
+-   recessive ($w_{12} = w_{22}$)
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # set generations
@@ -760,25 +743,24 @@ lines(dom$g, rec$p, lwd = 2, col = "green")
 
 All of these curves are S-shaped to some extent - so the transition from high to low frequency is rapit but the approach to fixation is much slower. The most marked difference is in the **green** line - the recessive case. Here, it takes time for $A_1$ alleles to occur in $A_1A_1$ homozygotes, so the new mutation remains at low frequency for quite a number of generations.
 
-## Over and underdominance
+### Over and underdominance
 
 Earlier on, we learned a bit about heterozygote advantage. This also referred to as **overdominance** - i.e. when the fitness of the heterozygote is higher than either homozygyote. However, we also touched upon the fact that this can only be stable in under certain conditions - i.e. $w{_1}^* = w{_2}^*$. We also learned that when $p$ or $q$ were 0 (i.e. the population is fixed for either allele), these equilibria are unstable. So at what allele frequency is the population in a stable equilibria?
 
 Previously we simulated data but this time, we are going to run our selection model for a range of values of $p$ and see where mean population fitness, $\overline{w}$ is maximised. Then we'll visualise it to make it clearer to ourselves. As with the book, we will set relative fitness as 0.2, 1 and 0.4 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
 
-:::{.yellow}
-**Advanced code:**  
+::: {.yellow}
+**Advanced code:**
+
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # set the range of p
 p_range <- seq(0, 1, 0.01)
 # run selection_model for all values of p
 overdom <- map_dfr(p_range, function(z) selection_model(p = z, rel_fit = c(0.2, 1, 0.4)))
 ```
-
 :::
 
 The code above runs `selection_model()` for a range of values of $p$, and wraps the result in a data frame. Now this can be visualised with ggplot to see the stable equilibrium.
-
 
 ```{r, eval = TRUE, echo = TRUE}
 # initialise plot
@@ -794,18 +776,18 @@ We can see mean population fitness is maximised at around 0.4. This is the stabl
 
 First, we run the model over different values of $p$.
 
-:::{.yellow}
+::: {.yellow}
 **Advanced code:**
+
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # set the range of p
 p_range <- seq(0, 1, 0.01)
 # run selection_model for all values of p
 underdom <- map_dfr(p_range, function(z) selection_model(p = z, rel_fit = c(0.9, 0.3, 1)))
 ```
-
 :::
 
-Then we plot it using `ggplot2`! 
+Then we plot it using `ggplot2`!
 
 ```{r, eval = TRUE, echo = TRUE}
 # initialise plot
@@ -815,7 +797,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5. 
+Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5.
 
 ## Study questions
 
@@ -823,7 +805,7 @@ For study questions on this tutorial, download the `chapter4_R_questions.R` from
 
 ## Going further
 
-* [An introduction to lists in R](https://www.r-bloggers.com/how-to-use-lists-in-r/)
-* [More on lists from Hadley Wickham](http://r4ds.had.co.nz/lists.html)
-* [The definitive introduction to `purr` and the `map` function from Jenny BC](https://jennybc.github.io/purrr-tutorial/index.html)
-* [Graham Coop's excellent notes on one-locus models of selection](http://cooplab.github.io/popgen-notes/#one-locus-models-of-selection)
+-   [An introduction to lists in R](https://www.r-bloggers.com/how-to-use-lists-in-r/)
+-   [More on lists from Hadley Wickham](http://r4ds.had.co.nz/lists.html)
+-   [The definitive introduction to `purr` and the `map` function from Jenny BC](https://jennybc.github.io/purrr-tutorial/index.html)
+-   [Graham Coop's excellent notes on one-locus models of selection](http://cooplab.github.io/popgen-notes/#one-locus-models-of-selection)

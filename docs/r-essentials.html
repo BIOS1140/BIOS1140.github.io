@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.2 R essentials | R tutorials in BIOS1140</title>
+  <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.2 R essentials | R tutorials in BIOS1140" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.2 R essentials | R tutorials in BIOS1140" />
+  
+  <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
+  
+
+
+
+<meta name="date" content="2021-06-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="start-using-r.html"/>
+<link rel="next" href="dataimport.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R tutorials for the course BIOS1140</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction-to-r.html"><a href="introduction-to-r.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
+<ul>
+<li class="chapter" data-level="" data-path="introduction-to-r.html"><a href="introduction-to-r.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console</a></li>
+<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats</a></li>
+<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories</a></li>
+<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R</a>
+<ul>
+<li class="chapter" data-level="" data-path="building-on-your-foundations-going-further-with-r.html"><a href="building-on-your-foundations-going-further-with-r.html#what-to-expect-1"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects</a></li>
+<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
+<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#more-ggplot-examples"><i class="fa fa-check"></i><b>2.3.4</b> More ggplot examples</a></li>
+<li class="chapter" data-level="2.3.5" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.5</b> Saving your plots</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency</a>
+<ul>
+<li class="chapter" data-level="" data-path="changes-in-allele-and-genotype-frequency.html"><a href="changes-in-allele-and-genotype-frequency.html#what-to-expect-2"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>3.3</b> Study questions</a></li>
+<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#what-to-expect-3"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="the-theory-of-natural-selection.html"><a href="the-theory-of-natural-selection.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties</a></li>
+<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies</a></li>
+<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
+<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
+<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection</a>
+<ul>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#what-to-expect-4"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="detecting-natural-selection.html"><a href="detecting-natural-selection.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="5.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> R-programming: Vectorisation</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#more-on-functions-vectorisation"><i class="fa fa-check"></i><b>5.1.1</b> More on functions: vectorisation</a></li>
+<li class="chapter" data-level="5.1.2" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.2</b> The <code>apply()</code> function</a></li>
+<li class="chapter" data-level="5.1.3" data-path="r-programming-vectorisation.html"><a href="r-programming-vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.3</b> The <code>ifelse()</code> function</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html"><i class="fa fa-check"></i><b>5.2</b> Evolutionary biology: F<sub>ST</sub></a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#understanding-fst---the-fixation-index"><i class="fa fa-check"></i><b>5.2.1</b> Understanding <em>F</em><sub>ST</sub> - the fixation index</a></li>
+<li class="chapter" data-level="5.2.2" data-path="evolutionary-biology-fst.html"><a href="evolutionary-biology-fst.html#visualising-fst-along-a-chromosome"><i class="fa fa-check"></i><b>5.2.2</b> Visualising <em>F</em><sub>ST</sub> along a chromosome</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>5.3</b> Study questions</a></li>
+<li class="chapter" data-level="5.4" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html"><i class="fa fa-check"></i><b>6</b> Multilocus Evolution</a>
+<ul>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="multilocus-evolution.html"><a href="multilocus-evolution.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="6.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html"><i class="fa fa-check"></i><b>6.1</b> Tools for investigating differences between groups</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#exploring-group-differences"><i class="fa fa-check"></i><b>6.1.1</b> Exploring group differences</a></li>
+<li class="chapter" data-level="6.1.2" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.1.2</b> Analysis of variance (ANOVA)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html"><i class="fa fa-check"></i><b>6.2</b> Performing a QTL analysis in bedbugs</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#bedbugs-pesticide-resistance-and-study-design"><i class="fa fa-check"></i><b>6.2.1</b> Bedbugs, pesticide resistance and study design</a></li>
+<li class="chapter" data-level="6.2.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#linking-anova-to-our-qtl-analysis"><i class="fa fa-check"></i><b>6.2.2</b> Linking ANOVA to our QTL analysis</a></li>
+<li class="chapter" data-level="6.2.3" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#testing-the-same-genotype-phenotype-association-with-anova"><i class="fa fa-check"></i><b>6.2.3</b> Testing the same genotype phenotype association with ANOVA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>6.3</b> Study questions</a></li>
+<li class="chapter" data-level="6.4" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html"><i class="fa fa-check"></i><b>7</b> Inferring Evolutionary Processes from Sequence Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#what-to-expect-6"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="inferring-evolutionary-processes-from-sequence-data.html"><a href="inferring-evolutionary-processes-from-sequence-data.html#getting-started-3"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="7.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>7.1</b> Working with DNA sequence data</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>7.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="7.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>7.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="7.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>7.1.3</b> Calculating basic sequence statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Working with a larger dataset</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>7.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="7.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>7.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>7.3</b> Calculating statistics at the whole genome level</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>7.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="7.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>7.3.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="7.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>7.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="7.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>7.3.4</b> Performing a sliding window analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>7.4</b> Study questions</a></li>
+<li class="chapter" data-level="7.5" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="speciation-genomics.html"><a href="speciation-genomics.html"><i class="fa fa-check"></i><b>8</b> Speciation Genomics</a>
+<ul>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#what-to-expect-7"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="speciation-genomics.html"><a href="speciation-genomics.html#getting-started-4"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="8.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html"><i class="fa fa-check"></i><b>8.1</b> R programming: Visualizing complex data</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="r-programming-visualizing-complex-data.html"><a href="r-programming-visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>8.1.1</b> Faceting</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>8.2</b> Evolutionary genetics: Returning to the sparrow dataset</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>8.2.1</b> Reading in the sparrow vcf</a></li>
+<li class="chapter" data-level="8.2.2" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>8.2.2</b> Examining the variant data</a></li>
+<li class="chapter" data-level="8.2.3" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#setting-up-sliding-windows"><i class="fa fa-check"></i><b>8.2.3</b> Setting up sliding windows</a></li>
+<li class="chapter" data-level="8.2.4" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.2.4</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
+<li class="chapter" data-level="8.2.5" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#visualising-the-data"><i class="fa fa-check"></i><b>8.2.5</b> Visualising the data</a></li>
+<li class="chapter" data-level="8.2.6" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.2.6</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="8.2.7" data-path="evolutionary-genetics-returning-to-the-sparrow-dataset.html"><a href="evolutionary-genetics-returning-to-the-sparrow-dataset.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.2.7</b> Investigating recombination rate variation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>8.3</b> Study questions</a></li>
+<li class="chapter" data-level="8.4" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html"><i class="fa fa-check"></i><b>9</b> Reconstructing the Past</a>
+<ul>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#what-to-expect-8"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="reconstructing-the-past.html"><a href="reconstructing-the-past.html#getting-started-5"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="9.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Phylogenetics in R</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>9.1.1</b> Storing trees in R</a></li>
+<li class="chapter" data-level="9.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>9.1.2</b> Plotting trees</a></li>
+<li class="chapter" data-level="9.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>9.1.4</b> A simple example with real data - avian phylogenetics</a></li>
+<li class="chapter" data-level="9.1.5" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>9.1.5</b> Constructing trees with R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>9.2</b> Population structure</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>9.2.1</b> Village dogs as an insight to dog domestication</a></li>
+<li class="chapter" data-level="9.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>9.2.2</b> Reading the data into R</a></li>
+<li class="chapter" data-level="9.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>9.2.3</b> Performing a PCA</a></li>
+<li class="chapter" data-level="9.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>9.2.4</b> Visualising the PCA</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>9.3</b> Study questions</a></li>
+<li class="chapter" data-level="9.4" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.4</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html"><i class="fa fa-check"></i><b>10</b> Advancing Further in R</a>
+<ul>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#what-to-expect-9"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="advancing-further-in-r.html"><a href="advancing-further-in-r.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="10.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>10.1</b> Advanced features of RStudio</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
+<li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
+<li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
+<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html"><i class="fa fa-check"></i><b>10.2</b> Control flow - <code>for</code>, <code>else</code>, <code>if</code> and <code>ifelse</code></a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#if-and-else"><i class="fa fa-check"></i><b>10.2.1</b> <code>if</code> and <code>else</code></a></li>
+<li class="chapter" data-level="10.2.2" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#ifelse---a-single-line-alternative"><i class="fa fa-check"></i><b>10.2.2</b> <code>ifelse</code> - a single line alternative</a></li>
+<li class="chapter" data-level="10.2.3" data-path="control-flow-for-else-if-and-ifelse.html"><a href="control-flow-for-else-if-and-ifelse.html#for-loops"><i class="fa fa-check"></i><b>10.2.3</b> <code>for</code> loops</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="vectorisation.html"><a href="vectorisation.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.3.2" data-path="vectorisation.html"><a href="vectorisation.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.3.3" data-path="vectorisation.html"><a href="vectorisation.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.6" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
+<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="r-essentials" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> R essentials</h2>
+<script src="js/hideOutput.js"></script>
+<p>In this part of the tutorial, we will learn the fundamentals of R programming, while investigating the demographics of the Nordic countries. All numbers are the 2020 populations taken from the <a href="https://www.census.gov/data-tools/demo/idb/#/table">International Data Base (IDB)</a> from the US government.</p>
+<div id="assigning-to-objects" class="section level3" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Assigning to objects</h3>
+<div id="problem-numbers-are-complicated" class="section level4" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> Problem: numbers are complicated</h4>
+<p>Let’s start by looking at Norway and Sweden. Say you want to find out what proportion the Norwegian population makes up of the total population of Norway plus Sweden. Conceptually, it looks something like this:</p>
+<p><span class="math display">\[\frac{Norwegian\ population}{Norwegian\ population+Swedish\ population}\]</span></p>
+<p><strong>Exercise: The Norwegian population is 5 465 387 and the Swedish is 10 185 555. Use R to calculate the proportion the Norwegian population makes up of the total population. Do the same for the Swedish population.</strong></p>
+<hr />
+<p>If you were able to do this, great work! Your solution probably looked something like this<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
+<div class="fold s o">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="r-essentials.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Norwegian population</span></span>
+<span id="cb6-2"><a href="r-essentials.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="dv">5465387</span> <span class="sc">/</span> (<span class="dv">5456387</span> <span class="sc">+</span> <span class="dv">10185555</span>)</span>
+<span id="cb6-3"><a href="r-essentials.html#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Swedish population</span></span>
+<span id="cb6-4"><a href="r-essentials.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">10185555</span> <span class="sc">/</span> (<span class="dv">5465387</span> <span class="sc">+</span> <span class="dv">10185555</span>)</span></code></pre></div>
+</div>
+<p>However, there are several problems with doing it this way. First of all, 5465387 is a stupidly long number, and the probability of typing it wrong is rather high (I actually mistyped a number in the code above, can you spot the error?). Another problem is that if any of the populations change (e.g. you want to update to 2021 numbers), you would have to update it in <strong>four different places</strong> to make this simple change. Third: for someone looking at your code, how will they know what’s happening? These numbers have no meaning without their context.</p>
+<p>Now we’re finally getting to the first taste of why R is more powerful than a regular calculator: we can give our numbers simple names.</p>
+</div>
+<div id="solution-assign-the-complicated-numbers-to-named-objects" class="section level4" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span> Solution: assign the complicated numbers to named objects</h4>
+<p>What if you could write some text instead of our stupidly large numbers? Something like <code>norway_pop</code> instead of 5465387? Luckily, you can! You can do the following to give your variables a name:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="r-essentials.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the number to an object called norway_pop</span></span>
+<span id="cb7-2"><a href="r-essentials.html#cb7-2" aria-hidden="true" tabindex="-1"></a>norway_pop <span class="ot">&lt;-</span> <span class="dv">5465387</span></span>
+<span id="cb7-3"><a href="r-essentials.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># store another number to an object called sweden_pop</span></span>
+<span id="cb7-4"><a href="r-essentials.html#cb7-4" aria-hidden="true" tabindex="-1"></a>sweden_pop <span class="ot">&lt;-</span> <span class="dv">10185555</span></span></code></pre></div>
+<p>This is called assignment, and is done using the arrow <code>&lt;-</code><a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. You have now created a named object, which is a very powerful tool. Your objects behave exactly like the numbers that are stored in them (try e.g. <code>norway_pop*2</code> or <code>sweden_pop+4445</code>). This means that we can now simply write:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="r-essentials.html#cb8-1" aria-hidden="true" tabindex="-1"></a>norway_pop <span class="sc">/</span> (norway_pop <span class="sc">+</span> sweden_pop)</span>
+<span id="cb8-2"><a href="r-essentials.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.349205</span></span>
+<span id="cb8-3"><a href="r-essentials.html#cb8-3" aria-hidden="true" tabindex="-1"></a>sweden_pop <span class="sc">/</span> (norway_pop <span class="sc">+</span> sweden_pop)</span>
+<span id="cb8-4"><a href="r-essentials.html#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.650795</span></span></code></pre></div>
+<p>Notice how similar this is to the conceptual version we saw earlier! This is much simpler, easier to read and way less error-prone than writing out the numbers each time. In addition, if you want to change any of the population sizes, you will just have to change it in one place instead of four.</p>
+<p>To make things even easier, we could store <code>norway_pop + sweden_pop</code> as <code>total_pop</code>, and also store our results with a name as well:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="r-essentials.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make total population object</span></span>
+<span id="cb9-2"><a href="r-essentials.html#cb9-2" aria-hidden="true" tabindex="-1"></a>total_pop <span class="ot">&lt;-</span> norway_pop <span class="sc">+</span> sweden_pop</span>
+<span id="cb9-3"><a href="r-essentials.html#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="r-essentials.html#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make object for Norway&#39;s proportion</span></span>
+<span id="cb9-5"><a href="r-essentials.html#cb9-5" aria-hidden="true" tabindex="-1"></a>norway_proportion <span class="ot">&lt;-</span> norway_pop <span class="sc">/</span> total_pop</span>
+<span id="cb9-6"><a href="r-essentials.html#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the result</span></span>
+<span id="cb9-7"><a href="r-essentials.html#cb9-7" aria-hidden="true" tabindex="-1"></a>norway_proportion</span>
+<span id="cb9-8"><a href="r-essentials.html#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.349205</span></span>
+<span id="cb9-9"><a href="r-essentials.html#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="r-essentials.html#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="co"># make object for Sweden&#39;s population</span></span>
+<span id="cb9-11"><a href="r-essentials.html#cb9-11" aria-hidden="true" tabindex="-1"></a>sweden_proportion <span class="ot">&lt;-</span> sweden_pop <span class="sc">/</span> total_pop</span>
+<span id="cb9-12"><a href="r-essentials.html#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># print the result</span></span>
+<span id="cb9-13"><a href="r-essentials.html#cb9-13" aria-hidden="true" tabindex="-1"></a>sweden_proportion</span>
+<span id="cb9-14"><a href="r-essentials.html#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.650795</span></span></code></pre></div>
+<div class="blue">
+<p><strong>Additional info</strong><br />
+If you have experience with Python, you would have printed the objects using <code>print(norway_proportion)</code>. In R we don’t have to explicitly use <code>print()</code>. An object (or any calculation for that matter) is automatically printed when we run it. R does have a <code>print()</code> function, though, that can be used if you want to be explicit about printing something.</p>
+</div>
+</div>
+<div id="notes-about-naming-variables" class="section level4" number="1.2.1.3">
+<h4><span class="header-section-number">1.2.1.3</span> Notes about naming variables</h4>
+<p>You should always give your variables sensible names. In the code above, we could have saved ourselves some typing by e.g. calling the populations <code>x</code> and <code>y</code> respectively. However, this quickly becomes a nightmare to read when scripts get long, so even though <code>norway_pop</code> takes longer to write than <code>x</code>, you should go with <code>norway_pop</code> so it’s possible to understand what’s going on in your script.</p>
+<p>You can name your variables just about anything, but there are some characters you can’t use in their names. Notably, spaces, dashes and a lot of special characters cant’ be used, and the name cannot start with a number. If you stick to letters, underscores and numbers (except in the beginning), you should be fine!</p>
+<p>Another thing to note about variable names is that they are case sensitive, for instance meaning that <code>A</code> can contain something completely different than <code>a</code>. In the code above, we used all-lowercase variable names, so what happens if we try to run the object <code>Norway_pop</code><a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>?</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="r-essentials.html#cb10-1" aria-hidden="true" tabindex="-1"></a>Norway_pop</span>
+<span id="cb10-2"><a href="r-essentials.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;Norway_pop&#39; not found</span></span></code></pre></div>
+<p>R can’t find <code>Norway_pop</code>, because it doesn’t exist, only <code>norway_pop</code> does. Beware of this, as it’s often a source of annoying bugs in the code.</p>
+<div class="green">
+<p><strong>Important concept:</strong><br />
+Assign any and all variables to named objects. It’s easier to read, and you’re less likely to make mistakes. Use good variable names, and beware of case sensitivity!</p>
+</div>
+</div>
+</div>
+<div id="vectors" class="section level3" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Vectors</h3>
+<p>Let’s expand our little Norway-Sweden project to all the Nordic countries. Table <a href="r-essentials.html#tab:nordpop">1.1</a> shows the populations of all the Nordic countries.</p>
+<table>
+<caption><span id="tab:nordpop">Table 1.1: </span>Population sizes of the nordic countries.</caption>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">Population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="right">5868927</td>
+</tr>
+<tr class="even">
+<td align="left">Finland</td>
+<td align="right">5572355</td>
+</tr>
+<tr class="odd">
+<td align="left">Iceland</td>
+<td align="right">350773</td>
+</tr>
+<tr class="even">
+<td align="left">Norway</td>
+<td align="right">5465387</td>
+</tr>
+<tr class="odd">
+<td align="left">Sweden</td>
+<td align="right">10185555</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exercise: Do the same with all the Nordic countries that you did with Norway and Sweden. Assign each population size to an object and calculate their proportion of the total Nordic population</strong></p>
+<div id="manyobjects" class="section level4" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Problem: too many objects gets complicated</h4>
+<p>If you solved the exercise above, you’re probably tired from writing almost the same thing over and over. My solution looks something like this:</p>
+<div class="fold s">
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-essentials.html#cb11-1" aria-hidden="true" tabindex="-1"></a>denmark_pop <span class="ot">&lt;-</span> <span class="dv">5868927</span></span>
+<span id="cb11-2"><a href="r-essentials.html#cb11-2" aria-hidden="true" tabindex="-1"></a>finland_pop <span class="ot">&lt;-</span> <span class="dv">5572355</span></span>
+<span id="cb11-3"><a href="r-essentials.html#cb11-3" aria-hidden="true" tabindex="-1"></a>iceland_pop <span class="ot">&lt;-</span> <span class="dv">350773</span></span>
+<span id="cb11-4"><a href="r-essentials.html#cb11-4" aria-hidden="true" tabindex="-1"></a>nordic_total <span class="ot">&lt;-</span>  norway_pop <span class="sc">+</span> sweden_pop <span class="sc">+</span> denmark_pop <span class="sc">+</span> finland_pop <span class="sc">+</span> iceland_pop</span>
+<span id="cb11-5"><a href="r-essentials.html#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="r-essentials.html#cb11-6" aria-hidden="true" tabindex="-1"></a>norway_proportion <span class="ot">&lt;-</span> norway_pop <span class="sc">/</span> nordic_total</span>
+<span id="cb11-7"><a href="r-essentials.html#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="r-essentials.html#cb11-8" aria-hidden="true" tabindex="-1"></a>sweden_proportion <span class="ot">&lt;-</span> sweden_pop <span class="sc">/</span> nordic_total</span>
+<span id="cb11-9"><a href="r-essentials.html#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="r-essentials.html#cb11-10" aria-hidden="true" tabindex="-1"></a>denmark_proportion <span class="ot">&lt;-</span> denmark_pop <span class="sc">/</span> nordic_total</span>
+<span id="cb11-11"><a href="r-essentials.html#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="r-essentials.html#cb11-12" aria-hidden="true" tabindex="-1"></a>finland_proportion <span class="ot">&lt;-</span> finland_pop <span class="sc">/</span> nordic_total</span>
+<span id="cb11-13"><a href="r-essentials.html#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="r-essentials.html#cb11-14" aria-hidden="true" tabindex="-1"></a>iceland_proportion <span class="ot">&lt;-</span> iceland_pop <span class="sc">/</span> nordic_total</span>
+<span id="cb11-15"><a href="r-essentials.html#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="r-essentials.html#cb11-16" aria-hidden="true" tabindex="-1"></a>norway_proportion</span>
+<span id="cb11-17"><a href="r-essentials.html#cb11-17" aria-hidden="true" tabindex="-1"></a>sweden_proportion</span>
+<span id="cb11-18"><a href="r-essentials.html#cb11-18" aria-hidden="true" tabindex="-1"></a>denmark_proportion</span>
+<span id="cb11-19"><a href="r-essentials.html#cb11-19" aria-hidden="true" tabindex="-1"></a>finland_proportion</span>
+<span id="cb11-20"><a href="r-essentials.html#cb11-20" aria-hidden="true" tabindex="-1"></a>iceland_proportion</span></code></pre></div>
+</div>
+<p>That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! Surely there has to be simpler solution? Luckily, there is.</p>
+</div>
+<div id="solution-store-it-in-a-vector" class="section level4" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> Solution: Store it in a vector!</h4>
+<p>R has a data type called vector, which can store multiple values at once. In our case, this means that we can store the populations of all the Nordic countries in one vector. Let’s look at some different ways to make a vector. The following lines all create a vector containing the numbers 1 through 10.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-essentials.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with c()</span></span>
+<span id="cb12-2"><a href="r-essentials.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
+<span id="cb12-3"><a href="r-essentials.html#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="r-essentials.html#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with :</span></span>
+<span id="cb12-5"><a href="r-essentials.html#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb12-6"><a href="r-essentials.html#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="r-essentials.html#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with seq()</span></span>
+<span id="cb12-8"><a href="r-essentials.html#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>You can create a vector manually with <code>c()</code>. All your numbers (or other values) go inside the parentheses, separated by comma.</li>
+<li>You can create a vector with the colon operator <code>:</code>. This creates a vector containing all the numbers starting from the number before <code>:</code>, and up to and including the number after.</li>
+<li>You can create a vector with <code>seq()</code>. The numbers go inside the parentheses, separated by comma. The number after <code>from =</code> is the beginning of the vector, after <code>to =</code> is the end of the vector, and after <code>by =</code> is the distance between the values in the vector.</li>
+</ol>
+<p>As a side note, <code>c()</code> and <code>seq()</code> are what we call functions. We’ll get back to functions shortly, so don’t worry if you don’t fully understand how these work yet. For now, just recognize that any pattern that consists of text and parentheses, <code>text()</code>, is a function. The text outside of the parentheses is the name of the function, and anything inside the parentheses is data the function uses.</p>
+<p>Like numbers, vectors can be assigned to objects. This works in exactly the same way, using the arrow <code>&lt;-</code>.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-essentials.html#cb13-1" aria-hidden="true" tabindex="-1"></a>arbitrary_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">789</span>, <span class="dv">109</span>, <span class="dv">76</span>)</span>
+<span id="cb13-2"><a href="r-essentials.html#cb13-2" aria-hidden="true" tabindex="-1"></a>arbitrary_numbers</span>
+<span id="cb13-3"><a href="r-essentials.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  56 789 109  76</span></span>
+<span id="cb13-4"><a href="r-essentials.html#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="r-essentials.html#cb13-5" aria-hidden="true" tabindex="-1"></a>my_sequence <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">60</span>, <span class="at">by =</span> <span class="dv">5</span>)</span>
+<span id="cb13-6"><a href="r-essentials.html#cb13-6" aria-hidden="true" tabindex="-1"></a>my_sequence</span>
+<span id="cb13-7"><a href="r-essentials.html#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  0  5 10 15 20 25 30 35 40 45 50 55 60</span></span></code></pre></div>
+<p><strong>Exercise: Store the population sizes of the Nordic countries in a vector using <code>c()</code>. Input the numbers in alphabetical order of the countries (same as in table</strong> <a href="r-essentials.html#tab:nordpop">1.1</a> <strong>above) Assign the vector to an object with a good name.</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="r-essentials.html#cb14-1" aria-hidden="true" tabindex="-1"></a>nordic <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5868927</span>, <span class="dv">5572355</span>, <span class="dv">350773</span>, <span class="dv">5465387</span>, <span class="dv">10185555</span>)</span></code></pre></div>
+</div>
+<div class="blue">
+<p><strong>Additional information:</strong><br />
+Those of you who learned programming in BIOS1100 might remember that in python we mainly used <em>lists</em> when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways - in both, all the elements need to be of the same type (numeric/string/logical), and you can access elements by their index in the same way. There are also some differences between the two: To define a vector in R you need to use the <code>c()</code> function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!)</p>
+</div>
+</div>
+<div id="vector-properties" class="section level4" number="1.2.2.3">
+<h4><span class="header-section-number">1.2.2.3</span> Vector properties</h4>
+<div id="mathematical-operations" class="section level5" number="1.2.2.3.1">
+<h5><span class="header-section-number">1.2.2.3.1</span> Mathematical operations</h5>
+<p>When you have a vector of numbers, you can apply all the same mathematical operations that you can on a single number. The operation is then applied to each element of the vector separately. Try it!</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-essentials.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector from 1 to 10</span></span>
+<span id="cb15-2"><a href="r-essentials.html#cb15-2" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb15-3"><a href="r-essentials.html#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="r-essentials.html#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># multiply each element by 2</span></span>
+<span id="cb15-5"><a href="r-essentials.html#cb15-5" aria-hidden="true" tabindex="-1"></a>my_vector <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb15-6"><a href="r-essentials.html#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  2  4  6  8 10 12 14 16 18 20</span></span>
+<span id="cb15-7"><a href="r-essentials.html#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="r-essentials.html#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add 5 to each element</span></span>
+<span id="cb15-9"><a href="r-essentials.html#cb15-9" aria-hidden="true" tabindex="-1"></a>my_vector <span class="sc">+</span> <span class="dv">5</span></span>
+<span id="cb15-10"><a href="r-essentials.html#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  6  7  8  9 10 11 12 13 14 15</span></span></code></pre></div>
+<p>If you have two vectors of equal length, you can do mathematical operations on both, e.g. multiply two vectors. The first element of the first vector is then multiplied with the first element of the second vector, the second element with the second and so on. You can do the same for division, addition, subtraction and any operation you can think of.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="r-essentials.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create another vector</span></span>
+<span id="cb16-2"><a href="r-essentials.html#cb16-2" aria-hidden="true" tabindex="-1"></a>my_vector2 <span class="ot">&lt;-</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">20</span></span>
+<span id="cb16-3"><a href="r-essentials.html#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="r-essentials.html#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># mutliply them together</span></span>
+<span id="cb16-5"><a href="r-essentials.html#cb16-5" aria-hidden="true" tabindex="-1"></a>my_vector <span class="sc">*</span> my_vector2</span>
+<span id="cb16-6"><a href="r-essentials.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  11  24  39  56  75  96 119 144 171 200</span></span>
+<span id="cb16-7"><a href="r-essentials.html#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="r-essentials.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add them</span></span>
+<span id="cb16-9"><a href="r-essentials.html#cb16-9" aria-hidden="true" tabindex="-1"></a>my_vector <span class="sc">+</span> my_vector2</span>
+<span id="cb16-10"><a href="r-essentials.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 12 14 16 18 20 22 24 26 28 30</span></span></code></pre></div>
+<p>If the two vectors aren’t of the same length, you will get a warning, but R will still try to perform the operation. The shorter vector will then start over when it runs out of numbers.</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="r-essentials.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># multiplying two vectors of unequal length</span></span>
+<span id="cb17-2"><a href="r-essentials.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb17-3"><a href="r-essentials.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  4  9 16 25 36 49 64 81 10</span></span>
+<span id="cb17-4"><a href="r-essentials.html#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="r-essentials.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># this is what R does:</span></span>
+<span id="cb17-6"><a href="r-essentials.html#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co">#1*1</span></span>
+<span id="cb17-7"><a href="r-essentials.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co">#2*2</span></span>
+<span id="cb17-8"><a href="r-essentials.html#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="co">#3*3</span></span>
+<span id="cb17-9"><a href="r-essentials.html#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co">#4*4</span></span>
+<span id="cb17-10"><a href="r-essentials.html#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co">#5*5</span></span>
+<span id="cb17-11"><a href="r-essentials.html#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co">#6*6</span></span>
+<span id="cb17-12"><a href="r-essentials.html#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co">#7*7</span></span>
+<span id="cb17-13"><a href="r-essentials.html#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="co">#8*8</span></span>
+<span id="cb17-14"><a href="r-essentials.html#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="co">#9*9 # here we use the last element of the vector 1:9</span></span>
+<span id="cb17-15"><a href="r-essentials.html#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="co">#10*1 # here R &quot;recycles&quot; the vector, using the first element of 1:9</span></span></code></pre></div>
+<p>Remember to keep all your vectors the same length, or something unexpected might happen! To check the length of a vector, you can use the <code>length()</code> function.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="r-essentials.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_vector)</span>
+<span id="cb18-2"><a href="r-essentials.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb18-3"><a href="r-essentials.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(my_vector2)</span>
+<span id="cb18-4"><a href="r-essentials.html#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
+<p><strong>Exercise: express the Nordic population sizes in millions by dividing all the numbers in the <code>nordic</code> vector by 10^6</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-essentials.html#cb19-1" aria-hidden="true" tabindex="-1"></a>nordic <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
+</div>
+</div>
+<div id="extracting-numbers" class="section level5" number="1.2.2.3.2">
+<h5><span class="header-section-number">1.2.2.3.2</span> Extracting numbers</h5>
+<p>Having all numbers stored in one place is great, but what if you want to use just one of them? We use square brackets <code>[]</code> to access numbers inside vectors. You put the index of the element you want to extract inside the square brackets like this: <code>my_vector[1]</code>. This will extract the first element from the vector, <code>my_vector[2]</code> will extract the second. On our <code>nordic</code> vector, we could for instance do the following:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-essentials.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the third element (Iceland) from the nordic vector</span></span>
+<span id="cb20-2"><a href="r-essentials.html#cb20-2" aria-hidden="true" tabindex="-1"></a>nordic[<span class="dv">3</span>]</span>
+<span id="cb20-3"><a href="r-essentials.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 350773</span></span></code></pre></div>
+<p>We can also select multiple numbers, by inputting a vector inside the square brackets. <code>nordic[c(3, 5)] will extract the third and the fifth element of our</code>nordic<code>vector, and</code>nordic[1:3]` will extract elements 1 through 3.</p>
+<p><strong>Exercise: extract elements 2 through 4 from the <code>nordic</code> vector. Then, extract only the Scandinavian countries, and store them in an object with a good name.</strong></p>
+</div>
+<div id="getting-the-sum-and-mean-of-a-vector" class="section level5" number="1.2.2.3.3">
+<h5><span class="header-section-number">1.2.2.3.3</span> Getting the sum and mean of a vector</h5>
+<p>You can do a variety of operations on vectors in addition to using the mathemathical operators <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code>. Two of the most common operations are calculating the sum and the mean of all the numbers in the vector. With the <code>sum()</code> and <code>mean()</code> functions.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-essentials.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_vector)</span>
+<span id="cb21-2"><a href="r-essentials.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 55</span></span>
+<span id="cb21-3"><a href="r-essentials.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_vector)</span>
+<span id="cb21-4"><a href="r-essentials.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.5</span></span></code></pre></div>
+<p>Again, we’ll go through what functions are and how they work shortly. There’s a variety of other functions you can apply to a vector, such as <code>max()</code>, <code>min()</code> and <code>median()</code>. Try them out!</p>
+<p><strong>Exercise: Use what you have learned about vectors to calculate the population proportions of all the Nordic countries in a single operation. Save it to an object with a good name.</strong></p>
+<p>The solution to the exercise shows how powerful working with vectors can be.</p>
+<div class="fold s">
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="r-essentials.html#cb22-1" aria-hidden="true" tabindex="-1"></a>nordic_prop <span class="ot">&lt;-</span> nordic <span class="sc">/</span> <span class="fu">sum</span>(nordic)</span>
+<span id="cb22-2"><a href="r-essentials.html#cb22-2" aria-hidden="true" tabindex="-1"></a>nordic_prop</span>
+<span id="cb22-3"><a href="r-essentials.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.21385882 0.20305198 0.01278188 0.19915416 0.37115316</span></span></code></pre></div>
+</div>
+<p>This is way simpler than what we did back in section <a href="r-essentials.html#manyobjects">1.2.2.1</a>! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.</p>
+<div class="green">
+<p><strong>Important concept</strong><br />
+If you have many values that go together, store them together in a vector. You can do a variety of mathematical operations on vectors, but make sure that all vectors have the same length!</p>
+</div>
+</div>
+</div>
+</div>
+<div id="strings" class="section level3" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Strings</h3>
+<p>As mentioned way back in section <a href="start-using-r.html#textinput">1.1.2.2</a>, you have to write <code>"hello"</code> rather than <code>hello</code> to get the actual text “hello”. Now you may have figured out that this is because we have to separate objects from text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="r-essentials.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Hello, world!&quot;</span></span>
+<span id="cb23-2"><a href="r-essentials.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hello, world!&quot;</span></span>
+<span id="cb23-3"><a href="r-essentials.html#cb23-3" aria-hidden="true" tabindex="-1"></a>greeting <span class="ot">&lt;-</span> <span class="st">&quot;Hello, world!&quot;</span></span>
+<span id="cb23-4"><a href="r-essentials.html#cb23-4" aria-hidden="true" tabindex="-1"></a>greeting</span>
+<span id="cb23-5"><a href="r-essentials.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Hello, world!&quot;</span></span>
+<span id="cb23-6"><a href="r-essentials.html#cb23-6" aria-hidden="true" tabindex="-1"></a>string_vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;this&quot;</span>, <span class="st">&quot;is&quot;</span>, <span class="st">&quot;a&quot;</span>, <span class="st">&quot;vector&quot;</span>, <span class="st">&quot;of&quot;</span>, <span class="st">&quot;strings!&quot;</span>)</span>
+<span id="cb23-7"><a href="r-essentials.html#cb23-7" aria-hidden="true" tabindex="-1"></a>string_vector</span>
+<span id="cb23-8"><a href="r-essentials.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;this&quot;     &quot;is&quot;       &quot;a&quot;        &quot;vector&quot;   &quot;of&quot;       &quot;strings!&quot;</span></span></code></pre></div>
+<p>To combine several strings into one, or even combine numbers and strings, you can use the function <code>paste()</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="r-essentials.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;These two strings&quot;</span>, <span class="st">&quot;become one&quot;</span>)</span>
+<span id="cb24-2"><a href="r-essentials.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;These two strings become one&quot;</span></span>
+<span id="cb24-3"><a href="r-essentials.html#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="r-essentials.html#cb24-4" aria-hidden="true" tabindex="-1"></a>nordic_sum <span class="ot">&lt;-</span> <span class="fu">sum</span>(nordic)</span>
+<span id="cb24-5"><a href="r-essentials.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="st">&quot;The total population of the nordic countries is&quot;</span>, nordic_sum, <span class="st">&quot;people.&quot;</span>)</span>
+<span id="cb24-6"><a href="r-essentials.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;The total population of the nordic countries is 27442997 people.&quot;</span></span></code></pre></div>
+<p><strong>Exercise: Combine the names of the Nordic countries into a vector. Make sure the names are in the same order as in table</strong> <a href="r-essentials.html#tab:nordpop">1.1</a><strong>.</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="r-essentials.html#cb25-1" aria-hidden="true" tabindex="-1"></a>nordic_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Denmark&quot;</span>, <span class="st">&quot;Finland&quot;</span>, <span class="st">&quot;Iceland&quot;</span>, <span class="st">&quot;Norway&quot;</span>, <span class="st">&quot;Sweden&quot;</span>)</span></code></pre></div>
+</div>
+<p>One of many uses for strings is to give names to a vector. You can use the <code>names()</code> function to see a vectors names.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="r-essentials.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nordic)</span>
+<span id="cb26-2"><a href="r-essentials.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; NULL</span></span></code></pre></div>
+<p>As you can see, we get <code>NULL</code> here, which means that the vector elements don’t have any names. We can set the names like this:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="r-essentials.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nordic) <span class="ot">&lt;-</span> nordic_names</span>
+<span id="cb27-2"><a href="r-essentials.html#cb27-2" aria-hidden="true" tabindex="-1"></a>nordic</span>
+<span id="cb27-3"><a href="r-essentials.html#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Denmark  Finland  Iceland   Norway   Sweden </span></span>
+<span id="cb27-4"><a href="r-essentials.html#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5868927  5572355   350773  5465387 10185555</span></span></code></pre></div>
+<p>Now, when we print our <code>nordic</code> vector, we can see which population size belongs to which country! Neat! We can also extract values from our vector based on names rather than just position.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="r-essentials.html#cb28-1" aria-hidden="true" tabindex="-1"></a>nordic[<span class="st">&quot;Denmark&quot;</span>] <span class="co"># equivalent to nordic[1]</span></span>
+<span id="cb28-2"><a href="r-essentials.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark </span></span>
+<span id="cb28-3"><a href="r-essentials.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5868927</span></span>
+<span id="cb28-4"><a href="r-essentials.html#cb28-4" aria-hidden="true" tabindex="-1"></a>nordic[<span class="fu">c</span>(<span class="st">&quot;Finland&quot;</span>, <span class="st">&quot;Norway&quot;</span>)] <span class="co"># equivalent to nordic[c(2, 4)]</span></span>
+<span id="cb28-5"><a href="r-essentials.html#cb28-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland  Norway </span></span>
+<span id="cb28-6"><a href="r-essentials.html#cb28-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5572355 5465387</span></span></code></pre></div>
+<p><strong>Exercise: Do some calculations on the now named <code>nordic</code> vector (e.g. calculate the proportions again). What happens to the names?</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="r-essentials.html#cb29-1" aria-hidden="true" tabindex="-1"></a>nordic <span class="sc">/</span> <span class="fu">sum</span>(nordic)</span>
+<span id="cb29-2"><a href="r-essentials.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    Denmark    Finland    Iceland     Norway     Sweden </span></span>
+<span id="cb29-3"><a href="r-essentials.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 0.21385882 0.20305198 0.01278188 0.19915416 0.37115316</span></span>
+<span id="cb29-4"><a href="r-essentials.html#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="r-essentials.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co"># The names carry over to the new vector</span></span></code></pre></div>
+</div>
+</div>
+<div id="logical" class="section level3" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Logical values</h3>
+<p>R has some words that have special meaning, two of these are what we call logical (or boolean) values: <code>TRUE</code> and <code>FALSE</code>. These are often the result of checking if some condition is true or not, using logical operators.</p>
+<p>The most important logical operators in R are larger than <code>&gt;</code>, smaller than <code>&lt;</code>, equal to <code>==</code>, equal or larger/smaller <code>&gt;=</code>/<code>&lt;=</code> and not equal to <code>!=</code>. They return <code>TRUE</code> if the condition is true, and <code>FALSE</code> if the condition is false. In its simplest form, we can write:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="r-essentials.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># is 3 smaller than 4?</span></span>
+<span id="cb30-2"><a href="r-essentials.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">&lt;</span> <span class="dv">4</span></span>
+<span id="cb30-3"><a href="r-essentials.html#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span>
+<span id="cb30-4"><a href="r-essentials.html#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># is 3 exactly equal to 3.01?</span></span>
+<span id="cb30-5"><a href="r-essentials.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="sc">==</span> <span class="fl">3.01</span></span>
+<span id="cb30-6"><a href="r-essentials.html#cb30-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb30-7"><a href="r-essentials.html#cb30-7" aria-hidden="true" tabindex="-1"></a><span class="co"># are these two strings the same?</span></span>
+<span id="cb30-8"><a href="r-essentials.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Norway&quot;</span> <span class="sc">==</span> <span class="st">&quot;norway&quot;</span></span>
+<span id="cb30-9"><a href="r-essentials.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span></code></pre></div>
+<p>The operators also work on vectors. Then, every element of the vector is checked, and we get a vector of <code>TRUE</code> and <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="r-essentials.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which numbers from 1 to 5 are larger than 3?</span></span>
+<span id="cb31-2"><a href="r-essentials.html#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span></span>
+<span id="cb31-3"><a href="r-essentials.html#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE FALSE FALSE  TRUE  TRUE</span></span>
+<span id="cb31-4"><a href="r-essentials.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># which countries has a population larger than 5000000?</span></span>
+<span id="cb31-5"><a href="r-essentials.html#cb31-5" aria-hidden="true" tabindex="-1"></a>nordic <span class="sc">&gt;</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span>
+<span id="cb31-6"><a href="r-essentials.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Finland Iceland  Norway  Sweden </span></span>
+<span id="cb31-7"><a href="r-essentials.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    TRUE    TRUE   FALSE    TRUE    TRUE</span></span>
+<span id="cb31-8"><a href="r-essentials.html#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># which countries in our vector are not named &quot;Norway&quot;?</span></span>
+<span id="cb31-9"><a href="r-essentials.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(nordic) <span class="sc">!=</span> <span class="st">&quot;Norway&quot;</span></span>
+<span id="cb31-10"><a href="r-essentials.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE  TRUE FALSE  TRUE</span></span></code></pre></div>
+<p>A neat property of logical values is that they behave as numbers in certain contexts. For example, if you use the <code>sum()</code> function on them, each <code>TRUE</code> is counted as 1, and each <code>FALSE</code> is counted as 0.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="r-essentials.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb32-2"><a href="r-essentials.html#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<p>We can use this to check how many elements in our vector match a certain condition:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="r-essentials.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how many numbers from 1 to 5 are larger than 3?</span></span>
+<span id="cb33-2"><a href="r-essentials.html#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span> <span class="sc">&gt;</span> <span class="dv">3</span>)</span>
+<span id="cb33-3"><a href="r-essentials.html#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb33-4"><a href="r-essentials.html#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="co"># how many countries has a population larger than 5000000?</span></span>
+<span id="cb33-5"><a href="r-essentials.html#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(nordic <span class="sc">&gt;</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>)</span>
+<span id="cb33-6"><a href="r-essentials.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb33-7"><a href="r-essentials.html#cb33-7" aria-hidden="true" tabindex="-1"></a><span class="co"># how many countries in our vector are not named &quot;Norway&quot;?</span></span>
+<span id="cb33-8"><a href="r-essentials.html#cb33-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">names</span>(nordic) <span class="sc">!=</span> <span class="st">&quot;Norway&quot;</span>)</span>
+<span id="cb33-9"><a href="r-essentials.html#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<p><strong>Exercise: play around with the logical operators so you get a feel for how they work. Ask questions like: “is sum(3, 4) the same as 3+4?” or “which is larger, 10^6 or 6^10?”, and answer them using logical operators.</strong></p>
+<div id="na" class="section level4" number="1.2.4.1">
+<h4><span class="header-section-number">1.2.4.1</span> NA</h4>
+<p>R also has another important special value, <code>NA</code>, which stands for “not available”. It is mostly used to indicate missing data in data sets. One important property of <code>NA</code> is that any operation involving <code>NA</code> returns <code>NA</code>.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="r-essentials.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> <span class="sc">*</span> <span class="cn">NA</span></span>
+<span id="cb34-2"><a href="r-essentials.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb34-3"><a href="r-essentials.html#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="cn">NA</span>, <span class="dv">1</span>))</span>
+<span id="cb34-4"><a href="r-essentials.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span>
+<span id="cb34-5"><a href="r-essentials.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="cn">NA</span>))</span>
+<span id="cb34-6"><a href="r-essentials.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<p>You can write <code>na.rm = TRUE</code> within the <code>sum()</code> and <code>mean()</code> functions to ignore <code>NA</code>s.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="r-essentials.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">10</span>, <span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-2"><a href="r-essentials.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22</span></span>
+<span id="cb35-3"><a href="r-essentials.html#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">10</span>, <span class="cn">NA</span>), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb35-4"><a href="r-essentials.html#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span></code></pre></div>
+<div class="green">
+<p><strong>Important concept:</strong> <code>TRUE</code>, <code>FALSE</code> and <code>NA</code> are examples of special values in R.</p>
+<ul>
+<li><code>TRUE</code> and <code>FALSE</code> are called logical (or boolean) values, and are often the result of using logical operators like <code>==</code>, <code>&gt;</code>, <code>!=</code> etc. <code>TRUE</code> and <code>FALSE</code> behave as 1 and 0 respectively when used inside e.g. the <code>sum()</code> function.</li>
+<li><code>NA</code> indicates missing data. Any operation involving <code>NA</code> returns <code>NA</code></li>
+</ul>
+</div>
+</div>
+</div>
+<div id="functions" class="section level3" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> Functions</h3>
+<p>So far you have seen a handful of functions being used, like <code>c()</code>, <code>seq()</code> and <code>mean()</code> to name some. Functions are always written in the form <code>functionname()</code>. The text outside the parentheses is the function name, and whatever is inside the parentheses are called arguments. A function can be seen as a series of operations that are applied to the arguments, or simply as somewhere you put something in, and get something else in return. They can often save you a tremendous amount of time, compare for example manually calculating the mean of a 1000 numbers vs. using the <code>mean()</code> function.</p>
+<p>If you want to know more about what a function does, you can write <code>?</code> and then the function name, for example <code>?seq</code>. Then you will get a help page that tells you more about how the function works, and some examples of use in the bottom. Be aware that the help page is written by programmers for programmers, and is often difficult to understand. In the beginning you will often be better off googling what a function does (but the examples are always useful).</p>
+<p>Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: <code>func(arg1, arg2, arg3)</code>. The arguments can either be input in a set order, or you can name them. Consider the following:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-essentials.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>) <span class="co"># &quot;from&quot; is argument no. 1, &quot;to&quot; is argument no. 2 etc.</span></span>
+<span id="cb36-2"><a href="r-essentials.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span>
+<span id="cb36-3"><a href="r-essentials.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb36-4"><a href="r-essentials.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div>
+<p>These are exactly the same, but one uses argument order, and the other the argument names. To figure out the order and names of arguments, you have to consult the help pages or the internet. For simple functions like <code>seq()</code> and <code>mean()</code> it’s common to omit the argument names, while for more complicated functions it’s better to include them, so you clearly show what you’re doing. Note that function arguments are never enclosed with quotes <code>"</code>.</p>
+<p>Another thing that is useful to know, is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line, which makes code more readable. Instead of the code above, we could also have written:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-essentials.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>,</span>
+<span id="cb37-2"><a href="r-essentials.html#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="dv">10</span>,</span>
+<span id="cb37-3"><a href="r-essentials.html#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb37-4"><a href="r-essentials.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div>
+<p>This may not matter much for such a simple function, but it gets way easier to read long, complicated functions if it’s formatted this way. You will see this formatting in our next section about data frames.</p>
+</div>
+<div id="data-frames" class="section level3" number="1.2.6">
+<h3><span class="header-section-number">1.2.6</span> Data frames</h3>
+<p>Let’s return to investigating more aspects of the Nordic countries, after all there’s more to a country than just it’s population size. Table <a href="r-essentials.html#tab:nord-more">1.2</a> shows some additional information about the Nordic countries:</p>
+<table>
+<caption><span id="tab:nord-more">Table 1.2: </span>More information on the nordic countries.</caption>
+<thead>
+<tr class="header">
+<th align="left">Country</th>
+<th align="right">Population size</th>
+<th align="right">Area (km<sup>2</sup>)</th>
+<th align="right">Life expectancy</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Denmark</td>
+<td align="right">5868927</td>
+<td align="right">42434</td>
+<td align="right">81.24</td>
+</tr>
+<tr class="even">
+<td align="left">Finland</td>
+<td align="right">5572355</td>
+<td align="right">303815</td>
+<td align="right">81.33</td>
+</tr>
+<tr class="odd">
+<td align="left">Iceland</td>
+<td align="right">350773</td>
+<td align="right">100250</td>
+<td align="right">83.26</td>
+</tr>
+<tr class="even">
+<td align="left">Norway</td>
+<td align="right">5465387</td>
+<td align="right">304282</td>
+<td align="right">82.14</td>
+</tr>
+<tr class="odd">
+<td align="left">Sweden</td>
+<td align="right">10185555</td>
+<td align="right">410335</td>
+<td align="right">82.40</td>
+</tr>
+</tbody>
+</table>
+<p>What if you want to use some more information about the countries, e.g. the area? One solution is to store the new information in a vector:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="r-essentials.html#cb38-1" aria-hidden="true" tabindex="-1"></a>nordic_area <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">42434</span>, <span class="dv">303815</span>, <span class="dv">100250</span>, <span class="dv">304282</span>, <span class="dv">410335</span>)</span></code></pre></div>
+<p>However, as the number of variables increase, you can get quite a lot of vectors! Luckily there’s a way to keep everything together, in what R calls a data frame.</p>
+<div id="creating-a-data-frame" class="section level4" number="1.2.6.1">
+<h4><span class="header-section-number">1.2.6.1</span> Creating a data frame</h4>
+<p>A data frame is conceptually similar to the table above. You have columns of different variables, and rows of observations of these variables. If you have a number of vectors (of the same length!), you can combine these into a data frame with the function <code>data.frame()</code>:<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="r-essentials.html#cb39-1" aria-hidden="true" tabindex="-1"></a>nordic_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">country =</span> nordic_names, </span>
+<span id="cb39-2"><a href="r-essentials.html#cb39-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">population =</span> nordic, </span>
+<span id="cb39-3"><a href="r-essentials.html#cb39-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">area =</span> nordic_area)</span>
+<span id="cb39-4"><a href="r-essentials.html#cb39-4" aria-hidden="true" tabindex="-1"></a>nordic_df</span>
+<span id="cb39-5"><a href="r-essentials.html#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area</span></span>
+<span id="cb39-6"><a href="r-essentials.html#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434</span></span>
+<span id="cb39-7"><a href="r-essentials.html#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland Finland    5572355 303815</span></span>
+<span id="cb39-8"><a href="r-essentials.html#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250</span></span>
+<span id="cb39-9"><a href="r-essentials.html#cb39-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Norway   Norway    5465387 304282</span></span>
+<span id="cb39-10"><a href="r-essentials.html#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sweden   Sweden   10185555 410335</span></span></code></pre></div>
+<p>The arguments of <code>data.frame()</code> are kind of special in that you can name them whatever you want. Your argument names (i.e. the text before the equal sign) determine the names of the columns in your data frame.</p>
+</div>
+<div id="extracting-the-data-within-the-data-frame" class="section level4" number="1.2.6.2">
+<h4><span class="header-section-number">1.2.6.2</span> Extracting the data within the data frame</h4>
+<p>You previously learned that you can access data in a vector using square brackets <code>[]</code>, and the same goes for data frames. However, we now have two dimensions (rows and columns) instead of just 1. The syntax for extracting from a data frame is <code>df[row, column]</code>. For instance, to get the area (column 3) of Finland (row 2), we can run:</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="r-essentials.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract row 2, column 3</span></span>
+<span id="cb40-2"><a href="r-essentials.html#cb40-2" aria-hidden="true" tabindex="-1"></a>nordic_df[<span class="dv">2</span>, <span class="dv">3</span>]</span>
+<span id="cb40-3"><a href="r-essentials.html#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 303815</span></span></code></pre></div>
+<p>You can also use the name of the column instead of the position (remember quotes!).</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="r-essentials.html#cb41-1" aria-hidden="true" tabindex="-1"></a>nordic_df[<span class="dv">2</span>, <span class="st">&quot;area&quot;</span>]</span>
+<span id="cb41-2"><a href="r-essentials.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 303815</span></span></code></pre></div>
+<p>If you leave the row field empty, you will get all rows, and if you leave the column field empty you will get all columns.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="r-essentials.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Get area of all countries</span></span>
+<span id="cb42-2"><a href="r-essentials.html#cb42-2" aria-hidden="true" tabindex="-1"></a>nordic_df[,<span class="st">&quot;area&quot;</span>]</span>
+<span id="cb42-3"><a href="r-essentials.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  42434 303815 100250 304282 410335</span></span>
+<span id="cb42-4"><a href="r-essentials.html#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Get all the information about Iceland</span></span>
+<span id="cb42-5"><a href="r-essentials.html#cb42-5" aria-hidden="true" tabindex="-1"></a>nordic_df[<span class="dv">3</span>,]</span>
+<span id="cb42-6"><a href="r-essentials.html#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area</span></span>
+<span id="cb42-7"><a href="r-essentials.html#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250</span></span>
+<span id="cb42-8"><a href="r-essentials.html#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get all rows and columns (useless, but it works!)</span></span>
+<span id="cb42-9"><a href="r-essentials.html#cb42-9" aria-hidden="true" tabindex="-1"></a>nordic_df[,]</span>
+<span id="cb42-10"><a href="r-essentials.html#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area</span></span>
+<span id="cb42-11"><a href="r-essentials.html#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434</span></span>
+<span id="cb42-12"><a href="r-essentials.html#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland Finland    5572355 303815</span></span>
+<span id="cb42-13"><a href="r-essentials.html#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250</span></span>
+<span id="cb42-14"><a href="r-essentials.html#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Norway   Norway    5465387 304282</span></span>
+<span id="cb42-15"><a href="r-essentials.html#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sweden   Sweden   10185555 410335</span></span></code></pre></div>
+<p>Another way of getting data from your data frame is with the <code>$</code> operator. Writing something like <code>df$column</code> returns the entire column as a vector.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="r-essentials.html#cb43-1" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>population</span>
+<span id="cb43-2"><a href="r-essentials.html#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  5868927  5572355   350773  5465387 10185555</span></span></code></pre></div>
+<p>This is very useful, as you can do the same operations on these vectors that you can on any vector.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="r-essentials.html#cb44-1" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>population <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span>
+<span id="cb44-2"><a href="r-essentials.html#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  5.868927  5.572355  0.350773  5.465387 10.185555</span></span>
+<span id="cb44-3"><a href="r-essentials.html#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(nordic_df<span class="sc">$</span>area)</span>
+<span id="cb44-4"><a href="r-essentials.html#cb44-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 232223.2</span></span>
+<span id="cb44-5"><a href="r-essentials.html#cb44-5" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>area <span class="sc">+</span> nordic_df<span class="sc">$</span>population</span>
+<span id="cb44-6"><a href="r-essentials.html#cb44-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  5911361  5876170   451023  5769669 10595890</span></span>
+<span id="cb44-7"><a href="r-essentials.html#cb44-7" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>population <span class="sc">&gt;</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span>
+<span id="cb44-8"><a href="r-essentials.html#cb44-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE  TRUE FALSE  TRUE  TRUE</span></span></code></pre></div>
+<p>Note that the <code>$</code> syntax only works for columns, not for rows.</p>
+<p><strong>Exercise: Calculate the population density (population/area) of the Nordic countries using the data frame and the <code>$</code> operator.</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="r-essentials.html#cb45-1" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>population <span class="sc">/</span> nordic_df<span class="sc">$</span>area</span>
+<span id="cb45-2"><a href="r-essentials.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 138.307183  18.341277   3.498983  17.961585  24.822535</span></span></code></pre></div>
+</div>
+</div>
+<div id="adding-data-to-the-data-frame" class="section level4" number="1.2.6.3">
+<h4><span class="header-section-number">1.2.6.3</span> Adding data to the data frame</h4>
+<p>Adding data to the data frame can also be done with the <code>$</code> operator. Instead of referencing an existing column, you can simply write a new name after the <code>$</code>, and assign to it as a variable like so: <code>df$newcolumn &lt;- c(1, 2, 3, 4, 5)</code>.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="r-essentials.html#cb46-1" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>is_norway <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;no&quot;</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb46-2"><a href="r-essentials.html#cb46-2" aria-hidden="true" tabindex="-1"></a>nordic_df</span>
+<span id="cb46-3"><a href="r-essentials.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area is_norway</span></span>
+<span id="cb46-4"><a href="r-essentials.html#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434        no</span></span>
+<span id="cb46-5"><a href="r-essentials.html#cb46-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland Finland    5572355 303815        no</span></span>
+<span id="cb46-6"><a href="r-essentials.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250        no</span></span>
+<span id="cb46-7"><a href="r-essentials.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Norway   Norway    5465387 304282       yes</span></span>
+<span id="cb46-8"><a href="r-essentials.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sweden   Sweden   10185555 410335        no</span></span></code></pre></div>
+<p>Now you have added a column named “is_norway” to your data frame, which is kind of useless, but still cool.</p>
+<p><strong>Exercise: For a more useful application of creating a new column, add a population density column to <code>nordic_df</code> (using the same calculation as in the previous exercise).</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="r-essentials.html#cb47-1" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>pop_density <span class="ot">&lt;-</span> nordic_df<span class="sc">$</span>population <span class="sc">/</span> nordic_df<span class="sc">$</span>area</span></code></pre></div>
+</div>
+</div>
+<div id="subsetting-with-logical-operators" class="section level4" number="1.2.6.4">
+<h4><span class="header-section-number">1.2.6.4</span> Subsetting with logical operators</h4>
+<p>Sometimes you don’t know exactly which rows you want to extract from your data. For example, you may want all countries with an area below 300 000 km<sup>2</sup>, or all countries that aren’t Norway. For this, we can use the logical operators that you learned about in section <a href="r-essentials.html#logical">1.2.4</a>.</p>
+<p>If you want to figure out which countries have an area less than 300 000 km<sup>2</sup>, you have learned that you can do the following:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="r-essentials.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># which elements have an area less than 300000?</span></span>
+<span id="cb48-2"><a href="r-essentials.html#cb48-2" aria-hidden="true" tabindex="-1"></a>nordic_df<span class="sc">$</span>area <span class="sc">&lt;</span> <span class="dv">300000</span></span>
+<span id="cb48-3"><a href="r-essentials.html#cb48-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]  TRUE FALSE  TRUE FALSE FALSE</span></span></code></pre></div>
+<p>The result shows that element 1 and 3 are <code>TRUE</code>, while the rest are <code>FALSE</code>. If you put this same statement within square brackets (before the comma) to index your data frame, R will return all rows that are <code>TRUE</code>, and discard all rows that are <code>FALSE</code>.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="r-essentials.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all countries with an area below 300 000 km^2</span></span>
+<span id="cb49-2"><a href="r-essentials.html#cb49-2" aria-hidden="true" tabindex="-1"></a>nordic_df[nordic_df<span class="sc">$</span>area <span class="sc">&lt;</span> <span class="dv">300000</span>, ]</span>
+<span id="cb49-3"><a href="r-essentials.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area is_norway pop_density</span></span>
+<span id="cb49-4"><a href="r-essentials.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434        no  138.307183</span></span>
+<span id="cb49-5"><a href="r-essentials.html#cb49-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250        no    3.498983</span></span></code></pre></div>
+<p>We could do the same to get all rows where the country isn’t Norway:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="r-essentials.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get all countries except Norway</span></span>
+<span id="cb50-2"><a href="r-essentials.html#cb50-2" aria-hidden="true" tabindex="-1"></a>nordic_df[nordic_df<span class="sc">$</span>country <span class="sc">!=</span> <span class="st">&quot;Norway&quot;</span>, ] </span>
+<span id="cb50-3"><a href="r-essentials.html#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area is_norway pop_density</span></span>
+<span id="cb50-4"><a href="r-essentials.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434        no  138.307183</span></span>
+<span id="cb50-5"><a href="r-essentials.html#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland Finland    5572355 303815        no   18.341277</span></span>
+<span id="cb50-6"><a href="r-essentials.html#cb50-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Iceland Iceland     350773 100250        no    3.498983</span></span>
+<span id="cb50-7"><a href="r-essentials.html#cb50-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sweden   Sweden   10185555 410335        no   24.822535</span></span></code></pre></div>
+<p>Two important things to note here is that you have to explicitly write <code>nordic_df$</code> inside the square brackets, and that you have to end with a comma to tell R that you’re filtering rows (i.e. leave the column space empty). Neither <code>nordic_df[area &lt; 300000, ]</code> nor <code>nordic_df[nordic_df$area &lt; 300000]</code> will work.</p>
+<p><strong>Exercise: make a subset of your data containing all the countries with population density of more than 18 (using the <code>pop_density</code> column you created in the previous exercise).</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="r-essentials.html#cb51-1" aria-hidden="true" tabindex="-1"></a>nordic_df[nordic_df<span class="sc">$</span>pop_density <span class="sc">&gt;</span> <span class="dv">18</span>, ]</span>
+<span id="cb51-2"><a href="r-essentials.html#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;         country population   area is_norway pop_density</span></span>
+<span id="cb51-3"><a href="r-essentials.html#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Denmark Denmark    5868927  42434        no   138.30718</span></span>
+<span id="cb51-4"><a href="r-essentials.html#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Finland Finland    5572355 303815        no    18.34128</span></span>
+<span id="cb51-5"><a href="r-essentials.html#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sweden   Sweden   10185555 410335        no    24.82254</span></span></code></pre></div>
+</div>
+<div class="green">
+<p><strong>Important concept</strong><br />
+When you have a lot of data that belongs together, typically something you could store in an excel document and show in a table, make it into a data frame. Many things we will be doing later in this course requires that your data is in a data frame, so learn to recognize this type of object.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>with the comments, I hope!<a href="r-essentials.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>You can also use <code>=</code> instead of <code>&lt;-</code> . If you know another programming language already, like Python, this may feel more natural. I like to use the arrow to remind my muscle memory that I’m working in R, but it makes absolutely no difference which you use, so use whichever you like!<a href="r-essentials.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>As a side note, whenever you wonder “what happens if I do …”, try it! The worst thing that can happen if you try something is that you get an error, the best thing is that you learn something useful.<a href="r-essentials.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>You can see here that the names of <code>nordic</code> carries over when making the data frame. This results in the names of the countries stored in what seems to be a nameless column. These are the row names, and can be accessed with <code>row.names(nordic_df)</code><a href="r-essentials.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="start-using-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="dataimport.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
