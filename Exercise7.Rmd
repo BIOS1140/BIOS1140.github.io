@@ -301,7 +301,7 @@ tajima.test(woodmouse)
 
 This produces a list with three elements. The first is an estimate of Tajima's *D* and the other two are p-values assessing the significance of the statistic. Remember that to say whether a statistic is significant or not, the commonly used (arbitrary) threshold is p\<0.05. The two p-values are both similar here and also both show that there is no significant deviation from zero.
 
-::: {.blue}
+::: {.green}
 #### A bit more about $\pi$, $s$ and Tajima's D
 
 In the assignment, you will be asked to explain and interpret Tajima's D. To get you started, we will briefly explain what we are testing for with a Tajima test, and how $\pi$ and $s$ can differ relative to each other. You can read more about the interpretation of---and math behind---Tajima's D in the course book.
