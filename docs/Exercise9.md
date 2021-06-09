@@ -116,7 +116,8 @@ In the next section, we will learn more about how to plot trees.
 
 We can actually do a lot with our trees in R using a few simple plot commands. Let's generate another random tree, this time with 5 taxa.
 
-::: {.fold .o}
+:::{.fold .o}
+
 
 ```r
 # set seed to ensure the same tree is produced
@@ -125,8 +126,10 @@ set.seed(32)
 tree <- rtree(n = 5, tip.label = c("a", "b", "c", "d", "e"))
 ```
 
+:::
 First of all, let's plot our new tree using the default plot settings. Except unlike last time, we will suppress the branch lenghts.
 
+:::{.fold .o}
 
 ```r
 # plot tree and suppress branch lengths
@@ -134,10 +137,13 @@ plot(tree, use.edge.length = FALSE)
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+:::
 
 All we did here was set the `use.edge.length` argument to false, suppressing the branch lengths. The standar tree plot that `ape` creates is a **phylogram**. However, there are a number of other different plotting methods we can use.
 
 We can plot a **cladogram** for example.
+
+:::{.fold .o}
 
 
 ```r
@@ -147,7 +153,11 @@ plot(tree, type = "cladogram", use.edge.length = FALSE)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
+:::
+
 We can plot our tree as if it had no root.
+
+:::{.fold .o}
 
 
 ```r
@@ -157,7 +167,11 @@ plot(tree, type = "unrooted", use.edge.length = FALSE)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
+:::
+
 We can also make a radial tree, which is a convenient way to plot many taxa at once.
+
+:::{.fold .o}
 
 
 ```r
@@ -166,6 +180,8 @@ plot(tree, type = "fan", use.edge.length = FALSE)
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-11-1.png" width="672" />
+
+:::
 
 We can also easily set many different graphical parameters to make our tree look a specific way. So for example
 
@@ -177,9 +193,15 @@ plot(tree, use.edge.length = FALSE, edge.width = 2, edge.color = "red")
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
+
+
 ### Manipulating trees
 
+
+
 As well as simply plotting trees, it is possible to manipulate them to make them look a certain way or to focus on a specific group of taxa. `ape` has a number of powerful functions that allow us to do this quite easily. To start, let's make a new random tree, this time with 5 taxa.
+
+:::{.fold .o}
 
 
 ```r
@@ -193,7 +215,11 @@ plot(tree)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-13-1.png" width="672" />
 
+:::
+
 Let's say we want to remove a tip from our tree - we can easily achieve this with the `drop.tip` function, and supplying the name of the tip.
+
+:::{.fold .o}
 
 
 ```r
@@ -204,7 +230,11 @@ plot(prune_tree)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-14-1.png" width="672" />
 
+:::
+
 Perhaps we want to rotate our tree, so that the tips are orientated slightly differently? This is also very easily achieved with the `rotate` function.
+
+:::{.fold .o}
 
 
 ```r
@@ -216,7 +246,11 @@ plot(prune_tree1)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-15-1.png" width="672" />
 
+:::
+
 Here, we specified we want the tree rotated on the internal node that joins `a` and `b`, which in this case is the root of the tree. What if we want to rotate another set of taxa, such as `c` and `e`? Well it is actually much more straightforward to specify the **node** rather than the tip names. But how can you know the names of each of the nodes? Luckily there is an easy way to display them.
+
+:::{.fold .o}
 
 
 ```r
@@ -227,7 +261,11 @@ nodelabels()
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 
+:::
+
 So we want to rotate our tree on node 7. Thus we can rerun the code using `rotate` but this time with the node specified, not the tips:
+
+:::{.fold .o}
 
 
 ```r
@@ -239,7 +277,11 @@ plot(prune_tree2)
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 
+:::
+
 Note that rotating trees just alters the way we plot them, it does not make any difference to the evolutionary relationship among the taxa shown on them.
+
+:::{.fold .o}
 
 
 ```r
@@ -262,8 +304,9 @@ plot(rotate(tree, 5), use.edge.length = FALSE, cex = 1.5, no.margin = TRUE)
 par(mfrow = c(1, 1))
 ```
 
-Note that `cex` just alters the size of the tip labels and `no.margin = TRUE` suppresses the use of margins for visualisation. All three of these trees are the same - they are just rotated differently.
 :::
+
+Note that `cex` just alters the size of the tip labels and `no.margin = TRUE` suppresses the use of margins for visualisation. All three of these trees are the same - they are just rotated differently.
 
 ### A simple example with real data - avian phylogenetics
 
