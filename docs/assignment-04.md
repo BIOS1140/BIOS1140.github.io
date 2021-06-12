@@ -1,8 +1,9 @@
 # Week 4 assignment {- #w04}
 
 
+<script src="js/hideOutput.js"></script>
 
-#### 1. Functions
+#### 1. Functions {-}
 
 You need to define the `calc_geno()` function from the tutorial to complete this part of the assignment.
 
@@ -55,7 +56,7 @@ c) **Optional**: create a function called `calc_geno_from_counts()` that takes a
 
 For the rest of the assignment, feel free to use these functions, and create new functions if you like.
 
-#### 2. Fitness
+#### 2. Fitness {-}
 
 You need to define the functions `selection_model()` and `selection_sim()` to complete this part of the assignment.
 
@@ -126,7 +127,7 @@ d) the marginal fitness
 
 e) the mean population fitness.
 
-#### 3. Selection
+#### 3. Selection {-}
 
 a) Using R code we learned during the tutorial, simulate selection over 100 generations for a case where A1A1 has the highest fitness and the relative fitness of the genotypes A1A2 and A2A2 is 0.4. The initial frequency of the A1 allele is 0.01. Plot the frequency of p over the generations. Is A1 dominant, additive or recessive? What can we infer from the plot?
 

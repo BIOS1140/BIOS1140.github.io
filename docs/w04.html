@@ -414,86 +414,87 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="w04" class="section level1 unnumbered">
 <h1>Week 4 assignment</h1>
-<div id="functions-1" class="section level4" number="10.7.0.1">
-<h4><span class="header-section-number">10.7.0.1</span> 1. Functions</h4>
+<script src="js/hideOutput.js"></script>
+<div id="functions-1" class="section level4 unnumbered">
+<h4>1. Functions</h4>
 <p>You need to define the <code>calc_geno()</code> function from the tutorial to complete this part of the assignment.</p>
 <div class="fold c">
-<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="w04.html#cb471-1" aria-hidden="true" tabindex="-1"></a>calc_geno <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
-<span id="cb471-2"><a href="w04.html#cb471-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb471-3"><a href="w04.html#cb471-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate q from p</span></span>
-<span id="cb471-4"><a href="w04.html#cb471-4" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
-<span id="cb471-5"><a href="w04.html#cb471-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb471-6"><a href="w04.html#cb471-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
-<span id="cb471-7"><a href="w04.html#cb471-7" aria-hidden="true" tabindex="-1"></a>  A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb471-8"><a href="w04.html#cb471-8" aria-hidden="true" tabindex="-1"></a>  A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb471-9"><a href="w04.html#cb471-9" aria-hidden="true" tabindex="-1"></a>  A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb471-10"><a href="w04.html#cb471-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb471-11"><a href="w04.html#cb471-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the genotype frequencies</span></span>
-<span id="cb471-12"><a href="w04.html#cb471-12" aria-hidden="true" tabindex="-1"></a>  geno_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
-<span id="cb471-13"><a href="w04.html#cb471-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(geno_freq)</span>
-<span id="cb471-14"><a href="w04.html#cb471-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="w04.html#cb1-1" aria-hidden="true" tabindex="-1"></a>calc_geno <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb1-2"><a href="w04.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-3"><a href="w04.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate q from p</span></span>
+<span id="cb1-4"><a href="w04.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
+<span id="cb1-5"><a href="w04.html#cb1-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-6"><a href="w04.html#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
+<span id="cb1-7"><a href="w04.html#cb1-7" aria-hidden="true" tabindex="-1"></a>  A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-8"><a href="w04.html#cb1-8" aria-hidden="true" tabindex="-1"></a>  A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb1-9"><a href="w04.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb1-10"><a href="w04.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-11"><a href="w04.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the genotype frequencies</span></span>
+<span id="cb1-12"><a href="w04.html#cb1-12" aria-hidden="true" tabindex="-1"></a>  geno_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
+<span id="cb1-13"><a href="w04.html#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(geno_freq)</span>
+<span id="cb1-14"><a href="w04.html#cb1-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <ol style="list-style-type: lower-alpha">
 <li>Create a function with two arguments, <code>x</code> and <code>y</code>, that checks whether <code>x</code> is larger than <code>y</code>. You can decide yourself if you want the function to return <code>TRUE</code>/<code>FALSE</code> or a string of text.</li>
 </ol>
 <p>The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function <code>calc_geno</code>, which uses <span class="math inline">\(p\)</span> to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals <span class="math inline">\(A_1 A_1\)</span>, <span class="math inline">\(A_1 B_1\)</span> and <span class="math inline">\(A_2A_2\)</span>), not <span class="math inline">\(p\)</span>, it makes sense to create a function that does this for you. If you do that, you can simply write:</p>
-<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="w04.html#cb472-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">calc_p</span>(geno_counts)</span>
-<span id="cb472-2"><a href="w04.html#cb472-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">calc_geno</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="w04.html#cb2-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">calc_p</span>(geno_counts)</span>
+<span id="cb2-2"><a href="w04.html#cb2-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">calc_geno</span>(p)</span></code></pre></div>
 <p>Or even <code>calc_geno(calc_p(geno_counts))</code> if you prefer! Notice how easy it is to follow what happens in the code above. This adheres to a principle called <a href="https://en.wikipedia.org/wiki/Modular_programming">modular programming</a>, where larger tasks are separated into smaller, more manageable tasks. Now it’s your turn to actually turn the above into working code by creatng the <code>calc_p</code> function.</p>
 <ol start="2" style="list-style-type: lower-alpha">
 <li><p>Create a function <code>calc_p()</code> that takes a vector of genotype counts as an argument and returns the allele frequency of <span class="math inline">\(A_1\)</span>, i.e., <span class="math inline">\(p\)</span>. To test your code, run the following:</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="w04.html#cb473-1" aria-hidden="true" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">33</span>, <span class="dv">81</span>)</span>
-<span id="cb473-2"><a href="w04.html#cb473-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">calc_p</span>(geno)</span>
-<span id="cb473-3"><a href="w04.html#cb473-3" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">calc_geno</span>(p)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="w04.html#cb3-1" aria-hidden="true" tabindex="-1"></a>geno <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">33</span>, <span class="dv">81</span>)</span>
+<span id="cb3-2"><a href="w04.html#cb3-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">calc_p</span>(geno)</span>
+<span id="cb3-3"><a href="w04.html#cb3-3" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">calc_geno</span>(p)</span></code></pre></div>
 <p><code>p</code> should be <code>0.1875</code>, and <code>geno_freq</code> should be <code>0.03515625 0.30468750 0.66015625</code></p></li>
 <li><p><strong>Optional</strong>: create a function called <code>calc_geno_from_counts()</code> that takes a vector of genotype counts as an argument, and then calls first <code>calc_p()</code>, then <code>geno_freq()</code> to get expected genotype frequencies directly from genotype counts.</p></li>
 </ol>
 <p>For the rest of the assignment, feel free to use these functions, and create new functions if you like.</p>
 </div>
-<div id="fitness" class="section level4" number="10.7.0.2">
-<h4><span class="header-section-number">10.7.0.2</span> 2. Fitness</h4>
+<div id="fitness" class="section level4 unnumbered">
+<h4>2. Fitness</h4>
 <p>You need to define the functions <code>selection_model()</code> and <code>selection_sim()</code> to complete this part of the assignment.</p>
 <div class="yellow">
 <div class="fold c">
-<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="w04.html#cb474-1" aria-hidden="true" tabindex="-1"></a>selection_model <span class="ot">&lt;-</span> <span class="cf">function</span>(p, rel_fit){</span>
-<span id="cb474-2"><a href="w04.html#cb474-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define q</span></span>
-<span id="cb474-3"><a href="w04.html#cb474-3" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
-<span id="cb474-4"><a href="w04.html#cb474-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate genotype frequencies (under HWE)</span></span>
-<span id="cb474-5"><a href="w04.html#cb474-5" aria-hidden="true" tabindex="-1"></a>  gf <span class="ot">&lt;-</span> <span class="fu">c</span>(p<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span><span class="sc">*</span>(p<span class="sc">*</span>q), q<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb474-6"><a href="w04.html#cb474-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb474-7"><a href="w04.html#cb474-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate mean pop fitness</span></span>
-<span id="cb474-8"><a href="w04.html#cb474-8" aria-hidden="true" tabindex="-1"></a>  w_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(rel_fit<span class="sc">*</span>gf)</span>
-<span id="cb474-9"><a href="w04.html#cb474-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb474-10"><a href="w04.html#cb474-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate marginal allele frequencies</span></span>
-<span id="cb474-11"><a href="w04.html#cb474-11" aria-hidden="true" tabindex="-1"></a>  w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">1</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">2</span>])</span>
-<span id="cb474-12"><a href="w04.html#cb474-12" aria-hidden="true" tabindex="-1"></a>  w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">2</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">3</span>])</span>
-<span id="cb474-13"><a href="w04.html#cb474-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb474-14"><a href="w04.html#cb474-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate freq of p in the next generation</span></span>
-<span id="cb474-15"><a href="w04.html#cb474-15" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p<span class="sc">*</span>w1)<span class="sc">/</span>w_bar</span>
-<span id="cb474-16"><a href="w04.html#cb474-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb474-17"><a href="w04.html#cb474-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make vector for output</span></span>
-<span id="cb474-18"><a href="w04.html#cb474-18" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">p =</span> p, <span class="at">q =</span> q, <span class="at">w_bar =</span> w_bar, </span>
-<span id="cb474-19"><a href="w04.html#cb474-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">w1 =</span> w1, <span class="at">w2 =</span> w2, <span class="at">p_t =</span> p_t)</span>
-<span id="cb474-20"><a href="w04.html#cb474-20" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb474-21"><a href="w04.html#cb474-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the results</span></span>
-<span id="cb474-22"><a href="w04.html#cb474-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
-<span id="cb474-23"><a href="w04.html#cb474-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="w04.html#cb475-1" aria-hidden="true" tabindex="-1"></a>selection_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(p_init, rel_fit, ngen){</span>
-<span id="cb475-2"><a href="w04.html#cb475-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb475-3"><a href="w04.html#cb475-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set first generation</span></span>
-<span id="cb475-4"><a href="w04.html#cb475-4" aria-hidden="true" tabindex="-1"></a>  mod_pars <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">selection_model</span>(<span class="at">p =</span> p_init, <span class="at">rel_fit =</span> rel_fit))</span>
-<span id="cb475-5"><a href="w04.html#cb475-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb475-6"><a href="w04.html#cb475-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate for n generations</span></span>
-<span id="cb475-7"><a href="w04.html#cb475-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb475-8"><a href="w04.html#cb475-8" aria-hidden="true" tabindex="-1"></a>    mod_pars <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mod_pars, <span class="fu">selection_model</span>(<span class="at">p =</span> mod_pars[i<span class="dv">-1</span>, <span class="st">&quot;p_t&quot;</span>], <span class="at">rel_fit =</span> rel_fit))</span>
-<span id="cb475-9"><a href="w04.html#cb475-9" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb475-10"><a href="w04.html#cb475-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb475-11"><a href="w04.html#cb475-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make generations object</span></span>
-<span id="cb475-12"><a href="w04.html#cb475-12" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>ngen</span>
-<span id="cb475-13"><a href="w04.html#cb475-13" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb475-14"><a href="w04.html#cb475-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the result as a data frame</span></span>
-<span id="cb475-15"><a href="w04.html#cb475-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(g, mod_pars)))</span>
-<span id="cb475-16"><a href="w04.html#cb475-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="w04.html#cb4-1" aria-hidden="true" tabindex="-1"></a>selection_model <span class="ot">&lt;-</span> <span class="cf">function</span>(p, rel_fit){</span>
+<span id="cb4-2"><a href="w04.html#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># define q</span></span>
+<span id="cb4-3"><a href="w04.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
+<span id="cb4-4"><a href="w04.html#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate genotype frequencies (under HWE)</span></span>
+<span id="cb4-5"><a href="w04.html#cb4-5" aria-hidden="true" tabindex="-1"></a>  gf <span class="ot">&lt;-</span> <span class="fu">c</span>(p<span class="sc">^</span><span class="dv">2</span>, <span class="dv">2</span><span class="sc">*</span>(p<span class="sc">*</span>q), q<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb4-6"><a href="w04.html#cb4-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-7"><a href="w04.html#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate mean pop fitness</span></span>
+<span id="cb4-8"><a href="w04.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  w_bar <span class="ot">&lt;-</span> <span class="fu">sum</span>(rel_fit<span class="sc">*</span>gf)</span>
+<span id="cb4-9"><a href="w04.html#cb4-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-10"><a href="w04.html#cb4-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate marginal allele frequencies</span></span>
+<span id="cb4-11"><a href="w04.html#cb4-11" aria-hidden="true" tabindex="-1"></a>  w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">1</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">2</span>])</span>
+<span id="cb4-12"><a href="w04.html#cb4-12" aria-hidden="true" tabindex="-1"></a>  w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="dv">2</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="dv">3</span>])</span>
+<span id="cb4-13"><a href="w04.html#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="w04.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate freq of p in the next generation</span></span>
+<span id="cb4-15"><a href="w04.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p<span class="sc">*</span>w1)<span class="sc">/</span>w_bar</span>
+<span id="cb4-16"><a href="w04.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-17"><a href="w04.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make vector for output</span></span>
+<span id="cb4-18"><a href="w04.html#cb4-18" aria-hidden="true" tabindex="-1"></a>  output <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">p =</span> p, <span class="at">q =</span> q, <span class="at">w_bar =</span> w_bar, </span>
+<span id="cb4-19"><a href="w04.html#cb4-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">w1 =</span> w1, <span class="at">w2 =</span> w2, <span class="at">p_t =</span> p_t)</span>
+<span id="cb4-20"><a href="w04.html#cb4-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-21"><a href="w04.html#cb4-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the results</span></span>
+<span id="cb4-22"><a href="w04.html#cb4-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(output)</span>
+<span id="cb4-23"><a href="w04.html#cb4-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="w04.html#cb5-1" aria-hidden="true" tabindex="-1"></a>selection_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(p_init, rel_fit, ngen){</span>
+<span id="cb5-2"><a href="w04.html#cb5-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-3"><a href="w04.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Set first generation</span></span>
+<span id="cb5-4"><a href="w04.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  mod_pars <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">selection_model</span>(<span class="at">p =</span> p_init, <span class="at">rel_fit =</span> rel_fit))</span>
+<span id="cb5-5"><a href="w04.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-6"><a href="w04.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># simulate for n generations</span></span>
+<span id="cb5-7"><a href="w04.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb5-8"><a href="w04.html#cb5-8" aria-hidden="true" tabindex="-1"></a>    mod_pars <span class="ot">&lt;-</span> <span class="fu">rbind</span>(mod_pars, <span class="fu">selection_model</span>(<span class="at">p =</span> mod_pars[i<span class="dv">-1</span>, <span class="st">&quot;p_t&quot;</span>], <span class="at">rel_fit =</span> rel_fit))</span>
+<span id="cb5-9"><a href="w04.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb5-10"><a href="w04.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-11"><a href="w04.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make generations object</span></span>
+<span id="cb5-12"><a href="w04.html#cb5-12" aria-hidden="true" tabindex="-1"></a>  g <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span>ngen</span>
+<span id="cb5-13"><a href="w04.html#cb5-13" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-14"><a href="w04.html#cb5-14" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the result as a data frame</span></span>
+<span id="cb5-15"><a href="w04.html#cb5-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">as.data.frame</span>(<span class="fu">cbind</span>(g, mod_pars)))</span>
+<span id="cb5-16"><a href="w04.html#cb5-16" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <ol style="list-style-type: lower-alpha">
@@ -507,8 +508,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>the mean population fitness.</p></li>
 </ol>
 </div>
-<div id="selection" class="section level4" number="10.7.0.3">
-<h4><span class="header-section-number">10.7.0.3</span> 3. Selection</h4>
+<div id="selection" class="section level4 unnumbered">
+<h4>3. Selection</h4>
 <ol style="list-style-type: lower-alpha">
 <li><p>Using R code we learned during the tutorial, simulate selection over 100 generations for a case where A1A1 has the highest fitness and the relative fitness of the genotypes A1A2 and A2A2 is 0.4. The initial frequency of the A1 allele is 0.01. Plot the frequency of p over the generations. Is A1 dominant, additive or recessive? What can we infer from the plot?</p></li>
 <li><p>What is the difference between directional selection and balancing selection?</p></li>
