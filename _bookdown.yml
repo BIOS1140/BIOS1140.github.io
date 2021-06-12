@@ -3,6 +3,6 @@ delete_merged_file: true
 language:
   ui:
     chapter_name: "Week "
-rmd_files: ["index.Rmd", "Exercise1.Rmd", "Exercise2.Rmd", "Exercise3.Rmd", "Exercise4.Rmd", "Exercise5.Rmd", "Exercise6.Rmd", "Exercise7.Rmd", "Exercise8.Rmd", "Exercise9.Rmd", "Exercise10.Rmd"]
+rmd_files: ["index.Rmd", "Exercise1.Rmd", "Exercise2.Rmd", "Exercise3.Rmd", "Exercise4.Rmd", "Exercise5.Rmd", "Exercise6.Rmd", "Exercise7.Rmd", "Exercise8.Rmd", "Exercise9.Rmd", "Exercise10.Rmd", "appendix.Rmd"]
 new_session: yes
 output_dir: docs
