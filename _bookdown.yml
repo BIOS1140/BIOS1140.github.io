@@ -5,6 +5,8 @@ language:
     chapter_name: "Week "
 rmd_files: ["index.Rmd", "Exercise1.Rmd", "Exercise2.Rmd", "Exercise3.Rmd", "Exercise4.Rmd", 
             "Exercise5.Rmd", "Exercise6.Rmd", "Exercise7.Rmd", "Exercise8.Rmd", "Exercise9.Rmd", 
-            "Exercise10.Rmd", "assignment-03.Rmd", "appendix.Rmd"]
+            "Exercise10.Rmd", "assignment-01.Rmd", "assignment-03.Rmd", "assignment-04.Rmd", 
+            "assignment-05.Rmd", "assignment-06.Rmd", "assignment-07.Rmd","assignment-08.Rmd",
+            "assignment-09.Rmd", "assignment-10.Rmd", "appendix.Rmd"]
 new_session: yes
 output_dir: docs
