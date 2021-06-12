@@ -4,7 +4,7 @@ fig:plvec
 fig:unnamed-chunk-57
 fig:lines-points
 fig:unnamed-chunk-58
-fig:unnamed-chunk-52
+fig:unnamed-chunk-46
 fig:unnamed-chunk-29
 fig:unnamed-chunk-45
 introduction-to-r
@@ -69,15 +69,13 @@ storing-ggplots-in-objects
 customizing-your-plots-1
 general-customization
 mapping-variables-to-colors-shapes-etc.
-more-ggplot-examples
-visualising-data-distributions
-comparing-data-distributions
 saving-your-plots
 reshaping-data-with-pivot_longer
 wide-and-long-format
 import-example-data
 reshape-the-data
 plot-the-data
+study-questions
 going-further-1
 changes-in-allele-and-genotype-frequency
 r-programming-for-loops
@@ -94,7 +92,7 @@ simulating-genetic-drift
 a-simple-case-of-genetic-drift-over-a-single-generation-using-the-binomial-distribution
 using-a-for-loop-to-simulate-drift-over-multiple-generations
 visualizing-drift
-study-questions
+study-questions-1
 going-further-2
 the-theory-of-natural-selection
 r-programming-making-custom-functions
@@ -115,7 +113,7 @@ getting-more-from-our-selection-functions
 can-a-rare-mutant-establish-in-a-population
 directional-selection
 over-and-underdominance
-study-questions-1
+study-questions-2
 going-further-3
 detecting-natural-selection
 r-programming-vectorisation
@@ -131,7 +129,7 @@ writing-a-set-of-fst-functions
 applying-functions-to-matrices-and-data-frames
 visualising-fst-along-a-chromosome
 identifying-outliers-in-our-fst-distribution
-study-questions-2
+study-questions-3
 going-further-4
 multilocus-evolution
 tools-for-investigating-differences-between-groups
@@ -152,7 +150,7 @@ performing-a-qtl-analysis
 linking-anova-to-our-qtl-analysis
 exploring-the-phenotype-genotype-association
 testing-the-same-genotype-phenotype-association-with-anova
-study-questions-3
+study-questions-4
 going-further-5
 inferring-evolutionary-processes-from-sequence-data
 working-with-dna-sequence-data
@@ -171,7 +169,7 @@ reading-in-variant-data
 calculating-nucleotide-diversity-statistics
 visualising-nucleotide-diversity-along-the-chromosome
 performing-a-sliding-window-analysis
-study-questions-4
+study-questions-5
 going-further-6
 speciation-genomics
 r-programming-visualizing-complex-data
@@ -186,7 +184,7 @@ visualising-the-data
 visualising-patterns-along-the-chromosome
 interlude-relative-vs.-absolute-measures-of-nucleotide-diversity
 investigating-recombination-rate-variation
-study-questions-5
+study-questions-6
 going-further-7
 reconstructing-the-past
 phylogenetics-in-r
@@ -200,7 +198,7 @@ village-dogs-as-an-insight-to-dog-domestication
 reading-the-data-into-r
 performing-a-pca
 visualising-the-pca
-study-questions-6
+study-questions-7
 going-further-8
 advancing-further-in-r
 advanced-features-of-rstudio
@@ -220,5 +218,7 @@ using-sapply-instead-of-for-on-vectors
 using-apply-instead-of-for-on-matrices-and-dataframes
 returning-to-writing-your-own-functions
 concluding-remarks
-study-questions-7
+study-questions-8
 going-further-9
+rmarkdown
+rmarkdown-1

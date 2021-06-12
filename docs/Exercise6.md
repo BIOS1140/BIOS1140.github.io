@@ -30,7 +30,7 @@ The first thing we need to do is set up the R environment. Today we'll be using 
 install.packages("qtl")
 ```
 
-Once it is installed, we will clear the R environment with `rm(list = ls())`[^exercise6-1] and then load the two packages.
+Once it is installed, we will clear the R environment with `rm(list = ls())` [^exercise6-1] and then load the two packages.
 
 [^exercise6-1]: Note that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data.
 
@@ -93,9 +93,7 @@ iris %>%
 #> 3 virginica               5.55
 ```
 
-There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes[^exercise6-2].
-
-[^exercise6-2]: We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.
+There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes^[We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.].
 
     
     ```r
@@ -130,9 +128,10 @@ A boxplot can be a bit difficult to read if you've never seen one before, but he
 -   The boundaries of the box are the 1st and 3rd quartile, i.e., half of your data is contained within the box[^exercise6-3]
 -   The lines outside the box are the range of non-outlier data, and the points are outliers
 
-[^exercise6-3]: Remember that in `ggplot2`, we can add more layers of geometry if we want to add information to our visualisation. Below, I've added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.
+[^exercise6-3]: 
+    
+    Remember that in `ggplot2`, we can add more layers of geometry if we want to add information to our visualisation. Below, I've added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.
 
-    ::: {.fold .c .o}
     
     ```r
     ggplot(iris, aes(Species, Petal.Length)) +
@@ -141,7 +140,7 @@ A boxplot can be a bit difficult to read if you've never seen one before, but he
     ```
     
     <img src="Exercise6_files/figure-html/unnamed-chunk-9-1.png" width="672" />
-    :::
+
 
 A boxplot is good at showing the distribution in the data. From this plot, we can see that the species obviously differ in this trait. But how large differences do we need to make confident conclusions? This is where statistic testing comes in[^exercise6-4].
 
@@ -401,7 +400,7 @@ Now we have a table where we can see the numbers of each resistance phenotype fo
 
 [^exercise6-10]: Visualising this data can also be useful to see the associations. I have attempted a couple of different ones, but there is no single best way to do this. See if you can come up with a better one yourself!
 
-    ::: {.fold .c .o}
+
     
     ```r
     ggplot(qtl_df, aes(phenotype, qtl_marker)) + geom_jitter(height = 0.2, width = 0.2)
@@ -414,7 +413,7 @@ Now we have a table where we can see the numbers of each resistance phenotype fo
     ```
     
     <img src="Exercise6_files/figure-html/unnamed-chunk-17-2.png" width="672" />
-    :::
+
 
 ### Testing the same genotype phenotype association with ANOVA
 

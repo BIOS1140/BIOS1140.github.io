@@ -603,11 +603,11 @@ You can save your ggplot to a file using the function `ggsave()`. At the very le
 
 ```{r}
 # create our plot
-hde_boxplot <- ggplot(hde, aes(species, mass)) +
-  geom_boxplot()
+sw_plot <- ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
+  geom_point()
 
 # save it
-ggsave("hde_boxplot.png", hde_boxplot)
+ggsave("sw_plot.png", sw_plot)
 ```
 
 ## Reshaping data with pivot_longer()

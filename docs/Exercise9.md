@@ -111,9 +111,6 @@ In the next section, we will learn more about how to plot trees.
 *In this section, we show various ways to control the appearance of phylogenetic trees. The plots are hidden by default to avoid extensive scrolling, click "show plot" to see them! Or better, run the code yourself, try to change some arguments and see what happens.*
 
 
-<script src="js/hideOutput.js"></script>
-
-
 We can actually do a lot with our trees in R using a few simple plot commands. Let's generate another random tree, this time with 5 taxa.
 
 :::{.fold .o}
