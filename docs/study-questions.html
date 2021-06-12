@@ -378,12 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html"><i class="fa fa-check"></i>Week 3 Assignment</a>
-<ul>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#for-loops-1"><i class="fa fa-check"></i>1 – for-loops</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i>2 – Hardy Weinberg Equilibrium</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#genetic-drift"><i class="fa fa-check"></i>3 – Genetic drift</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment</a></li>
+<li class="chapter" data-level="11" data-path="week-6-assignment.html"><a href="week-6-assignment.html"><i class="fa fa-check"></i><b>11</b> Week 6 assignment</a></li>
+<li class="chapter" data-level="12" data-path="week-7-assignment.html"><a href="week-7-assignment.html"><i class="fa fa-check"></i><b>12</b> Week 7 assignment</a></li>
+<li class="chapter" data-level="13" data-path="week-8-assignment.html"><a href="week-8-assignment.html"><i class="fa fa-check"></i><b>13</b> Week 8 assignment</a></li>
+<li class="chapter" data-level="14" data-path="week-9-assignment.html"><a href="week-9-assignment.html"><i class="fa fa-check"></i><b>14</b> Week 9 assignment</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 10 assignment</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
@@ -411,116 +414,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="study-questions" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Study questions</h2>
-<p>The study questions for week 1-2 are found here. Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix]<a href="rmarkdown.html#rmarkdown">A</a>.</p>
-<hr />
-<p>Solve all the problems below using R. Some questions have optional parts that are a little more difficult. We encourage you to do these, but feel free to skip them if the mandatory tasks offers sufficient challenge. You can solve the problems in any way you want (as long as you’re using R!) unless otherwise stated.</p>
-<p><strong>1. Basic R</strong></p>
-<p><strong>1.1</strong></p>
-<ol style="list-style-type: lower-alpha">
-<li>Assign a variable with the value 6 to an object named after your favorite animal.<br />
-</li>
-<li>Assign a variable with the value 1 to an object named after your least favorite animal.<br />
-</li>
-<li>Calculate the mean of your two objects, and assign that number to an object named after an animal you think is mediocre at best.</li>
-<li>Combine all your scores in a vector and assign it to an object. Add names to each element of the vector so that the name corresponds to the score.</li>
-<li><strong>Optional:</strong> Combine your scores into a data frame with one column for the name and one for the score. Add a column with the average weight of your animals, and another with their top speeds.</li>
-</ol>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="study-questions.html#cb120-1" aria-hidden="true" tabindex="-1"></a>grevling <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb120-2"><a href="study-questions.html#cb120-2" aria-hidden="true" tabindex="-1"></a>rur <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb120-3"><a href="study-questions.html#cb120-3" aria-hidden="true" tabindex="-1"></a>torsk <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(grevling, rur))</span>
-<span id="cb120-4"><a href="study-questions.html#cb120-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-5"><a href="study-questions.html#cb120-5" aria-hidden="true" tabindex="-1"></a>dyr <span class="ot">&lt;-</span> <span class="fu">c</span>(grevling, rur, torsk)</span>
-<span id="cb120-6"><a href="study-questions.html#cb120-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dyr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;grevling&quot;</span>, <span class="st">&quot;rur&quot;</span>, <span class="st">&quot;torsk&quot;</span>)</span>
-<span id="cb120-7"><a href="study-questions.html#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dyr</span></span></code></pre></div>
-<p><strong>1.2</strong></p>
-<p>The formula for the volume of a sphere is <span class="math inline">\(\frac{4}{3}\pi r^3\)</span>.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Calculate the volume of a sphere with a radius of 4.5 cm</li>
-<li>Create a vector of radiuses from 1 to 10, in steps of 0.5. Calculate the volume of spheres with all these radiuses. (<em>hint: in R the easiest way to do this is in a single operation without the use of any loops, see if you can figure it out!</em>)</li>
-<li><strong>Optional:</strong> make a function that takes one or more radiuses as input, and outputs the volume of a sphere with those radiuses.</li>
-</ol>
-<p><strong>1.3</strong></p>
-<p>You should use logical operators (<code>==</code>, <code>&gt;</code> etc.) to solve the following tasks.</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>Check if the number <span class="math inline">\(e\)</span> is larger than the number <span class="math inline">\(\pi\)</span>.</p>
-<p>Create a vector of random numbers with the following code:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="study-questions.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">645</span>)</span>
-<span id="cb121-2"><a href="study-questions.html#cb121-2" aria-hidden="true" tabindex="-1"></a>rnumbers <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">100</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div></li>
-<li><p>How many of the numbers are equal to or larger than 2?<br />
-<em>Hint: you can use the</em> <code>sum()</code> <em>function on a vector of TRUE/FALSE, it will then treat each TRUE as 1 and each FALSE as 0. Example: </em> <code>sum(c(TRUE, FALSE, TRUE))</code> <em>returns</em> <code>2</code></p></li>
-<li><p>How many of the numbers are exactly 1?</p></li>
-<li><p><strong>Optional:</strong> Check if R considers <span class="math inline">\((\sqrt2 )^2\)</span> to be exactly equal to 2. What is the result? Why is it this way?</p></li>
-</ol>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="study-questions.html#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code></pre></div>
-<p><strong>2. Data import and plotting</strong></p>
-<p>For this section you will use the dataset “vitruvian.txt”. The data set consists of body measurements from biology students from earlier years in the course BIO2150. Make sure you download it from Canvas, and take note of where it’s stored on your computer.</p>
-<p>For this part of the exercise, in addition to the course’s computing exercises, <a href="https://evengar.github.io/short-tutorials">these short tutorials</a> may be helpful. Go through them before continuing if you’d like, or use them as reference material when you’re unsure about something.</p>
-<p><strong>2.1</strong></p>
-<p>Importing and inspecting the data</p>
-<ol style="list-style-type: lower-alpha">
-<li>Open the file “vitruvian.txt” in a plain text editor (like notepad for PC or TextEdit for mac). What kind of file is this? How are the data entries separated?</li>
-<li>Import the file into R.</li>
-<li>Use tools in R to figure out the following:
-<ol style="list-style-type: lower-roman">
-<li>are there any missing values (NAs) in this data set?</li>
-<li>how many observations (rows) and variables (columns) are there?</li>
-<li>which years did the measuring take place?</li>
-<li>what is the sex ratio for biology students in this period?</li>
-</ol></li>
-<li>Remove any rows that contain NA in your data set, leaving you with only complete cases. How many rows did you lose?</li>
-</ol>
-<p><strong>2.2</strong></p>
-<p>Summarizing the data</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>What is the mean body length of all bio students from all years? What is the standard deviation? What is the median?</p>
-<p>A popular claim/myth is that the ratio of body length to the length from foot to navel is approximately the golden ratio (<span class="math inline">\(\approx\)</span> 1.618)</p></li>
-<li><p>Check if this is true for the bio students by getting the mean and standard deviation of the ratio between <code>body.length</code> and <code>foot.navel</code>.</p></li>
-<li><p>Calculate the mean height of each of the sexes from all years.</p></li>
-<li><p>Subset your data to everyone taller than the average for their respective sex. How many males and females are taller than average?</p></li>
-<li><p><strong>Optional:</strong> use R’s <code>lm()</code> function to model <code>body.length</code> from <code>foot.navel</code>. What is the slope of the regression? What is the intercept, and how do you interpret that?</p></li>
-</ol>
-<p><strong>2.3</strong></p>
-<p>Before plotting the vitruvian data, we take a detour with some basic plot exercises.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Make a vector of the numbers 1 through 50, and one with the numbers 51 through 100, call them x and y respectively. Plot them against each other as points.</li>
-<li>Plot x against x<sup>2</sup> as a line with any color other than black.</li>
-<li>Plot a line of x against <span class="math inline">\(\frac{y^2}{4}\)</span> on top of your previous plot in a different color.</li>
-<li>Add a title to your plot, stating how pretty it is.</li>
-</ol>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="study-questions.html#cb123-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb123-2"><a href="study-questions.html#cb123-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">51</span><span class="sc">:</span><span class="dv">100</span></span>
-<span id="cb123-3"><a href="study-questions.html#cb123-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb123-4"><a href="study-questions.html#cb123-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb123-5"><a href="study-questions.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, x<span class="sc">^</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;salmon2&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
-<span id="cb123-6"><a href="study-questions.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div>
-<p><strong>2.4</strong></p>
-<p>Now we return to our vitruvian data set. We will more or less be plotting the same things we explored in task 2.2.</p>
-<ol style="list-style-type: lower-alpha">
-<li>Make a histogram of <code>body.length</code>. What can you say about the resulting distribution?</li>
-<li>Plot <code>foot.navel</code> against <code>body.length</code> (so that body length is on the y-axis), and color the points by sex. Add a line with a slope of 1.618. How well does the data fit the golden ratio? Add a title, legend and informative axis labels to your plot.</li>
-<li>Make a boxplot of students’ heights for the two sexes. Are there any outliers?</li>
-<li>Make a subset of your data that only contains observations from 2012. Make a boxplot of neck size for this year, grouped by sex.</li>
-<li><strong>Optional</strong> Use your model from 2.2 e. to add a line of best fit to your plot of <code>foot.navel</code> against <code>body.length</code>. How does it compare to the golden ratio line? Add a confidence interval if you figure out how.</li>
-</ol>
-<p><strong>3. Interpreting code and errors</strong></p>
-<p><strong>3.1</strong></p>
-<p>Look at the code below:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="study-questions.html#cb124-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb124-2"><a href="study-questions.html#cb124-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">6</span></span></code></pre></div>
-<ol style="list-style-type: lower-alpha">
-<li>In your own words, what is the difference between <code>=</code> and <code>==</code> in the code above?</li>
-<li>What will the code output? Why?</li>
-<li>What is the value of <code>a</code> after executing this code?</li>
-</ol>
-<p><strong>3.2</strong></p>
-<p>You tried to import the file “example.csv”, and got the following error:</p>
-<pre><code>#&gt; Error in file(file, &quot;rt&quot;): cannot open the connection</code></pre>
-<p>What is the most probable cause of the error message? How can you fix it?</p>
-<p><strong>3.4</strong></p>
-<p>You tried to extract the <code>Sepal.Length</code> column from the iris data set as follows, but got an error:</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="study-questions.html#cb126-1" aria-hidden="true" tabindex="-1"></a>iris[,Sepal.Length]</span>
-<span id="cb126-2"><a href="study-questions.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in `[.data.frame`(iris, , Sepal.Length): object &#39;Sepal.Length&#39; not found</span></span></code></pre></div>
-<p>What caused the error? How can you fix it?</p>
+<p>The study questions for week 1-2 are found <a href="w01.html#w01">here</a>. Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see <a href="rmarkdown.html#rmarkdown">the appendix</a>.</p>
 </div>
             </section>
 

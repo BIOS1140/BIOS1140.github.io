@@ -378,12 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html"><i class="fa fa-check"></i>Week 3 Assignment</a>
-<ul>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#for-loops-1"><i class="fa fa-check"></i>1 – for-loops</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i>2 – Hardy Weinberg Equilibrium</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#genetic-drift"><i class="fa fa-check"></i>3 – Genetic drift</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment</a></li>
+<li class="chapter" data-level="11" data-path="week-6-assignment.html"><a href="week-6-assignment.html"><i class="fa fa-check"></i><b>11</b> Week 6 assignment</a></li>
+<li class="chapter" data-level="12" data-path="week-7-assignment.html"><a href="week-7-assignment.html"><i class="fa fa-check"></i><b>12</b> Week 7 assignment</a></li>
+<li class="chapter" data-level="13" data-path="week-8-assignment.html"><a href="week-8-assignment.html"><i class="fa fa-check"></i><b>13</b> Week 8 assignment</a></li>
+<li class="chapter" data-level="14" data-path="week-9-assignment.html"><a href="week-9-assignment.html"><i class="fa fa-check"></i><b>14</b> Week 9 assignment</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 10 assignment</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
@@ -412,7 +415,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="speciation-genomics" class="section level1" number="8">
 <h1><span class="header-section-number">Week 8</span> Speciation Genomics</h1>
 <script src="js/hideOutput.js"></script>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="speciation-genomics.html#cb332-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.width =</span> <span class="dv">8</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="speciation-genomics.html#cb325-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">fig.width =</span> <span class="dv">8</span>)</span></code></pre></div>
 <p>Genomic data has revolutionised the way we conduct speciation research over the past decade. With high-throughput sequencing it is now possible to examine variation at thousands of markers from across the genome. Genome-wide studies of genetic differentiation, particularly measured using <em>F</em><sub>ST</sub> have been used to identify regions of the genome that might be involved in speciation. The rationale is relatively simple, <em>F</em><sub>ST</sub> is a measure of genetic differentiation and when species diverge in the presence of gene flow, we might expect that genome regions underlying traits that prevent gene flow between species will show a higher level of <em>F</em><sub>ST</sub> than those that do not. In other words, genome scan analyses can, in principle, be used to identify barrier loci involved in the speciation process. This approach became extremely popular in many early speciation genomic studies but it overlooked a crucial point - that other processes, not related to speciation can produce the same patterns in the genome. In this session, we will leverage our ability to handle high-throughput, whole genome resequencing data to investigate patterns of nucleotide diversity, genetic differentiation and genetic divergence across a chromosome. We will examine what might explain some of the patterns we observe and learn that while genome scans can be a powerful tool for speciation research, they must be used with caution.</p>
 <div id="what-to-expect-7" class="section level3 unnumbered">
 <h3>What to expect</h3>
@@ -426,10 +429,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-4" class="section level3 unnumbered">
 <h3>Getting started</h3>
 <p>The first thing we need to do is set up the R environment. Today we’ll be using <code>tidyverse</code> and the <code>PopGenome</code> package that we installed and loaded in the <a href="https://evolutionarygenetics.github.io/Chapter7.html">last session</a>.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="speciation-genomics.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
-<span id="cb333-2"><a href="speciation-genomics.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb333-3"><a href="speciation-genomics.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb333-4"><a href="speciation-genomics.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PopGenome)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="speciation-genomics.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
+<span id="cb326-2"><a href="speciation-genomics.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb326-3"><a href="speciation-genomics.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb326-4"><a href="speciation-genomics.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PopGenome)</span></code></pre></div>
 </div>
 </div>
             </section>

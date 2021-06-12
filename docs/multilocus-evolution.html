@@ -378,12 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html"><i class="fa fa-check"></i>Week 3 Assignment</a>
-<ul>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#for-loops-1"><i class="fa fa-check"></i>1 – for-loops</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i>2 – Hardy Weinberg Equilibrium</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#genetic-drift"><i class="fa fa-check"></i>3 – Genetic drift</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment</a></li>
+<li class="chapter" data-level="11" data-path="week-6-assignment.html"><a href="week-6-assignment.html"><i class="fa fa-check"></i><b>11</b> Week 6 assignment</a></li>
+<li class="chapter" data-level="12" data-path="week-7-assignment.html"><a href="week-7-assignment.html"><i class="fa fa-check"></i><b>12</b> Week 7 assignment</a></li>
+<li class="chapter" data-level="13" data-path="week-8-assignment.html"><a href="week-8-assignment.html"><i class="fa fa-check"></i><b>13</b> Week 8 assignment</a></li>
+<li class="chapter" data-level="14" data-path="week-9-assignment.html"><a href="week-9-assignment.html"><i class="fa fa-check"></i><b>14</b> Week 9 assignment</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 10 assignment</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
@@ -427,12 +430,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-2" class="section level3 unnumbered">
 <h3>Getting started</h3>
 <p>The first thing we need to do is set up the R environment. Today we’ll be using the <code>tidyverse</code> package once again but we will also use another package called <code>qtl</code>. First we will need to install this new package. (Remember that you only need to do this once, so you can comment out or delete the line below after installing).</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="multilocus-evolution.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;qtl&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="multilocus-evolution.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;qtl&quot;</span>)</span></code></pre></div>
 <p>Once it is installed, we will clear the R environment with <code>rm(list = ls())</code> <a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> and then load the two packages.</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="multilocus-evolution.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
-<span id="cb268-2"><a href="multilocus-evolution.html#cb268-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb268-3"><a href="multilocus-evolution.html#cb268-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb268-4"><a href="multilocus-evolution.html#cb268-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qtl)</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="multilocus-evolution.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
+<span id="cb261-2"><a href="multilocus-evolution.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb261-3"><a href="multilocus-evolution.html#cb261-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb261-4"><a href="multilocus-evolution.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(qtl)</span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">

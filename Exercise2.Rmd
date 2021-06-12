@@ -743,9 +743,8 @@ copeplot
 
 ## Study questions
 
-The study questions for week 1-2 are found here. Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix]\@ref(rmarkdown).
+The study questions for week 1-2 are found [here](#w01). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
 
-***
 
 
 

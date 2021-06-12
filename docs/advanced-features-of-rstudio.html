@@ -378,12 +378,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html"><i class="fa fa-check"></i>Week 3 Assignment</a>
-<ul>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#for-loops-1"><i class="fa fa-check"></i>1 – for-loops</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#hardy-weinberg-equilibrium"><i class="fa fa-check"></i>2 – Hardy Weinberg Equilibrium</a></li>
-<li class="chapter" data-level="" data-path="week-3-assignment.html"><a href="week-3-assignment.html#genetic-drift"><i class="fa fa-check"></i>3 – Genetic drift</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment</a></li>
+<li class="chapter" data-level="11" data-path="week-6-assignment.html"><a href="week-6-assignment.html"><i class="fa fa-check"></i><b>11</b> Week 6 assignment</a></li>
+<li class="chapter" data-level="12" data-path="week-7-assignment.html"><a href="week-7-assignment.html"><i class="fa fa-check"></i><b>12</b> Week 7 assignment</a></li>
+<li class="chapter" data-level="13" data-path="week-8-assignment.html"><a href="week-8-assignment.html"><i class="fa fa-check"></i><b>13</b> Week 8 assignment</a></li>
+<li class="chapter" data-level="14" data-path="week-9-assignment.html"><a href="week-9-assignment.html"><i class="fa fa-check"></i><b>14</b> Week 9 assignment</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 10 assignment</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
@@ -422,8 +425,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="everyone-has-a-history" class="section level3" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> Everyone has a history</h3>
 <p>Another useful feature of RStudio (and also the standard R distribution) is the fact that every command, function and input you type to the console is stored as a history. You can access this very easily using the function <code>history</code>. For example:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="advanced-features-of-rstudio.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show recent command history</span></span>
-<span id="cb419-2"><a href="advanced-features-of-rstudio.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">history</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="advanced-features-of-rstudio.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show recent command history</span></span>
+<span id="cb412-2"><a href="advanced-features-of-rstudio.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">history</span>()</span></code></pre></div>
 <p>In RStudio, this command will actually open the <code>history</code> pane and show you previous commands that you have run. You can even use the buttons at the top of this pane to reread commands into the console (i.e. <code>To Console</code>) or copy them into an R script (<code>To Source</code>).</p>
 <p>There is also an even easier way for you to quickly access the history or previously run commands when you are in the console. You can simply press the <code>up</code> key on your keyboard to rerun the previous lines. This can save you a lot of time and retyping.</p>
 </div>
@@ -436,14 +439,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="code-checking" class="section level3" number="10.1.4">
 <h3><span class="header-section-number">10.1.4</span> Code checking</h3>
 <p>A further useful feature for writing R scripts is the fact that the script viewer has a code syntax checker. This checks whether arguments or brackets are missing. For example, try pasting the following into a script and seeing what you get:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="advanced-features-of-rstudio.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try these to trigger RStudio syntax checking</span></span>
-<span id="cb420-2"><a href="advanced-features-of-rstudio.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, )</span>
-<span id="cb420-3"><a href="advanced-features-of-rstudio.html#cb420-3" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="er">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="advanced-features-of-rstudio.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Try these to trigger RStudio syntax checking</span></span>
+<span id="cb413-2"><a href="advanced-features-of-rstudio.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, )</span>
+<span id="cb413-3"><a href="advanced-features-of-rstudio.html#cb413-3" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)<span class="er">)</span></span></code></pre></div>
 <p>It might take some time to get used to reading these, but it is very helpful for seeing where errors might have occurred. This is especially useful if you are writing large blocks of code and you want to get some insight into what might be going wrong. Indeed, this is part of RStudio’s general design as a coding tool - you will have also noticed some of the other features this incorporates by now like syntax highlighting. For example, have a look at the simple <code>for</code> loop code block below, you can clearly see that RStudio highlights different parts of the code.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="advanced-features-of-rstudio.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple for loop</span></span>
-<span id="cb421-2"><a href="advanced-features-of-rstudio.html#cb421-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb421-3"><a href="advanced-features-of-rstudio.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb421-4"><a href="advanced-features-of-rstudio.html#cb421-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="advanced-features-of-rstudio.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple for loop</span></span>
+<span id="cb414-2"><a href="advanced-features-of-rstudio.html#cb414-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb414-3"><a href="advanced-features-of-rstudio.html#cb414-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
+<span id="cb414-4"><a href="advanced-features-of-rstudio.html#cb414-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This simple block contains two <strong>control flow</strong> examples (<code>for</code> and <code>in</code> - we will learn more about control flow in the next section) - these are highlighted in red in the code block here. There is also a numeric vector - this is shown in a blue-gree colour. Everything else, including ojects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">highly customisable too</a>.</p>
 </div>
 </div>

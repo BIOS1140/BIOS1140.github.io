@@ -658,7 +658,7 @@ nA1 <- rbinom(1, size = 2*N, prob = p2)
 # calculate p in generation 3
 p3 <- nA1/(2*N)
 p3
-#> [1] 0.1875
+#> [1] 0.6875
 ```
 
 If we were to to properly understand drift over more than one generation, we could now have used our `p3` to find p in the fourth generation, use the new $p$ to calculate $p$ in the next generation, and so on until we have simulated for all the number of generations we want.
@@ -671,21 +671,21 @@ nA1 <- rbinom(1, size = 2*N, prob = p3)
 # calculate p in generation 4
 p4 <- nA1/(2*N)
 p4
-#> [1] 0.3125
+#> [1] 0.8125
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p4)
 # calculate p in generation 5
 p5 <- nA1/(2*N)
 p5
-#> [1] 0.3125
+#> [1] 0.875
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p5)
 # calculate p in generation 5
 p6 <- nA1/(2*N)
 p6
-#> [1] 0.25
+#> [1] 0.6875
 
 # and so on ...
 ```
@@ -756,16 +756,16 @@ for (i in 2:ngen){
 }
 
 p
-#>   [1] 0.5000 0.3750 0.4375 0.7500 0.8125 0.8750 0.8750 0.8125 0.8125 0.8125
-#>  [11] 0.6875 0.6875 0.8750 0.7500 0.8125 0.6875 0.6250 0.7500 0.7500 0.7500
-#>  [21] 0.8125 0.6250 0.5625 0.4375 0.5000 0.3750 0.2500 0.3750 0.4375 0.5000
-#>  [31] 0.3125 0.2500 0.1250 0.0625 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [41] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [51] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [61] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [71] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [81] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [91] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+#>   [1] 0.5000 0.3750 0.3750 0.3750 0.4375 0.3750 0.3750 0.5625 0.7500 0.8750
+#>  [11] 0.9375 0.9375 0.9375 0.8750 0.9375 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [21] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [31] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [41] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [51] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [61] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [71] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [81] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [91] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
 ```
 :::
 
@@ -870,7 +870,8 @@ And there we have it! A plot of our simulated data showing allele frequency chan
 
 ## Study questions
 
-For study questions on this tutorial, download the `chapter3_R_questions.R` from Canvas or find it [here](PLACEHOLDER).
+The study questions for week 3 are found [here](#w03). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+
 
 ## Going further
 

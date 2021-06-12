@@ -220,4 +220,11 @@ returning-to-writing-your-own-functions
 concluding-remarks
 study-questions-8
 going-further-9
+functions-1
+fitness
+selection
+week-6-assignment
+week-7-assignment
+week-8-assignment
+week-9-assignment
 rmarkdown
