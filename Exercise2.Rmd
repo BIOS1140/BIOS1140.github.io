@@ -590,87 +590,12 @@ ggplot(data = starwars, mapping = aes(x = birth_year, y = height)) +
 ```
 :::
 
-### More ggplot examples
-
-There are many different ways to visualise data using `ggplot2` beyond the standard scatter plot we have already seen. For a full list with reproducible examples, you should see the [ggplot2 manual](http://ggplot2.tidyverse.org/reference/). However, we will demonstrate a selection here and also get more of an idea of why `ggplot2` is so flexible.
-
 ::: {.blue}
 **Tip:**\
 From now on, we will no longer explicitly write the names of the `data` and `mapping` arguments. Instead, we will go with argument order, as explained in the tutorial last week. `data` is the first argument of `ggplot()` and `mapping` is the second. Remember that you can always recognize the `mapping` argument since it always contains the `aes()` function. Similarly, `x` and `y` are always the first and second arguments respectively of `aes()`.
 
 This means that `ggplot(data = starwars, mapping = aes(x = height, y = mass))` can just as well be written `ggplot(starwars, aes(height, mass))`
 :::
-
-#### Visualising data distributions
-
-First of all, what if we want to look at the distribution of our data? For exampe, we could have looked at the distribution of mass in our dataset and spotted that Jabba was an issue before making our scatter plot. One way to do this would have been to plot a histogram using the `geom_histogram` layer.
-
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
-sw_massplot <- ggplot(starwars, aes(mass))
-sw_massplot + geom_histogram(binwidth = 10)
-```
-
-Another way to visualise a distribution is to use a smoothed density plot with the `geom_density()` layer.
-
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
-sw_massplot + geom_density()
-```
-
-Both of these visualisations clearly shows both outliers and the distribution of our data.
-
-#### Comparing data distributions
-
-Perhaps we want to compare mass among the different species in our data? One way we can do this is with a boxplot like we did in Chapter 1. `ggplot2` makes this easy using the `geom_boxplot()` layer.
-
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
-sw_mass_species <- ggplot(starwars, aes(species, mass))
-sw_mass_species + geom_boxplot()
-```
-
-Hmm - although this plot is detailed and we can still see there is a clear outlier, it is difficult to really see much more. This is an important point of data visualisation, you need to think what you hope those viewing the plot can learn from it.
-
-Using the data handling skills we learned earlier in this session, let's subset our data and visualise it again using `geom_boxplot()`. To get started, we will compare the mass of humans, droids and ewoks.[^exercise2-8]
-
-[^exercise2-8]: The `|` inside `filter()` in the code means "or". So our logical statement can be read as: `species` is "Human" OR `species` is "Droid" OR `species` is "Ewok".
-
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
-# subset data
-hde <- starwars %>% filter(species == "Human" | species == "Droid" | species == "Ewok")
-
-# plot the distributions
-hde_plot <- ggplot(hde, aes(species, mass))
-hde_plot + geom_boxplot()
-```
-
-Clearly, Ewoks have a much lower mass than either droids or humans - but note here that there is only a single Ewok observation, so we can't really compare the distribution of masses among these species.
-
-**Exercise: Use tools from `dplyr` to count the number of observations for each species in our `hde` subset**
-
-<details>
-
-<summary>
-
-Show hint
-
-</summary>
-
-Use `group_by()` and `tally()`
-
-</details>
-
-::: {.fold .s .o}
-```{r, eval = TRUE, warning = FALSE, message = FALSE}
-hde %>% group_by(species) %>% tally()
-```
-:::
-
-We could also visualise the solution from the exercise as a barplot with `ggplot2`, using geom_bar(). For example:
-
-```{r, eval = TRUE, echo = TRUE, warning = FALSE, message = FALSE}
-ggplot(hde, aes(species)) + geom_bar()
-```
-
-You will learn more about ggplots, how to customise them and different geoms throughout this course. For now, we hope you see how flexible and powerful `ggplot2` is for making visualisations!
 
 ### Saving your plots
 
