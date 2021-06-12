@@ -1,6 +1,6 @@
 # (APPENDIX) Appendix {-}
 
-# Appendix: About assignments and RMarkdown {#rmarkdown}
+# About assignments and RMarkdown {#rmarkdown}
 
 There are some important things to consider when handing in the assignments:
 
@@ -10,6 +10,6 @@ There are some important things to consider when handing in the assignments:
 
 One simple way of combining code, plots and text is to write in a word document where you also paste your code and figures that you've exported from R. Another way is to use RMarkdown, which will be introduced in the next section.
 
-## RMarkdown
+### RMarkdown {-}
 
 Rmarkdown ...

@@ -221,4 +221,3 @@ concluding-remarks
 study-questions-8
 going-further-9
 rmarkdown
-rmarkdown-1
