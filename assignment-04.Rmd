@@ -1,1 +1,128 @@
-# Week 4 assignment
+# Week 4 assignment {- #w04}
+
+
+
+#### 1. Functions
+
+You need to define the `calc_geno()` function from the tutorial to complete this part of the assignment.
+
+:::{.fold .c}
+
+```{r}
+calc_geno <- function(p){
+  
+  # calculate q from p
+  q <- 1 - p 
+  
+  # calculate the expected genotype frequencies (_e denotes expected)
+  A1A1_e <- p^2
+  A1A2_e <- 2 * (p * q)
+  A2A2_e <- q^2
+  
+  # return the genotype frequencies
+  geno_freq <- c(A1A1_e, A1A2_e, A2A2_e)
+  return(geno_freq)
+}
+```
+
+:::
+
+a) Create a function with two arguments, `x` and `y`, that checks whether `x` is larger than `y`. You can decide yourself if you want the function to return `TRUE`/`FALSE` or a string of text.
+
+The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 B_1$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
+
+```{r eval = FALSE}
+p <- calc_p(geno_counts)
+geno_freq <- calc_geno(p)
+```
+
+Or even `calc_geno(calc_p(geno_counts))` if you prefer! Notice how easy it is to follow what happens in the code above. This adheres to a principle called [modular programming](https://en.wikipedia.org/wiki/Modular_programming), where larger tasks are separated into smaller, more manageable tasks. Now it's your turn to actually turn the above into working code by creatng the `calc_p` function.
+
+b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$, i.e., $p$. To test your code, run the following:
+
+    ```{r, eval = FALSE}
+    geno <- c(6, 33, 81)
+    p <- calc_p(geno)
+    geno_freq <- calc_geno(p)
+    ```
+
+    `p` should be `0.1875`, and `geno_freq` should be `0.03515625 0.30468750 0.66015625`
+
+c) **Optional**: create a function called `calc_geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `geno_freq()` to get expected genotype frequencies directly from genotype counts.
+
+For the rest of the assignment, feel free to use these functions, and create new functions if you like.
+
+#### 2. Fitness
+
+You need to define the functions `selection_model()` and `selection_sim()` to complete this part of the assignment.
+
+::::{.yellow}
+
+:::{.fold .c}
+
+```{r, eval = TRUE, echo = TRUE, results = "hide"}
+selection_model <- function(p, rel_fit){
+  # define q
+  q <- 1 - p
+  # calculate genotype frequencies (under HWE)
+  gf <- c(p^2, 2*(p*q), q^2)
+  
+  # calculate mean pop fitness
+  w_bar <- sum(rel_fit*gf)
+  
+  # calculate marginal allele frequencies
+  w1 <- (p*rel_fit[1]) + (q*rel_fit[2])
+  w2 <- (p*rel_fit[2]) + (q*rel_fit[3])
+
+  # calculate freq of p in the next generation
+  p_t <- (p*w1)/w_bar
+  
+  # make vector for output
+  output <- c(p = p, q = q, w_bar = w_bar, 
+                 w1 = w1, w2 = w2, p_t = p_t)
+  
+  # return the results
+  return(output)
+}
+```
+
+```{r, eval = TRUE, echo = TRUE, results = "hide"}
+selection_sim <- function(p_init, rel_fit, ngen){
+  
+  # Set first generation
+  mod_pars <- t(selection_model(p = p_init, rel_fit = rel_fit))
+  
+  # simulate for n generations
+  for(i in 2:ngen){
+    mod_pars <- rbind(mod_pars, selection_model(p = mod_pars[i-1, "p_t"], rel_fit = rel_fit))
+  }
+  
+  # make generations object
+  g <- 1:ngen
+  
+  # return the result as a data frame
+  return(as.data.frame(cbind(g, mod_pars)))
+}
+```
+
+:::
+
+::::
+
+a) What are absolute and relative fitness? What do we mean by marginal fitness?
+
+We sample a 315 individuals from a population of snails which have a brown/yellow polymorphism. This is controlled by a single locus B. B1B1 individuals are brown, so are B1B2 individuals but B2B2 is yellow. In our sample, 184 snails are B1B1, 60 are B1B2 and 81 are B2B2. We know from our experimental work that on average, brown individuals have 33 offspring, whereas yellow individuals have 24. Calculate the following:
+
+b) the frequency of the B1 and B2 alleles
+
+c) the relative fitnesses 
+
+d) the marginal fitness
+
+e) the mean population fitness.
+
+#### 3. Selection
+
+a) Using R code we learned during the tutorial, simulate selection over 100 generations for a case where A1A1 has the highest fitness and the relative fitness of the genotypes A1A2 and A2A2 is 0.4. The initial frequency of the A1 allele is 0.01. Plot the frequency of p over the generations. Is A1 dominant, additive or recessive? What can we infer from the plot?
+
+b) What is the difference between directional selection and balancing selection? 
