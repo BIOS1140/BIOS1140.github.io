@@ -27,13 +27,10 @@ The first thing we need to do is set up the R environment. We won't be using any
 library(tidyverse)
 ```
 
-## R-programming: Vectorisation
+## More on functions: Vectorisation
 
 
 <script src="js/hideOutput.js"></script>
-
-
-### More on functions: vectorisation
 
 Last week you learned a bit about creating your own functions, and hopefully saw how useful they can be for simplifying your work flow. This week you will learn more about how they work, and some tricks for using functions efficiently.
 
@@ -245,15 +242,12 @@ ifelse(animals == "horse", "actual horse", "almost horse")
 
 This usage can be convenient when plotting values, as you will see in the evolution-part of the tutorial.
 
-## Evolutionary biology: F~ST~
+
+## Understanding *F*~ST~ - the fixation index
 
 
 <script src="js/hideOutput.js"></script>
 
-
-### Understanding *F*~ST~ - the fixation index
-
-#### What is *F*~ST~?
 
 *F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*\~ST essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
 
@@ -265,7 +259,7 @@ For simplicity, imagine we are examining two populations only. With this formula
 
 You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
 
-#### A worked example of *F*~ST~ in humans
+### A worked example of *F*~ST~ in humans
 
 As an illustrative example, we will calculate *F*~ST~ for the SNP rs4988235 associated with lactase persistence in humans. This SNP is located \~14 Kb upstream of the *LCT* gene on Chromosome 2 and is biallelic for C/T; a T at this position is strongly associated with the ability to digest milk in adulthood. We sample 80 people each from two populations which differ in the frequency of lactase persistence - Americans of European descent and Druze people from Israel. The counts of genotypes are shown in the table below. Note that these data are modified from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
@@ -331,7 +325,7 @@ fst <- (ht - hs)/ht
 
 If your calculations were correct, then you should have an *F*~ST~ estimate of 0.59 - this is very high for between two human populations. One way to interpret the *F*~ST~ value we have here is that 59% of genetic variance we observe differs between populations. Since population can explain such a large difference in this case, we might expect selection to be responsible...
 
-#### Writing a set of *F*~ST~ functions
+### Writing a set of *F*~ST~ functions
 
 The code in the previous section was useful to demonstrate how we can calculate *F*~ST~, but it would be a lot of work to run through this every single time we want estimate the statistic for a locus. This being R, we can of course easily create a function that will do all of the leg work for us! We will take the code we wrote out in the last section and use it here to write two functions that we can use when we want to calculate *F*~ST~. Note that for simplicity, we will only write functions that work for **two populations**.
 
@@ -403,11 +397,11 @@ calc_fst(af_american, af_druze)
 
 This should be the same as you got before, but with a lot less work. Next, we'll look at applying a function to a bigger data set with `apply()`.
 
-#### Applying functions to matrices and data frames
+### Applying functions to matrices and data frames
 
 Extending our *LCT* and lactase persistence example, let's get some data from multiple human populations. You can download the data [here](https://bios1140.github.io/data/lct_count.tsv)
 
-**Import the data into R using the `read.table()` function. If you're unsure about how you do this, remember that you can go back and check in the tutorial from the first week**
+**Exercise: Import the data into R using the `read.table()` function. If you're unsure about how you do this, remember that you can go back and check in the tutorial from the first week**
 
 <details>
 
@@ -421,10 +415,14 @@ The data is separated by tabulator (`"\t"`), and has a header.
 
 </details>
 
+:::{.fold .s}
+
 
 ```r
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
 ```
+
+:::
 
 
 
@@ -477,7 +475,10 @@ calc_fst(af_eastasian$p, af_bedouin$p)
 
 Here we see *F*~ST~ is substantially lower. Allele frequency differences are lower between these populations.
 
-### Visualising *F*~ST~ along a chromosome
+## Visualising *F*~ST~ along a chromosome
+
+
+<script src="js/hideOutput.js"></script>
 
 Next, we will combine vectorisation and our custom functions to calculate *F*~ST~ for a series of SNPs in the vicinity of the *LCT* gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data [here](https://bios1140.github.io/data/LCT_snps.tsv)
 
@@ -610,7 +611,7 @@ a + scale_colour_manual(values = c("black", "red"))
 
 In the next section, we'll demonstrate how we can use the distribution of *F*~ST~ to identify **outliers** as potential targets of selection.
 
-#### Identifying outliers in our *F*~ST~ distribution
+### Identifying outliers in our *F*~ST~ distribution
 
 How can we identify outliers in our *F*~ST~ data? First of all, we can look at the distribution of our data by making a histogram of `fst`.
 
@@ -623,7 +624,7 @@ ggplot(lct_snps, aes(fst)) + geom_histogram(binwidth = 0.05)
 
 Now, it's apparent that some values are way larger than the rest, but where do we set the threshold? One way to do it is to set some arbitrary value, and say that all values larger than this should be considered outliers. This can for instance be that we mark the highest 5% as outliers. In R, we can get this value with the `quantile()` function.
 
-In the following example, we make a vector of numbers from 0 to 100, and use the quantile function to find the highest 5% (or lowest 95%).
+In the following example, we make a vector of numbers from 0 to 200, and use the quantile function to find the highest 5% (or lowest 95%).
 
 
 ```r

@@ -1,1 +1,35 @@
-# Week 6 assignment
+# Week 6 assignment {- #w06}
+
+#### 1. Investigating differences between groups {-}
+
+a) Using the `iris` dataset, visualise the difference in petal width and sepal length between the species. A natural approach would be to make several boxplots for this, but feel free to experiment with the visualization!
+
+b) Use ANOVA to test whether mean petal width and sepal length differs among species.
+
+c) What proportion of the variance explained in petal width and sepal length is due to differences among species? Hint: use the `summary.lm()` function.
+
+#### 2. QTL analysis in bedbugs {-}
+
+For our QTL analysis, we genotyped our individuals at 334 markers and used an F2 intercross design. The grandparents of our cross were fixed for AA and BB at each of these informative markers.
+
+a. Explain what we mean by an F2 intercross design
+
+b. What are the *expected* genotype frequences among F2 individuals we used for the actual QTL experiment?
+
+c. Explain what a linkage map is and the units it is expressed in.
+
+#### 3. Investigating a QTL data set {-}
+
+For this part of the assignment, we have created a new data frame for you to investigate. The data can be downloaded [here](https://BIOS1140.github.io/data/qtl_markers.tsv). The data is a tabulator-separated text file, and can be read in with the following command:
+
+
+```r
+qtl_markers <- read.table("qtl_markers.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
+```
+
+The data contains four columns. The first two are phenotype encoded as text and encoded as numeric values, respectively. The last two are the genotypes at two different positions. One is the QTL marker we identified during the tutorial, while the other is a randomly selected marker, which likely is not associated with phenotype.
+
+Investigate the two markers and their association with the pesticide resistance phenotype. Make relevant plots and tables, and test for associations with ANOVA. Use this information to conclude which marker is the QTL marker, and which is the randomly selected marker.
+
+*Hint: You have to use* `pheno_numeric` *as response variable (i.e. before the tilde `~`) when doing the ANOVA.*  
+*Hint: Try using the* `table()` *function, i.e.,* `table(qtl_markers$phenotype, qtl_markers$markerx)`

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140</title>
+  <title>5.1 More on functions: Vectorisation | R tutorials in BIOS1140</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta property="og:title" content="5.1 More on functions: Vectorisation | R tutorials in BIOS1140" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="5.1 More on functions: Vectorisation | R tutorials in BIOS1140" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="going-further.html"/>
-<link rel="next" href="intro-to-data-manipulation-with-tidyverse.html"/>
+<link rel="prev" href="detecting-natural-selection.html"/>
+<link rel="next" href="understanding-fst-the-fixation-index.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -416,28 +416,136 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="building-on-your-foundations-going-further-with-r" class="section level1" number="2">
-<h1><span class="header-section-number">Week 2</span> Building on your foundations: going further with R</h1>
+<div id="more-on-functions-vectorisation" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> More on functions: Vectorisation</h2>
 <script src="js/hideOutput.js"></script>
-<p>In the last chapter, we got to grips with the basics of R. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. Don’t worry if you feel like you haven’t understood everything - this is common and perfectly normal! Learning R is very much like learning a real language in that it takes time and practice to feel ‘fluent’. Even if you do feel comfortable in the language, there is no shame in asking for help or looking for more information to develop your understanding. As regular R users, we still look things up constantly and there are one or two basics which we still forget, even with over a decade of experience of using the R environment! With this in mind, a goal of these R tutorials is to re-emphasise and reinforce basic concepts throughout. We will introduce concepts but through the practical demonstrations of code, we will underline them again and again.</p>
-<p>In future chapters, we will be using a similar approach to reinforce the evolutionary genetic concepts you have encountered in the book. However, for this chapter we remain solely in the R environment and will instead switch our focus to more advanced features of R. Advanced does not necessarily mean more complicated - but it does mean that you need to have at least been introduced to the basic concepts. We will first ‘level-up’ our approach to handling and manipulating data. For this, we will be borrowing heavily from the <a href="https://www.tidyverse.org">tidyverse</a> - a collection of packages and principles for data science in R. We will also introduce you to more advanced plotting, comparing the two most popular apporaches for plots - <code>base</code> and <code>ggplot</code>.</p>
-<div id="what-to-expect-1" class="section level3 unnumbered">
-<h3>What to expect</h3>
-<p>In this section we are going to:</p>
-<ul>
-<li>explore more advanced methods of handling and manipulating data</li>
-<li>learn how to plot data using <code>ggplot2</code></li>
-<li>learn how to reshape data with <code>pivot_longer()</code></li>
-</ul>
+<p>Last week you learned a bit about creating your own functions, and hopefully saw how useful they can be for simplifying your work flow. This week you will learn more about how they work, and some tricks for using functions efficiently.</p>
+<p>As an example, let’s use a simple function that takes radius and height as an input, and calculates the volume of a cylinder (<span class="math inline">\(\pi r^2h\)</span>).</p>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="more-on-functions-vectorisation.html#cb215-1" aria-hidden="true" tabindex="-1"></a>cyl_vol <span class="ot">&lt;-</span> <span class="cf">function</span>(r, h){</span>
+<span id="cb215-2"><a href="more-on-functions-vectorisation.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pi <span class="sc">*</span> r<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> h)</span>
+<span id="cb215-3"><a href="more-on-functions-vectorisation.html#cb215-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>First, let’s use it for a single value of <code>r</code> and <code>h</code>.</p>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="more-on-functions-vectorisation.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 8</span></span>
+<span id="cb216-2"><a href="more-on-functions-vectorisation.html#cb216-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb216-3"><a href="more-on-functions-vectorisation.html#cb216-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb216-4"><a href="more-on-functions-vectorisation.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb216-5"><a href="more-on-functions-vectorisation.html#cb216-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 226.1947</span></span></code></pre></div>
+<p>Let’s say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can supply a vector of heights as the second argument, and do these 10 calculations in a single operation!</p>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="more-on-functions-vectorisation.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 1:10</span></span>
+<span id="cb217-2"><a href="more-on-functions-vectorisation.html#cb217-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb217-3"><a href="more-on-functions-vectorisation.html#cb217-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb217-4"><a href="more-on-functions-vectorisation.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb217-5"><a href="more-on-functions-vectorisation.html#cb217-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  28.27433  56.54867  84.82300 113.09734 141.37167 169.64600 197.92034</span></span>
+<span id="cb217-6"><a href="more-on-functions-vectorisation.html#cb217-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 254.46900 282.74334</span></span></code></pre></div>
+<p>This is part of what we call <em>vectorisation</em>, taking a single function and applying it to a vector of values.</p>
+<p>We can even supply two vectors, one for <code>r</code> and 1 for <code>h</code> if we want to vary both radius and height.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="more-on-functions-vectorisation.html#cb218-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb218-2"><a href="more-on-functions-vectorisation.html#cb218-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb218-3"><a href="more-on-functions-vectorisation.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb218-4"><a href="more-on-functions-vectorisation.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 314.15927 508.93801 603.18579 615.75216 565.48668 471.23890 351.85838</span></span>
+<span id="cb218-5"><a href="more-on-functions-vectorisation.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 113.09734  31.41593</span></span></code></pre></div>
+<p>Note that this calculates volume for <span class="math inline">\(r=10, h=1\)</span>, then <span class="math inline">\(r=9, h=2\)</span> and so on, not for all combinations of the vectors.</p>
+<div class="green">
+<p><strong>Important concept:</strong><br />
+Many functions can be applied to a vector of values instead of a single value. This is a quick and simple way of running a lot of functions at the same time. Notice how the function call <code>cyl_vol(r, h)</code> is exactly the same for single values and vectors!</p>
 </div>
+<p> </p>
+<div class="blue">
+<p><strong>Tip:</strong><br />
+Notice that you could also have used a for loop to use the function on a range of values. If you have experience with other programming languages, e.g. Python, you’re probably used to do it that way! In R, however, vectorising functions is often faster than using for-loops if your vectors get really large. In some cases it’s also easier both to read and write.</p>
+</div>
+<div id="the-apply-function" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> The <code>apply()</code> function</h3>
+<p>The <code>apply()</code> function is a tool to further vectorise your functions that works with matrices and data frames. <code>apply()</code> will <em>apply a function to either each row or each column of your data frame/matrix</em>. The general structure of using <code>apply()</code> is:</p>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="more-on-functions-vectorisation.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(data, row_or_colwise, function_name)</span></code></pre></div>
+<p>Where the second argument is either <code>1</code> for operating on each row or <code>2</code> for operating on each column<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>.</p>
+<p>The best way to show how it works is probably through an example. Consider if you have the following data frame of species counts, where each column contains counts for a species, and each row is a location.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="more-on-functions-vectorisation.html#cb220-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb220-2"><a href="more-on-functions-vectorisation.html#cb220-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_1 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb220-3"><a href="more-on-functions-vectorisation.html#cb220-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_2 =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb220-4"><a href="more-on-functions-vectorisation.html#cb220-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_3 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb220-5"><a href="more-on-functions-vectorisation.html#cb220-5" aria-hidden="true" tabindex="-1"></a>species</span>
+<span id="cb220-6"><a href="more-on-functions-vectorisation.html#cb220-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sp_1 sp_2 sp_3</span></span>
+<span id="cb220-7"><a href="more-on-functions-vectorisation.html#cb220-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    0    4    2</span></span>
+<span id="cb220-8"><a href="more-on-functions-vectorisation.html#cb220-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    3    2    2</span></span>
+<span id="cb220-9"><a href="more-on-functions-vectorisation.html#cb220-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    2    3    0</span></span>
+<span id="cb220-10"><a href="more-on-functions-vectorisation.html#cb220-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    6    0    0</span></span>
+<span id="cb220-11"><a href="more-on-functions-vectorisation.html#cb220-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    7    1    1</span></span></code></pre></div>
+<p>What if you want to take the mean count for each location? I.e. calculate the mean of each row in the data set. You can’t simply use <code>mean()</code> on your data frame:</p>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="more-on-functions-vectorisation.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(species)</span>
+<span id="cb221-2"><a href="more-on-functions-vectorisation.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<p>R doesn’t understand what to do in this case. However, this is a perfect opportunity for using <code>apply()</code>! Remember that the second argument should be <code>1</code> since we want to work on rows here.</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="more-on-functions-vectorisation.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">1</span>, mean)</span>
+<span id="cb222-2"><a href="more-on-functions-vectorisation.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.000000 2.333333 1.666667 2.000000 3.000000</span></span></code></pre></div>
+<p>Great! Notice how <code>mean</code> should be written without parentheses when using it inside <code>apply()</code>. This is something you unfortunately just have to remember.</p>
+<p><strong>Exercise: use <code>apply()</code> calculate the mean count of each species, i.e. the means of the columns in your data.</strong></p>
+<details>
+<summary>
+<p>Show hint</p>
+</summary>
+<p>Use <code>2</code> as the second argument to work with columns instead of rows.</p>
+</details>
+<div class="fold s">
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="more-on-functions-vectorisation.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">2</span>, mean)</span>
+<span id="cb223-2"><a href="more-on-functions-vectorisation.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp_1 sp_2 sp_3 </span></span>
+<span id="cb223-3"><a href="more-on-functions-vectorisation.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3.6  2.0  1.0</span></span></code></pre></div>
+</div>
+<div class="green">
+<p><strong>Important concept:</strong><br />
+Use <code>apply()</code> to use a function on either all rows (<code>1</code>) or all columns (<code>2</code>) of a data frame/matrix.</p>
+</div>
+<p>This section has been a small taste on what R can do when you vectorise your functions. Vectorisation can be a bit tricky to wrap your head around in the beginning, but if you keep using it it eventually becomes a very useful tool for performing a lot of calculations simultaneously.</p>
+</div>
+<div id="ifelse" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> The <code>ifelse()</code> function</h3>
+<p>Say that you have a vector with values, and you want to group them somehow. For example, you have a vector of numbers between 0 and 10, and want to label the values that are larger than 5.</p>
+<div class="yellow">
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="more-on-functions-vectorisation.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate 10 numbers between 0 and 10</span></span>
+<span id="cb224-2"><a href="more-on-functions-vectorisation.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb224-3"><a href="more-on-functions-vectorisation.html#cb224-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb224-4"><a href="more-on-functions-vectorisation.html#cb224-4" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb224-5"><a href="more-on-functions-vectorisation.html#cb224-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  8 10  3  2  5  6  9  1  7  0</span></span></code></pre></div>
+</div>
+<p>Now, you may remember from the first week that you can check which numbers are more than 5 by using a logical statement:</p>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="more-on-functions-vectorisation.html#cb225-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb225-2"><a href="more-on-functions-vectorisation.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE</span></span></code></pre></div>
+<p>However, what if you want to label the values “high” and “low”, respectively? For this, you can use the <code>ifelse()</code> function. Conceptually, <code>ifelse()</code> works like this:</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="more-on-functions-vectorisation.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(logical_statement, value_if_TRUE, value_if_FALSE)</span></code></pre></div>
+<p>This means that to get “high” and “low” for our values, we can write:</p>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="more-on-functions-vectorisation.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
+<span id="cb227-2"><a href="more-on-functions-vectorisation.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;high&quot; &quot;low&quot;</span></span></code></pre></div>
+<div id="ifelse-examples" class="section level4" number="5.1.2.1">
+<h4><span class="header-section-number">5.1.2.1</span> <code>ifelse()</code> examples</h4>
+<p><code>ifelse()</code> can be used for a lot of things, here are a couple of more examples:</p>
+<p>Check if a value is higher than the mean:</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="more-on-functions-vectorisation.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x), <span class="st">&quot;above mean&quot;</span>, <span class="st">&quot;below_mean&quot;</span>)</span>
+<span id="cb228-2"><a href="more-on-functions-vectorisation.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;below_mean&quot; &quot;below_mean&quot;</span></span>
+<span id="cb228-3"><a href="more-on-functions-vectorisation.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;above mean&quot; &quot;below_mean&quot;</span></span></code></pre></div>
+<p>Convert a value from count to binary presence/absence:</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="more-on-functions-vectorisation.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb229-2"><a href="more-on-functions-vectorisation.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 0</span></span></code></pre></div>
+<p>We can also use it for character vectors, looking for a specific word to make groups:</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="more-on-functions-vectorisation.html#cb230-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;horse&quot;</span>, <span class="st">&quot;donkey&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;mule&quot;</span>)</span>
+<span id="cb230-2"><a href="more-on-functions-vectorisation.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(animals <span class="sc">==</span> <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;actual horse&quot;</span>, <span class="st">&quot;almost horse&quot;</span>)</span>
+<span id="cb230-3"><a href="more-on-functions-vectorisation.html#cb230-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;actual horse&quot; &quot;almost horse&quot; &quot;almost horse&quot; &quot;actual horse&quot; &quot;almost horse&quot;</span></span>
+<span id="cb230-4"><a href="more-on-functions-vectorisation.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] &quot;almost horse&quot;</span></span></code></pre></div>
+<p>This usage can be convenient when plotting values, as you will see in the evolution-part of the tutorial.</p>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="19">
+<li id="fn19"><p>It can be tricky to remember which is which of these, so don’t worry if you find yourself looking at the help page with <code>?apply</code> all the time, I sure do! Also, a general rule of thumb is that in R, <em>rows always comes before columns</em>, like when you extract values from a data frame with square brackets <code>[]</code>.<a href="more-on-functions-vectorisation.html#fnref19" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="going-further.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro-to-data-manipulation-with-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="detecting-natural-selection.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="understanding-fst-the-fixation-index.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

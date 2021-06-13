@@ -116,14 +116,11 @@ over-and-underdominance
 study-questions-2
 going-further-3
 detecting-natural-selection
-r-programming-vectorisation
 more-on-functions-vectorisation
 the-apply-function
 ifelse
 ifelse-examples
-evolutionary-biology-fst
 understanding-fst---the-fixation-index
-what-is-fst
 a-worked-example-of-fst-in-humans
 writing-a-set-of-fst-functions
 applying-functions-to-matrices-and-data-frames
@@ -220,11 +217,5 @@ returning-to-writing-your-own-functions
 concluding-remarks
 study-questions-8
 going-further-9
-functions-1
-fitness
-selection
-week-6-assignment
-week-7-assignment
-week-8-assignment
-week-9-assignment
+more-on-f_st
 rmarkdown

@@ -1,3 +1,96 @@
 # Week 5 assignment {- #w05}
 
 
+<script src="js/hideOutput.js"></script>
+
+#### 1. Vectorising functions {-}
+
+*To complete this part of the assignment, you need to define the `calc_af()` function from the tutorial:*
+
+:::{.fold .c}
+
+```r
+calc_af <- function(counts){
+  # get the number of samples
+  n <- sum(counts)
+  # calculate frequency of 1st allele - p
+  p <- ((counts[1]*2) + counts[2])/(2*n)
+  return(p)
+}
+```
+:::
+
+You have the following data frame containing genotype counts from four populations:
+
+
+```r
+counts <- data.frame(
+  A1A1 = c(10, 0, 84, 32),
+  A1A2 = c(30, 48, 13, 15),
+  A2A2 = c(75, 60, 3, 28),
+  location = c("loc1", "loc2", "loc3", "loc4")
+)
+```
+
+a) Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column.
+
+b) Use `ifelse()` to create a column that says "above 0.5" if p in the population is larger than 0.5, and "below 0.5" if it's not.
+
+You should print the data frame in the end and show the output in the hand-in.
+
+#### 2. A worked example of $F_{ST}$ {-}
+
+We sample two fish populations - one in the lake and the other in a stream. We genotype them  at locus B. In the lake, the genotype counts are - B1B1 = 32, B1B2 = 12 and B2B2 = 6. In the stream, the genotype counts are B1B1 =10, B1B2 = 16, B2B2 = 43.
+
+a. Calculate the average expected heterozygosity for the two populations.
+
+  i. **Optional:** make a function to calculate average expected heterozygosity.
+  
+b. Calculate the expected heterozygosity for the two populations as a metapopulation.
+
+  i. **Optional:** make a function to calculate expected heterozygosity in the metapopulation.
+  
+c. Calculate $F_{st}$ between the lake and stream fish. How do you interpret this value?
+
+
+#### 3. More on $F_{ST}$
+
+*To complete this part of the assignment, you need to define the `calc_fst()` function, in addition to the `calc_af()` function defined in question 1.*
+
+:::{.fold .c}
+
+```r
+calc_fst <- function(p_1, p_2){
+  
+  # calculate q1 and q2
+  q_1 <- 1 - p_1
+  q_2 <- 1 - p_2
+  
+  # calculate total allele frequency
+  p_t <- (p_1 + p_2)/2
+  q_t <- 1 - p_t
+  
+  # calculate expected heterozygosity
+  # first calculate expected heterozygosity for the two populations
+  # pop1
+  hs_1 <- 2*p_1*q_1
+  # pop2
+  hs_2 <- 2*p_2*q_2
+  # then take the mean of this
+  hs <- (hs_1 + hs_2)/2
+  
+  # next calculate expected heterozygosity for the metapopulations
+  ht <- 2*p_t*q_t
+  
+  # calculate fst
+  fst <- (ht - hs)/ht
+  
+  # return output
+  return(fst)
+}
+```
+:::
+
+a) Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might explain the $F_{ST}$ value you calculate?
+
+b) Using the functions we developed in the tutorial, calculate $F_{ST}$ around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the $F_{ST}$ between European Americans and East Asians. What is the highest value of $F_{ST}$? How does this compare with the highest $F_{ST}$ between European Americans and East Asians that we investigated in the tutorial?

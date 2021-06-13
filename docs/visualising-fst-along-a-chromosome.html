@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140</title>
+  <title>5.3 Visualising FST along a chromosome | R tutorials in BIOS1140</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta property="og:title" content="5.3 Visualising FST along a chromosome | R tutorials in BIOS1140" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="5.3 Visualising FST along a chromosome | R tutorials in BIOS1140" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="going-further.html"/>
-<link rel="next" href="intro-to-data-manipulation-with-tidyverse.html"/>
+<link rel="prev" href="understanding-fst-the-fixation-index.html"/>
+<link rel="next" href="study-questions-3.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -416,19 +416,98 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="building-on-your-foundations-going-further-with-r" class="section level1" number="2">
-<h1><span class="header-section-number">Week 2</span> Building on your foundations: going further with R</h1>
+<div id="visualising-fst-along-a-chromosome" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Visualising <em>F</em><sub>ST</sub> along a chromosome</h2>
 <script src="js/hideOutput.js"></script>
-<p>In the last chapter, we got to grips with the basics of R. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. Don’t worry if you feel like you haven’t understood everything - this is common and perfectly normal! Learning R is very much like learning a real language in that it takes time and practice to feel ‘fluent’. Even if you do feel comfortable in the language, there is no shame in asking for help or looking for more information to develop your understanding. As regular R users, we still look things up constantly and there are one or two basics which we still forget, even with over a decade of experience of using the R environment! With this in mind, a goal of these R tutorials is to re-emphasise and reinforce basic concepts throughout. We will introduce concepts but through the practical demonstrations of code, we will underline them again and again.</p>
-<p>In future chapters, we will be using a similar approach to reinforce the evolutionary genetic concepts you have encountered in the book. However, for this chapter we remain solely in the R environment and will instead switch our focus to more advanced features of R. Advanced does not necessarily mean more complicated - but it does mean that you need to have at least been introduced to the basic concepts. We will first ‘level-up’ our approach to handling and manipulating data. For this, we will be borrowing heavily from the <a href="https://www.tidyverse.org">tidyverse</a> - a collection of packages and principles for data science in R. We will also introduce you to more advanced plotting, comparing the two most popular apporaches for plots - <code>base</code> and <code>ggplot</code>.</p>
-<div id="what-to-expect-1" class="section level3 unnumbered">
-<h3>What to expect</h3>
-<p>In this section we are going to:</p>
-<ul>
-<li>explore more advanced methods of handling and manipulating data</li>
-<li>learn how to plot data using <code>ggplot2</code></li>
-<li>learn how to reshape data with <code>pivot_longer()</code></li>
-</ul>
+<p>Next, we will combine vectorisation and our custom functions to calculate <em>F</em><sub>ST</sub> for a series of SNPs in the vicinity of the <em>LCT</em> gene on chromosome 2. This is essentially a genome scan, an approach that can be used to detect signatures of selection in the genome. You can download the data <a href="https://bios1140.github.io/data/LCT_snps.tsv">here</a></p>
+<p><strong>Exercise: Read in the file <code>LCT_snps.tsv</code>.</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="visualising-fst-along-a-chromosome.html#cb245-1" aria-hidden="true" tabindex="-1"></a>lct_snps <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;LCT_snps.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<p>This data is also from from <a href="https://www.sciencedirect.com/science/article/pii/S0002929707628389">Bersaglieri et al. 2002</a>. It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the <em>LCT</em> gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.</p>
+<p>Since we have the allele frequencies, we can easily calculate <em>F</em><sub>ST</sub> for each of these SNPs. For our example here, we will do this between <code>european_americans</code> and <code>east_asians</code>. First of all, let’s use our <code>calc_fst</code> function on just a single SNP.</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="visualising-fst-along-a-chromosome.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_fst</span>(lct_snps[<span class="dv">1</span>, <span class="st">&quot;european_americans&quot;</span>], lct_snps[<span class="dv">1</span>, <span class="st">&quot;east_asians&quot;</span>])</span></code></pre></div>
+<p>So it works great for a single row. Actually, <code>calc_fst()</code> will work with vectors of values as well, so to calculate the F<sub>ST</sub> for all loci simultaneously, we can supply the entire columns as arguments with the <code>$</code> operator.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="visualising-fst-along-a-chromosome.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_fst</span>(lct_snps<span class="sc">$</span>european_americans, lct_snps<span class="sc">$</span>east_asians)</span></code></pre></div>
+<p>It works equally great for the entire data set! Let’s add these F<sub>ST</sub>s as a column in the <code>lct_snps</code> data frame.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="visualising-fst-along-a-chromosome.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make an fst column</span></span>
+<span id="cb248-2"><a href="visualising-fst-along-a-chromosome.html#cb248-2" aria-hidden="true" tabindex="-1"></a>lct_snps<span class="sc">$</span>fst <span class="ot">&lt;-</span> <span class="fu">calc_fst</span>(lct_snps<span class="sc">$</span>european_americans, lct_snps<span class="sc">$</span>east_asians)</span></code></pre></div>
+<p>Now that we have <em>F</em><sub>ST</sub> estimates for each of our SNPs, we can visualise the variation along the chromosome with <code>ggplot2</code>.</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="visualising-fst-along-a-chromosome.html#cb249-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(coord, fst)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb249-2"><a href="visualising-fst-along-a-chromosome.html#cb249-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
+<span id="cb249-3"><a href="visualising-fst-along-a-chromosome.html#cb249-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>()</span>
+<span id="cb249-4"><a href="visualising-fst-along-a-chromosome.html#cb249-4" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<p>What are we seeing here? Quite clearly, there is a an increase in <em>F</em><sub>ST</sub> along the chromosome, with a few SNPs showing extremely high values. It might make things a bit clearer if we mark on our plot the midpoint of the <em>LCT</em> gene. We know the gene occurs between 136,261,885 bp and 136,311,220 bp on Chromsome 2 (<a href="https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg18&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr2%3A136261885-136311220&amp;hgsid=690775201_Cttqx4oVutDVGra183ZtAUFm6z2W">from the UCSC Genome Browser</a>). So first we will find the midpoint of the gene.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="visualising-fst-along-a-chromosome.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the start and stop positions of the gene</span></span>
+<span id="cb250-2"><a href="visualising-fst-along-a-chromosome.html#cb250-2" aria-hidden="true" tabindex="-1"></a>lct_start <span class="ot">&lt;-</span> <span class="dv">136261885</span></span>
+<span id="cb250-3"><a href="visualising-fst-along-a-chromosome.html#cb250-3" aria-hidden="true" tabindex="-1"></a>lct_stop <span class="ot">&lt;-</span> <span class="dv">136311220</span></span>
+<span id="cb250-4"><a href="visualising-fst-along-a-chromosome.html#cb250-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the midpoint</span></span>
+<span id="cb250-5"><a href="visualising-fst-along-a-chromosome.html#cb250-5" aria-hidden="true" tabindex="-1"></a>lct_mid <span class="ot">&lt;-</span> (lct_start <span class="sc">+</span> lct_stop)<span class="sc">/</span><span class="dv">2</span></span></code></pre></div>
+<p>All we need to do to add it to our plot is add the <code>geom_vline()</code> geom.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="visualising-fst-along-a-chromosome.html#cb251-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb251-2"><a href="visualising-fst-along-a-chromosome.html#cb251-2" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>When the mid point of the gene is marked, it is clear that there is an increase in <em>F</em><sub>ST</sub> just upstream from the <em>LCT</em> gene. Perhaps we want to highlight the SNP that we calculated <em>F</em><sub>ST</sub> for in our first example?</p>
+<p>This is a perfect opportunity to use the <code>ifelse()</code> function we learned about in Section <a href="more-on-functions-vectorisation.html#ifelse">5.1.2</a>. We can make a new column in our data based on whether or not <code>lct_snps$snp_id</code> is exactly equal to “rs4988235”.</p>
+<p><strong>Exercise: add a column named <code>status</code> to <code>lct_snps</code> using <code>ifelse()</code>. The column should contain “Yes” if the id is rs4988235, and “No” if it’s not.</strong></p>
+<details>
+<summary>
+<p>Show hint</p>
+</summary>
+<p>Start with <code>lct_snps$status &lt;-</code> to assign the result to a new column.</p>
+</details>
+<details>
+<summary>
+<p>Show another hint</p>
+</summary>
+<p>The logical statement you need to use is <code>lct_snps$snp_id == "rs4988235"</code></p>
+</details>
+<div class="fold s">
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="visualising-fst-along-a-chromosome.html#cb252-1" aria-hidden="true" tabindex="-1"></a>lct_snps<span class="sc">$</span>status <span class="ot">&lt;-</span> <span class="fu">if_else</span>(lct_snps<span class="sc">$</span>snp_id <span class="sc">==</span> <span class="st">&quot;rs4988235&quot;</span>, <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;No&quot;</span>)</span></code></pre></div>
+</div>
+<p>Now to highlight the SNP on our plot. We can make it big and colored this by mapping it to both the <code>col</code> and <code>size</code> aesthetic.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="visualising-fst-along-a-chromosome.html#cb253-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(coord, fst, <span class="at">col =</span> status, <span class="at">size =</span> status)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb253-2"><a href="visualising-fst-along-a-chromosome.html#cb253-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
+<span id="cb253-3"><a href="visualising-fst-along-a-chromosome.html#cb253-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb253-4"><a href="visualising-fst-along-a-chromosome.html#cb253-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span>
+<span id="cb253-5"><a href="visualising-fst-along-a-chromosome.html#cb253-5" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>Now we see, our focal SNP is highlighted in the plot. We’ll change the colours to make it a little bit clearer.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="visualising-fst-along-a-chromosome.html#cb254-1" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;red&quot;</span>))</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>In the next section, we’ll demonstrate how we can use the distribution of <em>F</em><sub>ST</sub> to identify <strong>outliers</strong> as potential targets of selection.</p>
+<div id="identifying-outliers-in-our-fst-distribution" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Identifying outliers in our <em>F</em><sub>ST</sub> distribution</h3>
+<p>How can we identify outliers in our <em>F</em><sub>ST</sub> data? First of all, we can look at the distribution of our data by making a histogram of <code>fst</code>.</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="visualising-fst-along-a-chromosome.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(fst)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>)</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Now, it’s apparent that some values are way larger than the rest, but where do we set the threshold? One way to do it is to set some arbitrary value, and say that all values larger than this should be considered outliers. This can for instance be that we mark the highest 5% as outliers. In R, we can get this value with the <code>quantile()</code> function.</p>
+<p>In the following example, we make a vector of numbers from 0 to 200, and use the quantile function to find the highest 5% (or lowest 95%).</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="visualising-fst-along-a-chromosome.html#cb256-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">200</span></span>
+<span id="cb256-2"><a href="visualising-fst-along-a-chromosome.html#cb256-2" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(x, <span class="fl">0.95</span>)</span>
+<span id="cb256-3"><a href="visualising-fst-along-a-chromosome.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 95% </span></span>
+<span id="cb256-4"><a href="visualising-fst-along-a-chromosome.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 190</span></span></code></pre></div>
+<p>The function returns <code>190</code>, which means that 95% of the values are below 190, and 5% of the values are above 190 (which shouldn’t be all that surprising).</p>
+<p>Now we use the <code>quantile()</code> function on our data to set the outlier threshold. Note that this time we need to add <code>na.rm = T</code> in order to ignore some loci which have no <em>F</em><sub>ST</sub> estimates.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="visualising-fst-along-a-chromosome.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set threshold</span></span>
+<span id="cb257-2"><a href="visualising-fst-along-a-chromosome.html#cb257-2" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fu">quantile</span>(lct_snps<span class="sc">$</span>fst, <span class="fl">0.95</span>, <span class="at">na.rm =</span> T)</span>
+<span id="cb257-3"><a href="visualising-fst-along-a-chromosome.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot histogram with threshold marked</span></span>
+<span id="cb257-4"><a href="visualising-fst-along-a-chromosome.html#cb257-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(fst)) <span class="sc">+</span> <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.05</span>)</span>
+<span id="cb257-5"><a href="visualising-fst-along-a-chromosome.html#cb257-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> threshold, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">size =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the <code>ifelse()</code> function.</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="visualising-fst-along-a-chromosome.html#cb258-1" aria-hidden="true" tabindex="-1"></a>lct_snps<span class="sc">$</span>outlier <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(lct_snps<span class="sc">$</span>fst <span class="sc">&gt;</span> threshold, <span class="st">&quot;Outlier&quot;</span>, <span class="st">&quot;Non-outlier&quot;</span>)</span></code></pre></div>
+<p>Take a look at the <code>lct_snps</code> data frame - you should now see an additional column which is a character vector with the status of each locus as either outlier or non-outlier. Next we can incorporate this into our plotting:</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="visualising-fst-along-a-chromosome.html#cb259-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(lct_snps, <span class="fu">aes</span>(coord, fst, <span class="at">colour =</span> outlier)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb259-2"><a href="visualising-fst-along-a-chromosome.html#cb259-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
+<span id="cb259-3"><a href="visualising-fst-along-a-chromosome.html#cb259-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> lct_mid, <span class="at">lty =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span>
+<span id="cb259-4"><a href="visualising-fst-along-a-chromosome.html#cb259-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span>
+<span id="cb259-5"><a href="visualising-fst-along-a-chromosome.html#cb259-5" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<p><img src="Exercise5_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>So now our potential outlier SNPs are marked on the figure. There are only 5 of them but they all occur just upstream from the <em>LCT</em> locus.</p>
+<p>We cannot say for certain that these SNPs have increased <em>F</em><sub>ST</sub> values because of selection - other processes such as genetic drift or demographic history (i.e. a bottleneck in one of the two populations) might be responsible. However, given our knowledge that <em>LCT</em> is involved in lactase persistence, we can at least hypothesise that this is the case.</p>
+<p>One important point to note here is that the threshold we set to identify a SNP as being potentially under selection is <strong>entirely arbitrary</strong>. In a way this line of thinking forces us to think of selection acting in some binary way on some SNPs and not others. This is obviously not the case. Still, for SNP data like this an <em>F</em><sub>ST</sub> scan can be a very useful tool.</p>
 </div>
 </div>
             </section>
@@ -436,8 +515,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="going-further.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro-to-data-manipulation-with-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="understanding-fst-the-fixation-index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="study-questions-3.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

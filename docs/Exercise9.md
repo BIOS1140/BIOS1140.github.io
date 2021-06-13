@@ -652,7 +652,7 @@ full_village_eigenval <- scan("./full_village.eigenval")
 
 ## Study questions
 
-For study questions on this tutorial, download the `Chapter9_R_questions.R` from Canvas or find it [here](https://evolutionarygenetics.github.io/Chapter9_R_questions.R).
+The study questions for week 9 are found [here](#w09). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
 
 ## Going further
 

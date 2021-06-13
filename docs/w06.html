@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140</title>
+  <title>Week 6 assignment | R tutorials in BIOS1140</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta property="og:title" content="Week 6 assignment | R tutorials in BIOS1140" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Week 2 Building on your foundations: going further with R | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="Week 6 assignment | R tutorials in BIOS1140" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="going-further.html"/>
-<link rel="next" href="intro-to-data-manipulation-with-tidyverse.html"/>
+<link rel="prev" href="w05.html"/>
+<link rel="next" href="w07.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -416,19 +416,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="building-on-your-foundations-going-further-with-r" class="section level1" number="2">
-<h1><span class="header-section-number">Week 2</span> Building on your foundations: going further with R</h1>
-<script src="js/hideOutput.js"></script>
-<p>In the last chapter, we got to grips with the basics of R. Hopefully after completing the basic introduction, you feel more comfortable with the key concepts of R. Don’t worry if you feel like you haven’t understood everything - this is common and perfectly normal! Learning R is very much like learning a real language in that it takes time and practice to feel ‘fluent’. Even if you do feel comfortable in the language, there is no shame in asking for help or looking for more information to develop your understanding. As regular R users, we still look things up constantly and there are one or two basics which we still forget, even with over a decade of experience of using the R environment! With this in mind, a goal of these R tutorials is to re-emphasise and reinforce basic concepts throughout. We will introduce concepts but through the practical demonstrations of code, we will underline them again and again.</p>
-<p>In future chapters, we will be using a similar approach to reinforce the evolutionary genetic concepts you have encountered in the book. However, for this chapter we remain solely in the R environment and will instead switch our focus to more advanced features of R. Advanced does not necessarily mean more complicated - but it does mean that you need to have at least been introduced to the basic concepts. We will first ‘level-up’ our approach to handling and manipulating data. For this, we will be borrowing heavily from the <a href="https://www.tidyverse.org">tidyverse</a> - a collection of packages and principles for data science in R. We will also introduce you to more advanced plotting, comparing the two most popular apporaches for plots - <code>base</code> and <code>ggplot</code>.</p>
-<div id="what-to-expect-1" class="section level3 unnumbered">
-<h3>What to expect</h3>
-<p>In this section we are going to:</p>
-<ul>
-<li>explore more advanced methods of handling and manipulating data</li>
-<li>learn how to plot data using <code>ggplot2</code></li>
-<li>learn how to reshape data with <code>pivot_longer()</code></li>
-</ul>
+<div id="w06" class="section level1 unnumbered">
+<h1>Week 6 assignment</h1>
+<div id="investigating-differences-between-groups" class="section level4 unnumbered">
+<h4>1. Investigating differences between groups</h4>
+<ol style="list-style-type: lower-alpha">
+<li><p>Using the <code>iris</code> dataset, visualise the difference in petal width and sepal length between the species. A natural approach would be to make several boxplots for this, but feel free to experiment with the visualization!</p></li>
+<li><p>Use ANOVA to test whether mean petal width and sepal length differs among species.</p></li>
+<li><p>What proportion of the variance explained in petal width and sepal length is due to differences among species? Hint: use the <code>summary.lm()</code> function.</p></li>
+</ol>
+</div>
+<div id="qtl-analysis-in-bedbugs" class="section level4 unnumbered">
+<h4>2. QTL analysis in bedbugs</h4>
+<p>For our QTL analysis, we genotyped our individuals at 334 markers and used an F2 intercross design. The grandparents of our cross were fixed for AA and BB at each of these informative markers.</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>Explain what we mean by an F2 intercross design</p></li>
+<li><p>What are the <em>expected</em> genotype frequences among F2 individuals we used for the actual QTL experiment?</p></li>
+<li><p>Explain what a linkage map is and the units it is expressed in.</p></li>
+</ol>
+</div>
+<div id="investigating-a-qtl-data-set" class="section level4 unnumbered">
+<h4>3. Investigating a QTL data set</h4>
+<p>For this part of the assignment, we have created a new data frame for you to investigate. The data can be downloaded <a href="https://BIOS1140.github.io/data/qtl_markers.tsv">here</a>. The data is a tabulator-separated text file, and can be read in with the following command:</p>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="w06.html#cb479-1" aria-hidden="true" tabindex="-1"></a>qtl_markers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_markers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>The data contains four columns. The first two are phenotype encoded as text and encoded as numeric values, respectively. The last two are the genotypes at two different positions. One is the QTL marker we identified during the tutorial, while the other is a randomly selected marker, which likely is not associated with phenotype.</p>
+<p>Investigate the two markers and their association with the pesticide resistance phenotype. Make relevant plots and tables, and test for associations with ANOVA. Use this information to conclude which marker is the QTL marker, and which is the randomly selected marker.</p>
+<p><em>Hint: You have to use</em> <code>pheno_numeric</code> <em>as response variable (i.e. before the tilde <code>~</code>) when doing the ANOVA.</em><br />
+<em>Hint: Try using the</em> <code>table()</code> <em>function, i.e.,</em> <code>table(qtl_markers$phenotype, qtl_markers$markerx)</code></p>
+
 </div>
 </div>
             </section>
@@ -436,8 +451,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="going-further.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="intro-to-data-manipulation-with-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="w05.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="w07.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
