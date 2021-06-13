@@ -18,6 +18,7 @@ In this section we are going to:
 
 -   explore more advanced methods of handling and manipulating data
 -   learn how to plot data using `ggplot2`
+-   learn how to reshape data with `pivot_longer()`
 
 ## Intro to data manipulation with tidyverse
 
