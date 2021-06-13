@@ -601,7 +601,7 @@ Good luck!
 
 ## Study questions
 
-For study questions on this tutorial, download the `Chapter10_R_questions.R` from Canvas or find it [here](https://evolutionarygenetics.github.io/Chapter10_R_questions.R).
+The study questions for week 10 are found [here](#w10). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
 
 ## Going further
 

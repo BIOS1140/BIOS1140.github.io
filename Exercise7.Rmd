@@ -479,7 +479,7 @@ The point is that sliding window information like this can be extremely informat
 
 ## Study questions
 
-For study questions on this tutorial, download the `Chapter7_R_questions.R` from Canvas or find it [here](https://evolutionarygenetics.github.io/Chapter7_R_questions.R).
+The study questions for week 7 are found [here](#w07). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
 
 ## Going further
 
