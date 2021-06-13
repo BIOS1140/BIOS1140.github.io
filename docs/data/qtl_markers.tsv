@@ -1,0 +1,72 @@
+phenotype	pheno_numeric	marker1	marker2
+partial resistance	2	AB	AB
+partial resistance	2	AB	BB
+partial resistance	2	AB	AB
+partial resistance	2	AB	AA
+partial resistance	2	AB	BB
+partial resistance	2	BB	AB
+partial resistance	2	AB	AB
+partial resistance	2	BB	AB
+partial resistance	2	AB	AB
+resistant	3	AB	AB
+resistant	3	BB	AA
+resistant	3	BB	BB
+resistant	3	BB	AB
+resistant	3	AB	AB
+resistant	3	BB	AA
+resistant	3	BB	AB
+resistant	3	BB	AB
+resistant	3	BB	AB
+resistant	3	BB	AB
+resistant	3	BB	AB
+resistant	3	BB	BB
+resistant	3	BB	BB
+resistant	3	BB	AA
+resistant	3	BB	AB
+resistant	3	BB	AB
+resistant	3	BB	AA
+resistant	3	BB	BB
+resistant	3	BB	AB
+resistant	3	BB	BB
+resistant	3	AB	AA
+susceptible	1	AA	AB
+susceptible	1	AA	AA
+susceptible	1	AA	BB
+susceptible	1	AB	BB
+susceptible	1	AA	BB
+susceptible	1	AA	AB
+susceptible	1	AB	AB
+susceptible	1	AA	AB
+susceptible	1	AB	BB
+susceptible	1	AA	BB
+susceptible	1	AA	AB
+susceptible	1	AB	AA
+susceptible	1	AB	AB
+susceptible	1	AA	BB
+susceptible	1	AB	AB
+susceptible	1	AB	BB
+susceptible	1	AA	BB
+susceptible	1	AA	AB
+susceptible	1	AB	AA
+susceptible	1	AB	AA
+susceptible	1	AB	AB
+susceptible	1	AA	AB
+susceptible	1	AB	AB
+susceptible	1	AB	AB
+susceptible	1	AA	AB
+susceptible	1	AA	AB
+susceptible	1	AA	AB
+susceptible	1	AA	BB
+susceptible	1	AA	AB
+susceptible	1	AA	BB
+susceptible	1	AA	BB
+susceptible	1	AB	BB
+susceptible	1	AB	BB
+susceptible	1	AB	AA
+susceptible	1	AB	AB
+susceptible	1	AB	BB
+susceptible	1	AB	BB
+susceptible	1	AB	AB
+susceptible	1	AA	AB
+susceptible	1	AA	AB
+susceptible	1	AA	AB
