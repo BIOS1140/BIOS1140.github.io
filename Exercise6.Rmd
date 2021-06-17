@@ -245,21 +245,9 @@ Aha, the reason R says there are 2 phenotypes is because there are two columns i
 res <- bedbugs$pheno$res
 ```
 
-#### Exploring the data
-
-Now our data is read into the R environment and we have everything setup, a good first start is to get an idea of what is going on with our data. We have learned already how good it is to plot data, and luckily for us, `qtl` has a number of functions to make this straightforward. Let's use the `plotMissing` function
-
-```{r base_missing, echo=TRUE}
-plotMissing(bedbugs)
-```
-
-Let's break this plot down. Since this data is the finalised data from Fountain et al., we already have 14 linkage groups assembled - hence the 14 vertical 'blocks' across the plot. When there is a black tile, we have missing data - and the markers are plotted along the x-axis.
-
-It takes a bit of practice to get used to reading these sort of plots, but essentially you can see that there are several individuals which are lacking genotypes across multiple markers by looking at the black tiles.
-
 #### Examining the linkage map
 
-Now we have explored the data, our next step is to actually look at the linkage map. A linkage map is the position of markers in the genome in terms of their recombination distance from one another - i.e. how many recombination events occur between them. Lets take a look at a summary of the linkage map. Note that sometimes, a linkage map is also referred to as a **genetic map**.
+A linkage map is the position of markers in the genome in terms of their recombination distance from one another - i.e. how many recombination events occur between them. Lets take a look at a summary of the linkage map. Note that sometimes, a linkage map is also referred to as a **genetic map**.
 
 ```{r summary_map, echo=TRUE, results = "hide"}
 # examing the bedbug linkage map
