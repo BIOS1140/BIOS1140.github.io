@@ -365,7 +365,7 @@ We can now calculate evolutionary distance using `dist.ml` - a function that com
 hominidae_dist <- dist.ml(hominidae, model = "F81")
 ```
 
-Take a look at `hominidae_mt` - you will see it is a matrix of the distance between the sequences - i.e. in terms of the number of nucleotide substitions. Next we can create our trees. For an UPGMA tree, we use the `upgma` function:
+Take a look at `hominidae_dist` - you will see it is a matrix of the distance between the sequences - i.e. in terms of the number of nucleotide substitions. Next we can create our trees. For an UPGMA tree, we use the `upgma` function:
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # upgma tree
