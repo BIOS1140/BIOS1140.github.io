@@ -379,29 +379,24 @@ Next we will make a neighbour joining tree. This is easily done with the `NJ` fu
 hom_nj <- NJ(hominidae_dist)
 ```
 
-Now that we have created both of our trees, we should plot them to have a look at them.
+Now that we have created both of our trees, we should plot them to have a look at them. 
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # plot them both
 par(mfrow = c(2, 1))
 plot(hom_upgma, no.margin = TRUE)
-plot(hom_nj, no.margin = TRUE)
+plot(hom_nj, type = "unrooted", no.margin = TRUE)
 par(mfrow = c(1,1))
 ```
 
-However, you will remember that the neighbour joining algorithm produces an unrooted phylogeny. This means the way we plotted it above is incorrect. We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted` function.
+Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, so the correct way to plot it is unrooted. 
+
+We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted` function.
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 # check whether the tree is rooted
 is.rooted(hom_nj)
 is.rooted(hom_upgma)
-```
-
-So it makes more sense to plot our tree as unrooted. We do this below.
-
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-# plot nj unrooted
-plot(hom_nj, type = "unrooted")
 ```
 
 We can also set a root on our tree, if we know what we should set the outgroup to. In this case, we can set our outgroup to Orangutan, because we know it is the most divergent from the clade that consists of humans, chimps and gorillas.
@@ -424,7 +419,9 @@ parsimony(hom_upgma, hominidae)
 parsimony(hom_nj, hominidae)
 ```
 
-For the `parsimony` function, the first argument is the tree, the second is the data. Here we can that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here.
+For the `parsimony` function, the first argument is the tree, the second is the data. Here we can see that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here. 
+
+If you test the parsimony score for the rooted and the unrooted NJ tree, you will see that they are the same. It is important to note that this is not usually the case! Choosing an outgroup will normally change the tree length, and therefore the parsimony score.
 
 ## Population structure
 
