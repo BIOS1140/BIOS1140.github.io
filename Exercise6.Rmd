@@ -320,7 +320,9 @@ Now that we have performed a QTL analysis and learned about ANOVA, we will try t
 
 #### Exploring the phenotype-genotype association
 
-A good way to summarise this data is to see it in a table. The following code summarises the association between different geno- and phenotypes for our locus. The code extracts the phenotype information and also the marker information for the QTL and used the function `factor` to turn them in to `factor` variables - where there is a label for each category of the data. We then made everything into a `data.frame` for later.
+A good way to summarise this data is to see it in a table. The following code summarises the association between different geno- and phenotypes for our locus. [^exercise6-9]
+
+[^exercise6-9]: This code extracts the phenotype information and also the marker information for the QTL and used the function `factor` to turn them in to `factor` variables - where there is a label for each category of the data. We then made everything into a `data.frame` for later.
 
 ::: {.yellow}
 ```{r pheno_geno_table, echo = TRUE, results = "hide", fig.show="hide"}
