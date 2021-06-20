@@ -443,9 +443,9 @@ This is often the case when working with high-density genome data. One solution 
 
 We will learn more about sliding windows next week, so in this section we will more or less rush through the code and focus on the results. A sliding window analysis groups the data into (overlapping) bins, or "windows". We can then calculate some summary statistic---$\pi$ in our example---on each window instead of on each singe nucleotide. With our data, this means that instead of 90,000 plus estimates of nucleotide diversity, we will get as many as we have windows! This kind of summary significantly reduces noise in the data, so it is possible to visualise the trends along the genome.
 
-The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$. [^exercise7-2] Finally, we transform the data to be ready for plotting
+The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$.  Finally, we transform the data to be ready for plotting
 
-[^exercise7-2]: is this an accurate way to put it? Or is it in the category "easy to follow, but not quite correct"?
+
 
 ::: {.yellow}
 ```{r, results = 'hide'}
