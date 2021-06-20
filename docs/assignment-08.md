@@ -1,1 +1,21 @@
 # Week 8 assignment {- #w08}
+
+#### 1. Visualising complex data {-}
+
+This part of the assignment uses the `iris` data set which is already available in R.
+
+a) Make a scatterplot of `Sepal.Length` against `Sepal.Width`. Facet the plot by `Species`, and arrange the plots so that they are below each other. Color the points by `Petal.Length`
+
+b) **Optional** Let's try to visualise all the `iris` data at once. Use `pivot_longer()` to get all measurements (i.e. all columns except `Species`) in a single column. Make a boxplot of species against measurement value, and facet the plot by measurement type.
+
+#### 2. Sparrow data {-}
+
+For this part of the assignment you should start out with the `sparrow_data` data frame that we created in section \@ref(sparrow-data). A lot of the operations you need to do is covered in section \@ref(sparrow-viz), so look there if you don't know where to start!
+
+a) Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the different species comparisons. _N.B. if you use a tidyverse solution, it may be easier to use t() to transpose and see the final result_
+
+b) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all the different species comparisons. _Hint: You need to use pivot_longer on the columns containing_ $F_{ST}$ _and_ $d_{XY}$ _data respectively._
+
+c) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial? You don't need to reorder the levels for the plot order (but feel free if you want to, of course).
+
+d) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial, but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not? You may need to consult the textbook for the second part of this question. 
