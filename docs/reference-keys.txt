@@ -220,3 +220,5 @@ more-on-f_st
 rmarkdown
 visualizing-complex-data
 returning-to-the-sparrow-dataset
+sparrow-data
+sparrow-viz

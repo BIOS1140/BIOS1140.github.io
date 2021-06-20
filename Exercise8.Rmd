@@ -277,7 +277,7 @@ sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
 
 Note that here we use `mode = "nucleotide"` to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that's it for calculating the statistics! As you will see in the next section, extracting them from the `sparrows_sw` object is actually more difficult than generating them...
 
-### Extracting statistics for visualisation
+### Extracting statistics for visualisation {#sparrow-data}
 
 Since we ran our analysis on a sliding-window basis, we should have estimates of $\pi$, *F*~ST~ and *d*~XY~ for each window. What we want to do now is extract all our statistics and place them in a single `data.frame` for easier downstream visualisation - this will let us identify how these statistics are interrelated.
 
@@ -318,7 +318,7 @@ sparrow_data <- as_tibble(data.frame(windows, nd, fst, dxy))
 
 We now have the data frame `sparrow_data`, take a look at it to ensure that it looks correct (be aware of any errors you might get while running the code in yellow above). The data contain window positions as well as nucleotide diversity $\pi$ and the two pairwise measures F~ST~ and d~xy~ for all pairs of populations. Now we can finally investigate differences between the populations!
 
-## Visualising the data
+## Visualising the data {#sparrow-viz}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```

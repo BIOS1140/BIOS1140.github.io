@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="returning-to-the-sparrow-dataset.html"/>
-<link rel="next" href="visualising-the-data.html"/>
+<link rel="next" href="sparrow-viz.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -326,13 +326,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>8.3</b> Setting up sliding windows</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.3.1</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
-<li class="chapter" data-level="8.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#extracting-statistics-for-visualisation"><i class="fa fa-check"></i><b>8.3.2</b> Extracting statistics for visualisation</a></li>
+<li class="chapter" data-level="8.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#sparrow-data"><i class="fa fa-check"></i><b>8.3.2</b> Extracting statistics for visualisation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="visualising-the-data.html"><a href="visualising-the-data.html"><i class="fa fa-check"></i><b>8.4</b> Visualising the data</a>
+<li class="chapter" data-level="8.4" data-path="sparrow-viz.html"><a href="sparrow-viz.html"><i class="fa fa-check"></i><b>8.4</b> Visualising the data</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="visualising-the-data.html"><a href="visualising-the-data.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>8.4.1</b> Visualising patterns along the chromosome</a></li>
-<li class="chapter" data-level="8.4.2" data-path="visualising-the-data.html"><a href="visualising-the-data.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
-<li class="chapter" data-level="8.4.3" data-path="visualising-the-data.html"><a href="visualising-the-data.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.4.3</b> Investigating recombination rate variation</a></li>
+<li class="chapter" data-level="8.4.1" data-path="sparrow-viz.html"><a href="sparrow-viz.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>8.4.1</b> Visualising patterns along the chromosome</a></li>
+<li class="chapter" data-level="8.4.2" data-path="sparrow-viz.html"><a href="sparrow-viz.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="8.4.3" data-path="sparrow-viz.html"><a href="sparrow-viz.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.4.3</b> Investigating recombination rate variation</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>8.5</b> Study questions</a></li>
 <li class="chapter" data-level="8.6" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.6</b> Going further</a></li>
@@ -477,7 +477,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb24-4"><a href="setting-up-sliding-windows.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; |===================================================| ;-)</span></span></code></pre></div>
 <p>Note that here we use <code>mode = "nucleotide"</code> to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that’s it for calculating the statistics! As you will see in the next section, extracting them from the <code>sparrows_sw</code> object is actually more difficult than generating them…</p>
 </div>
-<div id="extracting-statistics-for-visualisation" class="section level3" number="8.3.2">
+<div id="sparrow-data" class="section level3" number="8.3.2">
 <h3><span class="header-section-number">8.3.2</span> Extracting statistics for visualisation</h3>
 <p>Since we ran our analysis on a sliding-window basis, we should have estimates of <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> for each window. What we want to do now is extract all our statistics and place them in a single <code>data.frame</code> for easier downstream visualisation - this will let us identify how these statistics are interrelated.</p>
 <p>The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful, and you will learn a bit more about them in the last course week.</p>
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="returning-to-the-sparrow-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="visualising-the-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="sparrow-viz.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
