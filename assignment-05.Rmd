@@ -50,7 +50,7 @@ b.  Calculate the expected heterozygosity for the two populations as a metapopul
 
 c.  Calculate $F_{st}$ between the lake and stream fish. How do you interpret this value?
 
-#### 3. More on $F_{ST}$
+#### 3. More on $F_{ST}$ {-}
 
 *To complete this part of the assignment, you need to define the `calc_fst()` function, in addition to the `calc_af()` function defined in question 1.*
 
