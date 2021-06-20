@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.5 Study questions | R tutorials in BIOS1140</title>
+  <title>8.2 Returning to the sparrow dataset | R tutorials in BIOS1140</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.5 Study questions | R tutorials in BIOS1140" />
+  <meta property="og:title" content="8.2 Returning to the sparrow dataset | R tutorials in BIOS1140" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.5 Study questions | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="8.2 Returning to the sparrow dataset | R tutorials in BIOS1140" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="visualising-the-data.html"/>
-<link rel="next" href="going-further-7.html"/>
+<link rel="prev" href="visualizing-complex-data.html"/>
+<link rel="next" href="setting-up-sliding-windows.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -422,17 +422,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="study-questions-6" class="section level2" number="8.5">
-<h2><span class="header-section-number">8.5</span> Study questions</h2>
-<p>The study questions for week 8 are found <a href="w08.html#w08">here</a>. Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see <a href="rmarkdown.html#rmarkdown">the appendix</a>.</p>
+<div id="returning-to-the-sparrow-dataset" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Returning to the sparrow dataset</h2>
+<script src="js/hideOutput.js"></script>
+<p>In the last session, we used the <code>PopGenome</code> package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house, Italian and Spanish sparrows with data from <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.</p>
+<div id="reading-in-the-sparrow-vcf" class="section level3" number="8.2.1">
+<h3><span class="header-section-number">8.2.1</span> Reading in the sparrow vcf</h3>
+<p>The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the <a href="https://evolutionarygenetics.github.io//Chapter7.html">last session</a> but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.</p>
+<ul>
+<li>First, download the <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">VCF</a></li>
+<li>Next, make a directory in your working directory (use <code>getwd</code> if you don’t know where that is) and call it <code>sparrow_snps</code></li>
+<li>Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the <a href="https://theunarchiver.com/">Unarchiver</a> (Mac OS X) or <a href="https://www.7-zip.org/">7zip</a> (Windows).</li>
+<li>Make sure <strong>only</strong> the uncompressed file is present in the directory.</li>
+</ul>
+<p>With these steps carried out, you can read this data in like so:</p>
+<p><strong>MAC</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="returning-to-the-sparrow-dataset.html#cb10-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><strong>WINDOWS</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="returning-to-the-sparrow-dataset.html#cb11-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Like last time, we then need to read the file with population information, and attach that to our <code>sparrows</code> object. You should have the file available from last week’s tutorial, otherwise it can be downloaded <a href="https://bios1140.github.io/data/sparrow_pops.txt">here</a>.</p>
+<div class="yellow">
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="returning-to-the-sparrow-dataset.html#cb12-1" aria-hidden="true" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb12-2"><a href="returning-to-the-sparrow-dataset.html#cb12-2" aria-hidden="true" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
+<span id="cb12-3"><a href="returning-to-the-sparrow-dataset.html#cb12-3" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
+</div>
+</div>
+<div id="examining-the-variant-data" class="section level3" number="8.2.2">
+<h3><span class="header-section-number">8.2.2</span> Examining the variant data</h3>
+<p>Remember, you can look the data we have read in using the following command:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="returning-to-the-sparrow-dataset.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
+<p>In this case, you can see that from the <code>n.sites</code> that the final site is at position 49,693,117. The actual chromosome is 49,693,984 long - so this confirms variants span the entire chromosome. Note that <code>n.sites</code> is a bit counter-intuitive here, it would only make sense as the number of sites if we had called nucleotides at <strong>every single position in the genome</strong> - but since this is a variant call format, only containing polymorphic positions then obviously this is not the case. Furthermore, the data has actually been subset in order to make it more manageable for our purposes today.</p>
+<p>Nonetheless, it is still substantial, from the <code>n.biallelic.sites</code> we can see there are 91,312 bilallelic SNPs and from <code>n.polyallelic.sites</code>, there are 1092 positions with more than two alleles. So in total we have:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="returning-to-the-sparrow-dataset.html#cb14-1" aria-hidden="true" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
+<p>A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="visualising-the-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="going-further-7.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="visualizing-complex-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="setting-up-sliding-windows.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

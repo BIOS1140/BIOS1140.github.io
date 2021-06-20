@@ -34,7 +34,7 @@ library(tidyverse)
 library(PopGenome)
 ```
 
-## R programming: Visualizing complex data
+## Visualizing complex data
 
 
 <script src="js/hideOutput.js"></script>
@@ -46,9 +46,11 @@ We start by reading in the data (see if you manage to do this yourself before lo
 ::: {.fold .c}
 
 ```r
-d <- read.table("docs/data/worlddata.csv", header = TRUE, sep = ",")
+d <- read.table("worlddata.csv", header = TRUE, sep = ",")
 ```
 :::
+
+
 
 For this tutorial, we will briefly investigate the correlation between fertility rate and life expectancy in the countries of the world. We can start by making a simple scatterplot.
 
@@ -62,7 +64,7 @@ g <- ggplot(d, aes(Total_Fertility_Rate, Life_Expectancy_at_Birth))
 g + geom_point(alpha = 0.5)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-4-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" width="768" />
 :::
 
 This shows a negative correlation between the variables: in countries with lower life expectancy, more children are born per woman. We can investigate this further by dividing the data by continent, and gain some additional perspective by showing the population sizes of each country.
@@ -76,7 +78,7 @@ h <- g + geom_point(aes(col = Continent, size = Population), alpha = 0.5)
 h
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" width="768" />
 :::
 
 ### Faceting
@@ -92,7 +94,7 @@ Faceting in `ggplot` can be done by adding the function `facet_wrap()`. The synt
 h + facet_wrap(~Continent)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" width="768" />
 
 You can control the layout by using the `nrow` and `ncol` arguments to specify numbers of rows and/or columns:
 
@@ -102,13 +104,13 @@ You can control the layout by using the `nrow` and `ncol` arguments to specify n
 h + facet_wrap(~Continent, nrow = 3)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
 ```r
 h + facet_wrap(~Continent, ncol = 1)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-7-2.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-8-2.png" width="768" />
 
 Note that all axes are the same across the facets. This can be changed with the argument `scales`, where you can specify "free", "free_y" or "free_x". Be aware that this can be misleading in some cases (like this one, I would argue), so use it with caution! "free_x" is shown below, but try the others yourself to see what happens!
 
@@ -117,12 +119,12 @@ Note that all axes are the same across the facets. This can be changed with the 
 h + facet_wrap(~Continent, scales = "free_x")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-9-1.png" width="768" />
 :::
 
 Now you have learned some tools for visualising various statistics across the sparrow genome for later. Let's jump into the evolutionary biology part!
 
-## Evolutionary genetics: Returning to the sparrow dataset
+## Returning to the sparrow dataset
 
 
 <script src="js/hideOutput.js"></script>
@@ -191,7 +193,10 @@ sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
 
 A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.
 
-### Setting up sliding windows
+## Setting up sliding windows
+
+
+<script src="js/hideOutput.js"></script>
 
 So far, this will start to seem quite familiar! We learned in the last session that per-SNP estimates of statistics such as $\pi$ can often be extremely noisy when you are calculating them on very large numbers of markers. As well as this, there are issues with the fact that SNP positions in close proximity are not always independent due to recombination - this is a theme we will return too shortly. So for this reason, it is often better to use a **sliding-window** approach - i.e. split the genome into windows of a particular size and then calculate the mean for a statistic within that window.
 
@@ -280,6 +285,7 @@ windows <- data.frame(start = window_start, stop = window_stop,
 
 ### Calculating sliding window estimates of nucleotide diversity and differentiation
 
+
 Now that we have set up the data, the population information and the sliding windows, it is quite straightforward for us to calculate some statistics we are interested in. In this case, we are going to calculate nucleotide diversity (i.e. $\pi$) and *F*~ST~. We will also generate a third statistic, *d*~XY~, which is the absolute nucleotide divergence between two populations.
 
 First we will calculate $\pi$. Handily, the following command also sets up what we need for *d*~XY~.
@@ -304,7 +310,7 @@ sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
 
 Note that here we use `mode = "nucleotide"` to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that's it for calculating the statistics! As you will see in the next section, extracting them from the `sparrows_sw` object is actually more difficult than generating them...
 
-#### Extracting statistics for visualisation
+### Extracting statistics for visualisation
 
 Since we ran our analysis on a sliding-window basis, we should have estimates of $\pi$, *F*~ST~ and *d*~XY~ for each window. What we want to do now is extract all our statistics and place them in a single `data.frame` for easier downstream visualisation - this will let us identify how these statistics are interrelated.
 
@@ -346,7 +352,10 @@ sparrow_data <- as_tibble(data.frame(windows, nd, fst, dxy))
 
 We now have the data frame `sparrow_data`, take a look at it to ensure that it looks correct (be aware of any errors you might get while running the code in yellow above). The data contain window positions as well as nucleotide diversity $\pi$ and the two pairwise measures F~ST~ and d~xy~ for all pairs of populations. Now we can finally investigate differences between the populations!
 
-### Visualising the data
+## Visualising the data
+
+
+<script src="js/hideOutput.js"></script>
 
 For the purposes of this session, we will focus mainly on the difference between house and spanish sparrows. However, since we now have all our data in a tidy `data.frame`, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let's say we want to look at mean nucleotide diversity, we can do that like so:
 
@@ -372,11 +381,11 @@ a <- ggplot(pi_g, aes(species, pi)) + geom_boxplot() + theme_light() + xlab(NULL
 a
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-28-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-29-1.png" width="768" />
 
 This makes it much clearer how nucleotide diversity differs among the species.
 
-#### Visualising patterns along the chromosome
+### Visualising patterns along the chromosome
 
 Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. We can do this very simply with `ggplot`.
 
@@ -387,7 +396,7 @@ a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-29-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" />
 
 From this plot, it is very clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
@@ -420,7 +429,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-32-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" />
 
 OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.
 
@@ -433,7 +442,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" width="768" />
 
 However, before we examine our plot in detail, it would also be easier if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
 
@@ -454,7 +463,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-35-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" />
 
 Examining the plot we created, it is pretty clear that the large peak in *F*~ST~ on our chromosome is matched by two regions of low nucleotide diversity in the house and Spanish sparrow, *d*~XY~ is also very low in the same region.
 
@@ -503,7 +512,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-39-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-40-1.png" width="768" />
 
 To explain this a little, we have plotted recombination rate in **centiMorgans per Megabase** - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our *F*~ST~ peak occurs. to confirm this, we will plot both statistics together.
 
@@ -520,7 +529,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-40-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-41-1.png" width="768" />
 
 When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the [centromere](https://en.wikipedia.org/wiki/Centromere) is likely to be present here.
 
@@ -534,7 +543,7 @@ a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-41-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-42-1.png" width="768" />
 
 Clearly there is a bias here - higher *F*~ST~ values are found in regions of low recombination. Although this doesn't completely invalidate the use of *F*~ST~ in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and Spanish sparrows.
 

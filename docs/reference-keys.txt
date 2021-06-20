@@ -218,3 +218,5 @@ study-questions-8
 going-further-9
 more-on-f_st
 rmarkdown
+visualizing-complex-data
+returning-to-the-sparrow-dataset
