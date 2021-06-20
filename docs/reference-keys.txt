@@ -141,7 +141,6 @@ performing-a-qtl-analysis-in-bedbugs
 bedbugs-pesticide-resistance-and-study-design
 reading-in-the-bedbug-data
 correcting-the-phenotypes
-exploring-the-data
 examining-the-linkage-map
 performing-a-qtl-analysis
 linking-anova-to-our-qtl-analysis

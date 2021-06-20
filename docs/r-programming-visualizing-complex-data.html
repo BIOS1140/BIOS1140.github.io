@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -422,37 +422,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You have previously learned how to use aesthetics in <code>ggplot</code> to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the <a href="PLACEHOLDER">2020 population data</a> from the very first week, so make sure that is in your working directory.</p>
 <p>We start by reading in the data (see if you manage to do this yourself before looking at my code):</p>
 <div class="fold c">
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="r-programming-visualizing-complex-data.html#cb327-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;docs/data/worlddata.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="r-programming-visualizing-complex-data.html#cb326-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;docs/data/worlddata.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <p>For this tutorial, we will briefly investigate the correlation between fertility rate and life expectancy in the countries of the world. We can start by making a simple scatterplot.</p>
 <p><strong>Exercise: make a scatterplot of fertility rate against life expectancy using the world data</strong></p>
 <div class="fold s o">
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="r-programming-visualizing-complex-data.html#cb328-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Total_Fertility_Rate, Life_Expectancy_at_Birth))</span>
-<span id="cb328-2"><a href="r-programming-visualizing-complex-data.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note: adding alpha = 0.5 to better see all points</span></span>
-<span id="cb328-3"><a href="r-programming-visualizing-complex-data.html#cb328-3" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="r-programming-visualizing-complex-data.html#cb327-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Total_Fertility_Rate, Life_Expectancy_at_Birth))</span>
+<span id="cb327-2"><a href="r-programming-visualizing-complex-data.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note: adding alpha = 0.5 to better see all points</span></span>
+<span id="cb327-3"><a href="r-programming-visualizing-complex-data.html#cb327-3" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-4-1.png" width="768" /></p>
 </div>
 <p>This shows a negative correlation between the variables: in countries with lower life expectancy, more children are born per woman. We can investigate this further by dividing the data by continent, and gain some additional perspective by showing the population sizes of each country.</p>
 <p><strong>Exercise: Update the plot by mapping colour to continent, and point size to population size.</strong></p>
 <div class="fold s o">
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="r-programming-visualizing-complex-data.html#cb329-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Continent, <span class="at">size =</span> Population), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
-<span id="cb329-2"><a href="r-programming-visualizing-complex-data.html#cb329-2" aria-hidden="true" tabindex="-1"></a>h</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="r-programming-visualizing-complex-data.html#cb328-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Continent, <span class="at">size =</span> Population), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb328-2"><a href="r-programming-visualizing-complex-data.html#cb328-2" aria-hidden="true" tabindex="-1"></a>h</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
 </div>
 <div id="faceting" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Faceting</h3>
 <p>This is already quite a good plot, showing a lot of data at once. However, it can be a bit difficult to see trends within each continent (if that’s what we want to investigate), and what if we want to use colour for something else while still showing differences between continents? One way to do this is to divide the plot into several windows based on a variable, known as <strong>faceting</strong>.</p>
-<p>Faceting in <code>ggplot</code> can be done by adding the function <code>facet_wrap()</code>. The syntax is a bit weird: <code>facet_wrap(~Variable)</code>. It uses the <code>~</code> (tilde) character<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>, and is an exception to the “all variables go inside <code>aes()</code>”-rule that we have emphasized earlier. For our plot it looks like this:</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="r-programming-visualizing-complex-data.html#cb330-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent)</span></code></pre></div>
+<p>Faceting in <code>ggplot</code> can be done by adding the function <code>facet_wrap()</code>. The syntax is a bit weird: <code>facet_wrap(~Variable)</code>. It uses the <code>~</code> (tilde) character<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a>, and is an exception to the “all variables go inside <code>aes()</code>”-rule that we have emphasized earlier. For our plot it looks like this:</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="r-programming-visualizing-complex-data.html#cb329-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
 <p>You can control the layout by using the <code>nrow</code> and <code>ncol</code> arguments to specify numbers of rows and/or columns:</p>
 <div class="fold o">
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="r-programming-visualizing-complex-data.html#cb331-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="r-programming-visualizing-complex-data.html#cb330-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="r-programming-visualizing-complex-data.html#cb332-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="r-programming-visualizing-complex-data.html#cb331-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-7-2.png" width="768" /></p>
 <p>Note that all axes are the same across the facets. This can be changed with the argument <code>scales</code>, where you can specify “free”, “free_y” or “free_x”. Be aware that this can be misleading in some cases (like this one, I would argue), so use it with caution! “free_x” is shown below, but try the others yourself to see what happens!</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="r-programming-visualizing-complex-data.html#cb333-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="r-programming-visualizing-complex-data.html#cb332-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
 </div>
 <p>Now you have learned some tools for visualising various statistics across the sparrow genome for later. Let’s jump into the evolutionary biology part!</p>
@@ -460,8 +460,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="35">
-<li id="fn35"><p>Which can be read as “modeled by” or simply “by”, i.e., “facet by <code>Variable</code>”.<a href="r-programming-visualizing-complex-data.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<ol start="33">
+<li id="fn33"><p>Which can be read as “modeled by” or simply “by”, i.e., “facet by <code>Variable</code>”.<a href="r-programming-visualizing-complex-data.html#fnref33" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -432,21 +432,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="getting-started-5" class="section level3 unnumbered">
 <h3>Getting started</h3>
 <p>As always, we need to set up our R environment. We’ll load <code>tidyverse</code> as usual, but we will also need a few more packages today to help us handle different types of data. Chief among these is <code>ape</code> which is the basis for a lot of phylogenetic analysis in R. We will also load another phylogenetic package, <code>phangorn</code> (which has an extremely <a href="https://en.wikipedia.org/wiki/Fangorn">geeky reference</a> in its name). The package <code>adegenet</code> will also be used to perform some population genomic analyses and since these are quite computationally intensive, we will also install and load <code>parallel</code> - a package that allows R to run computations in parallel to speed up analysis.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="reconstructing-the-past.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
-<span id="cb364-2"><a href="reconstructing-the-past.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb364-3"><a href="reconstructing-the-past.html#cb364-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-4"><a href="reconstructing-the-past.html#cb364-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install new packages</span></span>
-<span id="cb364-5"><a href="reconstructing-the-past.html#cb364-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
-<span id="cb364-6"><a href="reconstructing-the-past.html#cb364-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;phangorn&quot;</span>)</span>
-<span id="cb364-7"><a href="reconstructing-the-past.html#cb364-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;adegenet&quot;</span>)</span>
-<span id="cb364-8"><a href="reconstructing-the-past.html#cb364-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;parallel&quot;</span>)</span>
-<span id="cb364-9"><a href="reconstructing-the-past.html#cb364-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb364-10"><a href="reconstructing-the-past.html#cb364-10" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb364-11"><a href="reconstructing-the-past.html#cb364-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb364-12"><a href="reconstructing-the-past.html#cb364-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span>
-<span id="cb364-13"><a href="reconstructing-the-past.html#cb364-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet)</span>
-<span id="cb364-14"><a href="reconstructing-the-past.html#cb364-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb364-15"><a href="reconstructing-the-past.html#cb364-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="reconstructing-the-past.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
+<span id="cb363-2"><a href="reconstructing-the-past.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb363-3"><a href="reconstructing-the-past.html#cb363-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-4"><a href="reconstructing-the-past.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install new packages</span></span>
+<span id="cb363-5"><a href="reconstructing-the-past.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
+<span id="cb363-6"><a href="reconstructing-the-past.html#cb363-6" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;phangorn&quot;</span>)</span>
+<span id="cb363-7"><a href="reconstructing-the-past.html#cb363-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;adegenet&quot;</span>)</span>
+<span id="cb363-8"><a href="reconstructing-the-past.html#cb363-8" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;parallel&quot;</span>)</span>
+<span id="cb363-9"><a href="reconstructing-the-past.html#cb363-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb363-10"><a href="reconstructing-the-past.html#cb363-10" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb363-11"><a href="reconstructing-the-past.html#cb363-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb363-12"><a href="reconstructing-the-past.html#cb363-12" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(phangorn)</span>
+<span id="cb363-13"><a href="reconstructing-the-past.html#cb363-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(adegenet)</span>
+<span id="cb363-14"><a href="reconstructing-the-past.html#cb363-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb363-15"><a href="reconstructing-the-past.html#cb363-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span></code></pre></div>
 <p>With these packages installed, we are ready to begin!</p>
 </div>
 </div>

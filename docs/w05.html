@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -423,21 +423,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>1. Vectorising functions</h4>
 <p><em>To complete this part of the assignment, you need to define the <code>calc_af()</code> function from the tutorial:</em></p>
 <div class="fold c">
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="w05.html#cb476-1" aria-hidden="true" tabindex="-1"></a>calc_af <span class="ot">&lt;-</span> <span class="cf">function</span>(counts){</span>
-<span id="cb476-2"><a href="w05.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the number of samples</span></span>
-<span id="cb476-3"><a href="w05.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts)</span>
-<span id="cb476-4"><a href="w05.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate frequency of 1st allele - p</span></span>
-<span id="cb476-5"><a href="w05.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> ((counts[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">2</span>) <span class="sc">+</span> counts[<span class="dv">2</span>])<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>n)</span>
-<span id="cb476-6"><a href="w05.html#cb476-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
-<span id="cb476-7"><a href="w05.html#cb476-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="w05.html#cb472-1" aria-hidden="true" tabindex="-1"></a>calc_af <span class="ot">&lt;-</span> <span class="cf">function</span>(counts){</span>
+<span id="cb472-2"><a href="w05.html#cb472-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the number of samples</span></span>
+<span id="cb472-3"><a href="w05.html#cb472-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts)</span>
+<span id="cb472-4"><a href="w05.html#cb472-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate frequency of 1st allele - p</span></span>
+<span id="cb472-5"><a href="w05.html#cb472-5" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> ((counts[<span class="dv">1</span>]<span class="sc">*</span><span class="dv">2</span>) <span class="sc">+</span> counts[<span class="dv">2</span>])<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>n)</span>
+<span id="cb472-6"><a href="w05.html#cb472-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb472-7"><a href="w05.html#cb472-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p>You have the following data frame containing genotype counts from four populations:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="w05.html#cb477-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb477-2"><a href="w05.html#cb477-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">A1A1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">84</span>, <span class="dv">32</span>),</span>
-<span id="cb477-3"><a href="w05.html#cb477-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">A1A2 =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">48</span>, <span class="dv">13</span>, <span class="dv">15</span>),</span>
-<span id="cb477-4"><a href="w05.html#cb477-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">A2A2 =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">60</span>, <span class="dv">3</span>, <span class="dv">28</span>),</span>
-<span id="cb477-5"><a href="w05.html#cb477-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">location =</span> <span class="fu">c</span>(<span class="st">&quot;loc1&quot;</span>, <span class="st">&quot;loc2&quot;</span>, <span class="st">&quot;loc3&quot;</span>, <span class="st">&quot;loc4&quot;</span>)</span>
-<span id="cb477-6"><a href="w05.html#cb477-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="w05.html#cb473-1" aria-hidden="true" tabindex="-1"></a>counts <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb473-2"><a href="w05.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">A1A1 =</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">84</span>, <span class="dv">32</span>),</span>
+<span id="cb473-3"><a href="w05.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">A1A2 =</span> <span class="fu">c</span>(<span class="dv">30</span>, <span class="dv">48</span>, <span class="dv">13</span>, <span class="dv">15</span>),</span>
+<span id="cb473-4"><a href="w05.html#cb473-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">A2A2 =</span> <span class="fu">c</span>(<span class="dv">75</span>, <span class="dv">60</span>, <span class="dv">3</span>, <span class="dv">28</span>),</span>
+<span id="cb473-5"><a href="w05.html#cb473-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">location =</span> <span class="fu">c</span>(<span class="st">&quot;loc1&quot;</span>, <span class="st">&quot;loc2&quot;</span>, <span class="st">&quot;loc3&quot;</span>, <span class="st">&quot;loc4&quot;</span>)</span>
+<span id="cb473-6"><a href="w05.html#cb473-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li><p>Use <code>calc_af()</code> together with <code>apply()</code> to calculate <span class="math inline">\(p\)</span> for each population. Add the values to <code>counts</code> as a column.</p></li>
 <li><p>Use <code>ifelse()</code> to create a column that says “above 0.5” if p in the population is larger than 0.5, and “below 0.5” if it’s not.</p></li>
@@ -448,10 +448,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>2. A worked example of <span class="math inline">\(F_{ST}\)</span></h4>
 <p>We sample two fish populations - one in the lake and the other in a stream. We genotype them at locus B. In the lake, the genotype counts are - B1B1 = 32, B1B2 = 12 and B2B2 = 6. In the stream, the genotype counts are B1B1 =10, B1B2 = 16, B2B2 = 43.</p>
 <ol style="list-style-type: lower-alpha">
-<li><p>Calculate the average expected heterozygosity for the two populations.</p></li>
-<li><p><strong>Optional:</strong> make a function to calculate average expected heterozygosity.</p></li>
-<li><p>Calculate the expected heterozygosity for the two populations as a metapopulation.</p></li>
-<li><p><strong>Optional:</strong> make a function to calculate expected heterozygosity in the metapopulation.</p></li>
+<li><p>Calculate the average expected heterozygosity for the two populations.</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Optional:</strong> make a function to calculate average expected heterozygosity.</li>
+</ol></li>
+<li><p>Calculate the expected heterozygosity for the two populations as a metapopulation.</p>
+<ol style="list-style-type: lower-roman">
+<li><strong>Optional:</strong> make a function to calculate expected heterozygosity in the metapopulation.</li>
+</ol></li>
 <li><p>Calculate <span class="math inline">\(F_{st}\)</span> between the lake and stream fish. How do you interpret this value?</p></li>
 </ol>
 </div>
@@ -459,34 +463,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">10.7.0.1</span> 3. More on <span class="math inline">\(F_{ST}\)</span></h4>
 <p><em>To complete this part of the assignment, you need to define the <code>calc_fst()</code> function, in addition to the <code>calc_af()</code> function defined in question 1.</em></p>
 <div class="fold c">
-<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="w05.html#cb478-1" aria-hidden="true" tabindex="-1"></a>calc_fst <span class="ot">&lt;-</span> <span class="cf">function</span>(p_1, p_2){</span>
-<span id="cb478-2"><a href="w05.html#cb478-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-3"><a href="w05.html#cb478-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate q1 and q2</span></span>
-<span id="cb478-4"><a href="w05.html#cb478-4" aria-hidden="true" tabindex="-1"></a>  q_1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_1</span>
-<span id="cb478-5"><a href="w05.html#cb478-5" aria-hidden="true" tabindex="-1"></a>  q_2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_2</span>
-<span id="cb478-6"><a href="w05.html#cb478-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-7"><a href="w05.html#cb478-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate total allele frequency</span></span>
-<span id="cb478-8"><a href="w05.html#cb478-8" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p_1 <span class="sc">+</span> p_2)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb478-9"><a href="w05.html#cb478-9" aria-hidden="true" tabindex="-1"></a>  q_t <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_t</span>
-<span id="cb478-10"><a href="w05.html#cb478-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-11"><a href="w05.html#cb478-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate expected heterozygosity</span></span>
-<span id="cb478-12"><a href="w05.html#cb478-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first calculate expected heterozygosity for the two populations</span></span>
-<span id="cb478-13"><a href="w05.html#cb478-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pop1</span></span>
-<span id="cb478-14"><a href="w05.html#cb478-14" aria-hidden="true" tabindex="-1"></a>  hs_1 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_1<span class="sc">*</span>q_1</span>
-<span id="cb478-15"><a href="w05.html#cb478-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pop2</span></span>
-<span id="cb478-16"><a href="w05.html#cb478-16" aria-hidden="true" tabindex="-1"></a>  hs_2 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_2<span class="sc">*</span>q_2</span>
-<span id="cb478-17"><a href="w05.html#cb478-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then take the mean of this</span></span>
-<span id="cb478-18"><a href="w05.html#cb478-18" aria-hidden="true" tabindex="-1"></a>  hs <span class="ot">&lt;-</span> (hs_1 <span class="sc">+</span> hs_2)<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb478-19"><a href="w05.html#cb478-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-20"><a href="w05.html#cb478-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># next calculate expected heterozygosity for the metapopulations</span></span>
-<span id="cb478-21"><a href="w05.html#cb478-21" aria-hidden="true" tabindex="-1"></a>  ht <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_t<span class="sc">*</span>q_t</span>
-<span id="cb478-22"><a href="w05.html#cb478-22" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-23"><a href="w05.html#cb478-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate fst</span></span>
-<span id="cb478-24"><a href="w05.html#cb478-24" aria-hidden="true" tabindex="-1"></a>  fst <span class="ot">&lt;-</span> (ht <span class="sc">-</span> hs)<span class="sc">/</span>ht</span>
-<span id="cb478-25"><a href="w05.html#cb478-25" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb478-26"><a href="w05.html#cb478-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return output</span></span>
-<span id="cb478-27"><a href="w05.html#cb478-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fst)</span>
-<span id="cb478-28"><a href="w05.html#cb478-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb474"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb474-1"><a href="w05.html#cb474-1" aria-hidden="true" tabindex="-1"></a>calc_fst <span class="ot">&lt;-</span> <span class="cf">function</span>(p_1, p_2){</span>
+<span id="cb474-2"><a href="w05.html#cb474-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-3"><a href="w05.html#cb474-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate q1 and q2</span></span>
+<span id="cb474-4"><a href="w05.html#cb474-4" aria-hidden="true" tabindex="-1"></a>  q_1 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_1</span>
+<span id="cb474-5"><a href="w05.html#cb474-5" aria-hidden="true" tabindex="-1"></a>  q_2 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_2</span>
+<span id="cb474-6"><a href="w05.html#cb474-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-7"><a href="w05.html#cb474-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate total allele frequency</span></span>
+<span id="cb474-8"><a href="w05.html#cb474-8" aria-hidden="true" tabindex="-1"></a>  p_t <span class="ot">&lt;-</span> (p_1 <span class="sc">+</span> p_2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb474-9"><a href="w05.html#cb474-9" aria-hidden="true" tabindex="-1"></a>  q_t <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p_t</span>
+<span id="cb474-10"><a href="w05.html#cb474-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-11"><a href="w05.html#cb474-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate expected heterozygosity</span></span>
+<span id="cb474-12"><a href="w05.html#cb474-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># first calculate expected heterozygosity for the two populations</span></span>
+<span id="cb474-13"><a href="w05.html#cb474-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pop1</span></span>
+<span id="cb474-14"><a href="w05.html#cb474-14" aria-hidden="true" tabindex="-1"></a>  hs_1 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_1<span class="sc">*</span>q_1</span>
+<span id="cb474-15"><a href="w05.html#cb474-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># pop2</span></span>
+<span id="cb474-16"><a href="w05.html#cb474-16" aria-hidden="true" tabindex="-1"></a>  hs_2 <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_2<span class="sc">*</span>q_2</span>
+<span id="cb474-17"><a href="w05.html#cb474-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># then take the mean of this</span></span>
+<span id="cb474-18"><a href="w05.html#cb474-18" aria-hidden="true" tabindex="-1"></a>  hs <span class="ot">&lt;-</span> (hs_1 <span class="sc">+</span> hs_2)<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb474-19"><a href="w05.html#cb474-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-20"><a href="w05.html#cb474-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># next calculate expected heterozygosity for the metapopulations</span></span>
+<span id="cb474-21"><a href="w05.html#cb474-21" aria-hidden="true" tabindex="-1"></a>  ht <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span>p_t<span class="sc">*</span>q_t</span>
+<span id="cb474-22"><a href="w05.html#cb474-22" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-23"><a href="w05.html#cb474-23" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate fst</span></span>
+<span id="cb474-24"><a href="w05.html#cb474-24" aria-hidden="true" tabindex="-1"></a>  fst <span class="ot">&lt;-</span> (ht <span class="sc">-</span> hs)<span class="sc">/</span>ht</span>
+<span id="cb474-25"><a href="w05.html#cb474-25" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb474-26"><a href="w05.html#cb474-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return output</span></span>
+<span id="cb474-27"><a href="w05.html#cb474-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(fst)</span>
+<span id="cb474-28"><a href="w05.html#cb474-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <ol style="list-style-type: lower-alpha">
 <li><p>Using the <code>calc_af()</code> and <code>calc_fst()</code> functions we developed during the tutorial and the <code>lct_freq</code> data, calculate <span class="math inline">\(F_{ST}\)</span> between the <code>Han_China</code> and the <code>Swedish_and_Finnish_Scandinavia</code> populations. What might explain the <span class="math inline">\(F_{ST}\)</span> value you calculate?</p></li>

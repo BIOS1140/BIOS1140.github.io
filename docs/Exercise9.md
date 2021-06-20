@@ -426,7 +426,9 @@ We can now calculate evolutionary distance using `dist.ml` - a function that com
 hominidae_dist <- dist.ml(hominidae, model = "F81")
 ```
 
-Take a look at `hominidae_mt` - you will see it is a matrix of the distance between the sequences - i.e. in terms of the number of nucleotide substitions. Next we can create our trees. For an UPGMA tree, we use the `upgma` function:
+Take a look at `hominidae_dist`. You will see it is a matrix of the distance or difference between the sequences. The distances are based on the number of nucleotide substitutions, and the actual values depend on the model we use---here, the F81. It is not straightforward to interpret how much the groups differ from the numbers directly, but in general, the larger the number the greater the genetic distance.
+
+Next we can create our trees. For an UPGMA tree, we use the `upgma` function:
 
 
 ```r
@@ -442,14 +444,14 @@ Next we will make a neighbour joining tree. This is easily done with the `NJ` fu
 hom_nj <- NJ(hominidae_dist)
 ```
 
-Now that we have created both of our trees, we should plot them to have a look at them.
+Now that we have created both of our trees, we should plot them to have a look at them. 
 
 
 ```r
 # plot them both
 par(mfrow = c(2, 1))
 plot(hom_upgma, no.margin = TRUE)
-plot(hom_nj, no.margin = TRUE)
+plot(hom_nj, type = "unrooted", no.margin = TRUE)
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-31-1.png" width="672" />
@@ -458,7 +460,9 @@ plot(hom_nj, no.margin = TRUE)
 par(mfrow = c(1,1))
 ```
 
-However, you will remember that the neighbour joining algorithm produces an unrooted phylogeny. This means the way we plotted it above is incorrect. We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted` function.
+Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, so the correct way to plot it is unrooted. 
+
+We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted` function.
 
 
 ```r
@@ -466,16 +470,6 @@ However, you will remember that the neighbour joining algorithm produces an unro
 is.rooted(hom_nj)
 is.rooted(hom_upgma)
 ```
-
-So it makes more sense to plot our tree as unrooted. We do this below.
-
-
-```r
-# plot nj unrooted
-plot(hom_nj, type = "unrooted")
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 We can also set a root on our tree, if we know what we should set the outgroup to. In this case, we can set our outgroup to Orangutan, because we know it is the most divergent from the clade that consists of humans, chimps and gorillas.
 
@@ -488,7 +482,7 @@ hom_nj_r <- root(hom_nj, "Orang")
 plot(hom_nj_r)
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 In this case, it hasn't actually made a huge difference to our tree topology, but with a larger dataset, it might do.
 
@@ -501,7 +495,9 @@ parsimony(hom_upgma, hominidae)
 parsimony(hom_nj, hominidae)
 ```
 
-For the `parsimony` function, the first argument is the tree, the second is the data. Here we can that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here.
+For the `parsimony` function, the first argument is the tree, the second is the data. Here we can see that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here. 
+
+If you test the parsimony score for the rooted and the unrooted NJ tree, you will see that they are the same. It is important to note that this is not usually the case! Choosing an outgroup will normally change the tree length, and therefore the parsimony score.
 
 ## Population structure
 
@@ -609,7 +605,7 @@ We can then easily plot this using `ggplot`.
 ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
 
@@ -639,7 +635,7 @@ a <- ggplot(village_pca, aes(PC1, PC2, colour = location)) + geom_point() + them
 a + theme(legend.position = "bottom")
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-46-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-45-1.png" width="672" />
 
 So from this PCA, what can we deduce? Well an immediate obvious pattern is that dogs from Central and Eastern Asia are quite divergent from other geographic locations. Similarly, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
 

@@ -462,7 +462,7 @@ The signal here is quite clear - what could explain it? Low recombination region
 
 This is an important issue as it means that we cannot reliably use *F*~ST~ to identify genes involved in reproductive isolation from a genome scan. By comparing *F*~ST~ to *d*~XY~ here, we see the latter is also reduced in this region, which again suggests it is likely that some sort of genome structure might be responsible for the peak in *F*~ST~ we see. One way to investigate this is examine the recombination rate variation along chromosome 8 - which we will do in the next section.
 
-::: {.blue}
+::: {.green}
 ### Interlude: relative vs. absolute measures of nucleotide diversity
 
 We have mentioned a couple of times that *F*~ST~ is a *relative* measure of nucleotide differences, while *d*~xy~ is an *absolute* measure. But what does this mean? According to [Wikipedia](https://en.wikipedia.org/wiki/Fixation_index#Estimation), a simple way of estimating F~ST~ (there are many ways to do this) is using the formula:

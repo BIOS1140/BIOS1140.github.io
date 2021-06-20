@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -448,19 +448,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb264-8"><a href="tools-for-investigating-differences-between-groups.html#cb264-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor              4.26</span></span>
 <span id="cb264-9"><a href="tools-for-investigating-differences-between-groups.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 virginica               5.55</span></span></code></pre></div>
 <p>There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>.</p>
-<pre><code>```r
-iris %&gt;%
-  group_by(Species) %&gt;%
-  summarise(mean_petal_length = mean(Petal.Length),
-            median_petal_length = median(Petal.Length),
-            sd_petal_length = sd(Petal.Length))
-#&gt; # A tibble: 3 x 4
-#&gt;   Species    mean_petal_length median_petal_length sd_petal_length
-#&gt;   &lt;fct&gt;                  &lt;dbl&gt;               &lt;dbl&gt;           &lt;dbl&gt;
-#&gt; 1 setosa                  1.46                1.5            0.174
-#&gt; 2 versicolor              4.26                4.35           0.470
-#&gt; 3 virginica               5.55                5.55           0.552
-```</code></pre>
 </div>
 <div id="visualising-differences" class="section level4" number="6.1.1.2">
 <h4><span class="header-section-number">6.1.1.2</span> Visualising differences</h4>
@@ -513,8 +500,7 @@ iris %&gt;%
 </div>
 <div class="footnotes">
 <hr />
-<ol start="22">
-<li id="fn22"><p>We calculate median and standard deviations using multiple summaries within a single <code>summarise()</code>. Also, remember that the name you give the arguments within <code>summarise()</code> will be the column names in your new data frame.<a href="tools-for-investigating-differences-between-groups.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<ol start="23">
 <li id="fn23"><p>Remember that in <code>ggplot2</code>, we can add more layers of geometry if we want to add information to our visualisation. Below, I’ve added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.</p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Species, Petal.Length)) <span class="sc">+</span></span>
 <span id="cb267-2"><a href="#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>

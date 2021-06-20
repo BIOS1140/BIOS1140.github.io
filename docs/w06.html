@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="investigating-a-qtl-data-set" class="section level4 unnumbered">
 <h4>3. Investigating a QTL data set</h4>
 <p>For this part of the assignment, we have created a new data frame for you to investigate. The data can be downloaded <a href="https://BIOS1140.github.io/data/qtl_markers.tsv">here</a>. The data is a tabulator-separated text file, and can be read in with the following command:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="w06.html#cb479-1" aria-hidden="true" tabindex="-1"></a>qtl_markers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_markers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="w06.html#cb475-1" aria-hidden="true" tabindex="-1"></a>qtl_markers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_markers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The data contains four columns. The first two are phenotype encoded as text and encoded as numeric values, respectively. The last two are the genotypes at two different positions. One is the QTL marker we identified during the tutorial, while the other is a randomly selected marker, which likely is not associated with phenotype.</p>
 <p>Investigate the two markers and their association with the pesticide resistance phenotype. Make relevant plots and tables, and test for associations with ANOVA. Use this information to conclude which marker is the QTL marker, and which is the randomly selected marker.</p>
 <p><em>Hint: You have to use</em> <code>pheno_numeric</code> <em>as response variable (i.e. before the tilde <code>~</code>) when doing the ANOVA.</em><br />

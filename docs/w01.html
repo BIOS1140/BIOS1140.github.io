@@ -23,7 +23,7 @@
 
 
 
-<meta name="date" content="2021-06-13" />
+<meta name="date" content="2021-06-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -431,13 +431,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Combine all your scores in a vector and assign it to an object. Add names to each element of the vector so that the name corresponds to the score.</li>
 <li><strong>Optional:</strong> Combine your scores into a data frame with one column for the name and one for the score. Add a column with the average weight of your animals, and another with their top speeds.</li>
 </ol>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="w01.html#cb461-1" aria-hidden="true" tabindex="-1"></a>grevling <span class="ot">&lt;-</span> <span class="dv">6</span></span>
-<span id="cb461-2"><a href="w01.html#cb461-2" aria-hidden="true" tabindex="-1"></a>rur <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb461-3"><a href="w01.html#cb461-3" aria-hidden="true" tabindex="-1"></a>torsk <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(grevling, rur))</span>
-<span id="cb461-4"><a href="w01.html#cb461-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb461-5"><a href="w01.html#cb461-5" aria-hidden="true" tabindex="-1"></a>dyr <span class="ot">&lt;-</span> <span class="fu">c</span>(grevling, rur, torsk)</span>
-<span id="cb461-6"><a href="w01.html#cb461-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dyr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;grevling&quot;</span>, <span class="st">&quot;rur&quot;</span>, <span class="st">&quot;torsk&quot;</span>)</span>
-<span id="cb461-7"><a href="w01.html#cb461-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dyr</span></span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="w01.html#cb459-1" aria-hidden="true" tabindex="-1"></a>grevling <span class="ot">&lt;-</span> <span class="dv">6</span></span>
+<span id="cb459-2"><a href="w01.html#cb459-2" aria-hidden="true" tabindex="-1"></a>rur <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb459-3"><a href="w01.html#cb459-3" aria-hidden="true" tabindex="-1"></a>torsk <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">c</span>(grevling, rur))</span>
+<span id="cb459-4"><a href="w01.html#cb459-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb459-5"><a href="w01.html#cb459-5" aria-hidden="true" tabindex="-1"></a>dyr <span class="ot">&lt;-</span> <span class="fu">c</span>(grevling, rur, torsk)</span>
+<span id="cb459-6"><a href="w01.html#cb459-6" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dyr) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;grevling&quot;</span>, <span class="st">&quot;rur&quot;</span>, <span class="st">&quot;torsk&quot;</span>)</span>
+<span id="cb459-7"><a href="w01.html#cb459-7" aria-hidden="true" tabindex="-1"></a><span class="co">#dyr</span></span></code></pre></div>
 <p><strong>1.2</strong></p>
 <p>The formula for the volume of a sphere is <span class="math inline">\(\frac{4}{3}\pi r^3\)</span>.</p>
 <ol style="list-style-type: lower-alpha">
@@ -450,14 +450,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: lower-alpha">
 <li><p>Check if the number <span class="math inline">\(e\)</span> is larger than the number <span class="math inline">\(\pi\)</span>.</p>
 <p>Create a vector of random numbers with the following code:</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb462-1"><a href="w01.html#cb462-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">645</span>)</span>
-<span id="cb462-2"><a href="w01.html#cb462-2" aria-hidden="true" tabindex="-1"></a>rnumbers <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">100</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="w01.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">645</span>)</span>
+<span id="cb460-2"><a href="w01.html#cb460-2" aria-hidden="true" tabindex="-1"></a>rnumbers <span class="ot">&lt;-</span> <span class="fu">rpois</span>(<span class="dv">100</span>, <span class="at">lambda =</span> <span class="dv">2</span>)</span></code></pre></div></li>
 <li><p>How many of the numbers are equal to or larger than 2?<br />
 <em>Hint: you can use the</em> <code>sum()</code> <em>function on a vector of TRUE/FALSE, it will then treat each TRUE as 1 and each FALSE as 0. Example: </em> <code>sum(c(TRUE, FALSE, TRUE))</code> <em>returns</em> <code>2</code></p></li>
 <li><p>How many of the numbers are exactly 1?</p></li>
 <li><p><strong>Optional:</strong> Check if R considers <span class="math inline">\((\sqrt2 )^2\)</span> to be exactly equal to 2. What is the result? Why is it this way?</p></li>
 </ol>
-<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="w01.html#cb463-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">2</span>)<span class="sc">^</span><span class="dv">2</span> <span class="sc">==</span> <span class="dv">2</span></span></code></pre></div>
 </div>
 <div id="data-import-and-plotting" class="section level4 unnumbered">
 <h4>2. Data import and plotting</h4>
@@ -495,12 +494,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Plot a line of x against <span class="math inline">\(\frac{y^2}{4}\)</span> on top of your previous plot in a different color.</li>
 <li>Add a title to your plot, stating how pretty it is.</li>
 </ol>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="w01.html#cb464-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">50</span></span>
-<span id="cb464-2"><a href="w01.html#cb464-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">51</span><span class="sc">:</span><span class="dv">100</span></span>
-<span id="cb464-3"><a href="w01.html#cb464-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x,y)</span>
-<span id="cb464-4"><a href="w01.html#cb464-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb464-5"><a href="w01.html#cb464-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, x<span class="sc">^</span><span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;salmon2&quot;</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
-<span id="cb464-6"><a href="w01.html#cb464-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, y<span class="sc">^</span><span class="dv">2</span><span class="sc">/</span><span class="dv">4</span>)</span></code></pre></div>
 <p><strong>2.4</strong></p>
 <p>Now we return to our vitruvian data set. We will more or less be plotting the same things we explored in task 2.2.</p>
 <ol style="list-style-type: lower-alpha">
@@ -515,8 +508,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>3. Interpreting code and errors</h4>
 <p><strong>3.1</strong></p>
 <p>Look at the code below:</p>
-<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="w01.html#cb465-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">5</span></span>
-<span id="cb465-2"><a href="w01.html#cb465-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">6</span></span></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="w01.html#cb461-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">=</span> <span class="dv">5</span></span>
+<span id="cb461-2"><a href="w01.html#cb461-2" aria-hidden="true" tabindex="-1"></a>a <span class="sc">==</span> <span class="dv">6</span></span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
 <li>In your own words, what is the difference between <code>=</code> and <code>==</code> in the code above?</li>
 <li>What will the code output? Why?</li>
@@ -530,7 +523,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What is the most probable cause of the error message? How can you fix it?</p>
 <p><strong>3.4</strong></p>
 <p>You tried to extract the <code>Sepal.Length</code> column from the iris data set as follows, but got an error:</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="w01.html#cb468-1" aria-hidden="true" tabindex="-1"></a>iris[,Sepal.Length]</span></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="w01.html#cb464-1" aria-hidden="true" tabindex="-1"></a>iris[,Sepal.Length]</span></code></pre></div>
 <pre><code>## Error in `[.data.frame`(iris, , Sepal.Length): object &#39;Sepal.Length&#39; not found</code></pre>
 <p>What caused the error? How can you fix it?</p>
 

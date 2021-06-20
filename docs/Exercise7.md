@@ -102,7 +102,7 @@ alview(mydna)
 
 Note that in this case, we used `alview` directly on our `mydna` object - **not** on the `myalign` alignment object. This prints our alignment to the screen and it makes it immediately obvious where there are nucleotide polymorphisms in our data. You should note however that the `N` bases in the first sequence are bases which could not be called by the sequencing machine - they are not valid base calls.
 
-**NOTE** it is important that we make clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
+**NOTE** it is important that we clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
 
 ### Calculating basic sequence statistics
 
@@ -359,15 +359,15 @@ This is just a quick example and does not go into the biological significance of
 
 So far we have calculated descriptive statistics from two sets of sequence data. This is obviously useful to demonstrate how these statistics work and reinforcing our understanding of them. However, in modern evolutionary genetics, we are often working with much larger datasets than what we have dealt with so far. As sequencing technology becomes cheaper, faster and more accessible, we are regularly working with genome-scale data. This has implications for how we handle data and also how we interpret it and use it to test hypotheses or make some form of evolutionary inference.
 
-In this section of the tutorial, we will use a package called `PopGenome` to read variants called from **whole genome resequencing data** into R and then we will calculate nucleotide diversity within and among populations and also along a single chromosome. **A word of caution** `PopGenome` is a very useful package, but it is not always the most user friendly, so we have done our best to simplify matters as much as possible here.
+In this section of the tutorial, we will use a package called `PopGenome` to read variants called from **whole genome resequencing data** into R and then we will calculate nucleotide diversity within and among populations and also along a single chromosome. **A word of caution:** `PopGenome` is a very useful package, but it is not always the most user friendly, so we have done our best to simplify matters as much as possible here.
 
 ### Reading in variant data
 
 The data we are going to be working with for this section is a set of **SNP** calls from whole-genome resequencing of *Passer* sparrows. It was originally used in a study on the evolution of human commensalism in the house sparrow by [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). In the dataset there are SNPs from four sparrow species - the house sparrow, the Italian sparrow, the Spanish sparrow, the tree sparrow and also data from a house sparrow sub-species known as the Bactrianus sparrow.
 
-The data comes in two parts. We'll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for [variant call format](https://samtools.github.io/hts-specs/VCFv4.2.pdf). This is a standard file format for storing SNP data and is produced by a lot of SNP calling pipelines. It is beyond the scope of todays tutorial to go into much detail about VCF files - all you really need to do today is understand that it is a format we need to read in to R in order to work with the SNP data.
+The data comes in two parts. We'll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for [variant call format](https://samtools.github.io/hts-specs/VCFv4.2.pdf). 
 
-One thing you should know about VCF files though is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
+One thing you should know about VCF files is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
 
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
@@ -471,9 +471,9 @@ This is often the case when working with high-density genome data. One solution 
 
 We will learn more about sliding windows next week, so in this section we will more or less rush through the code and focus on the results. A sliding window analysis groups the data into (overlapping) bins, or "windows". We can then calculate some summary statistic---$\pi$ in our example---on each window instead of on each singe nucleotide. With our data, this means that instead of 90,000 plus estimates of nucleotide diversity, we will get as many as we have windows! This kind of summary significantly reduces noise in the data, so it is possible to visualise the trends along the genome.
 
-The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$. [^exercise7-2] Finally, we transform the data to be ready for plotting
+The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$.  Finally, we transform the data to be ready for plotting
 
-[^exercise7-2]: is this an accurate way to put it? Or is it in the category "easy to follow, but not quite correct"?
+
 
 ::: {.yellow}
 
