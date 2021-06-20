@@ -108,12 +108,9 @@ In the next section, we will learn more about how to plot trees.
 
 ### Plotting trees
 
-*In this section, we show various ways to control the appearance of phylogenetic trees. The plots are hidden by default to avoid extensive scrolling, click "show plot" to see them! Or better, run the code yourself, try to change some arguments and see what happens.*
+We can do a lot with our trees in R using a few simple plot commands. We will use some of these later in the tutorial and assignment, so here's a quick introduction of some of the options you have. 
 
-
-We can actually do a lot with our trees in R using a few simple plot commands. Let's generate another random tree, this time with 5 taxa.
-
-:::{.fold .o}
+First, let's generate another random tree, this time with 5 taxa.
 
 
 ```r
@@ -123,191 +120,26 @@ set.seed(32)
 tree <- rtree(n = 5, tip.label = c("a", "b", "c", "d", "e"))
 ```
 
-:::
-First of all, let's plot our new tree using the default plot settings. Except unlike last time, we will suppress the branch lenghts.
+Now, try modifying the appearance of the tree using some of these arguments to `plot()`:
 
-:::{.fold .o}
+* `use.edge.length` (`TRUE` (default) or `FALSE`): should branch length be used to represent evolutionary distance?
+* `type`: the type of tree to plot. Options include "phylogram" (default), "cladogram", "unrooted" and "fan".
+* `edge.width`: sets the thickness of the branches
+* `edge.color`: sets the color of the branches
 
-```r
-# plot tree and suppress branch lengths
-plot(tree, use.edge.length = FALSE)
-```
+See `?plot.phylo` for a comprehensive list of arguments.
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-8-1.png" width="672" />
-:::
+You can also manipulate the contents of your tree:  
 
-All we did here was set the `use.edge.length` argument to false, suppressing the branch lengths. The standar tree plot that `ape` creates is a **phylogram**. However, there are a number of other different plotting methods we can use.
+* `drop.tip()` removes a tip from the tree
+* `rotate()` switches places of two tips in the visualisation of the tree (without altering the evolutionary relationship among taxa) 
+* `extract.clade()` subsets the tree to a given clade
 
-We can plot a **cladogram** for example.
-
-:::{.fold .o}
-
-
-```r
-# plot cladogram
-plot(tree, type = "cladogram", use.edge.length = FALSE)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-9-1.png" width="672" />
-
-:::
-
-We can plot our tree as if it had no root.
-
-:::{.fold .o}
-
-
-```r
-# plot unrooted
-plot(tree, type = "unrooted", use.edge.length = FALSE)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-10-1.png" width="672" />
-
-:::
-
-We can also make a radial tree, which is a convenient way to plot many taxa at once.
-
-:::{.fold .o}
-
-
-```r
-# plot fan/radial treee
-plot(tree, type = "fan", use.edge.length = FALSE)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-11-1.png" width="672" />
-
-:::
-
-We can also easily set many different graphical parameters to make our tree look a specific way. So for example
-
-
-```r
-# plot red tree (with suppressed branch lengths)
-plot(tree, use.edge.length = FALSE, edge.width = 2, edge.color = "red")
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-12-1.png" width="672" />
-
-
-
-### Manipulating trees
-
-
-
-As well as simply plotting trees, it is possible to manipulate them to make them look a certain way or to focus on a specific group of taxa. `ape` has a number of powerful functions that allow us to do this quite easily. To start, let's make a new random tree, this time with 5 taxa.
-
-:::{.fold .o}
-
-
-```r
-# set seed (to ensure the same tree is drawn for all)
-set.seed(32)
-# make a new tree with 5 tips - one is root
-tree <- rtree(n = 5, tip.label = c("a", "b", "c", "d", "e"))
-# plot the tree
-plot(tree)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-13-1.png" width="672" />
-
-:::
-
-Let's say we want to remove a tip from our tree - we can easily achieve this with the `drop.tip` function, and supplying the name of the tip.
-
-:::{.fold .o}
-
-
-```r
-# drop a tip 
-prune_tree <- drop.tip(tree, "d")
-plot(prune_tree)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-14-1.png" width="672" />
-
-:::
-
-Perhaps we want to rotate our tree, so that the tips are orientated slightly differently? This is also very easily achieved with the `rotate` function.
-
-:::{.fold .o}
-
-
-```r
-# rotate tree
-prune_tree1 <- rotate(prune_tree, c("b", "a"))
-# plot newly rotate tree
-plot(prune_tree1)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-15-1.png" width="672" />
-
-:::
-
-Here, we specified we want the tree rotated on the internal node that joins `a` and `b`, which in this case is the root of the tree. What if we want to rotate another set of taxa, such as `c` and `e`? Well it is actually much more straightforward to specify the **node** rather than the tip names. But how can you know the names of each of the nodes? Luckily there is an easy way to display them.
-
-:::{.fold .o}
-
-
-```r
-# show nodes on tree
-plot(prune_tree1)
-nodelabels()
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-16-1.png" width="672" />
-
-:::
-
-So we want to rotate our tree on node 7. Thus we can rerun the code using `rotate` but this time with the node specified, not the tips:
-
-:::{.fold .o}
-
-
-```r
-# rotate tree specifying node
-prune_tree2 <- rotate(prune_tree1, 7)
-# plot newly rotate tree
-plot(prune_tree2)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-17-1.png" width="672" />
-
-:::
-
-Note that rotating trees just alters the way we plot them, it does not make any difference to the evolutionary relationship among the taxa shown on them.
-
-:::{.fold .o}
-
-
-```r
-# set seed
-set.seed(32)
-# make a random tree of three taxa
-tree <- rtree(n = 3, tip.label = c("a", "b", "c"))
-# set up plot layout
-par(mfrow = c(3, 1))
-# plot the tree
-plot(tree, use.edge.length = FALSE, cex = 1.5, no.margin = TRUE)
-plot(rotate(tree, 4), use.edge.length = FALSE, cex = 1.5, no.margin = TRUE)
-plot(rotate(tree, 5), use.edge.length = FALSE, cex = 1.5, no.margin = TRUE)
-```
-
-<img src="Exercise9_files/figure-html/unnamed-chunk-18-1.png" width="672" />
-
-```r
-# set layout back to normal
-par(mfrow = c(1, 1))
-```
-
-:::
-
-Note that `cex` just alters the size of the tip labels and `no.margin = TRUE` suppresses the use of margins for visualisation. All three of these trees are the same - they are just rotated differently.
+See the help pages for the functions to find out more about how they work. Now, let's use some of the options we've learned here for looking at some real data.
 
 ### A simple example with real data - avian phylogenetics
 
-So far, we have only looked at randomly generated trees. Let's have a look at some data stored within `ape` - a phylogeny of birds at the order level.
+So far, we have only looked at randomly generated trees. Let's have a look at some data stored within `ape`---a phylogeny of birds at the order level.
 
 
 ```r
@@ -326,7 +158,7 @@ segments(38, 6, 38, 23, lwd = 2)
 text(39, 14.5, "Neoaves", srt = 270)
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 Here, the `segments` and `text` functions specify the bars and names of the two major groups in our avian phylogeny. We are just using them for display purposes here, but if you'd like to know more about them, you can look at the R help with `?segments` and `?text` commands.
 
@@ -342,7 +174,7 @@ is.monophyletic(bird.orders, c("Trochiliformes", "Apodiformes"))
 #> [1] TRUE
 ```
 
-We can also easily subset our tree using `extract.clade`. Let's extract the Neoaves and then plot them. We need to supply the correct node to `extract.clade`, so let's first find the correct node by plotting nodelabels on top of the previous tree.
+If we want to look at just the Neoaves, we can subset our tree using `extract.clade()`. We need to supply a node from our tree to `extract.clade`, so let's find the correct node first. The nodes in the tree can be found by running the `nodelabels()` function after using `plot()`:
 
 
 ```r
@@ -354,7 +186,7 @@ text(39, 14.5, "Neoaves", srt = 270)
 nodelabels()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-22-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-11-1.png" width="672" />
 
 We can see that the Neoaves start at node 29, so let's extract that one.
 
@@ -366,7 +198,7 @@ neoaves <- extract.clade(bird.orders, 29)
 plot(neoaves)
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-23-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 The functions provided by `ape` make it quite easy to handle phylogenies in R, feel free to experiment further to find out what you can do!
 
@@ -403,8 +235,6 @@ We also need to convert our dataset so that `phangorn` is able to use it properl
 hominidae <- as.phyDat(hominidae)
 ```
 
-::: {.blue}
-**Droppe?**\
 We are going to create two types of trees - UPGMA and Neighbour Joining. These are distance based measures and so we must first make a distance matrix among our taxa, which requires a substitution model. The default substitution model is the Jukes & Cantor model, but we can also use Felsenstein's 1981 model. Which is the best to apply here? To find that out, we should first test the different models using `modelTest`:
 
 
@@ -415,8 +245,7 @@ hominidae_mt <- modelTest(hominidae, model = c("JC", "F81"), G = FALSE, I = FALS
 
 Take a look at the `hominidae_mt` table. What we have done here is performed a maximum likelihood analysis and a form of model selection to determine which of the two models we tested - JC69 and F81 (specified by `model = c("JC", "F81")`) best fits our data. We also set `G` and `I` to false in order to simplify the output. Don't worry too much about what these are for now, but feel free to use `?modelTest` if you wish to learn more.
 
-Anyway, how can we interpret this table? Well, we are looking for the model with the \*\* log likelihood\*\* closest to zero and also the lowest value of AIC (Akaike information criterion - [see here for more information](https://en.wikipedia.org/wiki/Akaike_information_criterion)). In this case, it is clear that F81 is a better fit for the data than the JC model, so we will calculate our distance matrix with this model instead.
-:::
+Anyway, how can we interpret this table? Well, we are looking for the model with the **log likelihood** closest to zero and also the lowest value of AIC (Akaike information criterion - [see here for more information](https://en.wikipedia.org/wiki/Akaike_information_criterion)). In this case, it is clear that F81 is a better fit for the data than the JC model, so we will calculate our distance matrix with this model instead.
 
 We can now calculate evolutionary distance using `dist.ml` - a function that compares pairwise distances among sequences the substitution model we chose.
 
@@ -454,15 +283,15 @@ plot(hom_upgma, no.margin = TRUE)
 plot(hom_nj, type = "unrooted", no.margin = TRUE)
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-20-1.png" width="672" />
 
 ```r
 par(mfrow = c(1,1))
 ```
 
-Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, so the correct way to plot it is unrooted. 
+Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, the correct way to plot it is unrooted. 
 
-We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted` function.
+We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted()` function.
 
 
 ```r
@@ -482,7 +311,7 @@ hom_nj_r <- root(hom_nj, "Orang")
 plot(hom_nj_r)
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
 In this case, it hasn't actually made a huge difference to our tree topology, but with a larger dataset, it might do.
 
@@ -555,10 +384,10 @@ With `adegenet`, we can perform PCA on our genomic data with the `glPCA` functio
 
 ```r
 # perform pca on dogs
-dogs_pca <- glPca(dogs, parallel = T, nf = 20)
+dogs_pca <- glPca(dogs, parallel = TRUE, nf = 20)
 ```
 
-Here again we use `parallel = T` to use parallel processing. We also use `nf = 20` in order to tell the function we want to retain 2 principal components.
+Here again Mac and Linux users can benefit from parallel processing with `parallel = T`. We also use `nf = 20` in order to tell the function we want to retain 2 principal components.
 
 Let's take a moment to look at the output of our PCA analysis.
 
@@ -605,7 +434,7 @@ We can then easily plot this using `ggplot`.
 ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
 
@@ -635,7 +464,7 @@ a <- ggplot(village_pca, aes(PC1, PC2, colour = location)) + geom_point() + them
 a + theme(legend.position = "bottom")
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 So from this PCA, what can we deduce? Well an immediate obvious pattern is that dogs from Central and Eastern Asia are quite divergent from other geographic locations. Similarly, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
 
