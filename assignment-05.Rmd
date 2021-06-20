@@ -1,13 +1,13 @@
-# Week 5 assignment {- #w05}
+# Week 5 assignment {#w05 .unnumbered}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-#### 1. Vectorising functions {-}
+#### 1. Vectorising functions {.unnumbered}
 
 *To complete this part of the assignment, you need to define the `calc_af()` function from the tutorial:*
 
-:::{.fold .c}
+::: {.fold .c}
 ```{r}
 calc_af <- function(counts){
   # get the number of samples
@@ -30,32 +30,31 @@ counts <- data.frame(
 )
 ```
 
-a) Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column.
+a)  Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column.
 
-b) Use `ifelse()` to create a column that says "above 0.5" if p in the population is larger than 0.5, and "below 0.5" if it's not.
+b)  Use `ifelse()` to create a column that says "above 0.5" if p in the population is larger than 0.5, and "below 0.5" if it's not.
 
 You should print the data frame in the end and show the output in the hand-in.
 
-#### 2. A worked example of $F_{ST}$ {-}
+#### 2. A worked example of $F_{ST}$ {.unnumbered}
 
-We sample two fish populations - one in the lake and the other in a stream. We genotype them  at locus B. In the lake, the genotype counts are - B1B1 = 32, B1B2 = 12 and B2B2 = 6. In the stream, the genotype counts are B1B1 =10, B1B2 = 16, B2B2 = 43.
+We sample two fish populations - one in the lake and the other in a stream. We genotype them at locus B. In the lake, the genotype counts are - B1B1 = 32, B1B2 = 12 and B2B2 = 6. In the stream, the genotype counts are B1B1 =10, B1B2 = 16, B2B2 = 43.
 
-a. Calculate the average expected heterozygosity for the two populations.
+a.  Calculate the average expected heterozygosity for the two populations.
 
-  i. **Optional:** make a function to calculate average expected heterozygosity.
-  
-b. Calculate the expected heterozygosity for the two populations as a metapopulation.
+    i.  **Optional:** make a function to calculate average expected heterozygosity.
 
-  i. **Optional:** make a function to calculate expected heterozygosity in the metapopulation.
-  
-c. Calculate $F_{st}$ between the lake and stream fish. How do you interpret this value?
+b.  Calculate the expected heterozygosity for the two populations as a metapopulation.
 
+    i.  **Optional:** make a function to calculate expected heterozygosity in the metapopulation.
+
+c.  Calculate $F_{st}$ between the lake and stream fish. How do you interpret this value?
 
 #### 3. More on $F_{ST}$
 
 *To complete this part of the assignment, you need to define the `calc_fst()` function, in addition to the `calc_af()` function defined in question 1.*
 
-:::{.fold .c}
+::: {.fold .c}
 ```{r}
 calc_fst <- function(p_1, p_2){
   
@@ -88,6 +87,6 @@ calc_fst <- function(p_1, p_2){
 ```
 :::
 
-a) Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might explain the $F_{ST}$ value you calculate?
+a)  Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might explain the $F_{ST}$ value you calculate?
 
-b) Using the functions we developed in the tutorial, calculate $F_{ST}$ around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the $F_{ST}$ between European Americans and East Asians. What is the highest value of $F_{ST}$? How does this compare with the highest $F_{ST}$ between European Americans and East Asians that we investigated in the tutorial?
+b)  Using the functions we developed in the tutorial, calculate $F_{ST}$ around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the $F_{ST}$ between European Americans and East Asians. What is the highest value of $F_{ST}$? How does this compare with the highest $F_{ST}$ between European Americans and East Asians that we investigated in the tutorial?

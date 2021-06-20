@@ -54,12 +54,6 @@ c) How many of the numbers are exactly 1?
 a) **Optional:** Check if R considers $(\sqrt2 )^2$ to be exactly equal to 2. What is the result? Why is it this way?
 
 
-```{r, eval = FALSE}
-sqrt(2)^2 == 2
-```
-
-
-
 #### 2. Data import and plotting {-}
 
 For this section you will use the dataset "vitruvian.txt". The data set consists of body measurements from biology students from earlier years in the course BIO2150. Make sure you download it from Canvas, and take note of where it's stored on your computer.
@@ -100,16 +94,6 @@ a) Make a vector of the numbers 1 through 50, and one with the numbers 51 throug
 b) Plot x against x^2^ as a line with any color other than black.
 c) Plot a line of x against $\frac{y^2}{4}$ on top of your previous plot in a different color.
 d) Add a title to your plot, stating how pretty it is.
-
-
-```{r, eval = FALSE}
-x <- 1:50
-y <- 51:100
-plot(x,y)
-
-plot(x, x^2, col = "salmon2", type = "l")
-lines(x, y^2/4)
-```
 
 
 **2.4**
