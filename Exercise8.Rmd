@@ -35,7 +35,7 @@ library(tidyverse)
 library(PopGenome)
 ```
 
-## R programming: Visualizing complex data
+## Visualizing complex data
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
@@ -106,7 +106,7 @@ h + facet_wrap(~Continent, scales = "free_x")
 
 Now you have learned some tools for visualising various statistics across the sparrow genome for later. Let's jump into the evolutionary biology part!
 
-## Evolutionary genetics: Returning to the sparrow dataset
+## Returning to the sparrow dataset
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
@@ -176,7 +176,10 @@ sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
 
 A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.
 
-### Setting up sliding windows
+## Setting up sliding windows
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
 So far, this will start to seem quite familiar! We learned in the last session that per-SNP estimates of statistics such as $\pi$ can often be extremely noisy when you are calculating them on very large numbers of markers. As well as this, there are issues with the fact that SNP positions in close proximity are not always independent due to recombination - this is a theme we will return too shortly. So for this reason, it is often better to use a **sliding-window** approach - i.e. split the genome into windows of a particular size and then calculate the mean for a statistic within that window.
 
@@ -255,6 +258,7 @@ windows <- data.frame(start = window_start, stop = window_stop,
 
 ### Calculating sliding window estimates of nucleotide diversity and differentiation
 
+
 Now that we have set up the data, the population information and the sliding windows, it is quite straightforward for us to calculate some statistics we are interested in. In this case, we are going to calculate nucleotide diversity (i.e. $\pi$) and *F*~ST~. We will also generate a third statistic, *d*~XY~, which is the absolute nucleotide divergence between two populations.
 
 First we will calculate $\pi$. Handily, the following command also sets up what we need for *d*~XY~.
@@ -273,7 +277,7 @@ sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
 
 Note that here we use `mode = "nucleotide"` to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that's it for calculating the statistics! As you will see in the next section, extracting them from the `sparrows_sw` object is actually more difficult than generating them...
 
-#### Extracting statistics for visualisation
+### Extracting statistics for visualisation
 
 Since we ran our analysis on a sliding-window basis, we should have estimates of $\pi$, *F*~ST~ and *d*~XY~ for each window. What we want to do now is extract all our statistics and place them in a single `data.frame` for easier downstream visualisation - this will let us identify how these statistics are interrelated.
 
@@ -314,7 +318,10 @@ sparrow_data <- as_tibble(data.frame(windows, nd, fst, dxy))
 
 We now have the data frame `sparrow_data`, take a look at it to ensure that it looks correct (be aware of any errors you might get while running the code in yellow above). The data contain window positions as well as nucleotide diversity $\pi$ and the two pairwise measures F~ST~ and d~xy~ for all pairs of populations. Now we can finally investigate differences between the populations!
 
-### Visualising the data
+## Visualising the data
+
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
 
 For the purposes of this session, we will focus mainly on the difference between house and spanish sparrows. However, since we now have all our data in a tidy `data.frame`, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let's say we want to look at mean nucleotide diversity, we can do that like so:
 
@@ -340,7 +347,7 @@ a
 
 This makes it much clearer how nucleotide diversity differs among the species.
 
-#### Visualising patterns along the chromosome
+### Visualising patterns along the chromosome
 
 Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. We can do this very simply with `ggplot`.
 
