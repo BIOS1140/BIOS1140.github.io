@@ -222,3 +222,4 @@ visualizing-complex-data
 returning-to-the-sparrow-dataset
 sparrow-data
 sparrow-viz
+ch08

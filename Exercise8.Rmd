@@ -416,7 +416,7 @@ Examining the plot we created, it is pretty clear that the large peak in *F*~ST~
 
 The signal here is quite clear - what could explain it? Low recombination regions in the genome are one potential explanation. The reason for this is that in a low recombination region, **background selection** and also **selective sweeps** can remove variation at polymorphic positions that are closely linked to the target of selection. Selection of this kind in either the house or the Spanish lineages AFTER they have split into different species will reduce $\pi$ in these regions and since *F*~ST~ is a relative measure of differentiation, it will potentially be inflated.
 
-This is an important issue as it means that we cannot reliably use *F*~ST~ to identify genes involved in reproductive isolation from a genome scan. By comparing *F*~ST~ to *d*~XY~ here, we see the latter is also reduced in this region, which again suggests it is likely that some sort of genome structure might be responsible for the peak in *F*~ST~ we see. One way to investigate this is examine the recombination rate variation along chromosome 8 - which we will do in the next section.
+This is an important issue as it means that we cannot reliably use *F*~ST~ to identify genes involved in reproductive isolation from a genome scan. By comparing *F*~ST~ to *d*~XY~ here, we see the latter is also reduced in this region, which again suggests it is likely that some sort of genome structure might be responsible for the peak in *F*~ST~ we see. One way to investigate this is examine the recombination rate variation along chromosome 8---which we will do next, after a short interlude.
 
 ::: {.green}
 ### Interlude: relative vs. absolute measures of nucleotide diversity
@@ -432,7 +432,7 @@ In other words, *F*~ST~ is sensitive to the variation within each population, wh
 
 ### Investigating recombination rate variation
 
-To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromoosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://bios1140.github.io/data/chr8_recomb.tsv). We will read the data in like normal
+To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://bios1140.github.io/data/chr8_recomb.tsv). We will read the data in like normal
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 rrate <- read_delim("./chr8_recomb.tsv", delim = "\t")
