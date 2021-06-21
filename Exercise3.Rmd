@@ -1,6 +1,6 @@
 # (PART) Evolutionary genetics with R {-}
 
-# Changes in Allele and Genotype Frequency
+# Changes in Allele and Genotype Frequency {#ch03}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```

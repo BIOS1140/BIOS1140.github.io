@@ -1,4 +1,4 @@
-# The Theory of Natural Selection
+# The Theory of Natural Selection {#ch04}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```

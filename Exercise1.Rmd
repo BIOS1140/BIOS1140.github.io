@@ -1,6 +1,6 @@
 # (PART) Introductory R course {-}
 
-# Introduction to R
+# Introduction to R {#ch01}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
