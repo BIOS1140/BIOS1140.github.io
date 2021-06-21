@@ -351,37 +351,13 @@ ggplot(qtl_df, aes(phenotype, fill = qtl_marker)) + geom_bar()
 
 ### Testing the same genotype phenotype association with ANOVA
 
-Last but not least. We can test the same association with ANOVA. To do this, we are going to read in some data [we prepared for you earlier](https://evolutionarygenetics.github.io/qtl_df.tsv)[^exercise6-11].
-
-[^exercise6-11]: If you're curious, `stringsAsFactors = TRUE` is necessary here to explixitly tell R that the text columns are *factors*, a special way of encoding groups in R. We need to do this to turn the phenotypes into numeric values later.
+Last but not least, we can test the same association with ANOVA. This part will be left for you to do in the assignment. To get you started, the data can be found [here](https://BIOS1140.github.io/data/qtl_markers.tsv), and you can read it into R with the following code:
 
 ```{r, echo = TRUE, eval = FALSE, results = "hide"}
-qtl_df2 <- read.table("qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
+qtl_markers <- read.table("qtl_markers.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
 ```
 
-```{r, echo = FALSE, results = "hide"}
-qtl_df2 <- read.table("docs/data/qtl_df.tsv", header = TRUE, sep = "\t", stringsAsFactors = TRUE)
-```
-
-Feel free to take a look at this - it is essentially the same data as before, but this time there is also the genotype data for a marker which is not a QTL.
-
-**Idé: gi dem datasettet med qtl og non-qtl, men uten å si hvilken som er hvilken. Så kan det være en oppgave å finne ut hvilken av dem som henger sammen med fenotype.**
-
-Let's use ANOVA to test whether variation in genotype can explain the variation in phenotype.
-
-```{r, echo = TRUE, results = "hide"}
-model1 <- aov(as.numeric(phenotype) ~ qtl_marker, data = qtl_df2)
-```
-
-This is exactly same as the ANOVA we ran earlier with one exception. Like with `scanone` when we did our QTL analysis, `aov` requires that the phenotype data is stored as a `numeric`. So to deal with this we need to add the `as.numeric` function.
-
-Finally, let's call `summary` on our model output to see whether there is a significant effect of the QTL marker on our phenotype.
-
-```{r, echo = TRUE, results = "hide"}
-summary.lm(model1)
-```
-
-Quite clearly there is a significant difference between genotypes at this marker in terms of phenotype. What about at the non-qtl marker data we read in alongside this? Well for that, you can see the study questions...
+More details on the data can be found in [Week 6 assignment](#w06). Good luck!
 
 ## Study questions
 
