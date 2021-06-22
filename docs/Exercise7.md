@@ -1,4 +1,4 @@
-# Inferring Evolutionary Processes from Sequence Data
+# Inferring Evolutionary Processes from Sequence Data {#ch07}
 
 
 <script src="js/hideOutput.js"></script>

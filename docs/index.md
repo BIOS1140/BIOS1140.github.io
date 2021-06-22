@@ -1,6 +1,6 @@
 --- 
 title: "R tutorials in BIOS1140"
-date: "2021-06-20"
+date: "2021-06-22"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes

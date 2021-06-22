@@ -1,4 +1,4 @@
-# Building on your foundations: going further with R
+# Building on your foundations: going further with R {#ch02}
 
 
 <script src="js/hideOutput.js"></script>

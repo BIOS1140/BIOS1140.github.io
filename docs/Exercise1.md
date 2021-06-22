@@ -1,6 +1,6 @@
 # (PART) Introductory R course {-}
 
-# Introduction to R
+# Introduction to R {#ch01}
 
 
 <script src="js/hideOutput.js"></script>

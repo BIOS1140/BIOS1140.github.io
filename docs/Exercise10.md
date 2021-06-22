@@ -1,6 +1,4 @@
-# Advancing Further in R
-
-
+# Advancing Further in R {#ch10}
 
 
 <script src="js/hideOutput.js"></script>
@@ -92,95 +90,20 @@ It might take some time to get used to reading these, but it is very helpful for
 
 ```r
 # a simple for loop
-for(i in 1:10){
+for (i in 1:10){
   print(i)
 }
 ```
 
-This simple block contains two **control flow** examples (`for` and `in` - we will learn more about control flow in the next section) - these are highlighted in red in the code block here. There is also a numeric vector - this is shown in a blue-gree colour. Everything else, including ojects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is [highly customisable too](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio).
+This simple block contains two **control flow** examples (`for` and `in`) - these are highlighted in in the code block here. There is also a numeric vector - this is shown in a different colour. Everything else, including objects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is [highly customisable too](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio).
 
-## Control flow - `for`, `else`, `if` and `ifelse`
+## More on data handling---categorising and relating
 
+Handling large amounts of data with few lines of code is one of R's strong points. In this section we will show how you can use `ifelse()` and the `left_join()` function from dplyr to make categories and add information to your data
 
-<script src="js/hideOutput.js"></script>
+### `ifelse()` for making categories
 
-
-Back in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html), we had a basic introduction to `for` loops. Here we will revisit this topic and also learn more about **conditional statements** such as `else`, `if` and `ifelse`. All of these types of statements are examples of [**control flow**](https://en.wikipedia.org/wiki/Control_flow) which is a way of controlling how code that you have programmed is carried out.
-
-You can actually take a moment to think about how something like this might operate in the real world in order to demonstrate how control flow works. Imagine you have been asked to look after some fish. They are in 10 different tanks and you need to place the same amount of food (20 g) in each one. So for each tank, you stop in front of it and measure out the exact same food for each of them. You only move on to the next tank once the fish in the one you are feeding are fed. This is essentially a `for` loop and you could imagine it looking like this if you could actually code such an example:
-
-
-```r
-# a pseudo-code exmaple of a for loop
-for(i in 1:10 tanks){
-  stop in front of tank
-  feed 20 g of fish food
-  move to next tank
-}
-```
-
-Of course this would never actually run (although it would be pretty useful if you could do this). The point is that this is a good example of how you can think about code being operated with control flow arguments.
-
-However, in R, most control flow is conditional. This means that control flow statements require a certain condition to function. Let's take a real world example to demonstrate this too. You're really thirsty and you want a cup of tea. So you boil the kettle and put a tea bag in your cup. Next you'll need to pour in the boiling water, but of course you would stop pouring before the cup overflows. If the cup is full, you'll stop pouring and you'll want to drink the tea. We can demonstrate this with a pseudocode `if` and `else` statement too:
-
-
-```r
-# a pseudo-code exmaple of an if statement
-if(cup != full){
-  pour kettle
-} else {
-  drink tea
-}
-```
-
-Again, this would never work as a coding statement, but it nicely demonstrates what we actually mean with control flow statements. You should not here that `!=` simply means, is not equal to. On side note - the tea pseudocode would be a terrible example because it doesn't allow any time for the tea to brew nor does it give you space in the cup to [add milk to make a proper cup of tea](http://orwell.ru/library/articles/tea/english/e_tea).
-
-### `if` and `else`
-
-Before we delve back in to `for` loops, we will take the time to look at some conditional statements in R. Principle among these is the `if` and `else` control flow functions. As we saw from the 'real-world' example above, these operate when a condition is true and provide our code alternatives for what to do if a condition is not met.
-
-Let's start with a simple `if` statement.
-
-
-```r
-# make a variable called x
-x <- 10
-if(x > 5){
-  print("Yes")
-}
-```
-
-Within our `if` function, we have a simple logical evaluation - is `x` greater than 5? If we just run `x > 5` in the R console, we get a logical `TRUE` or `FALSE` vector. Clearly, this true - so then our code block, within the curly brackets, will run.
-
-What happens if we set `x` to equal 3?
-
-
-```r
-# make a variable called x
-x <- 3
-if(x > 5){
-  print("Yes")
-}
-```
-
-When you run this code, nothing happens. That's because `x > 5` returns a `FALSE` value. However, we can also add an `else` statement to provide some output if this is the case.
-
-
-```r
-# make a variable called x
-x <- 3
-if(x > 5){
-  print("Yes it is")
-} else{
-  print("No it isn't")
-}
-```
-
-Now when our condition is not met, we print a different value to the screen. You can experiment with different values of `x` to see how this code will return different values.
-
-### `ifelse` - a single line alternative
-
-Simple `if` and `else` statements have their place in R coding, but they are quite ugly and also not great for assessing multiple values in a vector at once. Luckily, there is a simple function in R called `ifelse` which lets you do exactly this. We use it like so:
+Let's first review what the `ifelse()` function does. As you learned back in [chapter 5](#ifelse), `ifelse()` takes a logical statement, and returns something different depending on whether the condition is `TRUE` or `FALSE`:
 
 
 ```r
@@ -190,13 +113,26 @@ y <- c(20, 30, 50)
 ifelse(y > 25, "Greater than 25", "Not greater than 25")
 ```
 
-`ifelse` is very straightforward. First comes the logical statement - `y > 25`, then we write what we want the function to output if this true and next what we want to display if it is not.
-
 This function can be extremely useful for creating new variables in datasets. Let's return to the familiar `starwars` data from `dplyr` in order to use the function in this way.
 
 
 ```r
-starwars <- dplyr::starwars
+starwars
+#> # A tibble: 87 x 14
+#>    name  height  mass hair_color skin_color eye_color birth_year sex   gender
+#>    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+#>  1 Luke~    172    77 blond      fair       blue            19   male  mascu~
+#>  2 C-3PO    167    75 <NA>       gold       yellow         112   none  mascu~
+#>  3 R2-D2     96    32 <NA>       white, bl~ red             33   none  mascu~
+#>  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~
+#>  5 Leia~    150    49 brown      light      brown           19   fema~ femin~
+#>  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~
+#>  7 Beru~    165    75 brown      light      blue            47   fema~ femin~
+#>  8 R5-D4     97    32 <NA>       white, red red             NA   none  mascu~
+#>  9 Bigg~    183    84 black      light      brown           24   male  mascu~
+#> 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
+#> # ... with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+#> #   films <list>, vehicles <list>, starships <list>
 ```
 
 Now we can take a look at the `starwars$species` vector. There are a lot of different species, so what if we wanted to create a vector that simply states whether an individual is a droid or not?
@@ -207,143 +143,261 @@ Now we can take a look at the `starwars$species` vector. There are a lot of diff
 ifelse(starwars$species == "Droid", "Droid", "Non-Droid")
 ```
 
-Note that `==` is just like saying, 'is equal to'. `ifelse` can be really useful if you want o plot or group the data in a different way.
-
-### `for` loops
-
-#### `for` loop basics
-
-A `for` loop in R is essentially a way to repeat an operation, iterating over a range of different variables. Let's take another look at the simple `for` loop we saw previously.
+This can be useful e.g. for comparing droids and non-droids in a plot or table. Say we want to label our species based on whether they are a droid, human or neither of the two. A useful thing with `ifelse()` is that the third argument can be _another_ `ifelse()` function! So we can actually chain `ifelse()` commands like this:
 
 
 ```r
-# a simple for loop
-for(i in 1:10){
-  print(i)
-}
+ifelse(starwars$species == "Droid", "Droid", ifelse(starwars$species == "Human", "Human", "Neither human nor droid"))
+#>  [1] "Human"                   "Droid"                  
+#>  [3] "Droid"                   "Human"                  
+#>  [5] "Human"                   "Human"                  
+#>  [7] "Human"                   "Droid"                  
+#>  [9] "Human"                   "Human"                  
+#> [11] "Human"                   "Human"                  
+#> [13] "Neither human nor droid" "Human"                  
+#> [15] "Neither human nor droid" "Neither human nor droid"
+#> [17] "Human"                   "Human"                  
+#> [19] "Neither human nor droid" "Human"                  
+#> [21] "Human"                   "Droid"                  
+#> [23] "Neither human nor droid" "Human"                  
+#> [25] "Human"                   "Neither human nor droid"
+#> [27] "Human"                   "Human"                  
+#> [29] "Neither human nor droid" "Neither human nor droid"
+#> [31] "Human"                   "Neither human nor droid"
+#> [33] "Human"                   "Neither human nor droid"
+#> [35] "Neither human nor droid" "Neither human nor droid"
+#> [37] NA                        "Neither human nor droid"
+#> [39] "Neither human nor droid" NA                       
+#> [41] "Human"                   "Neither human nor droid"
+#> [43] "Neither human nor droid" "Neither human nor droid"
+#> [45] "Neither human nor droid" "Neither human nor droid"
+#> [47] "Neither human nor droid" "Human"                  
+#> [49] "Neither human nor droid" "Neither human nor droid"
+#> [51] "Neither human nor droid" "Neither human nor droid"
+#> [53] "Neither human nor droid" "Neither human nor droid"
+#> [55] "Neither human nor droid" "Neither human nor droid"
+#> [57] "Human"                   "Human"                  
+#> [59] "Human"                   "Neither human nor droid"
+#> [61] "Neither human nor droid" "Neither human nor droid"
+#> [63] "Human"                   "Human"                  
+#> [65] "Human"                   "Human"                  
+#> [67] "Neither human nor droid" "Neither human nor droid"
+#> [69] "Neither human nor droid" "Neither human nor droid"
+#> [71] "Human"                   "Neither human nor droid"
+#> [73] "Droid"                   "Neither human nor droid"
+#> [75] "Neither human nor droid" "Neither human nor droid"
+#> [77] "Neither human nor droid" "Neither human nor droid"
+#> [79] "Human"                   NA                       
+#> [81] "Neither human nor droid" "Human"                  
+#> [83] "Human"                   "Human"                  
+#> [85] "Droid"                   NA                       
+#> [87] "Human"
 ```
 
-The `for` function sets up the actual loop itself. The first part - `for(i in 1:10)` is telling R that our loop will run across an range of numbers, from 1 to 10. The `i` in the `for` function is simply the name we give to each number in the `1:10` vector. The main block of code is contained in the curly brackets - `{ }`. You can see here we simply stated `print(i)` - so the first time the loop runs, `i` is 1, then 2, then 3 and so on. `i` is a totally arbitrary placeholder. We could use `x` too - for example:
+This is useful, but quickly becomes convoluted. Imagine how the code would look if we threw in a third and fourth category there! In cases like this, remember to use linebreaks to make the code more readable. You can have a linebreak anywhere after starting a function, and R will still understand that it's part of the same function. A suggestion for better formatting than above:
 
 
 ```r
-# another simple for loop
-for(x in c(10, 50, 1000, 1000000)){
-  print(x + 20) 
-}
+ifelse(
+  starwars$species == "Droid", "Droid", 
+  ifelse(starwars$species == "Human", "Human", 
+         "Neither human nor droid")
+  )
+#>  [1] "Human"                   "Droid"                  
+#>  [3] "Droid"                   "Human"                  
+#>  [5] "Human"                   "Human"                  
+#>  [7] "Human"                   "Droid"                  
+#>  [9] "Human"                   "Human"                  
+#> [11] "Human"                   "Human"                  
+#> [13] "Neither human nor droid" "Human"                  
+#> [15] "Neither human nor droid" "Neither human nor droid"
+#> [17] "Human"                   "Human"                  
+#> [19] "Neither human nor droid" "Human"                  
+#> [21] "Human"                   "Droid"                  
+#> [23] "Neither human nor droid" "Human"                  
+#> [25] "Human"                   "Neither human nor droid"
+#> [27] "Human"                   "Human"                  
+#> [29] "Neither human nor droid" "Neither human nor droid"
+#> [31] "Human"                   "Neither human nor droid"
+#> [33] "Human"                   "Neither human nor droid"
+#> [35] "Neither human nor droid" "Neither human nor droid"
+#> [37] NA                        "Neither human nor droid"
+#> [39] "Neither human nor droid" NA                       
+#> [41] "Human"                   "Neither human nor droid"
+#> [43] "Neither human nor droid" "Neither human nor droid"
+#> [45] "Neither human nor droid" "Neither human nor droid"
+#> [47] "Neither human nor droid" "Human"                  
+#> [49] "Neither human nor droid" "Neither human nor droid"
+#> [51] "Neither human nor droid" "Neither human nor droid"
+#> [53] "Neither human nor droid" "Neither human nor droid"
+#> [55] "Neither human nor droid" "Neither human nor droid"
+#> [57] "Human"                   "Human"                  
+#> [59] "Human"                   "Neither human nor droid"
+#> [61] "Neither human nor droid" "Neither human nor droid"
+#> [63] "Human"                   "Human"                  
+#> [65] "Human"                   "Human"                  
+#> [67] "Neither human nor droid" "Neither human nor droid"
+#> [69] "Neither human nor droid" "Neither human nor droid"
+#> [71] "Human"                   "Neither human nor droid"
+#> [73] "Droid"                   "Neither human nor droid"
+#> [75] "Neither human nor droid" "Neither human nor droid"
+#> [77] "Neither human nor droid" "Neither human nor droid"
+#> [79] "Human"                   NA                       
+#> [81] "Neither human nor droid" "Human"                  
+#> [83] "Human"                   "Human"                  
+#> [85] "Droid"                   NA                       
+#> [87] "Human"
 ```
 
-In this example, our `for` loop is very similar to the previous one, except we used `x` to denote the variable **within the curly brackets** and we added 20 at iteration.
+Still, if you have more than, say, four-five categories, this becomes difficult to read and time-consuming. For e.g. adding more information to a data frame, _joining_ may be a better alternative, which we will go through next.
 
-However an important point with `for` loops is that they actually declare a variable - so after you have run them, there will be an object with the final value of your loop in the R environment. For example, try running through the following code:
+### Joining
+
+For this section we will revisit the [copepods.txt](https://BIOS1140.github.io/data/copepods.txt) data that we encountered way back in [week 2](#w02). Start by reading in this data. You should know enough by now to do this by yourself, so we won't show you how.
+
+
 
 
 ```r
-# declare Z as an NA
-z <- NA
-# a simple for loop demonstrating scope
-for(z in c("helsinki", "oslo", "stockholm", "copenhagen")){
-  print(z) 
-}
-# now print z again
-z
+copepods
+#>   depth acartia calanus harpacticoida oithona oncaea temora
+#> 1     0       0       3             0       2      0      0
+#> 2     2       1       0             0       6      1      0
+#> 3     4       1       0             0       7      0      1
+#> 4     6      27       0             1       0      0      2
+#> 5     8      11       0             2       6      0      3
+#> 6    10      17       0             3       0      0      2
+#> 7    12      13       0             1       0      0      1
+#> 8    14       7       0            13       0      0      0
+#> 9    16       6       0             6       0      0      1
 ```
 
-You will see in this example, `z` is `NA` at the start but after the loop, printing it to the screen shows its value has altered. This is an important point to consider when using `for` loops - as we will see in the `sapply` example this is not the case with **vectorisation**.
 
-#### Using `for` loops to iterate over vectors and matrices
+Next, we use `pivot_longer()` to get all taxa in a single column, i.e., convert to long format. See if you manage to do this yourself before looking at my code below.
 
-Generally, we want to actually avoid using `for` loops in R, since they can be slow and also, as we learned in the last section, have unitended scope issues. However, we will stick with them for now because they can be helpful to demonstrate generally programming structures in R.
 
-As we just learned, we can use `for` to iterate over a vector. Let's make a character vector of colours:
+:::{.fold .c}
+
+```r
+copepods_long <- pivot_longer(copepods, 
+                              -depth, 
+                              names_to = "taxon", 
+                              values_to = "count")
+```
+:::
 
 
 ```r
-# make a colour character vector
-colour_vec <- colours()[1:10] 
+copepods_long
+#> # A tibble: 54 x 3
+#>    depth taxon         count
+#>    <int> <chr>         <int>
+#>  1     0 acartia           0
+#>  2     0 calanus           3
+#>  3     0 harpacticoida     0
+#>  4     0 oithona           2
+#>  5     0 oncaea            0
+#>  6     0 temora            0
+#>  7     2 acartia           1
+#>  8     2 calanus           0
+#>  9     2 harpacticoida     0
+#> 10     2 oithona           6
+#> # ... with 44 more rows
 ```
 
-All we did here was use the internal function `colour` to return 10 colours (NB: you can also use `color` if you wish to spell it that way too).
-
-Of course, we can call `colour_vec` to see the names of the colours we extracted. However we can also use a `for` loop to print each to the screen:
+Now, say that you have recorded the temperature at each depth, and want to add that information to your copepod data. How would you go about doing that? First, here is the data in a data frame:
 
 
 ```r
-for(i in colour_vec){
-  print(i)
-} 
+temps <- data.frame(
+  depth = c(0,2,4,6,8,10,12,14,16),
+  temp = c(15.5, 15.4, 15.2, 14.7, 11.4, 8.3, 7.6, 7.0, 6.8)
+)
+temps
+#>   depth temp
+#> 1     0 15.5
+#> 2     2 15.4
+#> 3     4 15.2
+#> 4     6 14.7
+#> 5     8 11.4
+#> 6    10  8.3
+#> 7    12  7.6
+#> 8    14  7.0
+#> 9    16  6.8
 ```
 
-We could also achieve this by using an index:
+One way would be using nested `ifelse()` functions, like we learned in the previous section. This is a lot of work and doesn't look good, but it's written it out below just to show you it's possible:
+
+:::{.fold .c}
+
+```r
+copepods_long$depthtemp <- ifelse(
+  copepods_long$depth == 0, 15.5,
+  ifelse(
+    copepods_long$depth == 2, 15.4,
+    ifelse(
+      copepods_long$depth == 4, 15.2,
+      ifelse(
+        copepods_long$depth == 6, 14.7,
+        ifelse(
+          copepods_long$depth == 8, 11.4,
+          ifelse(
+            copepods_long$depth == 10, 8.3,
+            ifelse(
+              copepods_long$depth == 12, 7.6,
+              ifelse(
+                copepods_long$depth == 14, 7.0,
+                ifelse(
+                  copepods_long$depth == 16, 6.8,
+                  NA
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+)
+
+```
+:::
+
+Instead, you can use the `left_join()` function from `dplyr`. You have to supply it the original data, the data you want to join with, and a vector of column names to join by (here "depth").
 
 
 ```r
-for(i in 1:length(colour_vec)){
-  print(colour_vec[i])
-} 
+copepods_temp <- left_join(copepods_long, temps, by = "depth")
+copepods_temp
+#> # A tibble: 54 x 5
+#>    depth taxon         count depthtemp  temp
+#>    <dbl> <chr>         <int>     <dbl> <dbl>
+#>  1     0 acartia           0      15.5  15.5
+#>  2     0 calanus           3      15.5  15.5
+#>  3     0 harpacticoida     0      15.5  15.5
+#>  4     0 oithona           2      15.5  15.5
+#>  5     0 oncaea            0      15.5  15.5
+#>  6     0 temora            0      15.5  15.5
+#>  7     2 acartia           1      15.4  15.4
+#>  8     2 calanus           0      15.4  15.4
+#>  9     2 harpacticoida     0      15.4  15.4
+#> 10     2 oithona           6      15.4  15.4
+#> # ... with 44 more rows
 ```
 
-Here all we did was use `1:øength(colour_vec)` to make sure our variable `i` takes the value of each value of the numeric vector this produces. In other words, we are accessing each element of the `colour_vec` vector - i.e. `colour_vec[1]`, `colour_vec[2]` and so on.
+You see that the `temp` column is equal to the `depthtemp` we created earlier, but it's so much easier to work with! Keep in mind that it is this simple in our case because `depth` has the exact same name in both data frames. Remember this when recording data in the future!
 
-Why would we do this? Well perhaps we want to access the elements of two different vectors at once. Let's make another colour vector:
-
-
-```r
-# make a colour character vector
-colour_vec2 <- colours()[51:60] 
-```
-
-Now we can use our `for` loop to access both of the vectors at once
-
-
-```r
-# a for loop accessing two vectors at once
-for(i in 1:length(colour_vec)){
-  print(c(colour_vec[i], colour_vec2[i]))
-} 
-```
-
-This is identical to the loop above except that we use `c` to combine the two outputs. `i` in this loop accesses the elements of each of the two vectors at once.
-
-The same trick also works on data stored as a `matrix` or a `data.frame`. Let's have a look at the `iris` dataset to demonstrate how we can iterate over rows or columns.
-
-
-```r
-# iterate over columns
-for(i in 1:ncol(iris)){
-  print(iris[, i])
-}
-```
-
-With this loop, we are cycling through the columns - `1:ncol(iris)` basically means `i` will take any value between 1 and the number of columns. So when we put `i` in the second part of our square brackets - i.e. `iris[, i]`, we print the column each time.
-
-We can do the same with rows too:
-
-
-```r
-# iterate over rows
-for(i in 1:nrow(iris)){
-  print(iris[i, ])
-}
-```
-
-This means we can very easily apply a function each row. Let's calculate the sum of each row.
-
-
-```r
-# iterate over rows and calculate sum
-for(i in 1:nrow(iris)){
-  print(sum(iris[i, -5]))
-}
-```
-
-Note that in this case, we need to add `-5` to our square brackets to omit the last column since we cannot sum a vector that includes a non-numeric variable.
+:::{.green}
+**Important concept:**  
+If you have your data spread out over multiple data files, remember to name columns appropriately. All columns that contain the same kind of data should have the _exact same name_ across all data sets. This makes joining much easier.
+:::
 
 ## Vectorisation
 
 
 <script src="js/hideOutput.js"></script>
 
+During the tutorials in this course, you have encountered the term "vectorisation" a few times(e.g. [chapter 5](#vectorisation)). In short, this is
 
 ### Why is vectorisation preferable in R?
 

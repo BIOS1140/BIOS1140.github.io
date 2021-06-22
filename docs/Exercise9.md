@@ -1,4 +1,4 @@
-# Reconstructing the Past
+# Reconstructing the Past {#ch09}
 
 
 <script src="js/hideOutput.js"></script>
@@ -334,13 +334,13 @@ If you test the parsimony score for the rooted and the unrooted NJ tree, you wil
 <script src="js/hideOutput.js"></script>
 
 
-Examining population structure can give us a great deal of insight into the history and origin of populations. Model-free methods for examining population structure and ancestry, such as [**principal components analysis**](https://en.wikipedia.org/wiki/Principal_component_analysis) are extremely popular in population genomic research. This is because it is typically simple to apply and relatively easy to interpret. Essentially, PCA aims to identify the main axes of variation in a dataset with each axis being independent of the next (i.e. there should be no correlation between them). The first component summarizes the major axis variation and the second the next largest and so on, until cumulatively all the available variation is explained. In the context of genetic data, PCA summarizes the major axes of variation in allele frequencies and then produces the coordinates of individuals along these axes. For the rest of the tutorial we will conduct a PCA to demonstrate how it can help give insight to population structure within species.
+Examining population structure can give us a great deal of insight into the history and origin of populations. Model-free methods for examining population structure and ancestry, such as [**principal components analysis**](https://en.wikipedia.org/wiki/Principal_component_analysis) are extremely popular in population genomic research. This is because it is typically simple to apply and relatively easy to interpret when you have learned how. Essentially, PCA aims to identify the main axes of variation in a dataset with each axis being independent of the next (i.e. there should be no correlation between them). Here, we will do a PCA analysis, and then walk you through the interpretation of the PCA, as it can be a bit tricky to wrap your head around the first time you see it.
 
 ### Village dogs as an insight to dog domestication
 
 To demonstrate how a PCA can help visualise and interpret population structure, we will use a dataset adapted from that originally used by [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) to examine the genetic diversity in a worldwide sample of domestic dogs. All of us are familiar with domestic dogs as breeds and pets, but it is easy to overlook the fact that the majority of dogs on earth are in fact free-roaming, human commensals. Rather than being pets or working animals, they just live alongside humans and are [equally charming](https://en.wikipedia.org/wiki/Free-ranging_dog).
 
-In their study, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) surveyed hundreds of dogs from across the world, focusing mainly on village dogs in developing countries. Since domestic dog breeds are often characterised by severe bottlenecks and inbreeding, they lack a lot of the diversity that would have been present when the first became a domestic species. In contrast, village dogs are unlikely to have undergone such bottlenecks and so might represent a more broad sample of the true genetic diversity present in dogs.
+In their study, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) surveyed hundreds of dogs from across the world, focusing mainly on village dogs in developing countries. Since domestic dog breeds are often characterised by severe bottlenecks and inbreeding, they lack a lot of the diversity that would have been present when they first became a domestic species. In contrast, village dogs are unlikely to have undergone such bottlenecks and so might represent a more broad sample of the true genetic diversity present in dogs.
 
 The researchers used a SNP chip and previously published data to collate variant calls from over 5,406 dogs at 185,805 SNP markers. Of the 5,406 dogs, 549 were village dogs. It is these free-roaming dogs we will focus on today.
 
@@ -387,7 +387,7 @@ With `adegenet`, we can perform PCA on our genomic data with the `glPCA` functio
 dogs_pca <- glPca(dogs, parallel = TRUE, nf = 20)
 ```
 
-Here again Mac and Linux users can benefit from parallel processing with `parallel = T`. We also use `nf = 20` in order to tell the function we want to retain 2 principal components.
+Here again Mac and Linux users can benefit from parallel processing with `parallel = TRUE`. We also use `nf = 20` in order to tell the function we want to retain 20 principal components.
 
 Let's take a moment to look at the output of our PCA analysis.
 
@@ -397,83 +397,116 @@ Let's take a moment to look at the output of our PCA analysis.
 objects(dogs_pca)
 ```
 
-Our `dogs_pca` object is a list with four elements. We can ignore `call` - that is just the call to the function we performed above. `eig` returns the eigenvalues for all the principal components calculated (not just the ones retained). We can use this to get an idea of how much of the variance each principal compnent explains and we will do so in a moment. `loadings` is a matrix of how the SNPs load onto the PC scores - i.e. how their changes in allele frequency effect the position of the data points along the axis. Finally the `scores` matrix is the actual principal component scores for each individual, allowing us to actually see how the invidivudals are distributed in our analysis.
+Our `dogs_pca` object is a list with four elements. We can ignore `call` - that is just the call to the function we performed above. `eig` returns the eigenvalues for all the principal components calculated (more on this later). `loadings` is a matrix of how the SNPs load onto the PC scores - i.e. how their changes in allele frequency effect the position of the data points along the axis. Finally the `scores` matrix is the actual principal component scores for each individual, allowing us to actually see how the invidivudals are distributed in our analysis.
 
-For now, let's have a look at how much variance our principal components explain. First, we need to convert our eigenvectors into percentages of variance explained.
-
-
-```r
-eig <- dogs_pca$eig
-# calculate percentage of variance explained
-eig <- (eig/sum(eig))*100
-```
-
-From examining `eig`, we can see how much variance each principal component explains. So for example, PC1 explains 4.59% of the variance and PC2 3.04%. Each PC cumulatively explains more of the variance until all 100% of it is explained. You can see this by running `sum(eig)` and seeing that the total is 100.
-
-A total of 7.63% for the first two vectors sounds small, but it is actually quite an appreciable amount of variance. Typically, we would concentrate on the PC components that together account for at least 10% of the variance.
 
 ### Visualising the PCA
 
-Plotting a PCA is the best way to properly interpret it, so we will do this now. The first thing we should do is extract the **principal component scores** from the data.
+Plotting a PCA is the best way to properly interpret it, so we will do this now. The first thing we should do is extract the **principal component scores** from the data. Remember that ggplot needs data to be in a data frame, so we will begin by converting `dogs_pca$scores` to a data frame. The ID of each dog is stored as row names, but we want it in a regular column, so we have to add an `id` column as well.
 
 
 ```r
-# create an id vector
-id <- row.names(dogs_pca$scores)
-# get the pc scores - only the first two for now
-pc <- dogs_pca$scores[, 1:2]
-# make a tibble
-my_pca <- as.tibble(data.frame(id, pc))
+pca_df <- data.frame(dogs_pca$scores)
+pca_df$id <- rownames(dogs_pca$scores)
 ```
 
-We can then easily plot this using `ggplot`.
+We can then plot the first 2 axes using `ggplot()`^[since distances between points matter, as we explain below, we use `coord_fixed()` to make sure that the distance between values are the same on both axes].
 
 
 ```r
 # plot with ggplot2
-ggplot(my_pca, aes(PC1, PC2)) + geom_point() + theme_light()
+ggplot(pca_df, aes(PC1, PC2)) + 
+  geom_point() + 
+  theme_light() + 
+  coord_fixed()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
-OK - so this plot looks interesting, but it is lacking some key information - namely we should colour the points by their location so we can actually have some hope of understanding it. To do this, we need information on the location that the dogs are sampled. Luckily, we have prepared that for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
+So what does this plot tell us? Let's explain a bit about how to interpret PCA plots.
+
+:::{.green}
+#### Interpreting PCA plots {-}
+
+A PCA plot is a bit different from other plots you may have encountered before. One key difference is that the value on the axes cannot be translated into anything concrete. The principal components (PC1, PC2, etc.) simply arranges the points (individual dogs in our case) along the axis depending on how similar they are to one another. This means that the further away two points are, the more different they are _in some undefined aspect_^[There are ways to try to determine which sources of variation is explained by the axes, but that is too much to go through here.]. The simplest way to read a PCA plot is:
+
+* points that are close together are similar to one another
+* points that are far apart are different to one another
+* consequently, if points form a cluster (e.g., the group of points in the bottom right of the plot above), they are similar to one another and different from everything else
+
+Another thing to note is that the principal components are ordered after how much variation they explain. For example, PC1 is the component explaining most variation in the data, PC2 the second most, PC3 the third most and so on. So two points being far apart on PC1 means that they are "more different" than two points far apart on PC2.
+
+:::
+
+OK, so the above plot looks interesting. We can see that one group of points in particular forms a cluster in the bottom right corner. But which dogs form this cluster? Are they from the same population? To investigate this we need to add some more information to our plot, namely the population each dog belongs to. We have prepared that information for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
 
 
 ```r
 # read in village dog data
-village_data <- read_delim("./village_dogs.tsv", delim = "\t")
+village_data <- read.table("./village_dogs.tsv", sep = "\t", header = TRUE)
 ```
 
 
 
 
-Take a moment to look at this. It has three columns, `id`, `breed` and `location`. Our `my_pca` object also has an id column, so we need to join the two datasets. Luckily, this is really easy with a `tidyverse` function called `left_join`:
+Take a moment to look at this. It has three columns, `id`, `breed` and `location`. Our `my_pca` object also has an id column, so we need to join the two datasets. We can do this with a `dplyr` function called `left_join()` (which we explain more about next week):
+
+:::{.yellow}
 
 
 ```r
 # join pca and village dog data
-village_pca <- inner_join(village_data, my_pca, by = "id")
+village_pca <- left_join(pca_df, village_data, by = "id")
 ```
 
-Now we can easily plot the PCA using `ggplot` and at the same time, colour the points by the location they were sampled in.
+:::
+
+Now we have added location to our data set. This means we can plot the PCA using `ggplot()` and at the same time colour the points by the location they were sampled in (try doing this without looking at my code first!).
+
+:::{.fold .c}
 
 
 ```r
 # plot with ggplot2
-a <- ggplot(village_pca, aes(PC1, PC2, colour = location)) + geom_point() + theme_light()
-a + theme(legend.position = "bottom")
+ggplot(village_pca, aes(PC1, PC2, col = location)) + 
+  geom_point() + 
+  theme_light() +
+  coord_fixed()
 ```
 
-<img src="Exercise9_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="Exercise9_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
-So from this PCA, what can we deduce? Well an immediate obvious pattern is that dogs from Central and Eastern Asia are quite divergent from other geographic locations. Similarly, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
+:::
 
-The picture may be even clearer if we use the full dataset. Since this is very large, we cannot perform this PCA in R. However, we have conducted this for you and you can find the full PCA dataset [here](https://evolutionarygenetics.github.io/full_village_dogs_pca.tsv). You can also find the eigenvectors [here](https://evolutionarygenetics.github.io/full_village.eigenval). To give you a head start, you can read in the eigenvalues like so:
+So from this PCA, what can we deduce? First if all, the cluster we identified earlier are dogs from East Asia. Similarly, Central Asian, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
+
+### Eigenvalues
+
+How much of the variance in the data set is captured by the PCA? For this, we can use the _eigenvalues_ of the principal components, stored in `dogs_pca$eig`. Have a look at this vector, where PC1 is the first element, PC2 the second and so on, and notice that the numbers are decreasing. This means that PC1 explains more variation than the other axes, as we mentioned previously.
+
+These numbers are not easy to interpret by themselves, but are useful if we view them as a fraction of the total. For example, we can see how much of the total variation is explained by PC1 like this:
 
 
 ```r
-full_village_eigenval <- scan("./full_village.eigenval")
+dogs_pca$eig[1] / sum(dogs_pca$eig)
+#> [1] 0.04596527
 ```
+
+And see that PC1 explains around 4.6 % of the variation of the data. Due to R treating vectors as it would single numbers in many cases, we can calculate variance explained for all principal components in a single operation like this:
+
+
+```r
+eig <- (dogs_pca$eig / sum(dogs_pca$eig))
+eig
+```
+
+From `eig`, we can see that if we sum the first two elements (i.e., PC1 and PC2), we find that around 7.63% of variance explained by the first two principal components (and by extension, the patterns we wee in our plot). A total of 7.63% for the first two vectors sounds small, but it is actually quite an appreciable amount of variance. Typically, we would concentrate on the principal components that together account for at least 10% of the variance.
+
+### The full data set
+
+It is important to remember that the analyses we have done have been on a small subsample. Working with the full data, however, could make patterns clearer. Therefore, you will be working with the complete data in the assignment. 
+
+Since the full data set is very large, we cannot perform PCA on this in R. However, we have conducted this for you and you can find the full PCA data set [here](https://bios1140.github.io/data/full_village_dogs_pca.tsv). You can also find the eigenvectors [here](https://bios1140.github.io/data/full_village.eigenval). More on this in the assignment!
 
 ## Study questions
 

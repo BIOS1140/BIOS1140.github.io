@@ -4,7 +4,7 @@
 
 
 
-# Detecting Natural Selection
+# Detecting Natural Selection {#ch05}
 
 In the last section, we spent a lot of time on the theoretical basis of natural selection. In this section, we will once again learn about selection, but this time our focus will be much more empirically based. In particular, we are going to use R to demonstrate the utility of *F*~ST~ (i.e. genetic differentiation among populations) as a means to infer selection in the genome. This means we will be returning to some of the things you learned about in Chapter 3 in order to properly understand F-statistics. We'll also return to the idea of empirical and statistical distributions in order to underline the basic concepts behind how we can do this. Finally, we will take some actual genome-wide *F*~ST~ data and visualise it in order to demonstrate just how a genome scan approach might identify genomic regions under selection.
 
@@ -27,7 +27,7 @@ The first thing we need to do is set up the R environment. We won't be using any
 library(tidyverse)
 ```
 
-## More on functions: Vectorisation
+## More on functions: Vectorisation {#vectorisation}
 
 
 <script src="js/hideOutput.js"></script>

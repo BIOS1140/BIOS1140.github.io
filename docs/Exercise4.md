@@ -1,4 +1,4 @@
-# The Theory of Natural Selection
+# The Theory of Natural Selection {#ch04}
 
 
 <script src="js/hideOutput.js"></script>
