@@ -29,7 +29,7 @@ The first thing we need to do is set up the R environment. We won't be using any
 library(tidyverse)
 ```
 
-## More on functions: Vectorisation
+## More on functions: Vectorisation {#vectorisation}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
