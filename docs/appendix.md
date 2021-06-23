@@ -23,7 +23,7 @@ Before using R Markdown, you need to install it. You install it like you would a
 install.packages("rmarkdown")
 ```
 
-When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as "knitting"). For this course you need to deliver assignments either in PDF or Word format. PDF requires $\latex$, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing [TinyTex](https://yihui.org/tinytex/) with the following code:
+When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as "knitting"). For this course you need to deliver assignments either in PDF or Word format. PDF requires $\LaTeX$, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing [TinyTex](https://yihui.org/tinytex/) with the following code:
 
 
 ```r

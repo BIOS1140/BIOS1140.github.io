@@ -441,10 +441,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>R Markdown</h3>
 <p>R Markdown is a way to work where you can write, code and show output in the same document. It can be a very convenient way to communicate science, and to write comprehensive data journals detailing how you have analysed your data. In fact, these tutorials are all written in R Markdown! Here we will briefly introduce R Markdown so you will be able to use it for the assignments if you want to. For a more comprehensive introduction, see <a href="https://rmarkdown.rstudio.com/lesson-1.html">the introduction tutorials</a>.</p>
 <p>Before using R Markdown, you need to install it. You install it like you would any normal R package.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="rmarkdown.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
-<p>When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as “knitting”). For this course you need to deliver assignments either in PDF or Word format. PDF requires <span class="math inline">\(\latex\)</span>, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing <a href="https://yihui.org/tinytex/">TinyTex</a> with the following code:</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="rmarkdown.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb449-2"><a href="rmarkdown.html#cb449-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<p>When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as “knitting”). For this course you need to deliver assignments either in PDF or Word format. PDF requires <span class="math inline">\(\LaTeX\)</span>, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing <a href="https://yihui.org/tinytex/">TinyTex</a> with the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rmarkdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb2-2"><a href="rmarkdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 <p>Now you have all you need for creating PDF documents with R Markdown!</p>
 </div>
 <div id="getting-started-7" class="section level3 unnumbered">
@@ -454,9 +454,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Anything you write in the document will be rendered as normal text.</p></li>
 <li><p>You can write R code by inserting a <em>code chunk</em>. A code chunk looks like this (hotkey <code>ctrl</code>/<code>cmd</code>+<code>alt</code>+<code>i</code>):</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb450-1"><a href="rmarkdown.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb450-2"><a href="rmarkdown.html#cb450-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb450-3"><a href="rmarkdown.html#cb450-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="rmarkdown.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="rmarkdown.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="rmarkdown.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>Inside the code chunk, you can write regular R code that you can execute normally with <code>ctrl</code>/<code>cmd</code>+<code>enter</code>.</p></li>
 <li><p>You can get a top-level header by starting a line with <code>#</code> (outside of a code chunk). You get a second level header with <code>##</code>, third level with <code>###</code> and so on.</p></li>
 <li><p>You get <strong>bold</strong> text by flanking the text with two asterisks like this: <code>**bold text**</code> and <em>italic</em> text with a single asterisk: <code>*italic text*</code></p></li>
@@ -474,109 +474,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
