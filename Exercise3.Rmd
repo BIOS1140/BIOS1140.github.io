@@ -82,6 +82,8 @@ Before we go into solving our example, we have to learn a bit about for-loops. A
 for (variable in vector){ # variable starts as the first element of vector
   
   # do something involving variable
+  # the part within the curly brackets is called
+  # the body of the for-loop
   
 } # when the curly bracket ends, variable becomes the next element of vector
 ```
@@ -90,7 +92,7 @@ When the loop starts, `variable` is set to the first element of `vector`. Within
 
 This might be easier to understand if you see a real example of a for loop[^exercise3-2]:
 
-[^exercise3-2]: Note that you explicitly have to use `print()` inside a for-loop, unlike what you've done so far. Something like
+[^exercise3-2]: Note that to print your result to console inside a for-loop, you explicitly have to use `print()`, unlike what you've done so far. Something like
 
     ```{r, eval = FALSE}
     for (element in 1:10){
@@ -258,7 +260,7 @@ Now we know all we need to solve our initial problem, which we will return to in
 
 ::: {.green}
 **Important concept:**\
-Use for-loops with indexing when you want to access several elements of one or more vectors at once. This is basically every time, so use indexing in your for-loops every time.
+Use for-loops with indexing when you want to access several elements of one or more vectors at once. Most of the time you will use indexing rather than looping over a vector directly.
 :::
 
 ### Solving our problem
@@ -387,7 +389,7 @@ p <- seq(0, 1, 0.01)
 q <- 1 - p
 ```
 
-All we did here was use the `seq` function, which we first saw back in [Chapter 1](https://evolutionarygenetics.github.io/Introduction.html). Remember, we only have to do it once because $q$ is the inverse of $p$. Next we need to generate the expected frequencies. Because R is really great at handling vectors, the code for this is identical for if we were using a single value.
+Here we used the `seq()` function, which we first saw back in [Chapter 1](#ch01). Remember, we only have to do it once because $q$ is the inverse of $p$. Next we need to generate the expected frequencies. Because R is great at handling vectors, the code for this is identical for if we were using a single value.
 
 ```{r, eval = TRUE, echo = TRUE}
 # generate the expected genotype frequencies
@@ -396,7 +398,7 @@ A1A2_e <- 2 * (p * q)
 A2A2_e <- q^2
 ```
 
-So now we basically have the expected frequencies at HWE of our different genotypes across a range of allele frequencies with just a little vector calculation. However, recalling from before that we often need to get our data into a `data.frame` in order to use `ggplot2`, we need to do a bit of work on this first. We'll now get our data into a `data.frame` ready for working on...
+So now we have the expected frequencies at HWE of our different genotypes across a range of allele frequencies with a little vector calculation. However, recalling from before that we often need to get our data into a `data.frame` in order to use `ggplot2`, we need to do a bit of work on this first. We'll now get our data into a `data.frame` ready for working on...
 
 ```{r, eval = TRUE, echo = TRUE}
 # arrange allele frequencies into a tibble/data.frame
@@ -412,7 +414,7 @@ geno_freq <- pivot_longer(geno_freq, c(A1A1_e, A1A2_e, A2A2_e),
                           values_to = "freq")
 ```
 
-`pivot_longer()` commands can take a while to get the hang of, the best thing is to continually practice them like this! If you're unsure why we use `pivot_longer()` or how it works, you can always go back to the explanation from [week 2](PLACEHOLDER).
+`pivot_longer()` commands can take a while to get the hang of, the best thing is to continually practice them like this! If you're unsure why we use `pivot_longer()` or how it works, you can always go back to the explanation from [week 2](#ch02).
 
 Now it is really straightforward to make a plot that shows the expected HW---frequencies across our allele frequencies.
 
@@ -495,7 +497,15 @@ Well, just from eyeballing this matrix, we see that there is a difference betwee
 
 When we use a statistical test like the Chi-squared test, we want to find out how likely it is that we would get our observed values when we assume that our null hypothesis is true. Here, our null hypothesis is the Hardy-Weinberg expectation ($p^2$, $2pq$, $q^2$). These are the genotype frequencies we would expect to see if the population was in Hardy-Weinberg equilibrium. If the difference between the observed data and the expectation from the null hypothesis is large enough, we can say that it is statistically significant. What is "large enough" is what our chi squared test will tell us -- this is where the p-value comes in. If we get a low p-value, we can reject the null hypothesis and conclude that our population is not in Hardy-Weinberg equilibrium.
 
-A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. A p-value of 0.5 means there is a 50% probability that we would get these results if the null hypothesis was true. Another way to look at it is that if we sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours (our more extreme results, meaning a larger difference between the observed and the expected genotypes) 50% of the time. The cut-off for saying that a result is statistically significant is typically a p-value below 0.05. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.[^exercise3-5]
+:::{.green}
+**p-values:**  
+A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. For example, a p-value of 0.5 means that if we randomly sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours or more extreme 50% of the time. 
+
+We typically say that if the p-value is below 0.05, the results are _statistically significant_. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.[^exercise3-5]
+
+**Important:** it may be confusing that both the probability in hypothesis testing and the proportion of the $A_1A_1$ allele in a population is called p. These are two completely different statistics, so make sure you don't get them mixed up!
+
+:::
 
 [^exercise3-5]: Keep in mind that the value 0.05 is arbitrary, and that other (often lower) values are often used in other fields. Researchers simply decided that 5% is an acceptable degree of error. This also means that 5% of studies conducted (where the statistics are done correctly) will come to the wrong conclusion.
 
@@ -514,7 +524,7 @@ Then we can have a look at the results:
 mychi
 ```
 
-We see that the p-value is very low - well below our limit of 0.05. This means we have a highly significant deviation from HWE - in other words, some assumption of the Hardy-Weinberg model is violated. What process could cause this significant heterozygote deficit? Maybe non-random mating?
+We see that the p-value is very low - well below our limit of 0.05. This means we have a significant deviation from HWE - in other words, some assumption of the Hardy-Weinberg model is violated. What process could cause this significant heterozygote deficit? And conversely, what about the excess of homozygotes? Maybe non-random mating could be a possible reason?
 
 ### Simulating genetic drift
 
@@ -528,7 +538,7 @@ To demonstrate a simple case of drift, we'll use the example from the book. We h
 
 In the book you will recall we used a coin-flipping experiment to sample our alleles to form genotypes, since both alleles have a frequency of 0.5. Now we will do something similar, but instead of sampling alleles to form genotypes, we will sample the number of $A_1$ alleles in the next generation directly (we call this $p’$). In the example in the book, we defined heads as $A_1$ and tails as $A_2$. The principle here is the same, we start with a population where $p = q$, so there is an equal probabilty of sampling one allele or the other. You can imagine each coin flip representing the passing on of one allele from a parent to the next generation. If we do this twice for each individual in the population, the sum of the heads we get will be the number of A1 alleles in the next generation.
 
-This is a form of binomial sampling, and to do it ir R we can use the rbinom() function. The `rbinom()` function essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, `rbinom()` allows for changing these probabilities. Simplified, the following code says: "flip 1 coin (`n`) 16 times (`size`) with a probability of 0.5 (`prob`) for getting heads". The output is the number of heads we got.
+This is a form of binomial sampling, and to do it ir R we can use the `rbinom()` function. `rbinom()` essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, `rbinom()` allows for changing these probabilities. Simplified, the following code says: "flip 1 coin (`n`) 16 times (`size`) with a probability of 0.5 (`prob`) for getting heads". The output is the number of heads we got.
 
 ```{r, eval = FALSE, echo = TRUE}
 # recreate coin flipping experiment using binomial sampling

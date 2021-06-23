@@ -26,13 +26,13 @@ a. Using the r code we learnt during the tutorial, calculate the allele frequenc
 
 b. In the statistical test in the previous question we use the Hardy Weinberg model as a _null model_. Explain what this means.
 
-c. Why is it that when an allele goes to fixation in a population, there are no heterozygotes but there is also no deviation from the Hardy-Weinberg expectation?
+c. Why is it that when an allele goes to fixation in a population, there are no heterozygotes but there is also no deviation from the Hardy-Weinberg expectation? _Hint: calculate the expected heterozygote frequency when_ $p = 1, q = 0$.
 
 #### 3. Genetic drift {-}
 
 a. You want to model what will happen to the grashoppers' alleles over time, assuming no other forces than genetic drift are changing allele frequencies. Using the for-loop from the tutorial as a starting point, simulate drift over 2000 generations for each of the three populations in the previous exercise. Make sure that the $N$ and initial $p$ match those of the populations. You should make 3 simulations in total, and plot your results.
 
-b. How does the initial p-value alter the outcome of the simulations? Which population is more likely to go to fixation for either allele?
+b. How does the initial p alter the outcome of the simulations? Which population is more likely to go to fixation for either allele?
 
 _Tip: Since this exercise uses random sampling, results will be different every time you run your simulations. You may want to run the simulations several times to get a feeling for what the results generally will be._
 
