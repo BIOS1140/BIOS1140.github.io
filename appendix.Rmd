@@ -10,6 +10,57 @@ There are some important things to consider when handing in the assignments:
 
 One simple way of combining code, plots and text is to write in a word document where you also paste your code and figures that you've exported from R. Another way is to use RMarkdown, which will be introduced in the next section.
 
-### RMarkdown {-}
+A simple template for handing in assignments in R Markdown can be found [here](https://BIOS1140.github.io/data/assignment_template.Rmd)
 
-Rmarkdown ...
+### R Markdown {-}
+
+R Markdown is a way to work where you can write, code and show output in the same document. It can be a very convenient way to communicate science, and to write comprehensive data journals detailing how you have analysed your data. In fact, these tutorials are all written in R Markdown! Here we will briefly introduce R Markdown so you will be able to use it for the assignments if you want to. For a more comprehensive introduction, see [the introduction tutorials](https://rmarkdown.rstudio.com/lesson-1.html).
+
+Before using R Markdown, you need to install it. You install it like you would any normal R package.
+
+```{r, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as "knitting"). For this course you need to deliver assignments either in PDF or Word format. PDF requires $\latex$, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing [TinyTex](https://yihui.org/tinytex/) with the following code:
+
+```{r eval = FALSE}
+install.packages('tinytex')
+tinytex::install_tinytex()
+```
+
+Now you have all you need for creating PDF documents with R Markdown!
+
+### Getting started {-}
+
+Create a new R Markdown document by navigating to `File > New File > R Markdown ...`. You will then be prompted to provide a title, an author and an output format (you can change these later). Choose PDF as the format and proceed. You have now created an R Markdown file! Notice that it already contains some usage examples. You don't need these for the assignments, so you can safely delete everything from `## R Markdown` and to the end of the document.
+
+Here, we will only provide the very basics needed to hand in the assignments. If you're interested, you can learn more about the basics [here](https://bookdown.org/yihui/rmarkdown-cookbook/basics.html).
+
+1. Anything you write in the document will be rendered as normal text.
+
+2. You can write R code by inserting a _code chunk_. A code chunk looks like this (hotkey `ctrl`/`cmd`+`alt`+`i`):
+
+    ````markdown
+    `r ''````{r}
+    
+    ```
+    ````
+    
+    Inside the code chunk, you can write regular R code that you can execute normally with `ctrl`/`cmd`+`enter`.
+
+3. You can get a top-level header by starting a line with `#` (outside of a code chunk). You get a second level header with `##`, third level with `###` and so on.
+
+4. You get **bold** text by flanking the text with two asterisks like this: `**bold text**` and *italic* text with a single asterisk: `*italic text*`
+
+When you're done with the document, you can press the tiny yarnball at the top of the document that says "knit" to render your document (or press `ctrl`/`cmd`+`shift`+`k`). This will execute all code that is in the code chunks from a clean environment, and include any plots that are produced by your code. If everything worked, you now have a beautiful document containing code, text and plots!
+
+:::{.blue}
+**Some notes about R Markdown:**
+
+* All your code is run from a clean slate. This means that all objects must be defined within the document to make it work.
+* If you even have a single error in the code, the document will not knit. On the plus side, this can be a good way of checking that all your code works!
+* When working with data files, the data file has to be contained in the same folder as the R Markdown document. Setting working directory within the document will not work most of the time.
+* Plots will appear inline instead of in the plot window. Disable this by navigating to the cog wheel at the top, and select "chunk output in console".
+
+:::

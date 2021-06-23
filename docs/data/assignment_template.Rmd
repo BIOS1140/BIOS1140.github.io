@@ -1,0 +1,19 @@
+---
+title: "Assignment Week x"
+author: "Your Name"
+date: "date of delivery"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Question x
+
+Your text answer here
+
+```{r}
+# code for question x here
+```
+

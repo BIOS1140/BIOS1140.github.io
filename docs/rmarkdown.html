@@ -32,7 +32,7 @@
   
 <link rel="prev" href="w10.html"/>
 
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +50,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -400,7 +402,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -431,105 +434,44 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>You are allowed to work together, but <strong>identical hand-ins are not allowed</strong>. Similarly, all the text should be your own, <strong>copying from the book, tutorials or any other sources is not allowed</strong>. If you really want to quote someone, you should make it clear that it’s a quote, and cite it properly. It is OK to use the <em>code</em> in the tutorials without citing that.</li>
 </ol>
 <p>One simple way of combining code, plots and text is to write in a word document where you also paste your code and figures that you’ve exported from R. Another way is to use RMarkdown, which will be introduced in the next section.</p>
-<div id="rmarkdown-1" class="section level3 unnumbered">
-<h3>RMarkdown</h3>
-<p>Rmarkdown …</p>
+<p>A simple template for handing in assignments in R Markdown can be found <a href="https://BIOS1140.github.io/data/assignment_template.Rmd">here</a></p>
+<div id="r-markdown" class="section level3 unnumbered">
+<h3>R Markdown</h3>
+<p>R Markdown is a way to work where you can write, code and show output in the same document. It can be a very convenient way to communicate science, and to write comprehensive data journals detailing how you have analysed your data. In fact, these tutorials are all written in R Markdown! Here we will briefly introduce R Markdown so you will be able to use it for the assignments if you want to. For a more comprehensive introduction, see <a href="https://rmarkdown.rstudio.com/lesson-1.html">the introduction tutorials</a>.</p>
+<p>Before using R Markdown, you need to install it. You install it like you would any normal R package.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<p>When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as “knitting”). For this course you need to deliver assignments either in PDF or Word format. PDF requires <span class="math inline">\(\latex\)</span>, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing <a href="https://yihui.org/tinytex/">TinyTex</a> with the following code:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rmarkdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb2-2"><a href="rmarkdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<p>Now you have all you need for creating PDF documents with R Markdown!</p>
+</div>
+<div id="getting-started-7" class="section level3 unnumbered">
+<h3>Getting started</h3>
+<p>Create a new R Markdown document by navigating to <code>File &gt; New File &gt; R Markdown ...</code>. You will then be prompted to provide a title, an author and an output format (you can change these later). Choose PDF as the format and proceed. You have now created an R Markdown file! Notice that it already contains some usage examples. You don’t need these for the assignments, so you can safely delete everything from <code>## R Markdown</code> and to the end of the document.</p>
+<p>Here, we will only provide the very basics needed to hand in the assignments. If you’re interested, you can learn more about the basics <a href="https://bookdown.org/yihui/rmarkdown-cookbook/basics.html">here</a>.</p>
+<ol style="list-style-type: decimal">
+<li><p>Anything you write in the document will be rendered as normal text.</p></li>
+<li><p>You can write R code by inserting a <em>code chunk</em>. A code chunk looks like this (hotkey <code>ctrl</code>/<code>cmd</code>+<code>alt</code>+<code>i</code>):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb3-1"><a href="rmarkdown.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb3-2"><a href="rmarkdown.html#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="rmarkdown.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<p>Inside the code chunk, you can write regular R code that you can execute normally with <code>ctrl</code>/<code>cmd</code>+<code>enter</code>.</p></li>
+<li><p>You can get a top-level header by starting a line with <code>#</code> (outside of a code chunk). You get a second level header with <code>##</code>, third level with <code>###</code> and so on.</p></li>
+<li><p>You get <strong>bold</strong> text by flanking the text with two asterisks like this: <code>**bold text**</code> and <em>italic</em> text with a single asterisk: <code>*italic text*</code></p></li>
+</ol>
+<p>When you’re done with the document, you can press the tiny yarnball at the top of the document that says “knit” to render your document (or press <code>ctrl</code>/<code>cmd</code>+<code>shift</code>+<code>k</code>). This will execute all code that is in the code chunks from a clean environment, and include any plots that are produced by your code. If everything worked, you now have a beautiful document containing code, text and plots!</p>
+<div class="blue">
+<p><strong>Some notes about R Markdown:</strong></p>
+<ul>
+<li>All your code is run from a clean slate. This means that all objects must be defined within the document to make it work.</li>
+<li>If you even have a single error in the code, the document will not knit. On the plus side, this can be a good way of checking that all your code works!</li>
+<li>When working with data files, the data file has to be contained in the same folder as the R Markdown document. Setting working directory within the document will not work most of the time.</li>
+<li>Plots will appear inline instead of in the plot window. Disable this by navigating to the cog wheel at the top, and select “chunk output in console”.</li>
+</ul>
+</div>
 
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
