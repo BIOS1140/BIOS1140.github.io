@@ -1,6 +1,7 @@
 --- 
-title: "R tutorials in BIOS1140"
-date: "2021-06-22"
+title: "R tutorials for the course BIOS1140 at the University of Oslo"
+date: "2021-06-23"
+author: "Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann."
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -15,8 +16,26 @@ description: "This is a set of R tutorials connected to the course BIOS1140 at t
 <script src="js/hideOutput.js"></script>
 
 
+Effectively handling, processing and analysing large amounts of data is an essential skill for modern evolutionary biologists. Large genomic and phenotypic datasets are now routine for the biosciences and we are no longer at point where a simple desktop program can suit our needs for data curation, statistical analysis and visualisation. To meet the challenge, it is necessary for biologists to learn how to program and the fundamentals of data science. As well as this, exploring, visualising and understanding data in a programming environment can help reinforce understanding of key concepts and mathematical or statistical relationships.
 
-Welcome!
+These reasons are the motivation for the online sections of our book, *Evolutionary Genetics: Concepts, Analysis & Practice*. Each of the ten tutorials hosted here are self-contained introductions to key concepts in evolutionary genetics and they are also designed to familiarise you with the basics of the R programming language. You can follow them as a practical course in both R programming and evolutionary genetics, or you are free to choose the tutorials you are most interested in and to explore them. Each tutorial comes with a set of study questions which you can use to reflect on your learning and of course, we also provide the answers for you to check your work against.
+
+The first two tutorials (Chapters 1 & 2) are genetics-free, providing an introduction to R and also the tidyverse approach. They are intended for as wide an audience as possible. We hope they will be of use to biologists and non-biologists alike. 
+
+_Mark Ravinet & Glenn-Peter Sætre_
+_Oslo, October 2018_
+
+#### 2021 version {-}
+
+This version is a revamped version of Mark Ravinet's original tutorials, edited by Even Sletteng Garvang and Solveig Brochmann based on the feedback during the three years the course has been run at the University of Oslo. Even contributed with new code, revised sections and wrote a new tutorial for chapter 1. Solveig contributed with edits and feedback, and revised sections.
+
+## How to use these tutorials {-}
+
+To get the most out of these tutorials, you should run all the provided code in R on your own computer while going through them. Rather than just copy/pasting all the code, we encourage you to write the code in manually. A great way to force yourself to do this is by changing some object names along the way. We also highly encourage you to experiment with the provided code. Please do change function arguments, values etc. to see what happens. If you ever think: "what happens if I...", try it! The worst thing that can happen is that you get an error.
+
+During the tutorials, there are small exercises that we recommend that you do for your own understanding. Each tutorial also have assignments tied to what you have learned. If you are following the course BIOS1140 at UiO, be sure to deliver these assignments before the deadline.
+
+We use colour-coded boxes in the tutorials to summarise information and give additional tips. In addition, some code may be too advanced for an introductory course in R, and will also be wrapped in coloured boxes. The colors are explained below.
 
 ::: {.green}
 **Important concept:**\

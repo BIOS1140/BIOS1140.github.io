@@ -16,6 +16,6 @@ a) Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the
 
 b) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all the different species comparisons. _Hint: You need to use pivot_longer on the columns containing_ $F_{ST}$ _and_ $d_{XY}$ _data respectively._
 
-c) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial? You don't need to reorder the levels for the plot order (but feel free if you want to, of course).
+c) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial?
 
-d) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial, but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not? You may need to consult the textbook for the second part of this question. 
+d) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial, but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.

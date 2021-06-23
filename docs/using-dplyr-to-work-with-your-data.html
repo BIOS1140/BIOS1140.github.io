@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.2 Using dplyr to work with your data | R tutorials in BIOS1140</title>
+  <title>2.2 Using dplyr to work with your data | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.2 Using dplyr to work with your data | R tutorials in BIOS1140" />
+  <meta property="og:title" content="2.2 Using dplyr to work with your data | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.2 Using dplyr to work with your data | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="2.2 Using dplyr to work with your data | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="intro-to-data-manipulation-with-tidyverse.html"/>
 <link rel="next" href="plotting-your-data-with-ggplot2.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -547,166 +552,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 </div>
-<div id="creating-new-columns-with-mutate" class="section level3" number="2.2.4">
-<h3><span class="header-section-number">2.2.4</span> Creating new columns with <code>mutate()</code></h3>
-<p>Last week you learned that you can create new columns of a data frame with <code>$</code>:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="using-dplyr-to-work-with-your-data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a new column</span></span>
-<span id="cb81-2"><a href="using-dplyr-to-work-with-your-data.html#cb81-2" aria-hidden="true" tabindex="-1"></a>starwars<span class="sc">$</span>mass_per_cm <span class="ot">&lt;-</span> starwars<span class="sc">$</span>mass <span class="sc">/</span> starwars<span class="sc">$</span>height</span>
-<span id="cb81-3"><a href="using-dplyr-to-work-with-your-data.html#cb81-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-4"><a href="using-dplyr-to-work-with-your-data.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="co"># select columns for printing</span></span>
-<span id="cb81-5"><a href="using-dplyr-to-work-with-your-data.html#cb81-5" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, mass_per_cm)</span>
-<span id="cb81-6"><a href="using-dplyr-to-work-with-your-data.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 87 x 2</span></span>
-<span id="cb81-7"><a href="using-dplyr-to-work-with-your-data.html#cb81-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name               mass_per_cm</span></span>
-<span id="cb81-8"><a href="using-dplyr-to-work-with-your-data.html#cb81-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                    &lt;dbl&gt;</span></span>
-<span id="cb81-9"><a href="using-dplyr-to-work-with-your-data.html#cb81-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Luke Skywalker           0.448</span></span>
-<span id="cb81-10"><a href="using-dplyr-to-work-with-your-data.html#cb81-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 C-3PO                    0.449</span></span>
-<span id="cb81-11"><a href="using-dplyr-to-work-with-your-data.html#cb81-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 R2-D2                    0.333</span></span>
-<span id="cb81-12"><a href="using-dplyr-to-work-with-your-data.html#cb81-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Darth Vader              0.673</span></span>
-<span id="cb81-13"><a href="using-dplyr-to-work-with-your-data.html#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Leia Organa              0.327</span></span>
-<span id="cb81-14"><a href="using-dplyr-to-work-with-your-data.html#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Owen Lars                0.674</span></span>
-<span id="cb81-15"><a href="using-dplyr-to-work-with-your-data.html#cb81-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Beru Whitesun lars       0.455</span></span>
-<span id="cb81-16"><a href="using-dplyr-to-work-with-your-data.html#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4                    0.330</span></span>
-<span id="cb81-17"><a href="using-dplyr-to-work-with-your-data.html#cb81-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Biggs Darklighter        0.459</span></span>
-<span id="cb81-18"><a href="using-dplyr-to-work-with-your-data.html#cb81-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-Wan Kenobi           0.423</span></span>
-<span id="cb81-19"><a href="using-dplyr-to-work-with-your-data.html#cb81-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 77 more rows</span></span></code></pre></div>
-<p>Again, <code>dplyr</code> has a verb to do the same thing, called <code>mutate()</code>. The same operation as above using <code>mutate()</code> looks like this:</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="using-dplyr-to-work-with-your-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create new column and select columns</span></span>
-<span id="cb82-2"><a href="using-dplyr-to-work-with-your-data.html#cb82-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">mass_per_cm =</span> mass<span class="sc">/</span>height) <span class="sc">%&gt;%</span></span>
-<span id="cb82-3"><a href="using-dplyr-to-work-with-your-data.html#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass_per_cm)</span>
-<span id="cb82-4"><a href="using-dplyr-to-work-with-your-data.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 87 x 2</span></span>
-<span id="cb82-5"><a href="using-dplyr-to-work-with-your-data.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name               mass_per_cm</span></span>
-<span id="cb82-6"><a href="using-dplyr-to-work-with-your-data.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;                    &lt;dbl&gt;</span></span>
-<span id="cb82-7"><a href="using-dplyr-to-work-with-your-data.html#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Luke Skywalker           0.448</span></span>
-<span id="cb82-8"><a href="using-dplyr-to-work-with-your-data.html#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 C-3PO                    0.449</span></span>
-<span id="cb82-9"><a href="using-dplyr-to-work-with-your-data.html#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 R2-D2                    0.333</span></span>
-<span id="cb82-10"><a href="using-dplyr-to-work-with-your-data.html#cb82-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Darth Vader              0.673</span></span>
-<span id="cb82-11"><a href="using-dplyr-to-work-with-your-data.html#cb82-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Leia Organa              0.327</span></span>
-<span id="cb82-12"><a href="using-dplyr-to-work-with-your-data.html#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Owen Lars                0.674</span></span>
-<span id="cb82-13"><a href="using-dplyr-to-work-with-your-data.html#cb82-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Beru Whitesun lars       0.455</span></span>
-<span id="cb82-14"><a href="using-dplyr-to-work-with-your-data.html#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4                    0.330</span></span>
-<span id="cb82-15"><a href="using-dplyr-to-work-with-your-data.html#cb82-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Biggs Darklighter        0.459</span></span>
-<span id="cb82-16"><a href="using-dplyr-to-work-with-your-data.html#cb82-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-Wan Kenobi           0.423</span></span>
-<span id="cb82-17"><a href="using-dplyr-to-work-with-your-data.html#cb82-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 77 more rows</span></span></code></pre></div>
-<p>Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write <code>starwars$</code> in front of all your columns. Like you’ve previously encountered with <code>data.frame()</code>, you can choose what to name the arguments of <code>mutate()</code>, and these names become your column names.</p>
-<p>Another thing to note is that the above pipeline with <code>mutate()</code> doesn’t store the new column <code>mass_per_cm</code>. For that you need to use the assignment arrow and create a new object, e.g. <code>starwars2 &lt;- starwars %&gt;% mutate(...)</code>. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them.</p>
-</div>
-<div id="grouped-summaries-with-group_by-and-summarise" class="section level3" number="2.2.5">
-<h3><span class="header-section-number">2.2.5</span> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></h3>
+<div id="grouped-summaries-with-group_by-and-summarise" class="section level3" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></h3>
 <p>Imagine that you want to calculate the mean height of the people (and droids) in the <code>starwars</code> data set. You could use <code>mean()</code> on the column to achieve this (note the use of <code>na.rm</code> since the height column contains <code>NA</code>s):</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="using-dplyr-to-work-with-your-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(starwars<span class="sc">$</span>height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb83-2"><a href="using-dplyr-to-work-with-your-data.html#cb83-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 174.358</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="using-dplyr-to-work-with-your-data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(starwars<span class="sc">$</span>height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb81-2"><a href="using-dplyr-to-work-with-your-data.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 174.358</span></span></code></pre></div>
 <p>But what if you want to calculate the mean height separately for e.g. the different species? One way to do this is to do a <em>grouped summary</em>. Your group is the <code>species</code> column, and your summary statistic is <code>mean</code>. We create groups using the <code>group_by()</code> function:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="using-dplyr-to-work-with-your-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species)</span>
-<span id="cb84-2"><a href="using-dplyr-to-work-with-your-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 87 x 15</span></span>
-<span id="cb84-3"><a href="using-dplyr-to-work-with-your-data.html#cb84-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   species [38]</span></span>
-<span id="cb84-4"><a href="using-dplyr-to-work-with-your-data.html#cb84-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name  height  mass hair_color skin_color eye_color birth_year sex   gender</span></span>
-<span id="cb84-5"><a href="using-dplyr-to-work-with-your-data.html#cb84-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; </span></span>
-<span id="cb84-6"><a href="using-dplyr-to-work-with-your-data.html#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Luke~    172    77 blond      fair       blue            19   male  mascu~</span></span>
-<span id="cb84-7"><a href="using-dplyr-to-work-with-your-data.html#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~</span></span>
-<span id="cb84-8"><a href="using-dplyr-to-work-with-your-data.html#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~</span></span>
-<span id="cb84-9"><a href="using-dplyr-to-work-with-your-data.html#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~</span></span>
-<span id="cb84-10"><a href="using-dplyr-to-work-with-your-data.html#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Leia~    150    49 brown      light      brown           19   fema~ femin~</span></span>
-<span id="cb84-11"><a href="using-dplyr-to-work-with-your-data.html#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~</span></span>
-<span id="cb84-12"><a href="using-dplyr-to-work-with-your-data.html#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Beru~    165    75 brown      light      blue            47   fema~ femin~</span></span>
-<span id="cb84-13"><a href="using-dplyr-to-work-with-your-data.html#cb84-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu~</span></span>
-<span id="cb84-14"><a href="using-dplyr-to-work-with-your-data.html#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Bigg~    183    84 black      light      brown           24   male  mascu~</span></span>
-<span id="cb84-15"><a href="using-dplyr-to-work-with-your-data.html#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~</span></span>
-<span id="cb84-16"><a href="using-dplyr-to-work-with-your-data.html#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 77 more rows, and 6 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,</span></span>
-<span id="cb84-17"><a href="using-dplyr-to-work-with-your-data.html#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;, mass_per_cm &lt;dbl&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="using-dplyr-to-work-with-your-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(species)</span>
+<span id="cb82-2"><a href="using-dplyr-to-work-with-your-data.html#cb82-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 87 x 14</span></span>
+<span id="cb82-3"><a href="using-dplyr-to-work-with-your-data.html#cb82-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   species [38]</span></span>
+<span id="cb82-4"><a href="using-dplyr-to-work-with-your-data.html#cb82-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    name  height  mass hair_color skin_color eye_color birth_year sex   gender</span></span>
+<span id="cb82-5"><a href="using-dplyr-to-work-with-your-data.html#cb82-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;  &lt;int&gt; &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; </span></span>
+<span id="cb82-6"><a href="using-dplyr-to-work-with-your-data.html#cb82-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Luke~    172    77 blond      fair       blue            19   male  mascu~</span></span>
+<span id="cb82-7"><a href="using-dplyr-to-work-with-your-data.html#cb82-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 C-3PO    167    75 &lt;NA&gt;       gold       yellow         112   none  mascu~</span></span>
+<span id="cb82-8"><a href="using-dplyr-to-work-with-your-data.html#cb82-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 R2-D2     96    32 &lt;NA&gt;       white, bl~ red             33   none  mascu~</span></span>
+<span id="cb82-9"><a href="using-dplyr-to-work-with-your-data.html#cb82-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~</span></span>
+<span id="cb82-10"><a href="using-dplyr-to-work-with-your-data.html#cb82-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Leia~    150    49 brown      light      brown           19   fema~ femin~</span></span>
+<span id="cb82-11"><a href="using-dplyr-to-work-with-your-data.html#cb82-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~</span></span>
+<span id="cb82-12"><a href="using-dplyr-to-work-with-your-data.html#cb82-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Beru~    165    75 brown      light      blue            47   fema~ femin~</span></span>
+<span id="cb82-13"><a href="using-dplyr-to-work-with-your-data.html#cb82-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4     97    32 &lt;NA&gt;       white, red red             NA   none  mascu~</span></span>
+<span id="cb82-14"><a href="using-dplyr-to-work-with-your-data.html#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Bigg~    183    84 black      light      brown           24   male  mascu~</span></span>
+<span id="cb82-15"><a href="using-dplyr-to-work-with-your-data.html#cb82-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~</span></span>
+<span id="cb82-16"><a href="using-dplyr-to-work-with-your-data.html#cb82-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,</span></span>
+<span id="cb82-17"><a href="using-dplyr-to-work-with-your-data.html#cb82-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</span></span></code></pre></div>
 <p>Notice that nothing has changed in the data, but at the top you can see the text <code># Groups:   species [38]</code>, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of <code>group_by()</code> is together with <code>summarise()</code>, which does a summary based on the groups you’ve created:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="using-dplyr-to-work-with-your-data.html#cb85-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb85-2"><a href="using-dplyr-to-work-with-your-data.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> <span class="co">#create group</span></span>
-<span id="cb85-3"><a href="using-dplyr-to-work-with-your-data.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># calculate summary statistic</span></span>
-<span id="cb85-4"><a href="using-dplyr-to-work-with-your-data.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 2</span></span>
-<span id="cb85-5"><a href="using-dplyr-to-work-with-your-data.html#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species   mean_height</span></span>
-<span id="cb85-6"><a href="using-dplyr-to-work-with-your-data.html#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;</span></span>
-<span id="cb85-7"><a href="using-dplyr-to-work-with-your-data.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena            79 </span></span>
-<span id="cb85-8"><a href="using-dplyr-to-work-with-your-data.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk         198 </span></span>
-<span id="cb85-9"><a href="using-dplyr-to-work-with-your-data.html#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean           198 </span></span>
-<span id="cb85-10"><a href="using-dplyr-to-work-with-your-data.html#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian         196 </span></span>
-<span id="cb85-11"><a href="using-dplyr-to-work-with-your-data.html#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite         168 </span></span>
-<span id="cb85-12"><a href="using-dplyr-to-work-with-your-data.html#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid            131.</span></span>
-<span id="cb85-13"><a href="using-dplyr-to-work-with-your-data.html#cb85-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug              112 </span></span>
-<span id="cb85-14"><a href="using-dplyr-to-work-with-your-data.html#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88 </span></span>
-<span id="cb85-15"><a href="using-dplyr-to-work-with-your-data.html#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183 </span></span>
-<span id="cb85-16"><a href="using-dplyr-to-work-with-your-data.html#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.</span></span>
-<span id="cb85-17"><a href="using-dplyr-to-work-with-your-data.html#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
-<p>Note how again, like in <code>data.frame</code> and <code>mutate()</code>, the argument name to <code>summarise</code> becomes the column name in your new data frame. You can use several summary functions inside <code>summarise()</code>, like <code>median()</code>, <code>sd()</code>, <code>sum()</code> and <code>max()</code> to name some. You can also do several summaries within a single <code>summarise()</code> function:</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="using-dplyr-to-work-with-your-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb83-2"><a href="using-dplyr-to-work-with-your-data.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> <span class="co">#create group</span></span>
+<span id="cb83-3"><a href="using-dplyr-to-work-with-your-data.html#cb83-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="co"># calculate summary statistic</span></span>
+<span id="cb83-4"><a href="using-dplyr-to-work-with-your-data.html#cb83-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 2</span></span>
+<span id="cb83-5"><a href="using-dplyr-to-work-with-your-data.html#cb83-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species   mean_height</span></span>
+<span id="cb83-6"><a href="using-dplyr-to-work-with-your-data.html#cb83-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb83-7"><a href="using-dplyr-to-work-with-your-data.html#cb83-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena            79 </span></span>
+<span id="cb83-8"><a href="using-dplyr-to-work-with-your-data.html#cb83-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk         198 </span></span>
+<span id="cb83-9"><a href="using-dplyr-to-work-with-your-data.html#cb83-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean           198 </span></span>
+<span id="cb83-10"><a href="using-dplyr-to-work-with-your-data.html#cb83-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian         196 </span></span>
+<span id="cb83-11"><a href="using-dplyr-to-work-with-your-data.html#cb83-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite         168 </span></span>
+<span id="cb83-12"><a href="using-dplyr-to-work-with-your-data.html#cb83-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid            131.</span></span>
+<span id="cb83-13"><a href="using-dplyr-to-work-with-your-data.html#cb83-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug              112 </span></span>
+<span id="cb83-14"><a href="using-dplyr-to-work-with-your-data.html#cb83-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88 </span></span>
+<span id="cb83-15"><a href="using-dplyr-to-work-with-your-data.html#cb83-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183 </span></span>
+<span id="cb83-16"><a href="using-dplyr-to-work-with-your-data.html#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.</span></span>
+<span id="cb83-17"><a href="using-dplyr-to-work-with-your-data.html#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
+<p>Note how again, like in <code>data.frame</code>, the argument name to <code>summarise</code> becomes the column name in your new data frame. You can use several summary functions inside <code>summarise()</code>, like <code>median()</code>, <code>sd()</code>, <code>sum()</code> and <code>max()</code> to name some. You can also do several summaries within a single <code>summarise()</code> function:</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="using-dplyr-to-work-with-your-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
+<span id="cb84-2"><a href="using-dplyr-to-work-with-your-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
+<span id="cb84-3"><a href="using-dplyr-to-work-with-your-data.html#cb84-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb84-4"><a href="using-dplyr-to-work-with-your-data.html#cb84-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb84-5"><a href="using-dplyr-to-work-with-your-data.html#cb84-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb84-6"><a href="using-dplyr-to-work-with-your-data.html#cb84-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 4</span></span>
+<span id="cb84-7"><a href="using-dplyr-to-work-with-your-data.html#cb84-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species   mean_height median_height sd_height</span></span>
+<span id="cb84-8"><a href="using-dplyr-to-work-with-your-data.html#cb84-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></span>
+<span id="cb84-9"><a href="using-dplyr-to-work-with-your-data.html#cb84-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena            79             79      NA  </span></span>
+<span id="cb84-10"><a href="using-dplyr-to-work-with-your-data.html#cb84-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk         198            198      NA  </span></span>
+<span id="cb84-11"><a href="using-dplyr-to-work-with-your-data.html#cb84-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean           198            198      NA  </span></span>
+<span id="cb84-12"><a href="using-dplyr-to-work-with-your-data.html#cb84-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian         196            196      NA  </span></span>
+<span id="cb84-13"><a href="using-dplyr-to-work-with-your-data.html#cb84-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite         168            168      NA  </span></span>
+<span id="cb84-14"><a href="using-dplyr-to-work-with-your-data.html#cb84-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid            131.            97      49.1</span></span>
+<span id="cb84-15"><a href="using-dplyr-to-work-with-your-data.html#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug              112            112      NA  </span></span>
+<span id="cb84-16"><a href="using-dplyr-to-work-with-your-data.html#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88             88      NA  </span></span>
+<span id="cb84-17"><a href="using-dplyr-to-work-with-your-data.html#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183            183      NA  </span></span>
+<span id="cb84-18"><a href="using-dplyr-to-work-with-your-data.html#cb84-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.           206      14.2</span></span>
+<span id="cb84-19"><a href="using-dplyr-to-work-with-your-data.html#cb84-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
+<p>We can even group by several variables, creating more detailed summaries:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="using-dplyr-to-work-with-your-data.html#cb85-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb85-2"><a href="using-dplyr-to-work-with-your-data.html#cb85-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld, sex) <span class="sc">%&gt;%</span></span>
+<span id="cb85-3"><a href="using-dplyr-to-work-with-your-data.html#cb85-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb85-4"><a href="using-dplyr-to-work-with-your-data.html#cb85-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 61 x 3</span></span>
+<span id="cb85-5"><a href="using-dplyr-to-work-with-your-data.html#cb85-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   homeworld [49]</span></span>
+<span id="cb85-6"><a href="using-dplyr-to-work-with-your-data.html#cb85-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    homeworld      sex    mean_height</span></span>
+<span id="cb85-7"><a href="using-dplyr-to-work-with-your-data.html#cb85-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;</span></span>
+<span id="cb85-8"><a href="using-dplyr-to-work-with-your-data.html#cb85-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alderaan       female        150 </span></span>
+<span id="cb85-9"><a href="using-dplyr-to-work-with-your-data.html#cb85-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Alderaan       male          190.</span></span>
+<span id="cb85-10"><a href="using-dplyr-to-work-with-your-data.html#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Aleen Minor    male           79 </span></span>
+<span id="cb85-11"><a href="using-dplyr-to-work-with-your-data.html#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Bespin         male          175 </span></span>
+<span id="cb85-12"><a href="using-dplyr-to-work-with-your-data.html#cb85-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Bestine IV     male          180 </span></span>
+<span id="cb85-13"><a href="using-dplyr-to-work-with-your-data.html#cb85-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Cato Neimoidia male          191 </span></span>
+<span id="cb85-14"><a href="using-dplyr-to-work-with-your-data.html#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Cerea          male          198 </span></span>
+<span id="cb85-15"><a href="using-dplyr-to-work-with-your-data.html#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Champala       male          196 </span></span>
+<span id="cb85-16"><a href="using-dplyr-to-work-with-your-data.html#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Chandrila      female        150 </span></span>
+<span id="cb85-17"><a href="using-dplyr-to-work-with-your-data.html#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Concord Dawn   male          183 </span></span>
+<span id="cb85-18"><a href="using-dplyr-to-work-with-your-data.html#cb85-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 51 more rows</span></span></code></pre></div>
+<p>Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).</p>
+<div id="counting-how-many-observations-we-have-in-our-groups-with-tally" class="section level4" number="2.2.4.1">
+<h4><span class="header-section-number">2.2.4.1</span> Counting how many observations we have in our groups with <code>tally()</code></h4>
+<p>When we have created our groups, we can also use the <code>tally()</code> function to count the number of observations we have in the groups:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="using-dplyr-to-work-with-your-data.html#cb86-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
 <span id="cb86-2"><a href="using-dplyr-to-work-with-your-data.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb86-3"><a href="using-dplyr-to-work-with-your-data.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb86-4"><a href="using-dplyr-to-work-with-your-data.html#cb86-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">median_height =</span> <span class="fu">median</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb86-5"><a href="using-dplyr-to-work-with-your-data.html#cb86-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_height =</span> <span class="fu">sd</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb86-6"><a href="using-dplyr-to-work-with-your-data.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 4</span></span>
-<span id="cb86-7"><a href="using-dplyr-to-work-with-your-data.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species   mean_height median_height sd_height</span></span>
-<span id="cb86-8"><a href="using-dplyr-to-work-with-your-data.html#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;           &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;</span></span>
-<span id="cb86-9"><a href="using-dplyr-to-work-with-your-data.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena            79             79      NA  </span></span>
-<span id="cb86-10"><a href="using-dplyr-to-work-with-your-data.html#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk         198            198      NA  </span></span>
-<span id="cb86-11"><a href="using-dplyr-to-work-with-your-data.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean           198            198      NA  </span></span>
-<span id="cb86-12"><a href="using-dplyr-to-work-with-your-data.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian         196            196      NA  </span></span>
-<span id="cb86-13"><a href="using-dplyr-to-work-with-your-data.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite         168            168      NA  </span></span>
-<span id="cb86-14"><a href="using-dplyr-to-work-with-your-data.html#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid            131.            97      49.1</span></span>
-<span id="cb86-15"><a href="using-dplyr-to-work-with-your-data.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug              112            112      NA  </span></span>
-<span id="cb86-16"><a href="using-dplyr-to-work-with-your-data.html#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88             88      NA  </span></span>
-<span id="cb86-17"><a href="using-dplyr-to-work-with-your-data.html#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183            183      NA  </span></span>
-<span id="cb86-18"><a href="using-dplyr-to-work-with-your-data.html#cb86-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.           206      14.2</span></span>
-<span id="cb86-19"><a href="using-dplyr-to-work-with-your-data.html#cb86-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
-<p>We can even group by several variables, creating more detailed summaries:</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-dplyr-to-work-with-your-data.html#cb87-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb87-2"><a href="using-dplyr-to-work-with-your-data.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld, sex) <span class="sc">%&gt;%</span></span>
-<span id="cb87-3"><a href="using-dplyr-to-work-with-your-data.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb87-4"><a href="using-dplyr-to-work-with-your-data.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 61 x 3</span></span>
-<span id="cb87-5"><a href="using-dplyr-to-work-with-your-data.html#cb87-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # Groups:   homeworld [49]</span></span>
-<span id="cb87-6"><a href="using-dplyr-to-work-with-your-data.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    homeworld      sex    mean_height</span></span>
-<span id="cb87-7"><a href="using-dplyr-to-work-with-your-data.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;</span></span>
-<span id="cb87-8"><a href="using-dplyr-to-work-with-your-data.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alderaan       female        150 </span></span>
-<span id="cb87-9"><a href="using-dplyr-to-work-with-your-data.html#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Alderaan       male          190.</span></span>
-<span id="cb87-10"><a href="using-dplyr-to-work-with-your-data.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Aleen Minor    male           79 </span></span>
-<span id="cb87-11"><a href="using-dplyr-to-work-with-your-data.html#cb87-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Bespin         male          175 </span></span>
-<span id="cb87-12"><a href="using-dplyr-to-work-with-your-data.html#cb87-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Bestine IV     male          180 </span></span>
-<span id="cb87-13"><a href="using-dplyr-to-work-with-your-data.html#cb87-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Cato Neimoidia male          191 </span></span>
-<span id="cb87-14"><a href="using-dplyr-to-work-with-your-data.html#cb87-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Cerea          male          198 </span></span>
-<span id="cb87-15"><a href="using-dplyr-to-work-with-your-data.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Champala       male          196 </span></span>
-<span id="cb87-16"><a href="using-dplyr-to-work-with-your-data.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Chandrila      female        150 </span></span>
-<span id="cb87-17"><a href="using-dplyr-to-work-with-your-data.html#cb87-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Concord Dawn   male          183 </span></span>
-<span id="cb87-18"><a href="using-dplyr-to-work-with-your-data.html#cb87-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 51 more rows</span></span></code></pre></div>
-<p>Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).</p>
-<div id="counting-how-many-observations-we-have-in-our-groups-with-tally" class="section level4" number="2.2.5.1">
-<h4><span class="header-section-number">2.2.5.1</span> Counting how many observations we have in our groups with <code>tally()</code></h4>
-<p>When we have created our groups, we can also use the <code>tally()</code> function to count the number of observations we have in the groups:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="using-dplyr-to-work-with-your-data.html#cb88-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
-<span id="cb88-2"><a href="using-dplyr-to-work-with-your-data.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
-<span id="cb88-3"><a href="using-dplyr-to-work-with-your-data.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
-<span id="cb88-4"><a href="using-dplyr-to-work-with-your-data.html#cb88-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 2</span></span>
-<span id="cb88-5"><a href="using-dplyr-to-work-with-your-data.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species       n</span></span>
-<span id="cb88-6"><a href="using-dplyr-to-work-with-your-data.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;int&gt;</span></span>
-<span id="cb88-7"><a href="using-dplyr-to-work-with-your-data.html#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena        1</span></span>
-<span id="cb88-8"><a href="using-dplyr-to-work-with-your-data.html#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk      1</span></span>
-<span id="cb88-9"><a href="using-dplyr-to-work-with-your-data.html#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean        1</span></span>
-<span id="cb88-10"><a href="using-dplyr-to-work-with-your-data.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian      1</span></span>
-<span id="cb88-11"><a href="using-dplyr-to-work-with-your-data.html#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite      1</span></span>
-<span id="cb88-12"><a href="using-dplyr-to-work-with-your-data.html#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid         6</span></span>
-<span id="cb88-13"><a href="using-dplyr-to-work-with-your-data.html#cb88-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug           1</span></span>
-<span id="cb88-14"><a href="using-dplyr-to-work-with-your-data.html#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok          1</span></span>
-<span id="cb88-15"><a href="using-dplyr-to-work-with-your-data.html#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian     1</span></span>
-<span id="cb88-16"><a href="using-dplyr-to-work-with-your-data.html#cb88-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan        3</span></span>
-<span id="cb88-17"><a href="using-dplyr-to-work-with-your-data.html#cb88-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
+<span id="cb86-3"><a href="using-dplyr-to-work-with-your-data.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
+<span id="cb86-4"><a href="using-dplyr-to-work-with-your-data.html#cb86-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 38 x 2</span></span>
+<span id="cb86-5"><a href="using-dplyr-to-work-with-your-data.html#cb86-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    species       n</span></span>
+<span id="cb86-6"><a href="using-dplyr-to-work-with-your-data.html#cb86-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;     &lt;int&gt;</span></span>
+<span id="cb86-7"><a href="using-dplyr-to-work-with-your-data.html#cb86-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Aleena        1</span></span>
+<span id="cb86-8"><a href="using-dplyr-to-work-with-your-data.html#cb86-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Besalisk      1</span></span>
+<span id="cb86-9"><a href="using-dplyr-to-work-with-your-data.html#cb86-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Cerean        1</span></span>
+<span id="cb86-10"><a href="using-dplyr-to-work-with-your-data.html#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Chagrian      1</span></span>
+<span id="cb86-11"><a href="using-dplyr-to-work-with-your-data.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Clawdite      1</span></span>
+<span id="cb86-12"><a href="using-dplyr-to-work-with-your-data.html#cb86-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Droid         6</span></span>
+<span id="cb86-13"><a href="using-dplyr-to-work-with-your-data.html#cb86-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Dug           1</span></span>
+<span id="cb86-14"><a href="using-dplyr-to-work-with-your-data.html#cb86-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok          1</span></span>
+<span id="cb86-15"><a href="using-dplyr-to-work-with-your-data.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian     1</span></span>
+<span id="cb86-16"><a href="using-dplyr-to-work-with-your-data.html#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan        3</span></span>
+<span id="cb86-17"><a href="using-dplyr-to-work-with-your-data.html#cb86-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 28 more rows</span></span></code></pre></div>
 <p>This can be useful to get an overview of your data<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 </div>
 </div>
-<div id="using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise" class="section level3" number="2.2.6">
-<h3><span class="header-section-number">2.2.6</span> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</h3>
+<div id="using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise" class="section level3" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</h3>
 <p>One advantage of pipes is that you can do everything you want in a single operation<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. Below is an example using everything we’ve learned so far in a single pipe.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="using-dplyr-to-work-with-your-data.html#cb89-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb89-2"><a href="using-dplyr-to-work-with-your-data.html#cb89-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>films, <span class="sc">-</span>vehicles, <span class="sc">-</span>starships) <span class="sc">%&gt;%</span></span>
-<span id="cb89-3"><a href="using-dplyr-to-work-with-your-data.html#cb89-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb89-4"><a href="using-dplyr-to-work-with-your-data.html#cb89-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
-<span id="cb89-5"><a href="using-dplyr-to-work-with-your-data.html#cb89-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb89-6"><a href="using-dplyr-to-work-with-your-data.html#cb89-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 2</span></span>
-<span id="cb89-7"><a href="using-dplyr-to-work-with-your-data.html#cb89-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex    mean_height</span></span>
-<span id="cb89-8"><a href="using-dplyr-to-work-with-your-data.html#cb89-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;</span></span>
-<span id="cb89-9"><a href="using-dplyr-to-work-with-your-data.html#cb89-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 female        160.</span></span>
-<span id="cb89-10"><a href="using-dplyr-to-work-with-your-data.html#cb89-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 male          182.</span></span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="using-dplyr-to-work-with-your-data.html#cb87-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb87-2"><a href="using-dplyr-to-work-with-your-data.html#cb87-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>films, <span class="sc">-</span>vehicles, <span class="sc">-</span>starships) <span class="sc">%&gt;%</span></span>
+<span id="cb87-3"><a href="using-dplyr-to-work-with-your-data.html#cb87-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(species <span class="sc">==</span> <span class="st">&quot;Human&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb87-4"><a href="using-dplyr-to-work-with-your-data.html#cb87-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex) <span class="sc">%&gt;%</span></span>
+<span id="cb87-5"><a href="using-dplyr-to-work-with-your-data.html#cb87-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb87-6"><a href="using-dplyr-to-work-with-your-data.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 2 x 2</span></span>
+<span id="cb87-7"><a href="using-dplyr-to-work-with-your-data.html#cb87-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sex    mean_height</span></span>
+<span id="cb87-8"><a href="using-dplyr-to-work-with-your-data.html#cb87-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;        &lt;dbl&gt;</span></span>
+<span id="cb87-9"><a href="using-dplyr-to-work-with-your-data.html#cb87-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 female        160.</span></span>
+<span id="cb87-10"><a href="using-dplyr-to-work-with-your-data.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 male          182.</span></span></code></pre></div>
 <p><strong>Exercise: Explain to another student what happens in the code above (or write it down if you’re doing this on your own).</strong></p>
 <p><strong>Exercise: Take the starwars data set, filter so you keep all that are <em>below the mean height</em>. Then, calculate the mean height of these short individuals, grouped by homeworld.</strong></p>
 <details>
@@ -716,32 +678,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can supply the mean height to the logical statement inside <code>filter()</code>. Your filtering step should then look like this: <code>filter(height &lt; mean(height, na.rm = TRUE))</code></p>
 </details>
 <div class="fold s">
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="using-dplyr-to-work-with-your-data.html#cb90-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
-<span id="cb90-2"><a href="using-dplyr-to-work-with-your-data.html#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&lt;</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb90-3"><a href="using-dplyr-to-work-with-your-data.html#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span></span>
-<span id="cb90-4"><a href="using-dplyr-to-work-with-your-data.html#cb90-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
-<span id="cb90-5"><a href="using-dplyr-to-work-with-your-data.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 19 x 2</span></span>
-<span id="cb90-6"><a href="using-dplyr-to-work-with-your-data.html#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    homeworld   mean_height</span></span>
-<span id="cb90-7"><a href="using-dplyr-to-work-with-your-data.html#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;             &lt;dbl&gt;</span></span>
-<span id="cb90-8"><a href="using-dplyr-to-work-with-your-data.html#cb90-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alderaan           150 </span></span>
-<span id="cb90-9"><a href="using-dplyr-to-work-with-your-data.html#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Aleen Minor         79 </span></span>
-<span id="cb90-10"><a href="using-dplyr-to-work-with-your-data.html#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Chandrila          150 </span></span>
-<span id="cb90-11"><a href="using-dplyr-to-work-with-your-data.html#cb90-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Corellia           170 </span></span>
-<span id="cb90-12"><a href="using-dplyr-to-work-with-your-data.html#cb90-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Coruscant          168.</span></span>
-<span id="cb90-13"><a href="using-dplyr-to-work-with-your-data.html#cb90-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Endor               88 </span></span>
-<span id="cb90-14"><a href="using-dplyr-to-work-with-your-data.html#cb90-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Iridonia           171 </span></span>
-<span id="cb90-15"><a href="using-dplyr-to-work-with-your-data.html#cb90-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Malastare          112 </span></span>
-<span id="cb90-16"><a href="using-dplyr-to-work-with-your-data.html#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Mirial             168 </span></span>
-<span id="cb90-17"><a href="using-dplyr-to-work-with-your-data.html#cb90-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Naboo              151.</span></span>
-<span id="cb90-18"><a href="using-dplyr-to-work-with-your-data.html#cb90-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Rodia              173 </span></span>
-<span id="cb90-19"><a href="using-dplyr-to-work-with-your-data.html#cb90-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Sullust            160 </span></span>
-<span id="cb90-20"><a href="using-dplyr-to-work-with-your-data.html#cb90-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 Tatooine           153.</span></span>
-<span id="cb90-21"><a href="using-dplyr-to-work-with-your-data.html#cb90-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 Toydaria           137 </span></span>
-<span id="cb90-22"><a href="using-dplyr-to-work-with-your-data.html#cb90-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 Troiken            122 </span></span>
-<span id="cb90-23"><a href="using-dplyr-to-work-with-your-data.html#cb90-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 Tund               163 </span></span>
-<span id="cb90-24"><a href="using-dplyr-to-work-with-your-data.html#cb90-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 Vulpter             94 </span></span>
-<span id="cb90-25"><a href="using-dplyr-to-work-with-your-data.html#cb90-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 Zolan              168 </span></span>
-<span id="cb90-26"><a href="using-dplyr-to-work-with-your-data.html#cb90-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 &lt;NA&gt;                81</span></span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="using-dplyr-to-work-with-your-data.html#cb88-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
+<span id="cb88-2"><a href="using-dplyr-to-work-with-your-data.html#cb88-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(height <span class="sc">&lt;</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb88-3"><a href="using-dplyr-to-work-with-your-data.html#cb88-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld) <span class="sc">%&gt;%</span></span>
+<span id="cb88-4"><a href="using-dplyr-to-work-with-your-data.html#cb88-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_height =</span> <span class="fu">mean</span>(height, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb88-5"><a href="using-dplyr-to-work-with-your-data.html#cb88-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 19 x 2</span></span>
+<span id="cb88-6"><a href="using-dplyr-to-work-with-your-data.html#cb88-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    homeworld   mean_height</span></span>
+<span id="cb88-7"><a href="using-dplyr-to-work-with-your-data.html#cb88-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;chr&gt;             &lt;dbl&gt;</span></span>
+<span id="cb88-8"><a href="using-dplyr-to-work-with-your-data.html#cb88-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1 Alderaan           150 </span></span>
+<span id="cb88-9"><a href="using-dplyr-to-work-with-your-data.html#cb88-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2 Aleen Minor         79 </span></span>
+<span id="cb88-10"><a href="using-dplyr-to-work-with-your-data.html#cb88-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3 Chandrila          150 </span></span>
+<span id="cb88-11"><a href="using-dplyr-to-work-with-your-data.html#cb88-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4 Corellia           170 </span></span>
+<span id="cb88-12"><a href="using-dplyr-to-work-with-your-data.html#cb88-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5 Coruscant          168.</span></span>
+<span id="cb88-13"><a href="using-dplyr-to-work-with-your-data.html#cb88-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6 Endor               88 </span></span>
+<span id="cb88-14"><a href="using-dplyr-to-work-with-your-data.html#cb88-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7 Iridonia           171 </span></span>
+<span id="cb88-15"><a href="using-dplyr-to-work-with-your-data.html#cb88-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Malastare          112 </span></span>
+<span id="cb88-16"><a href="using-dplyr-to-work-with-your-data.html#cb88-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Mirial             168 </span></span>
+<span id="cb88-17"><a href="using-dplyr-to-work-with-your-data.html#cb88-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Naboo              151.</span></span>
+<span id="cb88-18"><a href="using-dplyr-to-work-with-your-data.html#cb88-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 Rodia              173 </span></span>
+<span id="cb88-19"><a href="using-dplyr-to-work-with-your-data.html#cb88-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 Sullust            160 </span></span>
+<span id="cb88-20"><a href="using-dplyr-to-work-with-your-data.html#cb88-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 Tatooine           153.</span></span>
+<span id="cb88-21"><a href="using-dplyr-to-work-with-your-data.html#cb88-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 Toydaria           137 </span></span>
+<span id="cb88-22"><a href="using-dplyr-to-work-with-your-data.html#cb88-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 Troiken            122 </span></span>
+<span id="cb88-23"><a href="using-dplyr-to-work-with-your-data.html#cb88-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 Tund               163 </span></span>
+<span id="cb88-24"><a href="using-dplyr-to-work-with-your-data.html#cb88-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 Vulpter             94 </span></span>
+<span id="cb88-25"><a href="using-dplyr-to-work-with-your-data.html#cb88-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 Zolan              168 </span></span>
+<span id="cb88-26"><a href="using-dplyr-to-work-with-your-data.html#cb88-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 &lt;NA&gt;                81</span></span></code></pre></div>
 </div>
 </div>
 </div>

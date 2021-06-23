@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.4 Visualising the data | R tutorials in BIOS1140</title>
+  <title>8.4 Visualising the data | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.4 Visualising the data | R tutorials in BIOS1140" />
+  <meta property="og:title" content="8.4 Visualising the data | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.4 Visualising the data | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="8.4 Visualising the data | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="setting-up-sliding-windows.html"/>
 <link rel="next" href="study-questions-6.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -426,56 +431,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">8.4</span> Visualising the data</h2>
 <script src="js/hideOutput.js"></script>
 <p>For the purposes of this session, we will focus mainly on the difference between house and spanish sparrows. However, since we now have all our data in a tidy <code>data.frame</code>, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let’s say we want to look at mean nucleotide diversity, we can do that like so:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="sparrow-viz.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select nucleotide diversity data and calculate means</span></span>
-<span id="cb347-2"><a href="sparrow-viz.html#cb347-2" aria-hidden="true" tabindex="-1"></a>sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">summarise_all</span>(mean)</span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="sparrow-viz.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select nucleotide diversity data and calculate means</span></span>
+<span id="cb342-2"><a href="sparrow-viz.html#cb342-2" aria-hidden="true" tabindex="-1"></a>sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">summarise_all</span>(mean)</span></code></pre></div>
 <p>A lot of this will be familiar from before but to clarify, we used <code>select()</code> and <code>contains()</code> to select columns from our main dataset that contain the string <code>"pi"</code>—i.e. nucleotide diversity columns. We then used <code>summarise_all</code> and <code>mean</code> to calculate the mean value for all of the columns we selected. From the output above, we can see that the house and the Italian sparrow have the highest levels of nucleotide diversity.</p>
 <p>We could also quite easily plot if we wanted to. However, to do this, we need to use <code>pivot_longer</code> on the data to get all species in one column, and all <span class="math inline">\(\pi\)</span> values in another<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>. Note how we can supply <code>contains("pi")</code> inside <code>pivot_longer()</code> to specify which columns to include.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="sparrow-viz.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gather the data</span></span>
-<span id="cb348-2"><a href="sparrow-viz.html#cb348-2" aria-hidden="true" tabindex="-1"></a>pi_g <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span></span>
-<span id="cb348-3"><a href="sparrow-viz.html#cb348-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;pi&quot;</span>)</span>
-<span id="cb348-4"><a href="sparrow-viz.html#cb348-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make a boxplot</span></span>
-<span id="cb348-5"><a href="sparrow-viz.html#cb348-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pi_g, <span class="fu">aes</span>(species, pi)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="cn">NULL</span>)</span>
-<span id="cb348-6"><a href="sparrow-viz.html#cb348-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="sparrow-viz.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="co"># gather the data</span></span>
+<span id="cb343-2"><a href="sparrow-viz.html#cb343-2" aria-hidden="true" tabindex="-1"></a>pi_g <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span></span>
+<span id="cb343-3"><a href="sparrow-viz.html#cb343-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">contains</span>(<span class="st">&quot;pi&quot;</span>), <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;pi&quot;</span>)</span>
+<span id="cb343-4"><a href="sparrow-viz.html#cb343-4" aria-hidden="true" tabindex="-1"></a><span class="co"># make a boxplot</span></span>
+<span id="cb343-5"><a href="sparrow-viz.html#cb343-5" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(pi_g, <span class="fu">aes</span>(species, pi)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>() <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">xlab</span>(<span class="cn">NULL</span>)</span>
+<span id="cb343-6"><a href="sparrow-viz.html#cb343-6" aria-hidden="true" tabindex="-1"></a>a</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-29-1.png" width="768" /></p>
 <p>This makes it much clearer how nucleotide diversity differs among the species.</p>
 <div id="visualising-patterns-along-the-chromosome" class="section level3" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> Visualising patterns along the chromosome</h3>
-<p>Let’s have a look at how <em>F</em><sub>ST</sub> between house and spanish sparrows varies along chromosome 8. We can do this very simply with <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="sparrow-viz.html#cb349-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
-<span id="cb349-2"><a href="sparrow-viz.html#cb349-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
-<span id="cb349-3"><a href="sparrow-viz.html#cb349-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<p>Let’s have a look at how <em>F</em><sub>ST</sub> between house and spanish sparrows varies along chromosome 8. Note that we plot the mid-point of each window, and divide the position by <span class="math inline">\(10^6\)</span> to get megabases on the x-axis.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="sparrow-viz.html#cb344-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;red&quot;</span>)</span>
+<span id="cb344-2"><a href="sparrow-viz.html#cb344-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F)[ST]))</span>
+<span id="cb344-3"><a href="sparrow-viz.html#cb344-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" /></p>
-<p>From this plot, it is very clear there is a huge peak in <em>F</em><sub>ST</sub> around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region…</p>
-<p>How can we investiage this? The easiest thing to do is to plot <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.</p>
+<p>From this plot, it is clear there is a huge peak in <em>F</em><sub>ST</sub> around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region…</p>
+<p>How can we investigate this? The easiest thing to do is to plot <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.</p>
 <p>First, let’s get the data we are interested in:</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="sparrow-viz.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data of interest</span></span>
-<span id="cb350-2"><a href="sparrow-viz.html#cb350-2" aria-hidden="true" tabindex="-1"></a>hs <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(mid, house_pi, spanish_pi, house_spanish_fst, house_spanish_dxy)</span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="sparrow-viz.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select data of interest</span></span>
+<span id="cb345-2"><a href="sparrow-viz.html#cb345-2" aria-hidden="true" tabindex="-1"></a>hs <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(mid, house_pi, spanish_pi, house_spanish_fst, house_spanish_dxy)</span></code></pre></div>
 <p>To keep things simple, we’ve thrown everything out we don’t need. Next, we need to use <code>pivot_longer</code> in order to rearrange our <code>data.frame</code> so that we can plot it properly.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="sparrow-viz.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use gather to rearrange everything</span></span>
-<span id="cb351-2"><a href="sparrow-viz.html#cb351-2" aria-hidden="true" tabindex="-1"></a>hs_g <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(hs, <span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="sparrow-viz.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use pivot_longer to rearrange everything</span></span>
+<span id="cb346-2"><a href="sparrow-viz.html#cb346-2" aria-hidden="true" tabindex="-1"></a>hs_g <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(hs, <span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span></code></pre></div>
 <p>Here, we use <code>-mid</code> to tell the function we want to leave this out of the pivoting and use <code>names_to = "stat"</code> to make it clear we are arranging our data by the statistics we have calculated, <code>values_to = "value"</code> is just a name for the values of each of our statistics.</p>
 <p>Now we can plot everything together:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="sparrow-viz.html#cb352-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
-<span id="cb352-2"><a href="sparrow-viz.html#cb352-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
-<span id="cb352-3"><a href="sparrow-viz.html#cb352-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="sparrow-viz.html#cb347-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb347-2"><a href="sparrow-viz.html#cb347-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb347-3"><a href="sparrow-viz.html#cb347-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" /></p>
-<p>OK so it should be immediately obvious that this plot is really unhelpful. We see the <em>F</em><sub>ST</sub> data again, but since that is on such a different scale to estimates of <span class="math inline">\(\pi\)</span> and <em>d</em><sub>XY</sub>, we can’t see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with <code>facet_grid</code> in the beginning of this tutorial! Remember that we can specify independent y-axes with <code>scales = "free_y"</code>, and set <code>ncol = 1</code> to get all plots below each other.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="sparrow-viz.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
-<span id="cb353-2"><a href="sparrow-viz.html#cb353-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
-<span id="cb353-3"><a href="sparrow-viz.html#cb353-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb353-4"><a href="sparrow-viz.html#cb353-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
-<span id="cb353-5"><a href="sparrow-viz.html#cb353-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p>OK so it should be immediately obvious that this plot is really unhelpful. We see the <em>F</em><sub>ST</sub> data again, but since that is on such a different scale to estimates of <span class="math inline">\(\pi\)</span> and <em>d</em><sub>XY</sub>, we can’t see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with <code>facet_grid</code> in the beginning of this tutorial! Remember that we can specify independent y-axes with <code>scales = "free_y"</code>, and set <code>ncol = 1</code> to get all plots below each other.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="sparrow-viz.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
+<span id="cb350-2"><a href="sparrow-viz.html#cb350-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb350-3"><a href="sparrow-viz.html#cb350-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb350-4"><a href="sparrow-viz.html#cb350-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb350-5"><a href="sparrow-viz.html#cb350-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" width="768" /></p>
-<p>However, before we examine our plot in detail, it would also be easier if we rearranged everything so <em>F</em><sub>ST</sub> came at the top, <span class="math inline">\(\pi\)</span> beneath it and then finally, <em>d</em>_XY_. We can use the function <code>fct_relevel()</code> for manually reordering the factors to achieve this:</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="sparrow-viz.html#cb354-1" aria-hidden="true" tabindex="-1"></a>new_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;house_spanish_fst&quot;</span>, <span class="st">&quot;house_pi&quot;</span>, <span class="st">&quot;spanish_pi&quot;</span>, <span class="st">&quot;house_spanish_dxy&quot;</span>)</span>
-<span id="cb354-2"><a href="sparrow-viz.html#cb354-2" aria-hidden="true" tabindex="-1"></a>hs_g<span class="sc">$</span>stat <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(hs_g<span class="sc">$</span>stat, new_order)</span></code></pre></div>
-<p>We can now replot our figure with the new order:</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="sparrow-viz.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
-<span id="cb355-2"><a href="sparrow-viz.html#cb355-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
-<span id="cb355-3"><a href="sparrow-viz.html#cb355-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb355-4"><a href="sparrow-viz.html#cb355-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
-<span id="cb355-5"><a href="sparrow-viz.html#cb355-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<p><img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" /></p>
 <p>Examining the plot we created, it is pretty clear that the large peak in <em>F</em><sub>ST</sub> on our chromosome is matched by two regions of low nucleotide diversity in the house and Spanish sparrow, <em>d</em><sub>XY</sub> is also very low in the same region.</p>
 <p>The signal here is quite clear - what could explain it? Low recombination regions in the genome are one potential explanation. The reason for this is that in a low recombination region, <strong>background selection</strong> and also <strong>selective sweeps</strong> can remove variation at polymorphic positions that are closely linked to the target of selection. Selection of this kind in either the house or the Spanish lineages AFTER they have split into different species will reduce <span class="math inline">\(\pi\)</span> in these regions and since <em>F</em><sub>ST</sub> is a relative measure of differentiation, it will potentially be inflated.</p>
 <p>This is an important issue as it means that we cannot reliably use <em>F</em><sub>ST</sub> to identify genes involved in reproductive isolation from a genome scan. By comparing <em>F</em><sub>ST</sub> to <em>d</em><sub>XY</sub> here, we see the latter is also reduced in this region, which again suggests it is likely that some sort of genome structure might be responsible for the peak in <em>F</em><sub>ST</sub> we see. One way to investigate this is examine the recombination rate variation along chromosome 8—which we will do next, after a short interlude.</p>
@@ -490,33 +485,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="investigating-recombination-rate-variation" class="section level3" number="8.4.3">
 <h3><span class="header-section-number">8.4.3</span> Investigating recombination rate variation</h3>
 <p>To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromosme 8. This was originally estimated from a house sparrow linkage map, published by <a href="http://advances.sciencemag.org/content/3/6/e1602996">Elgvin et al (2018)</a> and you can download the data <a href="https://bios1140.github.io/data/chr8_recomb.tsv">here</a>. We will read the data in like normal</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="sparrow-viz.html#cb356-1" aria-hidden="true" tabindex="-1"></a>rrate <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./chr8_recomb.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="sparrow-viz.html#cb351-1" aria-hidden="true" tabindex="-1"></a>rrate <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./chr8_recomb.tsv&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>Since the recombination rate is the same number of rows as our main dataset, we can just add it as a column.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="sparrow-viz.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign recombination rate to full sparrow dataset</span></span>
-<span id="cb357-2"><a href="sparrow-viz.html#cb357-2" aria-hidden="true" tabindex="-1"></a>sparrow_data<span class="sc">$</span>recomb <span class="ot">&lt;-</span> rrate<span class="sc">$</span>recomb</span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="sparrow-viz.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign recombination rate to full sparrow dataset</span></span>
+<span id="cb352-2"><a href="sparrow-viz.html#cb352-2" aria-hidden="true" tabindex="-1"></a>sparrow_data<span class="sc">$</span>recomb <span class="ot">&lt;-</span> rrate<span class="sc">$</span>recomb</span></code></pre></div>
 <p>Now we are ready to see whether the variation in nucleotide diversity and <em>F</em><sub>ST</sub> can be explained by recombination rate. Let’s plot how it varies along the genome.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="sparrow-viz.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot for recombination rate</span></span>
-<span id="cb358-2"><a href="sparrow-viz.html#cb358-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, recomb)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
-<span id="cb358-3"><a href="sparrow-viz.html#cb358-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
-<span id="cb358-4"><a href="sparrow-viz.html#cb358-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="sparrow-viz.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot for recombination rate</span></span>
+<span id="cb353-2"><a href="sparrow-viz.html#cb353-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, recomb)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb353-3"><a href="sparrow-viz.html#cb353-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
+<span id="cb353-4"><a href="sparrow-viz.html#cb353-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-40-1.png" width="768" /></p>
 <p>To explain this a little, we have plotted recombination rate in <strong>centiMorgans per Megabase</strong> - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our <em>F</em><sub>ST</sub> peak occurs. to confirm this, we will plot both statistics together.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="sparrow-viz.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data and gather</span></span>
-<span id="cb359-2"><a href="sparrow-viz.html#cb359-2" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> </span>
-<span id="cb359-3"><a href="sparrow-viz.html#cb359-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mid, house_spanish_fst, recomb) <span class="sc">%&gt;%</span></span>
-<span id="cb359-4"><a href="sparrow-viz.html#cb359-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
-<span id="cb359-5"><a href="sparrow-viz.html#cb359-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a facet plot</span></span>
-<span id="cb359-6"><a href="sparrow-viz.html#cb359-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hr, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
-<span id="cb359-7"><a href="sparrow-viz.html#cb359-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
-<span id="cb359-8"><a href="sparrow-viz.html#cb359-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
-<span id="cb359-9"><a href="sparrow-viz.html#cb359-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="sparrow-viz.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data and gather</span></span>
+<span id="cb354-2"><a href="sparrow-viz.html#cb354-2" aria-hidden="true" tabindex="-1"></a>hr <span class="ot">&lt;-</span> sparrow_data <span class="sc">%&gt;%</span> </span>
+<span id="cb354-3"><a href="sparrow-viz.html#cb354-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(mid, house_spanish_fst, recomb) <span class="sc">%&gt;%</span></span>
+<span id="cb354-4"><a href="sparrow-viz.html#cb354-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>mid, <span class="at">names_to =</span> <span class="st">&quot;stat&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;value&quot;</span>)</span>
+<span id="cb354-5"><a href="sparrow-viz.html#cb354-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make a facet plot</span></span>
+<span id="cb354-6"><a href="sparrow-viz.html#cb354-6" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hr, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb354-7"><a href="sparrow-viz.html#cb354-7" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb354-8"><a href="sparrow-viz.html#cb354-8" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>)</span>
+<span id="cb354-9"><a href="sparrow-viz.html#cb354-9" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-41-1.png" width="768" /></p>
 <p>When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the <a href="https://en.wikipedia.org/wiki/Centromere">centromere</a> is likely to be present here.</p>
 <p>Now that we have recombination data read into R, we can also explore the relationships between recombination rate and other statistics in more detail. To demonstrate this, we will plot the joint distribution of recombination rate and <em>F</em><sub>ST</sub> between house and Spanish sparrows.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="sparrow-viz.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot recombination rate and fst</span></span>
-<span id="cb360-2"><a href="sparrow-viz.html#cb360-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(recomb, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
-<span id="cb360-3"><a href="sparrow-viz.html#cb360-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F[ST])))</span>
-<span id="cb360-4"><a href="sparrow-viz.html#cb360-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="sparrow-viz.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot recombination rate and fst</span></span>
+<span id="cb355-2"><a href="sparrow-viz.html#cb355-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sparrow_data, <span class="fu">aes</span>(recomb, house_spanish_fst)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span>
+<span id="cb355-3"><a href="sparrow-viz.html#cb355-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Recombination rate (cM/Mb)&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="fu">expression</span>(<span class="fu">italic</span>(F[ST])))</span>
+<span id="cb355-4"><a href="sparrow-viz.html#cb355-4" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() </span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-42-1.png" width="768" /></p>
 <p>Clearly there is a bias here - higher <em>F</em><sub>ST</sub> values are found in regions of low recombination. Although this doesn’t completely invalidate the use of <em>F</em><sub>ST</sub> in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and Spanish sparrows.</p>
 </div>
@@ -525,6 +520,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <ol start="35">
 <li id="fn35"><p>It may have been a while since the last time you saw <code>pivot_longer()</code>. If you have forgotten how it works or why we use it, remember that you can always go back to <a href="PLACEHOLDER">Week 2</a>.<a href="sparrow-viz.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn36"><p>In this case, the plot might be easier to interpret if we rearranged everything so <em>F</em><sub>ST</sub> came at the top, <span class="math inline">\(\pi\)</span> beneath it and then finally, <em>d</em>_XY_. We can use the function <code>fct_relevel()</code> for manually reordering the factors to achieve this:</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1" aria-hidden="true" tabindex="-1"></a>new_order <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;house_spanish_fst&quot;</span>, <span class="st">&quot;house_pi&quot;</span>, <span class="st">&quot;spanish_pi&quot;</span>, <span class="st">&quot;house_spanish_dxy&quot;</span>)</span>
+<span id="cb348-2"><a href="#cb348-2" aria-hidden="true" tabindex="-1"></a>hs_g<span class="sc">$</span>stat <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(hs_g<span class="sc">$</span>stat, new_order)</span></code></pre></div>
+<p>We can now replot our figure with the new order:</p>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="co"># construct a plot with facets</span></span>
+<span id="cb349-2"><a href="#cb349-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(hs_g, <span class="fu">aes</span>(mid<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span>, value, <span class="at">colour =</span> stat)) <span class="sc">+</span> <span class="fu">geom_line</span>()</span>
+<span id="cb349-3"><a href="#cb349-3" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>stat, <span class="at">scales =</span> <span class="st">&quot;free_y&quot;</span>, <span class="at">ncol =</span> <span class="dv">1</span>)</span>
+<span id="cb349-4"><a href="#cb349-4" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> a <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Position (Mb)&quot;</span>)</span>
+<span id="cb349-5"><a href="#cb349-5" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" /><a href="sparrow-viz.html#fnref36" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

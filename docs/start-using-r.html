@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.1 Start using R! | R tutorials in BIOS1140</title>
+  <title>1.1 Start using R! | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.1 Start using R! | R tutorials in BIOS1140" />
+  <meta property="og:title" content="1.1 Start using R! | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.1 Start using R! | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="1.1 Start using R! | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="ch01.html"/>
 <link rel="next" href="r-essentials.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -466,6 +471,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>"hello"</code> or <code>'hello'</code> rather than just <code>hello</code></li>
 </ul>
 </div>
+<div class="blue">
+<p><strong>Error messages:</strong><br />
+Above, you got an error message saying “Error: object ‘hello’ not found”. Errors are common in R, and are nothing to be afraid of. The worst thing that can happen from an error in R is that you have to fix your code and re-run it. You should get used to reading error messages, they are often helpful to understand what is wrong with your code. They can also be extremely unhelpful, but even then, googling the error message can give you some insight into what went wrong.</p>
+</div>
 </div>
 <div id="comments" class="section level4" number="1.1.2.3">
 <h4><span class="header-section-number">1.1.2.3</span> Comments</h4>
@@ -487,7 +496,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="scripts" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Scripts</h3>
 <p>Doing small operations in the console is all well and good, but once you’ve done something a bit more complex than adding numbers you will want to save what you did in some way. You could use the up-arrow in the console to recall the things you did (even if you close and reopen RStudio), but imagine if the thing you want to recall was a thousand operations ago. That’s a whole lot of button pressing! The most convenient way to store what you have done in R is by writing a script.</p>
-<p>A script in R is just a text document containing R code, and the file extension is .R (your script can e.g. be called “myscript.R”. In RStudio, you can create a new script either from the menu <code>File &gt; New File &gt; R script</code> or by pressing <code>ctrl</code>+<code>shift</code>+<code>N</code> on Windows or <code>command</code>+<code>shift</code>+<code>N</code> on Mac.</p>
+<p>A script in R is just a text document containing R code, and the file extension is .R (your script can e.g. be called “myscript.R”. In RStudio, you can create a new script either from the menu <code>File &gt; New File &gt; R script</code> or by pressing <code>ctrl</code>+<code>shift</code>+<code>N</code> on Windows or <code>command</code>+<code>shift</code>+<code>N</code> on Mac. To save your script, use <code>ctrl</code>/<code>command</code>+<code>S</code>, or choose <code>save</code>/<code>save as...</code> from the <code>File</code> dropdown menu. Be concious about where you save your script so that you will find it again later!</p>
 <p>Working in a script is almost exactly the same as working in the console: You write a line of code in the script, run it, and the result is shown in the console. The main difference is that you have to press <code>ctrl</code>/<code>command</code>+<code>enter</code> to run code from a script, rather than just <code>enter</code>. The other big difference is that you can save your scripts, so you have access to all the code you have previously written. For this reason, you should always work in a script rather than in the console.</p>
 <p><strong>Exercise: Create a new script, and save it with a meaningful name (e.g. “BIOS1140_week01.R” in a folder named BIOS1140). Run the commands you ran in the console earlier, but this time from your script instead. Remember to comment your code with <code>#</code> as you go along!</strong></p>
 <div class="green">

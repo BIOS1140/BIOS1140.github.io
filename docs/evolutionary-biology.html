@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.2 Evolutionary biology | R tutorials in BIOS1140</title>
+  <title>3.2 Evolutionary biology | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.2 Evolutionary biology | R tutorials in BIOS1140" />
+  <meta property="og:title" content="3.2 Evolutionary biology | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.2 Evolutionary biology | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="3.2 Evolutionary biology | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="r-programming-for-loops.html"/>
 <link rel="next" href="study-questions-1.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -426,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.2</span> Evolutionary biology</h2>
 <script src="js/hideOutput.js"></script>
 <p>For this part of the tutorial, we need to load the <code>tidyverse</code> package.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="evolutionary-biology.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="evolutionary-biology.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
 <div id="the-hardy-weinberg-model" class="section level3" number="3.2.1">
 <h3><span class="header-section-number">3.2.1</span> The Hardy-Weinberg Model</h3>
 <p>The HW model is a way of demonstrating the relationship between allele and genotype frequencies. It is mathematically basic but very important for understanding how different processes can alter these frequencies. As you might recall from the main text, the model has five major assumptions:</p>
@@ -445,49 +450,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><span class="math inline">\(A_2A_2 = q^2\)</span></li>
 </ul>
 <p>Another way to look at these probabilities is as the expected frequencies of the three genotypes at Hardy-Weinberg equilibrium given the allele frequencies. Let’s use some R code to actually demonstrate how we might calculate these expected frequencies. For our test example, we will use a simple case where the frequency of <span class="math inline">\(A_1\)</span>, <span class="math inline">\(p\)</span> is 0.8 and the frequency of <span class="math inline">\(A_2\)</span>, <span class="math inline">\(q\)</span> is 0.2.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="evolutionary-biology.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we set the frequencies</span></span>
-<span id="cb143-2"><a href="evolutionary-biology.html#cb143-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb143-3"><a href="evolutionary-biology.html#cb143-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
-<span id="cb143-4"><a href="evolutionary-biology.html#cb143-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check p and q are equal to 1</span></span>
-<span id="cb143-5"><a href="evolutionary-biology.html#cb143-5" aria-hidden="true" tabindex="-1"></a>(q <span class="sc">+</span> p) <span class="sc">==</span> <span class="dv">1</span></span>
-<span id="cb143-6"><a href="evolutionary-biology.html#cb143-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
-<span id="cb143-7"><a href="evolutionary-biology.html#cb143-7" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb143-8"><a href="evolutionary-biology.html#cb143-8" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb143-9"><a href="evolutionary-biology.html#cb143-9" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb143-10"><a href="evolutionary-biology.html#cb143-10" aria-hidden="true" tabindex="-1"></a><span class="co"># show the genotype frequencies in the console</span></span>
-<span id="cb143-11"><a href="evolutionary-biology.html#cb143-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
-<span id="cb143-12"><a href="evolutionary-biology.html#cb143-12" aria-hidden="true" tabindex="-1"></a><span class="co"># since these are genotype frequencies, they should also sum to 1 - you can check this like so</span></span>
-<span id="cb143-13"><a href="evolutionary-biology.html#cb143-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e))</span></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="evolutionary-biology.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we set the frequencies</span></span>
+<span id="cb141-2"><a href="evolutionary-biology.html#cb141-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb141-3"><a href="evolutionary-biology.html#cb141-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
+<span id="cb141-4"><a href="evolutionary-biology.html#cb141-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check p and q are equal to 1</span></span>
+<span id="cb141-5"><a href="evolutionary-biology.html#cb141-5" aria-hidden="true" tabindex="-1"></a>(q <span class="sc">+</span> p) <span class="sc">==</span> <span class="dv">1</span></span>
+<span id="cb141-6"><a href="evolutionary-biology.html#cb141-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
+<span id="cb141-7"><a href="evolutionary-biology.html#cb141-7" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb141-8"><a href="evolutionary-biology.html#cb141-8" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb141-9"><a href="evolutionary-biology.html#cb141-9" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb141-10"><a href="evolutionary-biology.html#cb141-10" aria-hidden="true" tabindex="-1"></a><span class="co"># show the genotype frequencies in the console</span></span>
+<span id="cb141-11"><a href="evolutionary-biology.html#cb141-11" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
+<span id="cb141-12"><a href="evolutionary-biology.html#cb141-12" aria-hidden="true" tabindex="-1"></a><span class="co"># since these are genotype frequencies, they should also sum to 1 - you can check this like so</span></span>
+<span id="cb141-13"><a href="evolutionary-biology.html#cb141-13" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e))</span></code></pre></div>
 <p>So you can see it is quite easy to calculate the frequencies you need for the HW model in R. If you want to, you can play around with the initial frequencies defined at the start of the R code to see how it alters the genotype frequencies. This is one nice thing about using R for evolutionary genetics, it is pretty simple to demonstrate things mathematically to benefit your own understanding. However, it might be even more useful to demonstrate the relationships the HW model lays out graphically. That way you can see how the expected genotype frequencies are altered over a whole range of allele frequencies. Luckily for us, R is great for this sort of visualisation <em>and</em> this is an excellent opportunity to demonstrate some programming in R.</p>
 <div id="plotting-the-expected-genotype-frequencies" class="section level4" number="3.2.1.1">
 <h4><span class="header-section-number">3.2.1.1</span> Plotting the expected genotype frequencies</h4>
 <p>The first thing we need to do is generate a range of allele frequencies to visualize the expected genotype frequencies across. We’ll do this in the simplest way first, before going into how you might take a programming approach to the same problem. Either way, generating a range is simple - we just need to do it for a single allele, <span class="math inline">\(A_1\)</span> and then we can very easily derive the frequency of <span class="math inline">\(A_2\)</span>. We will do this like so:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="evolutionary-biology.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a range for p</span></span>
-<span id="cb144-2"><a href="evolutionary-biology.html#cb144-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
-<span id="cb144-3"><a href="evolutionary-biology.html#cb144-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and also for q</span></span>
-<span id="cb144-4"><a href="evolutionary-biology.html#cb144-4" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span></code></pre></div>
-<p>All we did here was use the <code>seq</code> function, which we first saw back in <a href="https://evolutionarygenetics.github.io/Introduction.html">Chapter 1</a>. Remember, we only have to do it once because <span class="math inline">\(q\)</span> is the inverse of <span class="math inline">\(p\)</span>. Next we need to generate the expected frequencies. Because R is really great at handling vectors, the code for this is identical for if we were using a single value.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="evolutionary-biology.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the expected genotype frequencies</span></span>
-<span id="cb145-2"><a href="evolutionary-biology.html#cb145-2" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb145-3"><a href="evolutionary-biology.html#cb145-3" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb145-4"><a href="evolutionary-biology.html#cb145-4" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
-<p>So now we basically have the expected frequencies at HWE of our different genotypes across a range of allele frequencies with just a little vector calculation. However, recalling from before that we often need to get our data into a <code>data.frame</code> in order to use <code>ggplot2</code>, we need to do a bit of work on this first. We’ll now get our data into a <code>data.frame</code> ready for working on…</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="evolutionary-biology.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange allele frequencies into a tibble/data.frame</span></span>
-<span id="cb146-2"><a href="evolutionary-biology.html#cb146-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(p, q, A1A1_e, A1A2_e, A2A2_e)</span></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="evolutionary-biology.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a range for p</span></span>
+<span id="cb142-2"><a href="evolutionary-biology.html#cb142-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="fl">0.01</span>)</span>
+<span id="cb142-3"><a href="evolutionary-biology.html#cb142-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and also for q</span></span>
+<span id="cb142-4"><a href="evolutionary-biology.html#cb142-4" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span></code></pre></div>
+<p>Here we used the <code>seq()</code> function, which we first saw back in <a href="ch01.html#ch01">Chapter 1</a>. Remember, we only have to do it once because <span class="math inline">\(q\)</span> is the inverse of <span class="math inline">\(p\)</span>. Next we need to generate the expected frequencies. Because R is great at handling vectors, the code for this is identical for if we were using a single value.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="evolutionary-biology.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the expected genotype frequencies</span></span>
+<span id="cb143-2"><a href="evolutionary-biology.html#cb143-2" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb143-3"><a href="evolutionary-biology.html#cb143-3" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb143-4"><a href="evolutionary-biology.html#cb143-4" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<p>So now we have the expected frequencies at HWE of our different genotypes across a range of allele frequencies with a little vector calculation. However, recalling from before that we often need to get our data into a <code>data.frame</code> in order to use <code>ggplot2</code>, we need to do a bit of work on this first. We’ll now get our data into a <code>data.frame</code> ready for working on…</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="evolutionary-biology.html#cb144-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arrange allele frequencies into a tibble/data.frame</span></span>
+<span id="cb144-2"><a href="evolutionary-biology.html#cb144-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(p, q, A1A1_e, A1A2_e, A2A2_e)</span></code></pre></div>
 <p>You also might remember from the previous session that we need to sometimes do some data manipulation to get the data into a form that we can easily plot. Luckily, this is quite straightforward in this case as we can use the <code>pivot_longer</code> function to do it quickly and easily.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="evolutionary-biology.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pivot_longer to reshape the data.frame for straightforward plotting</span></span>
-<span id="cb147-2"><a href="evolutionary-biology.html#cb147-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(geno_freq, <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e), </span>
-<span id="cb147-3"><a href="evolutionary-biology.html#cb147-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">&quot;genotype&quot;</span>, </span>
-<span id="cb147-4"><a href="evolutionary-biology.html#cb147-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">&quot;freq&quot;</span>)</span></code></pre></div>
-<p><code>pivot_longer()</code> commands can take a while to get the hang of, the best thing is to continually practice them like this! If you’re unsure why we use <code>pivot_longer()</code> or how it works, you can always go back to the explanation from <a href="PLACEHOLDER">week 2</a>.</p>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="evolutionary-biology.html#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use pivot_longer to reshape the data.frame for straightforward plotting</span></span>
+<span id="cb145-2"><a href="evolutionary-biology.html#cb145-2" aria-hidden="true" tabindex="-1"></a>geno_freq <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(geno_freq, <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e), </span>
+<span id="cb145-3"><a href="evolutionary-biology.html#cb145-3" aria-hidden="true" tabindex="-1"></a>                          <span class="at">names_to =</span> <span class="st">&quot;genotype&quot;</span>, </span>
+<span id="cb145-4"><a href="evolutionary-biology.html#cb145-4" aria-hidden="true" tabindex="-1"></a>                          <span class="at">values_to =</span> <span class="st">&quot;freq&quot;</span>)</span></code></pre></div>
+<p><code>pivot_longer()</code> commands can take a while to get the hang of, the best thing is to continually practice them like this! If you’re unsure why we use <code>pivot_longer()</code> or how it works, you can always go back to the explanation from <a href="ch02.html#ch02">week 2</a>.</p>
 <p>Now it is really straightforward to make a plot that shows the expected HW—frequencies across our allele frequencies.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="evolutionary-biology.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the expected genotype frequencies</span></span>
-<span id="cb148-2"><a href="evolutionary-biology.html#cb148-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(geno_freq, <span class="fu">aes</span>(p, freq, <span class="at">colour =</span> genotype)) <span class="sc">+</span> </span>
-<span id="cb148-3"><a href="evolutionary-biology.html#cb148-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb148-4"><a href="evolutionary-biology.html#cb148-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Genotype frequency&quot;</span>, <span class="at">y =</span> <span class="st">&quot;p frequency&quot;</span>)</span>
-<span id="cb148-5"><a href="evolutionary-biology.html#cb148-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb148-6"><a href="evolutionary-biology.html#cb148-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the plot with some theme options to make it pretty</span></span>
-<span id="cb148-7"><a href="evolutionary-biology.html#cb148-7" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="evolutionary-biology.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot the expected genotype frequencies</span></span>
+<span id="cb146-2"><a href="evolutionary-biology.html#cb146-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(geno_freq, <span class="fu">aes</span>(p, freq, <span class="at">colour =</span> genotype)) <span class="sc">+</span> </span>
+<span id="cb146-3"><a href="evolutionary-biology.html#cb146-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb146-4"><a href="evolutionary-biology.html#cb146-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Genotype frequency&quot;</span>, <span class="at">y =</span> <span class="st">&quot;p frequency&quot;</span>)</span>
+<span id="cb146-5"><a href="evolutionary-biology.html#cb146-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb146-6"><a href="evolutionary-biology.html#cb146-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print the plot with some theme options to make it pretty</span></span>
+<span id="cb146-7"><a href="evolutionary-biology.html#cb146-7" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> <span class="fu">theme_light</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-29"></span>
 <img src="Exercise3_files/figure-html/unnamed-chunk-29-1.png" alt="Relationship between allele frequency and genotype frequency under Hardy-Weinberg equilibrium." width="672" />
 <p class="caption">
@@ -501,62 +506,67 @@ Figure 3.1: Relationship between allele frequency and genotype frequency under H
 <h3><span class="header-section-number">3.2.2</span> Testing for deviations from the Hardy Weinberg Expectation</h3>
 <p>We’ve already learned that the HW model is essentially an idealised scenario where no demographic or evolutionary processes are shaping the relationship between allele and genotype frequencies. We can therefore use it as a null model against which to test our data. Basically, we can compare our observed genotype frequencies from those expected under HWE. To get the expected frequencies, we just generate them from the allele frequencies, as we did in the previous section of the tutorial.</p>
 <p>We can work through an example of this together. Once again we’ll assume a locus <span class="math inline">\(A\)</span> with two alleles, <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span>. This means three genotypes, <span class="math inline">\(A_1A_1\)</span>, <span class="math inline">\(A_1A_2\)</span> and <span class="math inline">\(A_2A_2\)</span>. We sample 150 individuals from a population. The next block of R code shows the numbers of each genotype we collected and also combines them into an <code>observed</code> vector - for later use.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="evolutionary-biology.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers of genotypes</span></span>
-<span id="cb149-2"><a href="evolutionary-biology.html#cb149-2" aria-hidden="true" tabindex="-1"></a>A1A1 <span class="ot">&lt;-</span> <span class="dv">80</span></span>
-<span id="cb149-3"><a href="evolutionary-biology.html#cb149-3" aria-hidden="true" tabindex="-1"></a>A1A2 <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb149-4"><a href="evolutionary-biology.html#cb149-4" aria-hidden="true" tabindex="-1"></a>A2A2 <span class="ot">&lt;-</span> <span class="dv">55</span></span>
-<span id="cb149-5"><a href="evolutionary-biology.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make into a vector</span></span>
-<span id="cb149-6"><a href="evolutionary-biology.html#cb149-6" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1, A1A2, A2A2)</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="evolutionary-biology.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># numbers of genotypes</span></span>
+<span id="cb147-2"><a href="evolutionary-biology.html#cb147-2" aria-hidden="true" tabindex="-1"></a>A1A1 <span class="ot">&lt;-</span> <span class="dv">80</span></span>
+<span id="cb147-3"><a href="evolutionary-biology.html#cb147-3" aria-hidden="true" tabindex="-1"></a>A1A2 <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb147-4"><a href="evolutionary-biology.html#cb147-4" aria-hidden="true" tabindex="-1"></a>A2A2 <span class="ot">&lt;-</span> <span class="dv">55</span></span>
+<span id="cb147-5"><a href="evolutionary-biology.html#cb147-5" aria-hidden="true" tabindex="-1"></a><span class="co"># make into a vector</span></span>
+<span id="cb147-6"><a href="evolutionary-biology.html#cb147-6" aria-hidden="true" tabindex="-1"></a>observed <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1, A1A2, A2A2)</span></code></pre></div>
 <p>In order to go further here, we need to work out the allele frequencies from our observed data. This is quite straightforward - homozygotes have two copies of an allele whereas heterozygotes have only one. So we derive the number of each allele and divide it by the total:</p>
 <ul>
 <li><span class="math inline">\(\displaystyle p = \frac{2(A_1A_1) + A_1A_2}{n}\)</span></li>
 <li><span class="math inline">\(\displaystyle q = \frac{2(A_2A_2) + A_1A_2}{n}\)</span></li>
 </ul>
 <p>Where the genotype notation here represents the number of genotype class and <span class="math inline">\(n\)</span> is the total number of alleles. We can calculate the frequency the alleles in R like so:</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="evolutionary-biology.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate total number of alleles</span></span>
-<span id="cb150-2"><a href="evolutionary-biology.html#cb150-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(observed)</span>
-<span id="cb150-3"><a href="evolutionary-biology.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate frequency of A1 or p</span></span>
-<span id="cb150-4"><a href="evolutionary-biology.html#cb150-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>(A1A1) <span class="sc">+</span> A1A2)<span class="sc">/</span>n</span>
-<span id="cb150-5"><a href="evolutionary-biology.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate frequency of A2 or q</span></span>
-<span id="cb150-6"><a href="evolutionary-biology.html#cb150-6" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>(A2A2) <span class="sc">+</span> A1A2)<span class="sc">/</span>n</span>
-<span id="cb150-7"><a href="evolutionary-biology.html#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print frequencies to screen</span></span>
-<span id="cb150-8"><a href="evolutionary-biology.html#cb150-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(p, q)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="evolutionary-biology.html#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate total number of alleles</span></span>
+<span id="cb148-2"><a href="evolutionary-biology.html#cb148-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(observed)</span>
+<span id="cb148-3"><a href="evolutionary-biology.html#cb148-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate frequency of A1 or p</span></span>
+<span id="cb148-4"><a href="evolutionary-biology.html#cb148-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>(A1A1) <span class="sc">+</span> A1A2)<span class="sc">/</span>n</span>
+<span id="cb148-5"><a href="evolutionary-biology.html#cb148-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate frequency of A2 or q</span></span>
+<span id="cb148-6"><a href="evolutionary-biology.html#cb148-6" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> (<span class="dv">2</span><span class="sc">*</span>(A2A2) <span class="sc">+</span> A1A2)<span class="sc">/</span>n</span>
+<span id="cb148-7"><a href="evolutionary-biology.html#cb148-7" aria-hidden="true" tabindex="-1"></a><span class="co"># print frequencies to screen</span></span>
+<span id="cb148-8"><a href="evolutionary-biology.html#cb148-8" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(p, q)</span></code></pre></div>
 <p>Note that with the code above, we summed the number of observed genotypes and then multiplied by 2 as there are 2 alleles for each individual (i.e. there are 150 individuals and 300 alleles). We now have the allele frequencies, so we can use the code we worked out in the previous section to calculate the expected Hardy-Weinberg frequencies for this population.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="evolutionary-biology.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the expected genotype frequencies</span></span>
-<span id="cb151-2"><a href="evolutionary-biology.html#cb151-2" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb151-3"><a href="evolutionary-biology.html#cb151-3" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb151-4"><a href="evolutionary-biology.html#cb151-4" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb151-5"><a href="evolutionary-biology.html#cb151-5" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into a vector</span></span>
-<span id="cb151-6"><a href="evolutionary-biology.html#cb151-6" aria-hidden="true" tabindex="-1"></a>expected_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="evolutionary-biology.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate the expected genotype frequencies</span></span>
+<span id="cb149-2"><a href="evolutionary-biology.html#cb149-2" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb149-3"><a href="evolutionary-biology.html#cb149-3" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb149-4"><a href="evolutionary-biology.html#cb149-4" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb149-5"><a href="evolutionary-biology.html#cb149-5" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into a vector</span></span>
+<span id="cb149-6"><a href="evolutionary-biology.html#cb149-6" aria-hidden="true" tabindex="-1"></a>expected_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span></code></pre></div>
 <p>So now that we have the expected genotype <strong>frequencies</strong>, the last thing we need to do before testing whether there is a deviation from HWE in our data is calculate the expected <strong>number</strong> of each genotype. This is easy - we just multiply the frequencies by the number of individuals we sampled - 150.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="evolutionary-biology.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate observed genotype frequencies</span></span>
-<span id="cb152-2"><a href="evolutionary-biology.html#cb152-2" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> expected_freq <span class="sc">*</span> <span class="dv">150</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="evolutionary-biology.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate observed genotype frequencies</span></span>
+<span id="cb150-2"><a href="evolutionary-biology.html#cb150-2" aria-hidden="true" tabindex="-1"></a>expected <span class="ot">&lt;-</span> expected_freq <span class="sc">*</span> <span class="dv">150</span></span></code></pre></div>
 <p>The next thing we’d like to do is see whether our observed genotypes deviate from the expected. We will test this formally, but first let’s just look at the differences between them. The simplest way to do this is combine them into a matrix:</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="evolutionary-biology.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine observed and expected frequencies into a matrix</span></span>
-<span id="cb153-2"><a href="evolutionary-biology.html#cb153-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">cbind</span>(observed, expected)</span>
-<span id="cb153-3"><a href="evolutionary-biology.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add rownames</span></span>
-<span id="cb153-4"><a href="evolutionary-biology.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mydata) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A1A1&quot;</span>, <span class="st">&quot;A1A2&quot;</span>, <span class="st">&quot;A2A2&quot;</span>)</span>
-<span id="cb153-5"><a href="evolutionary-biology.html#cb153-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb153-6"><a href="evolutionary-biology.html#cb153-6" aria-hidden="true" tabindex="-1"></a>mydata</span>
-<span id="cb153-7"><a href="evolutionary-biology.html#cb153-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      observed expected</span></span>
-<span id="cb153-8"><a href="evolutionary-biology.html#cb153-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A1A1       80 51.04167</span></span>
-<span id="cb153-9"><a href="evolutionary-biology.html#cb153-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A1A2       15 72.91667</span></span>
-<span id="cb153-10"><a href="evolutionary-biology.html#cb153-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A2A2       55 26.04167</span></span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="evolutionary-biology.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine observed and expected frequencies into a matrix</span></span>
+<span id="cb151-2"><a href="evolutionary-biology.html#cb151-2" aria-hidden="true" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">cbind</span>(observed, expected)</span>
+<span id="cb151-3"><a href="evolutionary-biology.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add rownames</span></span>
+<span id="cb151-4"><a href="evolutionary-biology.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(mydata) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A1A1&quot;</span>, <span class="st">&quot;A1A2&quot;</span>, <span class="st">&quot;A2A2&quot;</span>)</span>
+<span id="cb151-5"><a href="evolutionary-biology.html#cb151-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb151-6"><a href="evolutionary-biology.html#cb151-6" aria-hidden="true" tabindex="-1"></a>mydata</span>
+<span id="cb151-7"><a href="evolutionary-biology.html#cb151-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;      observed expected</span></span>
+<span id="cb151-8"><a href="evolutionary-biology.html#cb151-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A1A1       80 51.04167</span></span>
+<span id="cb151-9"><a href="evolutionary-biology.html#cb151-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A1A2       15 72.91667</span></span>
+<span id="cb151-10"><a href="evolutionary-biology.html#cb151-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; A2A2       55 26.04167</span></span></code></pre></div>
 <p>Well, just from eyeballing this matrix, we see that there is a difference between the expected and the observed genotypes. Notably there seems to be a lower frequency of heterozygotes than we expect. Still, just looking at this is not enough, we need to test it formally. As you will probably remember from the main text, we can use a Chi-squared goodness of fit test for this purpose.</p>
 <p>When we use a statistical test like the Chi-squared test, we want to find out how likely it is that we would get our observed values when we assume that our null hypothesis is true. Here, our null hypothesis is the Hardy-Weinberg expectation (<span class="math inline">\(p^2\)</span>, <span class="math inline">\(2pq\)</span>, <span class="math inline">\(q^2\)</span>). These are the genotype frequencies we would expect to see if the population was in Hardy-Weinberg equilibrium. If the difference between the observed data and the expectation from the null hypothesis is large enough, we can say that it is statistically significant. What is “large enough” is what our chi squared test will tell us – this is where the p-value comes in. If we get a low p-value, we can reject the null hypothesis and conclude that our population is not in Hardy-Weinberg equilibrium.</p>
-<p>A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. A p-value of 0.5 means there is a 50% probability that we would get these results if the null hypothesis was true. Another way to look at it is that if we sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours (our more extreme results, meaning a larger difference between the observed and the expected genotypes) 50% of the time. The cut-off for saying that a result is statistically significant is typically a p-value below 0.05. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<div class="green">
+<p><strong>p-values:</strong><br />
+A p-value tells us the probability of getting our observed result when we assume that the null hypothesis is true. For example, a p-value of 0.5 means that if we randomly sampled 150 individuals from a population in Hardy-Weinberg equilibrium, we would get results like ours or more extreme 50% of the time.</p>
+<p>We typically say that if the p-value is below 0.05, the results are <em>statistically significant</em>. If our p-value is 0.05, it means there is a probability of only 5% that we would get these results if our null hypothesis was true.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<p><strong>Important:</strong> it may be confusing that both the probability in hypothesis testing and the proportion of the <span class="math inline">\(A_1A_1\)</span> allele in a population is called p. These are two completely different statistics, so make sure you don’t get them mixed up!</p>
+</div>
 <p>In the book, we calculated our chi-squared manually. In R, we can simply use the function chisq.test():</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="evolutionary-biology.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform a chi-squared test</span></span>
-<span id="cb154-2"><a href="evolutionary-biology.html#cb154-2" aria-hidden="true" tabindex="-1"></a>mychi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(observed, <span class="at">p =</span> expected_freq)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="evolutionary-biology.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform a chi-squared test</span></span>
+<span id="cb152-2"><a href="evolutionary-biology.html#cb152-2" aria-hidden="true" tabindex="-1"></a>mychi <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(observed, <span class="at">p =</span> expected_freq)</span></code></pre></div>
 <p>Note that what we put into the function is the <strong>number</strong> of observed genotypes (stored in our <em>observed</em> variable) and the <strong>frequency</strong> of the expectation (stored in <em>expected_freq</em>).</p>
 <p>Then we can have a look at the results:</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="evolutionary-biology.html#cb155-1" aria-hidden="true" tabindex="-1"></a>mychi</span>
-<span id="cb155-2"><a href="evolutionary-biology.html#cb155-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb155-3"><a href="evolutionary-biology.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Chi-squared test for given probabilities</span></span>
-<span id="cb155-4"><a href="evolutionary-biology.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb155-5"><a href="evolutionary-biology.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  observed</span></span>
-<span id="cb155-6"><a href="evolutionary-biology.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X-squared = 94.633, df = 2, p-value &lt; 2.2e-16</span></span></code></pre></div>
-<p>We see that the p-value is very low - well below our limit of 0.05. This means we have a highly significant deviation from HWE - in other words, some assumption of the Hardy-Weinberg model is violated. What process could cause this significant heterozygote deficit? Maybe non-random mating?</p>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="evolutionary-biology.html#cb153-1" aria-hidden="true" tabindex="-1"></a>mychi</span>
+<span id="cb153-2"><a href="evolutionary-biology.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb153-3"><a href="evolutionary-biology.html#cb153-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Chi-squared test for given probabilities</span></span>
+<span id="cb153-4"><a href="evolutionary-biology.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb153-5"><a href="evolutionary-biology.html#cb153-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; data:  observed</span></span>
+<span id="cb153-6"><a href="evolutionary-biology.html#cb153-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; X-squared = 94.633, df = 2, p-value &lt; 2.2e-16</span></span></code></pre></div>
+<p>We see that the p-value is very low - well below our limit of 0.05. This means we have a significant deviation from HWE - in other words, some assumption of the Hardy-Weinberg model is violated. What process could cause this significant heterozygote deficit? And conversely, what about the excess of homozygotes? Maybe non-random mating could be a possible reason?</p>
 </div>
 <div id="simulating-genetic-drift" class="section level3" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Simulating genetic drift</h3>
@@ -566,59 +576,59 @@ Figure 3.1: Relationship between allele frequency and genotype frequency under H
 <h4><span class="header-section-number">3.2.3.1</span> A simple case of genetic drift over a single generation using the binomial distribution</h4>
 <p>To demonstrate a simple case of drift, we’ll use the example from the book. We have a population of N = 8 individuals and we will focus on a single locus A with two alleles, <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span>. We will assume both alleles are equally common in the population - i.e. <span class="math inline">\(p=q = 0.5\)</span>.</p>
 <p>In the book you will recall we used a coin-flipping experiment to sample our alleles to form genotypes, since both alleles have a frequency of 0.5. Now we will do something similar, but instead of sampling alleles to form genotypes, we will sample the number of <span class="math inline">\(A_1\)</span> alleles in the next generation directly (we call this <span class="math inline">\(p’\)</span>). In the example in the book, we defined heads as <span class="math inline">\(A_1\)</span> and tails as <span class="math inline">\(A_2\)</span>. The principle here is the same, we start with a population where <span class="math inline">\(p = q\)</span>, so there is an equal probabilty of sampling one allele or the other. You can imagine each coin flip representing the passing on of one allele from a parent to the next generation. If we do this twice for each individual in the population, the sum of the heads we get will be the number of A1 alleles in the next generation.</p>
-<p>This is a form of binomial sampling, and to do it ir R we can use the rbinom() function. The <code>rbinom()</code> function essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, <code>rbinom()</code> allows for changing these probabilities. Simplified, the following code says: “flip 1 coin (<code>n</code>) 16 times (<code>size</code>) with a probability of 0.5 (<code>prob</code>) for getting heads”. The output is the number of heads we got.</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="evolutionary-biology.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate coin flipping experiment using binomial sampling</span></span>
-<span id="cb156-2"><a href="evolutionary-biology.html#cb156-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p>This is a form of binomial sampling, and to do it ir R we can use the <code>rbinom()</code> function. <code>rbinom()</code> essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, <code>rbinom()</code> allows for changing these probabilities. Simplified, the following code says: “flip 1 coin (<code>n</code>) 16 times (<code>size</code>) with a probability of 0.5 (<code>prob</code>) for getting heads”. The output is the number of heads we got.</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="evolutionary-biology.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate coin flipping experiment using binomial sampling</span></span>
+<span id="cb154-2"><a href="evolutionary-biology.html#cb154-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rbinom</span>(<span class="at">n =</span> <span class="dv">1</span>, <span class="at">size =</span> <span class="dv">16</span>, <span class="at">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p>Run this code a few times, and observe that the results are different each time, because the <code>rbinom()</code> function samples randomly.</p>
 <p>In our example, the output of <code>rbinom</code> could represent the number of <span class="math inline">\(A_1\)</span> alleles in the next generation – so we could easily work out <span class="math inline">\(p´\)</span> and <span class="math inline">\(q´\)</span>, (i.e. <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> in the next generation). We can use the following code to sample the number of <span class="math inline">\(A_1\)</span> in generation 2:</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="evolutionary-biology.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set population size</span></span>
-<span id="cb157-2"><a href="evolutionary-biology.html#cb157-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb157-3"><a href="evolutionary-biology.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set allele frequency</span></span>
-<span id="cb157-4"><a href="evolutionary-biology.html#cb157-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> </span>
-<span id="cb157-5"><a href="evolutionary-biology.html#cb157-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate coin flipping experiment using binomial sampling</span></span>
-<span id="cb157-6"><a href="evolutionary-biology.html#cb157-6" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p)</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="evolutionary-biology.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set population size</span></span>
+<span id="cb155-2"><a href="evolutionary-biology.html#cb155-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb155-3"><a href="evolutionary-biology.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set allele frequency</span></span>
+<span id="cb155-4"><a href="evolutionary-biology.html#cb155-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.5</span> </span>
+<span id="cb155-5"><a href="evolutionary-biology.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="co"># recreate coin flipping experiment using binomial sampling</span></span>
+<span id="cb155-6"><a href="evolutionary-biology.html#cb155-6" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p)</span></code></pre></div>
 <p>Remember since we are sampling alleles for diploid individuals, we need to multiply <code>N</code> by 2. The value of <code>nA1</code> will differ for everyone since this is a <strong>random</strong> sample of the binomial distribution. We can now easily work out the value of <span class="math inline">\(p´\)</span> - i.e. the new frequency of the <span class="math inline">\(A_1\)</span> in the next generation. Note that R doesn’t allow the prime notation so for the actual R code, we will use <code>p2</code>.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="evolutionary-biology.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 2</span></span>
-<span id="cb158-2"><a href="evolutionary-biology.html#cb158-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="evolutionary-biology.html#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 2</span></span>
+<span id="cb156-2"><a href="evolutionary-biology.html#cb156-2" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span></code></pre></div>
 <p>OK, so now we have a value for <code>p2</code> – again it will differ for everyone because we performed random sampling. You will see though that <code>p2</code> is likely different to <code>p</code> solely because of random sampling - i.e. we have demonstrated drift over a single generation. Then we can go on to calculate <span class="math inline">\(p\)</span> in the third generation. Our new <code>p2</code> will then be the <code>prob</code> argument of <code>rbinom()</code>, and everything else can be left unchanged:</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="evolutionary-biology.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
-<span id="cb159-2"><a href="evolutionary-biology.html#cb159-2" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p2)</span>
-<span id="cb159-3"><a href="evolutionary-biology.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 3</span></span>
-<span id="cb159-4"><a href="evolutionary-biology.html#cb159-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb159-5"><a href="evolutionary-biology.html#cb159-5" aria-hidden="true" tabindex="-1"></a>p3</span>
-<span id="cb159-6"><a href="evolutionary-biology.html#cb159-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.375</span></span></code></pre></div>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="evolutionary-biology.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
+<span id="cb157-2"><a href="evolutionary-biology.html#cb157-2" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p2)</span>
+<span id="cb157-3"><a href="evolutionary-biology.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 3</span></span>
+<span id="cb157-4"><a href="evolutionary-biology.html#cb157-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb157-5"><a href="evolutionary-biology.html#cb157-5" aria-hidden="true" tabindex="-1"></a>p3</span>
+<span id="cb157-6"><a href="evolutionary-biology.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8125</span></span></code></pre></div>
 <p>If we were to to properly understand drift over more than one generation, we could now have used our <code>p3</code> to find p in the fourth generation, use the new <span class="math inline">\(p\)</span> to calculate <span class="math inline">\(p\)</span> in the next generation, and so on until we have simulated for all the number of generations we want.</p>
 <div class="fold c">
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="evolutionary-biology.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
-<span id="cb160-2"><a href="evolutionary-biology.html#cb160-2" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p3)</span>
-<span id="cb160-3"><a href="evolutionary-biology.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 4</span></span>
-<span id="cb160-4"><a href="evolutionary-biology.html#cb160-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb160-5"><a href="evolutionary-biology.html#cb160-5" aria-hidden="true" tabindex="-1"></a>p4</span>
-<span id="cb160-6"><a href="evolutionary-biology.html#cb160-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4375</span></span>
-<span id="cb160-7"><a href="evolutionary-biology.html#cb160-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-8"><a href="evolutionary-biology.html#cb160-8" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
-<span id="cb160-9"><a href="evolutionary-biology.html#cb160-9" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p4)</span>
-<span id="cb160-10"><a href="evolutionary-biology.html#cb160-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
-<span id="cb160-11"><a href="evolutionary-biology.html#cb160-11" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb160-12"><a href="evolutionary-biology.html#cb160-12" aria-hidden="true" tabindex="-1"></a>p5</span>
-<span id="cb160-13"><a href="evolutionary-biology.html#cb160-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.4375</span></span>
-<span id="cb160-14"><a href="evolutionary-biology.html#cb160-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-15"><a href="evolutionary-biology.html#cb160-15" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
-<span id="cb160-16"><a href="evolutionary-biology.html#cb160-16" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p5)</span>
-<span id="cb160-17"><a href="evolutionary-biology.html#cb160-17" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
-<span id="cb160-18"><a href="evolutionary-biology.html#cb160-18" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb160-19"><a href="evolutionary-biology.html#cb160-19" aria-hidden="true" tabindex="-1"></a>p6</span>
-<span id="cb160-20"><a href="evolutionary-biology.html#cb160-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.625</span></span>
-<span id="cb160-21"><a href="evolutionary-biology.html#cb160-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb160-22"><a href="evolutionary-biology.html#cb160-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and so on ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="evolutionary-biology.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
+<span id="cb158-2"><a href="evolutionary-biology.html#cb158-2" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p3)</span>
+<span id="cb158-3"><a href="evolutionary-biology.html#cb158-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 4</span></span>
+<span id="cb158-4"><a href="evolutionary-biology.html#cb158-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb158-5"><a href="evolutionary-biology.html#cb158-5" aria-hidden="true" tabindex="-1"></a>p4</span>
+<span id="cb158-6"><a href="evolutionary-biology.html#cb158-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8125</span></span>
+<span id="cb158-7"><a href="evolutionary-biology.html#cb158-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-8"><a href="evolutionary-biology.html#cb158-8" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
+<span id="cb158-9"><a href="evolutionary-biology.html#cb158-9" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p4)</span>
+<span id="cb158-10"><a href="evolutionary-biology.html#cb158-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
+<span id="cb158-11"><a href="evolutionary-biology.html#cb158-11" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb158-12"><a href="evolutionary-biology.html#cb158-12" aria-hidden="true" tabindex="-1"></a>p5</span>
+<span id="cb158-13"><a href="evolutionary-biology.html#cb158-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8125</span></span>
+<span id="cb158-14"><a href="evolutionary-biology.html#cb158-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-15"><a href="evolutionary-biology.html#cb158-15" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
+<span id="cb158-16"><a href="evolutionary-biology.html#cb158-16" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p5)</span>
+<span id="cb158-17"><a href="evolutionary-biology.html#cb158-17" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
+<span id="cb158-18"><a href="evolutionary-biology.html#cb158-18" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb158-19"><a href="evolutionary-biology.html#cb158-19" aria-hidden="true" tabindex="-1"></a>p6</span>
+<span id="cb158-20"><a href="evolutionary-biology.html#cb158-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8125</span></span>
+<span id="cb158-21"><a href="evolutionary-biology.html#cb158-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb158-22"><a href="evolutionary-biology.html#cb158-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and so on ...</span></span></code></pre></div>
 </div>
 <p>But hopefully, you’re thinking: “that sounds like a lot of work, maybe we can use a for-loop instead?”. We can!</p>
 </div>
 <div id="using-a-for-loop-to-simulate-drift-over-multiple-generations" class="section level4" number="3.2.3.2">
 <h4><span class="header-section-number">3.2.3.2</span> Using a for-loop to simulate drift over multiple generations</h4>
 <p>Let’s do try to wrap all that tedious code in a for loop instead. If we simplify our problem by a lot, what we want to do is: “use p from the previous generation to calculate p in this generation”. If your p-values are in a vector <code>p</code>, and you are using indexing like we learned in section <a href="r-programming-for-loops.html#indexing">3.1.3</a>, “p from the previous generation” is <code>p[i-1]</code>, and “p in this generation” is <code>p[i]</code>. The contents of our for-loop would then be:</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="evolutionary-biology.html#cb161-1" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p[i <span class="sc">-</span> <span class="dv">1</span>])</span>
-<span id="cb161-2"><a href="evolutionary-biology.html#cb161-2" aria-hidden="true" tabindex="-1"></a>p[i] <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="evolutionary-biology.html#cb159-1" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p[i <span class="sc">-</span> <span class="dv">1</span>])</span>
+<span id="cb159-2"><a href="evolutionary-biology.html#cb159-2" aria-hidden="true" tabindex="-1"></a>p[i] <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span></code></pre></div>
 <p>All that remains then is to create the for-loop itself. See if you manage to make this yourself before looking at my code!</p>
 <details>
 <summary>
@@ -633,40 +643,40 @@ Figure 3.1: Relationship between allele frequency and genotype frequency under H
 <p>Hint: start the vector you’re looping over at 2, and end at the number of generations (i.e. the length of your <code>p</code> vector)</p>
 </details>
 <div class="fold c">
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="evolutionary-biology.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set population size</span></span>
-<span id="cb162-2"><a href="evolutionary-biology.html#cb162-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb162-3"><a href="evolutionary-biology.html#cb162-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-4"><a href="evolutionary-biology.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of generations</span></span>
-<span id="cb162-5"><a href="evolutionary-biology.html#cb162-5" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb162-6"><a href="evolutionary-biology.html#cb162-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-7"><a href="evolutionary-biology.html#cb162-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set initial frequency of A1</span></span>
-<span id="cb162-8"><a href="evolutionary-biology.html#cb162-8" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb162-9"><a href="evolutionary-biology.html#cb162-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-10"><a href="evolutionary-biology.html#cb162-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector for storing results</span></span>
-<span id="cb162-11"><a href="evolutionary-biology.html#cb162-11" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb162-12"><a href="evolutionary-biology.html#cb162-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set first element to initial p</span></span>
-<span id="cb162-13"><a href="evolutionary-biology.html#cb162-13" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb162-14"><a href="evolutionary-biology.html#cb162-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-15"><a href="evolutionary-biology.html#cb162-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-16"><a href="evolutionary-biology.html#cb162-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb162-17"><a href="evolutionary-biology.html#cb162-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
-<span id="cb162-18"><a href="evolutionary-biology.html#cb162-18" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
-<span id="cb162-19"><a href="evolutionary-biology.html#cb162-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb162-20"><a href="evolutionary-biology.html#cb162-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set frequency of A1 as p in the current generation</span></span>
-<span id="cb162-21"><a href="evolutionary-biology.html#cb162-21" aria-hidden="true" tabindex="-1"></a>  p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb162-22"><a href="evolutionary-biology.html#cb162-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb162-23"><a href="evolutionary-biology.html#cb162-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb162-24"><a href="evolutionary-biology.html#cb162-24" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb162-25"><a href="evolutionary-biology.html#cb162-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.5000 0.4375 0.4375 0.3125 0.3125 0.3750 0.5000 0.5625 0.5000 0.5000</span></span>
-<span id="cb162-26"><a href="evolutionary-biology.html#cb162-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] 0.2500 0.5000 0.6250 0.6875 0.6250 0.6250 0.3125 0.4375 0.3125 0.3750</span></span>
-<span id="cb162-27"><a href="evolutionary-biology.html#cb162-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21] 0.4375 0.5000 0.5625 0.8125 0.8125 0.8125 0.6250 0.6875 0.6250 0.5000</span></span>
-<span id="cb162-28"><a href="evolutionary-biology.html#cb162-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 0.3750 0.3750 0.5000 0.5625 0.3750 0.5625 0.6250 0.5000 0.4375 0.3750</span></span>
-<span id="cb162-29"><a href="evolutionary-biology.html#cb162-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 0.4375 0.4375 0.5625 0.5625 0.5625 0.7500 0.6250 0.6250 0.6875 0.6875</span></span>
-<span id="cb162-30"><a href="evolutionary-biology.html#cb162-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51] 0.8125 0.6875 0.7500 0.7500 0.6250 0.6250 0.6875 0.7500 0.6875 0.7500</span></span>
-<span id="cb162-31"><a href="evolutionary-biology.html#cb162-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 0.7500 0.8750 0.8750 0.8750 0.7500 0.8750 0.8125 0.8125 0.8125 0.7500</span></span>
-<span id="cb162-32"><a href="evolutionary-biology.html#cb162-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] 0.7500 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
-<span id="cb162-33"><a href="evolutionary-biology.html#cb162-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
-<span id="cb162-34"><a href="evolutionary-biology.html#cb162-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="evolutionary-biology.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set population size</span></span>
+<span id="cb160-2"><a href="evolutionary-biology.html#cb160-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb160-3"><a href="evolutionary-biology.html#cb160-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-4"><a href="evolutionary-biology.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of generations</span></span>
+<span id="cb160-5"><a href="evolutionary-biology.html#cb160-5" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb160-6"><a href="evolutionary-biology.html#cb160-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-7"><a href="evolutionary-biology.html#cb160-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set initial frequency of A1</span></span>
+<span id="cb160-8"><a href="evolutionary-biology.html#cb160-8" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb160-9"><a href="evolutionary-biology.html#cb160-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-10"><a href="evolutionary-biology.html#cb160-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector for storing results</span></span>
+<span id="cb160-11"><a href="evolutionary-biology.html#cb160-11" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb160-12"><a href="evolutionary-biology.html#cb160-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set first element to initial p</span></span>
+<span id="cb160-13"><a href="evolutionary-biology.html#cb160-13" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb160-14"><a href="evolutionary-biology.html#cb160-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-15"><a href="evolutionary-biology.html#cb160-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-16"><a href="evolutionary-biology.html#cb160-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb160-17"><a href="evolutionary-biology.html#cb160-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
+<span id="cb160-18"><a href="evolutionary-biology.html#cb160-18" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
+<span id="cb160-19"><a href="evolutionary-biology.html#cb160-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb160-20"><a href="evolutionary-biology.html#cb160-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set frequency of A1 as p in the current generation</span></span>
+<span id="cb160-21"><a href="evolutionary-biology.html#cb160-21" aria-hidden="true" tabindex="-1"></a>  p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb160-22"><a href="evolutionary-biology.html#cb160-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb160-23"><a href="evolutionary-biology.html#cb160-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb160-24"><a href="evolutionary-biology.html#cb160-24" aria-hidden="true" tabindex="-1"></a>p</span>
+<span id="cb160-25"><a href="evolutionary-biology.html#cb160-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.5000 0.5625 0.4375 0.6250 0.6875 0.7500 0.7500 0.5625 0.5625 0.6875</span></span>
+<span id="cb160-26"><a href="evolutionary-biology.html#cb160-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] 0.5000 0.4375 0.6250 0.5625 0.4375 0.1875 0.1875 0.3750 0.3750 0.3125</span></span>
+<span id="cb160-27"><a href="evolutionary-biology.html#cb160-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21] 0.3750 0.4375 0.3125 0.3750 0.3750 0.5000 0.6250 0.8125 0.8750 0.6250</span></span>
+<span id="cb160-28"><a href="evolutionary-biology.html#cb160-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 0.9375 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-29"><a href="evolutionary-biology.html#cb160-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [41] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-30"><a href="evolutionary-biology.html#cb160-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [51] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-31"><a href="evolutionary-biology.html#cb160-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [61] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-32"><a href="evolutionary-biology.html#cb160-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [71] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-33"><a href="evolutionary-biology.html#cb160-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [81] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span>
+<span id="cb160-34"><a href="evolutionary-biology.html#cb160-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [91] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000</span></span></code></pre></div>
 </div>
 <p>Note that I assigned the population size <code>N</code>, the number of generations <code>ngen</code> and the initial frequency of <span class="math inline">\(A_1\)</span> <code>p_init</code> to named objects. This way, if you want to change either of these, you only need to change them in one place!</p>
 </div>
@@ -674,61 +684,61 @@ Figure 3.1: Relationship between allele frequency and genotype frequency under H
 <h4><span class="header-section-number">3.2.3.3</span> Visualizing drift</h4>
 <p>Now that we our for-loop to simulate data across generations, we can easily do this for different population sizes. Let’s simulate 1000 generations of drift for three populations of 10, 100 and 1000 individuals. We’ll keep the initial allele frequency, <code>p</code> at 0.5 in all cases. We will then combine them all into a <code>data.frame</code> alongside the number of generations. I will skip most of the comments in the code here so the code doesn’t take up too much space, but remember that you can look at the code in the previous section if you wonder what something does.</p>
 <p>First, for a population size of 10, storing the results to an object called <code>n10</code></p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="evolutionary-biology.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 10</span></span>
-<span id="cb163-2"><a href="evolutionary-biology.html#cb163-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="evolutionary-biology.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 10</span></span>
+<span id="cb161-2"><a href="evolutionary-biology.html#cb161-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb161-3"><a href="evolutionary-biology.html#cb161-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb161-4"><a href="evolutionary-biology.html#cb161-4" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb161-5"><a href="evolutionary-biology.html#cb161-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-6"><a href="evolutionary-biology.html#cb161-6" aria-hidden="true" tabindex="-1"></a>n10 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb161-7"><a href="evolutionary-biology.html#cb161-7" aria-hidden="true" tabindex="-1"></a>n10[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb161-8"><a href="evolutionary-biology.html#cb161-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb161-9"><a href="evolutionary-biology.html#cb161-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb161-10"><a href="evolutionary-biology.html#cb161-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n10[i<span class="dv">-1</span>])</span>
+<span id="cb161-11"><a href="evolutionary-biology.html#cb161-11" aria-hidden="true" tabindex="-1"></a>  n10[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb161-12"><a href="evolutionary-biology.html#cb161-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Then we do the same for a population size of 100.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="evolutionary-biology.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 100</span></span>
+<span id="cb162-2"><a href="evolutionary-biology.html#cb162-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb162-3"><a href="evolutionary-biology.html#cb162-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb162-4"><a href="evolutionary-biology.html#cb162-4" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb162-5"><a href="evolutionary-biology.html#cb162-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-6"><a href="evolutionary-biology.html#cb162-6" aria-hidden="true" tabindex="-1"></a>n100 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb162-7"><a href="evolutionary-biology.html#cb162-7" aria-hidden="true" tabindex="-1"></a>n100[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb162-8"><a href="evolutionary-biology.html#cb162-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb162-9"><a href="evolutionary-biology.html#cb162-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb162-10"><a href="evolutionary-biology.html#cb162-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n100[i<span class="dv">-1</span>])</span>
+<span id="cb162-11"><a href="evolutionary-biology.html#cb162-11" aria-hidden="true" tabindex="-1"></a>  n100[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb162-12"><a href="evolutionary-biology.html#cb162-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>And finally for population size 1000.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="evolutionary-biology.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 1000</span></span>
+<span id="cb163-2"><a href="evolutionary-biology.html#cb163-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb163-3"><a href="evolutionary-biology.html#cb163-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
 <span id="cb163-4"><a href="evolutionary-biology.html#cb163-4" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
 <span id="cb163-5"><a href="evolutionary-biology.html#cb163-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb163-6"><a href="evolutionary-biology.html#cb163-6" aria-hidden="true" tabindex="-1"></a>n10 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb163-7"><a href="evolutionary-biology.html#cb163-7" aria-hidden="true" tabindex="-1"></a>n10[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb163-6"><a href="evolutionary-biology.html#cb163-6" aria-hidden="true" tabindex="-1"></a>n1000 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb163-7"><a href="evolutionary-biology.html#cb163-7" aria-hidden="true" tabindex="-1"></a>n1000[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
 <span id="cb163-8"><a href="evolutionary-biology.html#cb163-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb163-9"><a href="evolutionary-biology.html#cb163-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb163-10"><a href="evolutionary-biology.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n10[i<span class="dv">-1</span>])</span>
-<span id="cb163-11"><a href="evolutionary-biology.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  n10[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb163-10"><a href="evolutionary-biology.html#cb163-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n1000[i<span class="dv">-1</span>])</span>
+<span id="cb163-11"><a href="evolutionary-biology.html#cb163-11" aria-hidden="true" tabindex="-1"></a>  n1000[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
 <span id="cb163-12"><a href="evolutionary-biology.html#cb163-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>Then we do the same for a population size of 100.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="evolutionary-biology.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 100</span></span>
-<span id="cb164-2"><a href="evolutionary-biology.html#cb164-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb164-3"><a href="evolutionary-biology.html#cb164-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb164-4"><a href="evolutionary-biology.html#cb164-4" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb164-5"><a href="evolutionary-biology.html#cb164-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-6"><a href="evolutionary-biology.html#cb164-6" aria-hidden="true" tabindex="-1"></a>n100 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb164-7"><a href="evolutionary-biology.html#cb164-7" aria-hidden="true" tabindex="-1"></a>n100[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb164-8"><a href="evolutionary-biology.html#cb164-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb164-9"><a href="evolutionary-biology.html#cb164-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb164-10"><a href="evolutionary-biology.html#cb164-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n100[i<span class="dv">-1</span>])</span>
-<span id="cb164-11"><a href="evolutionary-biology.html#cb164-11" aria-hidden="true" tabindex="-1"></a>  n100[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb164-12"><a href="evolutionary-biology.html#cb164-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>And finally for population size 1000.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="evolutionary-biology.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Population size 1000</span></span>
-<span id="cb165-2"><a href="evolutionary-biology.html#cb165-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb165-3"><a href="evolutionary-biology.html#cb165-3" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb165-4"><a href="evolutionary-biology.html#cb165-4" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb165-5"><a href="evolutionary-biology.html#cb165-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-6"><a href="evolutionary-biology.html#cb165-6" aria-hidden="true" tabindex="-1"></a>n1000 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb165-7"><a href="evolutionary-biology.html#cb165-7" aria-hidden="true" tabindex="-1"></a>n1000[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb165-8"><a href="evolutionary-biology.html#cb165-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb165-9"><a href="evolutionary-biology.html#cb165-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb165-10"><a href="evolutionary-biology.html#cb165-10" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n1000[i<span class="dv">-1</span>])</span>
-<span id="cb165-11"><a href="evolutionary-biology.html#cb165-11" aria-hidden="true" tabindex="-1"></a>  n1000[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb165-12"><a href="evolutionary-biology.html#cb165-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>As you may remember, we need to make it into a data frame in order to plot it with <code>ggplot2</code>. We also add a column called <code>g</code> that contains the number of generations.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="evolutionary-biology.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of generations</span></span>
-<span id="cb166-2"><a href="evolutionary-biology.html#cb166-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">1000</span>, <span class="dv">1</span>)</span>
-<span id="cb166-3"><a href="evolutionary-biology.html#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb166-4"><a href="evolutionary-biology.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into a data.frame</span></span>
-<span id="cb166-5"><a href="evolutionary-biology.html#cb166-5" aria-hidden="true" tabindex="-1"></a>mydrift <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(g, n10, n100, n1000)</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="evolutionary-biology.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get number of generations</span></span>
+<span id="cb164-2"><a href="evolutionary-biology.html#cb164-2" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">1000</span>, <span class="dv">1</span>)</span>
+<span id="cb164-3"><a href="evolutionary-biology.html#cb164-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb164-4"><a href="evolutionary-biology.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="co"># combine into a data.frame</span></span>
+<span id="cb164-5"><a href="evolutionary-biology.html#cb164-5" aria-hidden="true" tabindex="-1"></a>mydrift <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(g, n10, n100, n1000)</span></code></pre></div>
 <p>Anyway, what we ultimately want to do is <em>visualise</em> drift over time. So we need to get our data in a position to plot it using <code>ggplot2</code> - once again, we turn to <code>pivot_longer()</code>. <code>pivot_longer()</code> in this case takes all our simulations (which at the moment are in different columns) and combines them into a single column <code>p</code>. A new column <code>pop_size</code> is made which indicates the name of the column where the data came from.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="evolutionary-biology.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use pivot_longer to get data ready for plotting</span></span>
-<span id="cb167-2"><a href="evolutionary-biology.html#cb167-2" aria-hidden="true" tabindex="-1"></a>mydrift_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mydrift, <span class="sc">-</span>g, <span class="at">names_to =</span> <span class="st">&quot;pop_size&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="evolutionary-biology.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use pivot_longer to get data ready for plotting</span></span>
+<span id="cb165-2"><a href="evolutionary-biology.html#cb165-2" aria-hidden="true" tabindex="-1"></a>mydrift_long <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(mydrift, <span class="sc">-</span>g, <span class="at">names_to =</span> <span class="st">&quot;pop_size&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;p&quot;</span>)</span></code></pre></div>
 <p>Now we will plot our data using the following code:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="evolutionary-biology.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot data</span></span>
-<span id="cb168-2"><a href="evolutionary-biology.html#cb168-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydrift_long, <span class="fu">aes</span>(g, p, <span class="at">colour =</span> pop_size)) <span class="sc">+</span></span>
-<span id="cb168-3"><a href="evolutionary-biology.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb168-4"><a href="evolutionary-biology.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;No. generations&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Allele freq (p)&quot;</span>)</span>
-<span id="cb168-5"><a href="evolutionary-biology.html#cb168-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-6"><a href="evolutionary-biology.html#cb168-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print nicely with some theme options</span></span>
-<span id="cb168-7"><a href="evolutionary-biology.html#cb168-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="evolutionary-biology.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot data</span></span>
+<span id="cb166-2"><a href="evolutionary-biology.html#cb166-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mydrift_long, <span class="fu">aes</span>(g, p, <span class="at">colour =</span> pop_size)) <span class="sc">+</span></span>
+<span id="cb166-3"><a href="evolutionary-biology.html#cb166-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb166-4"><a href="evolutionary-biology.html#cb166-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;No. generations&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Allele freq (p)&quot;</span>)</span>
+<span id="cb166-5"><a href="evolutionary-biology.html#cb166-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-6"><a href="evolutionary-biology.html#cb166-6" aria-hidden="true" tabindex="-1"></a><span class="co"># print nicely with some theme options</span></span>
+<span id="cb166-7"><a href="evolutionary-biology.html#cb166-7" aria-hidden="true" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">theme_bw</span>() <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) </span></code></pre></div>
 <div class="figure"><span id="fig:unnamed-chunk-45"></span>
 <img src="Exercise3_files/figure-html/unnamed-chunk-45-1.png" alt="A simulation of genetic drift over 1000 generations with different population sizes." width="672" />
 <p class="caption">

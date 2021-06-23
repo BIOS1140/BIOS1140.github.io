@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10.4 Returning to writing your own functions | R tutorials in BIOS1140</title>
+  <title>10.4 Returning to writing your own functions | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10.4 Returning to writing your own functions | R tutorials in BIOS1140" />
+  <meta property="og:title" content="10.4 Returning to writing your own functions | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10.4 Returning to writing your own functions | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="10.4 Returning to writing your own functions | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="vectorisation-1.html"/>
 <link rel="next" href="concluding-remarks.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -427,57 +432,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="js/hideOutput.js"></script>
 <p>We already learned a little bit about writing custom functions back in <a href="https://evolutionarygenetics.github.io/Chapter3.html">Chapter 3</a>. We’ll spend a bit more time on the topic here to demonstrate again how we can do this simply.</p>
 <p>We are going to start with a very easy and simple function which we will call <code>greeting</code> that will take the name of a person and then say hello to them. Let’s write the function below:</p>
-<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="returning-to-writing-your-own-functions.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing a simple function</span></span>
-<span id="cb427-2"><a href="returning-to-writing-your-own-functions.html#cb427-2" aria-hidden="true" tabindex="-1"></a>greeting <span class="ot">&lt;-</span> <span class="cf">function</span>(name){</span>
-<span id="cb427-3"><a href="returning-to-writing-your-own-functions.html#cb427-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you today?&quot;</span>)</span>
-<span id="cb427-4"><a href="returning-to-writing-your-own-functions.html#cb427-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
-<span id="cb427-5"><a href="returning-to-writing-your-own-functions.html#cb427-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb427-6"><a href="returning-to-writing-your-own-functions.html#cb427-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now test the function</span></span>
-<span id="cb427-7"><a href="returning-to-writing-your-own-functions.html#cb427-7" aria-hidden="true" tabindex="-1"></a><span class="fu">greeting</span>(<span class="st">&quot;Arthur&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="returning-to-writing-your-own-functions.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># writing a simple function</span></span>
+<span id="cb421-2"><a href="returning-to-writing-your-own-functions.html#cb421-2" aria-hidden="true" tabindex="-1"></a>greeting <span class="ot">&lt;-</span> <span class="cf">function</span>(name){</span>
+<span id="cb421-3"><a href="returning-to-writing-your-own-functions.html#cb421-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">&quot;Hello &quot;</span>, name, <span class="st">&quot;, how are you today?&quot;</span>)</span>
+<span id="cb421-4"><a href="returning-to-writing-your-own-functions.html#cb421-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x)</span>
+<span id="cb421-5"><a href="returning-to-writing-your-own-functions.html#cb421-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb421-6"><a href="returning-to-writing-your-own-functions.html#cb421-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Now test the function</span></span>
+<span id="cb421-7"><a href="returning-to-writing-your-own-functions.html#cb421-7" aria-hidden="true" tabindex="-1"></a><span class="fu">greeting</span>(<span class="st">&quot;Arthur&quot;</span>)</span></code></pre></div>
 <p>Try it with any name you wish,. This simple example demonstrates how functions work in R. First we use <code>function()</code> to actually define the function itself. <code>greeting &lt;- function(name)</code> simply means we are creating a function called <code>greeting</code> and that it takes a single argument, <code>name</code>.</p>
 <p>The real work of the function goes on inside the curly brackets. We use <code>paste0</code> to join the character variables together, forming a full sentence which we call <code>x</code>. We then use the <code>return</code> function to actually return the value of <code>x</code> from the function itself.</p>
 <p>The curly brackets define the scope of the <code>name</code> argument all arguments within the function itself. So for example, if you run <code>greeting</code>, the value of x in the main R environment will not change.</p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="returning-to-writing-your-own-functions.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up x</span></span>
-<span id="cb428-2"><a href="returning-to-writing-your-own-functions.html#cb428-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;I am not a greeting&quot;</span></span>
-<span id="cb428-3"><a href="returning-to-writing-your-own-functions.html#cb428-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use the greeting function</span></span>
-<span id="cb428-4"><a href="returning-to-writing-your-own-functions.html#cb428-4" aria-hidden="true" tabindex="-1"></a><span class="fu">greeting</span>(<span class="st">&quot;Sandra&quot;</span>)</span>
-<span id="cb428-5"><a href="returning-to-writing-your-own-functions.html#cb428-5" aria-hidden="true" tabindex="-1"></a><span class="co"># x has not changed</span></span>
-<span id="cb428-6"><a href="returning-to-writing-your-own-functions.html#cb428-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="returning-to-writing-your-own-functions.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up x</span></span>
+<span id="cb422-2"><a href="returning-to-writing-your-own-functions.html#cb422-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;I am not a greeting&quot;</span></span>
+<span id="cb422-3"><a href="returning-to-writing-your-own-functions.html#cb422-3" aria-hidden="true" tabindex="-1"></a><span class="co"># use the greeting function</span></span>
+<span id="cb422-4"><a href="returning-to-writing-your-own-functions.html#cb422-4" aria-hidden="true" tabindex="-1"></a><span class="fu">greeting</span>(<span class="st">&quot;Sandra&quot;</span>)</span>
+<span id="cb422-5"><a href="returning-to-writing-your-own-functions.html#cb422-5" aria-hidden="true" tabindex="-1"></a><span class="co"># x has not changed</span></span>
+<span id="cb422-6"><a href="returning-to-writing-your-own-functions.html#cb422-6" aria-hidden="true" tabindex="-1"></a>x</span></code></pre></div>
 <p>You really can do whatever you want with your own functions. Let’s move on to a more serious example here. Perhaps we want to a function that will take the <a href="https://en.wikipedia.org/wiki/Reciprocal">reciprocal</a> of each number we give it. There is no R function to do this, so we should write our own.</p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="returning-to-writing-your-own-functions.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple reciprocal example</span></span>
-<span id="cb429-2"><a href="returning-to-writing-your-own-functions.html#cb429-2" aria-hidden="true" tabindex="-1"></a>reciprocal <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb429-3"><a href="returning-to-writing-your-own-functions.html#cb429-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the reciprocal</span></span>
-<span id="cb429-4"><a href="returning-to-writing-your-own-functions.html#cb429-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>x</span>
-<span id="cb429-5"><a href="returning-to-writing-your-own-functions.html#cb429-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb429-6"><a href="returning-to-writing-your-own-functions.html#cb429-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="returning-to-writing-your-own-functions.html#cb423-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple reciprocal example</span></span>
+<span id="cb423-2"><a href="returning-to-writing-your-own-functions.html#cb423-2" aria-hidden="true" tabindex="-1"></a>reciprocal <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb423-3"><a href="returning-to-writing-your-own-functions.html#cb423-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the reciprocal</span></span>
+<span id="cb423-4"><a href="returning-to-writing-your-own-functions.html#cb423-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span>x</span>
+<span id="cb423-5"><a href="returning-to-writing-your-own-functions.html#cb423-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb423-6"><a href="returning-to-writing-your-own-functions.html#cb423-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now we have this custom function defined in our R environment. We can test it on various numeric values. For example:</p>
-<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="returning-to-writing-your-own-functions.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our function</span></span>
-<span id="cb430-2"><a href="returning-to-writing-your-own-functions.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">8</span>)</span>
-<span id="cb430-3"><a href="returning-to-writing-your-own-functions.html#cb430-3" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="returning-to-writing-your-own-functions.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our function</span></span>
+<span id="cb424-2"><a href="returning-to-writing-your-own-functions.html#cb424-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">8</span>)</span>
+<span id="cb424-3"><a href="returning-to-writing-your-own-functions.html#cb424-3" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">10</span>)</span></code></pre></div>
 <p>We can also use it on vectors by default, so no need for <code>sapply</code>:</p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="returning-to-writing-your-own-functions.html#cb431-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our function on a vector</span></span>
-<span id="cb431-2"><a href="returning-to-writing-your-own-functions.html#cb431-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="returning-to-writing-your-own-functions.html#cb425-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our function on a vector</span></span>
+<span id="cb425-2"><a href="returning-to-writing-your-own-functions.html#cb425-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code></pre></div>
 <p>Perhaps though we could use something like <code>apply</code> to find the reciprocal of each of the values in the rows of the <code>cars</code> data.frame? We could do this without a function like so:</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="returning-to-writing-your-own-functions.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to find the reciprocal of rows</span></span>
-<span id="cb432-2"><a href="returning-to-writing-your-own-functions.html#cb432-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="dv">1</span><span class="sc">/</span>x)</span></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="returning-to-writing-your-own-functions.html#cb426-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to find the reciprocal of rows</span></span>
+<span id="cb426-2"><a href="returning-to-writing-your-own-functions.html#cb426-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, <span class="cf">function</span>(x) <span class="dv">1</span><span class="sc">/</span>x)</span></code></pre></div>
 <p>This actually produces a matrix that gives us the reciprocal of each value in each row. Of course, we can make the code even neater by substituting in the custom function we wrote previously.</p>
-<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="returning-to-writing-your-own-functions.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to apply our reciprocal function</span></span>
-<span id="cb433-2"><a href="returning-to-writing-your-own-functions.html#cb433-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, reciprocal)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="returning-to-writing-your-own-functions.html#cb427-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to apply our reciprocal function</span></span>
+<span id="cb427-2"><a href="returning-to-writing-your-own-functions.html#cb427-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, reciprocal)</span></code></pre></div>
 <p>This gives the same result. This code is neater, but it also has the advantage that if we want to troubleshoot any issues or change the code, we only need to alter the function itself, not the <code>apply</code> argument. Let’s alter our reciprocal function so that it first sums all the values you give it. We’ll call it <code>reciprocal_sum</code> to distinguish it.</p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="returning-to-writing-your-own-functions.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple reciprocal example</span></span>
-<span id="cb434-2"><a href="returning-to-writing-your-own-functions.html#cb434-2" aria-hidden="true" tabindex="-1"></a>reciprocal_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
-<span id="cb434-3"><a href="returning-to-writing-your-own-functions.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the reciprocal</span></span>
-<span id="cb434-4"><a href="returning-to-writing-your-own-functions.html#cb434-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sum</span>(x)</span>
-<span id="cb434-5"><a href="returning-to-writing-your-own-functions.html#cb434-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
-<span id="cb434-6"><a href="returning-to-writing-your-own-functions.html#cb434-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="returning-to-writing-your-own-functions.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple reciprocal example</span></span>
+<span id="cb428-2"><a href="returning-to-writing-your-own-functions.html#cb428-2" aria-hidden="true" tabindex="-1"></a>reciprocal_sum <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb428-3"><a href="returning-to-writing-your-own-functions.html#cb428-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the reciprocal</span></span>
+<span id="cb428-4"><a href="returning-to-writing-your-own-functions.html#cb428-4" aria-hidden="true" tabindex="-1"></a>  y <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="fu">sum</span>(x)</span>
+<span id="cb428-5"><a href="returning-to-writing-your-own-functions.html#cb428-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y)</span>
+<span id="cb428-6"><a href="returning-to-writing-your-own-functions.html#cb428-6" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>With single values it makes no difference, but with vectors it takes the reciprocal of their sum. For example:</p>
-<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="returning-to-writing-your-own-functions.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our altered function</span></span>
-<span id="cb435-2"><a href="returning-to-writing-your-own-functions.html#cb435-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">8</span>)</span>
-<span id="cb435-3"><a href="returning-to-writing-your-own-functions.html#cb435-3" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">10</span>)</span>
-<span id="cb435-4"><a href="returning-to-writing-your-own-functions.html#cb435-4" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="returning-to-writing-your-own-functions.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># testing our altered function</span></span>
+<span id="cb429-2"><a href="returning-to-writing-your-own-functions.html#cb429-2" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">8</span>)</span>
+<span id="cb429-3"><a href="returning-to-writing-your-own-functions.html#cb429-3" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">10</span>)</span>
+<span id="cb429-4"><a href="returning-to-writing-your-own-functions.html#cb429-4" aria-hidden="true" tabindex="-1"></a><span class="fu">reciprocal_sum</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50</span>)</span></code></pre></div>
 <p>So now, if we want to take the reciprocal of the sum of each row using apply, we can do it like this:</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="returning-to-writing-your-own-functions.html#cb436-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to apply our reciprocal function</span></span>
-<span id="cb436-2"><a href="returning-to-writing-your-own-functions.html#cb436-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, reciprocal_sum)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="returning-to-writing-your-own-functions.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># using apply to apply our reciprocal function</span></span>
+<span id="cb430-2"><a href="returning-to-writing-your-own-functions.html#cb430-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, reciprocal_sum)</span></code></pre></div>
 <p>Where all we did is alter the original function (and tweaked our apply command to make sure it ran the right one). This shows you that can easily build on the complexity of a function and also combine it with other functions such as <code>apply</code> to do quite a lot with your data.</p>
 </div>
             </section>

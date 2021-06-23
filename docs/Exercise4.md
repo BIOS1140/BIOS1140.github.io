@@ -15,7 +15,7 @@ In this section we will:
 -   Learn about creating your own functions in R
 -   recreate fitness functions in R to develop our understanding of natural selection
 -   use the one-locus viability model of selection to simulate evolution
--   model directional selection, overdominance and underdominance
+-   model overdominance and underdominance
 -   continue to practice your R skills
 
 ### Getting started {.unnumbered}
@@ -772,60 +772,6 @@ In this case, `w_bar` (the resident fitness) is higher than when the $A_1$ allel
 
 In order for the equilibrium to be stable with heterozygote advantage, the marginal fitness of the two alleles should equal one another. We will return to this in a short while.
 
-### Directional selection
-
-Earlier, we simulated selection in order to understand our model. This was an example of **directional selection**. Now we are going to explore that in more detail - in particular, we want to see how genotypic fitness can alter the outcome of selection. We can visualise this using an **adaptive landscape**. Here we will use a simplified, 2D landscape - i.e. a plot of mean population fitness $\overline{w}$ against the allele frequency $p$.
-
-To simplify our analyses, we will use three different scenarios. In each of them, we will start with a $p$ of 0.01, and we will simulate 50 generations. In all cases $A_1A_1$ will have the highest relative fitness of 1 and $A_2A_2$ the lowest of 0.2. The only thing we will vary is the relative fitness of the heterozygote $A_1A_2$. Therefore we are simulating three types of genotypic fitness:
-
--   dominance ($w_{12} = w_{11}$)
--   additive inheritance ($w_{12} = \displaystyle \frac{w_{11} + w_{22}}{2}$)
--   recessive ($w_{12} = w_{22}$)
-
-
-```r
-# set generations
-n_gen <- 50
-# run simulations
-dom <- selection_sim(p = 0.01, rel_fit = c(1, 1, 0.2), n_gen)
-add <- selection_sim(p = 0.01, rel_fit = c(1, 0.6, 0.2), n_gen)
-rec <- selection_sim(p = 0.01, rel_fit = c(1, 0.2, 0.2), n_gen)
-```
-
-We'll take a brief break from the tidyverse approach now and plot this in base R. This is just because we want you to focus on what we are modelling, rather than reshaping the data too much. Don't worry too much about how this plot is created, the important thing is analysing the result!
-
-
-```r
-# intialise plot
-plot(NULL, xlim = c(0, 1), ylim = c(0, 1), 
-     xlab = "Frequency - p", ylab = "Mean pop fitness", las = 1)
-# add curves for each case
-lines(dom$p, dom$w_bar, lwd = 2, col = "blue")
-lines(add$p, add$w_bar, lwd = 2, col = "red")
-lines(rec$p, rec$w_bar, lwd = 2, col = "green")
-```
-
-<img src="Exercise4_files/figure-html/unnamed-chunk-40-1.png" width="672" />
-
-What does this show us? Well firstly, you might remember that this figure is more or less identical to **Figure 4.2** in the main textbook. The **blue line** is our case of dominance - i.e. both $A_1A_1$ and $A_1A_2$ identical, higher relative fitness compared to $A_2A_2$. In this case, the frequency of the $A_1$ allele quickly increases but slows down as the allele reaches fixation - hence the plateau at higher values of $p$. The **green** curve shows the recessive case. The increase in $A_1$ is lower when $p$ is low because then the new mutant genotype is more likely to occur in heterozygotes. However as the frequency increases (i.e. $p$ goes up), the mean population fitness increases rapidly two. In contrast, the additive case - in **red** - is just a linear increase with frequency.
-
-We can try looking at the results of these simulations in a slgithly different way - to see how the frequency of $A_1$ alters over the 50 generations we simulated it for. Again we will use base R code to achieve this.
-
-
-```r
-# intialise plot
-plot(NULL, xlim = c(0, n_gen), ylim = c(0, 1), 
-     xlab = "Time (generations)", ylab = "Frequency - p", las = 1)
-# add curves for each case
-lines(dom$g, dom$p, lwd = 2, col = "blue")
-lines(dom$g, add$p, lwd = 2, col = "red")
-lines(dom$g, rec$p, lwd = 2, col = "green")
-```
-
-<img src="Exercise4_files/figure-html/unnamed-chunk-41-1.png" width="672" />
-
-All of these curves are S-shaped to some extent - so the transition from high to low frequency is rapit but the approach to fixation is much slower. The most marked difference is in the **green** line - the recessive case. Here, it takes time for $A_1$ alleles to occur in $A_1A_1$ homozygotes, so the new mutation remains at low frequency for quite a number of generations.
-
 ### Over and underdominance
 
 Earlier on, we learned a bit about heterozygote advantage. This also referred to as **overdominance** - i.e. when the fitness of the heterozygote is higher than either homozygyote. However, we also touched upon the fact that this can only be stable in under certain conditions - i.e. $w{_1}^* = w{_2}^*$. We also learned that when $p$ or $q$ were 0 (i.e. the population is fixed for either allele), these equilibria are unstable. So at what allele frequency is the population in a stable equilibria?
@@ -855,7 +801,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-<img src="Exercise4_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="Exercise4_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 We can see mean population fitness is maximised at around 0.4. This is the stable point on our 2D adaptive landscape.
 
@@ -886,7 +832,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-<img src="Exercise4_files/figure-html/unnamed-chunk-45-1.png" width="672" />
+<img src="Exercise4_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 
 Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5.
 

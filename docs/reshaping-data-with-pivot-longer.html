@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.4 Reshaping data with pivot_longer() | R tutorials in BIOS1140</title>
+  <title>2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.4 Reshaping data with pivot_longer() | R tutorials in BIOS1140" />
+  <meta property="og:title" content="2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.4 Reshaping data with pivot_longer() | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="plotting-your-data-with-ggplot2.html"/>
 <link rel="next" href="study-questions.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -428,7 +433,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wide-and-long-format" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Wide and long format</h3>
 <p>Let’s say you have some biological data (finally, wohoo!), and want to plot it using <code>ggplot2</code>. There are (at least) two ways your data can be formatted:</p>
-<div class="figure"><span id="fig:unnamed-chunk-46"></span>
+<div class="figure"><span id="fig:unnamed-chunk-44"></span>
 <img src="figs/long_wide.PNG" alt="Data in &quot;wide format&quot; (left) and &quot;long format&quot; (right)" width="843" />
 <p class="caption">
 Figure 2.1: Data in “wide format” (left) and “long format” (right)
@@ -447,46 +452,46 @@ Figure 2.1: Data in “wide format” (left) and “long format” (right)
 <p>Use the <code>read.table()</code> function. The data is tabulator separated with a header. Remember to work in the correct working directory!</p>
 </details>
 <div class="fold s">
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="reshaping-data-with-pivot-longer.html#cb109-1" aria-hidden="true" tabindex="-1"></a>copepods <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;copepods.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="reshaping-data-with-pivot-longer.html#cb107-1" aria-hidden="true" tabindex="-1"></a>copepods <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;copepods.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 </div>
 <p>Take a look at the data and how it’s structured:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="reshaping-data-with-pivot-longer.html#cb110-1" aria-hidden="true" tabindex="-1"></a>copepods</span>
-<span id="cb110-2"><a href="reshaping-data-with-pivot-longer.html#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   depth acartia calanus harpacticoida oithona oncaea temora</span></span>
-<span id="cb110-3"><a href="reshaping-data-with-pivot-longer.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0       0       3             0       2      0      0</span></span>
-<span id="cb110-4"><a href="reshaping-data-with-pivot-longer.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2       1       0             0       6      1      0</span></span>
-<span id="cb110-5"><a href="reshaping-data-with-pivot-longer.html#cb110-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     4       1       0             0       7      0      1</span></span>
-<span id="cb110-6"><a href="reshaping-data-with-pivot-longer.html#cb110-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     6      27       0             1       0      0      2</span></span>
-<span id="cb110-7"><a href="reshaping-data-with-pivot-longer.html#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     8      11       0             2       6      0      3</span></span>
-<span id="cb110-8"><a href="reshaping-data-with-pivot-longer.html#cb110-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    10      17       0             3       0      0      2</span></span>
-<span id="cb110-9"><a href="reshaping-data-with-pivot-longer.html#cb110-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    12      13       0             1       0      0      1</span></span>
-<span id="cb110-10"><a href="reshaping-data-with-pivot-longer.html#cb110-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    14       7       0            13       0      0      0</span></span>
-<span id="cb110-11"><a href="reshaping-data-with-pivot-longer.html#cb110-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    16       6       0             6       0      0      1</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="reshaping-data-with-pivot-longer.html#cb108-1" aria-hidden="true" tabindex="-1"></a>copepods</span>
+<span id="cb108-2"><a href="reshaping-data-with-pivot-longer.html#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   depth acartia calanus harpacticoida oithona oncaea temora</span></span>
+<span id="cb108-3"><a href="reshaping-data-with-pivot-longer.html#cb108-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0       0       3             0       2      0      0</span></span>
+<span id="cb108-4"><a href="reshaping-data-with-pivot-longer.html#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2       1       0             0       6      1      0</span></span>
+<span id="cb108-5"><a href="reshaping-data-with-pivot-longer.html#cb108-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     4       1       0             0       7      0      1</span></span>
+<span id="cb108-6"><a href="reshaping-data-with-pivot-longer.html#cb108-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     6      27       0             1       0      0      2</span></span>
+<span id="cb108-7"><a href="reshaping-data-with-pivot-longer.html#cb108-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     8      11       0             2       6      0      3</span></span>
+<span id="cb108-8"><a href="reshaping-data-with-pivot-longer.html#cb108-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    10      17       0             3       0      0      2</span></span>
+<span id="cb108-9"><a href="reshaping-data-with-pivot-longer.html#cb108-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    12      13       0             1       0      0      1</span></span>
+<span id="cb108-10"><a href="reshaping-data-with-pivot-longer.html#cb108-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    14       7       0            13       0      0      0</span></span>
+<span id="cb108-11"><a href="reshaping-data-with-pivot-longer.html#cb108-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    16       6       0             6       0      0      1</span></span></code></pre></div>
 </div>
 <div id="reshape-the-data" class="section level3" number="2.4.3">
 <h3><span class="header-section-number">2.4.3</span> Reshape the data</h3>
 <p>As you hopefully figured out, this data is in so-called wide format, and we need to make it long with <code>pivot_longer()</code>. <code>pivot_longer()</code> has two important arguments called <code>names_to</code> and <code>values_to</code>. In our case <code>names_to</code> is the name of the new column of species, and <code>values_to</code> is the name of the new column where our values go. In addition, you need to provide the columns that you want to reshape. We can reshape this data like this:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="reshaping-data-with-pivot-longer.html#cb111-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
-<span id="cb111-2"><a href="reshaping-data-with-pivot-longer.html#cb111-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(acartia, calanus, harpacticoida, oithona, oncaea, temora),</span>
-<span id="cb111-3"><a href="reshaping-data-with-pivot-longer.html#cb111-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span>
-<span id="cb111-4"><a href="reshaping-data-with-pivot-longer.html#cb111-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb111-5"><a href="reshaping-data-with-pivot-longer.html#cb111-5" aria-hidden="true" tabindex="-1"></a>copepods_long</span>
-<span id="cb111-6"><a href="reshaping-data-with-pivot-longer.html#cb111-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 54 x 3</span></span>
-<span id="cb111-7"><a href="reshaping-data-with-pivot-longer.html#cb111-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    depth species       count</span></span>
-<span id="cb111-8"><a href="reshaping-data-with-pivot-longer.html#cb111-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;         &lt;int&gt;</span></span>
-<span id="cb111-9"><a href="reshaping-data-with-pivot-longer.html#cb111-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     0 acartia           0</span></span>
-<span id="cb111-10"><a href="reshaping-data-with-pivot-longer.html#cb111-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2     0 calanus           3</span></span>
-<span id="cb111-11"><a href="reshaping-data-with-pivot-longer.html#cb111-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3     0 harpacticoida     0</span></span>
-<span id="cb111-12"><a href="reshaping-data-with-pivot-longer.html#cb111-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     0 oithona           2</span></span>
-<span id="cb111-13"><a href="reshaping-data-with-pivot-longer.html#cb111-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5     0 oncaea            0</span></span>
-<span id="cb111-14"><a href="reshaping-data-with-pivot-longer.html#cb111-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6     0 temora            0</span></span>
-<span id="cb111-15"><a href="reshaping-data-with-pivot-longer.html#cb111-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7     2 acartia           1</span></span>
-<span id="cb111-16"><a href="reshaping-data-with-pivot-longer.html#cb111-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8     2 calanus           0</span></span>
-<span id="cb111-17"><a href="reshaping-data-with-pivot-longer.html#cb111-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     2 harpacticoida     0</span></span>
-<span id="cb111-18"><a href="reshaping-data-with-pivot-longer.html#cb111-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     2 oithona           6</span></span>
-<span id="cb111-19"><a href="reshaping-data-with-pivot-longer.html#cb111-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 44 more rows</span></span></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="reshaping-data-with-pivot-longer.html#cb109-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
+<span id="cb109-2"><a href="reshaping-data-with-pivot-longer.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(acartia, calanus, harpacticoida, oithona, oncaea, temora),</span>
+<span id="cb109-3"><a href="reshaping-data-with-pivot-longer.html#cb109-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span>
+<span id="cb109-4"><a href="reshaping-data-with-pivot-longer.html#cb109-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb109-5"><a href="reshaping-data-with-pivot-longer.html#cb109-5" aria-hidden="true" tabindex="-1"></a>copepods_long</span>
+<span id="cb109-6"><a href="reshaping-data-with-pivot-longer.html#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 54 x 3</span></span>
+<span id="cb109-7"><a href="reshaping-data-with-pivot-longer.html#cb109-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    depth species       count</span></span>
+<span id="cb109-8"><a href="reshaping-data-with-pivot-longer.html#cb109-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;         &lt;int&gt;</span></span>
+<span id="cb109-9"><a href="reshaping-data-with-pivot-longer.html#cb109-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     0 acartia           0</span></span>
+<span id="cb109-10"><a href="reshaping-data-with-pivot-longer.html#cb109-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2     0 calanus           3</span></span>
+<span id="cb109-11"><a href="reshaping-data-with-pivot-longer.html#cb109-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3     0 harpacticoida     0</span></span>
+<span id="cb109-12"><a href="reshaping-data-with-pivot-longer.html#cb109-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     0 oithona           2</span></span>
+<span id="cb109-13"><a href="reshaping-data-with-pivot-longer.html#cb109-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5     0 oncaea            0</span></span>
+<span id="cb109-14"><a href="reshaping-data-with-pivot-longer.html#cb109-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6     0 temora            0</span></span>
+<span id="cb109-15"><a href="reshaping-data-with-pivot-longer.html#cb109-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7     2 acartia           1</span></span>
+<span id="cb109-16"><a href="reshaping-data-with-pivot-longer.html#cb109-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8     2 calanus           0</span></span>
+<span id="cb109-17"><a href="reshaping-data-with-pivot-longer.html#cb109-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     2 harpacticoida     0</span></span>
+<span id="cb109-18"><a href="reshaping-data-with-pivot-longer.html#cb109-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     2 oithona           6</span></span>
+<span id="cb109-19"><a href="reshaping-data-with-pivot-longer.html#cb109-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 44 more rows</span></span></code></pre></div>
 <p>Note that <code>pivot_longer()</code> has the same way of selecting columns as <code>select()</code>, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="reshaping-data-with-pivot-longer.html#cb112-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
-<span id="cb112-2"><a href="reshaping-data-with-pivot-longer.html#cb112-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>depth, <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="reshaping-data-with-pivot-longer.html#cb110-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
+<span id="cb110-2"><a href="reshaping-data-with-pivot-longer.html#cb110-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>depth, <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
 <p>That sure is more convenient than explicitly selecting all the columns we want (in our case, anyway)!</p>
 </div>
 <div id="plot-the-data" class="section level3" number="2.4.4">
@@ -511,31 +516,31 @@ Figure 2.1: Data in “wide format” (left) and “long format” (right)
 <summary>
 <p>Show code and plots</p>
 </summary>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="reshaping-data-with-pivot-longer.html#cb113-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(depth, count, <span class="at">col =</span> species))</span>
-<span id="cb113-2"><a href="reshaping-data-with-pivot-longer.html#cb113-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb113-3"><a href="reshaping-data-with-pivot-longer.html#cb113-3" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="reshaping-data-with-pivot-longer.html#cb114-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-2.png" width="672" /></p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="reshaping-data-with-pivot-longer.html#cb115-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-3.png" width="672" /></p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="reshaping-data-with-pivot-longer.html#cb116-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-4.png" width="672" /></p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="reshaping-data-with-pivot-longer.html#cb117-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-5.png" width="672" /></p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="reshaping-data-with-pivot-longer.html#cb118-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-52-6.png" width="672" /></p>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="reshaping-data-with-pivot-longer.html#cb111-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(depth, count, <span class="at">col =</span> species))</span>
+<span id="cb111-2"><a href="reshaping-data-with-pivot-longer.html#cb111-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb111-3"><a href="reshaping-data-with-pivot-longer.html#cb111-3" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="reshaping-data-with-pivot-longer.html#cb112-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-2.png" width="672" /></p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="reshaping-data-with-pivot-longer.html#cb113-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-3.png" width="672" /></p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="reshaping-data-with-pivot-longer.html#cb114-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-4.png" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="reshaping-data-with-pivot-longer.html#cb115-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-5.png" width="672" /></p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="reshaping-data-with-pivot-longer.html#cb116-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-6.png" width="672" /></p>
 <p>I’m settling on <code>geom_area()</code> since it nicely shows both total abundance and the relationship between the taxa (plus, it looks cool). Some additional tricks I do: flip the coordinates with <code>coord_flip()</code> to get depth on the y-axis, and plotting <code>-depth</code> instead of <code>depth</code> to plot depth downwards. I do this because it is how depth data is usually shown in marine biology, and because I wanted to show you that there are lots of options on customising plots that you will encounter as you learn more about ggplot.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="reshaping-data-with-pivot-longer.html#cb119-1" aria-hidden="true" tabindex="-1"></a>copeplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(<span class="sc">-</span>depth, count)) <span class="sc">+</span> </span>
-<span id="cb119-2"><a href="reshaping-data-with-pivot-longer.html#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species)) <span class="sc">+</span></span>
-<span id="cb119-3"><a href="reshaping-data-with-pivot-longer.html#cb119-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of individuals by depth&quot;</span>,</span>
-<span id="cb119-4"><a href="reshaping-data-with-pivot-longer.html#cb119-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Data from Drøbak&quot;</span>,</span>
-<span id="cb119-5"><a href="reshaping-data-with-pivot-longer.html#cb119-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Depth (m)&quot;</span>,</span>
-<span id="cb119-6"><a href="reshaping-data-with-pivot-longer.html#cb119-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
-<span id="cb119-7"><a href="reshaping-data-with-pivot-longer.html#cb119-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
-<span id="cb119-8"><a href="reshaping-data-with-pivot-longer.html#cb119-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-9"><a href="reshaping-data-with-pivot-longer.html#cb119-9" aria-hidden="true" tabindex="-1"></a>copeplot</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="reshaping-data-with-pivot-longer.html#cb117-1" aria-hidden="true" tabindex="-1"></a>copeplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(<span class="sc">-</span>depth, count)) <span class="sc">+</span> </span>
+<span id="cb117-2"><a href="reshaping-data-with-pivot-longer.html#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb117-3"><a href="reshaping-data-with-pivot-longer.html#cb117-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of individuals by depth&quot;</span>,</span>
+<span id="cb117-4"><a href="reshaping-data-with-pivot-longer.html#cb117-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Data from Drøbak&quot;</span>,</span>
+<span id="cb117-5"><a href="reshaping-data-with-pivot-longer.html#cb117-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Depth (m)&quot;</span>,</span>
+<span id="cb117-6"><a href="reshaping-data-with-pivot-longer.html#cb117-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb117-7"><a href="reshaping-data-with-pivot-longer.html#cb117-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb117-8"><a href="reshaping-data-with-pivot-longer.html#cb117-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-9"><a href="reshaping-data-with-pivot-longer.html#cb117-9" aria-hidden="true" tabindex="-1"></a>copeplot</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
 </details>
 </div>
 </div>

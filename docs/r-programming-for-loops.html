@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.1 R programming: for-loops | R tutorials in BIOS1140</title>
+  <title>3.1 R programming: for-loops | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.1 R programming: for-loops | R tutorials in BIOS1140" />
+  <meta property="og:title" content="3.1 R programming: for-loops | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.1 R programming: for-loops | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="3.1 R programming: for-loops | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="ch03.html"/>
 <link rel="next" href="evolutionary-biology.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -429,179 +434,181 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="motivation-why-loop" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Motivation: why loop?</h3>
 <p>Let’s start by making a numeric vector that we want do do some operations on.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-programming-for-loops.html#cb120-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span>
-<span id="cb120-2"><a href="r-programming-for-loops.html#cb120-2" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb120-3"><a href="r-programming-for-loops.html#cb120-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  2  4  6  8 10 12 14 16 18 20</span></span></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="r-programming-for-loops.html#cb118-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span>
+<span id="cb118-2"><a href="r-programming-for-loops.html#cb118-2" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb118-3"><a href="r-programming-for-loops.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  2  4  6  8 10 12 14 16 18 20</span></span></code></pre></div>
 <p>Say you want to multiply every element by 5. You’ve already learned to do that in R:</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="r-programming-for-loops.html#cb121-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
-<span id="cb121-2"><a href="r-programming-for-loops.html#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  10  20  30  40  50  60  70  80  90 100</span></span></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="r-programming-for-loops.html#cb119-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb119-2"><a href="r-programming-for-loops.html#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  10  20  30  40  50  60  70  80  90 100</span></span></code></pre></div>
 <p>However, what if we want to add two and two elements of the vector together? With our vector <code>x</code>, this would be <code>2+4</code>, <code>4+6</code>, <code>6+8</code> and so on. There is no simple way to do this that you’ve learned yet. We could use the square brackets to extract individual elements and do 9 calculations like this:</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="r-programming-for-loops.html#cb122-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="sc">+</span> x[<span class="dv">2</span>]</span>
-<span id="cb122-2"><a href="r-programming-for-loops.html#cb122-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="sc">+</span> x[<span class="dv">3</span>]</span>
-<span id="cb122-3"><a href="r-programming-for-loops.html#cb122-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>] <span class="sc">+</span> x[<span class="dv">4</span>]</span>
-<span id="cb122-4"><a href="r-programming-for-loops.html#cb122-4" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">4</span>] <span class="sc">+</span> x[<span class="dv">5</span>]</span>
-<span id="cb122-5"><a href="r-programming-for-loops.html#cb122-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>] <span class="sc">+</span> x[<span class="dv">6</span>]</span>
-<span id="cb122-6"><a href="r-programming-for-loops.html#cb122-6" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">6</span>] <span class="sc">+</span> x[<span class="dv">7</span>]</span>
-<span id="cb122-7"><a href="r-programming-for-loops.html#cb122-7" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">7</span>] <span class="sc">+</span> x[<span class="dv">8</span>]</span>
-<span id="cb122-8"><a href="r-programming-for-loops.html#cb122-8" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">8</span>] <span class="sc">+</span> x[<span class="dv">9</span>]</span>
-<span id="cb122-9"><a href="r-programming-for-loops.html#cb122-9" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">9</span>] <span class="sc">+</span> x[<span class="dv">10</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="r-programming-for-loops.html#cb120-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="sc">+</span> x[<span class="dv">2</span>]</span>
+<span id="cb120-2"><a href="r-programming-for-loops.html#cb120-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>] <span class="sc">+</span> x[<span class="dv">3</span>]</span>
+<span id="cb120-3"><a href="r-programming-for-loops.html#cb120-3" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">3</span>] <span class="sc">+</span> x[<span class="dv">4</span>]</span>
+<span id="cb120-4"><a href="r-programming-for-loops.html#cb120-4" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">4</span>] <span class="sc">+</span> x[<span class="dv">5</span>]</span>
+<span id="cb120-5"><a href="r-programming-for-loops.html#cb120-5" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">5</span>] <span class="sc">+</span> x[<span class="dv">6</span>]</span>
+<span id="cb120-6"><a href="r-programming-for-loops.html#cb120-6" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">6</span>] <span class="sc">+</span> x[<span class="dv">7</span>]</span>
+<span id="cb120-7"><a href="r-programming-for-loops.html#cb120-7" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">7</span>] <span class="sc">+</span> x[<span class="dv">8</span>]</span>
+<span id="cb120-8"><a href="r-programming-for-loops.html#cb120-8" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">8</span>] <span class="sc">+</span> x[<span class="dv">9</span>]</span>
+<span id="cb120-9"><a href="r-programming-for-loops.html#cb120-9" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">9</span>] <span class="sc">+</span> x[<span class="dv">10</span>]</span></code></pre></div>
 <p>But this is a lot of typing for doing a repetitive task, which we want to avoid<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>. What if we could generalize this, so the computer does the repeated operations for us instead? That’s where for-loops come in.</p>
 </div>
 <div id="how-a-for-loop-works" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> How a for-loop works</h3>
 <p>Before we go into solving our example, we have to learn a bit about for-loops. A for-loop in R conceptually looks like this:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="r-programming-for-loops.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variable <span class="cf">in</span> vector){ <span class="co"># variable starts as the first element of vector</span></span>
-<span id="cb123-2"><a href="r-programming-for-loops.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb123-3"><a href="r-programming-for-loops.html#cb123-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do something involving variable</span></span>
-<span id="cb123-4"><a href="r-programming-for-loops.html#cb123-4" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb123-5"><a href="r-programming-for-loops.html#cb123-5" aria-hidden="true" tabindex="-1"></a>} <span class="co"># when the curly bracket ends, variable becomes the next element of vector</span></span></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="r-programming-for-loops.html#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variable <span class="cf">in</span> vector){ <span class="co"># variable starts as the first element of vector</span></span>
+<span id="cb121-2"><a href="r-programming-for-loops.html#cb121-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb121-3"><a href="r-programming-for-loops.html#cb121-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do something involving variable</span></span>
+<span id="cb121-4"><a href="r-programming-for-loops.html#cb121-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the part within the curly brackets is called</span></span>
+<span id="cb121-5"><a href="r-programming-for-loops.html#cb121-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># the body of the for-loop</span></span>
+<span id="cb121-6"><a href="r-programming-for-loops.html#cb121-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb121-7"><a href="r-programming-for-loops.html#cb121-7" aria-hidden="true" tabindex="-1"></a>} <span class="co"># when the curly bracket ends, variable becomes the next element of vector</span></span></code></pre></div>
 <p>When the loop starts, <code>variable</code> is set to the first element of <code>vector</code>. Within the curly braces (“krølleparentes”) some operation is done using this <code>variable</code>. Then, after the closing curly bracket, <code>variable</code> becomes the next element in <code>vector</code>, and whatever is inside the curly braces gets repeated with this updated <code>variable</code>. This goes on until you’ve been through all elements of <code>vector</code>. Since it repeats an operation for all the elements of <code>vector</code>, we say that it “loops over” <code>vector</code>.</p>
 <p>This might be easier to understand if you see a real example of a for loop<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-programming-for-loops.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb125-2"><a href="r-programming-for-loops.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(element)</span>
-<span id="cb125-3"><a href="r-programming-for-loops.html#cb125-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb125-4"><a href="r-programming-for-loops.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
-<span id="cb125-5"><a href="r-programming-for-loops.html#cb125-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb125-6"><a href="r-programming-for-loops.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
-<span id="cb125-7"><a href="r-programming-for-loops.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
-<span id="cb125-8"><a href="r-programming-for-loops.html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
-<span id="cb125-9"><a href="r-programming-for-loops.html#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
-<span id="cb125-10"><a href="r-programming-for-loops.html#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
-<span id="cb125-11"><a href="r-programming-for-loops.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
-<span id="cb125-12"><a href="r-programming-for-loops.html#cb125-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span>
-<span id="cb125-13"><a href="r-programming-for-loops.html#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="r-programming-for-loops.html#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb123-2"><a href="r-programming-for-loops.html#cb123-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(element)</span>
+<span id="cb123-3"><a href="r-programming-for-loops.html#cb123-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb123-4"><a href="r-programming-for-loops.html#cb123-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span>
+<span id="cb123-5"><a href="r-programming-for-loops.html#cb123-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb123-6"><a href="r-programming-for-loops.html#cb123-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb123-7"><a href="r-programming-for-loops.html#cb123-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb123-8"><a href="r-programming-for-loops.html#cb123-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5</span></span>
+<span id="cb123-9"><a href="r-programming-for-loops.html#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb123-10"><a href="r-programming-for-loops.html#cb123-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span>
+<span id="cb123-11"><a href="r-programming-for-loops.html#cb123-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 8</span></span>
+<span id="cb123-12"><a href="r-programming-for-loops.html#cb123-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 9</span></span>
+<span id="cb123-13"><a href="r-programming-for-loops.html#cb123-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
 <p>Here you can see more of what’s actually happening. In the first round, <code>element</code> is the first element of <code>1:10</code>, i.e. 1, which is printed. Then, <code>element</code> becomes the second element of <code>1:10</code>, which is 2, and <code>print()</code> prints it. This goes on until you have looped over the entire vector, and the loop ends after printing 10. Below is what actually happens for each round of the loop.</p>
 <div class="fold c">
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-programming-for-loops.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span>) <span class="co"># round 1, element is 1</span></span>
-<span id="cb126-2"><a href="r-programming-for-loops.html#cb126-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span>) <span class="co"># round 2, element is 2</span></span>
-<span id="cb126-3"><a href="r-programming-for-loops.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">3</span>) <span class="co"># round 3, element is 3</span></span>
-<span id="cb126-4"><a href="r-programming-for-loops.html#cb126-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span>) <span class="co"># ... and so on</span></span>
-<span id="cb126-5"><a href="r-programming-for-loops.html#cb126-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">5</span>)</span>
-<span id="cb126-6"><a href="r-programming-for-loops.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">6</span>)</span>
-<span id="cb126-7"><a href="r-programming-for-loops.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">7</span>)</span>
-<span id="cb126-8"><a href="r-programming-for-loops.html#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">8</span>)</span>
-<span id="cb126-9"><a href="r-programming-for-loops.html#cb126-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">9</span>)</span>
-<span id="cb126-10"><a href="r-programming-for-loops.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">10</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="r-programming-for-loops.html#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">1</span>) <span class="co"># round 1, element is 1</span></span>
+<span id="cb124-2"><a href="r-programming-for-loops.html#cb124-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span>) <span class="co"># round 2, element is 2</span></span>
+<span id="cb124-3"><a href="r-programming-for-loops.html#cb124-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">3</span>) <span class="co"># round 3, element is 3</span></span>
+<span id="cb124-4"><a href="r-programming-for-loops.html#cb124-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">4</span>) <span class="co"># ... and so on</span></span>
+<span id="cb124-5"><a href="r-programming-for-loops.html#cb124-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">5</span>)</span>
+<span id="cb124-6"><a href="r-programming-for-loops.html#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">6</span>)</span>
+<span id="cb124-7"><a href="r-programming-for-loops.html#cb124-7" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">7</span>)</span>
+<span id="cb124-8"><a href="r-programming-for-loops.html#cb124-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">8</span>)</span>
+<span id="cb124-9"><a href="r-programming-for-loops.html#cb124-9" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">9</span>)</span>
+<span id="cb124-10"><a href="r-programming-for-loops.html#cb124-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">10</span>)</span></code></pre></div>
 </div>
 <p>Notice how many lines you saved by writing a loop! The power here comes from that it doesn’t matter how long your vector is, and you can do any operation on the elements of the vector. Say we want to multiply each element of our vector <code>x</code> with 5, which we did in the start of this tutorial.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="r-programming-for-loops.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(element <span class="cf">in</span> x){</span>
-<span id="cb127-2"><a href="r-programming-for-loops.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(element <span class="sc">*</span> <span class="dv">5</span>)</span>
-<span id="cb127-3"><a href="r-programming-for-loops.html#cb127-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb127-4"><a href="r-programming-for-loops.html#cb127-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb127-5"><a href="r-programming-for-loops.html#cb127-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
-<span id="cb127-6"><a href="r-programming-for-loops.html#cb127-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
-<span id="cb127-7"><a href="r-programming-for-loops.html#cb127-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 40</span></span>
-<span id="cb127-8"><a href="r-programming-for-loops.html#cb127-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span>
-<span id="cb127-9"><a href="r-programming-for-loops.html#cb127-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 60</span></span>
-<span id="cb127-10"><a href="r-programming-for-loops.html#cb127-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 70</span></span>
-<span id="cb127-11"><a href="r-programming-for-loops.html#cb127-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 80</span></span>
-<span id="cb127-12"><a href="r-programming-for-loops.html#cb127-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 90</span></span>
-<span id="cb127-13"><a href="r-programming-for-loops.html#cb127-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="r-programming-for-loops.html#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(element <span class="cf">in</span> x){</span>
+<span id="cb125-2"><a href="r-programming-for-loops.html#cb125-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(element <span class="sc">*</span> <span class="dv">5</span>)</span>
+<span id="cb125-3"><a href="r-programming-for-loops.html#cb125-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb125-4"><a href="r-programming-for-loops.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb125-5"><a href="r-programming-for-loops.html#cb125-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 20</span></span>
+<span id="cb125-6"><a href="r-programming-for-loops.html#cb125-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
+<span id="cb125-7"><a href="r-programming-for-loops.html#cb125-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 40</span></span>
+<span id="cb125-8"><a href="r-programming-for-loops.html#cb125-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 50</span></span>
+<span id="cb125-9"><a href="r-programming-for-loops.html#cb125-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 60</span></span>
+<span id="cb125-10"><a href="r-programming-for-loops.html#cb125-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 70</span></span>
+<span id="cb125-11"><a href="r-programming-for-loops.html#cb125-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 80</span></span>
+<span id="cb125-12"><a href="r-programming-for-loops.html#cb125-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 90</span></span>
+<span id="cb125-13"><a href="r-programming-for-loops.html#cb125-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100</span></span></code></pre></div>
 <p>You can also use this with other kinds of vectors, e.g. a vector of strings.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-programming-for-loops.html#cb128-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;badger&quot;</span>, <span class="st">&quot;unicorn&quot;</span>)</span>
-<span id="cb128-2"><a href="r-programming-for-loops.html#cb128-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-3"><a href="r-programming-for-loops.html#cb128-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals){</span>
-<span id="cb128-4"><a href="r-programming-for-loops.html#cb128-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animal)</span>
-<span id="cb128-5"><a href="r-programming-for-loops.html#cb128-5" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb128-6"><a href="r-programming-for-loops.html#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cat&quot;</span></span>
-<span id="cb128-7"><a href="r-programming-for-loops.html#cb128-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog&quot;</span></span>
-<span id="cb128-8"><a href="r-programming-for-loops.html#cb128-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse&quot;</span></span>
-<span id="cb128-9"><a href="r-programming-for-loops.html#cb128-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger&quot;</span></span>
-<span id="cb128-10"><a href="r-programming-for-loops.html#cb128-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="r-programming-for-loops.html#cb126-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;cat&quot;</span>, <span class="st">&quot;dog&quot;</span>, <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;badger&quot;</span>, <span class="st">&quot;unicorn&quot;</span>)</span>
+<span id="cb126-2"><a href="r-programming-for-loops.html#cb126-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb126-3"><a href="r-programming-for-loops.html#cb126-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals){</span>
+<span id="cb126-4"><a href="r-programming-for-loops.html#cb126-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animal)</span>
+<span id="cb126-5"><a href="r-programming-for-loops.html#cb126-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb126-6"><a href="r-programming-for-loops.html#cb126-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cat&quot;</span></span>
+<span id="cb126-7"><a href="r-programming-for-loops.html#cb126-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog&quot;</span></span>
+<span id="cb126-8"><a href="r-programming-for-loops.html#cb126-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse&quot;</span></span>
+<span id="cb126-9"><a href="r-programming-for-loops.html#cb126-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger&quot;</span></span>
+<span id="cb126-10"><a href="r-programming-for-loops.html#cb126-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn&quot;</span></span></code></pre></div>
 <div class="green">
 <p><strong>Important concept:</strong><br />
 Use a for-loop to do the same operation over and over on the elements of your vector. The basic structure of a for-loop looks like this:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-programming-for-loops.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variable <span class="cf">in</span> vector){</span>
-<span id="cb129-2"><a href="r-programming-for-loops.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do something</span></span>
-<span id="cb129-3"><a href="r-programming-for-loops.html#cb129-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="r-programming-for-loops.html#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (variable <span class="cf">in</span> vector){</span>
+<span id="cb127-2"><a href="r-programming-for-loops.html#cb127-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># do something</span></span>
+<span id="cb127-3"><a href="r-programming-for-loops.html#cb127-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <div class="blue">
 <p><strong>Tip:</strong></p>
 <p>You may have noticed that I’ve called the variable that is changing for each iteration different things in all the examples, namely <code>variable</code>, <code>element</code> and <code>animal</code>. Actually, you can call this variable anything (within reason). All you have to remember is to call it the same thing within the loop as when starting it. In other words, this works<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>:</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-programming-for-loops.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (whatever_you_want_to_call_the_variable <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb130-2"><a href="r-programming-for-loops.html#cb130-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(whatever_you_want_to_call_the_variable)</span>
-<span id="cb130-3"><a href="r-programming-for-loops.html#cb130-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="r-programming-for-loops.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (whatever_you_want_to_call_the_variable <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb128-2"><a href="r-programming-for-loops.html#cb128-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(whatever_you_want_to_call_the_variable)</span>
+<span id="cb128-3"><a href="r-programming-for-loops.html#cb128-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>But this doesn’t:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-programming-for-loops.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (some_name <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb131-2"><a href="r-programming-for-loops.html#cb131-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(another_name)</span>
-<span id="cb131-3"><a href="r-programming-for-loops.html#cb131-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="r-programming-for-loops.html#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (some_name <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb129-2"><a href="r-programming-for-loops.html#cb129-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(another_name)</span>
+<span id="cb129-3"><a href="r-programming-for-loops.html#cb129-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p><strong>Exercise: Create a vector containing the names of five countries. Use a for-loop to print the countries. Optional: use the <code>paste()</code> function to output “<code>country</code> is a country” for each element</strong></p>
 </div>
 <div id="indexing" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Indexing with for-loops</h3>
 <p>To solve our initial problem (and also for the things we will be doing later), we need to introduce one more concept: using the changing variable in your for-loop as an index for your vectors. If we look once more at our <code>animals</code> vector above, there are actually two ways of printing every element:</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="r-programming-for-loops.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the element like we did earlier</span></span>
-<span id="cb132-2"><a href="r-programming-for-loops.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals){</span>
-<span id="cb132-3"><a href="r-programming-for-loops.html#cb132-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animal)</span>
-<span id="cb132-4"><a href="r-programming-for-loops.html#cb132-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb132-5"><a href="r-programming-for-loops.html#cb132-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb132-6"><a href="r-programming-for-loops.html#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the element using an index</span></span>
-<span id="cb132-7"><a href="r-programming-for-loops.html#cb132-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
-<span id="cb132-8"><a href="r-programming-for-loops.html#cb132-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animals[index])</span>
-<span id="cb132-9"><a href="r-programming-for-loops.html#cb132-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="r-programming-for-loops.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the element like we did earlier</span></span>
+<span id="cb130-2"><a href="r-programming-for-loops.html#cb130-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (animal <span class="cf">in</span> animals){</span>
+<span id="cb130-3"><a href="r-programming-for-loops.html#cb130-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animal)</span>
+<span id="cb130-4"><a href="r-programming-for-loops.html#cb130-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb130-5"><a href="r-programming-for-loops.html#cb130-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-6"><a href="r-programming-for-loops.html#cb130-6" aria-hidden="true" tabindex="-1"></a><span class="co"># printing the element using an index</span></span>
+<span id="cb130-7"><a href="r-programming-for-loops.html#cb130-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>){</span>
+<span id="cb130-8"><a href="r-programming-for-loops.html#cb130-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(animals[index])</span>
+<span id="cb130-9"><a href="r-programming-for-loops.html#cb130-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The execution of the latter for-loop looks like this:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-programming-for-loops.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">1</span>])</span>
-<span id="cb133-2"><a href="r-programming-for-loops.html#cb133-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">2</span>])</span>
-<span id="cb133-3"><a href="r-programming-for-loops.html#cb133-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">3</span>])</span>
-<span id="cb133-4"><a href="r-programming-for-loops.html#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">4</span>])</span>
-<span id="cb133-5"><a href="r-programming-for-loops.html#cb133-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">5</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="r-programming-for-loops.html#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">1</span>])</span>
+<span id="cb131-2"><a href="r-programming-for-loops.html#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">2</span>])</span>
+<span id="cb131-3"><a href="r-programming-for-loops.html#cb131-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">3</span>])</span>
+<span id="cb131-4"><a href="r-programming-for-loops.html#cb131-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">4</span>])</span>
+<span id="cb131-5"><a href="r-programming-for-loops.html#cb131-5" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(animals[<span class="dv">5</span>])</span></code></pre></div>
 <p>Note that rather than looping over the <code>animals</code> vector itself, we loop over a vector from 1 to 5, using those numbers to access the values inside <code>animals</code>. Here we made this vector by writing <code>1:5</code>, but a better way would be writing <code>1:length(animals)</code> so we can be sure that the index vector is the same length as the <code>animals</code> vector. Looping this way has the advantage that we can loop over several vectors at the same time:</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="r-programming-for-loops.html#cb134-1" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;good&quot;</span>, <span class="st">&quot;great&quot;</span>, <span class="st">&quot;fine&quot;</span>, <span class="st">&quot;best&quot;</span>, <span class="st">&quot;probably not real&quot;</span>)</span>
-<span id="cb134-2"><a href="r-programming-for-loops.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-3"><a href="r-programming-for-loops.html#cb134-3" aria-hidden="true" tabindex="-1"></a><span class="co"># looping over both animals and score</span></span>
-<span id="cb134-4"><a href="r-programming-for-loops.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note the use of 1:length(animals) instead of 1:5</span></span>
-<span id="cb134-5"><a href="r-programming-for-loops.html#cb134-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb134-6"><a href="r-programming-for-loops.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(animals)){</span>
-<span id="cb134-7"><a href="r-programming-for-loops.html#cb134-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste together the current element in animals and score</span></span>
-<span id="cb134-8"><a href="r-programming-for-loops.html#cb134-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># grading will be overwritten every round of the loop</span></span>
-<span id="cb134-9"><a href="r-programming-for-loops.html#cb134-9" aria-hidden="true" tabindex="-1"></a>  grading <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[index], <span class="st">&quot;is&quot;</span>, score[index])</span>
-<span id="cb134-10"><a href="r-programming-for-loops.html#cb134-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(grading)</span>
-<span id="cb134-11"><a href="r-programming-for-loops.html#cb134-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb134-12"><a href="r-programming-for-loops.html#cb134-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cat is good&quot;</span></span>
-<span id="cb134-13"><a href="r-programming-for-loops.html#cb134-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog is great&quot;</span></span>
-<span id="cb134-14"><a href="r-programming-for-loops.html#cb134-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse is fine&quot;</span></span>
-<span id="cb134-15"><a href="r-programming-for-loops.html#cb134-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger is best&quot;</span></span>
-<span id="cb134-16"><a href="r-programming-for-loops.html#cb134-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn is probably not real&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="r-programming-for-loops.html#cb132-1" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;good&quot;</span>, <span class="st">&quot;great&quot;</span>, <span class="st">&quot;fine&quot;</span>, <span class="st">&quot;best&quot;</span>, <span class="st">&quot;probably not real&quot;</span>)</span>
+<span id="cb132-2"><a href="r-programming-for-loops.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-3"><a href="r-programming-for-loops.html#cb132-3" aria-hidden="true" tabindex="-1"></a><span class="co"># looping over both animals and score</span></span>
+<span id="cb132-4"><a href="r-programming-for-loops.html#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="co"># note the use of 1:length(animals) instead of 1:5</span></span>
+<span id="cb132-5"><a href="r-programming-for-loops.html#cb132-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb132-6"><a href="r-programming-for-loops.html#cb132-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(animals)){</span>
+<span id="cb132-7"><a href="r-programming-for-loops.html#cb132-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># paste together the current element in animals and score</span></span>
+<span id="cb132-8"><a href="r-programming-for-loops.html#cb132-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># grading will be overwritten every round of the loop</span></span>
+<span id="cb132-9"><a href="r-programming-for-loops.html#cb132-9" aria-hidden="true" tabindex="-1"></a>  grading <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[index], <span class="st">&quot;is&quot;</span>, score[index])</span>
+<span id="cb132-10"><a href="r-programming-for-loops.html#cb132-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(grading)</span>
+<span id="cb132-11"><a href="r-programming-for-loops.html#cb132-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb132-12"><a href="r-programming-for-loops.html#cb132-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;cat is good&quot;</span></span>
+<span id="cb132-13"><a href="r-programming-for-loops.html#cb132-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog is great&quot;</span></span>
+<span id="cb132-14"><a href="r-programming-for-loops.html#cb132-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse is fine&quot;</span></span>
+<span id="cb132-15"><a href="r-programming-for-loops.html#cb132-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger is best&quot;</span></span>
+<span id="cb132-16"><a href="r-programming-for-loops.html#cb132-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn is probably not real&quot;</span></span></code></pre></div>
 <p>We can also access more than one element of a vector at once, by using e.g. <code>index - 1</code> to access the previous element.</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-programming-for-loops.html#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(animals)){ <span class="co">#note: starting on 2</span></span>
-<span id="cb135-2"><a href="r-programming-for-loops.html#cb135-2" aria-hidden="true" tabindex="-1"></a>  friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[index], <span class="st">&quot;and&quot;</span>, animals[index <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
-<span id="cb135-3"><a href="r-programming-for-loops.html#cb135-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(friends)</span>
-<span id="cb135-4"><a href="r-programming-for-loops.html#cb135-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb135-5"><a href="r-programming-for-loops.html#cb135-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog and cat are friends&quot;</span></span>
-<span id="cb135-6"><a href="r-programming-for-loops.html#cb135-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse and dog are friends&quot;</span></span>
-<span id="cb135-7"><a href="r-programming-for-loops.html#cb135-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger and horse are friends&quot;</span></span>
-<span id="cb135-8"><a href="r-programming-for-loops.html#cb135-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn and badger are friends&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="r-programming-for-loops.html#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(animals)){ <span class="co">#note: starting on 2</span></span>
+<span id="cb133-2"><a href="r-programming-for-loops.html#cb133-2" aria-hidden="true" tabindex="-1"></a>  friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[index], <span class="st">&quot;and&quot;</span>, animals[index <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
+<span id="cb133-3"><a href="r-programming-for-loops.html#cb133-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(friends)</span>
+<span id="cb133-4"><a href="r-programming-for-loops.html#cb133-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb133-5"><a href="r-programming-for-loops.html#cb133-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;dog and cat are friends&quot;</span></span>
+<span id="cb133-6"><a href="r-programming-for-loops.html#cb133-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;horse and dog are friends&quot;</span></span>
+<span id="cb133-7"><a href="r-programming-for-loops.html#cb133-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;badger and horse are friends&quot;</span></span>
+<span id="cb133-8"><a href="r-programming-for-loops.html#cb133-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;unicorn and badger are friends&quot;</span></span></code></pre></div>
 <p>Show the code below to see how this would look if done manually.</p>
 <div class="fold c">
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="r-programming-for-loops.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first round, remember that writing animals[2 - 1] is</span></span>
-<span id="cb136-2"><a href="r-programming-for-loops.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="co"># exactly the same as writing animals[1]</span></span>
-<span id="cb136-3"><a href="r-programming-for-loops.html#cb136-3" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
-<span id="cb136-4"><a href="r-programming-for-loops.html#cb136-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
-<span id="cb136-5"><a href="r-programming-for-loops.html#cb136-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-6"><a href="r-programming-for-loops.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="co"># second round</span></span>
-<span id="cb136-7"><a href="r-programming-for-loops.html#cb136-7" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">3</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
-<span id="cb136-8"><a href="r-programming-for-loops.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
-<span id="cb136-9"><a href="r-programming-for-loops.html#cb136-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-10"><a href="r-programming-for-loops.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="co"># third round</span></span>
-<span id="cb136-11"><a href="r-programming-for-loops.html#cb136-11" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">4</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
-<span id="cb136-12"><a href="r-programming-for-loops.html#cb136-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
-<span id="cb136-13"><a href="r-programming-for-loops.html#cb136-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb136-14"><a href="r-programming-for-loops.html#cb136-14" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth round</span></span>
-<span id="cb136-15"><a href="r-programming-for-loops.html#cb136-15" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">5</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
-<span id="cb136-16"><a href="r-programming-for-loops.html#cb136-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="r-programming-for-loops.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first round, remember that writing animals[2 - 1] is</span></span>
+<span id="cb134-2"><a href="r-programming-for-loops.html#cb134-2" aria-hidden="true" tabindex="-1"></a><span class="co"># exactly the same as writing animals[1]</span></span>
+<span id="cb134-3"><a href="r-programming-for-loops.html#cb134-3" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">2</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">2</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
+<span id="cb134-4"><a href="r-programming-for-loops.html#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
+<span id="cb134-5"><a href="r-programming-for-loops.html#cb134-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-6"><a href="r-programming-for-loops.html#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="co"># second round</span></span>
+<span id="cb134-7"><a href="r-programming-for-loops.html#cb134-7" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">3</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">3</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
+<span id="cb134-8"><a href="r-programming-for-loops.html#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
+<span id="cb134-9"><a href="r-programming-for-loops.html#cb134-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-10"><a href="r-programming-for-loops.html#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="co"># third round</span></span>
+<span id="cb134-11"><a href="r-programming-for-loops.html#cb134-11" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">4</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
+<span id="cb134-12"><a href="r-programming-for-loops.html#cb134-12" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span>
+<span id="cb134-13"><a href="r-programming-for-loops.html#cb134-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-14"><a href="r-programming-for-loops.html#cb134-14" aria-hidden="true" tabindex="-1"></a><span class="co"># fourth round</span></span>
+<span id="cb134-15"><a href="r-programming-for-loops.html#cb134-15" aria-hidden="true" tabindex="-1"></a>friends <span class="ot">&lt;-</span> <span class="fu">paste</span>(animals[<span class="dv">5</span>], <span class="st">&quot;and&quot;</span>, animals[<span class="dv">5</span> <span class="sc">-</span> <span class="dv">1</span>], <span class="st">&quot;are friends&quot;</span>)</span>
+<span id="cb134-16"><a href="r-programming-for-loops.html#cb134-16" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(friends)</span></code></pre></div>
 </div>
 <p>Now we know all we need to solve our initial problem, which we will return to in the next section.</p>
 <p><strong>Exercise: In addition to your country vector from before, make a corresponding vector containing continents. Use indexing with for loops and the <code>paste</code> function to print “<code>country</code> is in <code>continent</code>” for each of the countries and continents in your vector.</strong></p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
-Use for-loops with indexing when you want to access several elements of one or more vectors at once. This is basically every time, so use indexing in your for-loops every time.</p>
+Use for-loops with indexing when you want to access several elements of one or more vectors at once. Most of the time you will use indexing rather than looping over a vector directly.</p>
 </div>
 </div>
 <div id="solving-our-problem" class="section level3" number="3.1.4">
 <h3><span class="header-section-number">3.1.4</span> Solving our problem</h3>
 <p>To remind you of where we started: we want to add the adjacent elements of our vector <code>x</code> together in the smartest way possible.</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-programming-for-loops.html#cb137-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="r-programming-for-loops.html#cb135-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">2</span>)</span></code></pre></div>
 <p>Below is how this can be done with for-loops. I encourage you to try to solve it yourself before looking at the solution.</p>
 <details>
 <summary>
@@ -610,37 +617,37 @@ Use for-loops with indexing when you want to access several elements of one or m
 <p>Hint: Loop over the vector <code>2:length(x)</code><a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>. For every round, add <code>x[index]</code> and <code>x[index - 1]</code> together and print this.</p>
 </details>
 <div class="fold s o">
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="r-programming-for-loops.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
-<span id="cb138-2"><a href="r-programming-for-loops.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  added <span class="ot">&lt;-</span> x[index] <span class="sc">+</span> x[index <span class="sc">-</span> <span class="dv">1</span>]</span>
-<span id="cb138-3"><a href="r-programming-for-loops.html#cb138-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(added)</span>
-<span id="cb138-4"><a href="r-programming-for-loops.html#cb138-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb138-5"><a href="r-programming-for-loops.html#cb138-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
-<span id="cb138-6"><a href="r-programming-for-loops.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
-<span id="cb138-7"><a href="r-programming-for-loops.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span>
-<span id="cb138-8"><a href="r-programming-for-loops.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18</span></span>
-<span id="cb138-9"><a href="r-programming-for-loops.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22</span></span>
-<span id="cb138-10"><a href="r-programming-for-loops.html#cb138-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 26</span></span>
-<span id="cb138-11"><a href="r-programming-for-loops.html#cb138-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
-<span id="cb138-12"><a href="r-programming-for-loops.html#cb138-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 34</span></span>
-<span id="cb138-13"><a href="r-programming-for-loops.html#cb138-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 38</span></span></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="r-programming-for-loops.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
+<span id="cb136-2"><a href="r-programming-for-loops.html#cb136-2" aria-hidden="true" tabindex="-1"></a>  added <span class="ot">&lt;-</span> x[index] <span class="sc">+</span> x[index <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb136-3"><a href="r-programming-for-loops.html#cb136-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(added)</span>
+<span id="cb136-4"><a href="r-programming-for-loops.html#cb136-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb136-5"><a href="r-programming-for-loops.html#cb136-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 6</span></span>
+<span id="cb136-6"><a href="r-programming-for-loops.html#cb136-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb136-7"><a href="r-programming-for-loops.html#cb136-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 14</span></span>
+<span id="cb136-8"><a href="r-programming-for-loops.html#cb136-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 18</span></span>
+<span id="cb136-9"><a href="r-programming-for-loops.html#cb136-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 22</span></span>
+<span id="cb136-10"><a href="r-programming-for-loops.html#cb136-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 26</span></span>
+<span id="cb136-11"><a href="r-programming-for-loops.html#cb136-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 30</span></span>
+<span id="cb136-12"><a href="r-programming-for-loops.html#cb136-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 34</span></span>
+<span id="cb136-13"><a href="r-programming-for-loops.html#cb136-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 38</span></span></code></pre></div>
 </div>
 </div>
 <div id="storing-values-from-a-for-loop" class="section level3" number="3.1.5">
 <h3><span class="header-section-number">3.1.5</span> Storing values from a for-loop</h3>
 <p>One final concept before going on to work with evolutionary biology. In the last section, we printed our results. What if we wanted to do work further with the results we got? We could copy the numbers from the console and create a new vector manually, but (like so many of my stupid suggestions throughout these tutorials) this is bothersome and doesn’t scale well. The best way to store values from a for loop is to create an empty vector before the loop, and fill in that vector as we loop.</p>
 <p>First we use the <code>rep()</code> function to create a vector containing <code>NA</code>. You can read the following <code>rep(NA, 10)</code> as “repeat <code>NA</code>, 10 times”, i.e. you get a vector of 10 <code>NA</code>. We use <code>NA</code> for our vector because our calculations within the loop will not produce any <code>NA</code> (unless something goes horribly wrong). This way, we can easily see if something went wrong in our loop (if there are any <code>NA</code> left in our <code>results</code> vector after our loop, something is probably off).</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-programming-for-loops.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># repeat 0, 10 times</span></span>
-<span id="cb139-2"><a href="r-programming-for-loops.html#cb139-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>)</span>
-<span id="cb139-3"><a href="r-programming-for-loops.html#cb139-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb139-4"><a href="r-programming-for-loops.html#cb139-4" aria-hidden="true" tabindex="-1"></a><span class="co"># to ensure that results is the same length as x, we should instead write:</span></span>
-<span id="cb139-5"><a href="r-programming-for-loops.html#cb139-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="r-programming-for-loops.html#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="co"># repeat 0, 10 times</span></span>
+<span id="cb137-2"><a href="r-programming-for-loops.html#cb137-2" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>)</span>
+<span id="cb137-3"><a href="r-programming-for-loops.html#cb137-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb137-4"><a href="r-programming-for-loops.html#cb137-4" aria-hidden="true" tabindex="-1"></a><span class="co"># to ensure that results is the same length as x, we should instead write:</span></span>
+<span id="cb137-5"><a href="r-programming-for-loops.html#cb137-5" aria-hidden="true" tabindex="-1"></a>results <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span></code></pre></div>
 <p>Then, we loop over the same index as before, but instead of printing our result, we store it as an element of our <code>results</code> vector.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="r-programming-for-loops.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
-<span id="cb140-2"><a href="r-programming-for-loops.html#cb140-2" aria-hidden="true" tabindex="-1"></a>  results[index] <span class="ot">&lt;-</span> x[index] <span class="sc">+</span> x[index <span class="sc">-</span> <span class="dv">1</span>]</span>
-<span id="cb140-3"><a href="r-programming-for-loops.html#cb140-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="r-programming-for-loops.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (index <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span><span class="fu">length</span>(x)){</span>
+<span id="cb138-2"><a href="r-programming-for-loops.html#cb138-2" aria-hidden="true" tabindex="-1"></a>  results[index] <span class="ot">&lt;-</span> x[index] <span class="sc">+</span> x[index <span class="sc">-</span> <span class="dv">1</span>]</span>
+<span id="cb138-3"><a href="r-programming-for-loops.html#cb138-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This doesn’t print anything yet, but the results are now stored in the <code>results</code> vector.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="r-programming-for-loops.html#cb141-1" aria-hidden="true" tabindex="-1"></a>results</span>
-<span id="cb141-2"><a href="r-programming-for-loops.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] NA  6 10 14 18 22 26 30 34 38</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="r-programming-for-loops.html#cb139-1" aria-hidden="true" tabindex="-1"></a>results</span>
+<span id="cb139-2"><a href="r-programming-for-loops.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] NA  6 10 14 18 22 26 30 34 38</span></span></code></pre></div>
 <p>We see that the first element us still <code>NA</code> (since we started on the second element), which isn’t perfect, but good enough for now!</p>
 <p>That concludes this week’s R-focused part of the tutorial. Some of the Evolutionary biology-focused part will use the concepts you have learned here, so check back here if there is a part of the code you don’t understand.</p>
 </div>
@@ -649,10 +656,10 @@ Use for-loops with indexing when you want to access several elements of one or m
 <hr />
 <ol start="14">
 <li id="fn14"><p>because it’s bothersome and there’s a great chance of making errors, and imagine how long it would take if our vector had 1000 or 10000 elements!<a href="r-programming-for-loops.html#fnref14" class="footnote-back">↩︎</a></p></li>
-<li id="fn15"><p>Note that you explicitly have to use <code>print()</code> inside a for-loop, unlike what you’ve done so far. Something like</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>element</span>
-<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<li id="fn15"><p>Note that to print your result to console inside a for-loop, you explicitly have to use <code>print()</code>, unlike what you’ve done so far. Something like</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (element <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>element</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>won’t actually print anything.<a href="r-programming-for-loops.html#fnref15" class="footnote-back">↩︎</a></p></li>
 <li id="fn16"><p>but it’s kind of dumb, don’t do it<a href="r-programming-for-loops.html#fnref16" class="footnote-back">↩︎</a></p></li>
 <li id="fn17"><p>Something to think about: Why do we start the vector we’re looping over at 2, not 1? what would happen if we started at 1? (hint: what is <code>1 - 1</code>, and does that correspond to an element in our vector?)<a href="r-programming-for-loops.html#fnref17" class="footnote-back">↩︎</a></p></li>

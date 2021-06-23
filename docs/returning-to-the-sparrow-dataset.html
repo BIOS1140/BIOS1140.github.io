@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Returning to the sparrow dataset | R tutorials in BIOS1140</title>
+  <title>8.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Returning to the sparrow dataset | R tutorials in BIOS1140" />
+  <meta property="og:title" content="8.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Returning to the sparrow dataset | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="8.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="visualizing-complex-data.html"/>
 <link rel="next" href="setting-up-sliding-windows.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -437,23 +442,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>With these steps carried out, you can read this data in like so:</p>
 <p><strong>MAC</strong></p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="returning-to-the-sparrow-dataset.html#cb331-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="returning-to-the-sparrow-dataset.html#cb326-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><strong>WINDOWS</strong></p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="returning-to-the-sparrow-dataset.html#cb332-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="returning-to-the-sparrow-dataset.html#cb327-1" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Like last time, we then need to read the file with population information, and attach that to our <code>sparrows</code> object. You should have the file available from last week’s tutorial, otherwise it can be downloaded <a href="https://bios1140.github.io/data/sparrow_pops.txt">here</a>.</p>
 <div class="yellow">
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="returning-to-the-sparrow-dataset.html#cb333-1" aria-hidden="true" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
-<span id="cb333-2"><a href="returning-to-the-sparrow-dataset.html#cb333-2" aria-hidden="true" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
-<span id="cb333-3"><a href="returning-to-the-sparrow-dataset.html#cb333-3" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="returning-to-the-sparrow-dataset.html#cb328-1" aria-hidden="true" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read_delim</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">delim =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span>
+<span id="cb328-2"><a href="returning-to-the-sparrow-dataset.html#cb328-2" aria-hidden="true" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
+<span id="cb328-3"><a href="returning-to-the-sparrow-dataset.html#cb328-3" aria-hidden="true" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
 </div>
 </div>
 <div id="examining-the-variant-data" class="section level3" number="8.2.2">
 <h3><span class="header-section-number">8.2.2</span> Examining the variant data</h3>
 <p>Remember, you can look the data we have read in using the following command:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="returning-to-the-sparrow-dataset.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="returning-to-the-sparrow-dataset.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
 <p>In this case, you can see that from the <code>n.sites</code> that the final site is at position 49,693,117. The actual chromosome is 49,693,984 long - so this confirms variants span the entire chromosome. Note that <code>n.sites</code> is a bit counter-intuitive here, it would only make sense as the number of sites if we had called nucleotides at <strong>every single position in the genome</strong> - but since this is a variant call format, only containing polymorphic positions then obviously this is not the case. Furthermore, the data has actually been subset in order to make it more manageable for our purposes today.</p>
 <p>Nonetheless, it is still substantial, from the <code>n.biallelic.sites</code> we can see there are 91,312 bilallelic SNPs and from <code>n.polyallelic.sites</code>, there are 1092 positions with more than two alleles. So in total we have:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="returning-to-the-sparrow-dataset.html#cb335-1" aria-hidden="true" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="returning-to-the-sparrow-dataset.html#cb330-1" aria-hidden="true" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
 <p>A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.</p>
 </div>
 </div>

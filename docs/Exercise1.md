@@ -94,6 +94,11 @@ The error message reason for this will be apparent later in this tutorial. To ge
 -   `"hello"` or `'hello'` rather than just `hello`
 :::
 
+:::{.blue}
+**Error messages:**  
+Above, you got an error message saying "Error: object 'hello' not found". Errors are common in R, and are nothing to be afraid of. The worst thing that can happen from an error in R is that you have to fix your code and re-run it. You should get used to reading error messages, they are often helpful to understand what is wrong with your code. They can also be extremely unhelpful, but even then, googling the error message can give you some insight into what went wrong.
+:::
+
 #### Comments
 
 If you input a `#`, R will ignore whatever comes after on the same line. This means you can write entire lines of comments, or write comments after your calculations:
@@ -117,7 +122,7 @@ Comment your code liberally, so it becomes easier to understand for any person r
 
 Doing small operations in the console is all well and good, but once you've done something a bit more complex than adding numbers you will want to save what you did in some way. You could use the up-arrow in the console to recall the things you did (even if you close and reopen RStudio), but imagine if the thing you want to recall was a thousand operations ago. That's a whole lot of button pressing! The most convenient way to store what you have done in R is by writing a script.
 
-A script in R is just a text document containing R code, and the file extension is .R (your script can e.g. be called "myscript.R". In RStudio, you can create a new script either from the menu `File > New File > R script` or by pressing `ctrl`+`shift`+`N` on Windows or `command`+`shift`+`N` on Mac.
+A script in R is just a text document containing R code, and the file extension is .R (your script can e.g. be called "myscript.R". In RStudio, you can create a new script either from the menu `File > New File > R script` or by pressing `ctrl`+`shift`+`N` on Windows or `command`+`shift`+`N` on Mac. To save your script, use `ctrl`/`command`+`S`, or choose `save`/`save as...` from the `File` dropdown menu. Be concious about where you save your script so that you will find it again later!
 
 Working in a script is almost exactly the same as working in the console: You write a line of code in the script, run it, and the result is shown in the console. The main difference is that you have to press `ctrl`/`command`+`enter` to run code from a script, rather than just `enter`. The other big difference is that you can save your scripts, so you have access to all the code you have previously written. For this reason, you should always work in a script rather than in the console.
 
@@ -428,6 +433,11 @@ nordic[3]
 We can also select multiple numbers, by inputting a vector inside the square brackets. `nordic[c(3, 5)] will extract the third and the fifth element of our`nordic`vector, and`nordic[1:3]\` will extract elements 1 through 3.
 
 **Exercise: extract elements 2 through 4 from the `nordic` vector. Then, extract only the Scandinavian countries, and store them in an object with a good name.**
+
+:::{.blue}
+**Vector indexing:**  
+If you're familiar with Python or another programming language, you are probably used to that counting starts on 0 when indexing. In R, however, we start at 1. This can be annoying when switching between languages, but is unfortunately something you just need to remember.
+:::
 
 ##### Getting the sum and mean of a vector
 
@@ -874,7 +884,7 @@ When you have a lot of data that belongs together, typically something you could
 <script src="js/hideOutput.js"></script>
 
 
-*This part of the tutorial is a simplified version of [this tutorial that I made](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!*
+*This part of the tutorial is a simplified version of [this tutorial](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!*
 
 I've frequently had you imagine doing the data input for data from all countries in the world throughout this tutorial. You may already have thought manually inputting data for the entire world like we did with the Nordic countries above is time-consuming and error-prone. This is correct, and we should be able to do something smarter. Luckily, we can download data as a text file and import it into R as a data frame!
 
@@ -957,7 +967,7 @@ If you managed to do this, you now have data for all countries in the world stor
 <script src="js/hideOutput.js"></script>
 
 
-*This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial that I made](https://evengar.github.io/short-tutorials/plotting.html)!*
+*This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial](https://evengar.github.io/short-tutorials/plotting.html)!*
 
 R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. In this section, we will only go through some very basic plotting, you will learn more about plotting next week.
 

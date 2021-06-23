@@ -6,11 +6,9 @@
 
 
 
-
 ```r
 knitr::opts_chunk$set(fig.width = 8)
 ```
-
 
 Genomic data has revolutionised the way we conduct speciation research over the past decade. With high-throughput sequencing it is now possible to examine variation at thousands of markers from across the genome. Genome-wide studies of genetic differentiation, particularly measured using *F*~ST~ have been used to identify regions of the genome that might be involved in speciation. The rationale is relatively simple, *F*~ST~ is a measure of genetic differentiation and when species diverge in the presence of gene flow, we might expect that genome regions underlying traits that prevent gene flow between species will show a higher level of *F*~ST~ than those that do not. In other words, genome scan analyses can, in principle, be used to identify barrier loci involved in the speciation process. This approach became extremely popular in many early speciation genomic studies but it overlooked a crucial point - that other processes, not related to speciation can produce the same patterns in the genome. In this session, we will leverage our ability to handle high-throughput, whole genome resequencing data to investigate patterns of nucleotide diversity, genetic differentiation and genetic divergence across a chromosome. We will examine what might explain some of the patterns we observe and learn that while genome scans can be a powerful tool for speciation research, they must be used with caution.
 
@@ -158,7 +156,6 @@ sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, F
 
 
 
-
 Like last time, we then need to read the file with population information, and attach that to our `sparrows` object. You should have the file available from last week's tutorial, otherwise it can be downloaded [here](https://bios1140.github.io/data/sparrow_pops.txt).
 
 ::: {.yellow}
@@ -169,7 +166,6 @@ populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
 :::
-
 
 
 
@@ -285,7 +281,6 @@ windows <- data.frame(start = window_start, stop = window_stop,
 
 ### Calculating sliding window estimates of nucleotide diversity and differentiation
 
-
 Now that we have set up the data, the population information and the sliding windows, it is quite straightforward for us to calculate some statistics we are interested in. In this case, we are going to calculate nucleotide diversity (i.e. $\pi$) and *F*~ST~. We will also generate a third statistic, *d*~XY~, which is the absolute nucleotide divergence between two populations.
 
 First we will calculate $\pi$. Handily, the following command also sets up what we need for *d*~XY~.
@@ -387,7 +382,7 @@ This makes it much clearer how nucleotide diversity differs among the species.
 
 ### Visualising patterns along the chromosome
 
-Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. We can do this very simply with `ggplot`.
+Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. Note that we plot the mid-point of each window, and divide the position by $10^6$ to get megabases on the x-axis.
 
 
 ```r
@@ -398,9 +393,9 @@ a + theme_light()
 
 <img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" />
 
-From this plot, it is very clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
+From this plot, it is clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
-How can we investiage this? The easiest thing to do is to plot $\pi$, *F*~ST~ and *d*~XY~ to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.
+How can we investigate this? The easiest thing to do is to plot $\pi$, *F*~ST~ and *d*~XY~ to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.
 
 First, let's get the data we are interested in:
 
@@ -414,7 +409,7 @@ To keep things simple, we've thrown everything out we don't need. Next, we need 
 
 
 ```r
-# use gather to rearrange everything
+# use pivot_longer to rearrange everything
 hs_g <- pivot_longer(hs, -mid, names_to = "stat", values_to = "value")
 ```
 
@@ -431,7 +426,9 @@ a + theme_light()
 
 <img src="Exercise8_files/figure-html/unnamed-chunk-33-1.png" width="768" />
 
-OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.
+OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.[^exercise8-5]
+
+
 
 
 ```r
@@ -444,26 +441,28 @@ a + theme_light() + theme(legend.position = "none")
 
 <img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" width="768" />
 
-However, before we examine our plot in detail, it would also be easier if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
+[^exercise8-5]:
 
-
-```r
-new_order <- c("house_spanish_fst", "house_pi", "spanish_pi", "house_spanish_dxy")
-hs_g$stat <- fct_relevel(hs_g$stat, new_order)
-```
-
-We can now replot our figure with the new order:
-
-
-```r
-# construct a plot with facets
-a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
-a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
-a <- a + xlab("Position (Mb)")
-a + theme_light() + theme(legend.position = "none")
-```
-
-<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" />
+    In this case, the plot might be easier to interpret if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
+    
+    
+    ```r
+    new_order <- c("house_spanish_fst", "house_pi", "spanish_pi", "house_spanish_dxy")
+    hs_g$stat <- fct_relevel(hs_g$stat, new_order)
+    ```
+    
+    We can now replot our figure with the new order:
+    
+    
+    ```r
+    # construct a plot with facets
+    a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+    a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
+    a <- a + xlab("Position (Mb)")
+    a + theme_light() + theme(legend.position = "none")
+    ```
+    
+    <img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" />
 
 Examining the plot we created, it is pretty clear that the large peak in *F*~ST~ on our chromosome is matched by two regions of low nucleotide diversity in the house and Spanish sparrow, *d*~XY~ is also very low in the same region.
 

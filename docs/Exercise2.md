@@ -45,7 +45,7 @@ The tidyverse packages can do more or less exactly the same as base R. The diffe
 
 -   `select()` select columns from your data
 -   `filter()` filters rows based on certain criteria
--   `mutate()` creates new columns (often based on the old ones)
+-   `mutate()` creates new columns (not gone through in this tutorial, but included in this list for completeness)
 -   `group_by()` creates groups for summarizing data
 -   `summarise()` summarises data based on the groups you have created
 
@@ -290,59 +290,6 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 ```
 :::
 
-### Creating new columns with `mutate()`
-
-Last week you learned that you can create new columns of a data frame with `$`:
-
-
-```r
-# create a new column
-starwars$mass_per_cm <- starwars$mass / starwars$height
-
-# select columns for printing
-starwars %>% select(name, mass_per_cm)
-#> # A tibble: 87 x 2
-#>    name               mass_per_cm
-#>    <chr>                    <dbl>
-#>  1 Luke Skywalker           0.448
-#>  2 C-3PO                    0.449
-#>  3 R2-D2                    0.333
-#>  4 Darth Vader              0.673
-#>  5 Leia Organa              0.327
-#>  6 Owen Lars                0.674
-#>  7 Beru Whitesun lars       0.455
-#>  8 R5-D4                    0.330
-#>  9 Biggs Darklighter        0.459
-#> 10 Obi-Wan Kenobi           0.423
-#> # ... with 77 more rows
-```
-
-Again, `dplyr` has a verb to do the same thing, called `mutate()`. The same operation as above using `mutate()` looks like this:
-
-
-```r
-# create new column and select columns
-starwars %>% mutate(mass_per_cm = mass/height) %>%
-  select(name, mass_per_cm)
-#> # A tibble: 87 x 2
-#>    name               mass_per_cm
-#>    <chr>                    <dbl>
-#>  1 Luke Skywalker           0.448
-#>  2 C-3PO                    0.449
-#>  3 R2-D2                    0.333
-#>  4 Darth Vader              0.673
-#>  5 Leia Organa              0.327
-#>  6 Owen Lars                0.674
-#>  7 Beru Whitesun lars       0.455
-#>  8 R5-D4                    0.330
-#>  9 Biggs Darklighter        0.459
-#> 10 Obi-Wan Kenobi           0.423
-#> # ... with 77 more rows
-```
-
-Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write `starwars$` in front of all your columns. Like you've previously encountered with `data.frame()`, you can choose what to name the arguments of `mutate()`, and these names become your column names.
-
-Another thing to note is that the above pipeline with `mutate()` doesn't store the new column `mass_per_cm`. For that you need to use the assignment arrow and create a new object, e.g. `starwars2 <- starwars %>% mutate(...)`. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them.
 
 ### Grouped summaries with `group_by()` and `summarise()`
 
@@ -359,7 +306,7 @@ But what if you want to calculate the mean height separately for e.g. the differ
 
 ```r
 starwars %>% group_by(species)
-#> # A tibble: 87 x 15
+#> # A tibble: 87 x 14
 #> # Groups:   species [38]
 #>    name  height  mass hair_color skin_color eye_color birth_year sex   gender
 #>    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
@@ -373,8 +320,8 @@ starwars %>% group_by(species)
 #>  8 R5-D4     97    32 <NA>       white, red red             NA   none  mascu~
 #>  9 Bigg~    183    84 black      light      brown           24   male  mascu~
 #> 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
-#> # ... with 77 more rows, and 6 more variables: homeworld <chr>, species <chr>,
-#> #   films <list>, vehicles <list>, starships <list>, mass_per_cm <dbl>
+#> # ... with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+#> #   films <list>, vehicles <list>, starships <list>
 ```
 
 Notice that nothing has changed in the data, but at the top you can see the text `# Groups:   species [38]`, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of `group_by()` is together with `summarise()`, which does a summary based on the groups you've created:
@@ -400,7 +347,7 @@ starwars %>%
 #> # ... with 28 more rows
 ```
 
-Note how again, like in `data.frame` and `mutate()`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
+Note how again, like in `data.frame`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
 
 
 ```r
@@ -579,7 +526,7 @@ First, we try supplying our data, `starwars`. The data is provided as an argumen
 ggplot(data = starwars)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 As you can see, this results in a completely empty plot (because, like I said, we need two more things).
 
@@ -592,7 +539,7 @@ The variables are provided to the `mapping` argument of `ggplot()`. For reasons 
 ggplot(data = starwars, mapping = aes(x = height, y = mass))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 Now we're getting somewhere! We have axes now, but we're still missing our points. Time to add the geometry.
 
@@ -605,7 +552,7 @@ The geometry of a ggplot aren't provided to the `ggplot()` function as arguments
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 Wohoo, we now have the plot we set out to make! There's an obvious outlier in the `mass` department, which we'll deal with later.
 
@@ -618,7 +565,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_smooth()  #add regression line
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
 We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.[^exercise2-6] Notice how we can have line breaks in our code after the `+`, the plot still executes.
 
@@ -635,7 +582,7 @@ We could keep adding layers like this forever, as long as we felt we had some me
       geom_smooth()
     ```
     
-    <img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+    <img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 
     I know, I know, I did say "meaningful"
 
@@ -687,7 +634,7 @@ starwars2 <- starwars %>% filter(mass < 1000)
 ggplot(data = starwars2, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 :::
 
 ### Storing ggplots in objects
@@ -700,7 +647,7 @@ sw_plot <- ggplot(data = starwars2, mapping = aes(x = height, y = mass))
 sw_plot
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 We can now use this object as a base, and make different plots by adding `geom`s:
 
@@ -711,21 +658,21 @@ We can now use this object as a base, and make different plots by adding `geom`s
 sw_plot + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 ```r
 # plot with line
 sw_plot + geom_line()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-37-2.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-35-2.png" width="672" />
 
 ```r
 # plot with regression line
 sw_plot + geom_smooth()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-37-3.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-35-3.png" width="672" />
 :::
 
 If you plan to make several plots with the same data and variables, you should save the basic plot to an object to avoid repeating yourself.
@@ -750,7 +697,7 @@ sw_pts_ln <- sw_plot +
 sw_pts_ln
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 Adding title and labels can be done by adding a separate function, `labs()`. `labs()` has, among others, the arguments `x`, `y`, `title` and `subtitle`, doing exactly what you would expect:[^exercise2-7]
 
@@ -767,7 +714,7 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
            subtitle = "A part of the BIOS1140 ggplot tutorial")
     ```
     
-    <img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="672" />
+    <img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 
 ```r
@@ -778,7 +725,7 @@ sw_pts_ln +
        subtitle = "A part of the BIOS1140 ggplot tutorial")
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="672" />
 
 #### Mapping variables to colors, shapes etc.
 
@@ -790,7 +737,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, col = species)) +
   geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="864" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="864" />
 
 One important thing to note here is that your variable has to be within `aes()` in your plot. Note that **variable names do not need quotes**. It's easy to get confused about when to put something inside `aes()` and not, but the general rule is:
 
@@ -809,7 +756,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, pch = sex, lty = se
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 If you e.g. want to group your points by `sex`, but you don't want that same grouping for your lines, you can use the `mapping` argument of your `geom` instead:
 
@@ -820,7 +767,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-43-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
 ::: {.green}
 **Important concept:**\
@@ -849,7 +796,7 @@ ggplot(data = starwars, mapping = aes(x = birth_year, y = height)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-44-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
 :::
 
 ::: {.blue}
@@ -885,7 +832,7 @@ Let's say you have some biological data (finally, wohoo!), and want to plot it u
 
 <div class="figure">
 <img src="figs/long_wide.PNG" alt="Data in &quot;wide format&quot; (left) and &quot;long format&quot; (right)" width="843" />
-<p class="caption">(\#fig:unnamed-chunk-46)Data in "wide format" (left) and "long format" (right)</p>
+<p class="caption">(\#fig:unnamed-chunk-44)Data in "wide format" (left) and "long format" (right)</p>
 </div>
 
 These two formats are commonly referred to as "wide" and "long" respectively. If you want to make some plot that is e.g. colored by species in this data, **the data needs to be in long format**, i.e. the variable you are grouping by has to be contained in a single column. Data can be converted from wide to long using the tidyverse function `pivot_longer()`.
@@ -1011,37 +958,37 @@ depthplot <- ggplot(copepods_long, aes(depth, count, col = species))
 depthplot + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-1.png" width="672" />
 
 ```r
 depthplot + geom_jitter()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-2.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-2.png" width="672" />
 
 ```r
 depthplot + geom_col(aes(fill = species))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-3.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-3.png" width="672" />
 
 ```r
 depthplot + geom_boxplot()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-4.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-4.png" width="672" />
 
 ```r
 depthplot + geom_line()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-5.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-5.png" width="672" />
 
 ```r
 depthplot + geom_area(aes(fill = species))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-52-6.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-6.png" width="672" />
 
 I'm settling on `geom_area()` since it nicely shows both total abundance and the relationship between the taxa (plus, it looks cool). Some additional tricks I do: flip the coordinates with `coord_flip()` to get depth on the y-axis, and plotting `-depth` instead of `depth` to plot depth downwards. I do this because it is how depth data is usually shown in marine biology, and because I wanted to show you that there are lots of options on customising plots that you will encounter as you learn more about ggplot.
 
@@ -1058,7 +1005,7 @@ copeplot <- ggplot(copepods_long, aes(-depth, count)) +
 copeplot
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-53-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-51-1.png" width="672" />
 
 </details>
 

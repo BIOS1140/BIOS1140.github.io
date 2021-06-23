@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.2 Performing a QTL analysis in bedbugs | R tutorials in BIOS1140</title>
+  <title>6.2 Performing a QTL analysis in bedbugs | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.2 Performing a QTL analysis in bedbugs | R tutorials in BIOS1140" />
+  <meta property="og:title" content="6.2 Performing a QTL analysis in bedbugs | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.2 Performing a QTL analysis in bedbugs | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="6.2 Performing a QTL analysis in bedbugs | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="tools-for-investigating-differences-between-groups.html"/>
 <link rel="next" href="study-questions-4.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -436,10 +441,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First we need to download the data, which is <a href="https://bios1140.github.io/data/bedbugs_cross_data.csv">here</a></p>
 <p>Since we loaded the <code>qtl</code> package at the start of the tutorial, we can now read in the data using the <code>read.cross()</code> function.</p>
 <div class="yellow">
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-1" aria-hidden="true" tabindex="-1"></a>bedbugs <span class="ot">&lt;-</span> <span class="fu">read.cross</span>(<span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">dir =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb272-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file =</span> <span class="st">&quot;./bedbugs_cross_data.csv&quot;</span>, </span>
-<span id="cb272-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">genotypes =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>), </span>
-<span id="cb272-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">estimate.map =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb267-1" aria-hidden="true" tabindex="-1"></a>bedbugs <span class="ot">&lt;-</span> <span class="fu">read.cross</span>(<span class="at">format =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">dir =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb267-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb267-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">file =</span> <span class="st">&quot;./bedbugs_cross_data.csv&quot;</span>, </span>
+<span id="cb267-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb267-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">genotypes =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>), </span>
+<span id="cb267-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb267-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">estimate.map =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
 <p>When you run this command, you will see that we read in the data from 71 individuals and 334 markers. Strangely, there are only two phenotypes here. This isn’t right, there should be three (susceptible, partially resistant, resistant), so we will need to correct this later. As mentioned in the introduction, the specifics of the functions in the <code>qtl</code> package, like <code>read.cross()</code>, are not that important at this point, but see the footnotes for some details.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a></p>
 <p>Try typing in <code>bedbugs</code> to see what you get in the R console. You’ll see a lot of summary information on the cross object we created when we red in the data. Again, it says there are only 2 phenotypes…</p>
@@ -447,45 +452,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="correcting-the-phenotypes" class="section level4" number="6.2.1.2">
 <h4><span class="header-section-number">6.2.1.2</span> Correcting the phenotypes</h4>
 <p>So, we need to correct the phenotypes. Let’s first take a look at what is stored so far. The stucture of <code>bedbugs</code> is rather complex, but we can look at the stored values with <code>$</code>, as we would for a data frame.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the phenotypes</span></span>
-<span id="cb273-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-2" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno</span></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the phenotypes</span></span>
+<span id="cb268-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb268-2" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno</span></code></pre></div>
 <p>Aha, the reason R says there are 2 phenotypes is because there are two columns in the phenotype data.frame - one called <code>id</code> and the other called <code>res</code>.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> This second variable is the resistance (i.e. S = susceptible, PR = partially resistant and R = resistant). We can extract the <code>res</code> column from <code>bedbugs$pheno</code> using <em>an additional</em> <code>$</code>, and store this to an object.</p>
-<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign resistance as an environmental variable</span></span>
-<span id="cb274-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb274-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign resistance as an environmental variable</span></span>
+<span id="cb269-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb269-2" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res</span></code></pre></div>
 </div>
 <div id="examining-the-linkage-map" class="section level4" number="6.2.1.3">
 <h4><span class="header-section-number">6.2.1.3</span> Examining the linkage map</h4>
 <p>A linkage map is the position of markers in the genome in terms of their recombination distance from one another - i.e. how many recombination events occur between them. Lets take a look at a summary of the linkage map. Note that sometimes, a linkage map is also referred to as a <strong>genetic map</strong>.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># examing the bedbug linkage map</span></span>
-<span id="cb275-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summaryMap</span>(bedbugs)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># examing the bedbug linkage map</span></span>
+<span id="cb270-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summaryMap</span>(bedbugs)</span></code></pre></div>
 <p>This returns a <code>data.frame</code> where each row is a linkage group. A linkage group is all the genes on one chromosome - so each row here is one chromosome. The four columns are:</p>
 <p><em><code>n.mar</code> - the number of markers</em> <code>length</code> - the length of the linkage group in centimorgans (see below) <em><code>ave.spacing</code> - the average spacing between markers (in centimorgans)</em> <code>max.spacing</code> - the maximum spacing between markers (in centimorgans)</p>
 <p>We can see that that the 334 markers are spread across 14 linkage groups. Spacing of markers here is shown in <strong>centimorgans</strong> and the total length of the linkage map is 407 cM. Recall that a single centimorgan represents the probability that of 0.01 that a recombination event in one generation. Alternatively you could think of it as one recombination event every 100 generations.</p>
 <p>Next we can take a look at the linkage map itself.</p>
-<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMap</span>(bedbugs, <span class="at">show.marker.names =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Bedbug linkage map&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotMap</span>(bedbugs, <span class="at">show.marker.names =</span> <span class="cn">FALSE</span>, <span class="at">main =</span> <span class="st">&quot;Bedbug linkage map&quot;</span>)</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/plot_map-1.png" width="672" /></p>
 <p>This is a visualisation of the data from the summary table - i.e. it is the spacing and distribution of markers. There are 14 groups and we see the markers laid out on each of them. The further apart the markers are, the greater the probability that there will be a recombination event between them.</p>
 </div>
 <div id="performing-a-qtl-analysis" class="section level4" number="6.2.1.4">
 <h4><span class="header-section-number">6.2.1.4</span> Performing a QTL analysis</h4>
 <p>With the linkage map in place, we can now attempt to actually map out pesticide resistance. Let’s take a look at the distribution of phenotypes.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a data.frame of the phenotype data</span></span>
-<span id="cb277-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-2" aria-hidden="true" tabindex="-1"></a>pheno <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(res)</span>
-<span id="cb277-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pheno, <span class="fu">aes</span>(res)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># make a data.frame of the phenotype data</span></span>
+<span id="cb272-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-2" aria-hidden="true" tabindex="-1"></a>pheno <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(res)</span>
+<span id="cb272-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pheno, <span class="fu">aes</span>(res)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/examine_pheno-1.png" width="672" /></p>
 <p>You can see from this that majority of the F2 generation were susceptible to pyrethroid and that only a small number were partially resistant. When we perform a QTL mapping experiment, we are essentially looking for the genome region that can describe the greatest percentage of the variance in this phenotypic distribution.</p>
 <p>Before beginning mapping, we need to perform one quick fiddle with our code. <code>qtl</code> requires that the phenotype is encoded as a number, so we use the following command to change our resistance coding to numbers.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to numeric data</span></span>
-<span id="cb278-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb278-2" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(res)</span>
-<span id="cb278-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb278-3" aria-hidden="true" tabindex="-1"></a><span class="co"># examine the results</span></span>
-<span id="cb278-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb278-4" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert to numeric data</span></span>
+<span id="cb273-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-2" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(res)</span>
+<span id="cb273-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="co"># examine the results</span></span>
+<span id="cb273-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb273-4" aria-hidden="true" tabindex="-1"></a>bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res</span></code></pre></div>
 <p>We’re now good to go! To perform the analysis, we will use the <code>scanone</code> function like so:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb279-1" aria-hidden="true" tabindex="-1"></a>bedbugs_scan <span class="ot">&lt;-</span> <span class="fu">scanone</span>(bedbugs, <span class="at">pheno.col =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb274-1" aria-hidden="true" tabindex="-1"></a>bedbugs_scan <span class="ot">&lt;-</span> <span class="fu">scanone</span>(bedbugs, <span class="at">pheno.col =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p>You might see a warning here, but don’t worry too much about that since we are only looking at a simple example. So what exactly have we just done? Using the <code>scanone</code> function, we ran a QTL analysis across the entire set of markers and looked for an association between the genotypes at a marker and the phenotype. This is more or less an ANOVA, but we will return to that shortly. For now, let’s take a closer look at the results:</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bedbugs_scan, <span class="at">threshold =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(bedbugs_scan, <span class="at">threshold =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p>Calling <code>summary</code> on the scan object shows us a single marker on linkage group 12 (referred to a chromsome here) at 21.9 cM may be a QTL. It also returns something called a <code>lod</code> - this is a LOD score and for this marker it is 6.84. Side note: The <code>threshold = 3</code> argument told R to only show markers with a LOD score of more than 3. Try removing the argument and see what happens!</p>
 <p>Let’s plot the LOD distribution to get a better idea of what is going on.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bedbugs_scan, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bedbugs_scan, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/plot_scan-1.png" width="672" /></p>
 <p>You can see quite clearly that whatever the LOD is, it is much higher on linkage group 12 and this peak focuses right where our marker is. This suggests a strong association between genotypes here and the phenotype in question.</p>
 <div class="blue">
@@ -501,30 +506,30 @@ It is beyond the scope of the tutorial to go in to too much detail about this, b
 <h4><span class="header-section-number">6.2.2.1</span> Exploring the phenotype-genotype association</h4>
 <p>A good way to summarise this data is to see it in a table. The following code summarises the association between different geno- and phenotypes for our locus. <a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a></p>
 <div class="yellow">
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pheno - 1 is partially resistant, 2 is resistant, 3 is susceptible</span></span>
-<span id="cb282-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-2" aria-hidden="true" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;partial resistance&quot;</span>, <span class="st">&quot;resistant&quot;</span>, <span class="st">&quot;susceptible&quot;</span>))</span>
-<span id="cb282-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-3" aria-hidden="true" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(phenotype, <span class="st">&quot;susceptible&quot;</span>)</span>
-<span id="cb282-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-5"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-5" aria-hidden="true" tabindex="-1"></a>pheno_geno <span class="ot">&lt;-</span> <span class="fu">plotPXG</span>(bedbugs, <span class="at">pheno.col =</span> <span class="dv">2</span>, <span class="st">&quot;r449_NW_014465016&quot;</span>)</span>
-<span id="cb282-6"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-6" aria-hidden="true" tabindex="-1"></a><span class="co"># geno - 1 is AA, 2 is AB, 3 is BB</span></span>
-<span id="cb282-7"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-7" aria-hidden="true" tabindex="-1"></a>qtl_marker <span class="ot">&lt;-</span> <span class="fu">factor</span>(pheno_geno<span class="sc">$</span>r449_NW_014465016, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
-<span id="cb282-8"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-8" aria-hidden="true" tabindex="-1"></a><span class="co"># make into a data frame</span></span>
-<span id="cb282-9"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-9" aria-hidden="true" tabindex="-1"></a>qtl_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phenotype, qtl_marker)</span>
-<span id="cb282-10"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-10" aria-hidden="true" tabindex="-1"></a><span class="co"># summary table</span></span>
-<span id="cb282-11"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb282-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qtl_df)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pheno - 1 is partially resistant, 2 is resistant, 3 is susceptible</span></span>
+<span id="cb277-2"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-2" aria-hidden="true" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">factor</span>(bedbugs<span class="sc">$</span>pheno<span class="sc">$</span>res, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;partial resistance&quot;</span>, <span class="st">&quot;resistant&quot;</span>, <span class="st">&quot;susceptible&quot;</span>))</span>
+<span id="cb277-3"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-3" aria-hidden="true" tabindex="-1"></a>phenotype <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(phenotype, <span class="st">&quot;susceptible&quot;</span>)</span>
+<span id="cb277-4"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb277-5"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-5" aria-hidden="true" tabindex="-1"></a>pheno_geno <span class="ot">&lt;-</span> <span class="fu">plotPXG</span>(bedbugs, <span class="at">pheno.col =</span> <span class="dv">2</span>, <span class="st">&quot;r449_NW_014465016&quot;</span>)</span>
+<span id="cb277-6"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="co"># geno - 1 is AA, 2 is AB, 3 is BB</span></span>
+<span id="cb277-7"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-7" aria-hidden="true" tabindex="-1"></a>qtl_marker <span class="ot">&lt;-</span> <span class="fu">factor</span>(pheno_geno<span class="sc">$</span>r449_NW_014465016, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;AA&quot;</span>, <span class="st">&quot;AB&quot;</span>, <span class="st">&quot;BB&quot;</span>))</span>
+<span id="cb277-8"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-8" aria-hidden="true" tabindex="-1"></a><span class="co"># make into a data frame</span></span>
+<span id="cb277-9"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-9" aria-hidden="true" tabindex="-1"></a>qtl_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(phenotype, qtl_marker)</span>
+<span id="cb277-10"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-10" aria-hidden="true" tabindex="-1"></a><span class="co"># summary table</span></span>
+<span id="cb277-11"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb277-11" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(qtl_df)</span></code></pre></div>
 </div>
 <p>Now we have a table where we can see the numbers of each resistance phenotype for each genotype. It is fairly clear from this table and the figure if a bedbug has an A allele at this locus, it is more likely to be susceptible to the pesticide. In contrast, most BB individuals are resistant.</p>
 <p>Visualising this data can also be useful to see the associations. I have attempted a couple of different ones, but there is no single best way to do this. See if you can come up with a better one yourself!</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, qtl_marker)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, qtl_marker)) <span class="sc">+</span> <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.2</span>, <span class="at">width =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, <span class="at">fill =</span> qtl_marker)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(qtl_df, <span class="fu">aes</span>(phenotype, <span class="at">fill =</span> qtl_marker)) <span class="sc">+</span> <span class="fu">geom_bar</span>()</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
 </div>
 </div>
 <div id="testing-the-same-genotype-phenotype-association-with-anova" class="section level3" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> Testing the same genotype phenotype association with ANOVA</h3>
 <p>Last but not least, we can test the same association with ANOVA. This part will be left for you to do in the assignment. To get you started, the data can be found <a href="https://BIOS1140.github.io/data/qtl_markers.tsv">here</a>, and you can read it into R with the following code:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb285-1" aria-hidden="true" tabindex="-1"></a>qtl_markers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_markers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="performing-a-qtl-analysis-in-bedbugs.html#cb280-1" aria-hidden="true" tabindex="-1"></a>qtl_markers <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;qtl_markers.tsv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>More details on the data can be found in <a href="w06.html#w06">Week 6 assignment</a>. Good luck!</p>
 </div>
 </div>

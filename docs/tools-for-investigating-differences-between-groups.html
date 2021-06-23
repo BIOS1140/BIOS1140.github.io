@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.1 Tools for investigating differences between groups | R tutorials in BIOS1140</title>
+  <title>6.1 Tools for investigating differences between groups | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.1 Tools for investigating differences between groups | R tutorials in BIOS1140" />
+  <meta property="og:title" content="6.1 Tools for investigating differences between groups | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.1 Tools for investigating differences between groups | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="6.1 Tools for investigating differences between groups | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="ch06.html"/>
 <link rel="next" href="performing-a-qtl-analysis-in-bedbugs.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -429,37 +434,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="exploring-group-differences" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Exploring group differences</h3>
 <p>For this section, we will use the <code>iris</code> data set, which is built in with your R installation. The data are already in R, so you can look at it by running:</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="tools-for-investigating-differences-between-groups.html#cb262-1" aria-hidden="true" tabindex="-1"></a>iris</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="tools-for-investigating-differences-between-groups.html#cb257-1" aria-hidden="true" tabindex="-1"></a>iris</span></code></pre></div>
 <p>Take a look at the <code>iris</code> dataset. The data frame contains four measurements (<code>Sepal.Length</code>, <code>Sepal.Width</code>, <code>Petal.Length</code> and <code>Petal.Width</code>) and also a fifth column, <code>Species</code> which lets us know the species for each observation. For our investigation, we will use species as a grouping (as it’s the only group present in the data).</p>
 <div id="investigating-with-dplyr" class="section level4" number="6.1.1.1">
 <h4><span class="header-section-number">6.1.1.1</span> Investigating with dplyr</h4>
 <p>A great tool for working with groups is (perhaps unsurprisingly) the <code>group_by()</code> function in <code>dplyr</code> that you learned about in the second week of this course. We can for example count the number of observations of each species with <code>group_by()</code> and <code>tally()</code>:</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tools-for-investigating-differences-between-groups.html#cb263-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb263-2"><a href="tools-for-investigating-differences-between-groups.html#cb263-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
-<span id="cb263-3"><a href="tools-for-investigating-differences-between-groups.html#cb263-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
-<span id="cb263-4"><a href="tools-for-investigating-differences-between-groups.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 x 2</span></span>
-<span id="cb263-5"><a href="tools-for-investigating-differences-between-groups.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Species        n</span></span>
-<span id="cb263-6"><a href="tools-for-investigating-differences-between-groups.html#cb263-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;</span></span>
-<span id="cb263-7"><a href="tools-for-investigating-differences-between-groups.html#cb263-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 setosa        50</span></span>
-<span id="cb263-8"><a href="tools-for-investigating-differences-between-groups.html#cb263-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor    50</span></span>
-<span id="cb263-9"><a href="tools-for-investigating-differences-between-groups.html#cb263-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 virginica     50</span></span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="tools-for-investigating-differences-between-groups.html#cb258-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb258-2"><a href="tools-for-investigating-differences-between-groups.html#cb258-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb258-3"><a href="tools-for-investigating-differences-between-groups.html#cb258-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tally</span>()</span>
+<span id="cb258-4"><a href="tools-for-investigating-differences-between-groups.html#cb258-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 x 2</span></span>
+<span id="cb258-5"><a href="tools-for-investigating-differences-between-groups.html#cb258-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Species        n</span></span>
+<span id="cb258-6"><a href="tools-for-investigating-differences-between-groups.html#cb258-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;      &lt;int&gt;</span></span>
+<span id="cb258-7"><a href="tools-for-investigating-differences-between-groups.html#cb258-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 setosa        50</span></span>
+<span id="cb258-8"><a href="tools-for-investigating-differences-between-groups.html#cb258-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor    50</span></span>
+<span id="cb258-9"><a href="tools-for-investigating-differences-between-groups.html#cb258-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 virginica     50</span></span></code></pre></div>
 <p>We can see that we have 50 observations of each species. As you may remember, <code>group_by()</code> can also be used together with <code>summarise()</code> to produce grouped summaries. Say we want to find the mean petal length of each group, we can run:</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tools-for-investigating-differences-between-groups.html#cb264-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
-<span id="cb264-2"><a href="tools-for-investigating-differences-between-groups.html#cb264-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
-<span id="cb264-3"><a href="tools-for-investigating-differences-between-groups.html#cb264-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_petal_length =</span> <span class="fu">mean</span>(Petal.Length))</span>
-<span id="cb264-4"><a href="tools-for-investigating-differences-between-groups.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 x 2</span></span>
-<span id="cb264-5"><a href="tools-for-investigating-differences-between-groups.html#cb264-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Species    mean_petal_length</span></span>
-<span id="cb264-6"><a href="tools-for-investigating-differences-between-groups.html#cb264-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                  &lt;dbl&gt;</span></span>
-<span id="cb264-7"><a href="tools-for-investigating-differences-between-groups.html#cb264-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 setosa                  1.46</span></span>
-<span id="cb264-8"><a href="tools-for-investigating-differences-between-groups.html#cb264-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor              4.26</span></span>
-<span id="cb264-9"><a href="tools-for-investigating-differences-between-groups.html#cb264-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 virginica               5.55</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="tools-for-investigating-differences-between-groups.html#cb259-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">%&gt;%</span></span>
+<span id="cb259-2"><a href="tools-for-investigating-differences-between-groups.html#cb259-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(Species) <span class="sc">%&gt;%</span></span>
+<span id="cb259-3"><a href="tools-for-investigating-differences-between-groups.html#cb259-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_petal_length =</span> <span class="fu">mean</span>(Petal.Length))</span>
+<span id="cb259-4"><a href="tools-for-investigating-differences-between-groups.html#cb259-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 x 2</span></span>
+<span id="cb259-5"><a href="tools-for-investigating-differences-between-groups.html#cb259-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   Species    mean_petal_length</span></span>
+<span id="cb259-6"><a href="tools-for-investigating-differences-between-groups.html#cb259-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;fct&gt;                  &lt;dbl&gt;</span></span>
+<span id="cb259-7"><a href="tools-for-investigating-differences-between-groups.html#cb259-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 setosa                  1.46</span></span>
+<span id="cb259-8"><a href="tools-for-investigating-differences-between-groups.html#cb259-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2 versicolor              4.26</span></span>
+<span id="cb259-9"><a href="tools-for-investigating-differences-between-groups.html#cb259-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3 virginica               5.55</span></span></code></pre></div>
 <p>There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>.</p>
 </div>
 <div id="visualising-differences" class="section level4" number="6.1.1.2">
 <h4><span class="header-section-number">6.1.1.2</span> Visualising differences</h4>
 <p>Looking at numbers like we did above is well and good, but good visualisations can often tell you more than summary statistics. A good way of visualising group differences is with a boxplot. This can be plotted in ggplot by adding <code>geom_boxplot()</code>:</p>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tools-for-investigating-differences-between-groups.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Species, Petal.Length)) <span class="sc">+</span></span>
-<span id="cb266-2"><a href="tools-for-investigating-differences-between-groups.html#cb266-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="tools-for-investigating-differences-between-groups.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Species, Petal.Length)) <span class="sc">+</span></span>
+<span id="cb261-2"><a href="tools-for-investigating-differences-between-groups.html#cb261-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <p>A boxplot can be a bit difficult to read if you’ve never seen one before, but here are the key features:</p>
 <ul>
@@ -481,10 +486,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">6.1.2.2</span> Using ANOVA to test for differences between groups</h4>
 <p>We can see from our boxplot that there appears to be some difference in petal length between species. Using ANOVA, we can formally test this. ANOVA is essentially a way to test whether the <strong>means</strong> of different groups are equal. Another way of putting it is that we’re testing if the variation <strong>between groups</strong> is larger than variation <strong>within groups</strong>.</p>
 <p>To conduct an ANOVA in R, we will use the function <code>aov()</code> to create an object we will call <code>model</code>:</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="tools-for-investigating-differences-between-groups.html#cb268-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="tools-for-investigating-differences-between-groups.html#cb263-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">aov</span>(Petal.Length <span class="sc">~</span> Species, <span class="at">data =</span> iris)</span></code></pre></div>
 <p>Above, we used a formula as our first argument <code>Petal.Length ~ Species</code><a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a>. This is essentially like saying, “How does petal length vary with species”? This part of our argument to <code>aov</code> specifies what we are actually testing. We also added <code>data = iris</code> to specify that we are using the <code>iris</code> data for this calculation.</p>
 <p>Next we can examine the output of our model, to get an understanding of what it shows. To do this, we need to use a special function, <code>summary()</code>:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="tools-for-investigating-differences-between-groups.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="tools-for-investigating-differences-between-groups.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(model)</span></code></pre></div>
 <p>By using <code>summary</code>, we return an ANOVA table. The first row of the table is for <code>Species</code>. The two last values in this row are an <strong>F</strong> statistic and a <strong>p-value</strong>. We will return to what the F statistic actually means in a short while.</p>
 <p>Let’s focus instead on the <em>p</em>-value. This is essentially a way of determining whether the results we see could be explained by chance. It is a test of <strong>significance</strong> — we did something similar with the Chi-squared test back in Chapter 3. In the biological sciences, we have an arbitrary cutoff for a <em>p</em>-value, set at 0.05. If our <em>p</em>-value is lower than this, then we can say that our dependent variable is significantly different among the groups.</p>
 <p>Here we can see that our <em>p</em>-value is small—less than 2 x 10<sup>-16</sup>—which tells us that petal length is <strong>signficiantly different</strong> between species. The asterisks after the <em>p</em> value are also there to tell us this - <code>***</code> simply means that our <em>p</em>-value is close to zero.</p>
@@ -492,13 +497,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="anova-and-the-proportion-of-variance-explained" class="section level4" number="6.1.2.3">
 <h4><span class="header-section-number">6.1.2.3</span> ANOVA and the proportion of variance explained</h4>
 <p>So far, we have learned about ANOVA in it’s simplest form - i.e. to test for differences among means. But this is not the only way we can think about it and the clue is in the name - it analyses <strong>variance</strong>. What do we mean by this? To illustrate it, let’s have a look at the <strong>total</strong> distribution of <code>Petal.Length</code> from the <code>iris</code> data. We can do this using a histogram (with <code>geom_histogram()</code><a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a>).</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="tools-for-investigating-differences-between-groups.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Petal.Length)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="tools-for-investigating-differences-between-groups.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Petal.Length)) <span class="sc">+</span> <span class="fu">geom_histogram</span>()</span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>So, this time we are visualising petal length for all species grouped as one. Imagine for a moment you <strong>didn’t know</strong> that we have three species in our dataset. It is pretty obvious from this plot that there is a lot variation in petal length - there appear to be at least two and maybe three peaks in the data.</p>
 <p>What might explain why there is so much variation? Well of course, we know there are actually three species included in these measurements. So, if we split our dataset into different species, can that <strong>explain the variance we observe</strong>? This is another way to think of ANOVA - as way of measuring the variance explained by how we split up the dataset.</p>
 <p>So this brings us back to the <strong>F</strong> statistic. It is essentially a ratio of the variance explained by our grouping to the variance that occurs within each of them. One way to think of this is that the higher the value of <em>F</em>, the more likely our grouping explains a significant proportion of the variance in our data.</p>
 <p>What if we want to actually measure how much variance our grouping (species here) actually explains. Luckily, this is very straightforward. We can look at a slightly different output from the <code>model</code> object we created earlier by using the function <code>summary.lm()</code>.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="tools-for-investigating-differences-between-groups.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(model)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="tools-for-investigating-differences-between-groups.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary.lm</span>(model)</span></code></pre></div>
 <p>There is a lot of information here! However, you should focus on the last two lines of the output. On the very last line, you will see the <em>F</em> statistic and <em>p</em>-value from when we called <code>summary(model)</code>. Above that are two values of another statistic called the <strong>R-squared</strong> or <em>R</em><sup>2</sup>.</p>
 <p>Our <em>R</em><sup>2</sup> is 0.94 which essentially means that by grouping our data by species, we explain 94% of the variance in petal length. So clearly, species has a very important role in explaining the morphological differences in our data. One biological explanation for this is that genetic basis for petal length might be different between the species. We will see in the next section how we can apply a more advanced version of ANOVA to actually determine the genetic basis of a trait.</p>
 </div>
@@ -508,9 +513,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <hr />
 <ol start="23">
 <li id="fn23"><p>Remember that in <code>ggplot2</code>, we can add more layers of geometry if we want to add information to our visualisation. Below, I’ve added points to the boxplot to show that half of the points are indeed located within the boundaries of the box.</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Species, Petal.Length)) <span class="sc">+</span></span>
-<span id="cb267-2"><a href="#cb267-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb267-3"><a href="#cb267-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="co"># geom_jitter to prevent points from overlapping</span></span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(iris, <span class="fu">aes</span>(Species, Petal.Length)) <span class="sc">+</span></span>
+<span id="cb262-2"><a href="#cb262-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb262-3"><a href="#cb262-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>() <span class="co"># geom_jitter to prevent points from overlapping</span></span></code></pre></div>
 <p><img src="Exercise6_files/figure-html/unnamed-chunk-9-1.png" width="672" /><a href="tools-for-investigating-differences-between-groups.html#fnref23" class="footnote-back">↩︎</a></p></li>
 <li id="fn24"><p>Like in Section 2.2 in week 3, where we tested for deviations from the Hardy-Weinberg expectation with a Chi-squared test.<a href="tools-for-investigating-differences-between-groups.html#fnref24" class="footnote-back">↩︎</a></p></li>
 <li id="fn25"><p>The character <code>~</code> is called “tilde”, in case you want to google how to produce it on your keyboard. In general, the tilde can be read as “modeled by”, in this case “petal length modeled by species”.<a href="tools-for-investigating-differences-between-groups.html#fnref25" class="footnote-back">↩︎</a></p></li>

@@ -321,7 +321,7 @@ As a final point here, we might want to try and compare our two trees and see wh
 ```r
 # calculate parsimony
 parsimony(hom_upgma, hominidae)
-parsimony(hom_nj, hominidae)
+parsimony(hom_nj_r, hominidae)
 ```
 
 For the `parsimony` function, the first argument is the tree, the second is the data. Here we can see that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here. 
@@ -334,7 +334,7 @@ If you test the parsimony score for the rooted and the unrooted NJ tree, you wil
 <script src="js/hideOutput.js"></script>
 
 
-Examining population structure can give us a great deal of insight into the history and origin of populations. Model-free methods for examining population structure and ancestry, such as [**principal components analysis**](https://en.wikipedia.org/wiki/Principal_component_analysis) are extremely popular in population genomic research. This is because it is typically simple to apply and relatively easy to interpret when you have learned how. Essentially, PCA aims to identify the main axes of variation in a dataset with each axis being independent of the next (i.e. there should be no correlation between them). Here, we will do a PCA analysis, and then walk you through the interpretation of the PCA, as it can be a bit tricky to wrap your head around the first time you see it.
+Examining population structure can give us a great deal of insight into the history and origin of populations. Model-free methods for examining population structure and ancestry, such as [**principal components analysis**](https://en.wikipedia.org/wiki/Principal_component_analysis) (PCA), are extremely popular in population genomic research. This is because it is typically simple to apply and relatively easy to interpret when you have learned how. Essentially, PCA aims to identify the main axes of variation in a dataset with each axis being independent of the next (i.e. there should be no correlation between them). Here, we will do a PCA analysis, and then walk you through the interpretation of the PCA, as it can be a bit tricky to wrap your head around the first time you see it.
 
 ### Village dogs as an insight to dog domestication
 
@@ -361,19 +361,6 @@ dogs <- read.PLINK(file = "./village_subsample.raw",
 :::
 
 
-```
-#> 
-#>  Reading PLINK raw format into a genlight object... 
-#> 
-#> 
-#>  Reading loci information... 
-#> 
-#>  Reading and converting genotypes... 
-#> .
-#>  Building final object... 
-#> 
-#> ...done.
-```
 
 Running the function will create a `genlight` object - a special data structure for `adegenet`. If you call the `dogs` object, you will see some summary information and also the number of individuals and markers. As you will see, we have subsampled this data to make it more feasible to run an analysis in R.
 

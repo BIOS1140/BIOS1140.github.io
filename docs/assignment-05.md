@@ -90,6 +90,6 @@ calc_fst <- function(p_1, p_2){
 ```
 :::
 
-a)  Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might explain the $F_{ST}$ value you calculate?
+a)  Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might be a biological explanation of the $F_{ST}$ value you calculate? _Hint: think about what the LCT gene does, and the geographical patterns of lactose intolerance._
 
 b)  Using the functions we developed in the tutorial, calculate $F_{ST}$ around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the $F_{ST}$ between European Americans and East Asians. What is the highest value of $F_{ST}$? How does this compare with the highest $F_{ST}$ between European Americans and East Asians that we investigated in the tutorial?

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>9.1 Phylogenetics in R | R tutorials in BIOS1140</title>
+  <title>9.1 Phylogenetics in R | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="9.1 Phylogenetics in R | R tutorials in BIOS1140" />
+  <meta property="og:title" content="9.1 Phylogenetics in R | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,14 +16,15 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="9.1 Phylogenetics in R | R tutorials in BIOS1140" />
+  <meta name="twitter:title" content="9.1 Phylogenetics in R | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-22" />
+<meta name="date" content="2021-06-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +33,7 @@
   
 <link rel="prev" href="ch09.html"/>
 <link rel="next" href="population-structure.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -50,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -132,7 +135,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
+</ul></li>
 <li class="part"><span><b>I Introductory R course</b></span></li>
 <li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
@@ -179,9 +185,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
 <li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#creating-new-columns-with-mutate"><i class="fa fa-check"></i><b>2.2.4</b> Creating new columns with <code>mutate()</code></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.5</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
-<li class="chapter" data-level="2.2.6" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.6</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
@@ -239,8 +244,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
 <li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#directional-selection"><i class="fa fa-check"></i><b>4.2.3</b> Directional selection</a></li>
-<li class="chapter" data-level="4.2.4" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.4</b> Over and underdominance</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
 <li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
@@ -400,7 +404,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#rmarkdown-1"><i class="fa fa-check"></i>RMarkdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-7"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
@@ -414,7 +419,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials in BIOS1140</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R tutorials for the course BIOS1140 at the University of Oslo</a>
           </h1>
         </div>
 
@@ -429,29 +434,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="storing-trees-in-r" class="section level3" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Storing trees in R</h3>
 <p>The backbone of most phylogenetic analysis in R comes from the functions that are part of the <code>ape</code> package. <code>ape</code> stores trees as <code>phylo</code> objects, which are easy to access and manipulate. The easiest way to understand this is to have a look at a simple phylogeny, so we’ll create a random tree now.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="phylogenetics-in-r.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed to ensure the same tree is produced</span></span>
-<span id="cb362-2"><a href="phylogenetics-in-r.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
-<span id="cb362-3"><a href="phylogenetics-in-r.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a tree</span></span>
-<span id="cb362-4"><a href="phylogenetics-in-r.html#cb362-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">tip.label =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="phylogenetics-in-r.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed to ensure the same tree is produced</span></span>
+<span id="cb357-2"><a href="phylogenetics-in-r.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
+<span id="cb357-3"><a href="phylogenetics-in-r.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a tree</span></span>
+<span id="cb357-4"><a href="phylogenetics-in-r.html#cb357-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">4</span>, <span class="at">tip.label =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>))</span></code></pre></div>
 <p>What have we done here? First, the <code>set.seed</code> function just sets a seed for our random simulation of a tree. You won’t need to worry about this for the majority of the time, here we are using it to make sure that when we randomly create a tree, we all create the same one.</p>
 <p>What you need to focus on is the second line of code that uses the <code>rtree</code> function. This is simply a means to generate a random tree. With the <code>n = 4</code> argument, we are simply stating our tree will have four taxa and we are already specifying what they should be called with the <code>tip.label</code> argument.</p>
 <p>Let’s take a closer look at our <code>tree</code> object. It is a <code>phylo</code> object - you can demonstrate this to yourself with <code>class(tree)</code>.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="phylogenetics-in-r.html#cb363-1" aria-hidden="true" tabindex="-1"></a>tree</span>
-<span id="cb363-2"><a href="phylogenetics-in-r.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb363-3"><a href="phylogenetics-in-r.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phylogenetic tree with 4 tips and 3 internal nodes.</span></span>
-<span id="cb363-4"><a href="phylogenetics-in-r.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb363-5"><a href="phylogenetics-in-r.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tip labels:</span></span>
-<span id="cb363-6"><a href="phylogenetics-in-r.html#cb363-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   c, a, d, b</span></span>
-<span id="cb363-7"><a href="phylogenetics-in-r.html#cb363-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb363-8"><a href="phylogenetics-in-r.html#cb363-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rooted; includes branch lengths.</span></span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="phylogenetics-in-r.html#cb358-1" aria-hidden="true" tabindex="-1"></a>tree</span>
+<span id="cb358-2"><a href="phylogenetics-in-r.html#cb358-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb358-3"><a href="phylogenetics-in-r.html#cb358-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Phylogenetic tree with 4 tips and 3 internal nodes.</span></span>
+<span id="cb358-4"><a href="phylogenetics-in-r.html#cb358-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb358-5"><a href="phylogenetics-in-r.html#cb358-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Tip labels:</span></span>
+<span id="cb358-6"><a href="phylogenetics-in-r.html#cb358-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   c, a, d, b</span></span>
+<span id="cb358-7"><a href="phylogenetics-in-r.html#cb358-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb358-8"><a href="phylogenetics-in-r.html#cb358-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Rooted; includes branch lengths.</span></span></code></pre></div>
 <p>By printing <code>tree</code> to the console, we see it is a tree with 4 tips and 3 internal nodes, a set of tip labels. We also see it is rooted and that the branch lengths are stored in this object too.</p>
 <p>You can actually look more deeply into the data stored within the <code>tree</code> object if you want to. Try the following code and see what is inside.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="phylogenetics-in-r.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tree)</span>
-<span id="cb364-2"><a href="phylogenetics-in-r.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(tree)</span>
-<span id="cb364-3"><a href="phylogenetics-in-r.html#cb364-3" aria-hidden="true" tabindex="-1"></a>tree<span class="sc">$</span>edge</span>
-<span id="cb364-4"><a href="phylogenetics-in-r.html#cb364-4" aria-hidden="true" tabindex="-1"></a>tree<span class="sc">$</span>edge.length</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="phylogenetics-in-r.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(tree)</span>
+<span id="cb359-2"><a href="phylogenetics-in-r.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(tree)</span>
+<span id="cb359-3"><a href="phylogenetics-in-r.html#cb359-3" aria-hidden="true" tabindex="-1"></a>tree<span class="sc">$</span>edge</span>
+<span id="cb359-4"><a href="phylogenetics-in-r.html#cb359-4" aria-hidden="true" tabindex="-1"></a>tree<span class="sc">$</span>edge.length</span></code></pre></div>
 <p>It is of course, much easier to understand a tree when we visualise it. Luckily this is easy in R.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="phylogenetics-in-r.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree)</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="phylogenetics-in-r.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tree)</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <p>In the next section, we will learn more about how to plot trees.</p>
 </div>
@@ -459,10 +464,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.1.2</span> Plotting trees</h3>
 <p>We can do a lot with our trees in R using a few simple plot commands. We will use some of these later in the tutorial and assignment, so here’s a quick introduction of some of the options you have.</p>
 <p>First, let’s generate another random tree, this time with 5 taxa.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="phylogenetics-in-r.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed to ensure the same tree is produced</span></span>
-<span id="cb366-2"><a href="phylogenetics-in-r.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
-<span id="cb366-3"><a href="phylogenetics-in-r.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a tree</span></span>
-<span id="cb366-4"><a href="phylogenetics-in-r.html#cb366-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">tip.label =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="phylogenetics-in-r.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set seed to ensure the same tree is produced</span></span>
+<span id="cb361-2"><a href="phylogenetics-in-r.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">32</span>)</span>
+<span id="cb361-3"><a href="phylogenetics-in-r.html#cb361-3" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a tree</span></span>
+<span id="cb361-4"><a href="phylogenetics-in-r.html#cb361-4" aria-hidden="true" tabindex="-1"></a>tree <span class="ot">&lt;-</span> <span class="fu">rtree</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="at">tip.label =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>, <span class="st">&quot;e&quot;</span>))</span></code></pre></div>
 <p>Now, try modifying the appearance of the tree using some of these arguments to <code>plot()</code>:</p>
 <ul>
 <li><code>use.edge.length</code> (<code>TRUE</code> (default) or <code>FALSE</code>): should branch length be used to represent evolutionary distance?</li>
@@ -482,36 +487,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a-simple-example-with-real-data---avian-phylogenetics" class="section level3" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> A simple example with real data - avian phylogenetics</h3>
 <p>So far, we have only looked at randomly generated trees. Let’s have a look at some data stored within <code>ape</code>—a phylogeny of birds at the order level.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="phylogenetics-in-r.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get bird order data</span></span>
-<span id="cb367-2"><a href="phylogenetics-in-r.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;bird.orders&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="phylogenetics-in-r.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get bird order data</span></span>
+<span id="cb362-2"><a href="phylogenetics-in-r.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(<span class="st">&quot;bird.orders&quot;</span>)</span></code></pre></div>
 <p>Let’s plot the phylogeny to have a look at it. We will also add some annotation to make sense of the phylogeny.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="phylogenetics-in-r.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bird.orders, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb368-2"><a href="phylogenetics-in-r.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">1</span>, <span class="dv">38</span>, <span class="dv">5</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb368-3"><a href="phylogenetics-in-r.html#cb368-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="dv">3</span>, <span class="st">&quot;Proaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
-<span id="cb368-4"><a href="phylogenetics-in-r.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">6</span>, <span class="dv">38</span>, <span class="dv">23</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb368-5"><a href="phylogenetics-in-r.html#cb368-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="fl">14.5</span>, <span class="st">&quot;Neoaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="phylogenetics-in-r.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bird.orders, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb363-2"><a href="phylogenetics-in-r.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">1</span>, <span class="dv">38</span>, <span class="dv">5</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb363-3"><a href="phylogenetics-in-r.html#cb363-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="dv">3</span>, <span class="st">&quot;Proaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
+<span id="cb363-4"><a href="phylogenetics-in-r.html#cb363-4" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">6</span>, <span class="dv">38</span>, <span class="dv">23</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb363-5"><a href="phylogenetics-in-r.html#cb363-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="fl">14.5</span>, <span class="st">&quot;Neoaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <p>Here, the <code>segments</code> and <code>text</code> functions specify the bars and names of the two major groups in our avian phylogeny. We are just using them for display purposes here, but if you’d like to know more about them, you can look at the R help with <code>?segments</code> and <code>?text</code> commands.</p>
 <p>Let’s focus on the Neoaves clade for now. Perhaps we want to test whether certain families within Neoaves form a monophyletic group? We can do this with the <code>is.monophyletic</code> function.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="phylogenetics-in-r.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parrots and Passerines?</span></span>
-<span id="cb369-2"><a href="phylogenetics-in-r.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.monophyletic</span>(bird.orders, <span class="fu">c</span>(<span class="st">&quot;Passeriformes&quot;</span>, <span class="st">&quot;Psittaciformes&quot;</span>))</span>
-<span id="cb369-3"><a href="phylogenetics-in-r.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
-<span id="cb369-4"><a href="phylogenetics-in-r.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="co"># hummingbirds and swifts?</span></span>
-<span id="cb369-5"><a href="phylogenetics-in-r.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.monophyletic</span>(bird.orders, <span class="fu">c</span>(<span class="st">&quot;Trochiliformes&quot;</span>, <span class="st">&quot;Apodiformes&quot;</span>))</span>
-<span id="cb369-6"><a href="phylogenetics-in-r.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="phylogenetics-in-r.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Parrots and Passerines?</span></span>
+<span id="cb364-2"><a href="phylogenetics-in-r.html#cb364-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.monophyletic</span>(bird.orders, <span class="fu">c</span>(<span class="st">&quot;Passeriformes&quot;</span>, <span class="st">&quot;Psittaciformes&quot;</span>))</span>
+<span id="cb364-3"><a href="phylogenetics-in-r.html#cb364-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] FALSE</span></span>
+<span id="cb364-4"><a href="phylogenetics-in-r.html#cb364-4" aria-hidden="true" tabindex="-1"></a><span class="co"># hummingbirds and swifts?</span></span>
+<span id="cb364-5"><a href="phylogenetics-in-r.html#cb364-5" aria-hidden="true" tabindex="-1"></a><span class="fu">is.monophyletic</span>(bird.orders, <span class="fu">c</span>(<span class="st">&quot;Trochiliformes&quot;</span>, <span class="st">&quot;Apodiformes&quot;</span>))</span>
+<span id="cb364-6"><a href="phylogenetics-in-r.html#cb364-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>If we want to look at just the Neoaves, we can subset our tree using <code>extract.clade()</code>. We need to supply a node from our tree to <code>extract.clade</code>, so let’s find the correct node first. The nodes in the tree can be found by running the <code>nodelabels()</code> function after using <code>plot()</code>:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="phylogenetics-in-r.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bird.orders, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb370-2"><a href="phylogenetics-in-r.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">1</span>, <span class="dv">38</span>, <span class="dv">5</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb370-3"><a href="phylogenetics-in-r.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="dv">3</span>, <span class="st">&quot;Proaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
-<span id="cb370-4"><a href="phylogenetics-in-r.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">6</span>, <span class="dv">38</span>, <span class="dv">23</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb370-5"><a href="phylogenetics-in-r.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="fl">14.5</span>, <span class="st">&quot;Neoaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
-<span id="cb370-6"><a href="phylogenetics-in-r.html#cb370-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nodelabels</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="phylogenetics-in-r.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(bird.orders, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb365-2"><a href="phylogenetics-in-r.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">1</span>, <span class="dv">38</span>, <span class="dv">5</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb365-3"><a href="phylogenetics-in-r.html#cb365-3" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="dv">3</span>, <span class="st">&quot;Proaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
+<span id="cb365-4"><a href="phylogenetics-in-r.html#cb365-4" aria-hidden="true" tabindex="-1"></a><span class="fu">segments</span>(<span class="dv">38</span>, <span class="dv">6</span>, <span class="dv">38</span>, <span class="dv">23</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb365-5"><a href="phylogenetics-in-r.html#cb365-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">39</span>, <span class="fl">14.5</span>, <span class="st">&quot;Neoaves&quot;</span>, <span class="at">srt =</span> <span class="dv">270</span>)</span>
+<span id="cb365-6"><a href="phylogenetics-in-r.html#cb365-6" aria-hidden="true" tabindex="-1"></a><span class="fu">nodelabels</span>()</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
 <p>We can see that the Neoaves start at node 29, so let’s extract that one.</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="phylogenetics-in-r.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract clade</span></span>
-<span id="cb371-2"><a href="phylogenetics-in-r.html#cb371-2" aria-hidden="true" tabindex="-1"></a>neoaves <span class="ot">&lt;-</span> <span class="fu">extract.clade</span>(bird.orders, <span class="dv">29</span>)</span>
-<span id="cb371-3"><a href="phylogenetics-in-r.html#cb371-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
-<span id="cb371-4"><a href="phylogenetics-in-r.html#cb371-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(neoaves)</span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="phylogenetics-in-r.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract clade</span></span>
+<span id="cb366-2"><a href="phylogenetics-in-r.html#cb366-2" aria-hidden="true" tabindex="-1"></a>neoaves <span class="ot">&lt;-</span> <span class="fu">extract.clade</span>(bird.orders, <span class="dv">29</span>)</span>
+<span id="cb366-3"><a href="phylogenetics-in-r.html#cb366-3" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb366-4"><a href="phylogenetics-in-r.html#cb366-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(neoaves)</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <p>The functions provided by <code>ape</code> make it quite easy to handle phylogenies in R, feel free to experiment further to find out what you can do!</p>
 </div>
@@ -519,56 +524,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.1.4</span> Constructing trees with R</h3>
 <p>So far, we have only looked at examples of trees that are already constructed in some way. However, if you are working with your own data, this is not the case - you need to actually make the tree yourself. Luckily, <code>phangorn</code> is ideally suited for this. We will use some data, bundled with the package, for the next steps. The following code loads the data:</p>
 <div class="yellow">
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="phylogenetics-in-r.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get phangorn primates data</span></span>
-<span id="cb372-2"><a href="phylogenetics-in-r.html#cb372-2" aria-hidden="true" tabindex="-1"></a>fdir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/trees&quot;</span>, <span class="at">package =</span> <span class="st">&quot;phangorn&quot;</span>)</span>
-<span id="cb372-3"><a href="phylogenetics-in-r.html#cb372-3" aria-hidden="true" tabindex="-1"></a>primates <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="fu">file.path</span>(fdir, <span class="st">&quot;primates.dna&quot;</span>), <span class="at">format =</span> <span class="st">&quot;interleaved&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="phylogenetics-in-r.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get phangorn primates data</span></span>
+<span id="cb367-2"><a href="phylogenetics-in-r.html#cb367-2" aria-hidden="true" tabindex="-1"></a>fdir <span class="ot">&lt;-</span> <span class="fu">system.file</span>(<span class="st">&quot;extdata/trees&quot;</span>, <span class="at">package =</span> <span class="st">&quot;phangorn&quot;</span>)</span>
+<span id="cb367-3"><a href="phylogenetics-in-r.html#cb367-3" aria-hidden="true" tabindex="-1"></a>primates <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="fu">file.path</span>(fdir, <span class="st">&quot;primates.dna&quot;</span>), <span class="at">format =</span> <span class="st">&quot;interleaved&quot;</span>)</span></code></pre></div>
 </div>
 <p>This is a set of 14 mitochondrial DNA sequences from 12 primate species and 2 outgroups - a mouse and a cow. The sequences are 232 basepairs long. The data is originally from <a href="https://academic.oup.com/mbe/article/5/6/626/1044336">this paper</a> and is a well-known example dataset in phylogenetics.</p>
 <p>We have seen the structure this data is stored in before - it is a <code>DNA.bin</code> object like we worked with in <a href="https://evolutionarygenetics.github.io/Chapter7.html">Chapter 7</a>.</p>
 <p>Print <code>primates</code> to your screen and have a look at it. For the next section, we will use just four species - the hominidae (i.e. Orangutan, Gorilla, Chimpanzee and Human). Let’s subset our data in order to do that.</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="phylogenetics-in-r.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data to get hominidae</span></span>
-<span id="cb373-2"><a href="phylogenetics-in-r.html#cb373-2" aria-hidden="true" tabindex="-1"></a>hominidae <span class="ot">&lt;-</span> primates[<span class="dv">11</span><span class="sc">:</span><span class="dv">14</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="phylogenetics-in-r.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># subset data to get hominidae</span></span>
+<span id="cb368-2"><a href="phylogenetics-in-r.html#cb368-2" aria-hidden="true" tabindex="-1"></a>hominidae <span class="ot">&lt;-</span> primates[<span class="dv">11</span><span class="sc">:</span><span class="dv">14</span>, ]</span></code></pre></div>
 <p>We also need to convert our dataset so that <code>phangorn</code> is able to use it properly. The package uses a data structure called <code>phyDAT</code>. Luckily conversion is very easy indeed:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="phylogenetics-in-r.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data</span></span>
-<span id="cb374-2"><a href="phylogenetics-in-r.html#cb374-2" aria-hidden="true" tabindex="-1"></a>hominidae <span class="ot">&lt;-</span> <span class="fu">as.phyDat</span>(hominidae)</span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="phylogenetics-in-r.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># convert data</span></span>
+<span id="cb369-2"><a href="phylogenetics-in-r.html#cb369-2" aria-hidden="true" tabindex="-1"></a>hominidae <span class="ot">&lt;-</span> <span class="fu">as.phyDat</span>(hominidae)</span></code></pre></div>
 <p>We are going to create two types of trees - UPGMA and Neighbour Joining. These are distance based measures and so we must first make a distance matrix among our taxa, which requires a substitution model. The default substitution model is the Jukes &amp; Cantor model, but we can also use Felsenstein’s 1981 model. Which is the best to apply here? To find that out, we should first test the different models using <code>modelTest</code>:</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="phylogenetics-in-r.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform model selection</span></span>
-<span id="cb375-2"><a href="phylogenetics-in-r.html#cb375-2" aria-hidden="true" tabindex="-1"></a>hominidae_mt <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(hominidae, <span class="at">model =</span> <span class="fu">c</span>(<span class="st">&quot;JC&quot;</span>, <span class="st">&quot;F81&quot;</span>), <span class="at">G =</span> <span class="cn">FALSE</span>, <span class="at">I =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="phylogenetics-in-r.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform model selection</span></span>
+<span id="cb370-2"><a href="phylogenetics-in-r.html#cb370-2" aria-hidden="true" tabindex="-1"></a>hominidae_mt <span class="ot">&lt;-</span> <span class="fu">modelTest</span>(hominidae, <span class="at">model =</span> <span class="fu">c</span>(<span class="st">&quot;JC&quot;</span>, <span class="st">&quot;F81&quot;</span>), <span class="at">G =</span> <span class="cn">FALSE</span>, <span class="at">I =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Take a look at the <code>hominidae_mt</code> table. What we have done here is performed a maximum likelihood analysis and a form of model selection to determine which of the two models we tested - JC69 and F81 (specified by <code>model = c("JC", "F81")</code>) best fits our data. We also set <code>G</code> and <code>I</code> to false in order to simplify the output. Don’t worry too much about what these are for now, but feel free to use <code>?modelTest</code> if you wish to learn more.</p>
 <p>Anyway, how can we interpret this table? Well, we are looking for the model with the <strong>log likelihood</strong> closest to zero and also the lowest value of AIC (Akaike information criterion - <a href="https://en.wikipedia.org/wiki/Akaike_information_criterion">see here for more information</a>). In this case, it is clear that F81 is a better fit for the data than the JC model, so we will calculate our distance matrix with this model instead.</p>
 <p>We can now calculate evolutionary distance using <code>dist.ml</code> - a function that compares pairwise distances among sequences the substitution model we chose.</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="phylogenetics-in-r.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first generate a distance matrix</span></span>
-<span id="cb376-2"><a href="phylogenetics-in-r.html#cb376-2" aria-hidden="true" tabindex="-1"></a>hominidae_dist <span class="ot">&lt;-</span> <span class="fu">dist.ml</span>(hominidae, <span class="at">model =</span> <span class="st">&quot;F81&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="phylogenetics-in-r.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first generate a distance matrix</span></span>
+<span id="cb371-2"><a href="phylogenetics-in-r.html#cb371-2" aria-hidden="true" tabindex="-1"></a>hominidae_dist <span class="ot">&lt;-</span> <span class="fu">dist.ml</span>(hominidae, <span class="at">model =</span> <span class="st">&quot;F81&quot;</span>)</span></code></pre></div>
 <p>Take a look at <code>hominidae_dist</code>. You will see it is a matrix of the distance or difference between the sequences. The distances are based on the number of nucleotide substitutions, and the actual values depend on the model we use—here, the F81. It is not straightforward to interpret how much the groups differ from the numbers directly, but in general, the larger the number the greater the genetic distance.</p>
 <p>Next we can create our trees. For an UPGMA tree, we use the <code>upgma</code> function:</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="phylogenetics-in-r.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># upgma tree</span></span>
-<span id="cb377-2"><a href="phylogenetics-in-r.html#cb377-2" aria-hidden="true" tabindex="-1"></a>hom_upgma <span class="ot">&lt;-</span> <span class="fu">upgma</span>(hominidae_dist)</span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="phylogenetics-in-r.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># upgma tree</span></span>
+<span id="cb372-2"><a href="phylogenetics-in-r.html#cb372-2" aria-hidden="true" tabindex="-1"></a>hom_upgma <span class="ot">&lt;-</span> <span class="fu">upgma</span>(hominidae_dist)</span></code></pre></div>
 <p>Next we will make a neighbour joining tree. This is easily done with the <code>NJ</code> function.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="phylogenetics-in-r.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NJ tree</span></span>
-<span id="cb378-2"><a href="phylogenetics-in-r.html#cb378-2" aria-hidden="true" tabindex="-1"></a>hom_nj <span class="ot">&lt;-</span> <span class="fu">NJ</span>(hominidae_dist)</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="phylogenetics-in-r.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NJ tree</span></span>
+<span id="cb373-2"><a href="phylogenetics-in-r.html#cb373-2" aria-hidden="true" tabindex="-1"></a>hom_nj <span class="ot">&lt;-</span> <span class="fu">NJ</span>(hominidae_dist)</span></code></pre></div>
 <p>Now that we have created both of our trees, we should plot them to have a look at them.</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="phylogenetics-in-r.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot them both</span></span>
-<span id="cb379-2"><a href="phylogenetics-in-r.html#cb379-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
-<span id="cb379-3"><a href="phylogenetics-in-r.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_upgma, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb379-4"><a href="phylogenetics-in-r.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_nj, <span class="at">type =</span> <span class="st">&quot;unrooted&quot;</span>, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="phylogenetics-in-r.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot them both</span></span>
+<span id="cb374-2"><a href="phylogenetics-in-r.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>))</span>
+<span id="cb374-3"><a href="phylogenetics-in-r.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_upgma, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb374-4"><a href="phylogenetics-in-r.html#cb374-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_nj, <span class="at">type =</span> <span class="st">&quot;unrooted&quot;</span>, <span class="at">no.margin =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="phylogenetics-in-r.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="phylogenetics-in-r.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span></code></pre></div>
 <p>Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, the correct way to plot it is unrooted.</p>
 <p>We can verify that the tree is unrooted (compared to the UPGMA tree) using the <code>is.rooted()</code> function.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="phylogenetics-in-r.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check whether the tree is rooted</span></span>
-<span id="cb381-2"><a href="phylogenetics-in-r.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.rooted</span>(hom_nj)</span>
-<span id="cb381-3"><a href="phylogenetics-in-r.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.rooted</span>(hom_upgma)</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="phylogenetics-in-r.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check whether the tree is rooted</span></span>
+<span id="cb376-2"><a href="phylogenetics-in-r.html#cb376-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.rooted</span>(hom_nj)</span>
+<span id="cb376-3"><a href="phylogenetics-in-r.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="fu">is.rooted</span>(hom_upgma)</span></code></pre></div>
 <p>We can also set a root on our tree, if we know what we should set the outgroup to. In this case, we can set our outgroup to Orangutan, because we know it is the most divergent from the clade that consists of humans, chimps and gorillas.</p>
 <p>We will set the root of our neighbour joining tree below using the <code>root</code> function and we’ll then plot it to see how it looks.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="phylogenetics-in-r.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot nj rooted</span></span>
-<span id="cb382-2"><a href="phylogenetics-in-r.html#cb382-2" aria-hidden="true" tabindex="-1"></a>hom_nj_r <span class="ot">&lt;-</span> <span class="fu">root</span>(hom_nj, <span class="st">&quot;Orang&quot;</span>)</span>
-<span id="cb382-3"><a href="phylogenetics-in-r.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_nj_r)</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="phylogenetics-in-r.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot nj rooted</span></span>
+<span id="cb377-2"><a href="phylogenetics-in-r.html#cb377-2" aria-hidden="true" tabindex="-1"></a>hom_nj_r <span class="ot">&lt;-</span> <span class="fu">root</span>(hom_nj, <span class="st">&quot;Orang&quot;</span>)</span>
+<span id="cb377-3"><a href="phylogenetics-in-r.html#cb377-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hom_nj_r)</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>In this case, it hasn’t actually made a huge difference to our tree topology, but with a larger dataset, it might do.</p>
 <p>As a final point here, we might want to try and compare our two trees and see which we should accept as the best model for the evolutionary relationships among our taxa. One way to do this is to use the <strong>parsimony score</strong> of a phylogeny. Essentially, the lower the parsimony score is for a tree, the more parsimonious explanation of the data it might be. This is very easy to achieve with the <code>parsimony</code> function.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="phylogenetics-in-r.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate parsimony</span></span>
-<span id="cb383-2"><a href="phylogenetics-in-r.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parsimony</span>(hom_upgma, hominidae)</span>
-<span id="cb383-3"><a href="phylogenetics-in-r.html#cb383-3" aria-hidden="true" tabindex="-1"></a><span class="fu">parsimony</span>(hom_nj, hominidae)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="phylogenetics-in-r.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate parsimony</span></span>
+<span id="cb378-2"><a href="phylogenetics-in-r.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">parsimony</span>(hom_upgma, hominidae)</span>
+<span id="cb378-3"><a href="phylogenetics-in-r.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="fu">parsimony</span>(hom_nj_r, hominidae)</span></code></pre></div>
 <p>For the <code>parsimony</code> function, the first argument is the tree, the second is the data. Here we can see that both parsimony scores are equal for the two trees, suggesting that they are both equivalent models of the evolutionary relationships among the taxa we are studying here.</p>
 <p>If you test the parsimony score for the rooted and the unrooted NJ tree, you will see that they are the same. It is important to note that this is not usually the case! Choosing an outgroup will normally change the tree length, and therefore the parsimony score.</p>
 </div>

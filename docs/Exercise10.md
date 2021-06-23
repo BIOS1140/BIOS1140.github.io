@@ -200,8 +200,10 @@ This is useful, but quickly becomes convoluted. Imagine how the code would look 
 ```r
 ifelse(
   starwars$species == "Droid", "Droid", 
-  ifelse(starwars$species == "Human", "Human", 
-         "Neither human nor droid")
+  ifelse(
+    starwars$species == "Human", "Human", 
+    "Neither human nor droid"
+    )
   )
 #>  [1] "Human"                   "Droid"                  
 #>  [3] "Droid"                   "Human"                  
@@ -389,7 +391,7 @@ You see that the `temp` column is equal to the `depthtemp` we created earlier, b
 
 :::{.green}
 **Important concept:**  
-If you have your data spread out over multiple data files, remember to name columns appropriately. All columns that contain the same kind of data should have the _exact same name_ across all data sets. This makes joining much easier.
+If you have your data spread out over multiple files, remember to name columns appropriately. All columns that contain the same kind of data should have the _exact same name_ across all data sets. This makes joining much easier.
 :::
 
 ## Vectorisation
