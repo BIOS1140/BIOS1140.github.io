@@ -349,7 +349,7 @@ This makes it much clearer how nucleotide diversity differs among the species.
 
 ### Visualising patterns along the chromosome
 
-Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. We can do this very simply with `ggplot`.
+Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. Note that we plot the mid-point of each window, and divide the position by $10^6$ to get megabases on the x-axis.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 a <- ggplot(sparrow_data, aes(mid/10^6, house_spanish_fst)) + geom_line(colour = "red")
@@ -357,7 +357,7 @@ a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
 
-From this plot, it is very clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
+From this plot, it is clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
 How can we investiage this? The easiest thing to do is to plot $\pi$, *F*~ST~ and *d*~XY~ to examine how they co-vary along the genome. This requires a bit of data manipulation, which we will break it down into steps.
 
@@ -371,7 +371,7 @@ hs <- sparrow_data %>% select(mid, house_pi, spanish_pi, house_spanish_fst, hous
 To keep things simple, we've thrown everything out we don't need. Next, we need to use `pivot_longer` in order to rearrange our `data.frame` so that we can plot it properly.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-# use gather to rearrange everything
+# use pivot_longer to rearrange everything
 hs_g <- pivot_longer(hs, -mid, names_to = "stat", values_to = "value")
 ```
 
