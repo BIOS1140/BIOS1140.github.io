@@ -2,7 +2,7 @@
 
 #### 1. Working with trees {-}
 
-a) Draw a random tree with 23 taxa. Make it a radial tree, with an edge width of 1.5. It must be any colour other than black. _Tip: for naming the tree tips, check out the_ `letters` _object that is built into R_
+a) Draw a random tree with 23 taxa. Make it a radial (or "fan") tree, with an edge width of 1.5. It must be any colour other than black. _Tip: for naming the tree tips, check out the_ `letters` _object that is built into R_
 
 b) Extract the Proaves clade from the bird.orders dataset and plot it. Then, test whether ducks and geese (Anseriformes) and chickens and turkeys (Galliformes) are monophyletic. _Hint: Find out which node that represents the last common ancestor of the Proaves._
 
