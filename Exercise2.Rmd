@@ -48,7 +48,7 @@ The tidyverse packages can do more or less exactly the same as base R. The diffe
 
 -   `select()` select columns from your data
 -   `filter()` filters rows based on certain criteria
--   `mutate()` creates new columns (often based on the old ones)
+-   `mutate()` creates new columns (not gone through in this tutorial, but included in this list for completeness)
 -   `group_by()` creates groups for summarizing data
 -   `summarise()` summarises data based on the groups you have created
 
@@ -226,29 +226,6 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 ```
 :::
 
-### Creating new columns with `mutate()`
-
-Last week you learned that you can create new columns of a data frame with `$`:
-
-```{r}
-# create a new column
-starwars$mass_per_cm <- starwars$mass / starwars$height
-
-# select columns for printing
-starwars %>% select(name, mass_per_cm)
-```
-
-Again, `dplyr` has a verb to do the same thing, called `mutate()`. The same operation as above using `mutate()` looks like this:
-
-```{r}
-# create new column and select columns
-starwars %>% mutate(mass_per_cm = mass/height) %>%
-  select(name, mass_per_cm)
-```
-
-Note that you save yourself quite a bit of typing, and gain some clarity, by not having to write `starwars$` in front of all your columns. Like you've previously encountered with `data.frame()`, you can choose what to name the arguments of `mutate()`, and these names become your column names.
-
-Another thing to note is that the above pipeline with `mutate()` doesn't store the new column `mass_per_cm`. For that you need to use the assignment arrow and create a new object, e.g. `starwars2 <- starwars %>% mutate(...)`. An important point to remember is that a pipeline never modifies your original data, it just sends the output of one function into the next function. Because of this, you always have to store the results of the pipe to a new object if you want to keep them.
 
 ### Grouped summaries with `group_by()` and `summarise()`
 
@@ -272,7 +249,7 @@ starwars %>%
   summarise(mean_height = mean(height, na.rm = TRUE)) # calculate summary statistic
 ```
 
-Note how again, like in `data.frame` and `mutate()`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
+Note how again, like in `data.frame`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
 
 ```{r}
 starwars %>% 
