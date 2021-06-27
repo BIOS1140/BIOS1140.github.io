@@ -24,7 +24,7 @@ In this section we will:
 
 ### Getting started {.unnumbered}
 
-The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` and the `PopGenome` package that we installed and loaded in the [last session](https://evolutionarygenetics.github.io/Chapter7.html).
+The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` and the `PopGenome` package that we installed and loaded in the [last session](#ch07).
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE, warning = FALSE}
 # clear the R environment
