@@ -220,7 +220,7 @@ $F_{ST} = \displaystyle \frac{H_T - H_S}{H_T}$
 
 For simplicity, imagine we are examining two populations only. With this formulate, $H_T$ is the **expected heterozygosity** when the two populations are considered as one large meta-population. $H_S$ is the **average expected heterozygosity** in the two populations.
 
-You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
+You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](#ch03). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
 
 ### A worked example of *F*~ST~ in humans
 
