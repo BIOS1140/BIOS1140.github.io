@@ -113,7 +113,7 @@ In the last session, we used the `PopGenome` package to calculate sliding window
 
 ### Reading in the sparrow vcf
 
-The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](https://evolutionarygenetics.github.io//Chapter7.html) but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
+The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](#ch07) but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
 
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
