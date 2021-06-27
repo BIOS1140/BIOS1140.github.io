@@ -226,6 +226,11 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 ```
 :::
 
+::: {.green}
+**Important concept:**\
+-  `filter()` is used to select specific rows. Example: `filter(height < 100)`
+-  `select()` is used to select specific columns. Example: `select(name, height)`
+:::
 
 ### Grouped summaries with `group_by()` and `summarise()`
 
