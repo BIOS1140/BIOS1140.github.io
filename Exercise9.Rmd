@@ -196,7 +196,7 @@ primates <- read.dna(file.path(fdir, "primates.dna"), format = "interleaved")
 
 This is a set of 14 mitochondrial DNA sequences from 12 primate species and 2 outgroups - a mouse and a cow. The sequences are 232 basepairs long. The data is originally from [this paper](https://academic.oup.com/mbe/article/5/6/626/1044336) and is a well-known example dataset in phylogenetics.
 
-We have seen the structure this data is stored in before - it is a `DNA.bin` object like we worked with in [Chapter 7](https://evolutionarygenetics.github.io/Chapter7.html).
+We have seen the structure this data is stored in before - it is a `DNA.bin` object like we worked with in [Chapter 7](#ch07).
 
 Print `primates` to your screen and have a look at it. For the next section, we will use just four species - the hominidae (i.e. Orangutan, Gorilla, Chimpanzee and Human). Let's subset our data in order to do that.
 
