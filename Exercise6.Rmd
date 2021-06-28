@@ -366,6 +366,5 @@ The study questions for week 6 are found [here](#w06). Deliver them in Canvas be
 ## Going further
 
 -   [John H McDonald's brilliant online statistics handbook and its section on ANOVA](http://www.biostathandbook.com/onewayanova.html)
--   [A detailed tutorial on ANOVA in R](http://www.understandingdata.net/2017/05/11/anova-tables-in-r/)
 -   [Graham Coop's notes on recombination and correlations between loci](http://cooplab.github.io/popgen-notes/#correlations-between-loci-linkage-disequilibrium-and-recombination)
 -   [The R qtl package website and associated tutorials](http://www.rqtl.org/)

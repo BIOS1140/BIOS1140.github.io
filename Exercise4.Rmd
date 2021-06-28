@@ -759,7 +759,5 @@ The study questions for week 4 are found [here](#w04). Deliver them in Canvas be
 
 ## Going further
 
--   [An introduction to lists in R](https://www.r-bloggers.com/how-to-use-lists-in-r/)
--   [More on lists from Hadley Wickham](http://r4ds.had.co.nz/lists.html)
--   [The definitive introduction to `purr` and the `map` function from Jenny BC](https://jennybc.github.io/purrr-tutorial/index.html)
+-   [More on writing your own functions from R for Data Science](https://r4ds.had.co.nz/functions.html)
 -   [Graham Coop's excellent notes on one-locus models of selection](http://cooplab.github.io/popgen-notes/#one-locus-models-of-selection)
