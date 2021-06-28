@@ -38,7 +38,7 @@ library(PopGenome)
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](https://github.com/BIOS1140/BIOS1140.github.io/blob/main/docs/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
+You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
 
 We start by reading in the data (see if you manage to do this yourself before looking at my code):
 
