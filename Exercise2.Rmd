@@ -606,7 +606,7 @@ sw_plot <- ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ggsave("sw_plot.png", sw_plot)
 ```
 
-## Reshaping data with pivot_longer() {#pivot_longer}
+## Reshaping data with pivot_longer() {#pivot-longer}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```

@@ -567,7 +567,7 @@ sim_08 <- selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.8), ngen = 200)
 
 ```
 
-Now we have made 4 simulations. To plot these with `ggplot()`, we need to make them into a data frame and convert them to long form with `pivot_longer()`. See the [tutorial from week 2](#pivot_longer) if you're unsure about why we do this.
+Now we have made 4 simulations. To plot these with `ggplot()`, we need to make them into a data frame and convert them to long form with `pivot_longer()`. See the [tutorial from week 2](#pivot-longer) if you're unsure about why we do this.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 sel_sims <- data.frame(

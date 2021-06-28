@@ -329,7 +329,7 @@ A lot of this will be familiar from before but to clarify, we used `select()` an
 
 We could also quite easily plot if we wanted to. However, to do this, we need to use `pivot_longer` on the data to get all species in one column, and all $\pi$ values in another[^exercise8-4]. Note how we can supply `contains("pi")` inside `pivot_longer()` to specify which columns to include.
 
-[^exercise8-4]: It may have been a while since the last time you saw `pivot_longer()`. If you have forgotten how it works or why we use it, remember that you can always go back to [Week 2](#pivot_longer).
+[^exercise8-4]: It may have been a while since the last time you saw `pivot_longer()`. If you have forgotten how it works or why we use it, remember that you can always go back to [Week 2](#pivot-longer).
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # gather the data
