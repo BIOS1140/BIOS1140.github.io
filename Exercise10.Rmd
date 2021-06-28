@@ -96,7 +96,7 @@ for (i in 1:10){
 
 This simple block contains two **control flow** examples (`for` and `in`) - these are highlighted in in the code block here. There is also a numeric vector - this is shown in a different colour. Everything else, including objects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is [highly customisable too](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio).
 
-## More on data handling---categorising and relating
+## More on data handling---categorising and joining
 
 Handling large amounts of data with few lines of code is one of R's strong points. In this section we will show how you can use `ifelse()` and the `left_join()` function from dplyr to make categories and add information to your data
 
@@ -233,6 +233,33 @@ You see that the `temp` column is equal to the `depthtemp` we created earlier, b
 **Important concept:**  
 If you have your data spread out over multiple files, remember to name columns appropriately. All columns that contain the same kind of data should have the _exact same name_ across all data sets. This makes joining much easier.
 :::
+
+## Lists
+
+In this course, we have stored large amounts of data in two types of objects: vectors and data frames. These have some inherent limitations:
+
+- A vector can only contain one type of value. This means, for example, that a vector can't contain both numeric values AND character values.
+- In a data frame, all columns need to be of the same length. In addition, a column can only contain a single type of value.
+
+A list in R, on the other hand, has none of these limitations. It can contain values of multiple types and different lengths. This makes it ideal for storing more complex objects. In fact, much of the complex data you have encountered in these tutorials, like the phylogenetic trees last week, are based on lists. 
+
+You can make a list with the `list()` function:
+
+```{r}
+my_list <- list(names = c("Ask", "Embla"),
+                children_age = c(11, 15, 6, 8),
+                married = TRUE)
+```
+
+You can access list elements with `$`, or with both single and double square brackets `[]`:
+
+```{r}
+my_list$names
+my_list[1]
+my_list[[1]]
+```
+
+Note that there's a slight difference in using single and double square brackets, which we won't go into here. If in doubt, you should probably use double brackets.  We won't go into much more detail about lists here, but it is important that you know that this structure exists
 
 ## Vectorisation
 
@@ -515,7 +542,7 @@ Good luck!
 
 ## Study questions
 
-The study questions for week 10 are found [here](#w10). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 10 are found [here](#w10). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

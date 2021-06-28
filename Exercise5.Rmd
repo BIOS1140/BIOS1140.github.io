@@ -599,7 +599,7 @@ One important point to note here is that the threshold we set to identify a SNP 
 
 ## Study questions
 
-The study questions for week 5 are found [here](#w05). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 5 are found [here](#w05). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 
 ## Going further
