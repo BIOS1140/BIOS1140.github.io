@@ -109,6 +109,11 @@ x2_mean <- x^2 %>% mean()
 
 There will be a lot of examples of using the pipe throughout this tutorial, showing how it can make quite complex code readable.
 
+::: {.green}
+**Important concept:**\
+The pipe operator `%>%` allows you to send an object from the left side of the pipe to a function on the right side.
+:::
+
 ### Selecting colums with `select()`
 
 Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
