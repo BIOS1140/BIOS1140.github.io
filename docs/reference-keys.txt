@@ -213,3 +213,5 @@ concluding-remarks
 study-questions-8
 going-further-9
 rmarkdown
+pivot-longer
+fig:unnamed-chunk-43

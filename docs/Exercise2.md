@@ -22,7 +22,6 @@ In this section we are going to:
 
 <script src="js/hideOutput.js"></script>
 
-
 Data manipulation might seem quite a boring topic but it is actually a crucial part of data science and increasingly, bioinformatics and evolutionary biology. For the average researcher working with biological data, we would estimate that the vast majority of analysis time is spent handling the data. By handling and manipulation, we mean exploring the data, shaping it into a form we want to work with and extracting information we find important or interesting. Getting to know your data is absolutely fundamental to properly understanding it and that is why we have decided to dedicate time to it in this chapter.
 
 At this point in our tutorial, we will use a series of packages collectively known as the [tidyverse](https://www.tidyverse.org); in particularly, we will focus on functions from a tidyverse package called `dplyr`. These packages grew from the approach of [Hadley Wickham](http://hadley.nz/) - a statistician responsible for popularising fresh approaches to R and data science. As with nearly all things in R, there are many, many ways to achieve the same goal and the guidlines we give here are by no means definitive. However, we choose to introduce these principles now because in our experience of data analysis, they have greatly improved our efficiency, the clarity of our R code and the way we work with data.
@@ -56,7 +55,6 @@ We will go through the use of these functions shortly. You may notice that you'v
 
 <script src="js/hideOutput.js"></script>
 
-
 First, we have to install and load the tidyverse.[^exercise2-1]
 
 [^exercise2-1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
@@ -66,7 +64,6 @@ First, we have to install and load the tidyverse.[^exercise2-1]
 install.packages("tidyverse")
 library(tidyverse)
 ```
-
 
 
 
@@ -125,6 +122,11 @@ x2_mean <- x^2 %>% mean()
 ```
 
 There will be a lot of examples of using the pipe throughout this tutorial, showing how it can make quite complex code readable.
+
+::: {.green}
+**Important concept:**\
+The pipe operator `%>%` allows you to send an object from the left side of the pipe to a function on the right side.
+:::
 
 ### Selecting colums with `select()`
 
@@ -245,22 +247,7 @@ starwars %>% filter(height < 100, species != "Human")
 
 The real power of the pipe shows when you chain several operations together. To both filter and select from your data, simply first do the filtering and then pipe the result to `select`:[^exercise2-2]
 
-[^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe filtering and selecting looks like this:
-
-    
-    ```r
-    select(filter(starwars, height < 100), name, height, birth_year)
-    #> # A tibble: 7 x 3
-    #>   name                  height birth_year
-    #>   <chr>                  <int>      <dbl>
-    #> 1 R2-D2                     96         33
-    #> 2 R5-D4                     97         NA
-    #> 3 Yoda                      66        896
-    #> 4 Wicket Systri Warrick     88          8
-    #> 5 Dud Bolt                  94         NA
-    #> 6 Ratts Tyerell             79         NA
-    #> 7 R4-P17                    96         NA
-    ```
+[^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe, filtering and selecting looks like this: `select(filter(starwars, height < 100), name, height, birth_year)`
 
 
 ```r
@@ -290,6 +277,10 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 ```
 :::
 
+::: {.green}
+**Important concept:**\
+- `filter()` is used to select specific rows. Example: `filter(height < 100)` - `select()` is used to select specific columns. Example: `select(name, height)`
+:::
 
 ### Grouped summaries with `group_by()` and `summarise()`
 
@@ -427,6 +418,14 @@ This can be useful to get an overview of your data[^exercise2-3]
 
 [^exercise2-3]: for example, you could realise that it doesn't make sense to calculate mean and standard deviation when you only have a single value, like we've done quite a bit
 
+::: {.green}
+**Important concept:**\
+`Group_by()` can be combined with different functions to give an overview of your data.
+
+-   `group_by() %>% summarise()` does some calculation in each group. Example: `group_by(homeworld, sex) %>% summarise(mean_height = mean(height))`
+-   `group_by() %>% tally()` counts the number of observations in the groups. Example: `group_by(species) %>% tally()`
+:::
+
 ### Using everything we've learned in a single pipe, and a `dplyr` exercise
 
 One advantage of pipes is that you can do everything you want in a single operation[^exercise2-4]. Below is an example using everything we've learned so far in a single pipe.
@@ -500,7 +499,6 @@ starwars %>%
 
 <script src="js/hideOutput.js"></script>
 
-
 In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
 
 As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use `demo(graphics)` to have a look). However `ggplot2` is extremely flexible and takes quite a different approach to plotting compared to baseR.
@@ -526,7 +524,7 @@ First, we try supplying our data, `starwars`. The data is provided as an argumen
 ggplot(data = starwars)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-27-1.png" width="672" />
 
 As you can see, this results in a completely empty plot (because, like I said, we need two more things).
 
@@ -539,7 +537,7 @@ The variables are provided to the `mapping` argument of `ggplot()`. For reasons 
 ggplot(data = starwars, mapping = aes(x = height, y = mass))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-29-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-28-1.png" width="672" />
 
 Now we're getting somewhere! We have axes now, but we're still missing our points. Time to add the geometry.
 
@@ -552,7 +550,7 @@ The geometry of a ggplot aren't provided to the `ggplot()` function as arguments
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-29-1.png" width="672" />
 
 Wohoo, we now have the plot we set out to make! There's an obvious outlier in the `mass` department, which we'll deal with later.
 
@@ -565,7 +563,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
   geom_smooth()  #add regression line
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" />
 
 We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.[^exercise2-6] Notice how we can have line breaks in our code after the `+`, the plot still executes.
 
@@ -582,7 +580,7 @@ We could keep adding layers like this forever, as long as we felt we had some me
       geom_smooth()
     ```
     
-    <img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
+    <img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" />
 
     I know, I know, I did say "meaningful"
 
@@ -634,7 +632,7 @@ starwars2 <- starwars %>% filter(mass < 1000)
 ggplot(data = starwars2, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" />
 :::
 
 ### Storing ggplots in objects
@@ -647,7 +645,7 @@ sw_plot <- ggplot(data = starwars2, mapping = aes(x = height, y = mass))
 sw_plot
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" />
 
 We can now use this object as a base, and make different plots by adding `geom`s:
 
@@ -658,21 +656,21 @@ We can now use this object as a base, and make different plots by adding `geom`s
 sw_plot + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
 ```r
 # plot with line
 sw_plot + geom_line()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-35-2.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-34-2.png" width="672" />
 
 ```r
 # plot with regression line
 sw_plot + geom_smooth()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-35-3.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-34-3.png" width="672" />
 :::
 
 If you plan to make several plots with the same data and variables, you should save the basic plot to an object to avoid repeating yourself.
@@ -697,7 +695,7 @@ sw_pts_ln <- sw_plot +
 sw_pts_ln
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" />
 
 Adding title and labels can be done by adding a separate function, `labs()`. `labs()` has, among others, the arguments `x`, `y`, `title` and `subtitle`, doing exactly what you would expect:[^exercise2-7]
 
@@ -714,7 +712,7 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
            subtitle = "A part of the BIOS1140 ggplot tutorial")
     ```
     
-    <img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+    <img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
 
 
 ```r
@@ -725,7 +723,7 @@ sw_pts_ln +
        subtitle = "A part of the BIOS1140 ggplot tutorial")
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" />
 
 #### Mapping variables to colors, shapes etc.
 
@@ -737,7 +735,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, col = species)) +
   geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="864" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="864" />
 
 One important thing to note here is that your variable has to be within `aes()` in your plot. Note that **variable names do not need quotes**. It's easy to get confused about when to put something inside `aes()` and not, but the general rule is:
 
@@ -756,7 +754,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, pch = sex, lty = se
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="672" />
 
 If you e.g. want to group your points by `sex`, but you don't want that same grouping for your lines, you can use the `mapping` argument of your `geom` instead:
 
@@ -767,7 +765,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" />
 
 ::: {.green}
 **Important concept:**\
@@ -796,7 +794,7 @@ ggplot(data = starwars, mapping = aes(x = birth_year, y = height)) +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 :::
 
 ::: {.blue}
@@ -820,11 +818,10 @@ sw_plot <- ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ggsave("sw_plot.png", sw_plot)
 ```
 
-## Reshaping data with pivot_longer()
+## Reshaping data with pivot_longer() {#pivot-longer}
 
 
 <script src="js/hideOutput.js"></script>
-
 
 ### Wide and long format
 
@@ -832,7 +829,7 @@ Let's say you have some biological data (finally, wohoo!), and want to plot it u
 
 <div class="figure">
 <img src="figs/long_wide.PNG" alt="Data in &quot;wide format&quot; (left) and &quot;long format&quot; (right)" width="843" />
-<p class="caption">(\#fig:unnamed-chunk-44)Data in "wide format" (left) and "long format" (right)</p>
+<p class="caption">(\#fig:unnamed-chunk-43)Data in "wide format" (left) and "long format" (right)</p>
 </div>
 
 These two formats are commonly referred to as "wide" and "long" respectively. If you want to make some plot that is e.g. colored by species in this data, **the data needs to be in long format**, i.e. the variable you are grouping by has to be contained in a single column. Data can be converted from wide to long using the tidyverse function `pivot_longer()`.
@@ -958,37 +955,37 @@ depthplot <- ggplot(copepods_long, aes(depth, count, col = species))
 depthplot + geom_point()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-1.png" width="672" />
 
 ```r
 depthplot + geom_jitter()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-2.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-2.png" width="672" />
 
 ```r
 depthplot + geom_col(aes(fill = species))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-3.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-3.png" width="672" />
 
 ```r
 depthplot + geom_boxplot()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-4.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-4.png" width="672" />
 
 ```r
 depthplot + geom_line()
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-5.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-5.png" width="672" />
 
 ```r
 depthplot + geom_area(aes(fill = species))
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-50-6.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-49-6.png" width="672" />
 
 I'm settling on `geom_area()` since it nicely shows both total abundance and the relationship between the taxa (plus, it looks cool). Some additional tricks I do: flip the coordinates with `coord_flip()` to get depth on the y-axis, and plotting `-depth` instead of `depth` to plot depth downwards. I do this because it is how depth data is usually shown in marine biology, and because I wanted to show you that there are lots of options on customising plots that you will encounter as you learn more about ggplot.
 
@@ -1005,16 +1002,13 @@ copeplot <- ggplot(copepods_long, aes(-depth, count)) +
 copeplot
 ```
 
-<img src="Exercise2_files/figure-html/unnamed-chunk-51-1.png" width="672" />
+<img src="Exercise2_files/figure-html/unnamed-chunk-50-1.png" width="672" />
 
 </details>
 
 ## Study questions
 
-The study questions for week 1-2 are found [here](#w01). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
-
-
-
+The study questions for week 1-2 are found [here](#w01). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

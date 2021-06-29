@@ -32,8 +32,8 @@
   
   
 <link rel="prev" href="using-dplyr-to-work-with-your-data.html"/>
-<link rel="next" href="reshaping-data-with-pivot-longer.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<link rel="next" href="pivot-longer.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,12 +193,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
 <li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
-<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
 <li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
@@ -434,7 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use <code>demo(graphics)</code> to have a look). However <code>ggplot2</code> is extremely flexible and takes quite a different approach to plotting compared to baseR.</p>
 <div id="the-three-things-you-need-in-a-ggplot" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> The three things you need in a ggplot</h3>
-<p>You need three basic elements to construct a ggplot:<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a></p>
+<p>You need three basic elements to construct a ggplot:<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a></p>
 <ol style="list-style-type: decimal">
 <li><strong>Data:</strong> this is your data set, and it <em>has to be contained in a data frame.</em></li>
 <li><strong>Variables:</strong> You need variables to plot on the x and y axes (mapping of variables)</li>
@@ -444,29 +442,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data" class="section level4" number="2.3.1.1">
 <h4><span class="header-section-number">2.3.1.1</span> Data</h4>
 <p>First, we try supplying our data, <code>starwars</code>. The data is provided as an argument to the <code>ggplot()</code> function.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="plotting-your-data-with-ggplot2.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="plotting-your-data-with-ggplot2.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
 <p>As you can see, this results in a completely empty plot (because, like I said, we need two more things).</p>
 </div>
 <div id="variables" class="section level4" number="2.3.1.2">
 <h4><span class="header-section-number">2.3.1.2</span> Variables</h4>
 <p>The variables are provided to the <code>mapping</code> argument of <code>ggplot()</code>. For reasons we won’t discuss here, <strong>all variables always have to be contained within the function <code>aes()</code></strong>. Let’s try providing variables to our plot:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="plotting-your-data-with-ggplot2.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="plotting-your-data-with-ggplot2.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <p>Now we’re getting somewhere! We have axes now, but we’re still missing our points. Time to add the geometry.</p>
 </div>
 <div id="geometry" class="section level4" number="2.3.1.3">
 <h4><span class="header-section-number">2.3.1.3</span> Geometry</h4>
 <p>The geometry of a ggplot aren’t provided to the <code>ggplot()</code> function as arguments. Instead, a separate function is added to the plot using <code>+</code>. All the functions for adding geometry start with <code>geom_</code>, and the one for points is called <code>geom_point()</code>. We add this to our plot:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="plotting-your-data-with-ggplot2.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="plotting-your-data-with-ggplot2.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>Wohoo, we now have the plot we set out to make! There’s an obvious outlier in the <code>mass</code> department, which we’ll deal with later.</p>
 <p>The philosophy behind adding geometry with a <code>+</code> is that you build up your plot, layer by layer. We could for example add a regression line in addition to points in our plot:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="plotting-your-data-with-ggplot2.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
-<span id="cb92-2"><a href="plotting-your-data-with-ggplot2.html#cb92-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#add points</span></span>
-<span id="cb92-3"><a href="plotting-your-data-with-ggplot2.html#cb92-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()  <span class="co">#add regression line</span></span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
-<p>We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a> Notice how we can have line breaks in our code after the <code>+</code>, the plot still executes.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="plotting-your-data-with-ggplot2.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
+<span id="cb29-2"><a href="plotting-your-data-with-ggplot2.html#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="co">#add points</span></span>
+<span id="cb29-3"><a href="plotting-your-data-with-ggplot2.html#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()  <span class="co">#add regression line</span></span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p>We could keep adding layers like this forever, as long as we felt we had some meaningful stuff to add.<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a> Notice how we can have line breaks in our code after the <code>+</code>, the plot still executes.</p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
 You need 3 things for a ggplot:</p>
@@ -488,43 +486,43 @@ You need 3 things for a ggplot:</p>
 <p>You know that the individual in question is really heavy. Use <code>filter()</code> on the <code>mass</code> column to find it!</p>
 </details>
 <div class="fold s o">
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="plotting-your-data-with-ggplot2.html#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find individuals with mass larger than 1000</span></span>
-<span id="cb94-2"><a href="plotting-your-data-with-ggplot2.html#cb94-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb94-3"><a href="plotting-your-data-with-ggplot2.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span>
-<span id="cb94-4"><a href="plotting-your-data-with-ggplot2.html#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
-<span id="cb94-5"><a href="plotting-your-data-with-ggplot2.html#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   name                   mass</span></span>
-<span id="cb94-6"><a href="plotting-your-data-with-ggplot2.html#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;</span></span>
-<span id="cb94-7"><a href="plotting-your-data-with-ggplot2.html#cb94-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jabba Desilijic Tiure  1358</span></span>
-<span id="cb94-8"><a href="plotting-your-data-with-ggplot2.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-9"><a href="plotting-your-data-with-ggplot2.html#cb94-9" aria-hidden="true" tabindex="-1"></a><span class="co"># If you’ve seen Star Wars, the answer to this shouldn’t be a huge surprise… </span></span>
-<span id="cb94-10"><a href="plotting-your-data-with-ggplot2.html#cb94-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Let’s filter him out of the data</span></span>
-<span id="cb94-11"><a href="plotting-your-data-with-ggplot2.html#cb94-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-12"><a href="plotting-your-data-with-ggplot2.html#cb94-12" aria-hidden="true" tabindex="-1"></a>starwars2 <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>)</span>
-<span id="cb94-13"><a href="plotting-your-data-with-ggplot2.html#cb94-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-14"><a href="plotting-your-data-with-ggplot2.html#cb94-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and plot it</span></span>
-<span id="cb94-15"><a href="plotting-your-data-with-ggplot2.html#cb94-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-16"><a href="plotting-your-data-with-ggplot2.html#cb94-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="plotting-your-data-with-ggplot2.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># find individuals with mass larger than 1000</span></span>
+<span id="cb31-2"><a href="plotting-your-data-with-ggplot2.html#cb31-2" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mass <span class="sc">&gt;</span> <span class="dv">1000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="plotting-your-data-with-ggplot2.html#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name, mass)</span>
+<span id="cb31-4"><a href="plotting-your-data-with-ggplot2.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1 x 2</span></span>
+<span id="cb31-5"><a href="plotting-your-data-with-ggplot2.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   name                   mass</span></span>
+<span id="cb31-6"><a href="plotting-your-data-with-ggplot2.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   &lt;chr&gt;                 &lt;dbl&gt;</span></span>
+<span id="cb31-7"><a href="plotting-your-data-with-ggplot2.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1 Jabba Desilijic Tiure  1358</span></span>
+<span id="cb31-8"><a href="plotting-your-data-with-ggplot2.html#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="plotting-your-data-with-ggplot2.html#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># If you’ve seen Star Wars, the answer to this shouldn’t be a huge surprise… </span></span>
+<span id="cb31-10"><a href="plotting-your-data-with-ggplot2.html#cb31-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Let’s filter him out of the data</span></span>
+<span id="cb31-11"><a href="plotting-your-data-with-ggplot2.html#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="plotting-your-data-with-ggplot2.html#cb31-12" aria-hidden="true" tabindex="-1"></a>starwars2 <span class="ot">&lt;-</span> starwars <span class="sc">%&gt;%</span> <span class="fu">filter</span>(mass <span class="sc">&lt;</span> <span class="dv">1000</span>)</span>
+<span id="cb31-13"><a href="plotting-your-data-with-ggplot2.html#cb31-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-14"><a href="plotting-your-data-with-ggplot2.html#cb31-14" aria-hidden="true" tabindex="-1"></a><span class="co"># and plot it</span></span>
+<span id="cb31-15"><a href="plotting-your-data-with-ggplot2.html#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-16"><a href="plotting-your-data-with-ggplot2.html#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
 </div>
 </div>
 </div>
 <div id="storing-ggplots-in-objects" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Storing ggplots in objects</h3>
 <p>A very useful feature of ggplots is that they can be stored in objects just like any other data. We will test this with the <code>starwars2</code> data frame we created above.</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="plotting-your-data-with-ggplot2.html#cb95-1" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span>
-<span id="cb95-2"><a href="plotting-your-data-with-ggplot2.html#cb95-2" aria-hidden="true" tabindex="-1"></a>sw_plot</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="plotting-your-data-with-ggplot2.html#cb32-1" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span>
+<span id="cb32-2"><a href="plotting-your-data-with-ggplot2.html#cb32-2" aria-hidden="true" tabindex="-1"></a>sw_plot</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 <p>We can now use this object as a base, and make different plots by adding <code>geom</code>s:</p>
 <div class="fold o">
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="plotting-your-data-with-ggplot2.html#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with points</span></span>
-<span id="cb96-2"><a href="plotting-your-data-with-ggplot2.html#cb96-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="plotting-your-data-with-ggplot2.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with line</span></span>
-<span id="cb97-2"><a href="plotting-your-data-with-ggplot2.html#cb97-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-35-2.png" width="672" /></p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="plotting-your-data-with-ggplot2.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with regression line</span></span>
-<span id="cb98-2"><a href="plotting-your-data-with-ggplot2.html#cb98-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-35-3.png" width="672" /></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="plotting-your-data-with-ggplot2.html#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with points</span></span>
+<span id="cb33-2"><a href="plotting-your-data-with-ggplot2.html#cb33-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="plotting-your-data-with-ggplot2.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with line</span></span>
+<span id="cb34-2"><a href="plotting-your-data-with-ggplot2.html#cb34-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="plotting-your-data-with-ggplot2.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with regression line</span></span>
+<span id="cb35-2"><a href="plotting-your-data-with-ggplot2.html#cb35-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="sc">+</span> <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-34-3.png" width="672" /></p>
 </div>
 <p>If you plan to make several plots with the same data and variables, you should save the basic plot to an object to avoid repeating yourself.</p>
 </div>
@@ -533,31 +531,31 @@ You need 3 things for a ggplot:</p>
 <div id="general-customization" class="section level4" number="2.3.3.1">
 <h4><span class="header-section-number">2.3.3.1</span> General customization</h4>
 <p>So far, we’ve been using the <code>geom_</code> functions without arguments, but they actually take many of the same arguments as <code>plot()</code>. This means that you can use <code>col</code> to change color, <code>pch</code> to change point shape and <code>lty</code> to change line type:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="plotting-your-data-with-ggplot2.html#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create basic plot object</span></span>
-<span id="cb99-2"><a href="plotting-your-data-with-ggplot2.html#cb99-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span>
-<span id="cb99-3"><a href="plotting-your-data-with-ggplot2.html#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-4"><a href="plotting-your-data-with-ggplot2.html#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add lines and points, and customize these</span></span>
-<span id="cb99-5"><a href="plotting-your-data-with-ggplot2.html#cb99-5" aria-hidden="true" tabindex="-1"></a>sw_pts_ln <span class="ot">&lt;-</span> sw_plot <span class="sc">+</span> </span>
-<span id="cb99-6"><a href="plotting-your-data-with-ggplot2.html#cb99-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb99-7"><a href="plotting-your-data-with-ggplot2.html#cb99-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">pch =</span> <span class="dv">3</span>)</span>
-<span id="cb99-8"><a href="plotting-your-data-with-ggplot2.html#cb99-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-9"><a href="plotting-your-data-with-ggplot2.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print plot</span></span>
-<span id="cb99-10"><a href="plotting-your-data-with-ggplot2.html#cb99-10" aria-hidden="true" tabindex="-1"></a>sw_pts_ln</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<p>Adding title and labels can be done by adding a separate function, <code>labs()</code>. <code>labs()</code> has, among others, the arguments <code>x</code>, <code>y</code>, <code>title</code> and <code>subtitle</code>, doing exactly what you would expect:<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="plotting-your-data-with-ggplot2.html#cb101-1" aria-hidden="true" tabindex="-1"></a>sw_pts_ln <span class="sc">+</span></span>
-<span id="cb101-2"><a href="plotting-your-data-with-ggplot2.html#cb101-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>,</span>
-<span id="cb101-3"><a href="plotting-your-data-with-ggplot2.html#cb101-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mass (kg)&quot;</span>,</span>
-<span id="cb101-4"><a href="plotting-your-data-with-ggplot2.html#cb101-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heigt vs. mass in the Star Wars universe&quot;</span>,</span>
-<span id="cb101-5"><a href="plotting-your-data-with-ggplot2.html#cb101-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;A part of the BIOS1140 ggplot tutorial&quot;</span>)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="672" /></p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="plotting-your-data-with-ggplot2.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create basic plot object</span></span>
+<span id="cb36-2"><a href="plotting-your-data-with-ggplot2.html#cb36-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass))</span>
+<span id="cb36-3"><a href="plotting-your-data-with-ggplot2.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="plotting-your-data-with-ggplot2.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># add lines and points, and customize these</span></span>
+<span id="cb36-5"><a href="plotting-your-data-with-ggplot2.html#cb36-5" aria-hidden="true" tabindex="-1"></a>sw_pts_ln <span class="ot">&lt;-</span> sw_plot <span class="sc">+</span> </span>
+<span id="cb36-6"><a href="plotting-your-data-with-ggplot2.html#cb36-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb36-7"><a href="plotting-your-data-with-ggplot2.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">pch =</span> <span class="dv">3</span>)</span>
+<span id="cb36-8"><a href="plotting-your-data-with-ggplot2.html#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="plotting-your-data-with-ggplot2.html#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># print plot</span></span>
+<span id="cb36-10"><a href="plotting-your-data-with-ggplot2.html#cb36-10" aria-hidden="true" tabindex="-1"></a>sw_pts_ln</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>Adding title and labels can be done by adding a separate function, <code>labs()</code>. <code>labs()</code> has, among others, the arguments <code>x</code>, <code>y</code>, <code>title</code> and <code>subtitle</code>, doing exactly what you would expect:<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="plotting-your-data-with-ggplot2.html#cb38-1" aria-hidden="true" tabindex="-1"></a>sw_pts_ln <span class="sc">+</span></span>
+<span id="cb38-2"><a href="plotting-your-data-with-ggplot2.html#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>,</span>
+<span id="cb38-3"><a href="plotting-your-data-with-ggplot2.html#cb38-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mass (kg)&quot;</span>,</span>
+<span id="cb38-4"><a href="plotting-your-data-with-ggplot2.html#cb38-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heigt vs. mass in the Star Wars universe&quot;</span>,</span>
+<span id="cb38-5"><a href="plotting-your-data-with-ggplot2.html#cb38-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;A part of the BIOS1140 ggplot tutorial&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
 </div>
 <div id="mapping-variables-to-colors-shapes-etc." class="section level4" number="2.3.3.2">
 <h4><span class="header-section-number">2.3.3.2</span> Mapping variables to colors, shapes etc.</h4>
 <p>The modifications you’ve learned so far are nice for making plots pretty, but the real power of using colors and other aesthetics comes when they can contain additional information about your data. Here we introduce a powerful concept in <code>ggplot2</code> for doing this: <strong>You can map data to more than just your axis labels</strong>. In the following plot, the points are colored by their value in the <code>species</code> column, rather than all having the same color:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="plotting-your-data-with-ggplot2.html#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">col =</span> species)) <span class="sc">+</span></span>
-<span id="cb102-2"><a href="plotting-your-data-with-ggplot2.html#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="864" /></p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="plotting-your-data-with-ggplot2.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb39-2"><a href="plotting-your-data-with-ggplot2.html#cb39-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-38-1.png" width="864" /></p>
 <p>One important thing to note here is that your variable has to be within <code>aes()</code> in your plot. Note that <strong>variable names do not need quotes</strong>. It’s easy to get confused about when to put something inside <code>aes()</code> and not, but the general rule is:</p>
 <ul>
 <li>If you’re mapping color (or shape, linetype) to a <strong>variable</strong> in your data set, the <code>col</code> argument must be inside <code>aes()</code>.</li>
@@ -565,16 +563,16 @@ You need 3 things for a ggplot:</p>
 </ul>
 <p>In this sense, mapping variables to e.g. color is no different than mapping to your x and y axes (which you would always wrap inside <code>aes()</code>)</p>
 <p>As indicated above, other things than color can be mapped to aesthetics:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="plotting-your-data-with-ggplot2.html#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">pch =</span> sex, <span class="at">lty =</span> sex)) <span class="sc">+</span></span>
-<span id="cb103-2"><a href="plotting-your-data-with-ggplot2.html#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb103-3"><a href="plotting-your-data-with-ggplot2.html#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># method=lm creates LINEAR regression, se=FALSE removes the grey confidence intervals</span></span>
-<span id="cb103-4"><a href="plotting-your-data-with-ggplot2.html#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="plotting-your-data-with-ggplot2.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass, <span class="at">pch =</span> sex, <span class="at">lty =</span> sex)) <span class="sc">+</span></span>
+<span id="cb40-2"><a href="plotting-your-data-with-ggplot2.html#cb40-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb40-3"><a href="plotting-your-data-with-ggplot2.html#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># method=lm creates LINEAR regression, se=FALSE removes the grey confidence intervals</span></span>
+<span id="cb40-4"><a href="plotting-your-data-with-ggplot2.html#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
 <p>If you e.g. want to group your points by <code>sex</code>, but you don’t want that same grouping for your lines, you can use the <code>mapping</code> argument of your <code>geom</code> instead:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="plotting-your-data-with-ggplot2.html#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
-<span id="cb104-2"><a href="plotting-your-data-with-ggplot2.html#cb104-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> sex)) <span class="sc">+</span></span>
-<span id="cb104-3"><a href="plotting-your-data-with-ggplot2.html#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="plotting-your-data-with-ggplot2.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
+<span id="cb41-2"><a href="plotting-your-data-with-ggplot2.html#cb41-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> sex)) <span class="sc">+</span></span>
+<span id="cb41-3"><a href="plotting-your-data-with-ggplot2.html#cb41-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
 Variables can be mapped to aesthetics like color and point shape the same way they can be mapped to axes. Whenever you do this, you have to have your mapping within the <code>aes()</code> function. You can use the <code>mapping</code> argument of <code>ggplot()</code> to make your mapping global (i.e. for the entire plot), or the <code>mapping</code> argument of a geom to make the mapping exclusive to that geom.</p>
@@ -587,10 +585,10 @@ Variables can be mapped to aesthetics like color and point shape the same way th
 <p>Map color within the <code>geom_point()</code> function in order to avoid having your regression line colored by species</p>
 </details>
 <div class="fold s o">
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="plotting-your-data-with-ggplot2.html#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birth_year, <span class="at">y =</span> height)) <span class="sc">+</span></span>
-<span id="cb105-2"><a href="plotting-your-data-with-ggplot2.html#cb105-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> species)) <span class="sc">+</span></span>
-<span id="cb105-3"><a href="plotting-your-data-with-ggplot2.html#cb105-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="plotting-your-data-with-ggplot2.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> birth_year, <span class="at">y =</span> height)) <span class="sc">+</span></span>
+<span id="cb42-2"><a href="plotting-your-data-with-ggplot2.html#cb42-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> species)) <span class="sc">+</span></span>
+<span id="cb42-3"><a href="plotting-your-data-with-ggplot2.html#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
 </div>
 <div class="blue">
 <p><strong>Tip:</strong><br />
@@ -602,37 +600,37 @@ From now on, we will no longer explicitly write the names of the <code>data</cod
 <div id="saving-your-plots" class="section level3" number="2.3.4">
 <h3><span class="header-section-number">2.3.4</span> Saving your plots</h3>
 <p>You can save your ggplot to a file using the function <code>ggsave()</code>. At the very least, you need to provide a plot object and a file name (with extension).</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="plotting-your-data-with-ggplot2.html#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create our plot</span></span>
-<span id="cb106-2"><a href="plotting-your-data-with-ggplot2.html#cb106-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
-<span id="cb106-3"><a href="plotting-your-data-with-ggplot2.html#cb106-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
-<span id="cb106-4"><a href="plotting-your-data-with-ggplot2.html#cb106-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb106-5"><a href="plotting-your-data-with-ggplot2.html#cb106-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save it</span></span>
-<span id="cb106-6"><a href="plotting-your-data-with-ggplot2.html#cb106-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;sw_plot.png&quot;</span>, sw_plot)</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="plotting-your-data-with-ggplot2.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create our plot</span></span>
+<span id="cb43-2"><a href="plotting-your-data-with-ggplot2.html#cb43-2" aria-hidden="true" tabindex="-1"></a>sw_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
+<span id="cb43-3"><a href="plotting-your-data-with-ggplot2.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span>
+<span id="cb43-4"><a href="plotting-your-data-with-ggplot2.html#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="plotting-your-data-with-ggplot2.html#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="co"># save it</span></span>
+<span id="cb43-6"><a href="plotting-your-data-with-ggplot2.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">&quot;sw_plot.png&quot;</span>, sw_plot)</span></code></pre></div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="11">
-<li id="fn11"><p>There are more you <em>could</em> use, but these three are the ones that are strictly necessary.<a href="plotting-your-data-with-ggplot2.html#fnref11" class="footnote-back">↩︎</a></p></li>
-<li id="fn12"><p>Like this!</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name)) <span class="sc">+</span></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
-<p>I know, I know, I did say “meaningful”<a href="plotting-your-data-with-ggplot2.html#fnref12" class="footnote-back">↩︎</a></p></li>
-<li id="fn13"><p>Notice how our plot is built up layer by layer. Just to remind you, here’s how the code for our plot would look without creating intermediary objects:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">pch =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>,</span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mass (kg)&quot;</span>,</span>
-<span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heigt vs. mass in the Star Wars universe&quot;</span>,</span>
-<span id="cb100-7"><a href="#cb100-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;A part of the BIOS1140 ggplot tutorial&quot;</span>)</span></code></pre></div>
-<p><img src="Exercise2_files/figure-html/unnamed-chunk-37-1.png" width="672" /><a href="plotting-your-data-with-ggplot2.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<ol start="5">
+<li id="fn5"><p>There are more you <em>could</em> use, but these three are the ones that are strictly necessary.<a href="plotting-your-data-with-ggplot2.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Like this!</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span> </span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> name)) <span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>() <span class="sc">+</span></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>I know, I know, I did say “meaningful”<a href="plotting-your-data-with-ggplot2.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>Notice how our plot is built up layer by layer. Just to remind you, here’s how the code for our plot would look without creating intermediary objects:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> starwars2, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> height, <span class="at">y =</span> mass)) <span class="sc">+</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">col =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">lty =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">pch =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Height (cm)&quot;</span>,</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Mass (kg)&quot;</span>,</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">title =</span> <span class="st">&quot;Heigt vs. mass in the Star Wars universe&quot;</span>,</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;A part of the BIOS1140 ggplot tutorial&quot;</span>)</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" /><a href="plotting-your-data-with-ggplot2.html#fnref7" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -641,7 +639,7 @@ From now on, we will no longer explicitly write the names of the <code>data</cod
         </div>
       </div>
 <a href="using-dplyr-to-work-with-your-data.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="reshaping-data-with-pivot-longer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="pivot-longer.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

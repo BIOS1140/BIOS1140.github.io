@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2.1 Intro to data manipulation with tidyverse | R tutorials for the course BIOS1140 at the University of Oslo</title>
+  <title>2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2.1 Intro to data manipulation with tidyverse | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta property="og:title" content="2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2.1 Intro to data manipulation with tidyverse | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta name="twitter:title" content="2.4 Reshaping data with pivot_longer() | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="ch02.html"/>
-<link rel="next" href="using-dplyr-to-work-with-your-data.html"/>
+<link rel="prev" href="plotting-your-data-with-ggplot2.html"/>
+<link rel="next" href="study-questions.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -425,34 +425,121 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro-to-data-manipulation-with-tidyverse" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Intro to data manipulation with tidyverse</h2>
+<div id="pivot-longer" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Reshaping data with pivot_longer()</h2>
 <script src="js/hideOutput.js"></script>
-<p>Data manipulation might seem quite a boring topic but it is actually a crucial part of data science and increasingly, bioinformatics and evolutionary biology. For the average researcher working with biological data, we would estimate that the vast majority of analysis time is spent handling the data. By handling and manipulation, we mean exploring the data, shaping it into a form we want to work with and extracting information we find important or interesting. Getting to know your data is absolutely fundamental to properly understanding it and that is why we have decided to dedicate time to it in this chapter.</p>
-<p>At this point in our tutorial, we will use a series of packages collectively known as the <a href="https://www.tidyverse.org">tidyverse</a>; in particularly, we will focus on functions from a tidyverse package called <code>dplyr</code>. These packages grew from the approach of <a href="http://hadley.nz/">Hadley Wickham</a> - a statistician responsible for popularising fresh approaches to R and data science. As with nearly all things in R, there are many, many ways to achieve the same goal and the guidlines we give here are by no means definitive. However, we choose to introduce these principles now because in our experience of data analysis, they have greatly improved our efficiency, the clarity of our R code and the way we work with data.</p>
-<div id="what-is-the-tidyverse" class="section level3" number="2.1.1">
-<h3><span class="header-section-number">2.1.1</span> What is the tidyverse?</h3>
-<p>It’s important to emphasize that the tidyverse set of packages can do mostly <strong>the same as base R already can do</strong>. So what’s the difference? While base R is a collection of different methods and functions built up over years, tidyverse is designed with a specific philosophy in mind. This leads to having a consistent approach to solving problems that many find appealing. That being said, if you find you prefer the “regular” R-functions over their tidyverse equivalents, go ahead and use those instead, there’s nothing wrong with that.</p>
-<div class="green">
-<p><strong>Important concept:</strong><br />
-The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy. Some key points of this philosophy is:</p>
-<ul>
-<li>The name of all functions that transform data are verbs</li>
-<li>The <code>data</code> argument is always the first argument of the functions, so it’s easy to use in a pipeline (more on this later).</li>
-</ul>
+<div id="wide-and-long-format" class="section level3" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Wide and long format</h3>
+<p>Let’s say you have some biological data (finally, wohoo!), and want to plot it using <code>ggplot2</code>. There are (at least) two ways your data can be formatted:</p>
+<div class="figure"><span id="fig:unnamed-chunk-43"></span>
+<img src="figs/long_wide.PNG" alt="Data in &quot;wide format&quot; (left) and &quot;long format&quot; (right)" width="843" />
+<p class="caption">
+Figure 2.1: Data in “wide format” (left) and “long format” (right)
+</p>
 </div>
+<p>These two formats are commonly referred to as “wide” and “long” respectively. If you want to make some plot that is e.g. colored by species in this data, <strong>the data needs to be in long format</strong>, i.e. the variable you are grouping by has to be contained in a single column. Data can be converted from wide to long using the tidyverse function <code>pivot_longer()</code>.</p>
 </div>
-<div id="the-dplyr-package" class="section level3" number="2.1.2">
-<h3><span class="header-section-number">2.1.2</span> The dplyr package</h3>
-<p><code>dplyr</code> is one of the packages in the tidyverse, and is focused on manipulating data in data frames. <code>dplyr</code> at it’s core consists of combining 5 different verbs for data handling:</p>
+<div id="import-example-data" class="section level3" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Import example data</h3>
+<p>Let’s import a data set to use as our example. Download <code>copepods.txt</code> <a href="https://bios1140.github.io/data/copepods.txt">here</a>. The data contains counts of different copepod taxa from outside Drøbak.</p>
+<p><strong>Exercise: download the data and import it into R. Is this data “wide” or “long”?</strong></p>
+<details>
+<summary>
+<p>Show hint</p>
+</summary>
+<p>Use the <code>read.table()</code> function. The data is tabulator separated with a header. Remember to work in the correct working directory!</p>
+</details>
+<div class="fold s">
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="pivot-longer.html#cb44-1" aria-hidden="true" tabindex="-1"></a>copepods <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;copepods.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+</div>
+<p>Take a look at the data and how it’s structured:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="pivot-longer.html#cb45-1" aria-hidden="true" tabindex="-1"></a>copepods</span>
+<span id="cb45-2"><a href="pivot-longer.html#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   depth acartia calanus harpacticoida oithona oncaea temora</span></span>
+<span id="cb45-3"><a href="pivot-longer.html#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1     0       0       3             0       2      0      0</span></span>
+<span id="cb45-4"><a href="pivot-longer.html#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2     2       1       0             0       6      1      0</span></span>
+<span id="cb45-5"><a href="pivot-longer.html#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3     4       1       0             0       7      0      1</span></span>
+<span id="cb45-6"><a href="pivot-longer.html#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4     6      27       0             1       0      0      2</span></span>
+<span id="cb45-7"><a href="pivot-longer.html#cb45-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5     8      11       0             2       6      0      3</span></span>
+<span id="cb45-8"><a href="pivot-longer.html#cb45-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6    10      17       0             3       0      0      2</span></span>
+<span id="cb45-9"><a href="pivot-longer.html#cb45-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7    12      13       0             1       0      0      1</span></span>
+<span id="cb45-10"><a href="pivot-longer.html#cb45-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8    14       7       0            13       0      0      0</span></span>
+<span id="cb45-11"><a href="pivot-longer.html#cb45-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9    16       6       0             6       0      0      1</span></span></code></pre></div>
+</div>
+<div id="reshape-the-data" class="section level3" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Reshape the data</h3>
+<p>As you hopefully figured out, this data is in so-called wide format, and we need to make it long with <code>pivot_longer()</code>. <code>pivot_longer()</code> has two important arguments called <code>names_to</code> and <code>values_to</code>. In our case <code>names_to</code> is the name of the new column of species, and <code>values_to</code> is the name of the new column where our values go. In addition, you need to provide the columns that you want to reshape. We can reshape this data like this:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="pivot-longer.html#cb46-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
+<span id="cb46-2"><a href="pivot-longer.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">c</span>(acartia, calanus, harpacticoida, oithona, oncaea, temora),</span>
+<span id="cb46-3"><a href="pivot-longer.html#cb46-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span>
+<span id="cb46-4"><a href="pivot-longer.html#cb46-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb46-5"><a href="pivot-longer.html#cb46-5" aria-hidden="true" tabindex="-1"></a>copepods_long</span>
+<span id="cb46-6"><a href="pivot-longer.html#cb46-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # A tibble: 54 x 3</span></span>
+<span id="cb46-7"><a href="pivot-longer.html#cb46-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    depth species       count</span></span>
+<span id="cb46-8"><a href="pivot-longer.html#cb46-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    &lt;int&gt; &lt;chr&gt;         &lt;int&gt;</span></span>
+<span id="cb46-9"><a href="pivot-longer.html#cb46-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  1     0 acartia           0</span></span>
+<span id="cb46-10"><a href="pivot-longer.html#cb46-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  2     0 calanus           3</span></span>
+<span id="cb46-11"><a href="pivot-longer.html#cb46-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3     0 harpacticoida     0</span></span>
+<span id="cb46-12"><a href="pivot-longer.html#cb46-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  4     0 oithona           2</span></span>
+<span id="cb46-13"><a href="pivot-longer.html#cb46-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  5     0 oncaea            0</span></span>
+<span id="cb46-14"><a href="pivot-longer.html#cb46-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  6     0 temora            0</span></span>
+<span id="cb46-15"><a href="pivot-longer.html#cb46-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  7     2 acartia           1</span></span>
+<span id="cb46-16"><a href="pivot-longer.html#cb46-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8     2 calanus           0</span></span>
+<span id="cb46-17"><a href="pivot-longer.html#cb46-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     2 harpacticoida     0</span></span>
+<span id="cb46-18"><a href="pivot-longer.html#cb46-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     2 oithona           6</span></span>
+<span id="cb46-19"><a href="pivot-longer.html#cb46-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ... with 44 more rows</span></span></code></pre></div>
+<p>Note that <code>pivot_longer()</code> has the same way of selecting columns as <code>select()</code>, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="pivot-longer.html#cb47-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
+<span id="cb47-2"><a href="pivot-longer.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>depth, <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>
+<p>That sure is more convenient than explicitly selecting all the columns we want (in our case, anyway)!</p>
+</div>
+<div id="plot-the-data" class="section level3" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Plot the data</h3>
+<p>Now we can plot the data! By now, you should know enough ggplot to attempt this yourself.</p>
+<p><strong>Exercise: Make a plot where you have depth on the x-axis and count on the y-axis, and color by species. Experiment with using some different geoms and find the most suitable for visualising your data. When you’ve settled on a geom, create a title and axis labels, and save your finished plot with <code>ggsave()</code></strong></p>
+<details>
+<summary>
+<p>Show some geom ideas</p>
+</summary>
+<p>Try these, and see how they look for your data!</p>
 <ul>
-<li><code>select()</code> select columns from your data</li>
-<li><code>filter()</code> filters rows based on certain criteria</li>
-<li><code>mutate()</code> creates new columns (not gone through in this tutorial, but included in this list for completeness)</li>
-<li><code>group_by()</code> creates groups for summarizing data</li>
-<li><code>summarise()</code> summarises data based on the groups you have created</li>
+<li><code>geom_point()</code></li>
+<li><code>geom_jitter()</code> (what is the difference between this and <code>geom_point()</code>?)</li>
+<li><code>geom_col()</code> (tip: use <code>fill</code> aesthetic instead of <code>col</code>)</li>
+<li><code>geom_boxplot()</code> (does this make sense?)</li>
+<li><code>geom_line()</code></li>
+<li><code>geom_area()</code> (use <code>fill</code> for this one too)</li>
 </ul>
-<p>We will go through the use of these functions shortly. You may notice that you’ve already learned how to <code>select</code>, <code>filter</code> and <code>mutate</code> data last week using <code>[]</code> and <code>$</code>, which is correct, and exactly what we mean when we say that base R and <code>tidyverse</code> can do the same things.</p>
+</details>
+<details>
+<summary>
+<p>Show code and plots</p>
+</summary>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="pivot-longer.html#cb48-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(depth, count, <span class="at">col =</span> species))</span>
+<span id="cb48-2"><a href="pivot-longer.html#cb48-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-3"><a href="pivot-longer.html#cb48-3" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="pivot-longer.html#cb49-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-2.png" width="672" /></p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="pivot-longer.html#cb50-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-3.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="pivot-longer.html#cb51-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-4.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="pivot-longer.html#cb52-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-5.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="pivot-longer.html#cb53-1" aria-hidden="true" tabindex="-1"></a>depthplot <span class="sc">+</span> <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species))</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-49-6.png" width="672" /></p>
+<p>I’m settling on <code>geom_area()</code> since it nicely shows both total abundance and the relationship between the taxa (plus, it looks cool). Some additional tricks I do: flip the coordinates with <code>coord_flip()</code> to get depth on the y-axis, and plotting <code>-depth</code> instead of <code>depth</code> to plot depth downwards. I do this because it is how depth data is usually shown in marine biology, and because I wanted to show you that there are lots of options on customising plots that you will encounter as you learn more about ggplot.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="pivot-longer.html#cb54-1" aria-hidden="true" tabindex="-1"></a>copeplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(copepods_long, <span class="fu">aes</span>(<span class="sc">-</span>depth, count)) <span class="sc">+</span> </span>
+<span id="cb54-2"><a href="pivot-longer.html#cb54-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_area</span>(<span class="fu">aes</span>(<span class="at">fill =</span> species)) <span class="sc">+</span></span>
+<span id="cb54-3"><a href="pivot-longer.html#cb54-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Number of individuals by depth&quot;</span>,</span>
+<span id="cb54-4"><a href="pivot-longer.html#cb54-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Data from Drøbak&quot;</span>,</span>
+<span id="cb54-5"><a href="pivot-longer.html#cb54-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Depth (m)&quot;</span>,</span>
+<span id="cb54-6"><a href="pivot-longer.html#cb54-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Count&quot;</span>) <span class="sc">+</span></span>
+<span id="cb54-7"><a href="pivot-longer.html#cb54-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>()</span>
+<span id="cb54-8"><a href="pivot-longer.html#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="pivot-longer.html#cb54-9" aria-hidden="true" tabindex="-1"></a>copeplot</span></code></pre></div>
+<p><img src="Exercise2_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+</details>
 </div>
 </div>
             </section>
@@ -460,8 +547,8 @@ The tidyverse packages can do more or less exactly the same as base R. The diffe
           </div>
         </div>
       </div>
-<a href="ch02.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="using-dplyr-to-work-with-your-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="plotting-your-data-with-ggplot2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="study-questions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
