@@ -308,10 +308,9 @@ plot(bedbugs_scan, col = "red")
 
 You can see quite clearly that whatever the LOD is, it is much higher on linkage group 12 and this peak focuses right where our marker is. This suggests a strong association between genotypes here and the phenotype in question.
 
-:::{.blue}
-**What do we mean by a LOD score?**  
+::: {.blue}
+**What do we mean by a LOD score?**\
 It is beyond the scope of the tutorial to go in to too much detail about this, but LOD stands for logarithim of the odds ratio. It is essentially the ratio between a model where a QTL exists at a marker and one where there is no QTL at all. So, if a LOD is 0 or close to 0, then there is essentially no evidence a QTL is present. However, if a QTL is present and explains variance in the phenotype then the LOD score is expected to be higher, as it is at this marker. For more info on LOD scores, see section 6.3.4 in the textbook.
-
 :::
 
 ### Linking ANOVA to our QTL analysis
