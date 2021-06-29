@@ -60,7 +60,7 @@ Take a look at the `iris` dataset. The data frame contains four measurements (`S
 
 #### Investigating with dplyr
 
-A great tool for working with groups is (perhaps unsurprisingly) the `group_by()` function in `dplyr` that you learned about in the second week of this course. We can for example count the number of observations of each species with `group_by()` and `tally()`:
+A great tool for working with groups is (perhaps unsurprisingly) the `group_by()` function in `dplyr` that you learned about in the [second week](#w02) of this course. We can for example count the number of observations of each species with `group_by()` and `tally()`:
 
 ```{r}
 iris %>%
