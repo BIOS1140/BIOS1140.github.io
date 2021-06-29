@@ -257,7 +257,7 @@ $F_{ST} = \displaystyle \frac{H_T - H_S}{H_T}$
 
 For simplicity, imagine we are examining two populations only. With this formulate, $H_T$ is the **expected heterozygosity** when the two populations are considered as one large meta-population. $H_S$ is the **average expected heterozygosity** in the two populations.
 
-You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
+You might be thinking, hang on a minute... what do we mean by expected heterozygosity? To appreciate this, we need to think back to the Hardy-Weinberg expectation we learned about in [Chapter 3](#ch03). Remember that at a simple bi-allelic locus, $p$ and $q$ are the frequencies of the two alleles. We can calculate the expected frequency of heterozygotes with $2pq$ - this is the **expected heterozygosity**.
 
 ### A worked example of *F*~ST~ in humans
 
@@ -677,7 +677,7 @@ One important point to note here is that the threshold we set to identify a SNP 
 
 ## Study questions
 
-The study questions for week 5 are found [here](#w05). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 5 are found [here](#w05). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 
 ## Going further

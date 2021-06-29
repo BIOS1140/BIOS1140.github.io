@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-23" />
+<meta name="date" content="2021-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="ch05.html"/>
 <link rel="next" href="understanding-fst-the-fixation-index.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,12 +193,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
 <li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
-<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
 <li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
@@ -375,21 +373,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
 <li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and relating</a>
+<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and joining</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
-<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
+<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
+<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists</a></li>
+<li class="chapter" data-level="10.4" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
-<li class="chapter" data-level="10.3.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
-<li class="chapter" data-level="10.3.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+<li class="chapter" data-level="10.4.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.4.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.4.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.4.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.4.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
-<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
-<li class="chapter" data-level="10.6" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
-<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+<li class="chapter" data-level="10.5" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.5</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.6" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.7" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.7</b> Study questions</a></li>
+<li class="chapter" data-level="10.8" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.8</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
 <li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
@@ -432,29 +431,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="js/hideOutput.js"></script>
 <p>Last week you learned a bit about creating your own functions, and hopefully saw how useful they can be for simplifying your work flow. This week you will learn more about how they work, and some tricks for using functions efficiently.</p>
 <p>As an example, let’s use a simple function that takes radius and height as an input, and calculates the volume of a cylinder (<span class="math inline">\(\pi r^2h\)</span>).</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="vectorisation.html#cb210-1" aria-hidden="true" tabindex="-1"></a>cyl_vol <span class="ot">&lt;-</span> <span class="cf">function</span>(r, h){</span>
-<span id="cb210-2"><a href="vectorisation.html#cb210-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pi <span class="sc">*</span> r<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> h)</span>
-<span id="cb210-3"><a href="vectorisation.html#cb210-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="vectorisation.html#cb209-1" aria-hidden="true" tabindex="-1"></a>cyl_vol <span class="ot">&lt;-</span> <span class="cf">function</span>(r, h){</span>
+<span id="cb209-2"><a href="vectorisation.html#cb209-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pi <span class="sc">*</span> r<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> h)</span>
+<span id="cb209-3"><a href="vectorisation.html#cb209-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>First, let’s use it for a single value of <code>r</code> and <code>h</code>.</p>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="vectorisation.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 8</span></span>
-<span id="cb211-2"><a href="vectorisation.html#cb211-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb211-3"><a href="vectorisation.html#cb211-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb211-4"><a href="vectorisation.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
-<span id="cb211-5"><a href="vectorisation.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 226.1947</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="vectorisation.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 8</span></span>
+<span id="cb210-2"><a href="vectorisation.html#cb210-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb210-3"><a href="vectorisation.html#cb210-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb210-4"><a href="vectorisation.html#cb210-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb210-5"><a href="vectorisation.html#cb210-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 226.1947</span></span></code></pre></div>
 <p>Let’s say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can supply a vector of heights as the second argument, and do these 10 calculations in a single operation!</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="vectorisation.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 1:10</span></span>
-<span id="cb212-2"><a href="vectorisation.html#cb212-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb212-3"><a href="vectorisation.html#cb212-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb212-4"><a href="vectorisation.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
-<span id="cb212-5"><a href="vectorisation.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  28.27433  56.54867  84.82300 113.09734 141.37167 169.64600 197.92034</span></span>
-<span id="cb212-6"><a href="vectorisation.html#cb212-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 254.46900 282.74334</span></span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="vectorisation.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># radius 3, height 1:10</span></span>
+<span id="cb211-2"><a href="vectorisation.html#cb211-2" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb211-3"><a href="vectorisation.html#cb211-3" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb211-4"><a href="vectorisation.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb211-5"><a href="vectorisation.html#cb211-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  28.27433  56.54867  84.82300 113.09734 141.37167 169.64600 197.92034</span></span>
+<span id="cb211-6"><a href="vectorisation.html#cb211-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 254.46900 282.74334</span></span></code></pre></div>
 <p>This is part of what we call <em>vectorisation</em>, taking a single function and applying it to a vector of values.</p>
 <p>We can even supply two vectors, one for <code>r</code> and 1 for <code>h</code> if we want to vary both radius and height.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="vectorisation.html#cb213-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
-<span id="cb213-2"><a href="vectorisation.html#cb213-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
-<span id="cb213-3"><a href="vectorisation.html#cb213-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
-<span id="cb213-4"><a href="vectorisation.html#cb213-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 314.15927 508.93801 603.18579 615.75216 565.48668 471.23890 351.85838</span></span>
-<span id="cb213-5"><a href="vectorisation.html#cb213-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 113.09734  31.41593</span></span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="vectorisation.html#cb212-1" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb212-2"><a href="vectorisation.html#cb212-2" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb212-3"><a href="vectorisation.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb212-4"><a href="vectorisation.html#cb212-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 314.15927 508.93801 603.18579 615.75216 565.48668 471.23890 351.85838</span></span>
+<span id="cb212-5"><a href="vectorisation.html#cb212-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 113.09734  31.41593</span></span></code></pre></div>
 <p>Note that this calculates volume for <span class="math inline">\(r=10, h=1\)</span>, then <span class="math inline">\(r=9, h=2\)</span> and so on, not for all combinations of the vectors.</p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
@@ -468,26 +467,26 @@ Notice that you could also have used a for loop to use the function on a range o
 <div id="the-apply-function" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> The <code>apply()</code> function</h3>
 <p>The <code>apply()</code> function is a tool to further vectorise your functions that works with matrices and data frames. <code>apply()</code> will <em>apply a function to either each row or each column of your data frame/matrix</em>. The general structure of using <code>apply()</code> is:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="vectorisation.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(data, row_or_colwise, function_name)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="vectorisation.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(data, row_or_colwise, function_name)</span></code></pre></div>
 <p>Where the second argument is either <code>1</code> for operating on each row or <code>2</code> for operating on each column<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a>.</p>
 <p>The best way to show how it works is probably through an example. Consider if you have the following data frame of species counts, where each column contains counts for a species, and each row is a location.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="vectorisation.html#cb215-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb215-2"><a href="vectorisation.html#cb215-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_1 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
-<span id="cb215-3"><a href="vectorisation.html#cb215-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_2 =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
-<span id="cb215-4"><a href="vectorisation.html#cb215-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_3 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
-<span id="cb215-5"><a href="vectorisation.html#cb215-5" aria-hidden="true" tabindex="-1"></a>species</span>
-<span id="cb215-6"><a href="vectorisation.html#cb215-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sp_1 sp_2 sp_3</span></span>
-<span id="cb215-7"><a href="vectorisation.html#cb215-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    0    4    2</span></span>
-<span id="cb215-8"><a href="vectorisation.html#cb215-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    3    2    2</span></span>
-<span id="cb215-9"><a href="vectorisation.html#cb215-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    2    3    0</span></span>
-<span id="cb215-10"><a href="vectorisation.html#cb215-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    6    0    0</span></span>
-<span id="cb215-11"><a href="vectorisation.html#cb215-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    7    1    1</span></span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="vectorisation.html#cb214-1" aria-hidden="true" tabindex="-1"></a>species <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb214-2"><a href="vectorisation.html#cb214-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_1 =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">7</span>),</span>
+<span id="cb214-3"><a href="vectorisation.html#cb214-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_2 =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb214-4"><a href="vectorisation.html#cb214-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">sp_3 =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>))</span>
+<span id="cb214-5"><a href="vectorisation.html#cb214-5" aria-hidden="true" tabindex="-1"></a>species</span>
+<span id="cb214-6"><a href="vectorisation.html#cb214-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   sp_1 sp_2 sp_3</span></span>
+<span id="cb214-7"><a href="vectorisation.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1    0    4    2</span></span>
+<span id="cb214-8"><a href="vectorisation.html#cb214-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2    3    2    2</span></span>
+<span id="cb214-9"><a href="vectorisation.html#cb214-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3    2    3    0</span></span>
+<span id="cb214-10"><a href="vectorisation.html#cb214-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4    6    0    0</span></span>
+<span id="cb214-11"><a href="vectorisation.html#cb214-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5    7    1    1</span></span></code></pre></div>
 <p>What if you want to take the mean count for each location? I.e. calculate the mean of each row in the data set. You can’t simply use <code>mean()</code> on your data frame:</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="vectorisation.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(species)</span>
-<span id="cb216-2"><a href="vectorisation.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="vectorisation.html#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(species)</span>
+<span id="cb215-2"><a href="vectorisation.html#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] NA</span></span></code></pre></div>
 <p>R doesn’t understand what to do in this case. However, this is a perfect opportunity for using <code>apply()</code>! Remember that the second argument should be <code>1</code> since we want to work on rows here.</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="vectorisation.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">1</span>, mean)</span>
-<span id="cb217-2"><a href="vectorisation.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.000000 2.333333 1.666667 2.000000 3.000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="vectorisation.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">1</span>, mean)</span>
+<span id="cb216-2"><a href="vectorisation.html#cb216-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2.000000 2.333333 1.666667 2.000000 3.000000</span></span></code></pre></div>
 <p>Great! Notice how <code>mean</code> should be written without parentheses when using it inside <code>apply()</code>. This is something you unfortunately just have to remember.</p>
 <p><strong>Exercise: use <code>apply()</code> calculate the mean count of each species, i.e. the means of the columns in your data.</strong></p>
 <details>
@@ -497,9 +496,9 @@ Notice that you could also have used a for loop to use the function on a range o
 <p>Use <code>2</code> as the second argument to work with columns instead of rows.</p>
 </details>
 <div class="fold s">
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="vectorisation.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">2</span>, mean)</span>
-<span id="cb218-2"><a href="vectorisation.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp_1 sp_2 sp_3 </span></span>
-<span id="cb218-3"><a href="vectorisation.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3.6  2.0  1.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="vectorisation.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(species, <span class="dv">2</span>, mean)</span>
+<span id="cb217-2"><a href="vectorisation.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sp_1 sp_2 sp_3 </span></span>
+<span id="cb217-3"><a href="vectorisation.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  3.6  2.0  1.0</span></span></code></pre></div>
 </div>
 <div class="green">
 <p><strong>Important concept:</strong><br />
@@ -511,35 +510,35 @@ Use <code>apply()</code> to use a function on either all rows (<code>1</code>) o
 <h3><span class="header-section-number">5.1.2</span> The <code>ifelse()</code> function</h3>
 <p>Say that you have a vector with values, and you want to group them somehow. For example, you have a vector of numbers between 0 and 10, and want to label the values that are larger than 5.</p>
 <div class="yellow">
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="vectorisation.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate 10 numbers between 0 and 10</span></span>
-<span id="cb219-2"><a href="vectorisation.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
-<span id="cb219-3"><a href="vectorisation.html#cb219-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
-<span id="cb219-4"><a href="vectorisation.html#cb219-4" aria-hidden="true" tabindex="-1"></a>x</span>
-<span id="cb219-5"><a href="vectorisation.html#cb219-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  8 10  3  2  5  6  9  1  7  0</span></span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="vectorisation.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate 10 numbers between 0 and 10</span></span>
+<span id="cb218-2"><a href="vectorisation.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb218-3"><a href="vectorisation.html#cb218-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb218-4"><a href="vectorisation.html#cb218-4" aria-hidden="true" tabindex="-1"></a>x</span>
+<span id="cb218-5"><a href="vectorisation.html#cb218-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  8 10  3  2  5  6  9  1  7  0</span></span></code></pre></div>
 </div>
 <p>Now, you may remember from the first week that you can check which numbers are more than 5 by using a logical statement:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="vectorisation.html#cb220-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span>
-<span id="cb220-2"><a href="vectorisation.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE</span></span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="vectorisation.html#cb219-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span>
+<span id="cb219-2"><a href="vectorisation.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE</span></span></code></pre></div>
 <p>However, what if you want to label the values “high” and “low”, respectively? For this, you can use the <code>ifelse()</code> function. Conceptually, <code>ifelse()</code> works like this:</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="vectorisation.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(logical_statement, value_if_TRUE, value_if_FALSE)</span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="vectorisation.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(logical_statement, value_if_TRUE, value_if_FALSE)</span></code></pre></div>
 <p>This means that to get “high” and “low” for our values, we can write:</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="vectorisation.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
-<span id="cb222-2"><a href="vectorisation.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;high&quot; &quot;low&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="vectorisation.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">5</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low&quot;</span>)</span>
+<span id="cb221-2"><a href="vectorisation.html#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;low&quot;  &quot;low&quot;  &quot;high&quot; &quot;high&quot; &quot;low&quot;  &quot;high&quot; &quot;low&quot;</span></span></code></pre></div>
 <div id="ifelse-examples" class="section level4" number="5.1.2.1">
 <h4><span class="header-section-number">5.1.2.1</span> <code>ifelse()</code> examples</h4>
 <p><code>ifelse()</code> can be used for a lot of things, here are a couple of more examples:</p>
 <p>Check if a value is higher than the mean:</p>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="vectorisation.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x), <span class="st">&quot;above mean&quot;</span>, <span class="st">&quot;below_mean&quot;</span>)</span>
-<span id="cb223-2"><a href="vectorisation.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;below_mean&quot; &quot;below_mean&quot;</span></span>
-<span id="cb223-3"><a href="vectorisation.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;above mean&quot; &quot;below_mean&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="vectorisation.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="fu">mean</span>(x), <span class="st">&quot;above mean&quot;</span>, <span class="st">&quot;below_mean&quot;</span>)</span>
+<span id="cb222-2"><a href="vectorisation.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;below_mean&quot; &quot;below_mean&quot;</span></span>
+<span id="cb222-3"><a href="vectorisation.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] &quot;above mean&quot; &quot;above mean&quot; &quot;below_mean&quot; &quot;above mean&quot; &quot;below_mean&quot;</span></span></code></pre></div>
 <p>Convert a value from count to binary presence/absence:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="vectorisation.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb224-2"><a href="vectorisation.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="vectorisation.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(x <span class="sc">&gt;</span> <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb223-2"><a href="vectorisation.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 1 1 1 1 1 1 1 1 1 0</span></span></code></pre></div>
 <p>We can also use it for character vectors, looking for a specific word to make groups:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="vectorisation.html#cb225-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;horse&quot;</span>, <span class="st">&quot;donkey&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;mule&quot;</span>)</span>
-<span id="cb225-2"><a href="vectorisation.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(animals <span class="sc">==</span> <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;actual horse&quot;</span>, <span class="st">&quot;almost horse&quot;</span>)</span>
-<span id="cb225-3"><a href="vectorisation.html#cb225-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;actual horse&quot; &quot;almost horse&quot; &quot;almost horse&quot; &quot;actual horse&quot; &quot;almost horse&quot;</span></span>
-<span id="cb225-4"><a href="vectorisation.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] &quot;almost horse&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="vectorisation.html#cb224-1" aria-hidden="true" tabindex="-1"></a>animals <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;horse&quot;</span>, <span class="st">&quot;donkey&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;zebra&quot;</span>, <span class="st">&quot;mule&quot;</span>)</span>
+<span id="cb224-2"><a href="vectorisation.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ifelse</span>(animals <span class="sc">==</span> <span class="st">&quot;horse&quot;</span>, <span class="st">&quot;actual horse&quot;</span>, <span class="st">&quot;almost horse&quot;</span>)</span>
+<span id="cb224-3"><a href="vectorisation.html#cb224-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;actual horse&quot; &quot;almost horse&quot; &quot;almost horse&quot; &quot;actual horse&quot; &quot;almost horse&quot;</span></span>
+<span id="cb224-4"><a href="vectorisation.html#cb224-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [6] &quot;almost horse&quot;</span></span></code></pre></div>
 <p>This usage can be convenient when plotting values, as you will see in the evolution-part of the tutorial.</p>
 </div>
 </div>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>3.3 Study questions | R tutorials for the course BIOS1140 at the University of Oslo</title>
+  <title>10.3 Lists | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="3.3 Study questions | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta property="og:title" content="10.3 Lists | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="3.3 Study questions | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta name="twitter:title" content="10.3 Lists | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="evolutionary-biology.html"/>
-<link rel="next" href="going-further-2.html"/>
+<link rel="prev" href="more-on-data-handlingcategorising-and-joining.html"/>
+<link rel="next" href="vectorisation-1.html"/>
 <script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -426,17 +426,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="study-questions-1" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> Study questions</h2>
-<p>The study questions for week 3 are found <a href="w03.html#w03">here</a>. Deliver them in Canvas before the deadline as a word or pdf document. See <a href="rmarkdown.html#rmarkdown">the appendix</a> for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.</p>
+<div id="lists" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Lists</h2>
+<p>In this course, we have stored large amounts of data in two types of objects: vectors and data frames. These have some inherent limitations:</p>
+<ul>
+<li>A vector can only contain one type of value. This means, for example, that a vector can’t contain both numeric values AND character values.</li>
+<li>In a data frame, all columns need to be of the same length. In addition, a column can only contain a single type of value.</li>
+</ul>
+<p>A list in R, on the other hand, has none of these limitations. It can contain values of multiple types and different lengths. This makes it ideal for storing more complex objects. In fact, much of the complex data you have encountered in these tutorials, like the phylogenetic trees last week, are based on lists.</p>
+<p>You can make a list with the <code>list()</code> function:</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="lists.html#cb403-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Ask&quot;</span>, <span class="st">&quot;Embla&quot;</span>),</span>
+<span id="cb403-2"><a href="lists.html#cb403-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">children_age =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">15</span>, <span class="dv">6</span>, <span class="dv">8</span>),</span>
+<span id="cb403-3"><a href="lists.html#cb403-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">married =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>You can access list elements with <code>$</code>, or with both single and double square brackets <code>[]</code>:</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="lists.html#cb404-1" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>names</span>
+<span id="cb404-2"><a href="lists.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
+<span id="cb404-3"><a href="lists.html#cb404-3" aria-hidden="true" tabindex="-1"></a>my_list[<span class="dv">1</span>]</span>
+<span id="cb404-4"><a href="lists.html#cb404-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
+<span id="cb404-5"><a href="lists.html#cb404-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
+<span id="cb404-6"><a href="lists.html#cb404-6" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">1</span>]]</span>
+<span id="cb404-7"><a href="lists.html#cb404-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span></code></pre></div>
+<p>Note that there’s a slight difference in using single and double square brackets, which we won’t go into here. If in doubt, you should probably use double brackets. We won’t go into much more detail about lists here, but it is important that you know that this structure exists</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="evolutionary-biology.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="going-further-2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="more-on-data-handlingcategorising-and-joining.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectorisation-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

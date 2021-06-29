@@ -624,7 +624,7 @@ sim_08 <- selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.8), ngen = 200)
 
 ```
 
-Now we have made 4 simulations. To plot these with `ggplot()`, we need to make them into a data frame and convert them to long form with `pivot_longer()`. See the tutorial from week 2 if you're unsure about why we do this.
+Now we have made 4 simulations. To plot these with `ggplot()`, we need to make them into a data frame and convert them to long form with `pivot_longer()`. See the [tutorial from week 2](#pivot-longer) if you're unsure about why we do this.
 
 
 ```r
@@ -838,12 +838,10 @@ Here we see a scenario where underdominance is at a stable equilibria when $p$ i
 
 ## Study questions
 
-The study questions for week 4 are found [here](#w04). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 4 are found [here](#w04). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 
 ## Going further
 
--   [An introduction to lists in R](https://www.r-bloggers.com/how-to-use-lists-in-r/)
--   [More on lists from Hadley Wickham](http://r4ds.had.co.nz/lists.html)
--   [The definitive introduction to `purr` and the `map` function from Jenny BC](https://jennybc.github.io/purrr-tutorial/index.html)
+-   [More on writing your own functions from R for Data Science](https://r4ds.had.co.nz/functions.html)
 -   [Graham Coop's excellent notes on one-locus models of selection](http://cooplab.github.io/popgen-notes/#one-locus-models-of-selection)

@@ -4,7 +4,7 @@ fig:plvec
 fig:unnamed-chunk-57
 fig:lines-points
 fig:unnamed-chunk-58
-fig:unnamed-chunk-44
+fig:unnamed-chunk-43
 fig:unnamed-chunk-29
 fig:unnamed-chunk-45
 ch01
@@ -69,7 +69,7 @@ customizing-your-plots-1
 general-customization
 mapping-variables-to-colors-shapes-etc.
 saving-your-plots
-reshaping-data-with-pivot_longer
+pivot-longer
 wide-and-long-format
 import-example-data
 reshape-the-data
@@ -201,9 +201,10 @@ projects-projects-projects
 everyone-has-a-history
 tab-complete-and-other-hotkeys
 code-checking
-more-on-data-handlingcategorising-and-relating
+more-on-data-handlingcategorising-and-joining
 ifelse-for-making-categories
 joining
+lists
 vectorisation-1
 why-is-vectorisation-preferable-in-r
 using-sapply-instead-of-for-on-vectors
@@ -213,5 +214,3 @@ concluding-remarks
 study-questions-8
 going-further-9
 rmarkdown
-pivot-longer
-fig:unnamed-chunk-43

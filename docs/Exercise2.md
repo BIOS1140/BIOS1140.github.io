@@ -420,7 +420,7 @@ This can be useful to get an overview of your data[^exercise2-3]
 
 ::: {.green}
 **Important concept:**\
-`Group_by()` can be combined with different functions to give an overview of your data.
+`group_by()` can be combined with different functions to give an overview of your data.
 
 -   `group_by() %>% summarise()` does some calculation in each group. Example: `group_by(homeworld, sex) %>% summarise(mean_height = mean(height))`
 -   `group_by() %>% tally()` counts the number of observations in the groups. Example: `group_by(species) %>% tally()`

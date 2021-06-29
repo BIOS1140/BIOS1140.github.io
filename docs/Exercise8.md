@@ -22,7 +22,7 @@ In this section we will:
 
 ### Getting started {.unnumbered}
 
-The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` and the `PopGenome` package that we installed and loaded in the [last session](https://evolutionarygenetics.github.io/Chapter7.html).
+The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` and the `PopGenome` package that we installed and loaded in the [last session](#ch07).
 
 
 ```r
@@ -37,7 +37,7 @@ library(PopGenome)
 
 <script src="js/hideOutput.js"></script>
 
-You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](PLACEHOLDER) from the very first week, so make sure that is in your working directory.
+You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
 
 We start by reading in the data (see if you manage to do this yourself before looking at my code):
 
@@ -131,7 +131,7 @@ In the last session, we used the `PopGenome` package to calculate sliding window
 
 ### Reading in the sparrow vcf
 
-The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](https://evolutionarygenetics.github.io//Chapter7.html) but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
+The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](#ch07) but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
 
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
@@ -161,7 +161,7 @@ Like last time, we then need to read the file with population information, and a
 ::: {.yellow}
 
 ```r
-sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
+sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
@@ -364,7 +364,7 @@ A lot of this will be familiar from before but to clarify, we used `select()` an
 
 We could also quite easily plot if we wanted to. However, to do this, we need to use `pivot_longer` on the data to get all species in one column, and all $\pi$ values in another[^exercise8-4]. Note how we can supply `contains("pi")` inside `pivot_longer()` to specify which columns to include.
 
-[^exercise8-4]: It may have been a while since the last time you saw `pivot_longer()`. If you have forgotten how it works or why we use it, remember that you can always go back to [Week 2](PLACEHOLDER).
+[^exercise8-4]: It may have been a while since the last time you saw `pivot_longer()`. If you have forgotten how it works or why we use it, remember that you can always go back to [Week 2](#pivot-longer).
 
 
 ```r
@@ -488,7 +488,7 @@ To check whether variation in recombination might explain the pattern we observe
 
 
 ```r
-rrate <- read_delim("./chr8_recomb.tsv", delim = "\t")
+rrate <- read.table("chr8_recomb.tsv", sep = "\t", header = TRUE)
 ```
 
 
@@ -548,7 +548,7 @@ Clearly there is a bias here - higher *F*~ST~ values are found in regions of low
 
 ## Study questions
 
-The study questions for week 8 are found [here](#w08). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 8 are found [here](#w08). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

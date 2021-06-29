@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-23" />
+<meta name="date" content="2021-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="ch07.html"/>
 <link rel="next" href="working-with-a-larger-dataset.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,12 +193,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
 <li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
-<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
 <li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
@@ -375,21 +373,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
 <li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and relating</a>
+<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and joining</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
-<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
+<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
+<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists</a></li>
+<li class="chapter" data-level="10.4" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
-<li class="chapter" data-level="10.3.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
-<li class="chapter" data-level="10.3.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+<li class="chapter" data-level="10.4.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.4.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.4.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.4.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.4.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
-<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
-<li class="chapter" data-level="10.6" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
-<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+<li class="chapter" data-level="10.5" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.5</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.6" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.7" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.7</b> Study questions</a></li>
+<li class="chapter" data-level="10.8" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.8</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
 <li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
@@ -435,22 +434,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.1</span> Reading sequence data into R.</h3>
 <p>The first thing we will learn to do today is to read seqeunce data into R. Unlike in the previous tutorials, it doesn’t make much sense to store sequence data as a <code>data.frame</code>, so we need to use functions specifically designed for the purpose such as <code>read.dna</code>. We will be reading in a <a href="https://en.wikipedia.org/wiki/FASTA_format"><strong>FASTA</strong> which is a standard file format for sequencing data</a>. FASTA files can vary slightly, but the basic format is the same. The file we will use today can be downloaded <a href="https://bios1140.github.io/data/example.fas">here</a>.</p>
 <p>Before we actually read this file into R, let’s take a look at it:</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="working-with-dna-sequence-data.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.show</span>(<span class="st">&quot;example.fas&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="working-with-dna-sequence-data.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="fu">file.show</span>(<span class="st">&quot;example.fas&quot;</span>)</span></code></pre></div>
 <p>The <code>file.show</code> function is quite self-explanatory. You can also click on the FASTA in the <code>Files</code> pane in R Studio and have a look at it in the console. In this FASTA file, there are two lines for each sequence - the sequence name and then the sequence itself. The sequence name line starts with <code>&gt;</code> and then after it are the base calls. Again, it is worth checking out the wikipedia page for <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> as it contains more information on how these files are formatted.</p>
 <p>Next we will actually read our FASTA file in. To do this, we will use <code>read.dna()</code> like so:</p>
-<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="working-with-dna-sequence-data.html#cb284-1" aria-hidden="true" tabindex="-1"></a>mydna <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="st">&quot;example.fas&quot;</span>, <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="working-with-dna-sequence-data.html#cb283-1" aria-hidden="true" tabindex="-1"></a>mydna <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="st">&quot;example.fas&quot;</span>, <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>)</span></code></pre></div>
 <p>This will create an object, <code>mydna</code> which is an <code>ape</code> specific structure called a <code>DNAbin</code> - i.e. DNA data stored in binary. You don’t need to worry too much about the specifics of this data structure although you might want to check it for yourself. Try <code>class(mydna)</code> and <code>?DNAbin</code> to get more information.</p>
 <p>In the meantime, have a look at the <code>mydna</code> object and see what information is printed to the R console.</p>
 </div>
 <div id="exploring-dna-sequence-data" class="section level3" number="7.1.2">
 <h3><span class="header-section-number">7.1.2</span> Exploring DNA sequence data</h3>
 <p>As you will have just seen, when you call the <code>mydna</code> object, you only get a summary in the R console. What if you actually want to look at the sequences? One way to do this is to use the <code>as.alignment</code> function - like so:</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="working-with-dna-sequence-data.html#cb285-1" aria-hidden="true" tabindex="-1"></a>myalign <span class="ot">&lt;-</span> <span class="fu">as.alignment</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="working-with-dna-sequence-data.html#cb284-1" aria-hidden="true" tabindex="-1"></a>myalign <span class="ot">&lt;-</span> <span class="fu">as.alignment</span>(mydna)</span></code></pre></div>
 <p>This function converts our <code>DNAbin</code> object into an <code>alignment</code> - which is essentially a list with different elements - i.e <code>nb</code> - the number of sequences, <code>seq</code> - the actual sequences themselves, <code>nam</code> - the names of the sequences.</p>
 <p><code>alignment</code> object is convenient in that you can access information the way you are used to, e.g. with the <code>$</code> operator. You can look at the sequences as a character vector using the following R code:</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="working-with-dna-sequence-data.html#cb286-1" aria-hidden="true" tabindex="-1"></a>myalign<span class="sc">$</span>seq</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="working-with-dna-sequence-data.html#cb285-1" aria-hidden="true" tabindex="-1"></a>myalign<span class="sc">$</span>seq</span></code></pre></div>
 <p>However, if you want to compare sequences, using the <code>alview()</code> function may be a better method:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="working-with-dna-sequence-data.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">alview</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="working-with-dna-sequence-data.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="fu">alview</span>(mydna)</span></code></pre></div>
 <p>Note that in this case, we used <code>alview</code> directly on our <code>mydna</code> object - <strong>not</strong> on the <code>myalign</code> alignment object. This prints our alignment to the screen and it makes it immediately obvious where there are nucleotide polymorphisms in our data. You should note however that the <code>N</code> bases in the first sequence are bases which could not be called by the sequencing machine - they are not valid base calls.</p>
 <p><strong>NOTE</strong> it is important that we clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.</p>
 </div>
@@ -459,26 +458,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="base-composition" class="section level4" number="7.1.3.1">
 <h4><span class="header-section-number">7.1.3.1</span> Base composition</h4>
 <p>Using a couple of standard <code>pegas</code> functions, we can get some more information about our sequences. For example, we can calculate the frequency of the four nucleotides in our dataset:</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="working-with-dna-sequence-data.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">base.freq</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="working-with-dna-sequence-data.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="fu">base.freq</span>(mydna)</span></code></pre></div>
 <p>We can also calculate the GC content - i.e. the proportion of the sequence that is either a G or C nucleotide.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="working-with-dna-sequence-data.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">GC.content</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="working-with-dna-sequence-data.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">GC.content</span>(mydna)</span></code></pre></div>
 <p>To break down GC content even further, this is equivalent to:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="working-with-dna-sequence-data.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">base.freq</span>(mydna)[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="working-with-dna-sequence-data.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">base.freq</span>(mydna)[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)])</span></code></pre></div>
 </div>
 <div id="segregating-sites" class="section level4" number="7.1.3.2">
 <h4><span class="header-section-number">7.1.3.2</span> Segregating sites</h4>
 <p>Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the <code>seg.sites</code> function, we can actually count:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="working-with-dna-sequence-data.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seg.sites</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="working-with-dna-sequence-data.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seg.sites</span>(mydna)</span></code></pre></div>
 <p><code>seg.sites</code> returns the position in the sequence where polymorphisms occur. So these are essentially the indices of polymorphsims in our 40 base pair sequence alignment. There are just a few here, so you can easily count them but if there were many, you might want to wrap this command with the length function to get the actual number:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="working-with-dna-sequence-data.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="working-with-dna-sequence-data.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span></code></pre></div>
 <p>As this function makes pretty clear, segregating sites is just the number of polymorphic positions in a sequence. However, it is also something that scales with sample size - i.e. the more sequences we add, the higher the probability of finding segregating sites in our data. This is a point we will return to later.</p>
 <p>One last thing about the segrating sites we calculated here - it is not standardised to the length of sequences (i.e., the capitalised <span class="math inline">\(S\)</span> rather than <span class="math inline">\(s\)</span>). To achieve that we need to do the following.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="working-with-dna-sequence-data.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get segregating sites</span></span>
-<span id="cb293-2"><a href="working-with-dna-sequence-data.html#cb293-2" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span>
-<span id="cb293-3"><a href="working-with-dna-sequence-data.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set sequence length</span></span>
-<span id="cb293-4"><a href="working-with-dna-sequence-data.html#cb293-4" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb293-5"><a href="working-with-dna-sequence-data.html#cb293-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standardise segregating sites by sequence length</span></span>
-<span id="cb293-6"><a href="working-with-dna-sequence-data.html#cb293-6" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> S<span class="sc">/</span>L</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="working-with-dna-sequence-data.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get segregating sites</span></span>
+<span id="cb292-2"><a href="working-with-dna-sequence-data.html#cb292-2" aria-hidden="true" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span>
+<span id="cb292-3"><a href="working-with-dna-sequence-data.html#cb292-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set sequence length</span></span>
+<span id="cb292-4"><a href="working-with-dna-sequence-data.html#cb292-4" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb292-5"><a href="working-with-dna-sequence-data.html#cb292-5" aria-hidden="true" tabindex="-1"></a><span class="co"># standardise segregating sites by sequence length</span></span>
+<span id="cb292-6"><a href="working-with-dna-sequence-data.html#cb292-6" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> S<span class="sc">/</span>L</span></code></pre></div>
 </div>
 <div id="nucleotide-diversity" class="section level4" number="7.1.3.3">
 <h4><span class="header-section-number">7.1.3.3</span> Nucleotide diversity</h4>
@@ -487,21 +486,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Where <span class="math inline">\(\Pi_{ij}\)</span> is the number of nucleotide differences between sequence <span class="math inline">\(i\)</span> and sequence <span class="math inline">\(j\)</span> and <span class="math inline">\({[n(n-1)]/2}\)</span> is the number of possible pairwise sequence comparisons from all <span class="math inline">\(n\)</span> sequences. In other words, it is the sum of pairwise differences between each pair of sequences, divided by the number of pairs.</p>
 <p>From <code>seg.sites(mydna)</code>, we know there are two polymorphic positions at sites 35 and 36 in our 40 bp alignment. Using <code>alview(mydna)</code> we can visualise these and also actually count the differences. There are 2 nucleotide differences between sequences <code>No305</code> and <code>No304</code>, 1 between <code>304</code> and <code>306</code> and then finally, 1 again between <code>305</code> and <code>306</code>.</p>
 <p>We can use R to calculate our nucleotide diversity by hand:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="working-with-dna-sequence-data.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set n sequences</span></span>
-<span id="cb294-2"><a href="working-with-dna-sequence-data.html#cb294-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb294-3"><a href="working-with-dna-sequence-data.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set differences</span></span>
-<span id="cb294-4"><a href="working-with-dna-sequence-data.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 differences between 304 and 305, 1 difference in the other comparisons</span></span>
-<span id="cb294-5"><a href="working-with-dna-sequence-data.html#cb294-5" aria-hidden="true" tabindex="-1"></a>Pi_ij <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>) </span>
-<span id="cb294-6"><a href="working-with-dna-sequence-data.html#cb294-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the number of pairwise comparisons</span></span>
-<span id="cb294-7"><a href="working-with-dna-sequence-data.html#cb294-7" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> (n<span class="sc">*</span>(n<span class="dv">-1</span>))<span class="sc">/</span><span class="dv">2</span></span>
-<span id="cb294-8"><a href="working-with-dna-sequence-data.html#cb294-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the nucleotide diversity</span></span>
-<span id="cb294-9"><a href="working-with-dna-sequence-data.html#cb294-9" aria-hidden="true" tabindex="-1"></a>Pi <span class="ot">&lt;-</span> <span class="fu">sum</span>(Pi_ij)<span class="sc">/</span>np</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="working-with-dna-sequence-data.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set n sequences</span></span>
+<span id="cb293-2"><a href="working-with-dna-sequence-data.html#cb293-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb293-3"><a href="working-with-dna-sequence-data.html#cb293-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set differences</span></span>
+<span id="cb293-4"><a href="working-with-dna-sequence-data.html#cb293-4" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 differences between 304 and 305, 1 difference in the other comparisons</span></span>
+<span id="cb293-5"><a href="working-with-dna-sequence-data.html#cb293-5" aria-hidden="true" tabindex="-1"></a>Pi_ij <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>) </span>
+<span id="cb293-6"><a href="working-with-dna-sequence-data.html#cb293-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the number of pairwise comparisons</span></span>
+<span id="cb293-7"><a href="working-with-dna-sequence-data.html#cb293-7" aria-hidden="true" tabindex="-1"></a>np <span class="ot">&lt;-</span> (n<span class="sc">*</span>(n<span class="dv">-1</span>))<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb293-8"><a href="working-with-dna-sequence-data.html#cb293-8" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the nucleotide diversity</span></span>
+<span id="cb293-9"><a href="working-with-dna-sequence-data.html#cb293-9" aria-hidden="true" tabindex="-1"></a>Pi <span class="ot">&lt;-</span> <span class="fu">sum</span>(Pi_ij)<span class="sc">/</span>np</span></code></pre></div>
 <p>You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. So what we have here is the average number of nucleotide differences between our three sequences. This is <em>not</em> standardised to the sequence length (i.e., <span class="math inline">\(\Pi\)</span>, not <span class="math inline">\(\pi\)</span>), so we need to do that next.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="working-with-dna-sequence-data.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate standarised nucleotide diversity</span></span>
-<span id="cb295-2"><a href="working-with-dna-sequence-data.html#cb295-2" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
-<span id="cb295-3"><a href="working-with-dna-sequence-data.html#cb295-3" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> Pi<span class="sc">/</span>L</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="working-with-dna-sequence-data.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate standarised nucleotide diversity</span></span>
+<span id="cb294-2"><a href="working-with-dna-sequence-data.html#cb294-2" aria-hidden="true" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb294-3"><a href="working-with-dna-sequence-data.html#cb294-3" aria-hidden="true" tabindex="-1"></a>pi <span class="ot">&lt;-</span> Pi<span class="sc">/</span>L</span></code></pre></div>
 <p>Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily. we can also calculate nucleotide diversity using the function <code>nuc.div</code> from <code>pegas</code>.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="working-with-dna-sequence-data.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nuc.div</span>(mydna)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="working-with-dna-sequence-data.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nuc.div</span>(mydna)</span></code></pre></div>
 <p>Unlike the number of segregating sites, this estimate is already standardised to the length of our sequence. Take a moment to compare the output previous command with our hand calculated value of <code>pi</code>. They are different! Why is this? Well using <code>alview</code> again we can see that there are actually two sites where in the first sequence, <code>No305</code>, the base call is <code>N</code>. As we learned earlier, this means we do not have a reliable call for this position in the sequence (perhaps a sequencing error or an ambigous base).</p>
 <p>The <code>nuc.div</code> function therefore corrects for these missing bases and shortens the total length of our sequence by two. This therefore changes the final estimate of <span class="math inline">\(\pi\)</span> it produces. Of course, manually counting differences between sequences and finding sequence lengths and adjusting for Ns is time-consuming and error-prone, so you will always be using the <code>nuc.div()</code> function directly when working with large data sets (doing it manually, however, may help you understand the theory behind).</p>
 </div>

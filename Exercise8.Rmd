@@ -142,7 +142,7 @@ Like last time, we then need to read the file with population information, and a
 
 ::: {.yellow}
 ```{r, eval = FALSE, results = 'hide'}
-sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
+sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
@@ -434,7 +434,7 @@ In other words, *F*~ST~ is sensitive to the variation within each population, wh
 To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://bios1140.github.io/data/chr8_recomb.tsv). We will read the data in like normal
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-rrate <- read_delim("./chr8_recomb.tsv", delim = "\t")
+rrate <- read.table("chr8_recomb.tsv", sep = "\t", header = TRUE)
 ```
 
 ```{r, eval = TRUE, echo = FALSE, results = 'hidden', message = FALSE}

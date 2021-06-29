@@ -668,7 +668,7 @@ nA1 <- rbinom(1, size = 2*N, prob = p2)
 # calculate p in generation 3
 p3 <- nA1/(2*N)
 p3
-#> [1] 0.8125
+#> [1] 0.625
 ```
 
 If we were to to properly understand drift over more than one generation, we could now have used our `p3` to find p in the fourth generation, use the new $p$ to calculate $p$ in the next generation, and so on until we have simulated for all the number of generations we want.
@@ -681,21 +681,21 @@ nA1 <- rbinom(1, size = 2*N, prob = p3)
 # calculate p in generation 4
 p4 <- nA1/(2*N)
 p4
-#> [1] 0.8125
+#> [1] 0.625
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p4)
 # calculate p in generation 5
 p5 <- nA1/(2*N)
 p5
-#> [1] 0.8125
+#> [1] 0.75
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p5)
 # calculate p in generation 5
 p6 <- nA1/(2*N)
 p6
-#> [1] 0.8125
+#> [1] 0.6875
 
 # and so on ...
 ```
@@ -766,10 +766,10 @@ for (i in 2:ngen){
 }
 
 p
-#>   [1] 0.5000 0.5625 0.4375 0.6250 0.6875 0.7500 0.7500 0.5625 0.5625 0.6875
-#>  [11] 0.5000 0.4375 0.6250 0.5625 0.4375 0.1875 0.1875 0.3750 0.3750 0.3125
-#>  [21] 0.3750 0.4375 0.3125 0.3750 0.3750 0.5000 0.6250 0.8125 0.8750 0.6250
-#>  [31] 0.9375 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>   [1] 0.5000 0.6250 0.6250 0.5000 0.6875 0.8750 0.9375 1.0000 1.0000 1.0000
+#>  [11] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [21] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [31] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
 #>  [41] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
 #>  [51] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
 #>  [61] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
@@ -880,7 +880,7 @@ And there we have it! A plot of our simulated data showing allele frequency chan
 
 ## Study questions
 
-The study questions for week 3 are found [here](#w03). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 3 are found [here](#w03). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 
 ## Going further

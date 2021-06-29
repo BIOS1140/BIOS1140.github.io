@@ -87,27 +87,24 @@ iris %>%
 #> 3 virginica               5.55
 ```
 
-There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes[^exercise6-2].
+There appears to be a difference in petal length between species. To investigate further, we can also calculate multiple values in a single `summarise()`, e.g., median and standard deviation.
 
-[^exercise6-2]: We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.
 
-    
-    ```r
-    iris %>%
-      group_by(Species) %>%
-      summarise(mean_petal_length = mean(Petal.Length),
-                median_petal_length = median(Petal.Length),
-                sd_petal_length = sd(Petal.Length))
-    ```
-    
-    ```
-    #> # A tibble: 3 x 4
-    #>   Species    mean_petal_length median_petal_length sd_petal_length
-    #>   <fct>                  <dbl>               <dbl>           <dbl>
-    #> 1 setosa                  1.46                1.5            0.174
-    #> 2 versicolor              4.26                4.35           0.470
-    #> 3 virginica               5.55                5.55           0.552
-    ```
+```r
+iris %>%
+  group_by(Species) %>%
+  summarise(mean_petal_length = mean(Petal.Length),
+            median_petal_length = median(Petal.Length),
+            sd_petal_length = sd(Petal.Length))
+#> # A tibble: 3 x 4
+#>   Species    mean_petal_length median_petal_length sd_petal_length
+#>   <fct>                  <dbl>               <dbl>           <dbl>
+#> 1 setosa                  1.46                1.5            0.174
+#> 2 versicolor              4.26                4.35           0.470
+#> 3 virginica               5.55                5.55           0.552
+```
+
+Remember that the argument names to `summarise()` could be anything, and end up as the column names of your new data frame.
 
 #### Visualising differences
 

@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-23" />
+<meta name="date" content="2021-06-29" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="phylogenetics-in-r.html"/>
 <link rel="next" href="study-questions-7.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -195,12 +193,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
 <li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
-<li class="chapter" data-level="2.4.2" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
-<li class="chapter" data-level="2.4.3" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
-<li class="chapter" data-level="2.4.4" data-path="reshaping-data-with-pivot-longer.html"><a href="reshaping-data-with-pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
 <li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
@@ -375,21 +373,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
 <li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and relating</a>
+<li class="chapter" data-level="10.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling—categorising and joining</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
-<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-relating.html"><a href="more-on-data-handlingcategorising-and-relating.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
+<li class="chapter" data-level="10.2.1" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories</a></li>
+<li class="chapter" data-level="10.2.2" data-path="more-on-data-handlingcategorising-and-joining.html"><a href="more-on-data-handlingcategorising-and-joining.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.3</b> Vectorisation</a>
+<li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists</a></li>
+<li class="chapter" data-level="10.4" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation</a>
 <ul>
-<li class="chapter" data-level="10.3.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.3.1</b> Why is vectorisation preferable in R?</a></li>
-<li class="chapter" data-level="10.3.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.3.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
-<li class="chapter" data-level="10.3.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.3.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+<li class="chapter" data-level="10.4.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.4.1</b> Why is vectorisation preferable in R?</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.4.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
+<li class="chapter" data-level="10.4.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.4.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="10.4" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.4</b> Returning to writing your own functions</a></li>
-<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks</a></li>
-<li class="chapter" data-level="10.6" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.6</b> Study questions</a></li>
-<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further</a></li>
+<li class="chapter" data-level="10.5" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.5</b> Returning to writing your own functions</a></li>
+<li class="chapter" data-level="10.6" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.6</b> Concluding remarks</a></li>
+<li class="chapter" data-level="10.7" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.7</b> Study questions</a></li>
+<li class="chapter" data-level="10.8" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.8</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
 <li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
@@ -442,40 +441,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In order to run our PCA analysis, we will need to use <code>adegenet</code>. However, the full dataset is much too large to read, so instead we will use a smaller subsetted dataset. We will read in a special format of SNP data produced by a program called <a href="https://www.cog-genomics.org/plink/1.9/">PLINK</a>. Don’t worry too much about the data format for now - our main aim is to get it into R. However, feel free to explore the PLINK website if you are interested.</p>
 <p>We will need a <a href="https://bios1140.github.io/data/village_subsample.raw"><strong>plink raw file</strong></a> and also a <a href="https://bios1140.github.io/data/village_subsample.map"><strong>plink map file</strong></a> for our dog data. Follow the links to download the data and then use the <code>read.PLINK</code> function below to read them in. (if you’re on a mac, and think this goes too slowly, try changing the <code>parallel</code> argument to <code>TRUE</code>)</p>
 <div class="yellow">
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="population-structure.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the dog data</span></span>
-<span id="cb379-2"><a href="population-structure.html#cb379-2" aria-hidden="true" tabindex="-1"></a>dogs <span class="ot">&lt;-</span> <span class="fu">read.PLINK</span>(<span class="at">file =</span> <span class="st">&quot;./village_subsample.raw&quot;</span>, </span>
-<span id="cb379-3"><a href="population-structure.html#cb379-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.file =</span> <span class="st">&quot;./village_subsample.map&quot;</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb379-4"><a href="population-structure.html#cb379-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">chunkSize =</span> <span class="dv">2000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="population-structure.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in the dog data</span></span>
+<span id="cb378-2"><a href="population-structure.html#cb378-2" aria-hidden="true" tabindex="-1"></a>dogs <span class="ot">&lt;-</span> <span class="fu">read.PLINK</span>(<span class="at">file =</span> <span class="st">&quot;./village_subsample.raw&quot;</span>, </span>
+<span id="cb378-3"><a href="population-structure.html#cb378-3" aria-hidden="true" tabindex="-1"></a>                   <span class="at">map.file =</span> <span class="st">&quot;./village_subsample.map&quot;</span>, <span class="at">parallel =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb378-4"><a href="population-structure.html#cb378-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">chunkSize =</span> <span class="dv">2000</span>)</span></code></pre></div>
 </div>
 <p>Running the function will create a <code>genlight</code> object - a special data structure for <code>adegenet</code>. If you call the <code>dogs</code> object, you will see some summary information and also the number of individuals and markers. As you will see, we have subsampled this data to make it more feasible to run an analysis in R.</p>
 </div>
 <div id="performing-a-pca" class="section level3" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Performing a PCA</h3>
 <p>With <code>adegenet</code>, we can perform PCA on our genomic data with the <code>glPCA</code> function.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="population-structure.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform pca on dogs</span></span>
-<span id="cb380-2"><a href="population-structure.html#cb380-2" aria-hidden="true" tabindex="-1"></a>dogs_pca <span class="ot">&lt;-</span> <span class="fu">glPca</span>(dogs, <span class="at">parallel =</span> <span class="cn">TRUE</span>, <span class="at">nf =</span> <span class="dv">20</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="population-structure.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># perform pca on dogs</span></span>
+<span id="cb379-2"><a href="population-structure.html#cb379-2" aria-hidden="true" tabindex="-1"></a>dogs_pca <span class="ot">&lt;-</span> <span class="fu">glPca</span>(dogs, <span class="at">parallel =</span> <span class="cn">TRUE</span>, <span class="at">nf =</span> <span class="dv">20</span>)</span></code></pre></div>
 <p>Here again Mac and Linux users can benefit from parallel processing with <code>parallel = TRUE</code>. We also use <code>nf = 20</code> in order to tell the function we want to retain 20 principal components.</p>
 <p>Let’s take a moment to look at the output of our PCA analysis.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="population-structure.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at pca object</span></span>
-<span id="cb381-2"><a href="population-structure.html#cb381-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(dogs_pca)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="population-structure.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># look at pca object</span></span>
+<span id="cb380-2"><a href="population-structure.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">objects</span>(dogs_pca)</span></code></pre></div>
 <p>Our <code>dogs_pca</code> object is a list with four elements. We can ignore <code>call</code> - that is just the call to the function we performed above. <code>eig</code> returns the eigenvalues for all the principal components calculated (more on this later). <code>loadings</code> is a matrix of how the SNPs load onto the PC scores - i.e. how their changes in allele frequency effect the position of the data points along the axis. Finally the <code>scores</code> matrix is the actual principal component scores for each individual, allowing us to actually see how the invidivudals are distributed in our analysis.</p>
 </div>
 <div id="visualising-the-pca" class="section level3" number="9.2.4">
 <h3><span class="header-section-number">9.2.4</span> Visualising the PCA</h3>
 <p>Plotting a PCA is the best way to properly interpret it, so we will do this now. The first thing we should do is extract the <strong>principal component scores</strong> from the data. Remember that ggplot needs data to be in a data frame, so we will begin by converting <code>dogs_pca$scores</code> to a data frame. The ID of each dog is stored as row names, but we want it in a regular column, so we have to add an <code>id</code> column as well.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="population-structure.html#cb382-1" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dogs_pca<span class="sc">$</span>scores)</span>
-<span id="cb382-2"><a href="population-structure.html#cb382-2" aria-hidden="true" tabindex="-1"></a>pca_df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(dogs_pca<span class="sc">$</span>scores)</span></code></pre></div>
-<p>We can then plot the first 2 axes using <code>ggplot()</code><a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>.</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="population-structure.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
-<span id="cb383-2"><a href="population-structure.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_df, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> </span>
-<span id="cb383-3"><a href="population-structure.html#cb383-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb383-4"><a href="population-structure.html#cb383-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span> </span>
-<span id="cb383-5"><a href="population-structure.html#cb383-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="population-structure.html#cb381-1" aria-hidden="true" tabindex="-1"></a>pca_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(dogs_pca<span class="sc">$</span>scores)</span>
+<span id="cb381-2"><a href="population-structure.html#cb381-2" aria-hidden="true" tabindex="-1"></a>pca_df<span class="sc">$</span>id <span class="ot">&lt;-</span> <span class="fu">rownames</span>(dogs_pca<span class="sc">$</span>scores)</span></code></pre></div>
+<p>We can then plot the first 2 axes using <code>ggplot()</code><a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>.</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="population-structure.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
+<span id="cb382-2"><a href="population-structure.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(pca_df, <span class="fu">aes</span>(PC1, PC2)) <span class="sc">+</span> </span>
+<span id="cb382-3"><a href="population-structure.html#cb382-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb382-4"><a href="population-structure.html#cb382-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span> </span>
+<span id="cb382-5"><a href="population-structure.html#cb382-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-29-1.png" width="672" /></p>
 <p>So what does this plot tell us? Let’s explain a bit about how to interpret PCA plots.</p>
 <div id="interpreting-pca-plots" class="section level4 unnumbered green">
 <h4>Interpreting PCA plots</h4>
-<p>A PCA plot is a bit different from other plots you may have encountered before. One key difference is that the value on the axes cannot be translated into anything concrete. The principal components (PC1, PC2, etc.) simply arranges the points (individual dogs in our case) along the axis depending on how similar they are to one another. This means that the further away two points are, the more different they are <em>in some undefined aspect</em><a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>. The simplest way to read a PCA plot is:</p>
+<p>A PCA plot is a bit different from other plots you may have encountered before. One key difference is that the value on the axes cannot be translated into anything concrete. The principal components (PC1, PC2, etc.) simply arranges the points (individual dogs in our case) along the axis depending on how similar they are to one another. This means that the further away two points are, the more different they are <em>in some undefined aspect</em><a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>. The simplest way to read a PCA plot is:</p>
 <ul>
 <li>points that are close together are similar to one another</li>
 <li>points that are far apart are different to one another</li>
@@ -484,20 +483,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Another thing to note is that the principal components are ordered after how much variation they explain. For example, PC1 is the component explaining most variation in the data, PC2 the second most, PC3 the third most and so on. So two points being far apart on PC1 means that they are “more different” than two points far apart on PC2.</p>
 </div>
 <p>OK, so the above plot looks interesting. We can see that one group of points in particular forms a cluster in the bottom right corner. But which dogs form this cluster? Are they from the same population? To investigate this we need to add some more information to our plot, namely the population each dog belongs to. We have prepared that information for you and you can download it <a href="https://bios1140.github.io/data/village_dogs.tsv">here</a>. Then read it in like so:</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="population-structure.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in village dog data</span></span>
-<span id="cb384-2"><a href="population-structure.html#cb384-2" aria-hidden="true" tabindex="-1"></a>village_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./village_dogs.tsv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="population-structure.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read in village dog data</span></span>
+<span id="cb383-2"><a href="population-structure.html#cb383-2" aria-hidden="true" tabindex="-1"></a>village_data <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./village_dogs.tsv&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Take a moment to look at this. It has three columns, <code>id</code>, <code>breed</code> and <code>location</code>. Our <code>my_pca</code> object also has an id column, so we need to join the two datasets. We can do this with a <code>dplyr</code> function called <code>left_join()</code> (which we explain more about next week):</p>
 <div class="yellow">
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="population-structure.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join pca and village dog data</span></span>
-<span id="cb385-2"><a href="population-structure.html#cb385-2" aria-hidden="true" tabindex="-1"></a>village_pca <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pca_df, village_data, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="population-structure.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="co"># join pca and village dog data</span></span>
+<span id="cb384-2"><a href="population-structure.html#cb384-2" aria-hidden="true" tabindex="-1"></a>village_pca <span class="ot">&lt;-</span> <span class="fu">left_join</span>(pca_df, village_data, <span class="at">by =</span> <span class="st">&quot;id&quot;</span>)</span></code></pre></div>
 </div>
 <p>Now we have added location to our data set. This means we can plot the PCA using <code>ggplot()</code> and at the same time colour the points by the location they were sampled in (try doing this without looking at my code first!).</p>
 <div class="fold c">
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="population-structure.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
-<span id="cb386-2"><a href="population-structure.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(village_pca, <span class="fu">aes</span>(PC1, PC2, <span class="at">col =</span> location)) <span class="sc">+</span> </span>
-<span id="cb386-3"><a href="population-structure.html#cb386-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
-<span id="cb386-4"><a href="population-structure.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
-<span id="cb386-5"><a href="population-structure.html#cb386-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="population-structure.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot with ggplot2</span></span>
+<span id="cb385-2"><a href="population-structure.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(village_pca, <span class="fu">aes</span>(PC1, PC2, <span class="at">col =</span> location)) <span class="sc">+</span> </span>
+<span id="cb385-3"><a href="population-structure.html#cb385-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> </span>
+<span id="cb385-4"><a href="population-structure.html#cb385-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb385-5"><a href="population-structure.html#cb385-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_fixed</span>()</span></code></pre></div>
 <p><img src="Exercise9_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
 </div>
 <p>So from this PCA, what can we deduce? First if all, the cluster we identified earlier are dogs from East Asia. Similarly, Central Asian, African and European dogs seem to form their own clusters. In the original paper, <a href="http://www.pnas.org/content/112/44/13639">Shannon et al. (2015)</a> suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.</p>
@@ -506,11 +505,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.2.5</span> Eigenvalues</h3>
 <p>How much of the variance in the data set is captured by the PCA? For this, we can use the <em>eigenvalues</em> of the principal components, stored in <code>dogs_pca$eig</code>. Have a look at this vector, where PC1 is the first element, PC2 the second and so on, and notice that the numbers are decreasing. This means that PC1 explains more variation than the other axes, as we mentioned previously.</p>
 <p>These numbers are not easy to interpret by themselves, but are useful if we view them as a fraction of the total. For example, we can see how much of the total variation is explained by PC1 like this:</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="population-structure.html#cb387-1" aria-hidden="true" tabindex="-1"></a>dogs_pca<span class="sc">$</span>eig[<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(dogs_pca<span class="sc">$</span>eig)</span>
-<span id="cb387-2"><a href="population-structure.html#cb387-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.04596527</span></span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="population-structure.html#cb386-1" aria-hidden="true" tabindex="-1"></a>dogs_pca<span class="sc">$</span>eig[<span class="dv">1</span>] <span class="sc">/</span> <span class="fu">sum</span>(dogs_pca<span class="sc">$</span>eig)</span>
+<span id="cb386-2"><a href="population-structure.html#cb386-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.04596527</span></span></code></pre></div>
 <p>And see that PC1 explains around 4.6 % of the variation of the data. Due to R treating vectors as it would single numbers in many cases, we can calculate variance explained for all principal components in a single operation like this:</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="population-structure.html#cb388-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> (dogs_pca<span class="sc">$</span>eig <span class="sc">/</span> <span class="fu">sum</span>(dogs_pca<span class="sc">$</span>eig))</span>
-<span id="cb388-2"><a href="population-structure.html#cb388-2" aria-hidden="true" tabindex="-1"></a>eig</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="population-structure.html#cb387-1" aria-hidden="true" tabindex="-1"></a>eig <span class="ot">&lt;-</span> (dogs_pca<span class="sc">$</span>eig <span class="sc">/</span> <span class="fu">sum</span>(dogs_pca<span class="sc">$</span>eig))</span>
+<span id="cb387-2"><a href="population-structure.html#cb387-2" aria-hidden="true" tabindex="-1"></a>eig</span></code></pre></div>
 <p>From <code>eig</code>, we can see that if we sum the first two elements (i.e., PC1 and PC2), we find that around 7.63% of variance explained by the first two principal components (and by extension, the patterns we wee in our plot). A total of 7.63% for the first two vectors sounds small, but it is actually quite an appreciable amount of variance. Typically, we would concentrate on the principal components that together account for at least 10% of the variance.</p>
 </div>
 <div id="the-full-data-set" class="section level3" number="9.2.6">
@@ -521,9 +520,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="37">
-<li id="fn37"><p>since distances between points matter, as we explain below, we use <code>coord_fixed()</code> to make sure that the distance between values are the same on both axes<a href="population-structure.html#fnref37" class="footnote-back">↩︎</a></p></li>
-<li id="fn38"><p>There are ways to try to determine which sources of variation is explained by the axes, but that is too much to go through here.<a href="population-structure.html#fnref38" class="footnote-back">↩︎</a></p></li>
+<ol start="36">
+<li id="fn36"><p>since distances between points matter, as we explain below, we use <code>coord_fixed()</code> to make sure that the distance between values are the same on both axes<a href="population-structure.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>There are ways to try to determine which sources of variation is explained by the axes, but that is too much to go through here.<a href="population-structure.html#fnref37" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

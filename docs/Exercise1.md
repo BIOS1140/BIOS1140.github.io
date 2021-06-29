@@ -884,7 +884,7 @@ When you have a lot of data that belongs together, typically something you could
 <script src="js/hideOutput.js"></script>
 
 
-*This part of the tutorial is a simplified version of [this tutorial](https://evengar.github.io/short-tutorials/data-import.html). If you want to know more about data import in R, check that one out!*
+*This part of the tutorial is a simplified version of [this tutorial](https://evengar.github.io/short-tutorials/working_with_data_files.html). If you want to know more about data import in R, check that one out!*
 
 I've frequently had you imagine doing the data input for data from all countries in the world throughout this tutorial. You may already have thought manually inputting data for the entire world like we did with the Nordic countries above is time-consuming and error-prone. This is correct, and we should be able to do something smarter. Luckily, we can download data as a text file and import it into R as a data frame!
 
@@ -967,7 +967,7 @@ If you managed to do this, you now have data for all countries in the world stor
 <script src="js/hideOutput.js"></script>
 
 
-*This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial](https://evengar.github.io/short-tutorials/plotting.html)!*
+*This part of the tutorial is very brief, since we will focus on plotting with ggplot2 next week. If you want to know more about plotting in so-called base R, check out [this tutorial](https://evengar.github.io/short-tutorials/plot_in_r.html)!*
 
 R is a powerful tool for visualizing your data. You can make almost any kind of plot, revealing connections that are hard to see from summary statistics. In this section, we will only go through some very basic plotting, you will learn more about plotting next week.
 

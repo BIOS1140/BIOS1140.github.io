@@ -217,7 +217,7 @@ primates <- read.dna(file.path(fdir, "primates.dna"), format = "interleaved")
 
 This is a set of 14 mitochondrial DNA sequences from 12 primate species and 2 outgroups - a mouse and a cow. The sequences are 232 basepairs long. The data is originally from [this paper](https://academic.oup.com/mbe/article/5/6/626/1044336) and is a well-known example dataset in phylogenetics.
 
-We have seen the structure this data is stored in before - it is a `DNA.bin` object like we worked with in [Chapter 7](https://evolutionarygenetics.github.io/Chapter7.html).
+We have seen the structure this data is stored in before - it is a `DNA.bin` object like we worked with in [Chapter 7](#ch07).
 
 Print `primates` to your screen and have a look at it. For the next section, we will use just four species - the hominidae (i.e. Orangutan, Gorilla, Chimpanzee and Human). Let's subset our data in order to do that.
 
@@ -497,7 +497,7 @@ Since the full data set is very large, we cannot perform PCA on this in R. Howev
 
 ## Study questions
 
-The study questions for week 9 are found [here](#w09). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 9 are found [here](#w09). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 
