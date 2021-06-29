@@ -1,8 +1,6 @@
 # Multilocus Evolution {#ch06}
 
 
-<script src="js/hideOutput.js"></script>
-
 
 
 
@@ -43,8 +41,6 @@ library(qtl)
 
 ## Tools for investigating differences between groups
 
-
-<script src="js/hideOutput.js"></script>
 
 Comparing traits between different groups is an important part of evolutionary biology (and biology as a whole). For example, you often want to compare traits in different species, or different genotypes or sexes within a species. This section will teach you some R and statistics tools to do this.
 
@@ -102,6 +98,9 @@ There appears to be a difference in petal length between species. We could also 
       summarise(mean_petal_length = mean(Petal.Length),
                 median_petal_length = median(Petal.Length),
                 sd_petal_length = sd(Petal.Length))
+    ```
+    
+    ```
     #> # A tibble: 3 x 4
     #>   Species    mean_petal_length median_petal_length sd_petal_length
     #>   <fct>                  <dbl>               <dbl>           <dbl>
@@ -211,8 +210,6 @@ Our *R*^2^ is 0.94 which essentially means that by grouping our data by species,
 
 ## Performing a QTL analysis in bedbugs
 
-
-<script src="js/hideOutput.js"></script>
 
 ### Bedbugs, pesticide resistance and study design
 
@@ -349,10 +346,9 @@ plot(bedbugs_scan, col = "red")
 
 You can see quite clearly that whatever the LOD is, it is much higher on linkage group 12 and this peak focuses right where our marker is. This suggests a strong association between genotypes here and the phenotype in question.
 
-:::{.blue}
-**What do we mean by a LOD score?**  
+::: {.blue}
+**What do we mean by a LOD score?**\
 It is beyond the scope of the tutorial to go in to too much detail about this, but LOD stands for logarithim of the odds ratio. It is essentially the ratio between a model where a QTL exists at a marker and one where there is no QTL at all. So, if a LOD is 0 or close to 0, then there is essentially no evidence a QTL is present. However, if a QTL is present and explains variance in the phenotype then the LOD score is expected to be higher, as it is at this marker. For more info on LOD scores, see section 6.3.4 in the textbook.
-
 :::
 
 ### Linking ANOVA to our QTL analysis
@@ -412,11 +408,10 @@ More details on the data can be found in [Week 6 assignment](#w06). Good luck!
 
 ## Study questions
 
-The study questions for week 6 are found [here](#w06). Deliver them in Canvas before the deadline as a word or pdf document. A good way to combine code, output and text is by using RMarkdown, see [the appendix](#rmarkdown).
+The study questions for week 6 are found [here](#w06). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 
 -   [John H McDonald's brilliant online statistics handbook and its section on ANOVA](http://www.biostathandbook.com/onewayanova.html)
--   [A detailed tutorial on ANOVA in R](http://www.understandingdata.net/2017/05/11/anova-tables-in-r/)
 -   [Graham Coop's notes on recombination and correlations between loci](http://cooplab.github.io/popgen-notes/#correlations-between-loci-linkage-disequilibrium-and-recombination)
 -   [The R qtl package website and associated tutorials](http://www.rqtl.org/)

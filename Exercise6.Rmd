@@ -1,7 +1,5 @@
 # Multilocus Evolution {#ch06}
 
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-```
 
 ```{r setup, include=FALSE}
 source("setup.R")
@@ -47,8 +45,6 @@ library(qtl)
 
 ## Tools for investigating differences between groups
 
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-```
 
 Comparing traits between different groups is an important part of evolutionary biology (and biology as a whole). For example, you often want to compare traits in different species, or different genotypes or sexes within a species. This section will teach you some R and statistics tools to do this.
 
@@ -80,17 +76,17 @@ iris %>%
   summarise(mean_petal_length = mean(Petal.Length))
 ```
 
-There appears to be a difference in petal length between species. We could also look at the median and standard deviation to find out more, see footnotes[^exercise6-2].
+There appears to be a difference in petal length between species. To investigate further, we can also calculate multiple values in a single `summarise()`, e.g., median and standard deviation.
 
-[^exercise6-2]: We calculate median and standard deviations using multiple summaries within a single `summarise()`. Also, remember that the name you give the arguments within `summarise()` will be the column names in your new data frame.
+```{r} 
+iris %>%
+  group_by(Species) %>%
+  summarise(mean_petal_length = mean(Petal.Length),
+            median_petal_length = median(Petal.Length),
+            sd_petal_length = sd(Petal.Length))
+```
 
-    ```{r}
-    iris %>%
-      group_by(Species) %>%
-      summarise(mean_petal_length = mean(Petal.Length),
-                median_petal_length = median(Petal.Length),
-                sd_petal_length = sd(Petal.Length))
-    ```
+Remember that the argument names to `summarise()` could be anything, and end up as the column names of your new data frame.
 
 #### Visualising differences
 
@@ -181,8 +177,6 @@ Our *R*^2^ is 0.94 which essentially means that by grouping our data by species,
 
 ## Performing a QTL analysis in bedbugs
 
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-```
 
 ### Bedbugs, pesticide resistance and study design
 
