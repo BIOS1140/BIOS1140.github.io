@@ -25,7 +25,6 @@ In this section we are going to:
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-
 Data manipulation might seem quite a boring topic but it is actually a crucial part of data science and increasingly, bioinformatics and evolutionary biology. For the average researcher working with biological data, we would estimate that the vast majority of analysis time is spent handling the data. By handling and manipulation, we mean exploring the data, shaping it into a form we want to work with and extracting information we find important or interesting. Getting to know your data is absolutely fundamental to properly understanding it and that is why we have decided to dedicate time to it in this chapter.
 
 At this point in our tutorial, we will use a series of packages collectively known as the [tidyverse](https://www.tidyverse.org); in particularly, we will focus on functions from a tidyverse package called `dplyr`. These packages grew from the approach of [Hadley Wickham](http://hadley.nz/) - a statistician responsible for popularising fresh approaches to R and data science. As with nearly all things in R, there are many, many ways to achieve the same goal and the guidlines we give here are by no means definitive. However, we choose to introduce these principles now because in our experience of data analysis, they have greatly improved our efficiency, the clarity of our R code and the way we work with data.
@@ -59,7 +58,6 @@ We will go through the use of these functions shortly. You may notice that you'v
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-
 First, we have to install and load the tidyverse.[^exercise2-1]
 
 [^exercise2-1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
@@ -72,7 +70,6 @@ library(tidyverse)
 ```{r, echo=FALSE}
 library(tidyverse)
 ```
-
 
 Together with the tidyverse, you get a built in data set called `starwars`, containing information about the characters from the Star Wars films. We will use this data set for most of this tutorial. Since it's already loaded, all you have to do to access it is run:
 
@@ -209,11 +206,7 @@ starwars %>% filter(height < 100, species != "Human")
 
 The real power of the pipe shows when you chain several operations together. To both filter and select from your data, simply first do the filtering and then pipe the result to `select`:[^exercise2-2]
 
-[^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe filtering and selecting looks like this:
-
-    ```{r}
-    select(filter(starwars, height < 100), name, height, birth_year)
-    ```
+[^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe, filtering and selecting looks like this: `select(filter(starwars, height < 100), name, height, birth_year)`
 
 ```{r}
 starwars %>% filter(height < 100) %>% 
@@ -233,8 +226,7 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 
 ::: {.green}
 **Important concept:**\
--  `filter()` is used to select specific rows. Example: `filter(height < 100)`
--  `select()` is used to select specific columns. Example: `select(name, height)`
+- `filter()` is used to select specific rows. Example: `filter(height < 100)` - `select()` is used to select specific columns. Example: `select(name, height)`
 :::
 
 ### Grouped summaries with `group_by()` and `summarise()`
@@ -295,7 +287,7 @@ This can be useful to get an overview of your data[^exercise2-3]
 
 ::: {.green}
 **Important concept:**\
-`Group_by()` can be combined with different functions to give an overview of your data. 
+`group_by()` can be combined with different functions to give an overview of your data.
 
 -   `group_by() %>% summarise()` does some calculation in each group. Example: `group_by(homeworld, sex) %>% summarise(mean_height = mean(height))`
 -   `group_by() %>% tally()` counts the number of observations in the groups. Example: `group_by(species) %>% tally()`
@@ -344,7 +336,6 @@ starwars %>%
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
-
 
 In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
 
@@ -597,7 +588,7 @@ This means that `ggplot(data = starwars, mapping = aes(x = height, y = mass))` c
 
 You can save your ggplot to a file using the function `ggsave()`. At the very least, you need to provide a plot object and a file name (with extension).
 
-```{r}
+```{r, eval = FALSE}
 # create our plot
 sw_plot <- ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
   geom_point()
@@ -610,7 +601,6 @@ ggsave("sw_plot.png", sw_plot)
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
-
 
 ### Wide and long format
 
@@ -740,9 +730,6 @@ copeplot
 ## Study questions
 
 The study questions for week 1-2 are found [here](#w01). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
-
-
-
 
 ## Going further
 
