@@ -8,8 +8,6 @@ source("setup.R")
 library(tidyverse)
 ```
 
-
-
 Throughout these tutorials, we have introduced you to evolutionary genetic concepts using R. By now, you should have some familiarity with the versatility of R for data analysis and what is possible with it. We have gone from manipulating vectors and dataframes to processing genome-resequencing data and calculating population genomic statistics. With a course as broad as this, we understand it is difficult to feel like you fully understand every aspect of the analyses you are conducting - there is obviously a lot to learn! Ultimately, it is impossible for you to achieve this within a single course, using R properly takes experience and practice. Indeed, we'd argue that there is no real mastery of R, it is a tool with which you are always able to learn new things. We learn all the time in R and we have been using it for quite some time!
 
 Nonetheless, there are obviously basics that you can master and that you can build upon in your own work, research and analysis. You are already familiar with many of the most important of these - data structures, how to use functions, how to manipulate and visualise data. How can we go further, to giving you an introduction to some more advanced techniques in R? In this final session, will take a step back from population and evolutionary genetics to focus once more on how R itself works, except this time we will focus mainly on programming. We will return to some R programming topics you have actually already encountered but in more detail, with more of a focus on explaining them piece-by-piece.
@@ -19,9 +17,8 @@ Nonetheless, there are obviously basics that you can master and that you can bui
 In this section we will:
 
 -   learn about some advanced features of RStudio
--   learn more about the principles of control flow
--   take a refresher in vectorisation with `sapply`
--   return to learning about how to write functions
+-   learn about joining data sets
+-   learn more about vectorisation, and how to use `lapply()` and `sapply()`
 
 ### Getting started {.unnumbered}
 
@@ -42,7 +39,6 @@ library(tidyverse)
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
-
 
 Back in the [introductory session](https://evolutionarygenetics.github.io/Introduction.html), we learned tht RStudio is a front-end for R. More specifically, RStudio is an **integrated development environment** that makes it more straightforward to do a lot [more than just interact with the console](https://www.rstudio.com/products/rstudio/features/). Much of these features are specifically designed with programming in mind and so we will give a short introduction to them.
 
@@ -96,7 +92,7 @@ for (i in 1:10){
 
 This simple block contains two **control flow** examples (`for` and `in`) - these are highlighted in in the code block here. There is also a numeric vector - this is shown in a different colour. Everything else, including objects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is [highly customisable too](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio).
 
-## More on data handling---categorising and joining
+## More on data handling: categorising and joining
 
 Handling large amounts of data with few lines of code is one of R's strong points. In this section we will show how you can use `ifelse()` and the `left_join()` function from dplyr to make categories and add information to your data
 
@@ -124,7 +120,7 @@ Now we can take a look at the `starwars$species` vector. There are a lot of diff
 ifelse(starwars$species == "Droid", "Droid", "Non-Droid")
 ```
 
-This can be useful e.g. for comparing droids and non-droids in a plot or table. Say we want to label our species based on whether they are a droid, human or neither of the two. A useful thing with `ifelse()` is that the third argument can be _another_ `ifelse()` function! So we can actually chain `ifelse()` commands like this:
+This can be useful e.g. for comparing droids and non-droids in a plot or table. Say we want to label our species based on whether they are a droid, human or neither of the two. A useful thing with `ifelse()` is that the third argument can be *another* `ifelse()` function! So we can actually chain `ifelse()` commands like this:
 
 ```{r}
 ifelse(starwars$species == "Droid", "Droid", ifelse(starwars$species == "Human", "Human", "Neither human nor droid"))
@@ -142,7 +138,7 @@ ifelse(
   )
 ```
 
-Still, if you have more than, say, four-five categories, this becomes difficult to read and time-consuming. For e.g. adding more information to a data frame, _joining_ may be a better alternative, which we will go through next.
+Still, if you have more than, say, four-five categories, this becomes difficult to read and time-consuming. For e.g. adding more information to a data frame, *joining* may be a better alternative, which we will go through next.
 
 ### Joining
 
@@ -156,11 +152,9 @@ copepods <- read.table("docs/data/copepods.txt", header = TRUE)
 copepods
 ```
 
-
 Next, we use `pivot_longer()` to get all taxa in a single column, i.e., convert to long format. See if you manage to do this yourself before looking at my code below.
 
-
-:::{.fold .c}
+::: {.fold .c}
 ```{r}
 copepods_long <- pivot_longer(copepods, 
                               -depth, 
@@ -185,7 +179,7 @@ temps
 
 One way would be using nested `ifelse()` functions, like we learned in the previous section. This is a lot of work and doesn't look good, but it's written it out below just to show you it's possible:
 
-:::{.fold .c}
+::: {.fold .c}
 ```{r}
 copepods_long$depthtemp <- ifelse(
   copepods_long$depth == 0, 15.5,
@@ -227,316 +221,202 @@ copepods_temp <- left_join(copepods_long, temps, by = "depth")
 copepods_temp
 ```
 
-You see that the `temp` column is equal to the `depthtemp` we created earlier, but it's so much easier to work with! Keep in mind that it is this simple in our case because `depth` has the exact same name in both data frames. Remember this when recording data in the future!
+`left_join()` matches one or more columns in your two data sets, and add rows from the second data set into the first data set in the correct place. You see that the `temp` column is equal to the `depthtemp` we created earlier, but it's so much easier to work with! Keep in mind that it is this simple in our case because `depth` has the exact same name in both data frames. Remember this when recording data in the future!
 
-:::{.green}
-**Important concept:**  
-If you have your data spread out over multiple files, remember to name columns appropriately. All columns that contain the same kind of data should have the _exact same name_ across all data sets. This makes joining much easier.
+::: {.green}
+**Important concept:**\
+If you have your data spread out over multiple files, remember to name columns appropriately. All columns that contain the same kind of data should have the *exact same name* across all data sets. Similarly, the data should be entered in the same way in both data sets (e.g., don't record depth as "2" in one data set and "2m" in the other). If you do this, you can easily join data sets with the `left_join()` function.
 :::
 
 ## Lists
 
 In this course, we have stored large amounts of data in two types of objects: vectors and data frames. These have some inherent limitations:
 
-- A vector can only contain one type of value. This means, for example, that a vector can't contain both numeric values AND character values.
-- In a data frame, all columns need to be of the same length. In addition, a column can only contain a single type of value.
+-   A vector can only contain one type of value. This means, for example, that one vector can't contain both numeric values AND character values.
+-   In a data frame, all columns need to be of the same length. In addition, a column can only contain a single type of value.
 
-A list in R, on the other hand, has none of these limitations. It can contain values of multiple types and different lengths. This makes it ideal for storing more complex objects. In fact, much of the complex data you have encountered in these tutorials, like the phylogenetic trees last week, are based on lists. 
+A list in R, on the other hand, has none of these limitations. It can contain values of multiple types and different lengths. This makes it ideal for storing more complex objects. In fact, much of the complex data you have encountered in these tutorials, like the phylogenetic trees last week, are based on lists.
 
 You can make a list with the `list()` function:
 
 ```{r}
 my_list <- list(names = c("Ask", "Embla"),
-                children_age = c(11, 15, 6, 8),
-                married = TRUE)
+                numbers = c(11, 15, 6, 8),
+                condition = TRUE)
+my_list
 ```
 
-You can access list elements with `$`, or with both single and double square brackets `[]`:
+You can access list elements with `$`, or with double square brackets `[[]]`:
 
 ```{r}
+# access list element 1
 my_list$names
-my_list[1]
 my_list[[1]]
 ```
 
-Note that there's a slight difference in using single and double square brackets, which we won't go into here. If in doubt, you should probably use double brackets.  We won't go into much more detail about lists here, but it is important that you know that this structure exists
+You can access elements within the vector within the list by adding a second set of (single) square brackets.
 
-## Vectorisation
+```{r}
+# access element 1 of the vector in list element 1
+my_list[[1]][1]
+```
+
+Since a list can contain any type of data (even data frames and other lists), there are times when they are very useful. We won't go into much more detail about lists here, but it is important that you know that this structure exists and a bit about how to work with them.
+
+## Vectorisation {#vectorisation2}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-During the tutorials in this course, you have encountered the term "vectorisation" a few times(e.g. [chapter 5](#vectorisation)). In short, this is
+During the tutorials in this course, you have encountered the term "vectorisation" a few times(e.g. [chapter 5](#vectorisation)). In short, this is the concept of using functions and doing operations on a vector of values, in contrast to looping over each value and calculating each time. In many cases, it can make calculations faster and more readable.
 
-### Why is vectorisation preferable in R?
+Just to remind you, here is the example we used in chapter 5:
 
-You've heard quite a few times now that **vectorisation** is preferable in R to `for` loops. Why exactly is this? Well there are multiple reasons; chief among these is that vectorisation is much (generally) much faster. Another advantage is that it makes code a lot more clear and straightforward.
-
-Let's use a simple example to demonstrate this - we will generate a vector with 80,000 elements in it. We need to make a large vector because the speed differences among different approaches become much clearer when we do so. We will call this vector `large`. First, we'll do this with a `for` loop:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# set up the object
-large <- NULL
-# now use the for loop
-for (i in 1:80000){
-  large <- c(large, i)
+```{r}
+# define function to calculate volume of a cylinder
+cyl_vol <- function(r, h){
+  return(pi * r^2 * h)
 }
-# make sure large is 80,000 elements long
-length(large)
+
+# use the function on single values
+r <- 3
+h <- 8
+cyl_vol(r, h)
+
+# use the function on vectors of values
+r <- 10:1
+h <- 1:10
+cyl_vol(r, h)
 ```
 
-If you run this code, you'll see it took quite a few seconds to work properly. We can actually measure this but before we do, let's take a moment to look at the `for` loop again. In this example, we first have to declare `large` as a `NULL` object and then we run the loop. Within the loop, we use `large <- c(large, i)` to basically add each value of `i` (so 1, 2, 3 etc) to the `large` vector. In R this is a long-winded way to **append** to a vector.
+An equivalent for-loop to the last example would be:
 
-So, why don't we actually measure how long this took?. To do this we can use a nice function called `system.time`.
+```{r}
+# create empty vector
+vols <- rep(NA, length(r))
+# do calculations in loop
+for (i in 1:length(r)){
+  vols[i] <- cyl_vol(r[i], h[i])
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# set up the object
-large <- NULL
-# now use the for loop - wrapped in system.time
-system.time(
-  for (i in 1:80000){
-  large <- c(large, i)
 }
+vols
+```
+
+Notice how much simpler the vectorised solution looks. For simple operations like these, vectorising instead of looping is a no-brainer. Now, we will look at some more ways to vectorise, with the `sapply()` and `lapply()` functions.
+
+### Using `lapply()` to vectorise
+
+In [chapter 5](#vectorisation), you learned about the `apply()` function, for applying a function to a data frame or matrix. The `lapply()` function work similarly, but on vectors and lists instead.
+
+Say you have a simple function that takes a vector as input, and rescales each element to the proportion of the total by dividing on the sum of the vector. In other words, calculate and return $\frac{x}{sum(x)}$.
+
+**Exercise: Make a function that does the above, and test it with a couple of different vectors.**
+
+::: {.fold .s}
+```{r}
+# define function
+calc_proportion <- function(x){
+  return(x/sum(x))
+}
+
+# test it
+calc_proportion(c(1, 3, 6))
+calc_proportion(c(17, 36, 24, 55))
+```
+:::
+
+Now, what if we want to do this with several vectors? We may for example have a list of vectors, and want to apply this function to all of them:
+
+```{r}
+numbers_list <- list(
+  c(1, 3, 6),
+  c(17, 36, 24, 55),
+  c(100, 500, 400, 38, 75)
 )
+numbers_list
 ```
 
-This will vary based on your machine but the important value is `elapsed`. When we ran this, it took 8.1 seconds, which is pretty long. There are much faster ways to achieve the same result. For example, we could use `seq` to create the same thing.
+If we simply try to use the function on the list directly, we get an error. R has no way of using `sum()` on a list!
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# create large using seq
-large <- seq(1, 80000)
+```{r, error = TRUE}
+calc_proportion(numbers_list)
 ```
 
-How long did that take?
+This is where `lapply()` comes in. `lapply()` (or "list apply") takes a list or vector as input, and applies a function to each element of the list/vector. The syntax is `lapply(list, function)`. Like with `apply()`, the function should not have parentheses after its name. Let's use this to apply `calc_proportion()` to `numbers_list`:
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# create large using seq and measure time
-system.time(large <- seq(1, 80000))
+```{r}
+lapply(numbers_list, calc_proportion)
 ```
 
-In our case, it took practically no time at all. We could have even dropped `seq` altogether and just done the following:
+Now we get a list of our rescaled vectors! Note that `lapply()` always returns a list (hence "list apply"). Like earlier examples we've seen, it doesn't matter if `numbers_list` has a single value or a million, the code would still look the same[^exercise10-1].
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# create large
-large <- 1:80000
+[^exercise10-1]: Of course, this can also be achieved with a for-loop, which looks like this:
+
+    ```{r}
+    # create empty list, confusingly with the vector() function ...
+    proportion_list <- vector(mode = "list", length = length(numbers_list))
+
+    # loop and calculate
+    for (i in 1:length(numbers_list)){
+      proportion_list[[i]] <- calc_proportion(numbers_list[[i]])
+    }
+    proportion_list
+    ```
+
+    \ 
+
+::: {.green}
+**Important concept:**\
+`lapply()` allows for fast and simple vectorisation when your function cannot be applied to your data directly. It takes a list/vector and a function as arguments, and returns a list of values.
+:::
+
+### `sapply()`
+
+`sapply()` (or "simplified apply") is very similar to `lapply()` in that it takes a list or vector and a function as arguments, and applies the function to the list/vector. The key difference is that where `lapply()` always returns a list, `sapply()` returns the simplest possible object. For example, say we want to use `sum()` on each vector in `numbers_list`. With `lapply()` we get:
+
+```{r}
+lapply(numbers_list, sum)
 ```
 
-Which also doesn't take any time at all.
+However, each list element only contains one value. Wouldn't it be easier to have it stored in a vector? This is what we get with `sapply()`:
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# create large
-system.time(large <- 1:80000)
+```{r}
+sapply(numbers_list, sum)
 ```
 
-This is a really clear demonstration of what we mean by vectorisation. When you write R code, you should aim to work with vectors. In the last two examples, we are generating vectors directly, rather than using a for loop to create them. The speed gains are considerable and when you work with very large datasets, they can mean the difference between a few minutes of calculation vs hours.
+::: {.green}
+**Important concept:**\
+`sapply()` can be convenient to simplify the output of a vectorised operation. Use `sapply()` if you want the simplest data structure possible, and `lapply()` when you want to be sure that your operation returns a list.
+:::
 
-### Using `sapply` instead of `for` on vectors
+### Anonymous functions
 
-So if `for` loops should be avoided, what can you use instead? This is when the `apply` family of functions come into play - i.e. `sapply`, `lapply` and `apply`. We have already used all of these functions in the tutorials, but here we will learn about them again in a bit more detail. First let's show how we could use `sapply` to replace a simple `for` loop. Below we return to our simple `for` loop.
+A concept that is often used together with `lapply()` and `sapply()` is *anonymous functions*. Like the term implies, this is a function without a name. For example, instead of creating the `calc_proportion()` function above, we could have defined the function **inside** our `lapply()` function like this[^exercise10-2]:
 
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a simple for loop
-for(i in 1:10){
-  print(i)
-}
+[^exercise10-2]: Note that the function here is defined without the use of curly brackets and `return()`. This is not unique to anonymous functions (but most often used there), but an equivalent way to define a function in R. This means that all these four functions are exactly equal:
+
+    ```{r}
+    f1 <- function(x) x/sum(x)
+    f2 <- function(x) return(x/sum(x))
+    f3 <- function(x){
+      x/sum(x)
+    }
+    f4 <- function(x){
+      return(x/sum(x))
+    }
+    ```
+
+    When the function is more than a single line, you should always use the curly brackets. I personally prefer to use an explicit `return()` in more complicated functions, but you will encounter both in code you read.
+
+```{r}
+lapply(numbers_list, function(x) x/sum(x))
 ```
 
-We can achieve exactly the same result with `sapply` like so:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a simple sapply example
-sapply(1:10, function(x) x)
-```
-
-Let's break down the `sapply` example. It might help if you think of `sapply` as a way of applying a function across a vector. This is similar to how a for loop works - basically for each element of the vector, we do something to it. So in this case, the first argument `1:10` is just the vector we are going to apply our function to. The `function(x)` argument is just saying that we call each element of `1:10` `x` and then after this, we do something to it. Here we just display `x` in the console. We could alter the code so that it adds 100 and then divides by the value of x each time. For example:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a another sapply example
-sapply(1:10, function(x) (x + 100)/x)
-```
-
-The point being here that we can write whatever we want after the `function(x)` to get R to do something to each value of the vector. We can make `sapply` even simpler if we decide to use a function instead of some basic code. For example, let's use it to calculate the square root of each value of a vector.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a really simple sapply example
-sapply(1:10, sqrt)
-```
-
-This perhaps makes `sapply` even clearer. We are basically saying, here is a vector (`1:10`) and then apply a function to each element of it (`sqrt` in this case).
-
-These examples nicely dmeonstrate why you might use `sapply` but you should not forget that in many cases, you can apply the factor **directly** to the vector without needing to wrap it in an `sapply` function. For example:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# reducing things even further
-sqrt(1:10)
-```
-
-This too has obvious speed gains:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-system.time(sapply(1:100000, sqrt))
-system.time(sqrt(1:100000))
-```
-
-The difference is smaller than when we compared vectorised functions to `for` loops, but it is still enough to make a difference. The point then is clear... you should strive to simplify your code as much as possible!
-
-### Using apply instead of `for` on matrices and dataframes
-
-Earlier we saw an example of how we can use a `for` loop to iterate over a matrix. We'll use a similar example below with the `cars` data.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# calculate the sums of rows
-for(i in 1:nrow(cars)){
-  print(sum(cars[i, ]))
-}
-```
-
-This prints a vector of the row sums. But there are a couple of issues. Firstly, it isn't the most straightforward code ever and secondly, it is actually quite annoying to actually get a vector from our `for` loop. If we wanted to store the vector so we could use it later, we need to declare it like so.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# declare an empty vector
-car_row <- NULL
-# calculate the sums of rows and save to a vector
-for(i in 1:nrow(cars)){
-  car_row <- c(car_row, sum(cars[i, ]))
-}
-# check the car_row vector
-car_row
-```
-
-We could however just use `apply` to do this all much more cleanly and simply:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# calculate the sums of rows with apply
-apply(cars, 1, sum)
-```
-
-This immediately returns a vector and is much more straightforward to write. Like `sapply`, `apply` also applies a function, but this time over a matrix or data.frame. Here we specify the `cars` data.frame as our target and then use `1` to explain that we are applying the function over the **rows**. The function we apply is `sum`.
-
-If we change the index in our `apply` function to `2`, we can apply the function `sum` across the columns:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# calculate the sums of columns with apply
-apply(cars, 2, sum)
-```
-
-We can easily replace `sum` with a function of our choice - i.e. `mean`, `exp` or whatever you prefer. However as always, we should keep in mind there are R specific functions for achieving row sums and column sums which are faster and even simpler than `apply`:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# R functions to calculate row and column sums
-rowSums(cars)
-colSums(cars)
-```
-
-With these functions in place, you might be left wondering what is the point of `sapply` or `apply`. However, applying functions can come into its own when you use a custom function you have written. In the next section, we will return once again to doing this.
-
-## Returning to writing your own functions
-
-```{r html-doc, child="html_doc.Rmd", echo = FALSE}
-```
-
-
-We already learned a little bit about writing custom functions back in [Chapter 3](https://evolutionarygenetics.github.io/Chapter3.html). We'll spend a bit more time on the topic here to demonstrate again how we can do this simply.
-
-We are going to start with a very easy and simple function which we will call `greeting` that will take the name of a person and then say hello to them. Let's write the function below:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# writing a simple function
-greeting <- function(name){
-  x <- paste0("Hello ", name, ", how are you today?")
-  return(x)
-}
-# Now test the function
-greeting("Arthur")
-```
-
-Try it with any name you wish,. This simple example demonstrates how functions work in R. First we use `function()` to actually define the function itself. `greeting <- function(name)` simply means we are creating a function called `greeting` and that it takes a single argument, `name`.
-
-The real work of the function goes on inside the curly brackets. We use `paste0` to join the character variables together, forming a full sentence which we call `x`. We then use the `return` function to actually return the value of `x` from the function itself.
-
-The curly brackets define the scope of the `name` argument all arguments within the function itself. So for example, if you run `greeting`, the value of x in the main R environment will not change.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# set up x
-x <- "I am not a greeting"
-# use the greeting function
-greeting("Sandra")
-# x has not changed
-x
-```
-
-You really can do whatever you want with your own functions. Let's move on to a more serious example here. Perhaps we want to a function that will take the [reciprocal](https://en.wikipedia.org/wiki/Reciprocal) of each number we give it. There is no R function to do this, so we should write our own.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a simple reciprocal example
-reciprocal <- function(x){
-  # calculate the reciprocal
-  y <- 1/x
-  return(y)
-}
-```
-
-Now we have this custom function defined in our R environment. We can test it on various numeric values. For example:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# testing our function
-reciprocal(8)
-reciprocal(10)
-```
-
-We can also use it on vectors by default, so no need for `sapply`:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# testing our function on a vector
-reciprocal(1:50)
-```
-
-Perhaps though we could use something like `apply` to find the reciprocal of each of the values in the rows of the `cars` data.frame? We could do this without a function like so:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# using apply to find the reciprocal of rows
-apply(cars, 1, function(x) 1/x)
-```
-
-This actually produces a matrix that gives us the reciprocal of each value in each row. Of course, we can make the code even neater by substituting in the custom function we wrote previously.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# using apply to apply our reciprocal function
-apply(cars, 1, reciprocal)
-```
-
-This gives the same result. This code is neater, but it also has the advantage that if we want to troubleshoot any issues or change the code, we only need to alter the function itself, not the `apply` argument. Let's alter our reciprocal function so that it first sums all the values you give it. We'll call it `reciprocal_sum` to distinguish it.
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# a simple reciprocal example
-reciprocal_sum <- function(x){
-  # calculate the reciprocal
-  y <- 1/sum(x)
-  return(y)
-}
-```
-
-With single values it makes no difference, but with vectors it takes the reciprocal of their sum. For example:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# testing our altered function
-reciprocal_sum(8)
-reciprocal_sum(10)
-reciprocal_sum(1:50)
-```
-
-So now, if we want to take the reciprocal of the sum of each row using apply, we can do it like this:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# using apply to apply our reciprocal function
-apply(cars, 1, reciprocal_sum)
-```
-
-Where all we did is alter the original function (and tweaked our apply command to make sure it ran the right one). This shows you that can easily build on the complexity of a function and also combine it with other functions such as `apply` to do quite a lot with your data.
+It works in the exact same way, but you don't have to define a function beforehand, and is easy to understand for the reader right away. Only use this for very simple functions that you are only going to use once. Otherwise, defining a named function is better. It is good to know about anonymous functions anyway, as they are frequently used.
 
 ## Concluding remarks
 
-We hope the more indepth focus on programming and more advanced use of R in this tutorial has given you more insight into how these aspects of R work. Ultimately, the best way to become very familiar and experienced with these methods is to repeatedly use them, often on your own data, to solve your own issues. Programming is a challenge for many people in any language - and it can be especially challenging for biologists. The key thing to keep in mind is that you are now familiar with the basics. You might still feel daunted at the prospect of sitting down and writing a function or set of code completely from scratch. However as you have seen from these tutorials and also those linked at the end of each section, there is a wealth of resources available online that can demystify many of these concepts further. The most important thing for your own future work is that you can grapple with these tutorials and then take things a step further each time. Even for experienced users, it takes time and thought to code in R - we hope that these tutorials have set you on the trajectory to becoming more advanced users!
+We hope the more indepth focus on programming and more advanced use of R in this tutorial has given you more insight into how these aspects of R work. Ultimately, the best way to become familiar and experienced with these methods is to repeatedly use them, often on your own data, to solve your own issues. Programming is a challenge for many people in any language - and it can be especially challenging for biologists. The key thing to keep in mind is that you are now familiar with the basics. You might still feel daunted at the prospect of sitting down and writing a function or set of code completely from scratch. However as you have seen from these tutorials and also those linked at the end of each section, there is a wealth of resources available online that can demystify many of these concepts further. The most important thing for your own future work is that you can grapple with these tutorials and then take things a step further each time. Even for experienced users, it takes time and thought to code in R - we hope that these tutorials have set you on the trajectory to becoming more advanced users!
 
 Good luck!
 
