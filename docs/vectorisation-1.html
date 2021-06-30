@@ -33,7 +33,7 @@
   
 <link rel="prev" href="lists.html"/>
 <link rel="next" href="returning-to-writing-your-own-functions.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,6 +51,8 @@
 
 
 
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -381,9 +383,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists</a></li>
 <li class="chapter" data-level="10.4" data-path="vectorisation-1.html"><a href="vectorisation-1.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation</a>
 <ul>
-<li class="chapter" data-level="10.4.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#why-is-vectorisation-preferable-in-r"><i class="fa fa-check"></i><b>10.4.1</b> Why is vectorisation preferable in R?</a></li>
-<li class="chapter" data-level="10.4.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-sapply-instead-of-for-on-vectors"><i class="fa fa-check"></i><b>10.4.2</b> Using <code>sapply</code> instead of <code>for</code> on vectors</a></li>
-<li class="chapter" data-level="10.4.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-apply-instead-of-for-on-matrices-and-dataframes"><i class="fa fa-check"></i><b>10.4.3</b> Using apply instead of <code>for</code> on matrices and dataframes</a></li>
+<li class="chapter" data-level="10.4.1" data-path="vectorisation-1.html"><a href="vectorisation-1.html#using-lapply-to-vectorise"><i class="fa fa-check"></i><b>10.4.1</b> Using <code>lapply()</code> to vectorise</a></li>
+<li class="chapter" data-level="10.4.2" data-path="vectorisation-1.html"><a href="vectorisation-1.html#sapply"><i class="fa fa-check"></i><b>10.4.2</b> <code>sapply()</code></a></li>
+<li class="chapter" data-level="10.4.3" data-path="vectorisation-1.html"><a href="vectorisation-1.html#anonymous-functions"><i class="fa fa-check"></i><b>10.4.3</b> Anonymous functions</a></li>
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="returning-to-writing-your-own-functions.html"><a href="returning-to-writing-your-own-functions.html"><i class="fa fa-check"></i><b>10.5</b> Returning to writing your own functions</a></li>
 <li class="chapter" data-level="10.6" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.6</b> Concluding remarks</a></li>
@@ -429,97 +431,137 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="vectorisation-1" class="section level2" number="10.4">
 <h2><span class="header-section-number">10.4</span> Vectorisation</h2>
 <script src="js/hideOutput.js"></script>
-<p>During the tutorials in this course, you have encountered the term “vectorisation” a few times(e.g. <a href="vectorisation.html#vectorisation">chapter 5</a>). In short, this is</p>
-<div id="why-is-vectorisation-preferable-in-r" class="section level3" number="10.4.1">
-<h3><span class="header-section-number">10.4.1</span> Why is vectorisation preferable in R?</h3>
-<p>You’ve heard quite a few times now that <strong>vectorisation</strong> is preferable in R to <code>for</code> loops. Why exactly is this? Well there are multiple reasons; chief among these is that vectorisation is much (generally) much faster. Another advantage is that it makes code a lot more clear and straightforward.</p>
-<p>Let’s use a simple example to demonstrate this - we will generate a vector with 80,000 elements in it. We need to make a large vector because the speed differences among different approaches become much clearer when we do so. We will call this vector <code>large</code>. First, we’ll do this with a <code>for</code> loop:</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="vectorisation-1.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the object</span></span>
-<span id="cb405-2"><a href="vectorisation-1.html#cb405-2" aria-hidden="true" tabindex="-1"></a>large <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb405-3"><a href="vectorisation-1.html#cb405-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now use the for loop</span></span>
-<span id="cb405-4"><a href="vectorisation-1.html#cb405-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">80000</span>){</span>
-<span id="cb405-5"><a href="vectorisation-1.html#cb405-5" aria-hidden="true" tabindex="-1"></a>  large <span class="ot">&lt;-</span> <span class="fu">c</span>(large, i)</span>
-<span id="cb405-6"><a href="vectorisation-1.html#cb405-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb405-7"><a href="vectorisation-1.html#cb405-7" aria-hidden="true" tabindex="-1"></a><span class="co"># make sure large is 80,000 elements long</span></span>
-<span id="cb405-8"><a href="vectorisation-1.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(large)</span></code></pre></div>
-<p>If you run this code, you’ll see it took quite a few seconds to work properly. We can actually measure this but before we do, let’s take a moment to look at the <code>for</code> loop again. In this example, we first have to declare <code>large</code> as a <code>NULL</code> object and then we run the loop. Within the loop, we use <code>large &lt;- c(large, i)</code> to basically add each value of <code>i</code> (so 1, 2, 3 etc) to the <code>large</code> vector. In R this is a long-winded way to <strong>append</strong> to a vector.</p>
-<p>So, why don’t we actually measure how long this took?. To do this we can use a nice function called <code>system.time</code>.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="vectorisation-1.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the object</span></span>
-<span id="cb406-2"><a href="vectorisation-1.html#cb406-2" aria-hidden="true" tabindex="-1"></a>large <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb406-3"><a href="vectorisation-1.html#cb406-3" aria-hidden="true" tabindex="-1"></a><span class="co"># now use the for loop - wrapped in system.time</span></span>
-<span id="cb406-4"><a href="vectorisation-1.html#cb406-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(</span>
-<span id="cb406-5"><a href="vectorisation-1.html#cb406-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">80000</span>){</span>
-<span id="cb406-6"><a href="vectorisation-1.html#cb406-6" aria-hidden="true" tabindex="-1"></a>  large <span class="ot">&lt;-</span> <span class="fu">c</span>(large, i)</span>
-<span id="cb406-7"><a href="vectorisation-1.html#cb406-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb406-8"><a href="vectorisation-1.html#cb406-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<p>This will vary based on your machine but the important value is <code>elapsed</code>. When we ran this, it took 8.1 seconds, which is pretty long. There are much faster ways to achieve the same result. For example, we could use <code>seq</code> to create the same thing.</p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="vectorisation-1.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create large using seq</span></span>
-<span id="cb407-2"><a href="vectorisation-1.html#cb407-2" aria-hidden="true" tabindex="-1"></a>large <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">80000</span>)</span></code></pre></div>
-<p>How long did that take?</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="vectorisation-1.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create large using seq and measure time</span></span>
-<span id="cb408-2"><a href="vectorisation-1.html#cb408-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(large <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">80000</span>))</span></code></pre></div>
-<p>In our case, it took practically no time at all. We could have even dropped <code>seq</code> altogether and just done the following:</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="vectorisation-1.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create large</span></span>
-<span id="cb409-2"><a href="vectorisation-1.html#cb409-2" aria-hidden="true" tabindex="-1"></a>large <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">80000</span></span></code></pre></div>
-<p>Which also doesn’t take any time at all.</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="vectorisation-1.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create large</span></span>
-<span id="cb410-2"><a href="vectorisation-1.html#cb410-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(large <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">80000</span>)</span></code></pre></div>
-<p>This is a really clear demonstration of what we mean by vectorisation. When you write R code, you should aim to work with vectors. In the last two examples, we are generating vectors directly, rather than using a for loop to create them. The speed gains are considerable and when you work with very large datasets, they can mean the difference between a few minutes of calculation vs hours.</p>
+<p>During the tutorials in this course, you have encountered the term “vectorisation” a few times(e.g. <a href="vectorisation.html#vectorisation">chapter 5</a>). In short, this is the concept of using functions and doing operations on a vector of values, in contrast to looping over each value and calculating each time. In many cases, it can make calculations faster and more readable.</p>
+<p>Just to remind you, here is the example we used in chapter 5:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="vectorisation-1.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function to calculate volume of a cylinder</span></span>
+<span id="cb19-2"><a href="vectorisation-1.html#cb19-2" aria-hidden="true" tabindex="-1"></a>cyl_vol <span class="ot">&lt;-</span> <span class="cf">function</span>(r, h){</span>
+<span id="cb19-3"><a href="vectorisation-1.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(pi <span class="sc">*</span> r<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> h)</span>
+<span id="cb19-4"><a href="vectorisation-1.html#cb19-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-5"><a href="vectorisation-1.html#cb19-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="vectorisation-1.html#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># use the function on single values</span></span>
+<span id="cb19-7"><a href="vectorisation-1.html#cb19-7" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb19-8"><a href="vectorisation-1.html#cb19-8" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb19-9"><a href="vectorisation-1.html#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb19-10"><a href="vectorisation-1.html#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 226.1947</span></span>
+<span id="cb19-11"><a href="vectorisation-1.html#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="vectorisation-1.html#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># use the function on vectors of values</span></span>
+<span id="cb19-13"><a href="vectorisation-1.html#cb19-13" aria-hidden="true" tabindex="-1"></a>r <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb19-14"><a href="vectorisation-1.html#cb19-14" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb19-15"><a href="vectorisation-1.html#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="fu">cyl_vol</span>(r, h)</span>
+<span id="cb19-16"><a href="vectorisation-1.html#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 314.15927 508.93801 603.18579 615.75216 565.48668 471.23890 351.85838</span></span>
+<span id="cb19-17"><a href="vectorisation-1.html#cb19-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 113.09734  31.41593</span></span></code></pre></div>
+<p>An equivalent for-loop to the last example would be:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="vectorisation-1.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create empty vector</span></span>
+<span id="cb20-2"><a href="vectorisation-1.html#cb20-2" aria-hidden="true" tabindex="-1"></a>vols <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(r))</span>
+<span id="cb20-3"><a href="vectorisation-1.html#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># do calculations in loop</span></span>
+<span id="cb20-4"><a href="vectorisation-1.html#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(r)){</span>
+<span id="cb20-5"><a href="vectorisation-1.html#cb20-5" aria-hidden="true" tabindex="-1"></a>  vols[i] <span class="ot">&lt;-</span> <span class="fu">cyl_vol</span>(r[i], h[i])</span>
+<span id="cb20-6"><a href="vectorisation-1.html#cb20-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="vectorisation-1.html#cb20-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-8"><a href="vectorisation-1.html#cb20-8" aria-hidden="true" tabindex="-1"></a>vols</span>
+<span id="cb20-9"><a href="vectorisation-1.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] 314.15927 508.93801 603.18579 615.75216 565.48668 471.23890 351.85838</span></span>
+<span id="cb20-10"><a href="vectorisation-1.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [8] 226.19467 113.09734  31.41593</span></span></code></pre></div>
+<p>Notice how much simpler the vectorised solution looks. For simple operations like these, vectorising instead of looping is a no-brainer. Now, we will look at some more ways to vectorise, with the <code>sapply()</code> and <code>lapply()</code> functions.</p>
+<div id="using-lapply-to-vectorise" class="section level3" number="10.4.1">
+<h3><span class="header-section-number">10.4.1</span> Using <code>lapply()</code> to vectorise</h3>
+<p>In <a href="vectorisation.html#vectorisation">chapter 5</a>, you learned about the <code>apply()</code> function, for applying a function to a data frame or matrix. The <code>lapply()</code> function work similarly, but on vectors and lists instead.</p>
+<p>Say you have a simple function that takes a vector as input, and rescales each element to the proportion of the total by dividing on the sum of the vector. In other words, calculate and return <span class="math inline">\(\frac{x}{sum(x)}\)</span>.</p>
+<p><strong>Exercise: Make a function that does the above, and test it with a couple of different vectors.</strong></p>
+<div class="fold s">
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="vectorisation-1.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define function</span></span>
+<span id="cb21-2"><a href="vectorisation-1.html#cb21-2" aria-hidden="true" tabindex="-1"></a>calc_proportion <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb21-3"><a href="vectorisation-1.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span><span class="fu">sum</span>(x))</span>
+<span id="cb21-4"><a href="vectorisation-1.html#cb21-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb21-5"><a href="vectorisation-1.html#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="vectorisation-1.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># test it</span></span>
+<span id="cb21-7"><a href="vectorisation-1.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_proportion</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>))</span>
+<span id="cb21-8"><a href="vectorisation-1.html#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1 0.3 0.6</span></span>
+<span id="cb21-9"><a href="vectorisation-1.html#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_proportion</span>(<span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">36</span>, <span class="dv">24</span>, <span class="dv">55</span>))</span>
+<span id="cb21-10"><a href="vectorisation-1.html#cb21-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1287879 0.2727273 0.1818182 0.4166667</span></span></code></pre></div>
 </div>
-<div id="using-sapply-instead-of-for-on-vectors" class="section level3" number="10.4.2">
-<h3><span class="header-section-number">10.4.2</span> Using <code>sapply</code> instead of <code>for</code> on vectors</h3>
-<p>So if <code>for</code> loops should be avoided, what can you use instead? This is when the <code>apply</code> family of functions come into play - i.e. <code>sapply</code>, <code>lapply</code> and <code>apply</code>. We have already used all of these functions in the tutorials, but here we will learn about them again in a bit more detail. First let’s show how we could use <code>sapply</code> to replace a simple <code>for</code> loop. Below we return to our simple <code>for</code> loop.</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="vectorisation-1.html#cb411-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple for loop</span></span>
-<span id="cb411-2"><a href="vectorisation-1.html#cb411-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
-<span id="cb411-3"><a href="vectorisation-1.html#cb411-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(i)</span>
-<span id="cb411-4"><a href="vectorisation-1.html#cb411-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>We can achieve exactly the same result with <code>sapply</code> like so:</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="vectorisation-1.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a simple sapply example</span></span>
-<span id="cb412-2"><a href="vectorisation-1.html#cb412-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(x) x)</span></code></pre></div>
-<p>Let’s break down the <code>sapply</code> example. It might help if you think of <code>sapply</code> as a way of applying a function across a vector. This is similar to how a for loop works - basically for each element of the vector, we do something to it. So in this case, the first argument <code>1:10</code> is just the vector we are going to apply our function to. The <code>function(x)</code> argument is just saying that we call each element of <code>1:10</code> <code>x</code> and then after this, we do something to it. Here we just display <code>x</code> in the console. We could alter the code so that it adds 100 and then divides by the value of x each time. For example:</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="vectorisation-1.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a another sapply example</span></span>
-<span id="cb413-2"><a href="vectorisation-1.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(x) (x <span class="sc">+</span> <span class="dv">100</span>)<span class="sc">/</span>x)</span></code></pre></div>
-<p>The point being here that we can write whatever we want after the <code>function(x)</code> to get R to do something to each value of the vector. We can make <code>sapply</code> even simpler if we decide to use a function instead of some basic code. For example, let’s use it to calculate the square root of each value of a vector.</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="vectorisation-1.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="co"># a really simple sapply example</span></span>
-<span id="cb414-2"><a href="vectorisation-1.html#cb414-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, sqrt)</span></code></pre></div>
-<p>This perhaps makes <code>sapply</code> even clearer. We are basically saying, here is a vector (<code>1:10</code>) and then apply a function to each element of it (<code>sqrt</code> in this case).</p>
-<p>These examples nicely dmeonstrate why you might use <code>sapply</code> but you should not forget that in many cases, you can apply the factor <strong>directly</strong> to the vector without needing to wrap it in an <code>sapply</code> function. For example:</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="vectorisation-1.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="co"># reducing things even further</span></span>
-<span id="cb415-2"><a href="vectorisation-1.html#cb415-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span></code></pre></div>
-<p>This too has obvious speed gains:</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="vectorisation-1.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>, sqrt))</span>
-<span id="cb416-2"><a href="vectorisation-1.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="fu">sqrt</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">100000</span>))</span></code></pre></div>
-<p>The difference is smaller than when we compared vectorised functions to <code>for</code> loops, but it is still enough to make a difference. The point then is clear… you should strive to simplify your code as much as possible!</p>
+<p>Now, what if we want to do this with several vectors? We may for example have a list of vectors, and want to apply this function to all of them:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="vectorisation-1.html#cb22-1" aria-hidden="true" tabindex="-1"></a>numbers_list <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb22-2"><a href="vectorisation-1.html#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>),</span>
+<span id="cb22-3"><a href="vectorisation-1.html#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">17</span>, <span class="dv">36</span>, <span class="dv">24</span>, <span class="dv">55</span>),</span>
+<span id="cb22-4"><a href="vectorisation-1.html#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">500</span>, <span class="dv">400</span>, <span class="dv">38</span>, <span class="dv">75</span>)</span>
+<span id="cb22-5"><a href="vectorisation-1.html#cb22-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-6"><a href="vectorisation-1.html#cb22-6" aria-hidden="true" tabindex="-1"></a>numbers_list</span>
+<span id="cb22-7"><a href="vectorisation-1.html#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb22-8"><a href="vectorisation-1.html#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 6</span></span>
+<span id="cb22-9"><a href="vectorisation-1.html#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-10"><a href="vectorisation-1.html#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb22-11"><a href="vectorisation-1.html#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 17 36 24 55</span></span>
+<span id="cb22-12"><a href="vectorisation-1.html#cb22-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb22-13"><a href="vectorisation-1.html#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb22-14"><a href="vectorisation-1.html#cb22-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 100 500 400  38  75</span></span></code></pre></div>
+<p>If we simply try to use the function on the list directly, we get an error. R has no way of using <code>sum()</code> on a list!</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="vectorisation-1.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_proportion</span>(numbers_list)</span>
+<span id="cb23-2"><a href="vectorisation-1.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in sum(x): invalid &#39;type&#39; (list) of argument</span></span></code></pre></div>
+<p>This is where <code>lapply()</code> comes in. <code>lapply()</code> (or “list apply”) takes a list or vector as input, and applies a function to each element of the list/vector. The syntax is <code>lapply(list, function)</code>. Like with <code>apply()</code>, the function should not have parentheses after its name. Let’s use this to apply <code>calc_proportion()</code> to <code>numbers_list</code>:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="vectorisation-1.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(numbers_list, calc_proportion)</span>
+<span id="cb24-2"><a href="vectorisation-1.html#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb24-3"><a href="vectorisation-1.html#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1 0.3 0.6</span></span>
+<span id="cb24-4"><a href="vectorisation-1.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-5"><a href="vectorisation-1.html#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb24-6"><a href="vectorisation-1.html#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1287879 0.2727273 0.1818182 0.4166667</span></span>
+<span id="cb24-7"><a href="vectorisation-1.html#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb24-8"><a href="vectorisation-1.html#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb24-9"><a href="vectorisation-1.html#cb24-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.08984726 0.44923630 0.35938904 0.03414196 0.06738544</span></span></code></pre></div>
+<p>Now we get a list of our rescaled vectors! Note that <code>lapply()</code> always returns a list (hence “list apply”). Like earlier examples we’ve seen, it doesn’t matter if <code>numbers_list</code> has a single value or a million, the code would still look the same<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<div class="green">
+<p><strong>Important concept:</strong><br />
+<code>lapply()</code> allows for fast and simple vectorisation when your function cannot be applied to your data directly. It takes a list/vector and a function as arguments, and returns a list of values.</p>
 </div>
-<div id="using-apply-instead-of-for-on-matrices-and-dataframes" class="section level3" number="10.4.3">
-<h3><span class="header-section-number">10.4.3</span> Using apply instead of <code>for</code> on matrices and dataframes</h3>
-<p>Earlier we saw an example of how we can use a <code>for</code> loop to iterate over a matrix. We’ll use a similar example below with the <code>cars</code> data.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="vectorisation-1.html#cb417-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the sums of rows</span></span>
-<span id="cb417-2"><a href="vectorisation-1.html#cb417-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cars)){</span>
-<span id="cb417-3"><a href="vectorisation-1.html#cb417-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="fu">sum</span>(cars[i, ]))</span>
-<span id="cb417-4"><a href="vectorisation-1.html#cb417-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
-<p>This prints a vector of the row sums. But there are a couple of issues. Firstly, it isn’t the most straightforward code ever and secondly, it is actually quite annoying to actually get a vector from our <code>for</code> loop. If we wanted to store the vector so we could use it later, we need to declare it like so.</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="vectorisation-1.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="co"># declare an empty vector</span></span>
-<span id="cb418-2"><a href="vectorisation-1.html#cb418-2" aria-hidden="true" tabindex="-1"></a>car_row <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb418-3"><a href="vectorisation-1.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the sums of rows and save to a vector</span></span>
-<span id="cb418-4"><a href="vectorisation-1.html#cb418-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(cars)){</span>
-<span id="cb418-5"><a href="vectorisation-1.html#cb418-5" aria-hidden="true" tabindex="-1"></a>  car_row <span class="ot">&lt;-</span> <span class="fu">c</span>(car_row, <span class="fu">sum</span>(cars[i, ]))</span>
-<span id="cb418-6"><a href="vectorisation-1.html#cb418-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb418-7"><a href="vectorisation-1.html#cb418-7" aria-hidden="true" tabindex="-1"></a><span class="co"># check the car_row vector</span></span>
-<span id="cb418-8"><a href="vectorisation-1.html#cb418-8" aria-hidden="true" tabindex="-1"></a>car_row</span></code></pre></div>
-<p>We could however just use <code>apply</code> to do this all much more cleanly and simply:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="vectorisation-1.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the sums of rows with apply</span></span>
-<span id="cb419-2"><a href="vectorisation-1.html#cb419-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">1</span>, sum)</span></code></pre></div>
-<p>This immediately returns a vector and is much more straightforward to write. Like <code>sapply</code>, <code>apply</code> also applies a function, but this time over a matrix or data.frame. Here we specify the <code>cars</code> data.frame as our target and then use <code>1</code> to explain that we are applying the function over the <strong>rows</strong>. The function we apply is <code>sum</code>.</p>
-<p>If we change the index in our <code>apply</code> function to <code>2</code>, we can apply the function <code>sum</code> across the columns:</p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="vectorisation-1.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the sums of columns with apply</span></span>
-<span id="cb420-2"><a href="vectorisation-1.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>(cars, <span class="dv">2</span>, sum)</span></code></pre></div>
-<p>We can easily replace <code>sum</code> with a function of our choice - i.e. <code>mean</code>, <code>exp</code> or whatever you prefer. However as always, we should keep in mind there are R specific functions for achieving row sums and column sums which are faster and even simpler than <code>apply</code>:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb421-1"><a href="vectorisation-1.html#cb421-1" aria-hidden="true" tabindex="-1"></a><span class="co"># R functions to calculate row and column sums</span></span>
-<span id="cb421-2"><a href="vectorisation-1.html#cb421-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rowSums</span>(cars)</span>
-<span id="cb421-3"><a href="vectorisation-1.html#cb421-3" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(cars)</span></code></pre></div>
-<p>With these functions in place, you might be left wondering what is the point of <code>sapply</code> or <code>apply</code>. However, applying functions can come into its own when you use a custom function you have written. In the next section, we will return once again to doing this.</p>
 </div>
+<div id="sapply" class="section level3" number="10.4.2">
+<h3><span class="header-section-number">10.4.2</span> <code>sapply()</code></h3>
+<p><code>sapply()</code> (or “simplified apply”) is very similar to <code>lapply()</code> in that it takes a list or vector and a function as arguments, and applies the function to the list/vector. The key difference is that where <code>lapply()</code> always returns a list, <code>sapply()</code> returns the simplest possible object. For example, say we want to use <code>sum()</code> on each vector in <code>numbers_list</code>. With <code>lapply()</code> we get:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="vectorisation-1.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(numbers_list, sum)</span>
+<span id="cb26-2"><a href="vectorisation-1.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb26-3"><a href="vectorisation-1.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 10</span></span>
+<span id="cb26-4"><a href="vectorisation-1.html#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb26-5"><a href="vectorisation-1.html#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb26-6"><a href="vectorisation-1.html#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 132</span></span>
+<span id="cb26-7"><a href="vectorisation-1.html#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb26-8"><a href="vectorisation-1.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb26-9"><a href="vectorisation-1.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1113</span></span></code></pre></div>
+<p>However, each list element only contains one value. Wouldn’t it be easier to have it stored in a vector? This is what we get with <code>sapply()</code>:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="vectorisation-1.html#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(numbers_list, sum)</span>
+<span id="cb27-2"><a href="vectorisation-1.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1]   10  132 1113</span></span></code></pre></div>
+<div class="green">
+<p><strong>Important concept:</strong><br />
+<code>sapply()</code> can be convenient to simplify the output of a vectorised operation. Use <code>sapply()</code> if you want the simplest data structure possible, and <code>lapply()</code> when you want to be sure that your operation returns a list.</p>
+</div>
+</div>
+<div id="anonymous-functions" class="section level3" number="10.4.3">
+<h3><span class="header-section-number">10.4.3</span> Anonymous functions</h3>
+<p>A concept that is often used together with <code>lapply()</code> and <code>sapply()</code> is <em>anonymous functions</em>. Like the term implies, this is a function without a name. For example, instead of creating the <code>calc_proportion()</code> function above, we could have defined the function <strong>inside</strong> our <code>lapply()</code> function like this<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="vectorisation-1.html#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(numbers_list, <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x))</span>
+<span id="cb29-2"><a href="vectorisation-1.html#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[1]]</span></span>
+<span id="cb29-3"><a href="vectorisation-1.html#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1 0.3 0.6</span></span>
+<span id="cb29-4"><a href="vectorisation-1.html#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-5"><a href="vectorisation-1.html#cb29-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[2]]</span></span>
+<span id="cb29-6"><a href="vectorisation-1.html#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.1287879 0.2727273 0.1818182 0.4166667</span></span>
+<span id="cb29-7"><a href="vectorisation-1.html#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb29-8"><a href="vectorisation-1.html#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [[3]]</span></span>
+<span id="cb29-9"><a href="vectorisation-1.html#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.08984726 0.44923630 0.35938904 0.03414196 0.06738544</span></span></code></pre></div>
+<p>It works in the exact same way, but you don’t have to define a function beforehand, and is easy to understand for the reader right away. Only use this for very simple functions that you are only going to use once. Otherwise, defining a named function is better.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="2">
+<li id="fn2"><p>Note that the function here is defined without the use of curly brackets and <code>return()</code>. This is not unique to anonymous functions (but most often used there), but an equivalent way to define a function in R. This means that all these four functions are exactly equal:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>f1 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) x<span class="sc">/</span><span class="fu">sum</span>(x)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>f2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x) <span class="fu">return</span>(x<span class="sc">/</span><span class="fu">sum</span>(x))</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>f3 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  x<span class="sc">/</span><span class="fu">sum</span>(x)</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>f4 <span class="ot">&lt;-</span> <span class="cf">function</span>(x){</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x<span class="sc">/</span><span class="fu">sum</span>(x))</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>When the function is more than a single line, you should always use the curly brackets. I personally prefer to use an explicit <code>return()</code> in more complicated functions, but you will encounter both in code you read.<a href="vectorisation-1.html#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
