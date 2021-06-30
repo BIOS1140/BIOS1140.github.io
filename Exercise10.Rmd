@@ -94,6 +94,10 @@ This simple block contains two **control flow** examples (`for` and `in`) - thes
 
 ## More on data handling: categorising and joining
 
+```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+
+
 Handling large amounts of data with few lines of code is one of R's strong points. In this section we will show how you can use `ifelse()` and the `left_join()` function from dplyr to make categories and add information to your data
 
 ### `ifelse()` for making categories
@@ -122,13 +126,13 @@ ifelse(starwars$species == "Droid", "Droid", "Non-Droid")
 
 This can be useful e.g. for comparing droids and non-droids in a plot or table. Say we want to label our species based on whether they are a droid, human or neither of the two. A useful thing with `ifelse()` is that the third argument can be *another* `ifelse()` function! So we can actually chain `ifelse()` commands like this:
 
-```{r}
+```{r, eval = FALSE}
 ifelse(starwars$species == "Droid", "Droid", ifelse(starwars$species == "Human", "Human", "Neither human nor droid"))
 ```
 
 This is useful, but quickly becomes convoluted. Imagine how the code would look if we threw in a third and fourth category there! In cases like this, remember to use linebreaks to make the code more readable. You can have a linebreak anywhere after starting a function, and R will still understand that it's part of the same function. A suggestion for better formatting than above:
 
-```{r}
+```{r, eval = FALSE}
 ifelse(
   starwars$species == "Droid", "Droid", 
   ifelse(
