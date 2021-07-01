@@ -40,7 +40,7 @@ library(tidyverse)
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-Back in the [introductory session](https://evolutionarygenetics.github.io/Introduction.html), we learned tht RStudio is a front-end for R. More specifically, RStudio is an **integrated development environment** that makes it more straightforward to do a lot [more than just interact with the console](https://www.rstudio.com/products/rstudio/features/). Much of these features are specifically designed with programming in mind and so we will give a short introduction to them.
+Back in the [introductory session](#ch01), we learned that RStudio is a front-end for R. More specifically, RStudio is an **integrated development environment** that makes it more straightforward to do a lot [more than just interact with the console](https://www.rstudio.com/products/rstudio/features/). Much of these features are specifically designed with programming in mind and so we will give a short introduction to them.
 
 ### Projects, projects, projects
 
