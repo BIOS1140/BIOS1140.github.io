@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-30" />
+<meta name="date" content="2021-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -451,21 +451,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Create a function that takes a vector as an argument, and returns the last element of the vector divided by the first. For example, when using the function on the vector <code>c(2, 4, 10)</code>, it should return <code>5</code>, because <span class="math inline">\(\frac{10}{2} = 5\)</span>. <em>Hint: use</em> <code>x[length(x)]</code> <em>to get the last element of a vector</em> <code>x</code> <em>.</em></li>
 </ol>
 <p>For the next assignment, run the following code to create an example list:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="w10.html#cb1-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb1-2"><a href="w10.html#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
-<span id="cb1-3"><a href="w10.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">36</span>, <span class="dv">60</span>, <span class="dv">78</span>),</span>
-<span id="cb1-4"><a href="w10.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">700</span>, <span class="dv">1000</span>)</span>
-<span id="cb1-5"><a href="w10.html#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="w10.html#cb434-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb434-2"><a href="w10.html#cb434-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb434-3"><a href="w10.html#cb434-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">14</span>, <span class="dv">36</span>, <span class="dv">60</span>, <span class="dv">78</span>),</span>
+<span id="cb434-4"><a href="w10.html#cb434-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">700</span>, <span class="dv">1000</span>)</span>
+<span id="cb434-5"><a href="w10.html#cb434-5" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Use <code>lapply()</code> or <code>sapply()</code> to apply the function you created in a. to <code>numbers</code>.</li>
 </ol>
 <p>For the next part of the assignment, download the file <a href="https://bios1140.github.io/data/gdp_year.rds">gdp_year.rds</a>. This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with <code>readRDS()</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="w10.html#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;gdp_year.rds&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="w10.html#cb435-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;gdp_year.rds&quot;</span>)</span></code></pre></div>
 <p>If you look at the data, you will see that it is a list, with each list element representing a country, and containing a vector of GDPs per capita, one for each year.</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li><p>Use <code>sapply()</code> to apply the function you made in a. to the data you just loaded, to get each country’s relative GDP growth from 1900 until today. The result should be a named vector with a single number per country.</p>
 <p>Next, convert your vector to a data frame with the following code (assuming your vector is named <code>gdp_change</code>):</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="w10.html#cb3-1" aria-hidden="true" tabindex="-1"></a>gdp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gdp_change) <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="st">&quot;Country&quot;</span>)</span></code></pre></div></li>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="w10.html#cb436-1" aria-hidden="true" tabindex="-1"></a>gdp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gdp_change) <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="st">&quot;Country&quot;</span>)</span></code></pre></div></li>
 <li><p>Use <code>left_join()</code> to join <code>gdp_df</code> with the world data. Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot? <em>if you aren’t able to join, download <a href="https://bios1140.github.io/data/worlddata_gdp_change.csv">this data</a> and plot that instead.</em></p></li>
 </ol>
 

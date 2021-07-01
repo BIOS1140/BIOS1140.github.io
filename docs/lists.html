@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-06-30" />
+<meta name="date" content="2021-07-01" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="more-on-data-handling-categorising-and-joining.html"/>
 <link rel="next" href="vectorisation2.html"/>
-<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,8 +51,6 @@
 
 
 
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -436,28 +434,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>A list in R, on the other hand, has none of these limitations. It can contain values of multiple types and different lengths. This makes it ideal for storing more complex objects. In fact, much of the complex data you have encountered in these tutorials, like the phylogenetic trees last week, are based on lists.</p>
 <p>You can make a list with the <code>list()</code> function:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="lists.html#cb16-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Ask&quot;</span>, <span class="st">&quot;Embla&quot;</span>),</span>
-<span id="cb16-2"><a href="lists.html#cb16-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">numbers =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">15</span>, <span class="dv">6</span>, <span class="dv">8</span>),</span>
-<span id="cb16-3"><a href="lists.html#cb16-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">condition =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb16-4"><a href="lists.html#cb16-4" aria-hidden="true" tabindex="-1"></a>my_list</span>
-<span id="cb16-5"><a href="lists.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
-<span id="cb16-6"><a href="lists.html#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
-<span id="cb16-7"><a href="lists.html#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-8"><a href="lists.html#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $numbers</span></span>
-<span id="cb16-9"><a href="lists.html#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11 15  6  8</span></span>
-<span id="cb16-10"><a href="lists.html#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb16-11"><a href="lists.html#cb16-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $condition</span></span>
-<span id="cb16-12"><a href="lists.html#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="lists.html#cb403-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;Ask&quot;</span>, <span class="st">&quot;Embla&quot;</span>),</span>
+<span id="cb403-2"><a href="lists.html#cb403-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">numbers =</span> <span class="fu">c</span>(<span class="dv">11</span>, <span class="dv">15</span>, <span class="dv">6</span>, <span class="dv">8</span>),</span>
+<span id="cb403-3"><a href="lists.html#cb403-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">condition =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb403-4"><a href="lists.html#cb403-4" aria-hidden="true" tabindex="-1"></a>my_list</span>
+<span id="cb403-5"><a href="lists.html#cb403-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $names</span></span>
+<span id="cb403-6"><a href="lists.html#cb403-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
+<span id="cb403-7"><a href="lists.html#cb403-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb403-8"><a href="lists.html#cb403-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $numbers</span></span>
+<span id="cb403-9"><a href="lists.html#cb403-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 11 15  6  8</span></span>
+<span id="cb403-10"><a href="lists.html#cb403-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb403-11"><a href="lists.html#cb403-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $condition</span></span>
+<span id="cb403-12"><a href="lists.html#cb403-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] TRUE</span></span></code></pre></div>
 <p>You can access list elements with <code>$</code>, or with double square brackets <code>[[]]</code>:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="lists.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access list element 1</span></span>
-<span id="cb17-2"><a href="lists.html#cb17-2" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>names</span>
-<span id="cb17-3"><a href="lists.html#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
-<span id="cb17-4"><a href="lists.html#cb17-4" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">1</span>]]</span>
-<span id="cb17-5"><a href="lists.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="lists.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access list element 1</span></span>
+<span id="cb404-2"><a href="lists.html#cb404-2" aria-hidden="true" tabindex="-1"></a>my_list<span class="sc">$</span>names</span>
+<span id="cb404-3"><a href="lists.html#cb404-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span>
+<span id="cb404-4"><a href="lists.html#cb404-4" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">1</span>]]</span>
+<span id="cb404-5"><a href="lists.html#cb404-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;   &quot;Embla&quot;</span></span></code></pre></div>
 <p>You can access elements within the vector within the list by adding a second set of (single) square brackets.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="lists.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access element 1 of the vector in list element 1</span></span>
-<span id="cb18-2"><a href="lists.html#cb18-2" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
-<span id="cb18-3"><a href="lists.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="lists.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># access element 1 of the vector in list element 1</span></span>
+<span id="cb405-2"><a href="lists.html#cb405-2" aria-hidden="true" tabindex="-1"></a>my_list[[<span class="dv">1</span>]][<span class="dv">1</span>]</span>
+<span id="cb405-3"><a href="lists.html#cb405-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;Ask&quot;</span></span></code></pre></div>
 <p>Since a list can contain any type of data (even data frames and other lists), there are times when they are very useful. We won’t go into much more detail about lists here, but it is important that you know that this structure exists and a bit about how to work with them.</p>
 </div>
             </section>
