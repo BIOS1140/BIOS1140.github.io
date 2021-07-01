@@ -18,7 +18,7 @@ Download the file [gdp_per_capita.csv](bios1140.github.io/data/gdp_per_capita.cs
 
 c) Use `left_join()` to join the GDP data to the world data. Remember that since you're adding to the world data, that should be the first argument. Print your new data frame to check that it worked.
 
-d) Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the "West" and "Rest" column you made in a. _If you weren't able to complete the previous exercises, download [this file](https://bios1140.github.io/data/worlddata_income.csv) and plot that instead (the columns are called "Income" and "Division")._ Is the West/Rest division helpful for determining patterns? _Tip: add `scale_x_log10()` to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way_
+d) Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the "West" and "Rest" column you made in a.  Is the West/Rest division helpful for determining patterns? _Tip: add `scale_x_log10()` to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way_ _If you weren't able to complete the previous exercises, download [this file](https://bios1140.github.io/data/worlddata_income.csv) and plot that instead (the columns are called "Income" and "Division")._
 
 If you are interested in learning more, take a look at the previously mentioned [interactive visualisations](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1). Look how much the world has changed the past 200 years!
 
@@ -60,4 +60,4 @@ c) Use `sapply()` to apply the function you made in a. to the data you just load
     gdp_df <- data.frame(gdp_change) %>% rownames_to_column("Country")
     ```
     
-d) Use `left_join()` to join `gdp_df` with the world data (if you aren't able to join, download [this data](https://bios1140.github.io/data/worlddata_gdp_change.csv) instead). Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot?
+d) Use `left_join()` to join `gdp_df` with the world data. Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot? _if you aren't able to join, download [this data](https://bios1140.github.io/data/worlddata_gdp_change.csv) and plot that instead._
