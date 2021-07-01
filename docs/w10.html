@@ -430,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This assignment makes you apply a lot of your R knowledge to analyse data. Some parts may be challenging, and the most important thing this week is that you try your best! So take this as a learning opportunity, and don’t fret if you’re stuck on an exercise. All honest attempts at solving this assignment will be approved. Good luck!</p>
 <div id="categorising-and-joining" class="section level4 unnumbered">
 <h4>1. Categorising and joining</h4>
-<p><em>Once again, we will be using the data in <a href="bios1140.github.io/data/worlddata.csv">worlddata.csv</a>. Read in the data first, and do the exercises below.</em></p>
+<p><em>Once again, we will be using the data in <a href="https://bios1140.github.io/data/worlddata.csv">worlddata.csv</a>. Read in the data first, and do the exercises below.</em></p>
 <p>The world is sometimes divided into “The West” (Europe and North America) and “The Rest” (which is not necessarily constructive nor useful). In this part of the assignment we will investigate this division for a bit.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>Use (nested) <code>ifelse()</code> statements to create a new column that says “The West” if the country is a part of Europe or North America, and “The Rest” if not.</p></li>
@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Download the file <a href="bios1140.github.io/data/gdp_per_capita.csv">gdp_per_capita.csv</a> and import it into R. The file contains GDP per capita (in inflation-adjusted dollars) for the countries of the world for 2020. Note that the GDP data has slightly fewer countries than the world data, and that some countries may not be named in exactly the same way. We’ll ignore this for the purpose of this exercise and let R handle the mismatches.</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li><p>Use <code>left_join()</code> to join the GDP data to the world data. Remember that since you’re adding to the world data, that should be the first argument. Print your new data frame to check that it worked.</p></li>
-<li><p>Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the “West” and “Rest” column you made in a. <em>If you weren’t able to complete the previous exercises, download <a href="bios1140.github.io/data/worlddata_income.csv">this file</a> and plot that instead (the columns are called “Income” and “Division”).</em> Is the West/Rest division helpful for determining patterns? <em>Tip: add <code>scale_x_log10()</code> to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way</em></p></li>
+<li><p>Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the “West” and “Rest” column you made in a. <em>If you weren’t able to complete the previous exercises, download <a href="https://bios1140.github.io/data/worlddata_income.csv">this file</a> and plot that instead (the columns are called “Income” and “Division”).</em> Is the West/Rest division helpful for determining patterns? <em>Tip: add <code>scale_x_log10()</code> to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way</em></p></li>
 </ol>
 <p>If you are interested in learning more, take a look at the previously mentioned <a href="https://www.gapminder.org/tools/#$chart-type=bubbles&amp;url=v1">interactive visualisations</a>. Look how much the world has changed the past 200 years!</p>
 </div>
@@ -459,14 +459,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol start="2" style="list-style-type: lower-alpha">
 <li>Use <code>lapply()</code> or <code>sapply()</code> to apply the function you created in a. to <code>numbers</code>.</li>
 </ol>
-<p>For the next part of the assignment, download the file <a href="bios1140.github.io/data/gdp_year.rds">gdp_year.rds</a>. This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with <code>readRDS()</code>:</p>
+<p>For the next part of the assignment, download the file <a href="https://bios1140.github.io/data/gdp_year.rds">gdp_year.rds</a>. This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with <code>readRDS()</code>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="w10.html#cb2-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">readRDS</span>(<span class="st">&quot;gdp_year.rds&quot;</span>)</span></code></pre></div>
 <p>If you look at the data, you will see that it is a list, with each list element representing a country, and containing a vector of GDPs per capita, one for each year.</p>
 <ol start="3" style="list-style-type: lower-alpha">
 <li><p>Use <code>sapply()</code> to apply the function you made in a. to the data you just loaded, to get each country’s relative GDP growth from 1900 until today. The result should be a named vector with a single number per country.</p>
 <p>Next, convert your vector to a data frame with the following code (assuming your vector is named <code>gdp_change</code>):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="w10.html#cb3-1" aria-hidden="true" tabindex="-1"></a>gdp_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(gdp_change) <span class="sc">%&gt;%</span> <span class="fu">rownames_to_column</span>(<span class="st">&quot;Country&quot;</span>)</span></code></pre></div></li>
-<li><p>Use <code>left_join()</code> to join <code>gdp_df</code> with the world data (if you aren’t able to join, download <a href="bios1140.github.io/data/worlddata_gdp_change.csv">this data</a> instead). Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot?</p></li>
+<li><p>Use <code>left_join()</code> to join <code>gdp_df</code> with the world data (if you aren’t able to join, download <a href="https://bios1140.github.io/data/worlddata_gdp_change.csv">this data</a> instead). Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot?</p></li>
 </ol>
 
 </div>

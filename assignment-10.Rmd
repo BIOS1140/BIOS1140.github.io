@@ -4,7 +4,7 @@ This assignment makes you apply a lot of your R knowledge to analyse data. Some 
 
 #### 1. Categorising and joining {-}
 
-_Once again, we will be using the data in [worlddata.csv](bios1140.github.io/data/worlddata.csv). Read in the data first, and do the exercises below._
+_Once again, we will be using the data in [worlddata.csv](https://bios1140.github.io/data/worlddata.csv). Read in the data first, and do the exercises below._
 
 The world is sometimes divided into "The West" (Europe and North America) and "The Rest" (which is not necessarily constructive nor useful). In this part of the assignment we will investigate this division for a bit.
 
@@ -18,7 +18,7 @@ Download the file [gdp_per_capita.csv](bios1140.github.io/data/gdp_per_capita.cs
 
 c) Use `left_join()` to join the GDP data to the world data. Remember that since you're adding to the world data, that should be the first argument. Print your new data frame to check that it worked.
 
-d) Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the "West" and "Rest" column you made in a. _If you weren't able to complete the previous exercises, download [this file](bios1140.github.io/data/worlddata_income.csv) and plot that instead (the columns are called "Income" and "Division")._ Is the West/Rest division helpful for determining patterns? _Tip: add `scale_x_log10()` to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way_
+d) Make a plot of life expectancy against GDP, color the points by continent, map size to population size, and map shape to the "West" and "Rest" column you made in a. _If you weren't able to complete the previous exercises, download [this file](https://bios1140.github.io/data/worlddata_income.csv) and plot that instead (the columns are called "Income" and "Division")._ Is the West/Rest division helpful for determining patterns? _Tip: add `scale_x_log10()` to your ggplot to get GDP on a logarithmic axis, the patterns may be easier to see that way_
 
 If you are interested in learning more, take a look at the previously mentioned [interactive visualisations](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1). Look how much the world has changed the past 200 years!
 
@@ -41,7 +41,7 @@ numbers <- list(
 
 b) Use `lapply()` or `sapply()` to apply the function you created in a. to `numbers`.
 
-For the next part of the assignment, download the file [gdp_year.rds](bios1140.github.io/data/gdp_year.rds). This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with `readRDS()`:
+For the next part of the assignment, download the file [gdp_year.rds](https://bios1140.github.io/data/gdp_year.rds). This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with `readRDS()`:
 
 ```{r, eval = FALSE}
 data <- readRDS("gdp_year.rds")
@@ -57,4 +57,4 @@ c) Use `sapply()` to apply the function you made in a. to the data you just load
     gdp_df <- data.frame(gdp_change) %>% rownames_to_column("Country")
     ```
     
-d) Use `left_join()` to join `gdp_df` with the world data (if you aren't able to join, download [this data](bios1140.github.io/data/worlddata_gdp_change.csv) instead). Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot?
+d) Use `left_join()` to join `gdp_df` with the world data (if you aren't able to join, download [this data](https://bios1140.github.io/data/worlddata_gdp_change.csv) instead). Make a boxplot of GDP change by continent. Is there anything in particular you find interesting or surprising with this plot?
