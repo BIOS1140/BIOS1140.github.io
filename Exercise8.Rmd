@@ -276,7 +276,7 @@ Note that here we use `mode = "nucleotide"` to specify we want it to be calculat
 
 Since we ran our analysis on a sliding-window basis, we should have estimates of $\pi$, *F*~ST~ and *d*~XY~ for each window. What we want to do now is extract all our statistics and place them in a single `data.frame` for easier downstream visualisation - this will let us identify how these statistics are interrelated.
 
-The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful, and you will learn a bit more about them in the last course week.
+The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful for biological data. If you're interested, see if you can understand how `sub()` and `paste0()` is used below, you've come a long way if you do!
 
 ::: {.yellow}
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}

@@ -14,7 +14,7 @@ b) Plot life expectancy at birth against total fertility rate, and color the poi
 
 _The [Gapminder foundation](https://www.gapminder.org/) aims to debunk common misconceptions about the world using a fact-based worldview and [excellent interactive data visualisations](https://www.gapminder.org/tools/#$chart-type=bubbles&url=v1). The foundation collects a lot of population data on their website, which we will use some of here._
 
-Download the file [gdp_per_capita.csv](bios1140.github.io/data/gdp_per_capita.csv) and import it into R. The file contains GDP per capita (in inflation-adjusted dollars) for the countries of the world for 2020. Note that the GDP data has slightly fewer countries than the world data, and that some countries may not be named in exactly the same way. We'll ignore this for the purpose of this exercise and let R handle the mismatches.
+Download the file [gdp_per_capita.csv](https://bios1140.github.io/data/gdp_per_capita.csv) and import it into R. The file contains GDP per capita (in inflation-adjusted dollars) for the countries of the world for 2020. Note that the GDP data has slightly fewer countries than the world data, and that some countries may not be named in exactly the same way. We'll ignore this for the purpose of this exercise and let R handle the mismatches.
 
 c) Use `left_join()` to join the GDP data to the world data. Remember that since you're adding to the world data, that should be the first argument. Print your new data frame to check that it worked.
 
