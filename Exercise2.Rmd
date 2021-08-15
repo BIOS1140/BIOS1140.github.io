@@ -111,7 +111,7 @@ There will be a lot of examples of using the pipe throughout this tutorial, show
 The pipe operator `%>%` allows you to send an object from the left side of the pipe to a function on the right side.
 :::
 
-### Selecting colums with `select()`
+### Selecting columns with `select()`
 
 Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
 
@@ -269,7 +269,7 @@ starwars %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
 ```
 
-Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
+Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
 
 #### Counting how many observations we have in our groups with `tally()`
 
@@ -337,7 +337,7 @@ starwars %>%
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
+In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualisation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
 
 As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use `demo(graphics)` to have a look). However `ggplot2` is extremely flexible and takes quite a different approach to plotting compared to baseR.
 
@@ -498,7 +498,7 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
 
 [^exercise2-7]: Notice how our plot is built up layer by layer. Just to remind you, here's how the code for our plot would look without creating intermediary objects:
 
-    ```{r}
+    ```{r, eval = FALSE}
     ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
       geom_line(col = "steelblue", lty = 2) +
       geom_point(col = "firebrick", pch = 3) +
@@ -508,6 +508,9 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
            subtitle = "A part of the BIOS1140 ggplot tutorial")
       
     ```
+
+    \ 
+
 
 ```{r}
 sw_pts_ln +

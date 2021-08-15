@@ -181,7 +181,7 @@ L <- 40
 pi <- Pi/L
 ```
 
-Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily. we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
+Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
 
 ```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 nuc.div(mydna)

@@ -8,7 +8,7 @@ source("setup.R")
 library(tidyverse)
 ```
 
-```{r}
+```{r, echo = FALSE}
 knitr::opts_chunk$set(fig.width = 8)
 ```
 
@@ -38,7 +38,7 @@ library(PopGenome)
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
 
-You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
+You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](https://bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
 
 We start by reading in the data (see if you manage to do this yourself before looking at my code):
 
@@ -156,7 +156,7 @@ sparrows <- set.populations(sparrows, populations, diploid = T)
 
 ### Examining the variant data
 
-Remember, you can look the data we have read in using the following command:
+Remember, you can look at the data we have read in using the following command:
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 get.sum.data(sparrows)
@@ -192,7 +192,7 @@ window_jump <- 25000
 
 We use these values to set up our sliding windows for our sparrows dataset using the `PopGenome` function, `sliding.window.transform`
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
 # make a sliding window dataset
 sparrows_sw <- sliding.window.transform(sparrows, width = window_size, jump = window_jump, type = 2)
 ```
@@ -220,7 +220,7 @@ Now we have generated two vectors: `window_start` and `window_stop`. The windows
 [^exercise8-3]: remember that `window_stop > chr8` gives a vector of the same length as `window_stop`, containing `TRUE` if the corresponding element of `window_stop` is larger than`chr8`, and `FALSE` if it is smaller. `sum()` treats each `TRUE` as 1 and each `FALSE` as 0, so it can effectively be used to count the number of `TRUE`s in a vector, as we do here.
 
 ```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
-# no windows start before the end of chromosome 8
+# no windows start after the end of chromosome 8
 sum(window_start > chr8)
 # but some window stop positions do occur past the final point
 sum(window_stop > chr8)
