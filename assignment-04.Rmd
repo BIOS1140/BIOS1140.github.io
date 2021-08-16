@@ -51,7 +51,7 @@ b) Create a function `calc_p()` that takes a vector of genotype counts  as an ar
 
 c) **Optional**: create a function called `calc_geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `geno_freq()` to get expected genotype frequencies directly from genotype counts.
 
-For the rest of the assignment, feel free to use these functions, and create new functions if you like.
+For the rest of the assignment, feel free to use these functions, and create new functions if you like.  _Note: be aware that `calc_geno()` calculates_ expected _genotype frequencies, and cannot be used where you need_ observed _genotype frequencies_.
 
 #### 2. Fitness {-}
 
