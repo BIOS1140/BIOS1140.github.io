@@ -142,7 +142,7 @@ data("bird.orders")
 Let's plot the phylogeny to have a look at it. We will also add some annotation to make sense of the phylogeny.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-plot(bird.orders)
+plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
 text(39, 3, "Proaves", srt = 270)
 segments(38, 6, 38, 23, lwd = 2)
