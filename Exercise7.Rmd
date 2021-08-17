@@ -373,7 +373,7 @@ We eventually want to investigate differences between populations, but the data 
 
 ::: {.yellow}
 ```{r, eval = FALSE, results = 'hide'}
-sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
+sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```
