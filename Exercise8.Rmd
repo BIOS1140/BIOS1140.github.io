@@ -258,14 +258,14 @@ Now that we have set up the data, the population information and the sliding win
 
 First we will calculate $\pi$. Handily, the following command also sets up what we need for *d*~XY~.
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
 # calculate diversity statistics
 sparrows_sw <- diversity.stats(sparrows_sw, pi = TRUE)
 ```
 
 Next we will calculate *F*~ST~, which again is very straight forward with a single command.
 
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
 # calculate diversity statistics
 sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
 ```
