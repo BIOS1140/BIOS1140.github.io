@@ -18,4 +18,4 @@ b) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all 
 
 c) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial?
 
-d) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial, but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.
+d) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial (NOT the one in the footnotes!), but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.
