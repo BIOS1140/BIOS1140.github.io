@@ -1,4 +1,4 @@
-Country,Continent,Population,Annual_Growth_Rate,Area_sqkm,Density,Total_Fertility_Rate,Life_Expectancy_at_Birth,Under_5_Mortality_Rate,Income,division
+Country,Continent,Population,Annual_Growth_Rate,Area_sqkm,Density,Total_Fertility_Rate,Life_Expectancy_at_Birth,Under_5_Mortality_Rate,gdp,division
 Afghanistan,Asia,36594776,2.366,652230,56.1,4.82,52.84,159.98,1800,The Rest
 Albania,Europe,3080930,0.248,27398,112.5,1.5288,78.99,13.34,13200,The West
 Algeria,Africa,42952039,1.48,2381740,18,2.5852,77.54,24.05,14000,The Rest
