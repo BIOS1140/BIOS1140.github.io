@@ -142,6 +142,7 @@ data("bird.orders")
 Let's plot the phylogeny to have a look at it. We will also add some annotation to make sense of the phylogeny.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+# no.margin = TRUE gives prettier plots
 plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
 text(39, 3, "Proaves", srt = 270)
@@ -163,7 +164,7 @@ is.monophyletic(bird.orders, c("Trochiliformes", "Apodiformes"))
 If we want to look at just the Neoaves, we can subset our tree using `extract.clade()`. We need to supply a node from our tree to `extract.clade`, so let's find the correct node first. The nodes in the tree can be found by running the `nodelabels()` function after using `plot()`:
 
 ```{r}
-plot(bird.orders)
+plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
 text(39, 3, "Proaves", srt = 270)
 segments(38, 6, 38, 23, lwd = 2)
@@ -177,7 +178,7 @@ We can see that the Neoaves start at node 29, so let's extract that one.
 # extract clade
 neoaves <- extract.clade(bird.orders, 29)
 # plot
-plot(neoaves)
+plot(neoaves, no.margin = TRUE)
 ```
 
 The functions provided by `ape` make it quite easy to handle phylogenies in R, feel free to experiment further to find out what you can do!
@@ -251,8 +252,8 @@ Now that we have created both of our trees, we should plot them to have a look a
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE, fig.show='hold'}
 # plot them both
 par(mfrow = c(2, 1)) # 2 plots in same window
-plot(hom_upgma)
-plot(hom_nj, type = "unrooted")
+plot(hom_upgma, no.margin = TRUE)
+plot(hom_nj, type = "unrooted", no.margin = TRUE)
 par(mfrow = c(1,1)) # reset mfrow
 ```
 
@@ -273,7 +274,7 @@ We will set the root of our neighbour joining tree below using the `root` functi
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # plot nj rooted
 hom_nj_r <- root(hom_nj, "Orang")
-plot(hom_nj_r)
+plot(hom_nj_r, no.margin = TRUE)
 ```
 
 In this case, it hasn't actually made a huge difference to our tree topology, but with a larger dataset, it might do.
