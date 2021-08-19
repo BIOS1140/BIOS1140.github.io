@@ -418,7 +418,7 @@ nordic_prop
 ```
 :::
 
-This is way simpler than what we did back in section \@ref(manyobjects)! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.
+This is way simpler than doing this without using vectors! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.
 
 ::: {.green}
 **Important concept**\
