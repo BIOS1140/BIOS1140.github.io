@@ -11,7 +11,7 @@ Create one vector containing names of 4 animals you feel strongly about. Create 
 
 #### 2. Hardy Weinberg Equilibrium {-}
 
-You decide that you want to find out more about the grashoppers that you modeled in the previous exercise. You genotype three populations along a north south transect across the European Alps. Near Munich, Germany, north of the Alps you sample 120 individuals; near Innsbruck, Austria, within the Alps you sample 122 individuals; near Verona, Italy, south of the Alps you sample 118 individuals. you find the following number of each genotype:
+You genotype three populations of grasshoppers along a north south transect across the European Alps. Near Munich, Germany, north of the Alps you sample 120 individuals; near Innsbruck, Austria, within the Alps you sample 122 individuals; near Verona, Italy, south of the Alps you sample 118 individuals. you find the following number of each genotype:
 
 * Munich: 6 (a1a1), 33 (a1a2), 81 (a2a2)
 * Innsbruck: 20 (a1a1), 59 (a1a2), 43 (a2a2)
