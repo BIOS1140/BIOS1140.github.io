@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-07-01" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
-<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
 <li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
 <li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
@@ -371,7 +371,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
 <li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
-<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling: categorising and joining</a>
 <ul>
@@ -428,40 +427,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="visualizing-complex-data" class="section level2" number="8.1">
 <h2><span class="header-section-number">8.1</span> Visualizing complex data</h2>
 <script src="js/hideOutput.js"></script>
-<p>You have previously learned how to use aesthetics in <code>ggplot</code> to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the <a href="bios1140.github.io/data/worlddata.csv">2020 population data</a> from the very first week, so make sure that is in your working directory.</p>
+<p>You have previously learned how to use aesthetics in <code>ggplot</code> to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the <a href="https://bios1140.github.io/data/worlddata.csv">2020 population data</a> from the very first week, so make sure that is in your working directory.</p>
 <p>We start by reading in the data (see if you manage to do this yourself before looking at my code):</p>
 <div class="fold c">
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="visualizing-complex-data.html#cb318-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;worlddata.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="visualizing-complex-data.html#cb317-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;worlddata.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>)</span></code></pre></div>
 </div>
 <p>For this tutorial, we will briefly investigate the correlation between fertility rate and life expectancy in the countries of the world. We can start by making a simple scatterplot.</p>
 <p><strong>Exercise: make a scatterplot of fertility rate against life expectancy using the world data</strong></p>
 <div class="fold s o">
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="visualizing-complex-data.html#cb319-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Total_Fertility_Rate, Life_Expectancy_at_Birth))</span>
-<span id="cb319-2"><a href="visualizing-complex-data.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note: adding alpha = 0.5 to better see all points</span></span>
-<span id="cb319-3"><a href="visualizing-complex-data.html#cb319-3" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="visualizing-complex-data.html#cb318-1" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(d, <span class="fu">aes</span>(Total_Fertility_Rate, Life_Expectancy_at_Birth))</span>
+<span id="cb318-2"><a href="visualizing-complex-data.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="co"># note: adding alpha = 0.5 to better see all points</span></span>
+<span id="cb318-3"><a href="visualizing-complex-data.html#cb318-3" aria-hidden="true" tabindex="-1"></a>g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" width="768" /></p>
 </div>
 <p>This shows a negative correlation between the variables: in countries with lower life expectancy, more children are born per woman. We can investigate this further by dividing the data by continent, and gain some additional perspective by showing the population sizes of each country.</p>
 <p><strong>Exercise: Update the plot by mapping colour to continent, and point size to population size.</strong></p>
 <div class="fold s o">
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="visualizing-complex-data.html#cb320-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Continent, <span class="at">size =</span> Population), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
-<span id="cb320-2"><a href="visualizing-complex-data.html#cb320-2" aria-hidden="true" tabindex="-1"></a>h</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="visualizing-complex-data.html#cb319-1" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> g <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">col =</span> Continent, <span class="at">size =</span> Population), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span>
+<span id="cb319-2"><a href="visualizing-complex-data.html#cb319-2" aria-hidden="true" tabindex="-1"></a>h</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" width="768" /></p>
 </div>
 <div id="faceting" class="section level3" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> Faceting</h3>
 <p>This is already quite a good plot, showing a lot of data at once. However, it can be a bit difficult to see trends within each continent (if that’s what we want to investigate), and what if we want to use colour for something else while still showing differences between continents? One way to do this is to divide the plot into several windows based on a variable, known as <strong>faceting</strong>.</p>
 <p>Faceting in <code>ggplot</code> can be done by adding the function <code>facet_wrap()</code>. The syntax is a bit weird: <code>facet_wrap(~Variable)</code>. It uses the <code>~</code> (tilde) character<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a>, and is an exception to the “all variables go inside <code>aes()</code>”-rule that we have emphasized earlier. For our plot it looks like this:</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="visualizing-complex-data.html#cb321-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent)</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="visualizing-complex-data.html#cb320-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" width="768" /></p>
 <p>You can control the layout by using the <code>nrow</code> and <code>ncol</code> arguments to specify numbers of rows and/or columns:</p>
 <div class="fold o">
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="visualizing-complex-data.html#cb322-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="visualizing-complex-data.html#cb321-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">nrow =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" /></p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="visualizing-complex-data.html#cb323-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="visualizing-complex-data.html#cb322-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">ncol =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-8-2.png" width="768" /></p>
 <p>Note that all axes are the same across the facets. This can be changed with the argument <code>scales</code>, where you can specify “free”, “free_y” or “free_x”. Be aware that this can be misleading in some cases (like this one, I would argue), so use it with caution! “free_x” is shown below, but try the others yourself to see what happens!</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="visualizing-complex-data.html#cb324-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="visualizing-complex-data.html#cb323-1" aria-hidden="true" tabindex="-1"></a>h <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>Continent, <span class="at">scales =</span> <span class="st">&quot;free_x&quot;</span>)</span></code></pre></div>
 <p><img src="Exercise8_files/figure-html/unnamed-chunk-9-1.png" width="768" /></p>
 </div>
 <p>Now you have learned some tools for visualising various statistics across the sparrow genome for later. Let’s jump into the evolutionary biology part!</p>

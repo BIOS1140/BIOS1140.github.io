@@ -249,9 +249,9 @@ This usage can be convenient when plotting values, as you will see in the evolut
 <script src="js/hideOutput.js"></script>
 
 
-*F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*\~ST essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
+*F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*~ST~ essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
 
-Ultimately, it is quite a simple statistic to understand but it can sometimes take time to properly grasp. So we will go over the basics properly here. One of the most confusing things about *F*\~ST is that are several different ways to define it. For ease of undersanding, we will use a simple formulation:
+Ultimately, it is quite a simple statistic to understand but it can sometimes take time to properly grasp. So we will go over the basics properly here. One of the most confusing things about *F*~ST~ is that are several different ways to define it. For ease of understanding, we will use a simple formulation:
 
 $F_{ST} = \displaystyle \frac{H_T - H_S}{H_T}$
 
@@ -493,7 +493,7 @@ lct_snps <- read.table("LCT_snps.tsv", header = TRUE, sep = "\t")
 
 
 
-This data is also from from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the *LCT* gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.
+This data is also from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389). It is the allele frequency in various human populations for one allele at a set of 101 biallelic SNP markers close to the *LCT* gene on chromosome 2 in the human gene. Each row is a SNP and there are three frequencies - one for North Americans of European descent, one for African Americans and one for East Asians.
 
 Since we have the allele frequencies, we can easily calculate *F*~ST~ for each of these SNPs. For our example here, we will do this between `european_americans` and `east_asians`. First of all, let's use our `calc_fst` function on just a single SNP.
 

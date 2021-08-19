@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-07-01" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
-<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
 <li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
 <li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
@@ -371,7 +371,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
 <li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
-<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling: categorising and joining</a>
 <ul>
@@ -430,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>There are some important things to consider when handing in the assignments:</p>
 <ol style="list-style-type: decimal">
 <li>All answers, plots and code should be contained in <em>a single document</em>. This needs to be either a word or a pdf document.</li>
-<li>The document should contain <strong>all the code</strong> you used to complete the assignment. It should also contain <strong>all relevant output</strong> from the code. This should be in a font that’s suitable for programming (i.e., where all characters have the same width), for example Source code pro.</li>
+<li>The document should contain <strong>all the code</strong> you used to complete the assignment. It should also contain <strong>all relevant output</strong> from the code. This should be in a font that’s suitable for programming (i.e., where all characters have the same width), for example “source code pro”.</li>
 <li>You are allowed to work together, but <strong>identical hand-ins are not allowed</strong>. Similarly, all the text should be your own, <strong>copying from the book, tutorials or any other sources is not allowed</strong>. If you really want to quote someone, you should make it clear that it’s a quote, and cite it properly. It is OK to use the <em>code</em> in the tutorials without citing that.</li>
 </ol>
 <p>One simple way of combining code, plots and text is to write in a word document where you also paste your code and figures that you’ve exported from R. Another way is to use RMarkdown, which will be introduced in the next section.</p>
@@ -439,10 +438,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3>R Markdown</h3>
 <p>R Markdown is a way to work where you can write, code and show output in the same document. It can be a very convenient way to communicate science, and to write comprehensive data journals detailing how you have analysed your data. In fact, these tutorials are all written in R Markdown! Here we will briefly introduce R Markdown so you will be able to use it for the assignments if you want to. For a more comprehensive introduction, see <a href="https://rmarkdown.rstudio.com/lesson-1.html">the introduction tutorials</a>.</p>
 <p>Before using R Markdown, you need to install it. You install it like you would any normal R package.</p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="rmarkdown.html#cb437-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="rmarkdown.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
 <p>When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as “knitting”). For this course you need to deliver assignments either in PDF or Word format. PDF requires <span class="math inline">\(\LaTeX\)</span>, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing <a href="https://yihui.org/tinytex/">TinyTex</a> with the following code:</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="rmarkdown.html#cb438-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb438-2"><a href="rmarkdown.html#cb438-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="rmarkdown.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb434-2"><a href="rmarkdown.html#cb434-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()</span></code></pre></div>
 <p>Now you have all you need for creating PDF documents with R Markdown!</p>
 </div>
 <div id="getting-started-7" class="section level3 unnumbered">
@@ -452,9 +451,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ol style="list-style-type: decimal">
 <li><p>Anything you write in the document will be rendered as normal text.</p></li>
 <li><p>You can write R code by inserting a <em>code chunk</em>. A code chunk looks like this (hotkey <code>ctrl</code>/<code>cmd</code>+<code>alt</code>+<code>i</code>):</p>
-<div class="sourceCode" id="cb439"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb439-1"><a href="rmarkdown.html#cb439-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb439-2"><a href="rmarkdown.html#cb439-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb439-3"><a href="rmarkdown.html#cb439-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb435-1"><a href="rmarkdown.html#cb435-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb435-2"><a href="rmarkdown.html#cb435-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb435-3"><a href="rmarkdown.html#cb435-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>Inside the code chunk, you can write regular R code that you can execute normally with <code>ctrl</code>/<code>cmd</code>+<code>enter</code>.</p></li>
 <li><p>You can get a top-level header by starting a line with <code>#</code> (outside of a code chunk). You get a second level header with <code>##</code>, third level with <code>###</code> and so on.</p></li>
 <li><p>You get <strong>bold</strong> text by flanking the text with two asterisks like this: <code>**bold text**</code> and <em>italic</em> text with a single asterisk: <code>*italic text*</code></p></li>

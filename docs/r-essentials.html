@@ -24,7 +24,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2021-07-01" />
+<meta name="date" content="2021-08-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -181,7 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
-<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-colums-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting colums with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code></a></li>
 <li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
 <li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
 <li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
@@ -371,7 +371,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects</a></li>
 <li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history</a></li>
 <li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys</a></li>
-<li class="chapter" data-level="10.1.4" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#code-checking"><i class="fa fa-check"></i><b>10.1.4</b> Code checking</a></li>
 </ul></li>
 <li class="chapter" data-level="10.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling: categorising and joining</a>
 <ul>
@@ -528,11 +527,8 @@ Assign any and all variables to named objects. It’s easier to read, and you’
 </tr>
 </tbody>
 </table>
-<p><strong>Exercise: Do the same with all the Nordic countries that you did with Norway and Sweden. Assign each population size to an object and calculate their proportion of the total Nordic population</strong></p>
-<div id="manyobjects" class="section level4" number="1.2.2.1">
-<h4><span class="header-section-number">1.2.2.1</span> Problem: too many objects gets complicated</h4>
-<p>If you solved the exercise above, you’re probably tired from writing almost the same thing over and over. My solution looks something like this:</p>
-<div class="fold s">
+<p>Now, if we were to calculate the proportion of the total for all countries, like we did for Norway and Sweden earlier, the code would quickly become very long:</p>
+<div class="fold c">
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="r-essentials.html#cb11-1" aria-hidden="true" tabindex="-1"></a>denmark_pop <span class="ot">&lt;-</span> <span class="dv">5868927</span></span>
 <span id="cb11-2"><a href="r-essentials.html#cb11-2" aria-hidden="true" tabindex="-1"></a>finland_pop <span class="ot">&lt;-</span> <span class="dv">5572355</span></span>
 <span id="cb11-3"><a href="r-essentials.html#cb11-3" aria-hidden="true" tabindex="-1"></a>iceland_pop <span class="ot">&lt;-</span> <span class="dv">350773</span></span>
@@ -554,10 +550,9 @@ Assign any and all variables to named objects. It’s easier to read, and you’
 <span id="cb11-19"><a href="r-essentials.html#cb11-19" aria-hidden="true" tabindex="-1"></a>finland_proportion</span>
 <span id="cb11-20"><a href="r-essentials.html#cb11-20" aria-hidden="true" tabindex="-1"></a>iceland_proportion</span></code></pre></div>
 </div>
-<p>That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! Surely there has to be simpler solution? Luckily, there is.</p>
-</div>
-<div id="solution-store-it-in-a-vector" class="section level4" number="1.2.2.2">
-<h4><span class="header-section-number">1.2.2.2</span> Solution: Store it in a vector!</h4>
+<p>That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! In R, we can avoid all this tedious work by storing our data in a vector</p>
+<div id="store-related-data-in-a-vector" class="section level4" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Store related data in a vector</h4>
 <p>R has a data type called vector, which can store multiple values at once. In our case, this means that we can store the populations of all the Nordic countries in one vector. Let’s look at some different ways to make a vector. The following lines all create a vector containing the numbers 1 through 10.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="r-essentials.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector with c()</span></span>
 <span id="cb12-2"><a href="r-essentials.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>)</span>
@@ -572,7 +567,7 @@ Assign any and all variables to named objects. It’s easier to read, and you’
 <li>You can create a vector with the colon operator <code>:</code>. This creates a vector containing all the numbers starting from the number before <code>:</code>, and up to and including the number after.</li>
 <li>You can create a vector with <code>seq()</code>. The numbers go inside the parentheses, separated by comma. The number after <code>from =</code> is the beginning of the vector, after <code>to =</code> is the end of the vector, and after <code>by =</code> is the distance between the values in the vector.</li>
 </ol>
-<p>As a side note, <code>c()</code> and <code>seq()</code> are what we call functions. We’ll get back to functions shortly, so don’t worry if you don’t fully understand how these work yet. For now, just recognize that any pattern that consists of text and parentheses, <code>text()</code>, is a function. The text outside of the parentheses is the name of the function, and anything inside the parentheses is data the function uses.</p>
+<p>As a side note, <code>c()</code> and <code>seq()</code> are what we call functions. We’ll get back to functions in section <a href="r-essentials.html#functions">1.2.5</a>, so don’t worry if you don’t fully understand how these work yet.</p>
 <p>Like numbers, vectors can be assigned to objects. This works in exactly the same way, using the arrow <code>&lt;-</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="r-essentials.html#cb13-1" aria-hidden="true" tabindex="-1"></a>arbitrary_numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">56</span>, <span class="dv">789</span>, <span class="dv">109</span>, <span class="dv">76</span>)</span>
 <span id="cb13-2"><a href="r-essentials.html#cb13-2" aria-hidden="true" tabindex="-1"></a>arbitrary_numbers</span>
@@ -590,10 +585,10 @@ Assign any and all variables to named objects. It’s easier to read, and you’
 Those of you who learned programming in BIOS1100 might remember that in python we mainly used <em>lists</em> when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways - in both, all the elements need to be of the same type (numeric/string/logical), and you can access elements by their index in the same way. There are also some differences between the two: To define a vector in R you need to use the <code>c()</code> function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!)</p>
 </div>
 </div>
-<div id="vector-properties" class="section level4" number="1.2.2.3">
-<h4><span class="header-section-number">1.2.2.3</span> Vector properties</h4>
-<div id="mathematical-operations" class="section level5" number="1.2.2.3.1">
-<h5><span class="header-section-number">1.2.2.3.1</span> Mathematical operations</h5>
+<div id="vector-properties" class="section level4" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> Vector properties</h4>
+<div id="mathematical-operations" class="section level5" number="1.2.2.2.1">
+<h5><span class="header-section-number">1.2.2.2.1</span> Mathematical operations</h5>
 <p>When you have a vector of numbers, you can apply all the same mathematical operations that you can on a single number. The operation is then applied to each element of the vector separately. Try it!</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="r-essentials.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector from 1 to 10</span></span>
 <span id="cb15-2"><a href="r-essentials.html#cb15-2" aria-hidden="true" tabindex="-1"></a>my_vector <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -642,8 +637,8 @@ Those of you who learned programming in BIOS1100 might remember that in python w
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="r-essentials.html#cb19-1" aria-hidden="true" tabindex="-1"></a>nordic <span class="sc">/</span> <span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
 </div>
 </div>
-<div id="extracting-numbers" class="section level5" number="1.2.2.3.2">
-<h5><span class="header-section-number">1.2.2.3.2</span> Extracting numbers</h5>
+<div id="extracting-numbers" class="section level5" number="1.2.2.2.2">
+<h5><span class="header-section-number">1.2.2.2.2</span> Extracting numbers</h5>
 <p>Having all numbers stored in one place is great, but what if you want to use just one of them? We use square brackets <code>[]</code> to access numbers inside vectors. You put the index of the element you want to extract inside the square brackets like this: <code>my_vector[1]</code>. This will extract the first element from the vector, <code>my_vector[2]</code> will extract the second. On our <code>nordic</code> vector, we could for instance do the following:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="r-essentials.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the third element (Iceland) from the nordic vector</span></span>
 <span id="cb20-2"><a href="r-essentials.html#cb20-2" aria-hidden="true" tabindex="-1"></a>nordic[<span class="dv">3</span>]</span>
@@ -655,14 +650,14 @@ Those of you who learned programming in BIOS1100 might remember that in python w
 If you’re familiar with Python or another programming language, you are probably used to that counting starts on 0 when indexing. In R, however, we start at 1. This can be annoying when switching between languages, but is unfortunately something you just need to remember.</p>
 </div>
 </div>
-<div id="getting-the-sum-and-mean-of-a-vector" class="section level5" number="1.2.2.3.3">
-<h5><span class="header-section-number">1.2.2.3.3</span> Getting the sum and mean of a vector</h5>
+<div id="getting-the-sum-and-mean-of-a-vector" class="section level5" number="1.2.2.2.3">
+<h5><span class="header-section-number">1.2.2.2.3</span> Getting the sum and mean of a vector</h5>
 <p>You can do a variety of operations on vectors in addition to using the mathemathical operators <code>+</code>, <code>-</code>, <code>*</code> and <code>/</code>. Two of the most common operations are calculating the sum and the mean of all the numbers in the vector. With the <code>sum()</code> and <code>mean()</code> functions.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="r-essentials.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(my_vector)</span>
 <span id="cb21-2"><a href="r-essentials.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 55</span></span>
 <span id="cb21-3"><a href="r-essentials.html#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(my_vector)</span>
 <span id="cb21-4"><a href="r-essentials.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 5.5</span></span></code></pre></div>
-<p>Again, we’ll go through what functions are and how they work shortly. There’s a variety of other functions you can apply to a vector, such as <code>max()</code>, <code>min()</code> and <code>median()</code>. Try them out!</p>
+<p>There’s a variety of other functions you can apply to a vector, such as <code>max()</code>, <code>min()</code> and <code>median()</code>. Try them out!</p>
 <p><strong>Exercise: Use what you have learned about vectors to calculate the population proportions of all the Nordic countries in a single operation. Save it to an object with a good name.</strong></p>
 <p>The solution to the exercise shows how powerful working with vectors can be.</p>
 <div class="fold s">
@@ -670,7 +665,7 @@ If you’re familiar with Python or another programming language, you are probab
 <span id="cb22-2"><a href="r-essentials.html#cb22-2" aria-hidden="true" tabindex="-1"></a>nordic_prop</span>
 <span id="cb22-3"><a href="r-essentials.html#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.21385882 0.20305198 0.01278188 0.19915416 0.37115316</span></span></code></pre></div>
 </div>
-<p>This is way simpler than what we did back in section <a href="r-essentials.html#manyobjects">1.2.2.1</a>! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.</p>
+<p>This is way simpler than doing this without using vectors! Also, imagine if you had a hundred, or even a million values in your vector. The code would still look exactly the same, making calculations with any number of values trivial.</p>
 <div class="green">
 <p><strong>Important concept</strong><br />
 If you have many values that go together, store them together in a vector. You can do a variety of mathematical operations on vectors, but make sure that all vectors have the same length!</p>
@@ -789,18 +784,21 @@ If you have many values that go together, store them together in a vector. You c
 <h3><span class="header-section-number">1.2.5</span> Functions</h3>
 <p>So far you have seen a handful of functions being used, like <code>c()</code>, <code>seq()</code> and <code>mean()</code> to name some. Functions are always written in the form <code>functionname()</code>. The text outside the parentheses is the function name, and whatever is inside the parentheses are called arguments. A function can be seen as a series of operations that are applied to the arguments, or simply as somewhere you put something in, and get something else in return. They can often save you a tremendous amount of time, compare for example manually calculating the mean of a 1000 numbers vs. using the <code>mean()</code> function.</p>
 <p>If you want to know more about what a function does, you can write <code>?</code> and then the function name, for example <code>?seq</code>. Then you will get a help page that tells you more about how the function works, and some examples of use in the bottom. Be aware that the help page is written by programmers for programmers, and is often difficult to understand. In the beginning you will often be better off googling what a function does (but the examples are always useful).</p>
-<p>Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: <code>func(arg1, arg2, arg3)</code>. The arguments can either be input in a set order, or you can name them. Consider the following:</p>
+<p>Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: <code>function(arg1, arg2, arg3)</code>. The arguments can either be input in a set order, or you can name them. Consider the following:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="r-essentials.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">2</span>) <span class="co"># &quot;from&quot; is argument no. 1, &quot;to&quot; is argument no. 2 etc.</span></span>
 <span id="cb36-2"><a href="r-essentials.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span>
 <span id="cb36-3"><a href="r-essentials.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb36-4"><a href="r-essentials.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div>
 <p>These are exactly the same, but one uses argument order, and the other the argument names. To figure out the order and names of arguments, you have to consult the help pages or the internet. For simple functions like <code>seq()</code> and <code>mean()</code> it’s common to omit the argument names, while for more complicated functions it’s better to include them, so you clearly show what you’re doing. Note that function arguments are never enclosed with quotes <code>"</code>.</p>
-<p>Another thing that is useful to know, is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line, which makes code more readable. Instead of the code above, we could also have written:</p>
+<div class="blue">
+<p><strong>Line breaks in functions</strong> 
+A tip for making code more readable is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line. Instead of the code above, we could also have written:</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="r-essentials.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>,</span>
 <span id="cb37-2"><a href="r-essentials.html#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">to =</span> <span class="dv">10</span>,</span>
 <span id="cb37-3"><a href="r-essentials.html#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb37-4"><a href="r-essentials.html#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1 3 5 7 9</span></span></code></pre></div>
 <p>This may not matter much for such a simple function, but it gets way easier to read long, complicated functions if it’s formatted this way. You will see this formatting in our next section about data frames.</p>
+</div>
 </div>
 <div id="data-frames" class="section level3" number="1.2.6">
 <h3><span class="header-section-number">1.2.6</span> Data frames</h3>

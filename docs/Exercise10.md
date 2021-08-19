@@ -38,7 +38,7 @@ library(tidyverse)
 
 <script src="js/hideOutput.js"></script>
 
-Back in the [introductory session](https://evolutionarygenetics.github.io/Introduction.html), we learned tht RStudio is a front-end for R. More specifically, RStudio is an **integrated development environment** that makes it more straightforward to do a lot [more than just interact with the console](https://www.rstudio.com/products/rstudio/features/). Much of these features are specifically designed with programming in mind and so we will give a short introduction to them.
+Back in the [introductory session](#ch01), we learned that RStudio is a front-end for R. More specifically, RStudio is an **integrated development environment** that makes it more straightforward to do a lot [more than just interact with the console](https://www.rstudio.com/products/rstudio/features/). Much of these features are specifically designed with programming in mind and so we will give a short introduction to them.
 
 ### Projects, projects, projects
 
@@ -70,28 +70,6 @@ Tab completion also works within a function too. Try using tab complete to call 
 
 There are actually a large number of keyboard based shortcuts you can make use of with Rstudio - these include useful things like `Ctrl + 1` or `Ctrl + 2` to switch between the console and script panes. You can see [a whole list of them here](https://support.rstudio.com/hc/en-us/articles/200711853-Keyboard-Shortcuts) or by selecting `Tools > Keyboard Shortcuts Help` from the menu bar at the top of the program.
 
-### Code checking
-
-A further useful feature for writing R scripts is the fact that the script viewer has a code syntax checker. This checks whether arguments or brackets are missing. For example, try pasting the following into a script and seeing what you get:
-
-
-```r
-# Try these to trigger RStudio syntax checking
-plot(x, )
-result <- c(1,2,3))
-```
-
-It might take some time to get used to reading these, but it is very helpful for seeing where errors might have occurred. This is especially useful if you are writing large blocks of code and you want to get some insight into what might be going wrong. Indeed, this is part of RStudio's general design as a coding tool - you will have also noticed some of the other features this incorporates by now like syntax highlighting. For example, have a look at the simple `for` loop code block below, you can clearly see that RStudio highlights different parts of the code.
-
-
-```r
-# a simple for loop
-for (i in 1:10){
-  print(i)
-}
-```
-
-This simple block contains two **control flow** examples (`for` and `in`) - these are highlighted in in the code block here. There is also a numeric vector - this is shown in a different colour. Everything else, including objects and standard function calls are in black. Syntax highlighting like this makes code easier to read and is [highly customisable too](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio).
 
 ## More on data handling: categorising and joining
 

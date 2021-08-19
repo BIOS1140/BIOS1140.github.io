@@ -193,7 +193,7 @@ L <- 40
 pi <- Pi/L
 ```
 
-Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily. we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
+Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
 
 
 ```r
@@ -398,7 +398,7 @@ We eventually want to investigate differences between populations, but the data 
 ::: {.yellow}
 
 ```r
-sparrow_info <- read_delim("./sparrow_pops.txt", delim = "\t")
+sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
 ```

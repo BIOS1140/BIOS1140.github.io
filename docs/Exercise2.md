@@ -30,13 +30,6 @@ At this point in our tutorial, we will use a series of packages collectively kno
 
 It's important to emphasize that the tidyverse set of packages can do mostly **the same as base R already can do**. So what's the difference? While base R is a collection of different methods and functions built up over years, tidyverse is designed with a specific philosophy in mind. This leads to having a consistent approach to solving problems that many find appealing. That being said, if you find you prefer the "regular" R-functions over their tidyverse equivalents, go ahead and use those instead, there's nothing wrong with that.
 
-::: {.green}
-**Important concept:**\
-The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy. Some key points of this philosophy is:
-
--   The name of all functions that transform data are verbs
--   The `data` argument is always the first argument of the functions, so it's easy to use in a pipeline (more on this later).
-:::
 
 ### The dplyr package
 
@@ -128,7 +121,7 @@ There will be a lot of examples of using the pipe throughout this tutorial, show
 The pipe operator `%>%` allows you to send an object from the left side of the pipe to a function on the right side.
 :::
 
-### Selecting colums with `select()`
+### Selecting columns with `select()`
 
 Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
 
@@ -387,7 +380,7 @@ starwars %>%
 #> # ... with 51 more rows
 ```
 
-Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males, so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
+Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
 
 #### Counting how many observations we have in our groups with `tally()`
 
@@ -499,7 +492,7 @@ starwars %>%
 
 <script src="js/hideOutput.js"></script>
 
-In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualistation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
+In the last chapter, we learned that R is highly versatile when it comes to plotting and visualising data. Visualisation really cannot be understated - as datasets become larger and more difficult to handle, it is imperative you learn how to effectively plot and explore your data. This obviously takes practice, but plotting and summarising data visually is a key skill for guiding further analysis - this is especially true for evolutionary genomics but is easily applicable to any number of scientific fields.
 
 As you may have gathered by now, there are lots of opinions on how to use R - whether you should use base or tidyverse approaches. We want to stress that there is nothing wrong with using base plotting, it is capable of some very impressive plots (use `demo(graphics)` to have a look). However `ggplot2` is extremely flexible and takes quite a different approach to plotting compared to baseR.
 
@@ -710,9 +703,11 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
            y = "Mass (kg)",
            title = "Heigt vs. mass in the Star Wars universe",
            subtitle = "A part of the BIOS1140 ggplot tutorial")
+      
     ```
-    
-    <img src="Exercise2_files/figure-html/unnamed-chunk-36-1.png" width="672" />
+
+    \ 
+
 
 
 ```r

@@ -54,7 +54,7 @@ b) Create a function `calc_p()` that takes a vector of genotype counts  as an ar
 
 c) **Optional**: create a function called `calc_geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `geno_freq()` to get expected genotype frequencies directly from genotype counts.
 
-For the rest of the assignment, feel free to use these functions, and create new functions if you like.
+For the rest of the assignment, feel free to use these functions, and create new functions if you like.  _Note: be aware that `calc_geno()` calculates_ expected _genotype frequencies, and cannot be used where you need_ observed _genotype frequencies_.
 
 #### 2. Fitness {-}
 
@@ -62,7 +62,7 @@ For the rest of the assignment, feel free to use these functions, and create new
 
 a) What are absolute and relative fitness? What do we mean by marginal fitness?
 
-We sample a 315 individuals from a population of snails which have a brown/yellow polymorphism. This is controlled by a single locus B. B1B1 individuals are brown, so are B1B2 individuals but B2B2 is yellow. In our sample, 184 snails are B1B1, 60 are B1B2 and 81 are B2B2. We know from our experimental work that on average, brown individuals have 33 offspring, whereas yellow individuals have 24. Calculate the following:
+We sample a 325 individuals from a population of snails which have a brown/yellow polymorphism. This is controlled by a single locus B. B1B1 individuals are brown, so are B1B2 individuals but B2B2 is yellow. In our sample, 184 snails are B1B1, 60 are B1B2 and 81 are B2B2. We know from our experimental work that on average, brown individuals have 33 offspring, whereas yellow individuals have 24. Calculate the following:
 
 b) the frequency of the B1 and B2 alleles
 

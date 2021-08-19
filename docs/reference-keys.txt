@@ -22,8 +22,7 @@ problem-numbers-are-complicated
 solution-assign-the-complicated-numbers-to-named-objects
 notes-about-naming-variables
 vectors
-manyobjects
-solution-store-it-in-a-vector
+store-related-data-in-a-vector
 vector-properties
 mathematical-operations
 extracting-numbers
@@ -52,7 +51,7 @@ what-is-the-tidyverse
 the-dplyr-package
 using-dplyr-to-work-with-your-data
 the-pipe
-selecting-colums-with-select
+selecting-columns-with-select
 filtering-colums-using-filter
 combining-filter-and-select
 grouped-summaries-with-group_by-and-summarise
@@ -200,7 +199,6 @@ advanced-features-of-rstudio
 projects-projects-projects
 everyone-has-a-history
 tab-complete-and-other-hotkeys
-code-checking
 more-on-data-handling-categorising-and-joining
 ifelse-for-making-categories
 joining

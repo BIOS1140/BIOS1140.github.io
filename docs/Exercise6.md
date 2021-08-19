@@ -239,7 +239,7 @@ When you run this command, you will see that we read in the data from 71 individ
 
     We also specified how our genotypes are encoded using the `genotypes` argument and importantly, we specified `estimate.map = FALSE` to ensure that we are only reading in the data and not creating a linkage map at this stage. It is worth noting at this point that `qtl` is an extremely powerful and complex package with a lot of options and functions. At the end of the tutorial, we will point you towards other resources that can help you learn more about it, but for now we can ignore these options. However if you are interested in learning a little more, you can learn more about these arguments by looking at the help like so: `?read.cross`.
 
-Try typing in `bedbugs` to see what you get in the R console. You'll see a lot of summary information on the cross object we created when we red in the data. Again, it says there are only 2 phenotypes...
+Try typing in `bedbugs` to see what you get in the R console. You'll see a lot of summary information on the cross object we created when we read in the data. Again, it says there are only 2 phenotypes...
 
 #### Correcting the phenotypes
 
@@ -275,7 +275,7 @@ This returns a `data.frame` where each row is a linkage group. A linkage group i
 
 *`n.mar` - the number of markers* `length` - the length of the linkage group in centimorgans (see below) *`ave.spacing` - the average spacing between markers (in centimorgans)* `max.spacing` - the maximum spacing between markers (in centimorgans)
 
-We can see that that the 334 markers are spread across 14 linkage groups. Spacing of markers here is shown in **centimorgans** and the total length of the linkage map is 407 cM. Recall that a single centimorgan represents the probability that of 0.01 that a recombination event in one generation. Alternatively you could think of it as one recombination event every 100 generations.
+We can see that that the 334 markers are spread across 14 linkage groups. Spacing of markers here is shown in **centimorgans** and the total length of the linkage map is 407 cM. Recall that a single centimorgan represents the probability of 0.01 that a recombination event occurs in one generation. Alternatively you could think of it as one recombination event every 100 generations.
 
 Next we can take a look at the linkage map itself.
 

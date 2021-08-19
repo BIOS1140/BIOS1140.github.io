@@ -6,9 +6,6 @@
 
 
 
-```r
-knitr::opts_chunk$set(fig.width = 8)
-```
 
 Genomic data has revolutionised the way we conduct speciation research over the past decade. With high-throughput sequencing it is now possible to examine variation at thousands of markers from across the genome. Genome-wide studies of genetic differentiation, particularly measured using *F*~ST~ have been used to identify regions of the genome that might be involved in speciation. The rationale is relatively simple, *F*~ST~ is a measure of genetic differentiation and when species diverge in the presence of gene flow, we might expect that genome regions underlying traits that prevent gene flow between species will show a higher level of *F*~ST~ than those that do not. In other words, genome scan analyses can, in principle, be used to identify barrier loci involved in the speciation process. This approach became extremely popular in many early speciation genomic studies but it overlooked a crucial point - that other processes, not related to speciation can produce the same patterns in the genome. In this session, we will leverage our ability to handle high-throughput, whole genome resequencing data to investigate patterns of nucleotide diversity, genetic differentiation and genetic divergence across a chromosome. We will examine what might explain some of the patterns we observe and learn that while genome scans can be a powerful tool for speciation research, they must be used with caution.
 
@@ -37,7 +34,7 @@ library(PopGenome)
 
 <script src="js/hideOutput.js"></script>
 
-You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
+You have previously learned how to use aesthetics in `ggplot` to show many variables in a single plot (e.g., coloring points by group). Today you will learn a bit more about this. We will be working with the [2020 population data](https://bios1140.github.io/data/worlddata.csv) from the very first week, so make sure that is in your working directory.
 
 We start by reading in the data (see if you manage to do this yourself before looking at my code):
 
@@ -171,7 +168,7 @@ sparrows <- set.populations(sparrows, populations, diploid = T)
 
 ### Examining the variant data
 
-Remember, you can look the data we have read in using the following command:
+Remember, you can look at the data we have read in using the following command:
 
 
 ```r
@@ -214,8 +211,6 @@ We use these values to set up our sliding windows for our sparrows dataset using
 ```r
 # make a sliding window dataset
 sparrows_sw <- sliding.window.transform(sparrows, width = window_size, jump = window_jump, type = 2)
-#> |            :            |            :            | 100 %
-#> |===================================================| ;-)
 ```
 
 Last week we calculated the window positions along the chromosome for you (inside a yellow box). This week, however, we will show you how you can use basic R commands to find these. We begin by making a sequence from 1 to the length of chromosome 8, with steps equal to our window size using `seq()`.
@@ -244,7 +239,7 @@ Now we have generated two vectors: `window_start` and `window_stop`. The windows
 
 
 ```r
-# no windows start before the end of chromosome 8
+# no windows start after the end of chromosome 8
 sum(window_start > chr8)
 # but some window stop positions do occur past the final point
 sum(window_stop > chr8)
@@ -289,8 +284,6 @@ First we will calculate $\pi$. Handily, the following command also sets up what 
 ```r
 # calculate diversity statistics
 sparrows_sw <- diversity.stats(sparrows_sw, pi = TRUE)
-#> |            :            |            :            | 100 %
-#> |===================================================| ;-)
 ```
 
 Next we will calculate *F*~ST~, which again is very straight forward with a single command.
@@ -299,8 +292,6 @@ Next we will calculate *F*~ST~, which again is very straight forward with a sing
 ```r
 # calculate diversity statistics
 sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
-#> |            :            |            :            | 100 %
-#> |===================================================| ;-)
 ```
 
 Note that here we use `mode = "nucleotide"` to specify we want it to be calculated sliding averages of nucleotides, rather than using haplotype data, which is the alternative. And that's it for calculating the statistics! As you will see in the next section, extracting them from the `sparrows_sw` object is actually more difficult than generating them...
@@ -309,7 +300,7 @@ Note that here we use `mode = "nucleotide"` to specify we want it to be calculat
 
 Since we ran our analysis on a sliding-window basis, we should have estimates of $\pi$, *F*~ST~ and *d*~XY~ for each window. What we want to do now is extract all our statistics and place them in a single `data.frame` for easier downstream visualisation - this will let us identify how these statistics are interrelated.
 
-The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful, and you will learn a bit more about them in the last course week.
+The extraction process involves extracting data and manipulating strings to label things correctly. This is a bit too much to go into in this tutorial, but string tools can be very useful for biological data. If you're interested, see if you can understand how `sub()` and `paste0()` is used below, you've come a long way if you do!
 
 ::: {.yellow}
 

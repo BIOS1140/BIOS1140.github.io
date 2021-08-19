@@ -151,6 +151,7 @@ Let's plot the phylogeny to have a look at it. We will also add some annotation 
 
 
 ```r
+# no.margin = TRUE gives prettier plots
 plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
 text(39, 3, "Proaves", srt = 270)
@@ -195,7 +196,7 @@ We can see that the Neoaves start at node 29, so let's extract that one.
 # extract clade
 neoaves <- extract.clade(bird.orders, 29)
 # plot
-plot(neoaves)
+plot(neoaves, no.margin = TRUE)
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-12-1.png" width="672" />
@@ -278,16 +279,13 @@ Now that we have created both of our trees, we should plot them to have a look a
 
 ```r
 # plot them both
-par(mfrow = c(2, 1))
+par(mfrow = c(2, 1)) # 2 plots in same window
 plot(hom_upgma, no.margin = TRUE)
 plot(hom_nj, type = "unrooted", no.margin = TRUE)
+par(mfrow = c(1,1)) # reset mfrow
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-20-1.png" width="672" />
-
-```r
-par(mfrow = c(1,1))
-```
 
 Note that when we plot the NJ tree, we add an extra argument to get an unrooted tree. The default in R is to plot rooted trees, but since the neighbour joining algorithm produces an unrooted phylogeny, the correct way to plot it is unrooted. 
 
@@ -308,7 +306,7 @@ We will set the root of our neighbour joining tree below using the `root` functi
 ```r
 # plot nj rooted
 hom_nj_r <- root(hom_nj, "Orang")
-plot(hom_nj_r)
+plot(hom_nj_r, no.margin = TRUE)
 ```
 
 <img src="Exercise9_files/figure-html/unnamed-chunk-22-1.png" width="672" />
@@ -465,7 +463,7 @@ ggplot(village_pca, aes(PC1, PC2, col = location)) +
 
 :::
 
-So from this PCA, what can we deduce? First if all, the cluster we identified earlier are dogs from East Asia. Similarly, Central Asian, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
+So from this PCA, what can we deduce? First of all, the cluster we identified earlier are dogs from East Asia. Similarly, Central Asian, African and European dogs seem to form their own clusters. In the original paper, [Shannon et al. (2015)](http://www.pnas.org/content/112/44/13639) suggest that the origin of dog domestication might actually be in Central Asia. This is hard to deduce from the PCA but it is clear that there is geographical structure among village dogs.
 
 ### Eigenvalues
 

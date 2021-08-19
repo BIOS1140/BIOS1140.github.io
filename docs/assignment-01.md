@@ -58,7 +58,7 @@ a) **Optional:** Check if R considers $(\sqrt2 )^2$ to be exactly equal to 2. Wh
 
 #### 2. Data import and plotting {-}
 
-For this section you will use the dataset "vitruvian.txt". The data set consists of body measurements from biology students from earlier years in the course BIO2150. Make sure you download it from Canvas, and take note of where it's stored on your computer.
+For this section you will use the dataset [vitruvian.txt](https://bios1140.github.io/data/vitruvian.txt). The data set consists of body measurements from biology students from earlier years in the course BIO2150. Make sure you download it, and take note of where it's stored on your computer.
 
 For this part of the exercise, in addition to the course's computing exercises, [these short tutorials](https://evengar.github.io/short-tutorials) may be helpful. Go through them before continuing if you'd like, or use them as reference material when you're unsure about something.
 

@@ -397,7 +397,7 @@ That concludes the R-part of this tutorial! The rest of the tutorial will be abo
 
 ### Understanding fitness
 
-What do we mean by **fitness**? In its simplest form, fitness is the defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness.
+What do we mean by **fitness**? In its simplest form, fitness is defined as whether or not an organism is able to reproduce. Fitness is often mistaken as an individual attribute, but it is actually better explained as a difference in reproductive success among characters, traits or genotypes. If genotype $A_1A_1$ produces more offspring than $A_2A_2$ because of a trait the locus produces, we can say $A_1A_1$ has a higher fitness.
 
 #### Absolute, relative and marginal fitness
 
@@ -476,7 +476,7 @@ To model this, we will use a locus $A$ with alleles $A_1$ and $A_2$ - each with 
 | $A_1A_2$ | $2pq$            | $w_{12}$ |
 | $A_2A_2$ | $q^2$            | $w_{22}$ |
 
-In our model, we will calculate $p_{t+1}$ the frequency of allele $A_1$ after a single generation of selection. This depends on three things: $p$ - the allele frequency before selection, $w_1{^*}$, the marginal fitness of the $A_1$ allele and the difference between this and $\overline{w}$, the mean population fitness. So our model is basicaly:
+In our model, we will calculate $p_{t+1}$ the frequency of allele $A_1$ after a single generation of selection. This depends on three things: $p$ - the allele frequency before selection, $w_1{^*}$, the marginal fitness of the $A_1$ allele and the difference between this and $\overline{w}$, the mean population fitness. So our model is basically:
 
 $P_{t+1} = \displaystyle \frac{pw_1^*}{\overline{w}}$
 
