@@ -206,6 +206,7 @@ sweden_proportion
 If you have experience with Python, you would have printed the objects using `print(norway_proportion)`. In R we don't have to explicitly use `print()`. An object (or any calculation for that matter) is automatically printed when we run it. R does have a `print()` function, though, that can be used if you want to be explicit about printing something.
 :::
 
+
 #### Notes about naming variables
 
 You should always give your variables sensible names. In the code above, we could have saved ourselves some typing by e.g. calling the populations `x` and `y` respectively. However, this quickly becomes a nightmare to read when scripts get long, so even though `norway_pop` takes longer to write than `x`, you should go with `norway_pop` so it's possible to understand what's going on in your script.
@@ -239,13 +240,9 @@ knitr::kable(nordic_tab[order(nordic_tab$Country.Area.Name),c("Country.Area.Name
 
 ```
 
-**Exercise: Do the same with all the Nordic countries that you did with Norway and Sweden. Assign each population size to an object and calculate their proportion of the total Nordic population**
+Now, if we were to calculate the proportion of the total for all countries, like we did for Norway and Sweden earlier, the code would quickly become very long:
 
-#### Problem: too many objects gets complicated {#manyobjects}
-
-If you solved the exercise above, you're probably tired from writing almost the same thing over and over. My solution looks something like this:
-
-::: {.fold .s}
+::: {.fold .c}
 ```{r, results = "hide"}
 denmark_pop <- 5868927
 finland_pop <- 5572355
@@ -270,9 +267,9 @@ iceland_proportion
 ```
 :::
 
-That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! Surely there has to be simpler solution? Luckily, there is.
+That is a lot of typing! And remember that this is only for the Nordic countries, imagine doing this for all the countries in the world! In R, we can avoid all this tedious work by storing our data in a vector
 
-#### Solution: Store it in a vector!
+#### Store related data in a vector
 
 R has a data type called vector, which can store multiple values at once. In our case, this means that we can store the populations of all the Nordic countries in one vector. Let's look at some different ways to make a vector. The following lines all create a vector containing the numbers 1 through 10.
 
@@ -292,7 +289,7 @@ seq(from = 1, to = 10, by = 1)
 2.  You can create a vector with the colon operator `:`. This creates a vector containing all the numbers starting from the number before `:`, and up to and including the number after.
 3.  You can create a vector with `seq()`. The numbers go inside the parentheses, separated by comma. The number after `from =` is the beginning of the vector, after `to =` is the end of the vector, and after `by =` is the distance between the values in the vector.
 
-As a side note, `c()` and `seq()` are what we call functions. We'll get back to functions shortly, so don't worry if you don't fully understand how these work yet. For now, just recognize that any pattern that consists of text and parentheses, `text()`, is a function. The text outside of the parentheses is the name of the function, and anything inside the parentheses is data the function uses.
+As a side note, `c()` and `seq()` are what we call functions. We'll get back to functions in section \@ref(functions), so don't worry if you don't fully understand how these work yet.
 
 Like numbers, vectors can be assigned to objects. This works in exactly the same way, using the arrow `<-`.
 
@@ -408,7 +405,7 @@ sum(my_vector)
 mean(my_vector)
 ```
 
-Again, we'll go through what functions are and how they work shortly. There's a variety of other functions you can apply to a vector, such as `max()`, `min()` and `median()`. Try them out!
+There's a variety of other functions you can apply to a vector, such as `max()`, `min()` and `median()`. Try them out!
 
 **Exercise: Use what you have learned about vectors to calculate the population proportions of all the Nordic countries in a single operation. Save it to an object with a good name.**
 
@@ -563,7 +560,7 @@ So far you have seen a handful of functions being used, like `c()`, `seq()` and 
 
 If you want to know more about what a function does, you can write `?` and then the function name, for example `?seq`. Then you will get a help page that tells you more about how the function works, and some examples of use in the bottom. Be aware that the help page is written by programmers for programmers, and is often difficult to understand. In the beginning you will often be better off googling what a function does (but the examples are always useful).
 
-Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: `func(arg1, arg2, arg3)`. The arguments can either be input in a set order, or you can name them. Consider the following:
+Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: `function(arg1, arg2, arg3)`. The arguments can either be input in a set order, or you can name them. Consider the following:
 
 ```{r}
 seq(1, 10, 2) # "from" is argument no. 1, "to" is argument no. 2 etc.
@@ -572,7 +569,10 @@ seq(from = 1, to = 10, by = 2)
 
 These are exactly the same, but one uses argument order, and the other the argument names. To figure out the order and names of arguments, you have to consult the help pages or the internet. For simple functions like `seq()` and `mean()` it's common to omit the argument names, while for more complicated functions it's better to include them, so you clearly show what you're doing. Note that function arguments are never enclosed with quotes `"`.
 
-Another thing that is useful to know, is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line, which makes code more readable. Instead of the code above, we could also have written:
+:::{.blue}
+
+**Line breaks in functions**\ 
+A tip for making code more readable is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line. Instead of the code above, we could also have written:
 
 ```{r}
 seq(from = 1,
@@ -581,6 +581,8 @@ seq(from = 1,
 ```
 
 This may not matter much for such a simple function, but it gets way easier to read long, complicated functions if it's formatted this way. You will see this formatting in our next section about data frames.
+
+:::
 
 ### Data frames
 
@@ -906,7 +908,7 @@ Packages in R can be installed with the function `install.packages()`. **You wil
 install.packages("ggplot2")
 ```
 
-When a package have been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the function `library()`:
+When a package has been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the function `library()`:
 
 ```{r, eval = FALSE}
 library("ggplot2")

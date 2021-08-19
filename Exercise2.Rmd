@@ -33,13 +33,6 @@ At this point in our tutorial, we will use a series of packages collectively kno
 
 It's important to emphasize that the tidyverse set of packages can do mostly **the same as base R already can do**. So what's the difference? While base R is a collection of different methods and functions built up over years, tidyverse is designed with a specific philosophy in mind. This leads to having a consistent approach to solving problems that many find appealing. That being said, if you find you prefer the "regular" R-functions over their tidyverse equivalents, go ahead and use those instead, there's nothing wrong with that.
 
-::: {.green}
-**Important concept:**\
-The tidyverse packages can do more or less exactly the same as base R. The difference is that tidyverse approaches problems with a specific philosophy. Some key points of this philosophy is:
-
--   The name of all functions that transform data are verbs
--   The `data` argument is always the first argument of the functions, so it's easy to use in a pipeline (more on this later).
-:::
 
 ### The dplyr package
 
