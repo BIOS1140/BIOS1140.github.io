@@ -2,17 +2,12 @@
 
 #### 1. for-loops {-}
 
-a. Create one vector containing names of 4 animals you feel strongly about. Create another vector that contains what you feel about the animal. Use a for-loop to print the animal and the feeling together (like in section 1.3 of the tutorial). Example output:
+Create one vector containing names of 4 animals you feel strongly about. Create another vector that contains what you feel about the animal. Use a for-loop to print the animal and the feeling together (like in section 1.3 of the tutorial). Example output:
 
 ```{}
 "Pangolins are amazing"
 # and similarly for 3 more animals
 ```
-
-
-
-b. A population of grasshoppers grows with 10% every month. The first month, we have 5 grasshoppers per $m^2$. Use a for loop to calculate the number of grasshoppers each month for 24 months, and plot the result. How many grasshoppers do we have per $m^2$ after 2 years?
-
 
 #### 2. Hardy Weinberg Equilibrium {-}
 
