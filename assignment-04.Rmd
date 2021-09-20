@@ -30,7 +30,7 @@ calc_geno <- function(p){
 
 a) Create a function with two arguments, `x` and `y`, that checks whether `x` is larger than `y`. You can decide yourself if you want the function to return `TRUE`/`FALSE` or a string of text.
 
-The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 B_1$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
+The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 A_2$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
 
 ```{r eval = FALSE}
 p <- calc_p(geno_counts)
