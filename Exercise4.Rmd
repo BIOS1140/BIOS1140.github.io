@@ -402,7 +402,7 @@ So far, we have dealt with fitness for genotypes. This makes sense because selec
 To account for this, we estimate **marginal fitness** for a given allele $i$ as $w^{*}_i$. So for two alleles, the marginal fitness is:
 
 -   $w^{*}_1 = pw_{11} + qw_{12}$
--   $w^{*}_1 = pw_{12} + qw_{22}$
+-   $w^{*}_2 = pw_{12} + qw_{22}$
 
 Where $p$ and $q$ are the frequencies for $A_1$ and $A_2$ respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in *AND* the frequency of those genotypes. Let's calculate the fitness of our alleles using R.
 
@@ -750,7 +750,7 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5.
+Here we see a scenario where underdominance is at an unstable equilibrium when $p$ is slightly above 0.5.
 
 ## Study questions
 
