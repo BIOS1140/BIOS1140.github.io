@@ -422,7 +422,7 @@ Now it is really straightforward to make a plot that shows the expected HW---fre
 # plot the expected genotype frequencies
 a <- ggplot(geno_freq, aes(p, freq, colour = genotype)) + 
   geom_line() +
-  labs(x = "Genotype frequency", y = "p frequency")
+  labs(x = "p frequency", y = "Genotype frequency")
 
 # print the plot with some theme options to make it pretty
 a + theme_light() + theme(legend.position = "bottom")
