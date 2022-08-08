@@ -387,7 +387,7 @@ Having all numbers stored in one place is great, but what if you want to use jus
 nordic[3]
 ```
 
-We can also select multiple numbers, by inputting a vector inside the square brackets. `nordic[c(3, 5)] will extract the third and the fifth element of our`nordic`vector, and`nordic[1:3]\` will extract elements 1 through 3.
+We can also select multiple numbers, by inputting a vector inside the square brackets. `nordic[c(3, 5)]` will extract the third and the fifth element of our`nordic`vector, and`nordic[1:3]` will extract elements 1 through 3.
 
 **Exercise: extract elements 2 through 4 from the `nordic` vector. Then, extract only the Scandinavian countries, and store them in an object with a good name.**
 
