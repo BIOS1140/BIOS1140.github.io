@@ -311,7 +311,7 @@ nordic <- c(5868927, 5572355, 350773, 5465387, 10185555)
 
 ::: {.blue}
 **Additional information:**\
-Those of you who learned programming in BIOS1100 might remember that in python we mainly used *lists* when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways, but there are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!). If you're familiar with Numpy arrays in Python, vectors in R generally behaves quite similarly to those.
+Those of you who learned programming in BIOS1100 might remember that in python we mainly used *lists* when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways, but there are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!). If you're familiar with Numpy arrays in Python, vectors in R are quite similar to those.
 :::
 
 #### Vector properties
