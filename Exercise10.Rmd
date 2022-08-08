@@ -28,9 +28,6 @@ As always, we need to set up our R environment. We'll load `tidyverse` as usual 
 # clear the R environment
 rm(list = ls())
 
-# install new packages
-install.packages("tidyverse") # if not already installed
-
 # load packages
 library(tidyverse)
 ```
