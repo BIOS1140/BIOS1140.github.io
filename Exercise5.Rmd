@@ -6,7 +6,6 @@ source("setup.R")
 library(tidyverse)
 ```
 
-
 # Detecting Natural Selection {#ch05}
 
 In the last section, we spent a lot of time on the theoretical basis of natural selection. In this section, we will once again learn about selection, but this time our focus will be much more empirically based. In particular, we are going to use R to demonstrate the utility of *F*~ST~ (i.e. genetic differentiation among populations) as a means to infer selection in the genome. This means we will be returning to some of the things you learned about in Chapter 3 in order to properly understand F-statistics. We'll also return to the idea of empirical and statistical distributions in order to underline the basic concepts behind how we can do this. Finally, we will take some actual genome-wide *F*~ST~ data and visualise it in order to demonstrate just how a genome scan approach might identify genomic regions under selection.
@@ -53,7 +52,7 @@ h <- 8
 cyl_vol(r, h)
 ```
 
-Let's say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can  supply a vector of heights as the second argument, and do these 10 calculations in a single operation!
+Let's say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can supply a vector of heights as the second argument, and do these 10 calculations in a single operation!
 
 ```{r}
 # radius 3, height 1:10
@@ -74,15 +73,15 @@ cyl_vol(r, h)
 
 Note that this calculates volume for $r=10, h=1$, then $r=9, h=2$ and so on, not for all combinations of the vectors.
 
-:::{.green}
-**Important concept:**  
+::: green
+**Important concept:**\
 Many functions can be applied to a vector of values instead of a single value. This is a quick and simple way of running a lot of functions at the same time. Notice how the function call `cyl_vol(r, h)` is exactly the same for single values and vectors!
 :::
 
-\ 
+ 
 
-:::{.blue}
-**Tip:**  
+::: blue
+**Tip:**\
 Notice that you could also have used a for loop to use the function on a range of values. If you have experience with other programming languages, e.g. Python, you're probably used to do it that way! In R, however, vectorising functions is often faster than using for-loops if your vectors get really large. In some cases it's also easier both to read and write.
 :::
 
@@ -142,7 +141,7 @@ apply(species, 2, mean)
 ```
 :::
 
-::: {.green}
+::: green
 **Important concept:**\
 Use `apply()` to use a function on either all rows (`1`) or all columns (`2`) of a data frame/matrix.
 :::
@@ -151,13 +150,16 @@ This section has been a small taste on what R can do when you vectorise your fun
 
 ### The `ifelse()` function {#ifelse}
 
-Say that you have a vector with values, and you want to group them somehow. For example, you have a vector of numbers between 0 and 10, and want to label the values that are larger than 5.
+Say that you have a vector with values, and you want to group them somehow. For example, you have a vector of numbers between 0 and 10,[^exercise5-2] and want to label the values that are larger than 5.
 
-::: {.yellow}
+[^exercise5-2]: Here, we create a vector of 10 random numbers between 0 and 10. The `set.seed()` function ensures that everyone will get the same random numbers (not so random after all then), just compare your result to the person beside you and to the output in the tutorial. If you change the seed, or run `sample()` multiple times without setting the seed every time, you will see the vector changing.
+
+::: yellow
 ```{r}
 # generate 10 numbers between 0 and 10
-set.seed(14)
-x <- sample(0:10, 10)
+
+set.seed(14) # ensure same result of random drawing each time
+x <- sample(0:10, 10) # draw 10 random numbers between 0 and 10
 x
 ```
 :::
@@ -205,12 +207,10 @@ ifelse(animals == "horse", "actual horse", "almost horse")
 
 This usage can be convenient when plotting values, as you will see in the evolution-part of the tutorial.
 
-
 ## Understanding *F*~ST~ - the fixation index
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
 ```
-
 
 *F*~ST~, also known as the **fixation index**, is an extremely important statistic in population genetics, molecular ecology and evolutionary biology. It is also arguably one of the most famous population genetic statistics you will encounter. *F*~ST~ essentially measures the level of **genetic differentiation** between two or more populations. It ranges from 0 (i.e. no genetic differentiation) to 1 (complete genetic differentiation)
 
@@ -370,18 +370,15 @@ The data is separated by tabulator (`"\t"`), and has a header.
 
 </details>
 
-:::{.fold .s}
-
+::: {.fold .s}
 ```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
 ```
-
 :::
 
 ```{r, echo = FALSE}
 lct_counts <- read.table("docs/data/lct_count.tsv", header = TRUE, sep = "\t")
 ```
-
 
 You should now have a data frame in your R environment with allele counts for the SNP rs4988235 for 53 populations. Again, these data are all from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
@@ -403,9 +400,9 @@ We can now combine our vector of allele frequencies with the population names to
 lct_freq <- data.frame(pop = lct_counts$pop, p)
 ```
 
-Now we can calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^exercise5-2].
+Now we can calculate a pairwise *F*~ST~ with our `calc_fst` function. For example, let's calculate *F*~ST~ for European Americans and East Asians. We will use `dplyr` commands for this. First we make subsets of the data with `filter()`. We then end up with a single row of our data. We provide the `p`-column of that subset to `calc_fst` using `$`[^exercise5-3].
 
-[^exercise5-2]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
+[^exercise5-3]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 # extract frequencies
@@ -600,7 +597,6 @@ One important point to note here is that the threshold we set to identify a SNP 
 ## Study questions
 
 The study questions for week 5 are found [here](#w05). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
-
 
 ## Going further
 
