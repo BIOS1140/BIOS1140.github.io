@@ -62,7 +62,7 @@ A great tool for working with groups is (perhaps unsurprisingly) the `group_by()
 iris %>%
   group_by(Species) %>%
   tally()
-#> # A tibble: 3 x 2
+#> # A tibble: 3 × 2
 #>   Species        n
 #>   <fct>      <int>
 #> 1 setosa        50
@@ -77,7 +77,7 @@ We can see that we have 50 observations of each species. As you may remember, `g
 iris %>%
   group_by(Species) %>%
   summarise(mean_petal_length = mean(Petal.Length))
-#> # A tibble: 3 x 2
+#> # A tibble: 3 × 2
 #>   Species    mean_petal_length
 #>   <fct>                  <dbl>
 #> 1 setosa                  1.46
@@ -94,7 +94,7 @@ iris %>%
   summarise(mean_petal_length = mean(Petal.Length),
             median_petal_length = median(Petal.Length),
             sd_petal_length = sd(Petal.Length))
-#> # A tibble: 3 x 4
+#> # A tibble: 3 × 4
 #>   Species    mean_petal_length median_petal_length sd_petal_length
 #>   <fct>                  <dbl>               <dbl>           <dbl>
 #> 1 setosa                  1.46                1.5            0.174

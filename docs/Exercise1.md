@@ -337,7 +337,7 @@ nordic <- c(5868927, 5572355, 350773, 5465387, 10185555)
 
 ::: {.blue}
 **Additional information:**\
-Those of you who learned programming in BIOS1100 might remember that in python we mainly used *lists* when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways - in both, all the elements need to be of the same type (numeric/string/logical), and you can access elements by their index in the same way. There are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!)
+Those of you who learned programming in BIOS1100 might remember that in python we mainly used *lists* when we wanted to store many elements in one variable. In R, we will mainly be using vectors. The two are similar in some ways, but there are also some differences between the two: To define a vector in R you need to use the `c()` function (or the other methods explained above), and with vectors you can perform mathematical operations on all the elements (more on this in the next section!). If you're familiar with Numpy arrays in Python, vectors in R are quite similar to those.
 :::
 
 #### Vector properties
@@ -427,7 +427,7 @@ nordic[3]
 #> [1] 350773
 ```
 
-We can also select multiple numbers, by inputting a vector inside the square brackets. `nordic[c(3, 5)] will extract the third and the fifth element of our`nordic`vector, and`nordic[1:3]\` will extract elements 1 through 3.
+We can also select multiple numbers, by inputting a vector inside the square brackets. `nordic[c(3, 5)]` will extract the third and the fifth element of our`nordic`vector, and`nordic[1:3]` will extract elements 1 through 3.
 
 **Exercise: extract elements 2 through 4 from the `nordic` vector. Then, extract only the Scandinavian countries, and store them in an object with a good name.**
 
@@ -472,7 +472,7 @@ If you have many values that go together, store them together in a vector. You c
 
 ### Strings
 
-As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
+As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from plain text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
 
 
 ```r
@@ -640,6 +640,7 @@ mean(c(3, 5, 10, NA), na.rm = TRUE)
 -   `TRUE` and `FALSE` are called logical (or boolean) values, and are often the result of using logical operators like `==`, `>`, `!=` etc. `TRUE` and `FALSE` behave as 1 and 0 respectively when used inside e.g. the `sum()` function.
 -   `NA` indicates missing data. Any operation involving `NA` returns `NA`
 :::
+
 
 ### Functions {#functions}
 

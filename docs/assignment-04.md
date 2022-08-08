@@ -31,7 +31,7 @@ calc_geno <- function(p){
 
 a) Create a function with two arguments, `x` and `y`, that checks whether `x` is larger than `y`. You can decide yourself if you want the function to return `TRUE`/`FALSE` or a string of text.
 
-The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 B_1$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
+The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 A_2$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
 
 
 ```r
@@ -41,7 +41,7 @@ geno_freq <- calc_geno(p)
 
 Or even `calc_geno(calc_p(geno_counts))` if you prefer! Notice how easy it is to follow what happens in the code above. This adheres to a principle called [modular programming](https://en.wikipedia.org/wiki/Modular_programming), where larger tasks are separated into smaller, more manageable tasks. Now it's your turn to actually turn the above into working code by creatng the `calc_p` function.
 
-b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$, i.e., $p$. To test your code, run the following:
+b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$ (i.e., $p$). To test your code, run the following:
 
     
     ```r
@@ -52,7 +52,7 @@ b) Create a function `calc_p()` that takes a vector of genotype counts  as an ar
 
     `p` should be `0.1875`, and `geno_freq` should be `0.03515625 0.30468750 0.66015625`
 
-c) **Optional**: create a function called `calc_geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `geno_freq()` to get expected genotype frequencies directly from genotype counts.
+c) **Optional**: create a function called `geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `calc_geno()` to get expected genotype frequencies directly from genotype counts.
 
 For the rest of the assignment, feel free to use these functions, and create new functions if you like.  _Note: be aware that `calc_geno()` calculates_ expected _genotype frequencies, and cannot be used where you need_ observed _genotype frequencies_.
 

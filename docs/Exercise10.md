@@ -26,9 +26,6 @@ As always, we need to set up our R environment. We'll load `tidyverse` as usual 
 # clear the R environment
 rm(list = ls())
 
-# install new packages
-install.packages("tidyverse") # if not already installed
-
 # load packages
 library(tidyverse)
 ```
@@ -96,20 +93,20 @@ This function can be extremely useful for creating new variables in datasets. Le
 
 ```r
 starwars
-#> # A tibble: 87 x 14
-#>    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-#>    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-#>  1 Luke~    172    77 blond      fair       blue            19   male  mascu~
-#>  2 C-3PO    167    75 <NA>       gold       yellow         112   none  mascu~
-#>  3 R2-D2     96    32 <NA>       white, bl~ red             33   none  mascu~
-#>  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~
-#>  5 Leia~    150    49 brown      light      brown           19   fema~ femin~
-#>  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~
-#>  7 Beru~    165    75 brown      light      blue            47   fema~ femin~
-#>  8 R5-D4     97    32 <NA>       white, red red             NA   none  mascu~
-#>  9 Bigg~    183    84 black      light      brown           24   male  mascu~
-#> 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
-#> # ... with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+#> # A tibble: 87 × 14
+#>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+#>    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+#>  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+#>  2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu…
+#>  3 R2-D2        96    32 <NA>       white, bl… red             33   none  mascu…
+#>  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+#>  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+#>  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+#>  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+#>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
+#>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+#> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
 #> #   films <list>, vehicles <list>, starships <list>
 ```
 
@@ -179,7 +176,7 @@ copepods_long <- pivot_longer(copepods,
 
 ```r
 copepods_long
-#> # A tibble: 54 x 3
+#> # A tibble: 54 × 3
 #>    depth taxon         count
 #>    <int> <chr>         <int>
 #>  1     0 acartia           0
@@ -192,7 +189,7 @@ copepods_long
 #>  8     2 calanus           0
 #>  9     2 harpacticoida     0
 #> 10     2 oithona           6
-#> # ... with 44 more rows
+#> # … with 44 more rows
 ```
 
 Now, say that you have recorded the temperature at each depth, and want to add that information to your copepod data. How would you go about doing that? First, here is the data in a data frame:
@@ -259,7 +256,7 @@ Instead, you can use the `left_join()` function from `dplyr`. You have to supply
 ```r
 copepods_temp <- left_join(copepods_long, temps, by = "depth")
 copepods_temp
-#> # A tibble: 54 x 5
+#> # A tibble: 54 × 5
 #>    depth taxon         count depthtemp  temp
 #>    <dbl> <chr>         <int>     <dbl> <dbl>
 #>  1     0 acartia           0      15.5  15.5
@@ -272,7 +269,7 @@ copepods_temp
 #>  8     2 calanus           0      15.4  15.4
 #>  9     2 harpacticoida     0      15.4  15.4
 #> 10     2 oithona           6      15.4  15.4
-#> # ... with 44 more rows
+#> # … with 44 more rows
 ```
 
 `left_join()` matches one or more columns in your two data sets, and add rows from the second data set into the first data set in the correct place. You see that the `temp` column is equal to the `depthtemp` we created earlier, but it's so much easier to work with! Keep in mind that it is this simple in our case because `depth` has the exact same name in both data frames. Remember this when recording data in the future!

@@ -242,6 +242,8 @@ We are going to create two types of trees - UPGMA and Neighbour Joining. These a
 ```r
 # perform model selection
 hominidae_mt <- modelTest(hominidae, model = c("JC", "F81"), G = FALSE, I = FALSE)
+#> [1] "JC"
+#> [1] "F81"
 ```
 
 Take a look at the `hominidae_mt` table. What we have done here is performed a maximum likelihood analysis and a form of model selection to determine which of the two models we tested - JC69 and F81 (specified by `model = c("JC", "F81")`) best fits our data. We also set `G` and `I` to false in order to simplify the output. Don't worry too much about what these are for now, but feel free to use `?modelTest` if you wish to learn more.

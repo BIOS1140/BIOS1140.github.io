@@ -65,20 +65,20 @@ Together with the tidyverse, you get a built in data set called `starwars`, cont
 
 ```r
 starwars
-#> # A tibble: 87 x 14
-#>    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-#>    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-#>  1 Luke~    172    77 blond      fair       blue            19   male  mascu~
-#>  2 C-3PO    167    75 <NA>       gold       yellow         112   none  mascu~
-#>  3 R2-D2     96    32 <NA>       white, bl~ red             33   none  mascu~
-#>  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~
-#>  5 Leia~    150    49 brown      light      brown           19   fema~ femin~
-#>  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~
-#>  7 Beru~    165    75 brown      light      blue            47   fema~ femin~
-#>  8 R5-D4     97    32 <NA>       white, red red             NA   none  mascu~
-#>  9 Bigg~    183    84 black      light      brown           24   male  mascu~
-#> 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
-#> # ... with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+#> # A tibble: 87 × 14
+#>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+#>    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+#>  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+#>  2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu…
+#>  3 R2-D2        96    32 <NA>       white, bl… red             33   none  mascu…
+#>  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+#>  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+#>  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+#>  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+#>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
+#>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+#> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
 #> #   films <list>, vehicles <list>, starships <list>
 ```
 
@@ -138,7 +138,7 @@ With `dplyr` we can do the following:
 
 ```r
 select(starwars, name, homeworld)
-#> # A tibble: 87 x 2
+#> # A tibble: 87 × 2
 #>    name               homeworld
 #>    <chr>              <chr>    
 #>  1 Luke Skywalker     Tatooine 
@@ -151,7 +151,7 @@ select(starwars, name, homeworld)
 #>  8 R5-D4              Tatooine 
 #>  9 Biggs Darklighter  Tatooine 
 #> 10 Obi-Wan Kenobi     Stewjon  
-#> # ... with 77 more rows
+#> # … with 77 more rows
 ```
 
 The first argument here is your data, while the others are the columns you want to select. Note that you don't need to use the quotes `"` here, you generally don't need those for the `dplyr` functions.
@@ -246,7 +246,7 @@ The real power of the pipe shows when you chain several operations together. To 
 ```r
 starwars %>% filter(height < 100) %>% 
   select(name, height, birth_year)
-#> # A tibble: 7 x 3
+#> # A tibble: 7 × 3
 #>   name                  height birth_year
 #>   <chr>                  <int>      <dbl>
 #> 1 R2-D2                     96         33
@@ -290,21 +290,21 @@ But what if you want to calculate the mean height separately for e.g. the differ
 
 ```r
 starwars %>% group_by(species)
-#> # A tibble: 87 x 14
+#> # A tibble: 87 × 14
 #> # Groups:   species [38]
-#>    name  height  mass hair_color skin_color eye_color birth_year sex   gender
-#>    <chr>  <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
-#>  1 Luke~    172    77 blond      fair       blue            19   male  mascu~
-#>  2 C-3PO    167    75 <NA>       gold       yellow         112   none  mascu~
-#>  3 R2-D2     96    32 <NA>       white, bl~ red             33   none  mascu~
-#>  4 Dart~    202   136 none       white      yellow          41.9 male  mascu~
-#>  5 Leia~    150    49 brown      light      brown           19   fema~ femin~
-#>  6 Owen~    178   120 brown, gr~ light      blue            52   male  mascu~
-#>  7 Beru~    165    75 brown      light      blue            47   fema~ femin~
-#>  8 R5-D4     97    32 <NA>       white, red red             NA   none  mascu~
-#>  9 Bigg~    183    84 black      light      brown           24   male  mascu~
-#> 10 Obi-~    182    77 auburn, w~ fair       blue-gray       57   male  mascu~
-#> # ... with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
+#>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
+#>    <chr>     <int> <dbl> <chr>      <chr>      <chr>          <dbl> <chr> <chr> 
+#>  1 Luke Sk…    172    77 blond      fair       blue            19   male  mascu…
+#>  2 C-3PO       167    75 <NA>       gold       yellow         112   none  mascu…
+#>  3 R2-D2        96    32 <NA>       white, bl… red             33   none  mascu…
+#>  4 Darth V…    202   136 none       white      yellow          41.9 male  mascu…
+#>  5 Leia Or…    150    49 brown      light      brown           19   fema… femin…
+#>  6 Owen La…    178   120 brown, gr… light      blue            52   male  mascu…
+#>  7 Beru Wh…    165    75 brown      light      blue            47   fema… femin…
+#>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
+#>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
+#> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
+#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
 #> #   films <list>, vehicles <list>, starships <list>
 ```
 
@@ -315,7 +315,7 @@ Notice that nothing has changed in the data, but at the top you can see the text
 starwars %>% 
   group_by(species) %>% #create group
   summarise(mean_height = mean(height, na.rm = TRUE)) # calculate summary statistic
-#> # A tibble: 38 x 2
+#> # A tibble: 38 × 2
 #>    species   mean_height
 #>    <chr>           <dbl>
 #>  1 Aleena            79 
@@ -328,7 +328,7 @@ starwars %>%
 #>  8 Ewok              88 
 #>  9 Geonosian        183 
 #> 10 Gungan           209.
-#> # ... with 28 more rows
+#> # … with 28 more rows
 ```
 
 Note how again, like in `data.frame`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
@@ -340,7 +340,7 @@ starwars %>%
   summarise(mean_height = mean(height, na.rm = TRUE),
             median_height = median(height, na.rm = TRUE),
             sd_height = sd(height, na.rm = TRUE))
-#> # A tibble: 38 x 4
+#> # A tibble: 38 × 4
 #>    species   mean_height median_height sd_height
 #>    <chr>           <dbl>         <dbl>     <dbl>
 #>  1 Aleena            79             79      NA  
@@ -353,7 +353,7 @@ starwars %>%
 #>  8 Ewok              88             88      NA  
 #>  9 Geonosian        183            183      NA  
 #> 10 Gungan           209.           206      14.2
-#> # ... with 28 more rows
+#> # … with 28 more rows
 ```
 
 We can even group by several variables, creating more detailed summaries:
@@ -363,7 +363,7 @@ We can even group by several variables, creating more detailed summaries:
 starwars %>%
   group_by(homeworld, sex) %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
-#> # A tibble: 61 x 3
+#> # A tibble: 61 × 3
 #> # Groups:   homeworld [49]
 #>    homeworld      sex    mean_height
 #>    <chr>          <chr>        <dbl>
@@ -377,7 +377,7 @@ starwars %>%
 #>  8 Champala       male          196 
 #>  9 Chandrila      female        150 
 #> 10 Concord Dawn   male          183 
-#> # ... with 51 more rows
+#> # … with 51 more rows
 ```
 
 Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
@@ -391,7 +391,7 @@ When we have created our groups, we can also use the `tally()` function to count
 starwars %>% 
   group_by(species) %>%
   tally()
-#> # A tibble: 38 x 2
+#> # A tibble: 38 × 2
 #>    species       n
 #>    <chr>     <int>
 #>  1 Aleena        1
@@ -404,7 +404,7 @@ starwars %>%
 #>  8 Ewok          1
 #>  9 Geonosian     1
 #> 10 Gungan        3
-#> # ... with 28 more rows
+#> # … with 28 more rows
 ```
 
 This can be useful to get an overview of your data[^exercise2-3]
@@ -432,7 +432,7 @@ starwars %>%
   filter(species == "Human") %>%
   group_by(sex) %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
-#> # A tibble: 2 x 2
+#> # A tibble: 2 × 2
 #>   sex    mean_height
 #>   <chr>        <dbl>
 #> 1 female        160.
@@ -462,7 +462,7 @@ starwars %>%
   filter(height < mean(height, na.rm = TRUE)) %>%
   group_by(homeworld) %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
-#> # A tibble: 19 x 2
+#> # A tibble: 19 × 2
 #>    homeworld   mean_height
 #>    <chr>             <dbl>
 #>  1 Alderaan           150 
@@ -610,7 +610,7 @@ You know that the individual in question is really heavy. Use `filter()` on the 
 # find individuals with mass larger than 1000
 starwars %>% filter(mass > 1000) %>%
   select(name, mass)
-#> # A tibble: 1 x 2
+#> # A tibble: 1 × 2
 #>   name                   mass
 #>   <chr>                 <dbl>
 #> 1 Jabba Desilijic Tiure  1358
@@ -884,7 +884,7 @@ copepods_long <- copepods %>%
                names_to = "species", values_to = "count")
 
 copepods_long
-#> # A tibble: 54 x 3
+#> # A tibble: 54 × 3
 #>    depth species       count
 #>    <int> <chr>         <int>
 #>  1     0 acartia           0
@@ -897,7 +897,7 @@ copepods_long
 #>  8     2 calanus           0
 #>  9     2 harpacticoida     0
 #> 10     2 oithona           6
-#> # ... with 44 more rows
+#> # … with 44 more rows
 ```
 
 Note that `pivot_longer()` has the same way of selecting columns as `select()`, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:

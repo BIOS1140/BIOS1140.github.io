@@ -432,7 +432,7 @@ So far, we have dealt with fitness for genotypes. This makes sense because selec
 To account for this, we estimate **marginal fitness** for a given allele $i$ as $w^{*}_i$. So for two alleles, the marginal fitness is:
 
 -   $w^{*}_1 = pw_{11} + qw_{12}$
--   $w^{*}_1 = pw_{12} + qw_{22}$
+-   $w^{*}_2 = pw_{12} + qw_{22}$
 
 Where $p$ and $q$ are the frequencies for $A_1$ and $A_2$ respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in *AND* the frequency of those genotypes. Let's calculate the fitness of our alleles using R.
 
@@ -778,19 +778,37 @@ Earlier on, we learned a bit about heterozygote advantage. This also referred to
 
 Previously we simulated data but this time, we are going to run our selection model for a range of values of $p$ and see where mean population fitness, $\overline{w}$ is maximised. Then we'll visualise it to make it clearer to ourselves. As with the book, we will set relative fitness as 0.2, 1 and 0.4 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
 
-::: {.yellow}
-**Advanced code:**
+We run the function for a range of values of $p$ using a for-loop. Notice how the result for each $p$ is added as a row of an empty data.frame.
 
 
 ```r
-# set the range of p
+# set the range of p and relative fitnesses
 p_range <- seq(0, 1, 0.01)
-# run selection_model for all values of p
-overdom <- map_dfr(p_range, function(z) selection_model(p = z, rel_fit = c(0.2, 1, 0.4)))
-```
-:::
+rel_fit_overdom <- c(0.2, 1, 0.4)
 
-The code above runs `selection_model()` for a range of values of $p$, and wraps the result in a data frame. Now this can be visualised with ggplot to see the stable equilibrium.
+# create empty data.frame with 6 columns for storing values
+# and rows corresponding to length of p_range
+overdom <- data.frame(matrix(ncol = 6, nrow = length(p_range)))
+names(overdom) <- c("p", "q", "w_bar", "w1", "w2", "p_t")
+# loop over p_range and fill the data.frame with results
+
+for(i in 1:length(p_range)){
+  # assign result of current p to a row in the data frame
+  overdom[i,] <- selection_model(p = p_range[i], rel_fit = rel_fit_overdom)
+}
+
+# inspect the resulting data.frame
+head(overdom)
+#>      p    q   w_bar    w1    w2        p_t
+#> 1 0.00 1.00 0.40000 1.000 0.400 0.00000000
+#> 2 0.01 0.99 0.41186 0.992 0.406 0.02408585
+#> 3 0.02 0.98 0.42344 0.984 0.412 0.04647648
+#> 4 0.03 0.97 0.43474 0.976 0.418 0.06735060
+#> 5 0.04 0.96 0.44576 0.968 0.424 0.08686289
+#> 6 0.05 0.95 0.45650 0.960 0.430 0.10514786
+```
+
+Now this can be visualised with ggplot to see the stable equilibrium.
 
 
 ```r
@@ -805,26 +823,41 @@ a + theme_light()
 
 We can see mean population fitness is maximised at around 0.4. This is the stable point on our 2D adaptive landscape.
 
-**Underdominance** is the opposite of overdominance - i.e. it is heterozygote disadvantage. In short, relative fitness of the heterozygote is lower than either homozygote. Once again, we can visualise the stable equilibrium for a model of overdominance using more or less exactly the same code as before. All we really need to change is the relative fitness which we will set to 0.9, 0.3 and 1 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes.
+**Underdominance** is the opposite of overdominance - i.e. it is heterozygote disadvantage. In short, relative fitness of the heterozygote is lower than either homozygote. Once again, we can visualise the stable equilibrium for a model of overdominance using more or less exactly the same code as before. All we really need to change is the relative fitness which we will set to 0.9, 0.3 and 1 for the $A_1A_1$, $A_1A_2$ and $A_2A_2$ genotypes respectively.
 
-First, we run the model over different values of $p$.
+**Exercise: Run `selection_model()` for different values of $p$ in the underdominance scenario described above and plot the result. You can use the same code as above, only changing the relative fitnesses. You should also change the object names to reflect that you're now investigating underdominance.**
 
-::: {.yellow}
-**Advanced code:**
+::: {.fold .s .o}
 
 
 ```r
-# set the range of p
+# set the range of p and relative fitnesses
 p_range <- seq(0, 1, 0.01)
-# run selection_model for all values of p
-underdom <- map_dfr(p_range, function(z) selection_model(p = z, rel_fit = c(0.9, 0.3, 1)))
-```
-:::
+rel_fit_underdom <- c(0.9, 0.3, 1)
 
-Then we plot it using `ggplot2`!
+# create empty data.frame with 6 columns for storing values
+# and rows corresponding to length of p_range
+underdom <- data.frame(matrix(ncol = 6, nrow = length(p_range)))
+names(underdom) <- c("p", "q", "w_bar", "w1", "w2", "p_t")
+# loop over p_range and fill the data.frame with results
 
+for(i in 1:length(p_range)){
+  # assign result of current p to a row in the data frame
+  underdom[i,] <- selection_model(p = p_range[i], rel_fit = rel_fit_underdom)
+}
 
-```r
+# inspect the resulting data.frame
+head(underdom)
+#>      p    q   w_bar    w1    w2         p_t
+#> 1 0.00 1.00 1.00000 0.300 1.000 0.000000000
+#> 2 0.01 0.99 0.98613 0.306 0.993 0.003103039
+#> 3 0.02 0.98 0.97252 0.312 0.986 0.006416320
+#> 4 0.03 0.97 0.95917 0.318 0.979 0.009946099
+#> 5 0.04 0.96 0.94608 0.324 0.972 0.013698630
+#> 6 0.05 0.95 0.93325 0.330 0.965 0.017680150
+
+# then visualize
+
 # initialise plot
 a <- ggplot(underdom, aes(p, w_bar)) + geom_line(colour = "blue", size = 1.5)
 a <- a + xlim(0, 1) + ylim(0, 1)
@@ -832,9 +865,11 @@ a <- a + xlab("Frequency of A1 - p") + ylab("Mean population fitness")
 a + theme_light()
 ```
 
-<img src="Exercise4_files/figure-html/unnamed-chunk-42-1.png" width="672" />
+<img src="Exercise4_files/figure-html/unnamed-chunk-41-1.png" width="672" />
 
-Here we see a scenario where underdominance is at a stable equilibria when $p$ is slightly above 0.5.
+:::
+
+Here we see a scenario where underdominance is at an unstable equilibrium when $p$ is slightly above 0.5.
 
 ## Study questions
 
