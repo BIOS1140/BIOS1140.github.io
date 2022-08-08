@@ -427,7 +427,7 @@ If you have many values that go together, store them together in a vector. You c
 
 ### Strings
 
-As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
+As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from plain text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
 
 ```{r}
 "Hello, world!"
@@ -553,6 +553,7 @@ mean(c(3, 5, 10, NA), na.rm = TRUE)
 -   `TRUE` and `FALSE` are called logical (or boolean) values, and are often the result of using logical operators like `==`, `>`, `!=` etc. `TRUE` and `FALSE` behave as 1 and 0 respectively when used inside e.g. the `sum()` function.
 -   `NA` indicates missing data. Any operation involving `NA` returns `NA`
 :::
+
 
 ### Functions {#functions}
 
