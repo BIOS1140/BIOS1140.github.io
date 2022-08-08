@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     // add "show answer button"
     if ( $(this).hasClass('s') ) {
-      $('pre.r', this).prepend("<div class=\"showopt\">Show Answer</div><br style=\"line-height:22px;\"/>");
+      $('pre.r', this).prepend("<div class=\"showopt\">Show Solution</div><br style=\"line-height:22px;\"/>");
       $('pre.r', this).children('code').attr('class', 'folded');
     }
 
