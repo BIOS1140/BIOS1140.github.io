@@ -39,7 +39,7 @@ geno_freq <- calc_geno(p)
 
 Or even `calc_geno(calc_p(geno_counts))` if you prefer! Notice how easy it is to follow what happens in the code above. This adheres to a principle called [modular programming](https://en.wikipedia.org/wiki/Modular_programming), where larger tasks are separated into smaller, more manageable tasks. Now it's your turn to actually turn the above into working code by creatng the `calc_p` function.
 
-b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$, i.e., $p$. To test your code, run the following:
+b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$ (i.e., $p$). To test your code, run the following:
 
     ```{r, eval = FALSE}
     geno <- c(6, 33, 81)
@@ -49,7 +49,7 @@ b) Create a function `calc_p()` that takes a vector of genotype counts  as an ar
 
     `p` should be `0.1875`, and `geno_freq` should be `0.03515625 0.30468750 0.66015625`
 
-c) **Optional**: create a function called `calc_geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `geno_freq()` to get expected genotype frequencies directly from genotype counts.
+c) **Optional**: create a function called `geno_from_counts()` that takes a vector of genotype counts as an argument, and then calls first `calc_p()`, then `calc_geno()` to get expected genotype frequencies directly from genotype counts.
 
 For the rest of the assignment, feel free to use these functions, and create new functions if you like.  _Note: be aware that `calc_geno()` calculates_ expected _genotype frequencies, and cannot be used where you need_ observed _genotype frequencies_.
 
