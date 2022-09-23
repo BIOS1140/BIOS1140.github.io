@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-08-08" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -432,9 +432,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="js/hideOutput.js"></script>
 <div id="vectorising-functions" class="section level4 unnumbered hasAnchor">
 <h4>1. Vectorising functions<a href="w05.html#vectorising-functions" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><em>To complete this part of the assignment, you need to define the <code>calc_af()</code> function from the tutorial:</em></p>
+<p><em>To complete this part of the assignment, you need to define the <code>calc_p()</code> function from the tutorial:</em></p>
 <div class="fold c">
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="w05.html#cb425-1" aria-hidden="true" tabindex="-1"></a>calc_af <span class="ot">&lt;-</span> <span class="cf">function</span>(counts){</span>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="w05.html#cb425-1" aria-hidden="true" tabindex="-1"></a>calc_p <span class="ot">&lt;-</span> <span class="cf">function</span>(counts){</span>
 <span id="cb425-2"><a href="w05.html#cb425-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get the number of samples</span></span>
 <span id="cb425-3"><a href="w05.html#cb425-3" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">sum</span>(counts)</span>
 <span id="cb425-4"><a href="w05.html#cb425-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate frequency of 1st allele - p</span></span>
@@ -450,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb426-5"><a href="w05.html#cb426-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">location =</span> <span class="fu">c</span>(<span class="st">&quot;loc1&quot;</span>, <span class="st">&quot;loc2&quot;</span>, <span class="st">&quot;loc3&quot;</span>, <span class="st">&quot;loc4&quot;</span>)</span>
 <span id="cb426-6"><a href="w05.html#cb426-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ol style="list-style-type: lower-alpha">
-<li><p>Use <code>calc_af()</code> together with <code>apply()</code> to calculate <span class="math inline">\(p\)</span> for each population. Add the values to <code>counts</code> as a column.</p></li>
+<li><p>Use <code>calc_p()</code> together with <code>apply()</code> to calculate <span class="math inline">\(p\)</span> for each population. Add the values to <code>counts</code> as a column. <em>hint: you have to select only the numeric columns of the data frame to use</em> <code>apply()</code> <em>on it.</em></p></li>
 <li><p>Use <code>ifelse()</code> to create a column that says “above 0.5” if p in the population is larger than 0.5, and “below 0.5” if it’s not.</p></li>
 </ol>
 <p>You should print the data frame in the end and show the output in the hand-in.</p>
@@ -472,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="more-on-f_st" class="section level4 unnumbered hasAnchor">
 <h4>3. More on <span class="math inline">\(F_{ST}\)</span><a href="w05.html#more-on-f_st" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><em>To complete this part of the assignment, you need to define the <code>calc_fst()</code> function, in addition to the <code>calc_af()</code> function defined in question 1.</em></p>
+<p><em>To complete this part of the assignment, you need to define the <code>calc_fst()</code> function, in addition to the <code>calc_p()</code> function defined in question 1.</em></p>
 <div class="fold c">
 <div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="w05.html#cb427-1" aria-hidden="true" tabindex="-1"></a>calc_fst <span class="ot">&lt;-</span> <span class="cf">function</span>(p_1, p_2){</span>
 <span id="cb427-2"><a href="w05.html#cb427-2" aria-hidden="true" tabindex="-1"></a>  </span>
@@ -504,7 +504,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb427-28"><a href="w05.html#cb427-28" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <ol style="list-style-type: lower-alpha">
-<li><p>Using the <code>calc_af()</code> and <code>calc_fst()</code> functions we developed during the tutorial and the <code>lct_freq</code> data, calculate <span class="math inline">\(F_{ST}\)</span> between the <code>Han_China</code> and the <code>Swedish_and_Finnish_Scandinavia</code> populations. What might be a biological explanation of the <span class="math inline">\(F_{ST}\)</span> value you calculate? <em>Hint: think about what the LCT gene does, and the geographical patterns of lactose intolerance.</em></p></li>
+<li><p>Using the <code>calc_p()</code> and <code>calc_fst()</code> functions we developed during the tutorial and the <code>lct_freq</code> data, calculate <span class="math inline">\(F_{ST}\)</span> between the <code>Han_China</code> and the <code>Swedish_and_Finnish_Scandinavia</code> populations. What might be a biological explanation of the <span class="math inline">\(F_{ST}\)</span> value you calculate? <em>Hint: think about what the LCT gene does, and the geographical patterns of lactose intolerance.</em></p></li>
 <li><p>Using the functions we developed in the tutorial, calculate <span class="math inline">\(F_{ST}\)</span> around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the <span class="math inline">\(F_{ST}\)</span> between European Americans and East Asians. What is the highest value of <span class="math inline">\(F_{ST}\)</span>? How does this compare with the highest <span class="math inline">\(F_{ST}\)</span> between European Americans and East Asians that we investigated in the tutorial?</p></li>
 </ol>
 

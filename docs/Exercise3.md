@@ -668,7 +668,7 @@ nA1 <- rbinom(1, size = 2*N, prob = p2)
 # calculate p in generation 3
 p3 <- nA1/(2*N)
 p3
-#> [1] 0.25
+#> [1] 0.875
 ```
 
 If we were to to properly understand drift over more than one generation, we could now have used our `p3` to find p in the fourth generation, use the new $p$ to calculate $p$ in the next generation, and so on until we have simulated for all the number of generations we want.
@@ -681,21 +681,21 @@ nA1 <- rbinom(1, size = 2*N, prob = p3)
 # calculate p in generation 4
 p4 <- nA1/(2*N)
 p4
-#> [1] 0.3125
+#> [1] 0.9375
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p4)
 # calculate p in generation 5
 p5 <- nA1/(2*N)
 p5
-#> [1] 0.4375
+#> [1] 1
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p5)
 # calculate p in generation 5
 p6 <- nA1/(2*N)
 p6
-#> [1] 0.5625
+#> [1] 1
 
 # and so on ...
 ```
@@ -766,8 +766,8 @@ for (i in 2:ngen){
 }
 
 p
-#>   [1] 0.5000 0.3125 0.1250 0.1250 0.1875 0.1250 0.1250 0.0625 0.1250 0.0625
-#>  [11] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+#>   [1] 0.5000 0.3750 0.3125 0.3750 0.5000 0.6250 0.5000 0.4375 0.4375 0.4375
+#>  [11] 0.3750 0.1875 0.1250 0.1250 0.1875 0.1875 0.0000 0.0000 0.0000 0.0000
 #>  [21] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
 #>  [31] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
 #>  [41] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000

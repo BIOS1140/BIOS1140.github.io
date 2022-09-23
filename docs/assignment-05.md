@@ -5,12 +5,12 @@
 
 #### 1. Vectorising functions {.unnumbered}
 
-*To complete this part of the assignment, you need to define the `calc_af()` function from the tutorial:*
+*To complete this part of the assignment, you need to define the `calc_p()` function from the tutorial:*
 
 ::: {.fold .c}
 
 ```r
-calc_af <- function(counts){
+calc_p <- function(counts){
   # get the number of samples
   n <- sum(counts)
   # calculate frequency of 1st allele - p
@@ -32,7 +32,7 @@ counts <- data.frame(
 )
 ```
 
-a)  Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column.
+a)  Use `calc_p()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column. *hint: you have to select only the numeric columns of the data frame to use* `apply()` *on it.*
 
 b)  Use `ifelse()` to create a column that says "above 0.5" if p in the population is larger than 0.5, and "below 0.5" if it's not.
 
@@ -54,7 +54,7 @@ c.  Calculate $F_{st}$ between the lake and stream fish. How do you interpret th
 
 #### 3. More on $F_{ST}$ {-}
 
-*To complete this part of the assignment, you need to define the `calc_fst()` function, in addition to the `calc_af()` function defined in question 1.*
+*To complete this part of the assignment, you need to define the `calc_fst()` function, in addition to the `calc_p()` function defined in question 1.*
 
 ::: {.fold .c}
 
@@ -90,6 +90,6 @@ calc_fst <- function(p_1, p_2){
 ```
 :::
 
-a)  Using the `calc_af()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might be a biological explanation of the $F_{ST}$ value you calculate? _Hint: think about what the LCT gene does, and the geographical patterns of lactose intolerance._
+a)  Using the `calc_p()` and `calc_fst()` functions we developed during the tutorial and the `lct_freq` data, calculate $F_{ST}$ between the `Han_China` and the `Swedish_and_Finnish_Scandinavia` populations. What might be a biological explanation of the $F_{ST}$ value you calculate? _Hint: think about what the LCT gene does, and the geographical patterns of lactose intolerance._
 
 b)  Using the functions we developed in the tutorial, calculate $F_{ST}$ around the LCT gene between Americans of European descent and also between African Americans. Plot this like we plotted the $F_{ST}$ between European Americans and East Asians. What is the highest value of $F_{ST}$? How does this compare with the highest $F_{ST}$ between European Americans and East Asians that we investigated in the tutorial?
