@@ -288,11 +288,11 @@ If your calculations were correct, then you should have an *F*~ST~ estimate of 0
 
 The code in the previous section was useful to demonstrate how we can calculate *F*~ST~, but it would be a lot of work to run through this every single time we want estimate the statistic for a locus. This being R, we can of course easily create a function that will do all of the leg work for us! We will take the code we wrote out in the last section and use it here to write two functions that we can use when we want to calculate *F*~ST~. Note that for simplicity, we will only write functions that work for **two populations**.
 
-First, we will write a function called `calc_af` which will take genotype counts from a population and calculate allele frequencies. This will probably be similar to the function you made in last week's assignment.
+First, we will write a function called `calc_p` which will take genotype counts from a population and calculate allele frequencies. This will probably be similar to the function you made in last week's assignment.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # a simple function to calculate allele frequencies in two populations
-calc_af <- function(counts){
+calc_p <- function(counts){
   # get the number of samples
   n <- sum(counts)
   # calculate frequency of 1st allele - p
@@ -301,12 +301,12 @@ calc_af <- function(counts){
 }
 ```
 
-Since it is very straightforward for use to calculate the frequency of the second allele once we have the frequency of the first (i.e. $q = 1- p$), our `calc_af` function will only calculate $p$ for both populations. Let's test it on the data from our previous example.
+Since it is very straightforward for use to calculate the frequency of the second allele once we have the frequency of the first (i.e. $q = 1- p$), our `calc_p` function will only calculate $p$ for both populations. Let's test it on the data from our previous example.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # testing our function on the american/druze example
-af_american <- calc_af(c(48, 28, 4))
-af_druze <- calc_af(c(0, 3, 77))
+af_american <- calc_p(c(48, 28, 4))
+af_druze <- calc_p(c(0, 3, 77))
 ```
 
 So now that we have a function that calculates allele frequencies in the two populations, we can write our `calc_fst` function to take these frequencies and calculate *F*~ST~ from them.
@@ -343,7 +343,7 @@ calc_fst <- function(p_1, p_2){
 }
 ```
 
-Let's test our function on the allele frequencies we calculated with our `calc_af` function.
+Let's test our function on the allele frequencies we calculated with our `calc_p` function.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 # testing our function on the american/druze example
@@ -382,16 +382,16 @@ lct_counts <- read.table("docs/data/lct_count.tsv", header = TRUE, sep = "\t")
 
 You should now have a data frame in your R environment with allele counts for the SNP rs4988235 for 53 populations. Again, these data are all from [Bersaglieri et al. 2002](https://www.sciencedirect.com/science/article/pii/S0002929707628389).
 
-What we have is the counts of allleles but what we actually want is the allele frequency for T - that is how we can calculate *F*~ST~. We can use our `calc_af()` function for this, so let's try this function out on counts for a single population. We use indexing here to select the first row and only columns 2:4, since our function is only expecting the count data, not the population name.
+What we have is the counts of allleles but what we actually want is the allele frequency for T - that is how we can calculate *F*~ST~. We can use our `calc_p()` function for this, so let's try this function out on counts for a single population. We use indexing here to select the first row and only columns 2:4, since our function is only expecting the count data, not the population name.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", messages = FALSE}
-calc_af(lct_counts[1, 2:4])
+calc_p(lct_counts[1, 2:4])
 ```
 
 Great! So this works well. Now let's get $p$ (the frequency of the T allele) for all the populations. We can do this using the `apply()` function that you learned about in the R-section. Note that the data needs to be columns 2 through 4 of the data, and the second argument needs to be `1` since we're working on rows.
 
 ```{r, eval = TRUE, echo = TRUE, results = "hide", messages = FALSE}
-p <- apply(lct_counts[,2:4], 1, calc_af)
+p <- apply(lct_counts[,2:4], 1, calc_p)
 ```
 
 We can now combine our vector of allele frequencies with the population names to create a data.frame of frequencies. Like so
