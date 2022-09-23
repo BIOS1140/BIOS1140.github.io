@@ -193,7 +193,7 @@ divide(10, 0)
 # oops
 ```
 
-**Exercise: create a function that takes two arguments and returns the sum of those arguments**
+**Exercise: create a function that takes two arguments and returns the sum of those arguments.** *Tip: call it something other than* `sum` *(e.g.* `add`*) to avoid overwriting R's built in `sum` function.*
 
 ::: {.fold .s}
 ```{r}
