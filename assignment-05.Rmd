@@ -30,7 +30,7 @@ counts <- data.frame(
 )
 ```
 
-a)  Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column.
+a)  Use `calc_af()` together with `apply()` to calculate $p$ for each population. Add the values to `counts` as a column. *hint: you have to select only the numeric columns of the data frame to use* `apply()` *on it.*
 
 b)  Use `ifelse()` to create a column that says "above 0.5" if p in the population is larger than 0.5, and "below 0.5" if it's not.
 
