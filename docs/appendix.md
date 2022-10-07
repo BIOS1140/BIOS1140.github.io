@@ -66,3 +66,42 @@ When you're done with the document, you can press the tiny yarnball at the top o
 * Plots will appear inline instead of in the plot window. Disable this by navigating to the cog wheel at the top, and select "chunk output in console".
 
 :::
+
+# Technical information {#tech}
+
+
+
+These tutorials were made using Rmarkdown version 2.13 and Bookdown version 0.25. All code was executed in R programming language version 4.1.0.
+
+The following packages and versions were used for the current tutorials:
+
+
+Table: (\#tab:unnamed-chunk-4)Packages needed to run all the tutorials, and the package versions used to knit the current version of the tutorials.
+
+|Package   |Version |
+|:---------|:-------|
+|adegenet  |2.1.7   |
+|ape       |5.6-2   |
+|parallel  |4.1.0   |
+|pegas     |1.1     |
+|phangorn  |2.9.0   |
+|PopGenome |2.7.5   |
+|qtl       |1.52    |
+|tidyverse |1.3.1   |
+
+The specific versions of the tidyverse packages are outlined below:
+
+
+Table: (\#tab:unnamed-chunk-5)Package versions of core Tidyverse packages
+
+|Package |Version |
+|:-------|:-------|
+|ggplot2 |3.3.5   |
+|dplyr   |1.0.8   |
+|tidyr   |1.2.0   |
+|readr   |2.1.2   |
+|purrr   |0.3.4   |
+|tibble  |3.1.8   |
+|stringr |1.4.0   |
+|forcats |0.5.1   |
+

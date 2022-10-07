@@ -7,6 +7,8 @@ fig:unnamed-chunk-58
 fig:unnamed-chunk-43
 fig:unnamed-chunk-29
 fig:unnamed-chunk-45
+tab:unnamed-chunk-4
+tab:unnamed-chunk-5
 ch01
 start-using-r
 install-r-and-rstudio
@@ -211,3 +213,4 @@ concluding-remarks
 study-questions-8
 going-further-9
 rmarkdown
+tech

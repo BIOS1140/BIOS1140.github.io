@@ -29,6 +29,8 @@ _Oslo, October 2018_
 
 This version is a revamped version of Mark Ravinet's original tutorials, edited by Even Sletteng Garvang and Solveig Brochmann based on the feedback during the three years the course has been run at the University of Oslo. Even contributed with new code, revised sections and wrote a new tutorial for chapter 1. Solveig contributed with edits and feedback, and revised sections.
 
+The code used to create this book can be found at <https://github.com/BIOS1140/BIOS1140.github.io>. The R and package versions used can be found in Appendix \@ref(tech).
+
 ## How to use these tutorials {-}
 
 To get the most out of these tutorials, you should run all the provided code in R on your own computer while going through them. Rather than just copy/pasting all the code, we encourage you to write the code in manually. A great way to force yourself to do this is by changing some object names along the way. We also highly encourage you to experiment with the provided code. Please do change function arguments, values etc. to see what happens. If you ever think: "what happens if I...", try it! The worst thing that can happen is that you get an error.

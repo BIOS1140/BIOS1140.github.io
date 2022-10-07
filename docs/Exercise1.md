@@ -1087,7 +1087,7 @@ When a package has been installed, you have to load it in order to use it. **You
 
 
 ```r
-library("ggplot2")
+library(ggplot2)
 ```
 
 Make a habit of loading all the packages you use at the top of your script, that makes it easier to follow.

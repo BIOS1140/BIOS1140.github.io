@@ -407,6 +407,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="rmarkdown.html#r-markdown">R Markdown<span></span></a></li>
 <li><a href="rmarkdown.html#getting-started-7">Getting started<span></span></a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information<span></span></a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -434,7 +435,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Packages in R can be installed with the function <code>install.packages()</code>. <strong>You will only have to install a package once per computer</strong>. Here is how to install the <code>ggplot2</code> package, which we will use next week:</p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="installing-and-loading-packages.html#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>When a package has been installed, you have to load it in order to use it. <strong>You have to load a package each time you want to use it in a script.</strong> You load a package using the function <code>library()</code>:</p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="installing-and-loading-packages.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="installing-and-loading-packages.html#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <p>Make a habit of loading all the packages you use at the top of your script, that makes it easier to follow.</p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
