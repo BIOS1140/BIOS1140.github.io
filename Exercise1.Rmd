@@ -589,8 +589,8 @@ This may not matter much for such a simple function, but it gets way easier to r
 
 Let's return to investigating more aspects of the Nordic countries, after all there's more to a country than just it's population size. Table \@ref(tab:nord-more) shows some additional information about the Nordic countries:
 
-```{r nord-more, echo = FALSE}
-library(tidyverse, quietly = TRUE)
+```{r nord-more, echo = FALSE, message = FALSE, warning = FALSE}
+library(tidyverse)
 nordic_tab %>%
   select(Country.Area.Name, Population, Area..sq.km., Life.Expectancy.at.Birth) %>%
   knitr::kable(
@@ -912,7 +912,7 @@ install.packages("ggplot2")
 When a package has been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the function `library()`:
 
 ```{r, eval = FALSE}
-library("ggplot2")
+library(ggplot2)
 ```
 
 Make a habit of loading all the packages you use at the top of your script, that makes it easier to follow.
