@@ -69,7 +69,7 @@ When you're done with the document, you can press the tiny yarnball at the top o
 
 ```{bash, include = FALSE}
 rm data/packages_redundant.txt
-for line in $(grep "^library(" Exercise*); do  
+for line in $(grep "^library(" Exercise*.Rmd); do  
     sub=${line/*.Rmd:library(}
     echo ${sub/)} >> data/packages_redundant.txt
 done
