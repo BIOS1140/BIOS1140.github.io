@@ -64,3 +64,40 @@ When you're done with the document, you can press the tiny yarnball at the top o
 * Plots will appear inline instead of in the plot window. Disable this by navigating to the cog wheel at the top, and select "chunk output in console".
 
 :::
+
+# Technical information {#tech}
+
+```{bash, include = FALSE}
+rm data/packages_redundant.txt
+for line in $(grep "^library(" Exercise*); do  
+    sub=${line/*.Rmd:library(}
+    echo ${sub/)} >> data/packages_redundant.txt
+done
+```
+
+These tutorials were made using Rmarkdown version `r installed.packages()["rmarkdown", "Version"]` and Bookdown version `r installed.packages()["bookdown", "Version"]`. All code was executed in R programming language version `r paste(R.version$major, R.version$minor, sep = ".")`.
+
+The following packages and versions were used for the current tutorials:
+
+```{r, echo = FALSE, message = FALSE, warning=FALSE}
+library(tidyverse)
+pkgs = scan("data/packages_redundant.txt", what = character())
+pkgs = sort(unique(pkgs))
+installed.packages()[pkgs[pkgs != "ggplot2"], c("Version")] %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column() %>%
+  knitr::kable(col.names = c("Package", "Version"),
+               caption = "Packages needed to run all the tutorials, and the package versions used to knit the current version of the tutorials.")
+```
+
+The specific versions of the tidyverse packages are outlined below:
+
+```{r, echo = FALSE}
+core_tidyverse <- c("ggplot2", "dplyr", "tidyr", "readr", "purrr", "tibble", "stringr", "forcats")
+installed.packages()[core_tidyverse, c("Version")] %>%
+  as.data.frame() %>%
+  tibble::rownames_to_column() %>%
+  knitr::kable(col.names = c("Package", "Version"),
+               caption = "Package versions of core Tidyverse packages")
+```
+
