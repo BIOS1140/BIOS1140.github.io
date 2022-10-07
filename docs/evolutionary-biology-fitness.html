@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -458,15 +458,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Where <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are the frequencies for <span class="math inline">\(A_1\)</span> and <span class="math inline">\(A_2\)</span> respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in <em>AND</em> the frequency of those genotypes. Let’s calculate the fitness of our alleles using R.</p>
 <div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="evolutionary-biology-fitness.html#cb184-1" aria-hidden="true" tabindex="-1"></a><span class="do">## first calculate the allele frequencies</span></span>
 <span id="cb184-2"><a href="evolutionary-biology-fitness.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="co"># define the total number of alleles</span></span>
-<span id="cb184-3"><a href="evolutionary-biology-fitness.html#cb184-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(a)</span>
-<span id="cb184-4"><a href="evolutionary-biology-fitness.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p</span></span>
-<span id="cb184-5"><a href="evolutionary-biology-fitness.html#cb184-5" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> ((a[<span class="st">&quot;A1A1&quot;</span>] <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">+</span> a[<span class="st">&quot;A1A2&quot;</span>])<span class="sc">/</span>n</span>
-<span id="cb184-6"><a href="evolutionary-biology-fitness.html#cb184-6" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate q</span></span>
-<span id="cb184-7"><a href="evolutionary-biology-fitness.html#cb184-7" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
-<span id="cb184-8"><a href="evolutionary-biology-fitness.html#cb184-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb184-9"><a href="evolutionary-biology-fitness.html#cb184-9" aria-hidden="true" tabindex="-1"></a><span class="do">## now calculate the marginal fitness</span></span>
-<span id="cb184-10"><a href="evolutionary-biology-fitness.html#cb184-10" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A1&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>])</span>
-<span id="cb184-11"><a href="evolutionary-biology-fitness.html#cb184-11" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A2A2&quot;</span>])</span></code></pre></div>
+<span id="cb184-3"><a href="evolutionary-biology-fitness.html#cb184-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-4"><a href="evolutionary-biology-fitness.html#cb184-4" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">*</span><span class="fu">sum</span>(geno_freq)</span>
+<span id="cb184-5"><a href="evolutionary-biology-fitness.html#cb184-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p</span></span>
+<span id="cb184-6"><a href="evolutionary-biology-fitness.html#cb184-6" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> ((geno_freq[<span class="st">&quot;A1A1&quot;</span>] <span class="sc">*</span> <span class="dv">2</span>) <span class="sc">+</span> geno_freq[<span class="st">&quot;A1A2&quot;</span>])<span class="sc">/</span>n</span>
+<span id="cb184-7"><a href="evolutionary-biology-fitness.html#cb184-7" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate q</span></span>
+<span id="cb184-8"><a href="evolutionary-biology-fitness.html#cb184-8" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p</span>
+<span id="cb184-9"><a href="evolutionary-biology-fitness.html#cb184-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-10"><a href="evolutionary-biology-fitness.html#cb184-10" aria-hidden="true" tabindex="-1"></a><span class="do">## now calculate the marginal fitness</span></span>
+<span id="cb184-11"><a href="evolutionary-biology-fitness.html#cb184-11" aria-hidden="true" tabindex="-1"></a>w1 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A1&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>])</span>
+<span id="cb184-12"><a href="evolutionary-biology-fitness.html#cb184-12" aria-hidden="true" tabindex="-1"></a>w2 <span class="ot">&lt;-</span> (p<span class="sc">*</span>rel_fit[<span class="st">&quot;A1A2&quot;</span>]) <span class="sc">+</span> (q<span class="sc">*</span>rel_fit[<span class="st">&quot;A2A2&quot;</span>])</span></code></pre></div>
 <p>Note again that we are explicitly naming elements of the vector to make the mathematics here clearer to you. However this can cause some annoying names to follow around your data. Take a look at <code>w1</code> and <code>w2</code> - you should see they have genotype names. The names still hang about because we used them right from the start, so we also remove them here by assigning a <code>NULL</code>:</p>
 <div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="evolutionary-biology-fitness.html#cb185-1" aria-hidden="true" tabindex="-1"></a><span class="co"># strip names</span></span>
 <span id="cb185-2"><a href="evolutionary-biology-fitness.html#cb185-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(w1) <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
