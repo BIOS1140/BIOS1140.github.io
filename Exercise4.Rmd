@@ -409,9 +409,10 @@ Where $p$ and $q$ are the frequencies for $A_1$ and $A_2$ respectively. In other
 ```{r, eval = TRUE, echo = TRUE, results = "hide"}
 ## first calculate the allele frequencies
 # define the total number of alleles
-n <- 2*sum(a)
+
+n <- 2*sum(geno_freq)
 # calculate p
-p <- ((a["A1A1"] * 2) + a["A1A2"])/n
+p <- ((geno_freq["A1A1"] * 2) + geno_freq["A1A2"])/n
 # calculate q
 q <- 1 - p
 
