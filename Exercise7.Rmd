@@ -237,7 +237,8 @@ First of all, let's turn our attention to the number of segregating sites. How d
 ```{r, eval = TRUE, echo = TRUE, results = "hide", message = FALSE}
 
 # initialise vector for storing values
-# note: only 14 values since we start looping at 2
+# we start by comparing 2 sequences, then increase to 3 etc.
+# so we will end up with 14 comparisons
 ss <- rep(NA, 14)
 
 # get segregating sites for an increasing number of sequences
@@ -259,7 +260,7 @@ Have a look at the `ss` vector this creates - it is the number of segregating si
 plot(2:15, ss, col = "red", xlab = "No of sequences", ylab = "Segregating sites", las = 1)
 ```
 
-It should be immediately obvious from this figure that the number of segregating sites is biased by the number of sequences we include in the data. It increases our probability of observing a polymorphism and also since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.
+From the figure, we can see that the number of segregating sites grows as we increase the number of sequences, i.e., segregating sites are biased by sample size. It increases our probability of observing a polymorphism, and since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.
 
 So what do we see if we repeat the same code, but this time for nucleotide diversity or $\pi$?
 
