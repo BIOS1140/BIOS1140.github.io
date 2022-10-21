@@ -98,7 +98,7 @@ alview(mydna)
 
 Note that in this case, we used `alview` directly on our `mydna` object - **not** on the `myalign` alignment object. This prints our alignment to the screen and it makes it immediately obvious where there are nucleotide polymorphisms in our data. You should note however that the `N` bases in the first sequence are bases which could not be called by the sequencing machine - they are not valid base calls.
 
-**NOTE** it is important that we clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
+**NOTE** In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
 
 ### Calculating basic sequence statistics
 
@@ -124,13 +124,13 @@ sum(base.freq(mydna)[c(2, 3)])
 
 #### Segregating sites
 
-Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can actually count:
+Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can find the segregating sites:
 
 ```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 seg.sites(mydna)
 ```
 
-`seg.sites` returns the position in the sequence where polymorphisms occur. So these are essentially the indices of polymorphsims in our 40 base pair sequence alignment. There are just a few here, so you can easily count them but if there were many, you might want to wrap this command with the length function to get the actual number:
+`seg.sites` returns the position in the sequence where polymorphisms occur in our 40 base pair sequence alignment. The positions are stored in a vector, and we can count the number of elements in the vector with the `length()` function to get the number of segregating sites.
 
 ```{r, eval = FALSE}
 length(seg.sites(mydna))
