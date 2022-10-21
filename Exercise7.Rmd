@@ -173,7 +173,7 @@ np <- (n*(n-1))/2
 Pi <- sum(Pi_ij)/np
 ```
 
-You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. So what we have here is the average number of nucleotide differences between our three sequences. This is *not* standardised to the sequence length (i.e., $\Pi$, not $\pi$), so we need to do that next.
+You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. What we have here is the average number of nucleotide differences between our three sequences. This is *not* standardised to the sequence length (i.e., $\Pi$, not $\pi$), so we need to do that next.
 
 ```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 # calculate standarised nucleotide diversity
@@ -181,7 +181,7 @@ L <- 40
 pi <- Pi/L
 ```
 
-Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
+Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly). Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
 
 ```{r, eval = FALSE, echo = TRUE, results = "hide", message = FALSE}
 nuc.div(mydna)
@@ -344,7 +344,7 @@ The data we are going to be working with for this section is a set of **SNP** ca
 
 The data comes in two parts. We'll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for [variant call format](https://samtools.github.io/hts-specs/VCFv4.2.pdf). 
 
-One thing you should know about VCF files is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
+VCF files can quickly become very very big, so the one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**. However it is still quite a large file size, so the file is compressed, and there are some preprocessing steps you will need to do before you can open in it in R.
 
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
