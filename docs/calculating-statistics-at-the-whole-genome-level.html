@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-07" />
+<meta name="date" content="2022-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -437,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.3.1</span> Reading in variant data<a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The data we are going to be working with for this section is a set of <strong>SNP</strong> calls from whole-genome resequencing of <em>Passer</em> sparrows. It was originally used in a study on the evolution of human commensalism in the house sparrow by <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. In the dataset there are SNPs from four sparrow species - the house sparrow, the Italian sparrow, the Spanish sparrow, the tree sparrow and also data from a house sparrow sub-species known as the Bactrianus sparrow.</p>
 <p>The data comes in two parts. We’ll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">variant call format</a>.</p>
-<p>One thing you should know about VCF files is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset <strong>from a single chromosome only</strong>, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.</p>
+<p>VCF files can quickly become very very big, so the one we are using today is a much smaller, randomly sampled version of the true dataset <strong>from a single chromosome only</strong>. However it is still quite a large file size, so the file is compressed, and there are some preprocessing steps you will need to do before you can open in it in R.</p>
 <ul>
 <li>First, download the <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">VCF</a></li>
 <li>Next, make a directory in your working directory (use <code>getwd</code> if you don’t know where that is) and call it <code>sparrow_snps</code></li>

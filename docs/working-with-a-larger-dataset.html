@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-07" />
+<meta name="date" content="2022-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -448,23 +448,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>First of all, let’s turn our attention to the number of segregating sites. How does using different numbers of sequences effect this? We can loop through different values of the maximum number of sequences. So we will first use 2 sequences, then 3, then 4 and so on, until we use all 15.<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="working-with-a-larger-dataset.html#cb299-1" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb299-2"><a href="working-with-a-larger-dataset.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="co"># initialise vector for storing values</span></span>
-<span id="cb299-3"><a href="working-with-a-larger-dataset.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="co"># note: only 14 values since we start looping at 2</span></span>
-<span id="cb299-4"><a href="working-with-a-larger-dataset.html#cb299-4" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
-<span id="cb299-5"><a href="working-with-a-larger-dataset.html#cb299-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb299-6"><a href="working-with-a-larger-dataset.html#cb299-6" aria-hidden="true" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
-<span id="cb299-7"><a href="working-with-a-larger-dataset.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(ss))){</span>
-<span id="cb299-8"><a href="working-with-a-larger-dataset.html#cb299-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb299-9"><a href="working-with-a-larger-dataset.html#cb299-9" aria-hidden="true" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
-<span id="cb299-10"><a href="working-with-a-larger-dataset.html#cb299-10" aria-hidden="true" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
-<span id="cb299-11"><a href="working-with-a-larger-dataset.html#cb299-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb299-12"><a href="working-with-a-larger-dataset.html#cb299-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate n seg.sites in the subset</span></span>
-<span id="cb299-13"><a href="working-with-a-larger-dataset.html#cb299-13" aria-hidden="true" tabindex="-1"></a>  ss[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(woodmouse_sub))</span>
-<span id="cb299-14"><a href="working-with-a-larger-dataset.html#cb299-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<span id="cb299-3"><a href="working-with-a-larger-dataset.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="co"># we start by comparing 2 sequences, then increase to 3 etc.</span></span>
+<span id="cb299-4"><a href="working-with-a-larger-dataset.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="co"># so we will end up with 14 comparisons</span></span>
+<span id="cb299-5"><a href="working-with-a-larger-dataset.html#cb299-5" aria-hidden="true" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
+<span id="cb299-6"><a href="working-with-a-larger-dataset.html#cb299-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb299-7"><a href="working-with-a-larger-dataset.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
+<span id="cb299-8"><a href="working-with-a-larger-dataset.html#cb299-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(ss))){</span>
+<span id="cb299-9"><a href="working-with-a-larger-dataset.html#cb299-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb299-10"><a href="working-with-a-larger-dataset.html#cb299-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
+<span id="cb299-11"><a href="working-with-a-larger-dataset.html#cb299-11" aria-hidden="true" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
+<span id="cb299-12"><a href="working-with-a-larger-dataset.html#cb299-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb299-13"><a href="working-with-a-larger-dataset.html#cb299-13" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate n seg.sites in the subset</span></span>
+<span id="cb299-14"><a href="working-with-a-larger-dataset.html#cb299-14" aria-hidden="true" tabindex="-1"></a>  ss[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(woodmouse_sub))</span>
+<span id="cb299-15"><a href="working-with-a-larger-dataset.html#cb299-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Have a look at the <code>ss</code> vector this creates - it is the number of segregating sites for each maximum number of sequences. However, the relationship is a lot easier if we plot it:</p>
 <div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="working-with-a-larger-dataset.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot figure</span></span>
 <span id="cb300-2"><a href="working-with-a-larger-dataset.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, ss, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;No of sequences&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Segregating sites&quot;</span>, <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="Exercise7_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
-<p>It should be immediately obvious from this figure that the number of segregating sites is biased by the number of sequences we include in the data. It increases our probability of observing a polymorphism and also since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.</p>
+<p>From the figure, we can see that the number of segregating sites grows as we increase the number of sequences, i.e., segregating sites are biased by sample size. It increases our probability of observing a polymorphism, and since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.</p>
 <p>So what do we see if we repeat the same code, but this time for nucleotide diversity or <span class="math inline">\(\pi\)</span>?</p>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="working-with-a-larger-dataset.html#cb301-1" aria-hidden="true" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
 <span id="cb301-2"><a href="working-with-a-larger-dataset.html#cb301-2" aria-hidden="true" tabindex="-1"></a></span>

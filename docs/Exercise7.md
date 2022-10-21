@@ -102,7 +102,7 @@ alview(mydna)
 
 Note that in this case, we used `alview` directly on our `mydna` object - **not** on the `myalign` alignment object. This prints our alignment to the screen and it makes it immediately obvious where there are nucleotide polymorphisms in our data. You should note however that the `N` bases in the first sequence are bases which could not be called by the sequencing machine - they are not valid base calls.
 
-**NOTE** it is important that we clarify what we mean by alignment here. In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
+**NOTE** In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.
 
 ### Calculating basic sequence statistics
 
@@ -131,14 +131,14 @@ sum(base.freq(mydna)[c(2, 3)])
 
 #### Segregating sites
 
-Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can actually count:
+Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can find the segregating sites:
 
 
 ```r
 seg.sites(mydna)
 ```
 
-`seg.sites` returns the position in the sequence where polymorphisms occur. So these are essentially the indices of polymorphsims in our 40 base pair sequence alignment. There are just a few here, so you can easily count them but if there were many, you might want to wrap this command with the length function to get the actual number:
+`seg.sites` returns the position in the sequence where polymorphisms occur in our 40 base pair sequence alignment. The positions are stored in a vector, and we can count the number of elements in the vector with the `length()` function to get the number of segregating sites.
 
 
 ```r
@@ -184,7 +184,7 @@ np <- (n*(n-1))/2
 Pi <- sum(Pi_ij)/np
 ```
 
-You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. So what we have here is the average number of nucleotide differences between our three sequences. This is *not* standardised to the sequence length (i.e., $\Pi$, not $\pi$), so we need to do that next.
+You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. What we have here is the average number of nucleotide differences between our three sequences. This is *not* standardised to the sequence length (i.e., $\Pi$, not $\pi$), so we need to do that next.
 
 
 ```r
@@ -193,7 +193,7 @@ L <- 40
 pi <- Pi/L
 ```
 
-Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly) Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
+Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly). Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
 
 
 ```r
@@ -255,7 +255,8 @@ First of all, let's turn our attention to the number of segregating sites. How d
 ```r
 
 # initialise vector for storing values
-# note: only 14 values since we start looping at 2
+# we start by comparing 2 sequences, then increase to 3 etc.
+# so we will end up with 14 comparisons
 ss <- rep(NA, 14)
 
 # get segregating sites for an increasing number of sequences
@@ -279,7 +280,7 @@ plot(2:15, ss, col = "red", xlab = "No of sequences", ylab = "Segregating sites"
 
 <img src="Exercise7_files/figure-html/unnamed-chunk-22-1.png" width="672" />
 
-It should be immediately obvious from this figure that the number of segregating sites is biased by the number of sequences we include in the data. It increases our probability of observing a polymorphism and also since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.
+From the figure, we can see that the number of segregating sites grows as we increase the number of sequences, i.e., segregating sites are biased by sample size. It increases our probability of observing a polymorphism, and since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.
 
 So what do we see if we repeat the same code, but this time for nucleotide diversity or $\pi$?
 
@@ -367,7 +368,7 @@ The data we are going to be working with for this section is a set of **SNP** ca
 
 The data comes in two parts. We'll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for [variant call format](https://samtools.github.io/hts-specs/VCFv4.2.pdf). 
 
-One thing you should know about VCF files is that they can quickly become very very big. The one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**, however it is still quite a large file size. Because it is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.
+VCF files can quickly become very very big, so the one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**. However it is still quite a large file size, so the file is compressed, and there are some preprocessing steps you will need to do before you can open in it in R.
 
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
 -   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`

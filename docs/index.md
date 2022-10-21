@@ -1,6 +1,6 @@
 --- 
 title: "R tutorials for the course BIOS1140 at the University of Oslo"
-date: "2022-10-07"
+date: "2022-10-21"
 author: "Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann."
 site: bookdown::bookdown_site
 documentclass: book
