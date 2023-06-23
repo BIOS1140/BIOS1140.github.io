@@ -32,7 +32,7 @@ install.packages("devtools")
 devtools::install_github("pievos101/PopGenome")
 ```
 
-
+Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the `devtools` package first, then `PopGenome`, you should have no issues.
 
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
 
