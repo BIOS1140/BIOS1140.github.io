@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-21" />
+<meta name="date" content="2023-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -444,10 +444,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="getting-started-3" class="section level3 unnumbered hasAnchor">
 <h3>Getting started<a href="ch07.html#getting-started-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first thing we need to do is set up the R environment. Today we’ll be using <code>tidyverse</code> but also we will need three additional packages for this session - <code>ape</code>, <code>pegas</code> and <code>PopGenome</code>. To install these packages, use the following commands</p>
+<p>The first thing we need to do is set up the R environment. Today we’ll be using <code>tidyverse</code> but also we will need three additional packages for this session - <code>ape</code>, <code>pegas</code> and <code>PopGenome</code>. To install these packages, use the following commands:</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ch07.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
-<span id="cb279-2"><a href="ch07.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;PopGenome&quot;</span>)</span>
-<span id="cb279-3"><a href="ch07.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pegas&quot;</span>)</span></code></pre></div>
+<span id="cb279-2"><a href="ch07.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pegas&quot;</span>)</span>
+<span id="cb279-3"><a href="ch07.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb279-4"><a href="ch07.html#cb279-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;pievos101/PopGenome&quot;</span>)</span></code></pre></div>
+<p>Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the <code>devtools</code> package first, then <code>PopGenome</code>, you should have no issues.</p>
 <p>Once these packages are installed installed, we will clear the R environment with <code>rm(list = ls())</code> and then load everything we need for this session.</p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="ch07.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
 <span id="cb280-2"><a href="ch07.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>

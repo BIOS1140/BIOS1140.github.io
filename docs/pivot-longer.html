@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-21" />
+<meta name="date" content="2023-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -489,7 +489,7 @@ Figure 2.1: Data in “wide format” (left) and “long format” (right)
 <span id="cb108-16"><a href="pivot-longer.html#cb108-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8     2 calanus           0</span></span>
 <span id="cb108-17"><a href="pivot-longer.html#cb108-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9     2 harpacticoida     0</span></span>
 <span id="cb108-18"><a href="pivot-longer.html#cb108-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10     2 oithona           6</span></span>
-<span id="cb108-19"><a href="pivot-longer.html#cb108-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 44 more rows</span></span></code></pre></div>
+<span id="cb108-19"><a href="pivot-longer.html#cb108-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 44 more rows</span></span></code></pre></div>
 <p>Note that <code>pivot_longer()</code> has the same way of selecting columns as <code>select()</code>, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="pivot-longer.html#cb109-1" aria-hidden="true" tabindex="-1"></a>copepods_long <span class="ot">&lt;-</span> copepods <span class="sc">%&gt;%</span></span>
 <span id="cb109-2"><a href="pivot-longer.html#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>depth, <span class="at">names_to =</span> <span class="st">&quot;species&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;count&quot;</span>)</span></code></pre></div>

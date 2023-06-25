@@ -106,8 +106,9 @@ starwars
 #>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
 #>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
 #> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
-#> #   films <list>, vehicles <list>, starships <list>
+#> # ℹ 77 more rows
+#> # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+#> #   vehicles <list>, starships <list>
 ```
 
 Now we can take a look at the `starwars$species` vector. There are a lot of different species, so what if we wanted to create a vector that simply states whether an individual is a droid or not?
@@ -189,7 +190,7 @@ copepods_long
 #>  8     2 calanus           0
 #>  9     2 harpacticoida     0
 #> 10     2 oithona           6
-#> # … with 44 more rows
+#> # ℹ 44 more rows
 ```
 
 Now, say that you have recorded the temperature at each depth, and want to add that information to your copepod data. How would you go about doing that? First, here is the data in a data frame:
@@ -269,7 +270,7 @@ copepods_temp
 #>  8     2 calanus           0      15.4  15.4
 #>  9     2 harpacticoida     0      15.4  15.4
 #> 10     2 oithona           6      15.4  15.4
-#> # … with 44 more rows
+#> # ℹ 44 more rows
 ```
 
 `left_join()` matches one or more columns in your two data sets, and add rows from the second data set into the first data set in the correct place. You see that the `temp` column is equal to the `depthtemp` we created earlier, but it's so much easier to work with! Keep in mind that it is this simple in our case because `depth` has the exact same name in both data frames. Remember this when recording data in the future!
@@ -547,7 +548,7 @@ Good luck!
 
 ## Study questions
 
-The study questions for week 10 are found [here](#w10). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
+The study questions for week 10 are found [here](#w10). These are meant only to test yourself. Hand-in is not required and will not count on the required number of approved hands-in. We will, however, provide a hand-in folder for those who would like feedback from one of the group teachers.
 
 ## Going further
 

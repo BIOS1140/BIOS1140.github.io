@@ -85,9 +85,9 @@ Table: (\#tab:unnamed-chunk-4)Packages needed to run all the tutorials, and the 
 |parallel  |4.1.0   |
 |pegas     |1.1     |
 |phangorn  |2.9.0   |
-|PopGenome |2.7.5   |
+|PopGenome |2.7.7   |
 |qtl       |1.52    |
-|tidyverse |1.3.1   |
+|tidyverse |2.0.0   |
 
 The specific versions of the tidyverse packages are outlined below:
 
@@ -96,12 +96,12 @@ Table: (\#tab:unnamed-chunk-5)Package versions of core Tidyverse packages
 
 |Package |Version |
 |:-------|:-------|
-|ggplot2 |3.3.5   |
-|dplyr   |1.0.8   |
-|tidyr   |1.2.0   |
-|readr   |2.1.2   |
-|purrr   |0.3.4   |
-|tibble  |3.1.8   |
-|stringr |1.4.0   |
-|forcats |0.5.1   |
+|ggplot2 |3.4.2   |
+|dplyr   |1.1.1   |
+|tidyr   |1.3.0   |
+|readr   |2.1.4   |
+|purrr   |1.0.1   |
+|tibble  |3.2.1   |
+|stringr |1.5.0   |
+|forcats |1.0.0   |
 

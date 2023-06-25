@@ -1,5 +1,7 @@
 # Week 10 assignment {- #w10}
 
+_These study questions are meant only to test yourself. Hand-in is not required and will not count on the required number of approved hands-in. We will, however, provide a hand-in folder for those who would like feedback from one of the group teachers_
+
 This assignment makes you apply a lot of your R knowledge to analyse data. Some parts may be challenging, and the most important thing this week is that you try your best! So take this as a learning opportunity, and don't fret if you're stuck on an exercise. All honest attempts at solving this assignment will be approved. Good luck!
 
 #### 1. Categorising and joining {-}

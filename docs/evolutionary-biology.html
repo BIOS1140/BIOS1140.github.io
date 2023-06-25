@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-21" />
+<meta name="date" content="2023-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -597,7 +597,7 @@ A p-value tells us the probability of getting our observed result when we assume
 <span id="cb156-3"><a href="evolutionary-biology.html#cb156-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 3</span></span>
 <span id="cb156-4"><a href="evolutionary-biology.html#cb156-4" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
 <span id="cb156-5"><a href="evolutionary-biology.html#cb156-5" aria-hidden="true" tabindex="-1"></a>p3</span>
-<span id="cb156-6"><a href="evolutionary-biology.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.25</span></span></code></pre></div>
+<span id="cb156-6"><a href="evolutionary-biology.html#cb156-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code></pre></div>
 <p>If we were to to properly understand drift over more than one generation, we could now have used our <code>p3</code> to find p in the fourth generation, use the new <span class="math inline">\(p\)</span> to calculate <span class="math inline">\(p\)</span> in the next generation, and so on until we have simulated for all the number of generations we want.</p>
 <div class="fold c">
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="evolutionary-biology.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
@@ -605,21 +605,21 @@ A p-value tells us the probability of getting our observed result when we assume
 <span id="cb157-3"><a href="evolutionary-biology.html#cb157-3" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 4</span></span>
 <span id="cb157-4"><a href="evolutionary-biology.html#cb157-4" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
 <span id="cb157-5"><a href="evolutionary-biology.html#cb157-5" aria-hidden="true" tabindex="-1"></a>p4</span>
-<span id="cb157-6"><a href="evolutionary-biology.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.375</span></span>
+<span id="cb157-6"><a href="evolutionary-biology.html#cb157-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.75</span></span>
 <span id="cb157-7"><a href="evolutionary-biology.html#cb157-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb157-8"><a href="evolutionary-biology.html#cb157-8" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
 <span id="cb157-9"><a href="evolutionary-biology.html#cb157-9" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p4)</span>
 <span id="cb157-10"><a href="evolutionary-biology.html#cb157-10" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
 <span id="cb157-11"><a href="evolutionary-biology.html#cb157-11" aria-hidden="true" tabindex="-1"></a>p5 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
 <span id="cb157-12"><a href="evolutionary-biology.html#cb157-12" aria-hidden="true" tabindex="-1"></a>p5</span>
-<span id="cb157-13"><a href="evolutionary-biology.html#cb157-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.3125</span></span>
+<span id="cb157-13"><a href="evolutionary-biology.html#cb157-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.75</span></span>
 <span id="cb157-14"><a href="evolutionary-biology.html#cb157-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb157-15"><a href="evolutionary-biology.html#cb157-15" aria-hidden="true" tabindex="-1"></a><span class="co"># draw a new random sample</span></span>
 <span id="cb157-16"><a href="evolutionary-biology.html#cb157-16" aria-hidden="true" tabindex="-1"></a>nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="at">size =</span> <span class="dv">2</span><span class="sc">*</span>N, <span class="at">prob =</span> p5)</span>
 <span id="cb157-17"><a href="evolutionary-biology.html#cb157-17" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate p in generation 5</span></span>
 <span id="cb157-18"><a href="evolutionary-biology.html#cb157-18" aria-hidden="true" tabindex="-1"></a>p6 <span class="ot">&lt;-</span> nA1<span class="sc">/</span>(<span class="dv">2</span><span class="sc">*</span>N)</span>
 <span id="cb157-19"><a href="evolutionary-biology.html#cb157-19" aria-hidden="true" tabindex="-1"></a>p6</span>
-<span id="cb157-20"><a href="evolutionary-biology.html#cb157-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.125</span></span>
+<span id="cb157-20"><a href="evolutionary-biology.html#cb157-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.8125</span></span>
 <span id="cb157-21"><a href="evolutionary-biology.html#cb157-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb157-22"><a href="evolutionary-biology.html#cb157-22" aria-hidden="true" tabindex="-1"></a><span class="co"># and so on ...</span></span></code></pre></div>
 </div>
@@ -668,7 +668,7 @@ A p-value tells us the probability of getting our observed result when we assume
 <span id="cb159-22"><a href="evolutionary-biology.html#cb159-22" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb159-23"><a href="evolutionary-biology.html#cb159-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb159-24"><a href="evolutionary-biology.html#cb159-24" aria-hidden="true" tabindex="-1"></a>p</span>
-<span id="cb159-25"><a href="evolutionary-biology.html#cb159-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.5000 0.4375 0.2500 0.0625 0.0625 0.0625 0.0000 0.0000 0.0000 0.0000</span></span>
+<span id="cb159-25"><a href="evolutionary-biology.html#cb159-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;   [1] 0.5000 0.1875 0.0625 0.1250 0.0625 0.0625 0.0000 0.0000 0.0000 0.0000</span></span>
 <span id="cb159-26"><a href="evolutionary-biology.html#cb159-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [11] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000</span></span>
 <span id="cb159-27"><a href="evolutionary-biology.html#cb159-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [21] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000</span></span>
 <span id="cb159-28"><a href="evolutionary-biology.html#cb159-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [31] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000</span></span>

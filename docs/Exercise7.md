@@ -20,14 +20,17 @@ Today we won't introduce any new R-concepts, but jump straight into the action w
 
 ### Getting started {.unnumbered}
 
-The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` but also we will need three additional packages for this session - `ape`, `pegas` and `PopGenome`. To install these packages, use the following commands
+The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` but also we will need three additional packages for this session - `ape`, `pegas` and `PopGenome`. To install these packages, use the following commands:
 
 
 ```r
 install.packages("ape")
-install.packages("PopGenome")
 install.packages("pegas")
+install.packages("devtools")
+devtools::install_github("pievos101/PopGenome")
 ```
+
+Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the `devtools` package first, then `PopGenome`, you should have no issues.
 
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
 

@@ -78,8 +78,9 @@ starwars
 #>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
 #>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
 #> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
-#> #   films <list>, vehicles <list>, starships <list>
+#> # ℹ 77 more rows
+#> # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+#> #   vehicles <list>, starships <list>
 ```
 
 ::: {.blue}
@@ -151,7 +152,7 @@ select(starwars, name, homeworld)
 #>  8 R5-D4              Tatooine 
 #>  9 Biggs Darklighter  Tatooine 
 #> 10 Obi-Wan Kenobi     Stewjon  
-#> # … with 77 more rows
+#> # ℹ 77 more rows
 ```
 
 The first argument here is your data, while the others are the columns you want to select. Note that you don't need to use the quotes `"` here, you generally don't need those for the `dplyr` functions.
@@ -304,8 +305,9 @@ starwars %>% group_by(species)
 #>  8 R5-D4        97    32 <NA>       white, red red             NA   none  mascu…
 #>  9 Biggs D…    183    84 black      light      brown           24   male  mascu…
 #> 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…
-#> # … with 77 more rows, and 5 more variables: homeworld <chr>, species <chr>,
-#> #   films <list>, vehicles <list>, starships <list>
+#> # ℹ 77 more rows
+#> # ℹ 5 more variables: homeworld <chr>, species <chr>, films <list>,
+#> #   vehicles <list>, starships <list>
 ```
 
 Notice that nothing has changed in the data, but at the top you can see the text `# Groups:   species [38]`, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of `group_by()` is together with `summarise()`, which does a summary based on the groups you've created:
@@ -328,7 +330,7 @@ starwars %>%
 #>  8 Ewok              88 
 #>  9 Geonosian        183 
 #> 10 Gungan           209.
-#> # … with 28 more rows
+#> # ℹ 28 more rows
 ```
 
 Note how again, like in `data.frame`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
@@ -353,7 +355,7 @@ starwars %>%
 #>  8 Ewok              88             88      NA  
 #>  9 Geonosian        183            183      NA  
 #> 10 Gungan           209.           206      14.2
-#> # … with 28 more rows
+#> # ℹ 28 more rows
 ```
 
 We can even group by several variables, creating more detailed summaries:
@@ -377,7 +379,7 @@ starwars %>%
 #>  8 Champala       male          196 
 #>  9 Chandrila      female        150 
 #> 10 Concord Dawn   male          183 
-#> # … with 51 more rows
+#> # ℹ 51 more rows
 ```
 
 Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
@@ -404,7 +406,7 @@ starwars %>%
 #>  8 Ewok          1
 #>  9 Geonosian     1
 #> 10 Gungan        3
-#> # … with 28 more rows
+#> # ℹ 28 more rows
 ```
 
 This can be useful to get an overview of your data[^exercise2-3]
@@ -897,7 +899,7 @@ copepods_long
 #>  8     2 calanus           0
 #>  9     2 harpacticoida     0
 #> 10     2 oithona           6
-#> # … with 44 more rows
+#> # ℹ 44 more rows
 ```
 
 Note that `pivot_longer()` has the same way of selecting columns as `select()`, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:

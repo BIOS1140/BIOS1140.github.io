@@ -23,7 +23,7 @@
 <meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
-<meta name="date" content="2022-10-21" />
+<meta name="date" content="2023-06-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -449,8 +449,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb64-12"><a href="using-dplyr-to-work-with-your-data.html#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…</span></span>
 <span id="cb64-13"><a href="using-dplyr-to-work-with-your-data.html#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Biggs D…    183    84 black      light      brown           24   male  mascu…</span></span>
 <span id="cb64-14"><a href="using-dplyr-to-work-with-your-data.html#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…</span></span>
-<span id="cb64-15"><a href="using-dplyr-to-work-with-your-data.html#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,</span></span>
-<span id="cb64-16"><a href="using-dplyr-to-work-with-your-data.html#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</span></span></code></pre></div>
+<span id="cb64-15"><a href="using-dplyr-to-work-with-your-data.html#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 77 more rows</span></span>
+<span id="cb64-16"><a href="using-dplyr-to-work-with-your-data.html#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,</span></span>
+<span id="cb64-17"><a href="using-dplyr-to-work-with-your-data.html#cb64-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   vehicles &lt;list&gt;, starships &lt;list&gt;</span></span></code></pre></div>
 <div class="blue">
 <p><strong>Additional info:</strong> <code>starwars</code> is a data frame like you learned about last week, but you might notice that it’s printing a bit differently (e.g. with red color for <code>NA</code>, condensing the output). This is because <code>starwars</code> is a special kind of data frame introduced in the tidyverse, called a <code>tibble</code>. For all practical purposes, a tibble and a data frame is the same, so throughout this course we won’t care much whether our data is contained in a tibble or a regular data frame.</p>
 </div>
@@ -494,7 +495,7 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb69-12"><a href="using-dplyr-to-work-with-your-data.html#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4              Tatooine </span></span>
 <span id="cb69-13"><a href="using-dplyr-to-work-with-your-data.html#cb69-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Biggs Darklighter  Tatooine </span></span>
 <span id="cb69-14"><a href="using-dplyr-to-work-with-your-data.html#cb69-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-Wan Kenobi     Stewjon  </span></span>
-<span id="cb69-15"><a href="using-dplyr-to-work-with-your-data.html#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 77 more rows</span></span></code></pre></div>
+<span id="cb69-15"><a href="using-dplyr-to-work-with-your-data.html#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 77 more rows</span></span></code></pre></div>
 <p>The first argument here is your data, while the others are the columns you want to select. Note that you don’t need to use the quotes <code>"</code> here, you generally don’t need those for the <code>dplyr</code> functions.</p>
 <p><code>select()</code> becomes even more intuitive when using the pipe:</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="using-dplyr-to-work-with-your-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> <span class="fu">select</span>(name, homeworld)</span></code></pre></div>
@@ -582,8 +583,9 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb81-13"><a href="using-dplyr-to-work-with-your-data.html#cb81-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 R5-D4        97    32 &lt;NA&gt;       white, red red             NA   none  mascu…</span></span>
 <span id="cb81-14"><a href="using-dplyr-to-work-with-your-data.html#cb81-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Biggs D…    183    84 black      light      brown           24   male  mascu…</span></span>
 <span id="cb81-15"><a href="using-dplyr-to-work-with-your-data.html#cb81-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Obi-Wan…    182    77 auburn, w… fair       blue-gray       57   male  mascu…</span></span>
-<span id="cb81-16"><a href="using-dplyr-to-work-with-your-data.html#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 77 more rows, and 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;,</span></span>
-<span id="cb81-17"><a href="using-dplyr-to-work-with-your-data.html#cb81-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   films &lt;list&gt;, vehicles &lt;list&gt;, starships &lt;list&gt;</span></span></code></pre></div>
+<span id="cb81-16"><a href="using-dplyr-to-work-with-your-data.html#cb81-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 77 more rows</span></span>
+<span id="cb81-17"><a href="using-dplyr-to-work-with-your-data.html#cb81-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 5 more variables: homeworld &lt;chr&gt;, species &lt;chr&gt;, films &lt;list&gt;,</span></span>
+<span id="cb81-18"><a href="using-dplyr-to-work-with-your-data.html#cb81-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; #   vehicles &lt;list&gt;, starships &lt;list&gt;</span></span></code></pre></div>
 <p>Notice that nothing has changed in the data, but at the top you can see the text <code># Groups:   species [38]</code>, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of <code>group_by()</code> is together with <code>summarise()</code>, which does a summary based on the groups you’ve created:</p>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="using-dplyr-to-work-with-your-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
 <span id="cb82-2"><a href="using-dplyr-to-work-with-your-data.html#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span> <span class="co">#create group</span></span>
@@ -601,7 +603,7 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb82-14"><a href="using-dplyr-to-work-with-your-data.html#cb82-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88 </span></span>
 <span id="cb82-15"><a href="using-dplyr-to-work-with-your-data.html#cb82-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183 </span></span>
 <span id="cb82-16"><a href="using-dplyr-to-work-with-your-data.html#cb82-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.</span></span>
-<span id="cb82-17"><a href="using-dplyr-to-work-with-your-data.html#cb82-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 28 more rows</span></span></code></pre></div>
+<span id="cb82-17"><a href="using-dplyr-to-work-with-your-data.html#cb82-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 28 more rows</span></span></code></pre></div>
 <p>Note how again, like in <code>data.frame</code>, the argument name to <code>summarise</code> becomes the column name in your new data frame. You can use several summary functions inside <code>summarise()</code>, like <code>median()</code>, <code>sd()</code>, <code>sum()</code> and <code>max()</code> to name some. You can also do several summaries within a single <code>summarise()</code> function:</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="using-dplyr-to-work-with-your-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span> </span>
 <span id="cb83-2"><a href="using-dplyr-to-work-with-your-data.html#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(species) <span class="sc">%&gt;%</span></span>
@@ -621,7 +623,7 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb83-16"><a href="using-dplyr-to-work-with-your-data.html#cb83-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok              88             88      NA  </span></span>
 <span id="cb83-17"><a href="using-dplyr-to-work-with-your-data.html#cb83-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian        183            183      NA  </span></span>
 <span id="cb83-18"><a href="using-dplyr-to-work-with-your-data.html#cb83-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan           209.           206      14.2</span></span>
-<span id="cb83-19"><a href="using-dplyr-to-work-with-your-data.html#cb83-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 28 more rows</span></span></code></pre></div>
+<span id="cb83-19"><a href="using-dplyr-to-work-with-your-data.html#cb83-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 28 more rows</span></span></code></pre></div>
 <p>We can even group by several variables, creating more detailed summaries:</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="using-dplyr-to-work-with-your-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a>starwars <span class="sc">%&gt;%</span></span>
 <span id="cb84-2"><a href="using-dplyr-to-work-with-your-data.html#cb84-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(homeworld, sex) <span class="sc">%&gt;%</span></span>
@@ -640,7 +642,7 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb84-15"><a href="using-dplyr-to-work-with-your-data.html#cb84-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Champala       male          196 </span></span>
 <span id="cb84-16"><a href="using-dplyr-to-work-with-your-data.html#cb84-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Chandrila      female        150 </span></span>
 <span id="cb84-17"><a href="using-dplyr-to-work-with-your-data.html#cb84-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Concord Dawn   male          183 </span></span>
-<span id="cb84-18"><a href="using-dplyr-to-work-with-your-data.html#cb84-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 51 more rows</span></span></code></pre></div>
+<span id="cb84-18"><a href="using-dplyr-to-work-with-your-data.html#cb84-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 51 more rows</span></span></code></pre></div>
 <p>Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).</p>
 <div id="counting-how-many-observations-we-have-in-our-groups-with-tally" class="section level4 hasAnchor" number="2.2.4.1">
 <h4><span class="header-section-number">2.2.4.1</span> Counting how many observations we have in our groups with <code>tally()</code><a href="using-dplyr-to-work-with-your-data.html#counting-how-many-observations-we-have-in-our-groups-with-tally" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -661,7 +663,7 @@ The pipe operator <code>%&gt;%</code> allows you to send an object from the left
 <span id="cb85-14"><a href="using-dplyr-to-work-with-your-data.html#cb85-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  8 Ewok          1</span></span>
 <span id="cb85-15"><a href="using-dplyr-to-work-with-your-data.html#cb85-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  9 Geonosian     1</span></span>
 <span id="cb85-16"><a href="using-dplyr-to-work-with-your-data.html#cb85-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 Gungan        3</span></span>
-<span id="cb85-17"><a href="using-dplyr-to-work-with-your-data.html#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # … with 28 more rows</span></span></code></pre></div>
+<span id="cb85-17"><a href="using-dplyr-to-work-with-your-data.html#cb85-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; # ℹ 28 more rows</span></span></code></pre></div>
 <p>This can be useful to get an overview of your data<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
