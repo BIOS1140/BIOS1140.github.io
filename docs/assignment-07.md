@@ -32,17 +32,15 @@ b) What was the value of Tajima's D, and how do you interpret this? There are se
 
 #### 4. Sparrows {-}
 
-For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data [here](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)(VCF) and [here](https://bios1140.github.io/data/sparrow_pops.txt)(population data). See section XX in the tutorial on how to download and import the data.
+For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data [here](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)(VCF) and [here](https://bios1140.github.io/data/sparrow_pops.txt)(population data). See section 6.3 in the tutorial on how to download and import the data.
 
 
 a) In your own words, what is a sliding window analysis? Why did we need to use a sliding window analysis to visualise this data?
 
-b) Plot the sliding window nucleotide diversity for both the spanish sparrow (using red) and the italian sparrow (using gold). Do you see the same region of reduced diversity as with the house sparrow? If there is a shared pattern, what might explain it?
+b) Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the different species comparisons. _N.B. if you use a tidyverse solution, it may be easier to use t() to transpose and see the final result_
 
-c) Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the different species comparisons. _N.B. if you use a tidyverse solution, it may be easier to use t() to transpose and see the final result_
+c) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all the different species comparisons. _Hint: You need to use pivot_longer on the columns containing_ $F_{ST}$ _and_ $d_{XY}$ _data respectively._
 
-d) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all the different species comparisons. _Hint: You need to use pivot_longer on the columns containing_ $F_{ST}$ _and_ $d_{XY}$ _data respectively._
+d) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial?
 
-e) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial?
-
-f) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial (NOT the one in the footnotes!), but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.
+e) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial (NOT the one in the footnotes!), but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.
