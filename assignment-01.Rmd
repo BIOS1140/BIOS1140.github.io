@@ -1,6 +1,6 @@
 # (PART) Assignments {-}
 
-# Week 1-2 assignment {- #w01}
+# Week 1-2 assignment 1 {- #w01}
 
 Solve all the problems below using R. Some questions have optional parts that are a little more difficult. We encourage you to do these, but feel free to skip them if the mandatory tasks offers sufficient challenge. You can solve the problems in any way you want (as long as you're using R!) unless otherwise stated.
 

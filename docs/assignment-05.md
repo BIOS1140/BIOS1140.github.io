@@ -1,4 +1,4 @@
-# Week 5 assignment {#w05 .unnumbered}
+# Week 5 assignment 4 {#w05 .unnumbered}
 
 
 <script src="js/hideOutput.js"></script>
@@ -9,7 +9,7 @@
 
 ::: {.fold .c}
 
-```r
+``` r
 calc_p <- function(counts){
   # get the number of samples
   n <- sum(counts)
@@ -23,7 +23,7 @@ calc_p <- function(counts){
 You have the following data frame containing genotype counts from four populations:
 
 
-```r
+``` r
 counts <- data.frame(
   A1A1 = c(10, 0, 84, 32),
   A1A2 = c(30, 48, 13, 15),
@@ -58,7 +58,7 @@ c.  Calculate $F_{st}$ between the lake and stream fish. How do you interpret th
 
 ::: {.fold .c}
 
-```r
+``` r
 calc_fst <- function(p_1, p_2){
   
   # calculate q1 and q2

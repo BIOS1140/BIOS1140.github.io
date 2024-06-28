@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.1 R programming: Making custom functions | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.1 R programming: Making custom functions | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -20,10 +20,10 @@
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann. Revamped again in 2024 by Emily Enevoldsen and Marius F. Maurstad" />
 
 
-<meta name="date" content="2023-06-25" />
+<meta name="date" content="2024-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -136,278 +140,258 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#preface">Preface<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li><a href="how-to-use-these-tutorials.html#how-to-use-these-tutorials">How to use these tutorials<span></span></a></li>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
 </ul></li>
-<li class="part"><span><b>I Introductory R course<span></span></b></span></li>
-<li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R<span></span></a>
+<li class="part"><span><b>I Introductory R course</b></span></li>
+<li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
-<li><a href="ch01.html#what-to-expect">What to expect<span></span></a></li>
-<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!<span></span></a>
+<li class="chapter" data-level="" data-path="ch01.html"><a href="ch01.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio<span></span></a></li>
-<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console<span></span></a></li>
-<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts<span></span></a></li>
+<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console</a></li>
+<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials<span></span></a>
+<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors<span></span></a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings<span></span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values<span></span></a></li>
-<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions<span></span></a></li>
-<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import<span></span></a>
+<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories<span></span></a></li>
-<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats</a></li>
+<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories</a></li>
+<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting<span></span></a>
+<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors<span></span></a></li>
-<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots<span></span></a></li>
+<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages<span></span></a></li>
-<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="ch02.html"><a href="ch02.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R<span></span></a>
+<li class="chapter" data-level="2" data-path="ch02.html"><a href="ch02.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R</a>
 <ul>
-<li><a href="ch02.html#what-to-expect-1">What to expect<span></span></a></li>
-<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse<span></span></a>
+<li class="chapter" data-level="" data-path="ch02.html"><a href="ch02.html#what-to-expect-1"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?<span></span></a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package<span></span></a></li>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data<span></span></a>
+<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise<span></span></a></li>
+<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code><span></span></a>
+<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot<span></span></a></li>
-<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects<span></span></a></li>
-<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots<span></span></a></li>
-<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots<span></span></a></li>
+<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects</a></li>
+<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
+<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()<span></span></a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format<span></span></a></li>
-<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data<span></span></a></li>
-<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data<span></span></a></li>
-<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data<span></span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
+<li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
 </ul></li>
-<li class="part"><span><b>II Evolutionary genetics with R<span></span></b></span></li>
-<li class="chapter" data-level="3" data-path="ch03.html"><a href="ch03.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency<span></span></a>
+<li class="part"><span><b>II Evolutionary genetics with R</b></span></li>
+<li class="chapter" data-level="3" data-path="ch03.html"><a href="ch03.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency</a>
 <ul>
-<li><a href="ch03.html#what-to-expect-2">What to expect<span></span></a></li>
-<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops<span></span></a>
+<li class="chapter" data-level="" data-path="ch03.html"><a href="ch03.html#what-to-expect-2"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?<span></span></a></li>
-<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works<span></span></a></li>
-<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops<span></span></a></li>
-<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem<span></span></a></li>
-<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop<span></span></a></li>
+<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology<span></span></a>
+<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model<span></span></a></li>
-<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation<span></span></a></li>
-<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift<span></span></a></li>
+<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>3.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>3.3</b> Study questions</a></li>
+<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch04.html"><a href="ch04.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection<span></span></a>
+<li class="chapter" data-level="4" data-path="ch04.html"><a href="ch04.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection</a>
 <ul>
-<li><a href="ch04.html#what-to-expect-3">What to expect<span></span></a></li>
-<li><a href="ch04.html#getting-started">Getting started<span></span></a></li>
-<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions<span></span></a>
+<li class="chapter" data-level="" data-path="ch04.html"><a href="ch04.html#what-to-expect-3"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch04.html"><a href="ch04.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation<span></span></a></li>
-<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics<span></span></a></li>
-<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example<span></span></a></li>
-<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties<span></span></a></li>
-<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example<span></span></a></li>
-<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies<span></span></a></li>
-<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation<span></span></a></li>
+<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties</a></li>
+<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies</a></li>
+<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness<span></span></a>
+<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection<span></span></a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance<span></span></a></li>
+<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
+<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch05.html"><a href="ch05.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection<span></span></a>
+<li class="chapter" data-level="5" data-path="ch05.html"><a href="ch05.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection</a>
 <ul>
-<li><a href="ch05.html#what-to-expect-4">What to expect<span></span></a></li>
-<li><a href="ch05.html#getting-started-1">Getting started<span></span></a></li>
-<li class="chapter" data-level="5.1" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> More on functions: Vectorisation<span></span></a>
+<li class="chapter" data-level="" data-path="ch05.html"><a href="ch05.html#what-to-expect-4"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch05.html"><a href="ch05.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="5.1" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> More on functions: Vectorisation</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="vectorisation.html"><a href="vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.1</b> The <code>apply()</code> function<span></span></a></li>
-<li class="chapter" data-level="5.1.2" data-path="vectorisation.html"><a href="vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.2</b> The <code>ifelse()</code> function<span></span></a></li>
+<li class="chapter" data-level="5.1.1" data-path="vectorisation.html"><a href="vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.1</b> The <code>apply()</code> function</a></li>
+<li class="chapter" data-level="5.1.2" data-path="vectorisation.html"><a href="vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.2</b> The <code>ifelse()</code> function</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html"><i class="fa fa-check"></i><b>5.2</b> Understanding <em>F</em><sub>ST</sub> - the fixation index<span></span></a>
+<li class="chapter" data-level="5.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html"><i class="fa fa-check"></i><b>5.2</b> Understanding <em>F</em><sub>ST</sub> - the fixation index</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#a-worked-example-of-fst-in-humans"><i class="fa fa-check"></i><b>5.2.1</b> A worked example of <em>F</em><sub>ST</sub> in humans<span></span></a></li>
-<li class="chapter" data-level="5.2.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#writing-a-set-of-fst-functions"><i class="fa fa-check"></i><b>5.2.2</b> Writing a set of <em>F</em><sub>ST</sub> functions<span></span></a></li>
-<li class="chapter" data-level="5.2.3" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#applying-functions-to-matrices-and-data-frames"><i class="fa fa-check"></i><b>5.2.3</b> Applying functions to matrices and data frames<span></span></a></li>
+<li class="chapter" data-level="5.2.1" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#a-worked-example-of-fst-in-humans"><i class="fa fa-check"></i><b>5.2.1</b> A worked example of <em>F</em><sub>ST</sub> in humans</a></li>
+<li class="chapter" data-level="5.2.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#writing-a-set-of-fst-functions"><i class="fa fa-check"></i><b>5.2.2</b> Writing a set of <em>F</em><sub>ST</sub> functions</a></li>
+<li class="chapter" data-level="5.2.3" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#applying-functions-to-matrices-and-data-frames"><i class="fa fa-check"></i><b>5.2.3</b> Applying functions to matrices and data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html"><i class="fa fa-check"></i><b>5.3</b> Visualising <em>F</em><sub>ST</sub> along a chromosome<span></span></a>
+<li class="chapter" data-level="5.3" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html"><i class="fa fa-check"></i><b>5.3</b> Visualising <em>F</em><sub>ST</sub> along a chromosome</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html#identifying-outliers-in-our-fst-distribution"><i class="fa fa-check"></i><b>5.3.1</b> Identifying outliers in our <em>F</em><sub>ST</sub> distribution<span></span></a></li>
+<li class="chapter" data-level="5.3.1" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html#identifying-outliers-in-our-fst-distribution"><i class="fa fa-check"></i><b>5.3.1</b> Identifying outliers in our <em>F</em><sub>ST</sub> distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>5.4</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="5.5" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.5</b> Going further<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>5.4</b> Study questions</a></li>
+<li class="chapter" data-level="5.5" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.5</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch06.html"><a href="ch06.html"><i class="fa fa-check"></i><b>6</b> Multilocus Evolution<span></span></a>
+<li class="chapter" data-level="6" data-path="ch07.html"><a href="ch07.html"><i class="fa fa-check"></i><b>6</b> Inferring Evolutionary Processes from Sequence Data</a>
 <ul>
-<li><a href="ch06.html#what-to-expect-5">What to expect<span></span></a></li>
-<li><a href="ch06.html#getting-started-2">Getting started<span></span></a></li>
-<li class="chapter" data-level="6.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html"><i class="fa fa-check"></i><b>6.1</b> Tools for investigating differences between groups<span></span></a>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="6.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>6.1</b> Working with DNA sequence data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#exploring-group-differences"><i class="fa fa-check"></i><b>6.1.1</b> Exploring group differences<span></span></a></li>
-<li class="chapter" data-level="6.1.2" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.1.2</b> Analysis of variance (ANOVA)<span></span></a></li>
+<li class="chapter" data-level="6.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>6.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>6.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>6.1.3</b> Calculating basic sequence statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html"><i class="fa fa-check"></i><b>6.2</b> Performing a QTL analysis in bedbugs<span></span></a>
+<li class="chapter" data-level="6.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>6.2</b> Working with a larger dataset</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#bedbugs-pesticide-resistance-and-study-design"><i class="fa fa-check"></i><b>6.2.1</b> Bedbugs, pesticide resistance and study design<span></span></a></li>
-<li class="chapter" data-level="6.2.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#linking-anova-to-our-qtl-analysis"><i class="fa fa-check"></i><b>6.2.2</b> Linking ANOVA to our QTL analysis<span></span></a></li>
-<li class="chapter" data-level="6.2.3" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#testing-the-same-genotype-phenotype-association-with-anova"><i class="fa fa-check"></i><b>6.2.3</b> Testing the same genotype phenotype association with ANOVA<span></span></a></li>
+<li class="chapter" data-level="6.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>6.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="6.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>6.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="6.4" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.4</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="ch07.html"><a href="ch07.html"><i class="fa fa-check"></i><b>7</b> Inferring Evolutionary Processes from Sequence Data<span></span></a>
+<li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
-<li><a href="ch07.html#what-to-expect-6">What to expect<span></span></a></li>
-<li><a href="ch07.html#getting-started-3">Getting started<span></span></a></li>
-<li class="chapter" data-level="7.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>7.1</b> Working with DNA sequence data<span></span></a>
+<li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
+<li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch08.html"><a href="ch08.html"><i class="fa fa-check"></i><b>7</b> Speciation Genomics</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>7.1.1</b> Reading sequence data into R.<span></span></a></li>
-<li class="chapter" data-level="7.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>7.1.2</b> Exploring DNA sequence data<span></span></a></li>
-<li class="chapter" data-level="7.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>7.1.3</b> Calculating basic sequence statistics<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Working with a larger dataset<span></span></a>
+<li class="chapter" data-level="" data-path="ch08.html"><a href="ch08.html#what-to-expect-6"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch08.html"><a href="ch08.html#getting-started-3"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="7.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html"><i class="fa fa-check"></i><b>7.1</b> Visualizing complex data</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>7.2.1</b> Sample size and sequence statistics<span></span></a></li>
-<li class="chapter" data-level="7.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>7.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em><span></span></a></li>
+<li class="chapter" data-level="7.1.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>7.1.1</b> Faceting</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>7.3</b> Calculating statistics at the whole genome level<span></span></a>
+<li class="chapter" data-level="7.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Returning to the sparrow dataset</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>7.3.1</b> Reading in variant data<span></span></a></li>
-<li class="chapter" data-level="7.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>7.3.2</b> Calculating nucleotide diversity statistics<span></span></a></li>
-<li class="chapter" data-level="7.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>7.3.3</b> Visualising nucleotide diversity along the chromosome<span></span></a></li>
-<li class="chapter" data-level="7.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>7.3.4</b> Performing a sliding window analysis<span></span></a></li>
+<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Reading in the sparrow vcf</a></li>
+<li class="chapter" data-level="7.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>7.2.2</b> Examining the variant data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>7.4</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.5</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="ch08.html"><a href="ch08.html"><i class="fa fa-check"></i><b>8</b> Speciation Genomics<span></span></a>
+<li class="chapter" data-level="7.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>7.3</b> Setting up sliding windows</a>
 <ul>
-<li><a href="ch08.html#what-to-expect-7">What to expect<span></span></a></li>
-<li><a href="ch08.html#getting-started-4">Getting started<span></span></a></li>
-<li class="chapter" data-level="8.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html"><i class="fa fa-check"></i><b>8.1</b> Visualizing complex data<span></span></a>
+<li class="chapter" data-level="7.3.1" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>7.3.1</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
+<li class="chapter" data-level="7.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#sparrow-data"><i class="fa fa-check"></i><b>7.3.2</b> Extracting statistics for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="sparrow-viz.html"><a href="sparrow-viz.html"><i class="fa fa-check"></i><b>7.4</b> Visualising the data</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>8.1.1</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="7.4.1" data-path="sparrow-viz.html"><a href="sparrow-viz.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>7.4.1</b> Visualising patterns along the chromosome</a></li>
+<li class="chapter" data-level="7.4.2" data-path="sparrow-viz.html"><a href="sparrow-viz.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>7.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="7.4.3" data-path="sparrow-viz.html"><a href="sparrow-viz.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>7.4.3</b> Investigating recombination rate variation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>8.2</b> Returning to the sparrow dataset<span></span></a>
+<li class="chapter" data-level="7.5" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>7.5</b> Study questions</a></li>
+<li class="chapter" data-level="7.6" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.6</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ch09.html"><a href="ch09.html"><i class="fa fa-check"></i><b>8</b> Reconstructing the Past</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>8.2.1</b> Reading in the sparrow vcf<span></span></a></li>
-<li class="chapter" data-level="8.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>8.2.2</b> Examining the variant data<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>8.3</b> Setting up sliding windows<span></span></a>
+<li class="chapter" data-level="" data-path="ch09.html"><a href="ch09.html#what-to-expect-7"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch09.html"><a href="ch09.html#getting-started-4"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="8.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>8.1</b> Phylogenetics in R</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.3.1</b> Calculating sliding window estimates of nucleotide diversity and differentiation<span></span></a></li>
-<li class="chapter" data-level="8.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#sparrow-data"><i class="fa fa-check"></i><b>8.3.2</b> Extracting statistics for visualisation<span></span></a></li>
+<li class="chapter" data-level="8.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>8.1.1</b> Storing trees in R</a></li>
+<li class="chapter" data-level="8.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>8.1.2</b> Plotting trees</a></li>
+<li class="chapter" data-level="8.1.3" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>8.1.3</b> A simple example with real data - avian phylogenetics</a></li>
+<li class="chapter" data-level="8.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>8.1.4</b> Constructing trees with R</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sparrow-viz.html"><a href="sparrow-viz.html"><i class="fa fa-check"></i><b>8.4</b> Visualising the data<span></span></a>
+<li class="chapter" data-level="8.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>8.2</b> Population structure</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="sparrow-viz.html"><a href="sparrow-viz.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>8.4.1</b> Visualising patterns along the chromosome<span></span></a></li>
-<li class="chapter" data-level="8.4.2" data-path="sparrow-viz.html"><a href="sparrow-viz.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity<span></span></a></li>
-<li class="chapter" data-level="8.4.3" data-path="sparrow-viz.html"><a href="sparrow-viz.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.4.3</b> Investigating recombination rate variation<span></span></a></li>
+<li class="chapter" data-level="8.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>8.2.1</b> Village dogs as an insight to dog domestication</a></li>
+<li class="chapter" data-level="8.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>8.2.2</b> Reading the data into R</a></li>
+<li class="chapter" data-level="8.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>8.2.3</b> Performing a PCA</a></li>
+<li class="chapter" data-level="8.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>8.2.4</b> Visualising the PCA</a></li>
+<li class="chapter" data-level="8.2.5" data-path="population-structure.html"><a href="population-structure.html#eigenvalues"><i class="fa fa-check"></i><b>8.2.5</b> Eigenvalues</a></li>
+<li class="chapter" data-level="8.2.6" data-path="population-structure.html"><a href="population-structure.html#the-full-data-set"><i class="fa fa-check"></i><b>8.2.6</b> The full data set</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>8.5</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>8.3</b> Study questions</a></li>
+<li class="chapter" data-level="8.4" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="ch09.html"><a href="ch09.html"><i class="fa fa-check"></i><b>9</b> Reconstructing the Past<span></span></a>
+<li class="chapter" data-level="9" data-path="ch10.html"><a href="ch10.html"><i class="fa fa-check"></i><b>9</b> Advancing Further in R</a>
 <ul>
-<li><a href="ch09.html#what-to-expect-8">What to expect<span></span></a></li>
-<li><a href="ch09.html#getting-started-5">Getting started<span></span></a></li>
-<li class="chapter" data-level="9.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Phylogenetics in R<span></span></a>
+<li class="chapter" data-level="" data-path="ch10.html"><a href="ch10.html#what-to-expect-8"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch10.html"><a href="ch10.html#getting-started-5"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="9.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>9.1</b> Advanced features of RStudio</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>9.1.1</b> Storing trees in R<span></span></a></li>
-<li class="chapter" data-level="9.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>9.1.2</b> Plotting trees<span></span></a></li>
-<li class="chapter" data-level="9.1.3" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>9.1.3</b> A simple example with real data - avian phylogenetics<span></span></a></li>
-<li class="chapter" data-level="9.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>9.1.4</b> Constructing trees with R<span></span></a></li>
+<li class="chapter" data-level="9.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>9.1.1</b> Projects, projects, projects</a></li>
+<li class="chapter" data-level="9.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>9.1.2</b> Everyone has a history</a></li>
+<li class="chapter" data-level="9.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>9.1.3</b> Tab complete and other hotkeys</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>9.2</b> Population structure<span></span></a>
+<li class="chapter" data-level="9.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>9.2</b> More on data handling: categorising and joining</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>9.2.1</b> Village dogs as an insight to dog domestication<span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>9.2.2</b> Reading the data into R<span></span></a></li>
-<li class="chapter" data-level="9.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>9.2.3</b> Performing a PCA<span></span></a></li>
-<li class="chapter" data-level="9.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>9.2.4</b> Visualising the PCA<span></span></a></li>
-<li class="chapter" data-level="9.2.5" data-path="population-structure.html"><a href="population-structure.html#eigenvalues"><i class="fa fa-check"></i><b>9.2.5</b> Eigenvalues<span></span></a></li>
-<li class="chapter" data-level="9.2.6" data-path="population-structure.html"><a href="population-structure.html#the-full-data-set"><i class="fa fa-check"></i><b>9.2.6</b> The full data set<span></span></a></li>
+<li class="chapter" data-level="9.2.1" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>9.2.1</b> <code>ifelse()</code> for making categories</a></li>
+<li class="chapter" data-level="9.2.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#joining"><i class="fa fa-check"></i><b>9.2.2</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>9.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.4</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="ch10.html"><a href="ch10.html"><i class="fa fa-check"></i><b>10</b> Advancing Further in R<span></span></a>
+<li class="chapter" data-level="9.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>9.3</b> Lists</a></li>
+<li class="chapter" data-level="9.4" data-path="vectorisation2.html"><a href="vectorisation2.html"><i class="fa fa-check"></i><b>9.4</b> Vectorisation</a>
 <ul>
-<li><a href="ch10.html#what-to-expect-9">What to expect<span></span></a></li>
-<li><a href="ch10.html#getting-started-6">Getting started<span></span></a></li>
-<li class="chapter" data-level="10.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>10.1</b> Advanced features of RStudio<span></span></a>
+<li class="chapter" data-level="9.4.1" data-path="vectorisation2.html"><a href="vectorisation2.html#using-lapply-to-vectorise"><i class="fa fa-check"></i><b>9.4.1</b> Using <code>lapply()</code> to vectorise</a></li>
+<li class="chapter" data-level="9.4.2" data-path="vectorisation2.html"><a href="vectorisation2.html#sapply"><i class="fa fa-check"></i><b>9.4.2</b> <code>sapply()</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="vectorisation2.html"><a href="vectorisation2.html#anonymous-functions"><i class="fa fa-check"></i><b>9.4.3</b> Anonymous functions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>9.5</b> Concluding remarks</a></li>
+<li class="chapter" data-level="9.6" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>9.6</b> Study questions</a></li>
+<li class="chapter" data-level="9.7" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.7</b> Going further</a></li>
+</ul></li>
+<li class="part"><span><b>III Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment 1</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment 2</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment 3</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment 4</a></li>
+<li class="chapter" data-level="" data-path="w07.html"><a href="w07.html"><i class="fa fa-check"></i>Week 6-7 assignment 5</a></li>
+<li class="chapter" data-level="" data-path="w09.html"><a href="w09.html"><i class="fa fa-check"></i>Week 8 assignment 6</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 9 assignment 7</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects<span></span></a></li>
-<li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history<span></span></a></li>
-<li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys<span></span></a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling: categorising and joining<span></span></a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories<span></span></a></li>
-<li class="chapter" data-level="10.2.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists<span></span></a></li>
-<li class="chapter" data-level="10.4" data-path="vectorisation2.html"><a href="vectorisation2.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation<span></span></a>
-<ul>
-<li class="chapter" data-level="10.4.1" data-path="vectorisation2.html"><a href="vectorisation2.html#using-lapply-to-vectorise"><i class="fa fa-check"></i><b>10.4.1</b> Using <code>lapply()</code> to vectorise<span></span></a></li>
-<li class="chapter" data-level="10.4.2" data-path="vectorisation2.html"><a href="vectorisation2.html#sapply"><i class="fa fa-check"></i><b>10.4.2</b> <code>sapply()</code><span></span></a></li>
-<li class="chapter" data-level="10.4.3" data-path="vectorisation2.html"><a href="vectorisation2.html#anonymous-functions"><i class="fa fa-check"></i><b>10.4.3</b> Anonymous functions<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks<span></span></a></li>
-<li class="chapter" data-level="10.6" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.6</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further<span></span></a></li>
-</ul></li>
-<li class="part"><span><b>III Assignments<span></span></b></span></li>
-<li><a href="w01.html#w01">Week 1-2 assignment<span></span></a></li>
-<li><a href="w03.html#w03">Week 3 Assignment<span></span></a></li>
-<li><a href="w04.html#w04">Week 4 assignment<span></span></a></li>
-<li><a href="w05.html#w05">Week 5 assignment<span></span></a></li>
-<li><a href="w06.html#w06">Week 6 assignment<span></span></a></li>
-<li><a href="w07.html#w07">Week 7 assignment<span></span></a></li>
-<li><a href="w08.html#w08">Week 8 assignment<span></span></a></li>
-<li><a href="w09.html#w09">Week 9 assignment<span></span></a></li>
-<li><a href="w10.html#w10">Week 10 assignment<span></span></a></li>
-<li class="appendix"><span><b>Appendix<span></span></b></span></li>
-<li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown<span></span></a>
-<ul>
-<li><a href="rmarkdown.html#r-markdown">R Markdown<span></span></a></li>
-<li><a href="rmarkdown.html#getting-started-7">Getting started<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information<span></span></a></li>
+<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -434,17 +418,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="motivation" class="section level3 hasAnchor" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Motivation<a href="r-programming-making-custom-functions.html#motivation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In last week’s tutorial and assignment, you used a for-loop to simulate genetic drift. If you did the assignment, you are probably tired of seeing code-snippets looking like this or similar:</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="r-programming-making-custom-functions.html#cb167-1" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb167-2"><a href="r-programming-making-custom-functions.html#cb167-2" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb167-3"><a href="r-programming-making-custom-functions.html#cb167-3" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb167-4"><a href="r-programming-making-custom-functions.html#cb167-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-5"><a href="r-programming-making-custom-functions.html#cb167-5" aria-hidden="true" tabindex="-1"></a>n10 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb167-6"><a href="r-programming-making-custom-functions.html#cb167-6" aria-hidden="true" tabindex="-1"></a>n10[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb167-7"><a href="r-programming-making-custom-functions.html#cb167-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb167-8"><a href="r-programming-making-custom-functions.html#cb167-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb167-9"><a href="r-programming-making-custom-functions.html#cb167-9" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n10[i<span class="dv">-1</span>])</span>
-<span id="cb167-10"><a href="r-programming-making-custom-functions.html#cb167-10" aria-hidden="true" tabindex="-1"></a>  n10[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb167-11"><a href="r-programming-making-custom-functions.html#cb167-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="r-programming-making-custom-functions.html#cb201-1" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb201-2"><a href="r-programming-making-custom-functions.html#cb201-2" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb201-3"><a href="r-programming-making-custom-functions.html#cb201-3" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb201-4"><a href="r-programming-making-custom-functions.html#cb201-4" tabindex="-1"></a></span>
+<span id="cb201-5"><a href="r-programming-making-custom-functions.html#cb201-5" tabindex="-1"></a>n10 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb201-6"><a href="r-programming-making-custom-functions.html#cb201-6" tabindex="-1"></a>n10[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb201-7"><a href="r-programming-making-custom-functions.html#cb201-7" tabindex="-1"></a></span>
+<span id="cb201-8"><a href="r-programming-making-custom-functions.html#cb201-8" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb201-9"><a href="r-programming-making-custom-functions.html#cb201-9" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, n10[i<span class="dv">-1</span>])</span>
+<span id="cb201-10"><a href="r-programming-making-custom-functions.html#cb201-10" tabindex="-1"></a>  n10[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb201-11"><a href="r-programming-making-custom-functions.html#cb201-11" tabindex="-1"></a>}</span></code></pre></div>
 <p>Although the for-loop saved you thousands of lines of code compared to writing out the simulation manually, you still had to copy and paste the for loop itself many times. You had to write it 3 times for the tutorial and another 3 times for the assignment, just changing a single number each time! You may have thought that there has to be a better way of doing this, and there is! You can make this simpler by making your own custom functions, which you will learn about in the R-part of this tutorial.</p>
 </div>
 <div id="function-basics" class="section level3 hasAnchor" number="4.1.2">
@@ -456,15 +440,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>What the function does with the arguments and what it returns. This is called the “body” of the function.</li>
 </ul>
 <p>A basic custom function typically looks like this:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="r-programming-making-custom-functions.html#cb168-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb168-2"><a href="r-programming-making-custom-functions.html#cb168-2" aria-hidden="true" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument){</span>
-<span id="cb168-3"><a href="r-programming-making-custom-functions.html#cb168-3" aria-hidden="true" tabindex="-1"></a>  <span class="co">#the body of the function is inside curly brackets</span></span>
-<span id="cb168-4"><a href="r-programming-making-custom-functions.html#cb168-4" aria-hidden="true" tabindex="-1"></a>  <span class="co">#here you do something with the arguments, for example:</span></span>
-<span id="cb168-5"><a href="r-programming-making-custom-functions.html#cb168-5" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> argument<span class="sc">^</span><span class="dv">2</span> </span>
-<span id="cb168-6"><a href="r-programming-making-custom-functions.html#cb168-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb168-7"><a href="r-programming-making-custom-functions.html#cb168-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># functions typically end with returning some value</span></span>
-<span id="cb168-8"><a href="r-programming-making-custom-functions.html#cb168-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb168-9"><a href="r-programming-making-custom-functions.html#cb168-9" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="r-programming-making-custom-functions.html#cb202-1" tabindex="-1"></a></span>
+<span id="cb202-2"><a href="r-programming-making-custom-functions.html#cb202-2" tabindex="-1"></a>function_name <span class="ot">&lt;-</span> <span class="cf">function</span>(argument){</span>
+<span id="cb202-3"><a href="r-programming-making-custom-functions.html#cb202-3" tabindex="-1"></a>  <span class="co">#the body of the function is inside curly brackets</span></span>
+<span id="cb202-4"><a href="r-programming-making-custom-functions.html#cb202-4" tabindex="-1"></a>  <span class="co">#here you do something with the arguments, for example:</span></span>
+<span id="cb202-5"><a href="r-programming-making-custom-functions.html#cb202-5" tabindex="-1"></a>  result <span class="ot">&lt;-</span> argument<span class="sc">^</span><span class="dv">2</span> </span>
+<span id="cb202-6"><a href="r-programming-making-custom-functions.html#cb202-6" tabindex="-1"></a>  </span>
+<span id="cb202-7"><a href="r-programming-making-custom-functions.html#cb202-7" tabindex="-1"></a>  <span class="co"># functions typically end with returning some value</span></span>
+<span id="cb202-8"><a href="r-programming-making-custom-functions.html#cb202-8" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb202-9"><a href="r-programming-making-custom-functions.html#cb202-9" tabindex="-1"></a>}</span></code></pre></div>
 <p>The above function will take an input value, square it, and return the result. You can now use the function by writing <code>function_name(somevalue)</code>, like you would with the functions you’ve encountered so far. The arguments go into the parentheses of <code>function()</code>, and the body is inside curly brackets. The value to return is wrapped inside <code>return()</code> Note that the name of the function and arguments can be whatever you’d like. You can also have as many arguments as you want, separated by comma.</p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
@@ -474,72 +458,72 @@ Custom functions makes a piece of code reusable, either for doing something many
 <div id="a-simple-example" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> A simple example<a href="r-programming-making-custom-functions.html#a-simple-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s make a simple function that allows you to see clearly what the function is doing. The following function takes an argument, and prints it in a sentence:</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="r-programming-making-custom-functions.html#cb169-1" aria-hidden="true" tabindex="-1"></a>print_arg <span class="ot">&lt;-</span> <span class="cf">function</span>(argument){</span>
-<span id="cb169-2"><a href="r-programming-making-custom-functions.html#cb169-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb169-3"><a href="r-programming-making-custom-functions.html#cb169-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make a string explaining what the argument is</span></span>
-<span id="cb169-4"><a href="r-programming-making-custom-functions.html#cb169-4" aria-hidden="true" tabindex="-1"></a>  sentence <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;the argument is:&quot;</span>, argument)</span>
-<span id="cb169-5"><a href="r-programming-making-custom-functions.html#cb169-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb169-6"><a href="r-programming-making-custom-functions.html#cb169-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the string</span></span>
-<span id="cb169-7"><a href="r-programming-making-custom-functions.html#cb169-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sentence)</span>
-<span id="cb169-8"><a href="r-programming-making-custom-functions.html#cb169-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="r-programming-making-custom-functions.html#cb203-1" tabindex="-1"></a>print_arg <span class="ot">&lt;-</span> <span class="cf">function</span>(argument){</span>
+<span id="cb203-2"><a href="r-programming-making-custom-functions.html#cb203-2" tabindex="-1"></a>  </span>
+<span id="cb203-3"><a href="r-programming-making-custom-functions.html#cb203-3" tabindex="-1"></a>  <span class="co"># make a string explaining what the argument is</span></span>
+<span id="cb203-4"><a href="r-programming-making-custom-functions.html#cb203-4" tabindex="-1"></a>  sentence <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;the argument is:&quot;</span>, argument)</span>
+<span id="cb203-5"><a href="r-programming-making-custom-functions.html#cb203-5" tabindex="-1"></a>  </span>
+<span id="cb203-6"><a href="r-programming-making-custom-functions.html#cb203-6" tabindex="-1"></a>  <span class="co"># return the string</span></span>
+<span id="cb203-7"><a href="r-programming-making-custom-functions.html#cb203-7" tabindex="-1"></a>  <span class="fu">return</span>(sentence)</span>
+<span id="cb203-8"><a href="r-programming-making-custom-functions.html#cb203-8" tabindex="-1"></a>}</span></code></pre></div>
 <p>When you run this code, nothing is printed, but the function has been saved. You can now call your new function with any argument.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="r-programming-making-custom-functions.html#cb170-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_arg</span>(<span class="dv">5</span>)</span>
-<span id="cb170-2"><a href="r-programming-making-custom-functions.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: 5&quot;</span></span>
-<span id="cb170-3"><a href="r-programming-making-custom-functions.html#cb170-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-4"><a href="r-programming-making-custom-functions.html#cb170-4" aria-hidden="true" tabindex="-1"></a><span class="co"># you can store the returned value to an object and print it</span></span>
-<span id="cb170-5"><a href="r-programming-making-custom-functions.html#cb170-5" aria-hidden="true" tabindex="-1"></a>horse_sentence <span class="ot">&lt;-</span> <span class="fu">print_arg</span>(<span class="st">&quot;horse&quot;</span>)</span>
-<span id="cb170-6"><a href="r-programming-making-custom-functions.html#cb170-6" aria-hidden="true" tabindex="-1"></a>horse_sentence</span>
-<span id="cb170-7"><a href="r-programming-making-custom-functions.html#cb170-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: horse&quot;</span></span>
-<span id="cb170-8"><a href="r-programming-making-custom-functions.html#cb170-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb170-9"><a href="r-programming-making-custom-functions.html#cb170-9" aria-hidden="true" tabindex="-1"></a><span class="co"># you can put any expression as the argument,</span></span>
-<span id="cb170-10"><a href="r-programming-making-custom-functions.html#cb170-10" aria-hidden="true" tabindex="-1"></a><span class="co"># for example a logical statement</span></span>
-<span id="cb170-11"><a href="r-programming-making-custom-functions.html#cb170-11" aria-hidden="true" tabindex="-1"></a><span class="fu">print_arg</span>(pi <span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="dv">1</span>))</span>
-<span id="cb170-12"><a href="r-programming-making-custom-functions.html#cb170-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: TRUE&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="r-programming-making-custom-functions.html#cb204-1" tabindex="-1"></a><span class="fu">print_arg</span>(<span class="dv">5</span>)</span>
+<span id="cb204-2"><a href="r-programming-making-custom-functions.html#cb204-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: 5&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="r-programming-making-custom-functions.html#cb205-1" tabindex="-1"></a></span>
+<span id="cb205-2"><a href="r-programming-making-custom-functions.html#cb205-2" tabindex="-1"></a><span class="co"># you can store the returned value to an object and print it</span></span>
+<span id="cb205-3"><a href="r-programming-making-custom-functions.html#cb205-3" tabindex="-1"></a>horse_sentence <span class="ot">&lt;-</span> <span class="fu">print_arg</span>(<span class="st">&quot;horse&quot;</span>)</span>
+<span id="cb205-4"><a href="r-programming-making-custom-functions.html#cb205-4" tabindex="-1"></a>horse_sentence</span>
+<span id="cb205-5"><a href="r-programming-making-custom-functions.html#cb205-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: horse&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="r-programming-making-custom-functions.html#cb206-1" tabindex="-1"></a></span>
+<span id="cb206-2"><a href="r-programming-making-custom-functions.html#cb206-2" tabindex="-1"></a><span class="co"># you can put any expression as the argument,</span></span>
+<span id="cb206-3"><a href="r-programming-making-custom-functions.html#cb206-3" tabindex="-1"></a><span class="co"># for example a logical statement</span></span>
+<span id="cb206-4"><a href="r-programming-making-custom-functions.html#cb206-4" tabindex="-1"></a><span class="fu">print_arg</span>(pi <span class="sc">&gt;</span> <span class="fu">exp</span>(<span class="dv">1</span>))</span>
+<span id="cb206-5"><a href="r-programming-making-custom-functions.html#cb206-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: TRUE&quot;</span></span></code></pre></div>
 <p>You can also reference the argument by name when calling the function, like you learned about in week 1.</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="r-programming-making-custom-functions.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print_arg</span>(<span class="at">argument =</span> <span class="st">&quot;zebra&quot;</span>)</span>
-<span id="cb171-2"><a href="r-programming-making-custom-functions.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: zebra&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="r-programming-making-custom-functions.html#cb207-1" tabindex="-1"></a><span class="fu">print_arg</span>(<span class="at">argument =</span> <span class="st">&quot;zebra&quot;</span>)</span>
+<span id="cb207-2"><a href="r-programming-making-custom-functions.html#cb207-2" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the argument is: zebra&quot;</span></span></code></pre></div>
 <p>While this particular function is quite useless, notice how much typing you have saved already. We will move on to some more useful functions shortly, after an exercise.</p>
 <p><strong>Exercise: create a new function called <code>print_args()</code> that takes two arguments as input, and returns the text “the first argument is [argument1] and the second is [argument2]”.</strong></p>
 <div class="fold s">
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="r-programming-making-custom-functions.html#cb172-1" aria-hidden="true" tabindex="-1"></a>print_args <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2){</span>
-<span id="cb172-2"><a href="r-programming-making-custom-functions.html#cb172-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># make a string</span></span>
-<span id="cb172-3"><a href="r-programming-making-custom-functions.html#cb172-3" aria-hidden="true" tabindex="-1"></a>  sentence <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;the first argument is:&quot;</span>, argument1, <span class="st">&quot;and the second is&quot;</span>, argument2)</span>
-<span id="cb172-4"><a href="r-programming-making-custom-functions.html#cb172-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the string</span></span>
-<span id="cb172-5"><a href="r-programming-making-custom-functions.html#cb172-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(sentence)</span>
-<span id="cb172-6"><a href="r-programming-making-custom-functions.html#cb172-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb172-7"><a href="r-programming-making-custom-functions.html#cb172-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-8"><a href="r-programming-making-custom-functions.html#cb172-8" aria-hidden="true" tabindex="-1"></a><span class="co"># test the code</span></span>
-<span id="cb172-9"><a href="r-programming-making-custom-functions.html#cb172-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb172-10"><a href="r-programming-making-custom-functions.html#cb172-10" aria-hidden="true" tabindex="-1"></a><span class="fu">print_args</span>(<span class="dv">5</span>, <span class="st">&quot;horse&quot;</span>)</span>
-<span id="cb172-11"><a href="r-programming-making-custom-functions.html#cb172-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the first argument is: 5 and the second is horse&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="r-programming-making-custom-functions.html#cb208-1" tabindex="-1"></a>print_args <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2){</span>
+<span id="cb208-2"><a href="r-programming-making-custom-functions.html#cb208-2" tabindex="-1"></a>  <span class="co"># make a string</span></span>
+<span id="cb208-3"><a href="r-programming-making-custom-functions.html#cb208-3" tabindex="-1"></a>  sentence <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&quot;the first argument is:&quot;</span>, argument1, <span class="st">&quot;and the second is&quot;</span>, argument2)</span>
+<span id="cb208-4"><a href="r-programming-making-custom-functions.html#cb208-4" tabindex="-1"></a>  <span class="co"># return the string</span></span>
+<span id="cb208-5"><a href="r-programming-making-custom-functions.html#cb208-5" tabindex="-1"></a>  <span class="fu">return</span>(sentence)</span>
+<span id="cb208-6"><a href="r-programming-making-custom-functions.html#cb208-6" tabindex="-1"></a>}</span>
+<span id="cb208-7"><a href="r-programming-making-custom-functions.html#cb208-7" tabindex="-1"></a></span>
+<span id="cb208-8"><a href="r-programming-making-custom-functions.html#cb208-8" tabindex="-1"></a><span class="co"># test the code</span></span>
+<span id="cb208-9"><a href="r-programming-making-custom-functions.html#cb208-9" tabindex="-1"></a></span>
+<span id="cb208-10"><a href="r-programming-making-custom-functions.html#cb208-10" tabindex="-1"></a><span class="fu">print_args</span>(<span class="dv">5</span>, <span class="st">&quot;horse&quot;</span>)</span>
+<span id="cb208-11"><a href="r-programming-making-custom-functions.html#cb208-11" tabindex="-1"></a><span class="co">#&gt; [1] &quot;the first argument is: 5 and the second is horse&quot;</span></span></code></pre></div>
 </div>
 </div>
 <div id="some-important-function-properties" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Some important function properties<a href="r-programming-making-custom-functions.html#some-important-function-properties" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One important thing about functions is that any objects you create <strong>only exist inside the function</strong>. This means that even though the above function creates an object named <code>sentence</code>, and we’ve run the function many times, there is no object called sentence in your R session:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="r-programming-making-custom-functions.html#cb173-1" aria-hidden="true" tabindex="-1"></a>sentence</span>
-<span id="cb173-2"><a href="r-programming-making-custom-functions.html#cb173-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;sentence&#39; not found</span></span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="r-programming-making-custom-functions.html#cb209-1" tabindex="-1"></a>sentence</span>
+<span id="cb209-2"><a href="r-programming-making-custom-functions.html#cb209-2" tabindex="-1"></a><span class="co">#&gt; Error in eval(expr, envir, enclos): object &#39;sentence&#39; not found</span></span></code></pre></div>
 <p>This means that you don’t need to worry about naming conflicts when running a function, which is convenient. However, it also means that you can’t access any objects that are made inside your function, only whatever you put inside <code>return()</code></p>
 <p>Another important thing is that <strong>you can only return 1 thing from a function</strong>. This means that if you want to return multiple objects, you need to make these into a vector. In the following three examples, only the last function will work as intended:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="r-programming-making-custom-functions.html#cb174-1" aria-hidden="true" tabindex="-1"></a>return_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb174-2"><a href="r-programming-making-custom-functions.html#cb174-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x, y) <span class="co"># will produce an error, you can only return a single object!</span></span>
-<span id="cb174-3"><a href="r-programming-making-custom-functions.html#cb174-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb174-4"><a href="r-programming-making-custom-functions.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="fu">return_2</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb174-5"><a href="r-programming-making-custom-functions.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Error in return(x, y): multi-argument returns are not permitted</span></span>
-<span id="cb174-6"><a href="r-programming-making-custom-functions.html#cb174-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-7"><a href="r-programming-making-custom-functions.html#cb174-7" aria-hidden="true" tabindex="-1"></a>return_twice <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb174-8"><a href="r-programming-making-custom-functions.html#cb174-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x) <span class="co"># x is returned, and the function stops</span></span>
-<span id="cb174-9"><a href="r-programming-making-custom-functions.html#cb174-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(y) <span class="co"># the function stops before this line, so y is lost forever</span></span>
-<span id="cb174-10"><a href="r-programming-making-custom-functions.html#cb174-10" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb174-11"><a href="r-programming-making-custom-functions.html#cb174-11" aria-hidden="true" tabindex="-1"></a><span class="fu">return_twice</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb174-12"><a href="r-programming-making-custom-functions.html#cb174-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span>
-<span id="cb174-13"><a href="r-programming-making-custom-functions.html#cb174-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb174-14"><a href="r-programming-making-custom-functions.html#cb174-14" aria-hidden="true" tabindex="-1"></a>return_vector <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb174-15"><a href="r-programming-making-custom-functions.html#cb174-15" aria-hidden="true" tabindex="-1"></a>  return_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
-<span id="cb174-16"><a href="r-programming-making-custom-functions.html#cb174-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(return_vec) <span class="co"># this is OK, only one object is returned</span></span>
-<span id="cb174-17"><a href="r-programming-making-custom-functions.html#cb174-17" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb174-18"><a href="r-programming-making-custom-functions.html#cb174-18" aria-hidden="true" tabindex="-1"></a><span class="fu">return_vector</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb174-19"><a href="r-programming-making-custom-functions.html#cb174-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="r-programming-making-custom-functions.html#cb210-1" tabindex="-1"></a>return_2 <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb210-2"><a href="r-programming-making-custom-functions.html#cb210-2" tabindex="-1"></a>  <span class="fu">return</span>(x, y) <span class="co"># will produce an error, you can only return a single object!</span></span>
+<span id="cb210-3"><a href="r-programming-making-custom-functions.html#cb210-3" tabindex="-1"></a>}</span>
+<span id="cb210-4"><a href="r-programming-making-custom-functions.html#cb210-4" tabindex="-1"></a><span class="fu">return_2</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb210-5"><a href="r-programming-making-custom-functions.html#cb210-5" tabindex="-1"></a><span class="co">#&gt; Error in return(x, y): multi-argument returns are not permitted</span></span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="r-programming-making-custom-functions.html#cb211-1" tabindex="-1"></a></span>
+<span id="cb211-2"><a href="r-programming-making-custom-functions.html#cb211-2" tabindex="-1"></a>return_twice <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb211-3"><a href="r-programming-making-custom-functions.html#cb211-3" tabindex="-1"></a>  <span class="fu">return</span>(x) <span class="co"># x is returned, and the function stops</span></span>
+<span id="cb211-4"><a href="r-programming-making-custom-functions.html#cb211-4" tabindex="-1"></a>  <span class="fu">return</span>(y) <span class="co"># the function stops before this line, so y is lost forever</span></span>
+<span id="cb211-5"><a href="r-programming-making-custom-functions.html#cb211-5" tabindex="-1"></a>}</span>
+<span id="cb211-6"><a href="r-programming-making-custom-functions.html#cb211-6" tabindex="-1"></a><span class="fu">return_twice</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb211-7"><a href="r-programming-making-custom-functions.html#cb211-7" tabindex="-1"></a><span class="co">#&gt; [1] 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="r-programming-making-custom-functions.html#cb212-1" tabindex="-1"></a></span>
+<span id="cb212-2"><a href="r-programming-making-custom-functions.html#cb212-2" tabindex="-1"></a>return_vector <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb212-3"><a href="r-programming-making-custom-functions.html#cb212-3" tabindex="-1"></a>  return_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(x, y)</span>
+<span id="cb212-4"><a href="r-programming-making-custom-functions.html#cb212-4" tabindex="-1"></a>  <span class="fu">return</span>(return_vec) <span class="co"># this is OK, only one object is returned</span></span>
+<span id="cb212-5"><a href="r-programming-making-custom-functions.html#cb212-5" tabindex="-1"></a>}</span>
+<span id="cb212-6"><a href="r-programming-making-custom-functions.html#cb212-6" tabindex="-1"></a><span class="fu">return_vector</span>(<span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb212-7"><a href="r-programming-making-custom-functions.html#cb212-7" tabindex="-1"></a><span class="co">#&gt; [1] 2 4</span></span></code></pre></div>
 <div class="green">
 <p><strong>Important concept:</strong></p>
 <ul>
@@ -551,38 +535,38 @@ Custom functions makes a piece of code reusable, either for doing something many
 <div id="a-slightly-more-useful-example" class="section level3 hasAnchor" number="4.1.5">
 <h3><span class="header-section-number">4.1.5</span> A slightly more useful example<a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A more useful function is often one that does some calculations and returns the result. Here’s an example of a function that takes two arguments and divides the first by the other.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="r-programming-making-custom-functions.html#cb175-1" aria-hidden="true" tabindex="-1"></a>divide <span class="ot">&lt;-</span> <span class="cf">function</span>(numerator, denominator){</span>
-<span id="cb175-2"><a href="r-programming-making-custom-functions.html#cb175-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> numerator<span class="sc">/</span>denominator</span>
-<span id="cb175-3"><a href="r-programming-making-custom-functions.html#cb175-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb175-4"><a href="r-programming-making-custom-functions.html#cb175-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb175-5"><a href="r-programming-making-custom-functions.html#cb175-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb175-6"><a href="r-programming-making-custom-functions.html#cb175-6" aria-hidden="true" tabindex="-1"></a><span class="fu">divide</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span>
-<span id="cb175-7"><a href="r-programming-making-custom-functions.html#cb175-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1.666667</span></span>
-<span id="cb175-8"><a href="r-programming-making-custom-functions.html#cb175-8" aria-hidden="true" tabindex="-1"></a><span class="fu">divide</span>(<span class="dv">10</span>, <span class="dv">0</span>)</span>
-<span id="cb175-9"><a href="r-programming-making-custom-functions.html#cb175-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span>
-<span id="cb175-10"><a href="r-programming-making-custom-functions.html#cb175-10" aria-hidden="true" tabindex="-1"></a><span class="co"># oops</span></span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="r-programming-making-custom-functions.html#cb213-1" tabindex="-1"></a>divide <span class="ot">&lt;-</span> <span class="cf">function</span>(numerator, denominator){</span>
+<span id="cb213-2"><a href="r-programming-making-custom-functions.html#cb213-2" tabindex="-1"></a>  result <span class="ot">&lt;-</span> numerator<span class="sc">/</span>denominator</span>
+<span id="cb213-3"><a href="r-programming-making-custom-functions.html#cb213-3" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb213-4"><a href="r-programming-making-custom-functions.html#cb213-4" tabindex="-1"></a>}</span>
+<span id="cb213-5"><a href="r-programming-making-custom-functions.html#cb213-5" tabindex="-1"></a></span>
+<span id="cb213-6"><a href="r-programming-making-custom-functions.html#cb213-6" tabindex="-1"></a><span class="fu">divide</span>(<span class="dv">5</span>, <span class="dv">3</span>)</span>
+<span id="cb213-7"><a href="r-programming-making-custom-functions.html#cb213-7" tabindex="-1"></a><span class="co">#&gt; [1] 1.666667</span></span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="r-programming-making-custom-functions.html#cb214-1" tabindex="-1"></a><span class="fu">divide</span>(<span class="dv">10</span>, <span class="dv">0</span>)</span>
+<span id="cb214-2"><a href="r-programming-making-custom-functions.html#cb214-2" tabindex="-1"></a><span class="co">#&gt; [1] Inf</span></span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="r-programming-making-custom-functions.html#cb215-1" tabindex="-1"></a><span class="co"># oops</span></span></code></pre></div>
 <p><strong>Exercise: create a function that takes two arguments and returns the sum of those arguments.</strong> <em>Tip: call it something other than</em> <code>sum</code> <em>(e.g.</em> <code>add</code><em>) to avoid overwriting R’s built in <code>sum</code> function.</em></p>
 <div class="fold s">
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="r-programming-making-custom-functions.html#cb176-1" aria-hidden="true" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
-<span id="cb176-2"><a href="r-programming-making-custom-functions.html#cb176-2" aria-hidden="true" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
-<span id="cb176-3"><a href="r-programming-making-custom-functions.html#cb176-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
-<span id="cb176-4"><a href="r-programming-making-custom-functions.html#cb176-4" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="r-programming-making-custom-functions.html#cb216-1" tabindex="-1"></a>add <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y){</span>
+<span id="cb216-2"><a href="r-programming-making-custom-functions.html#cb216-2" tabindex="-1"></a>  result <span class="ot">&lt;-</span> x <span class="sc">+</span> y</span>
+<span id="cb216-3"><a href="r-programming-making-custom-functions.html#cb216-3" tabindex="-1"></a>  <span class="fu">return</span>(result)</span>
+<span id="cb216-4"><a href="r-programming-making-custom-functions.html#cb216-4" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="example-calculating-genotype-frequencies" class="section level3 hasAnchor" number="4.1.6">
 <h3><span class="header-section-number">4.1.6</span> Example: calculating genotype frequencies<a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In last week’s tutorial, you used the following snippet of code to calculate genotype frequencies from allele frequencies:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="r-programming-making-custom-functions.html#cb177-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first we set the frequencies</span></span>
-<span id="cb177-2"><a href="r-programming-making-custom-functions.html#cb177-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
-<span id="cb177-3"><a href="r-programming-making-custom-functions.html#cb177-3" aria-hidden="true" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
-<span id="cb177-4"><a href="r-programming-making-custom-functions.html#cb177-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb177-5"><a href="r-programming-making-custom-functions.html#cb177-5" aria-hidden="true" tabindex="-1"></a><span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
-<span id="cb177-6"><a href="r-programming-making-custom-functions.html#cb177-6" aria-hidden="true" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb177-7"><a href="r-programming-making-custom-functions.html#cb177-7" aria-hidden="true" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb177-8"><a href="r-programming-making-custom-functions.html#cb177-8" aria-hidden="true" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb177-9"><a href="r-programming-making-custom-functions.html#cb177-9" aria-hidden="true" tabindex="-1"></a><span class="co"># show the genotype frequencies in the console</span></span>
-<span id="cb177-10"><a href="r-programming-making-custom-functions.html#cb177-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
-<span id="cb177-11"><a href="r-programming-making-custom-functions.html#cb177-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.64 0.32 0.04</span></span></code></pre></div>
+<div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="r-programming-making-custom-functions.html#cb217-1" tabindex="-1"></a><span class="co"># first we set the frequencies</span></span>
+<span id="cb217-2"><a href="r-programming-making-custom-functions.html#cb217-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.8</span></span>
+<span id="cb217-3"><a href="r-programming-making-custom-functions.html#cb217-3" tabindex="-1"></a>q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
+<span id="cb217-4"><a href="r-programming-making-custom-functions.html#cb217-4" tabindex="-1"></a></span>
+<span id="cb217-5"><a href="r-programming-making-custom-functions.html#cb217-5" tabindex="-1"></a><span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
+<span id="cb217-6"><a href="r-programming-making-custom-functions.html#cb217-6" tabindex="-1"></a>A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb217-7"><a href="r-programming-making-custom-functions.html#cb217-7" tabindex="-1"></a>A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb217-8"><a href="r-programming-making-custom-functions.html#cb217-8" tabindex="-1"></a>A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb217-9"><a href="r-programming-making-custom-functions.html#cb217-9" tabindex="-1"></a><span class="co"># show the genotype frequencies in the console</span></span>
+<span id="cb217-10"><a href="r-programming-making-custom-functions.html#cb217-10" tabindex="-1"></a><span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
+<span id="cb217-11"><a href="r-programming-making-custom-functions.html#cb217-11" tabindex="-1"></a><span class="co">#&gt; [1] 0.64 0.32 0.04</span></span></code></pre></div>
 <p>This is something I imagine you will do often in this course and later in life if you pursue evolutionary biology, so it would make sense to make it into a function. I will let you try to do it on your own before showing you how to do this. Use the hints if you get stuck!</p>
 <p><strong>Exercise: create a function that takes a single argument, <code>p</code>, and returns the expected genotype frequencies according to the Hardy-Weinberg expectation.</strong></p>
 <details>
@@ -598,28 +582,28 @@ Custom functions makes a piece of code reusable, either for doing something many
 <p>Remember that you can only return 1 object, so you need to make the genotype frequencies into a vector. Also, remember that you should be able to change p, so you should not have the line <code>p &lt;- 0.8</code> in the body of the function.</p>
 </details>
 <div class="fold s">
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="r-programming-making-custom-functions.html#cb178-1" aria-hidden="true" tabindex="-1"></a>calc_geno <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
-<span id="cb178-2"><a href="r-programming-making-custom-functions.html#cb178-2" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb178-3"><a href="r-programming-making-custom-functions.html#cb178-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate q from p</span></span>
-<span id="cb178-4"><a href="r-programming-making-custom-functions.html#cb178-4" aria-hidden="true" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
-<span id="cb178-5"><a href="r-programming-making-custom-functions.html#cb178-5" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb178-6"><a href="r-programming-making-custom-functions.html#cb178-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
-<span id="cb178-7"><a href="r-programming-making-custom-functions.html#cb178-7" aria-hidden="true" tabindex="-1"></a>  A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb178-8"><a href="r-programming-making-custom-functions.html#cb178-8" aria-hidden="true" tabindex="-1"></a>  A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
-<span id="cb178-9"><a href="r-programming-making-custom-functions.html#cb178-9" aria-hidden="true" tabindex="-1"></a>  A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb178-10"><a href="r-programming-making-custom-functions.html#cb178-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb178-11"><a href="r-programming-making-custom-functions.html#cb178-11" aria-hidden="true" tabindex="-1"></a>  <span class="co"># return the genotype frequencies</span></span>
-<span id="cb178-12"><a href="r-programming-making-custom-functions.html#cb178-12" aria-hidden="true" tabindex="-1"></a>  geno_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
-<span id="cb178-13"><a href="r-programming-making-custom-functions.html#cb178-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(geno_freq)</span>
-<span id="cb178-14"><a href="r-programming-making-custom-functions.html#cb178-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="r-programming-making-custom-functions.html#cb218-1" tabindex="-1"></a>calc_geno <span class="ot">&lt;-</span> <span class="cf">function</span>(p){</span>
+<span id="cb218-2"><a href="r-programming-making-custom-functions.html#cb218-2" tabindex="-1"></a>  </span>
+<span id="cb218-3"><a href="r-programming-making-custom-functions.html#cb218-3" tabindex="-1"></a>  <span class="co"># calculate q from p</span></span>
+<span id="cb218-4"><a href="r-programming-making-custom-functions.html#cb218-4" tabindex="-1"></a>  q <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> p </span>
+<span id="cb218-5"><a href="r-programming-making-custom-functions.html#cb218-5" tabindex="-1"></a>  </span>
+<span id="cb218-6"><a href="r-programming-making-custom-functions.html#cb218-6" tabindex="-1"></a>  <span class="co"># calculate the expected genotype frequencies (_e denotes expected)</span></span>
+<span id="cb218-7"><a href="r-programming-making-custom-functions.html#cb218-7" tabindex="-1"></a>  A1A1_e <span class="ot">&lt;-</span> p<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb218-8"><a href="r-programming-making-custom-functions.html#cb218-8" tabindex="-1"></a>  A1A2_e <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (p <span class="sc">*</span> q)</span>
+<span id="cb218-9"><a href="r-programming-making-custom-functions.html#cb218-9" tabindex="-1"></a>  A2A2_e <span class="ot">&lt;-</span> q<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb218-10"><a href="r-programming-making-custom-functions.html#cb218-10" tabindex="-1"></a>  </span>
+<span id="cb218-11"><a href="r-programming-making-custom-functions.html#cb218-11" tabindex="-1"></a>  <span class="co"># return the genotype frequencies</span></span>
+<span id="cb218-12"><a href="r-programming-making-custom-functions.html#cb218-12" tabindex="-1"></a>  geno_freq <span class="ot">&lt;-</span> <span class="fu">c</span>(A1A1_e, A1A2_e, A2A2_e)</span>
+<span id="cb218-13"><a href="r-programming-making-custom-functions.html#cb218-13" tabindex="-1"></a>  <span class="fu">return</span>(geno_freq)</span>
+<span id="cb218-14"><a href="r-programming-making-custom-functions.html#cb218-14" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p>When testing your function, it should show the following output:</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="r-programming-making-custom-functions.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.2</span>)</span>
-<span id="cb179-2"><a href="r-programming-making-custom-functions.html#cb179-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.04 0.32 0.64</span></span>
-<span id="cb179-3"><a href="r-programming-making-custom-functions.html#cb179-3" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.5</span>)</span>
-<span id="cb179-4"><a href="r-programming-making-custom-functions.html#cb179-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.25 0.50 0.25</span></span>
-<span id="cb179-5"><a href="r-programming-making-custom-functions.html#cb179-5" aria-hidden="true" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.7</span>)</span>
-<span id="cb179-6"><a href="r-programming-making-custom-functions.html#cb179-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.49 0.42 0.09</span></span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="r-programming-making-custom-functions.html#cb219-1" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.2</span>)</span>
+<span id="cb219-2"><a href="r-programming-making-custom-functions.html#cb219-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.04 0.32 0.64</span></span></code></pre></div>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="r-programming-making-custom-functions.html#cb220-1" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.5</span>)</span>
+<span id="cb220-2"><a href="r-programming-making-custom-functions.html#cb220-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.25 0.50 0.25</span></span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="r-programming-making-custom-functions.html#cb221-1" tabindex="-1"></a><span class="fu">calc_geno</span>(<span class="fl">0.7</span>)</span>
+<span id="cb221-2"><a href="r-programming-making-custom-functions.html#cb221-2" tabindex="-1"></a><span class="co">#&gt; [1] 0.49 0.42 0.09</span></span></code></pre></div>
 <p>Congratulations, you have now made your first truly useful function! Any time you need to calculate genotype frequencies from allele frequencies from now on, it will be a breeze!</p>
 <div class="green">
 <p><strong>Important concept:</strong><br />
@@ -634,30 +618,30 @@ Making a function isn’t all that hard when you get used to it. A general recip
 <div id="creating-a-function-of-the-drift-simulation" class="section level3 hasAnchor" number="4.1.7">
 <h3><span class="header-section-number">4.1.7</span> Creating a function of the drift simulation<a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Now we’re ready to make a function to simulate drift. Just to remind you, this is the code we used last week for the simulation:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="r-programming-making-custom-functions.html#cb180-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set population size</span></span>
-<span id="cb180-2"><a href="r-programming-making-custom-functions.html#cb180-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
-<span id="cb180-3"><a href="r-programming-making-custom-functions.html#cb180-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-4"><a href="r-programming-making-custom-functions.html#cb180-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of generations</span></span>
-<span id="cb180-5"><a href="r-programming-making-custom-functions.html#cb180-5" aria-hidden="true" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb180-6"><a href="r-programming-making-custom-functions.html#cb180-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-7"><a href="r-programming-making-custom-functions.html#cb180-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set initial frequency of A1</span></span>
-<span id="cb180-8"><a href="r-programming-making-custom-functions.html#cb180-8" aria-hidden="true" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
-<span id="cb180-9"><a href="r-programming-making-custom-functions.html#cb180-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-10"><a href="r-programming-making-custom-functions.html#cb180-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create vector for storing results</span></span>
-<span id="cb180-11"><a href="r-programming-making-custom-functions.html#cb180-11" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb180-12"><a href="r-programming-making-custom-functions.html#cb180-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set first element to initial p</span></span>
-<span id="cb180-13"><a href="r-programming-making-custom-functions.html#cb180-13" aria-hidden="true" tabindex="-1"></a>p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb180-14"><a href="r-programming-making-custom-functions.html#cb180-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-15"><a href="r-programming-making-custom-functions.html#cb180-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-16"><a href="r-programming-making-custom-functions.html#cb180-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb180-17"><a href="r-programming-making-custom-functions.html#cb180-17" aria-hidden="true" tabindex="-1"></a>  <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
-<span id="cb180-18"><a href="r-programming-making-custom-functions.html#cb180-18" aria-hidden="true" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
-<span id="cb180-19"><a href="r-programming-making-custom-functions.html#cb180-19" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb180-20"><a href="r-programming-making-custom-functions.html#cb180-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set frequency of A1 as p in the current generation</span></span>
-<span id="cb180-21"><a href="r-programming-making-custom-functions.html#cb180-21" aria-hidden="true" tabindex="-1"></a>  p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb180-22"><a href="r-programming-making-custom-functions.html#cb180-22" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb180-23"><a href="r-programming-making-custom-functions.html#cb180-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb180-24"><a href="r-programming-making-custom-functions.html#cb180-24" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="r-programming-making-custom-functions.html#cb222-1" tabindex="-1"></a><span class="co"># set population size</span></span>
+<span id="cb222-2"><a href="r-programming-making-custom-functions.html#cb222-2" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">8</span></span>
+<span id="cb222-3"><a href="r-programming-making-custom-functions.html#cb222-3" tabindex="-1"></a></span>
+<span id="cb222-4"><a href="r-programming-making-custom-functions.html#cb222-4" tabindex="-1"></a><span class="co"># set number of generations</span></span>
+<span id="cb222-5"><a href="r-programming-making-custom-functions.html#cb222-5" tabindex="-1"></a>ngen <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb222-6"><a href="r-programming-making-custom-functions.html#cb222-6" tabindex="-1"></a></span>
+<span id="cb222-7"><a href="r-programming-making-custom-functions.html#cb222-7" tabindex="-1"></a><span class="co"># set initial frequency of A1</span></span>
+<span id="cb222-8"><a href="r-programming-making-custom-functions.html#cb222-8" tabindex="-1"></a>p_init <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb222-9"><a href="r-programming-making-custom-functions.html#cb222-9" tabindex="-1"></a></span>
+<span id="cb222-10"><a href="r-programming-making-custom-functions.html#cb222-10" tabindex="-1"></a><span class="co"># create vector for storing results</span></span>
+<span id="cb222-11"><a href="r-programming-making-custom-functions.html#cb222-11" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb222-12"><a href="r-programming-making-custom-functions.html#cb222-12" tabindex="-1"></a><span class="co"># set first element to initial p</span></span>
+<span id="cb222-13"><a href="r-programming-making-custom-functions.html#cb222-13" tabindex="-1"></a>p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb222-14"><a href="r-programming-making-custom-functions.html#cb222-14" tabindex="-1"></a></span>
+<span id="cb222-15"><a href="r-programming-making-custom-functions.html#cb222-15" tabindex="-1"></a></span>
+<span id="cb222-16"><a href="r-programming-making-custom-functions.html#cb222-16" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb222-17"><a href="r-programming-making-custom-functions.html#cb222-17" tabindex="-1"></a>  <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
+<span id="cb222-18"><a href="r-programming-making-custom-functions.html#cb222-18" tabindex="-1"></a>  nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
+<span id="cb222-19"><a href="r-programming-making-custom-functions.html#cb222-19" tabindex="-1"></a>  </span>
+<span id="cb222-20"><a href="r-programming-making-custom-functions.html#cb222-20" tabindex="-1"></a>  <span class="co"># set frequency of A1 as p in the current generation</span></span>
+<span id="cb222-21"><a href="r-programming-making-custom-functions.html#cb222-21" tabindex="-1"></a>  p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb222-22"><a href="r-programming-making-custom-functions.html#cb222-22" tabindex="-1"></a>}</span>
+<span id="cb222-23"><a href="r-programming-making-custom-functions.html#cb222-23" tabindex="-1"></a></span>
+<span id="cb222-24"><a href="r-programming-making-custom-functions.html#cb222-24" tabindex="-1"></a>p</span></code></pre></div>
 <p>Notice that there are three parameters we will probably want to be able to change for each simulation: <code>N</code>, <code>ngen</code> and <code>p_init</code>. It makes sense, then, to make these into function arguments.</p>
 <p><strong>Exercise: Make the above drift simulation into a function. It should take three arguments: <code>N</code>, <code>ngen</code> and <code>p_init</code>, and return a vector of p’s for each generation.</strong></p>
 <details>
@@ -667,24 +651,24 @@ Making a function isn’t all that hard when you get used to it. A general recip
 <p>Use the three steps from the previous section: paste the code into the body, turn <code>N</code>, <code>ngen</code> and <code>p_init</code> into arguments and return your result.</p>
 </details>
 <div class="fold s">
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="r-programming-making-custom-functions.html#cb181-1" aria-hidden="true" tabindex="-1"></a>drift_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(N, ngen, p_init){</span>
-<span id="cb181-2"><a href="r-programming-making-custom-functions.html#cb181-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb181-3"><a href="r-programming-making-custom-functions.html#cb181-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># create vector for storing results</span></span>
-<span id="cb181-4"><a href="r-programming-making-custom-functions.html#cb181-4" aria-hidden="true" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
-<span id="cb181-5"><a href="r-programming-making-custom-functions.html#cb181-5" aria-hidden="true" tabindex="-1"></a>  <span class="co"># set first element to initial p</span></span>
-<span id="cb181-6"><a href="r-programming-making-custom-functions.html#cb181-6" aria-hidden="true" tabindex="-1"></a>  p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
-<span id="cb181-7"><a href="r-programming-making-custom-functions.html#cb181-7" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb181-8"><a href="r-programming-making-custom-functions.html#cb181-8" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb181-9"><a href="r-programming-making-custom-functions.html#cb181-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
-<span id="cb181-10"><a href="r-programming-making-custom-functions.html#cb181-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
-<span id="cb181-11"><a href="r-programming-making-custom-functions.html#cb181-11" aria-hidden="true" tabindex="-1"></a>    nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
-<span id="cb181-12"><a href="r-programming-making-custom-functions.html#cb181-12" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb181-13"><a href="r-programming-making-custom-functions.html#cb181-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># set frequency of A1 as p in the current generation</span></span>
-<span id="cb181-14"><a href="r-programming-making-custom-functions.html#cb181-14" aria-hidden="true" tabindex="-1"></a>    p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
-<span id="cb181-15"><a href="r-programming-making-custom-functions.html#cb181-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb181-16"><a href="r-programming-making-custom-functions.html#cb181-16" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb181-17"><a href="r-programming-making-custom-functions.html#cb181-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
-<span id="cb181-18"><a href="r-programming-making-custom-functions.html#cb181-18" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="r-programming-making-custom-functions.html#cb223-1" tabindex="-1"></a>drift_sim <span class="ot">&lt;-</span> <span class="cf">function</span>(N, ngen, p_init){</span>
+<span id="cb223-2"><a href="r-programming-making-custom-functions.html#cb223-2" tabindex="-1"></a></span>
+<span id="cb223-3"><a href="r-programming-making-custom-functions.html#cb223-3" tabindex="-1"></a>  <span class="co"># create vector for storing results</span></span>
+<span id="cb223-4"><a href="r-programming-making-custom-functions.html#cb223-4" tabindex="-1"></a>  p <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, ngen)</span>
+<span id="cb223-5"><a href="r-programming-making-custom-functions.html#cb223-5" tabindex="-1"></a>  <span class="co"># set first element to initial p</span></span>
+<span id="cb223-6"><a href="r-programming-making-custom-functions.html#cb223-6" tabindex="-1"></a>  p[<span class="dv">1</span>] <span class="ot">&lt;-</span> p_init</span>
+<span id="cb223-7"><a href="r-programming-making-custom-functions.html#cb223-7" tabindex="-1"></a>  </span>
+<span id="cb223-8"><a href="r-programming-making-custom-functions.html#cb223-8" tabindex="-1"></a>  </span>
+<span id="cb223-9"><a href="r-programming-making-custom-functions.html#cb223-9" tabindex="-1"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">2</span><span class="sc">:</span>ngen){</span>
+<span id="cb223-10"><a href="r-programming-making-custom-functions.html#cb223-10" tabindex="-1"></a>    <span class="co"># sample number of A1 alleles based on p in previous generation</span></span>
+<span id="cb223-11"><a href="r-programming-making-custom-functions.html#cb223-11" tabindex="-1"></a>    nA1 <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">1</span>, <span class="dv">2</span><span class="sc">*</span>N, p[i<span class="dv">-1</span>])</span>
+<span id="cb223-12"><a href="r-programming-making-custom-functions.html#cb223-12" tabindex="-1"></a>    </span>
+<span id="cb223-13"><a href="r-programming-making-custom-functions.html#cb223-13" tabindex="-1"></a>    <span class="co"># set frequency of A1 as p in the current generation</span></span>
+<span id="cb223-14"><a href="r-programming-making-custom-functions.html#cb223-14" tabindex="-1"></a>    p[i] <span class="ot">&lt;-</span> nA1 <span class="sc">/</span> (<span class="dv">2</span><span class="sc">*</span>N)</span>
+<span id="cb223-15"><a href="r-programming-making-custom-functions.html#cb223-15" tabindex="-1"></a>  }</span>
+<span id="cb223-16"><a href="r-programming-making-custom-functions.html#cb223-16" tabindex="-1"></a>  </span>
+<span id="cb223-17"><a href="r-programming-making-custom-functions.html#cb223-17" tabindex="-1"></a>  <span class="fu">return</span>(p)</span>
+<span id="cb223-18"><a href="r-programming-making-custom-functions.html#cb223-18" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 <p>That concludes the R-part of this tutorial! The rest of the tutorial will be about fitness and selection, but will make use of functions for exploring this. Remember to check back here if you become unsure about how functions work!</p>
 <p><strong>Exercise: when working through the rest of the tutorial, think once in a while: “Will I need to do this many times? Could I make this code into a function? How would I do that?”</strong></p>
@@ -756,7 +740,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

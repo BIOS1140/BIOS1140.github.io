@@ -53,7 +53,7 @@ First, we have to install and load the tidyverse.[^exercise2-1]
 [^exercise2-1]: Remember that you only need to install a package once, but that it needs to be loaded with `library()` every time you want to use it.
 
 
-```r
+``` r
 install.packages("tidyverse")
 library(tidyverse)
 ```
@@ -63,7 +63,7 @@ library(tidyverse)
 Together with the tidyverse, you get a built in data set called `starwars`, containing information about the characters from the Star Wars films. We will use this data set for most of this tutorial. Since it's already loaded, all you have to do to access it is run:
 
 
-```r
+``` r
 starwars
 #> # A tibble: 87 × 14
 #>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
@@ -92,7 +92,7 @@ starwars
 The tidyverse introduces a new operator called the pipe, which looks like this `%>%`. Conceptually, the pipe allows you to do something with your data, and then send the result to a new function which does more work, sends it to the next function and so on until you're satisfied. You can for instance use the pipe like this:
 
 
-```r
+``` r
 x <- 1:100
 x^2 %>% mean()
 #> [1] 3383.5
@@ -101,7 +101,7 @@ x^2 %>% mean()
 This is equivalent to writing:
 
 
-```r
+``` r
 mean(x^2)
 #> [1] 3383.5
 ```
@@ -111,7 +111,7 @@ Basically, you are putting the left hand side of the pipe into the parentheses i
 You can also assign the results of your pipe to an object like any ordinary calculation:
 
 
-```r
+``` r
 x2_mean <- x^2 %>% mean()
 ```
 
@@ -127,7 +127,7 @@ The pipe operator `%>%` allows you to send an object from the left side of the p
 Lets say we want to choose the `name` and `homeworld` columns from our `starwars` data, how can we do that? With standard R, we might do something like this.
 
 
-```r
+``` r
 # with names
 starwars[, c('name', 'homeworld')]
 # with indices
@@ -137,7 +137,7 @@ starwars[, c(1, 9)]
 With `dplyr` we can do the following:
 
 
-```r
+``` r
 select(starwars, name, homeworld)
 #> # A tibble: 87 × 2
 #>    name               homeworld
@@ -148,7 +148,7 @@ select(starwars, name, homeworld)
 #>  4 Darth Vader        Tatooine 
 #>  5 Leia Organa        Alderaan 
 #>  6 Owen Lars          Tatooine 
-#>  7 Beru Whitesun lars Tatooine 
+#>  7 Beru Whitesun Lars Tatooine 
 #>  8 R5-D4              Tatooine 
 #>  9 Biggs Darklighter  Tatooine 
 #> 10 Obi-Wan Kenobi     Stewjon  
@@ -160,7 +160,7 @@ The first argument here is your data, while the others are the columns you want 
 `select()` becomes even more intuitive when using the pipe:
 
 
-```r
+``` r
 starwars %>% select(name, homeworld)
 ```
 
@@ -169,7 +169,7 @@ This style of code is closer to how we would write in English: "Take the `starwa
 If you want to omit a column, you can use `-` in front of its name:
 
 
-```r
+``` r
 # choose all columns BUT name
 starwars %>% select(-name)
 ```
@@ -177,7 +177,7 @@ starwars %>% select(-name)
 `select` also has additional ways of selecting columns, some examples of this is shown below:
 
 
-```r
+``` r
 # choose only columns containing an underscore
 starwars %>% select(contains("_"))
 # choose only columns beginning with "s"
@@ -190,7 +190,7 @@ starwars %>% select(ends_with("color"))
 
 ::: {.fold .s}
 
-```r
+``` r
 # manual method:
 sw_hmb <- starwars %>% select(height, mass, birth_year)
 
@@ -205,14 +205,14 @@ sw_hmb <- starwars %>% select(where(is.numeric))
 Last week, you learned to filter a data set based on some criterion using the square brackets `[]`. To filter out only the humans from the `starwars` data set, you could write:
 
 
-```r
+``` r
 starwars[starwars$species == "Human", ]
 ```
 
 `dplyr`'s `filter()` function does the same thing, but with a slightly different syntax:
 
 
-```r
+``` r
 starwars %>% filter(species == "Human")
 ```
 
@@ -221,7 +221,7 @@ This looks quite similar to using the square brackets, one notable difference be
 Like with base R, you can use this to filter with the other logical operators as well, like `>` and `!=`:
 
 
-```r
+``` r
 # get people lower than 1m tall
 starwars %>% filter(height < 100)
 
@@ -232,7 +232,7 @@ starwars %>% filter(species != "Human")
 You can also filter using several criteria at once, simply separate the logical statements with a comma:
 
 
-```r
+``` r
 # get all non-humans shorter than 1m
 starwars %>% filter(height < 100, species != "Human")
 ```
@@ -244,7 +244,7 @@ The real power of the pipe shows when you chain several operations together. To 
 [^exercise2-2]: Remember that what the pipe basically does is to put the left hand side of the pipe into the function on the right hand side. Without the pipe, filtering and selecting looks like this: `select(filter(starwars, height < 100), name, height, birth_year)`
 
 
-```r
+``` r
 starwars %>% filter(height < 100) %>% 
   select(name, height, birth_year)
 #> # A tibble: 7 × 3
@@ -254,8 +254,8 @@ starwars %>% filter(height < 100) %>%
 #> 2 R5-D4                     97         NA
 #> 3 Yoda                      66        896
 #> 4 Wicket Systri Warrick     88          8
-#> 5 Dud Bolt                  94         NA
-#> 6 Ratts Tyerell             79         NA
+#> 5 Ratts Tyerel              79         NA
+#> 6 Dud Bolt                  94         NA
 #> 7 R4-P17                    96         NA
 ```
 
@@ -265,7 +265,7 @@ Again, the code looks like how you would explain what you're doing: "take the st
 
 ::: {.fold .s}
 
-```r
+``` r
 sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
   select(name, skin_color, eye_color)
 ```
@@ -281,15 +281,15 @@ sw_naboo_color <- starwars %>% filter(homeworld == "Naboo") %>%
 Imagine that you want to calculate the mean height of the people (and droids) in the `starwars` data set. You could use `mean()` on the column to achieve this (note the use of `na.rm` since the height column contains `NA`s):
 
 
-```r
+``` r
 mean(starwars$height, na.rm = TRUE)
-#> [1] 174.358
+#> [1] 174.6049
 ```
 
 But what if you want to calculate the mean height separately for e.g. the different species? One way to do this is to do a *grouped summary*. Your group is the `species` column, and your summary statistic is `mean`. We create groups using the `group_by()` function:
 
 
-```r
+``` r
 starwars %>% group_by(species)
 #> # A tibble: 87 × 14
 #> # Groups:   species [38]
@@ -313,7 +313,7 @@ starwars %>% group_by(species)
 Notice that nothing has changed in the data, but at the top you can see the text `# Groups:   species [38]`, showing that you indeed have created a group, and that you have 38 different species in your data. The main use of `group_by()` is together with `summarise()`, which does a summary based on the groups you've created:
 
 
-```r
+``` r
 starwars %>% 
   group_by(species) %>% #create group
   summarise(mean_height = mean(height, na.rm = TRUE)) # calculate summary statistic
@@ -336,7 +336,7 @@ starwars %>%
 Note how again, like in `data.frame`, the argument name to `summarise` becomes the column name in your new data frame. You can use several summary functions inside `summarise()`, like `median()`, `sd()`, `sum()` and `max()` to name some. You can also do several summaries within a single `summarise()` function:
 
 
-```r
+``` r
 starwars %>% 
   group_by(species) %>%
   summarise(mean_height = mean(height, na.rm = TRUE),
@@ -361,11 +361,11 @@ starwars %>%
 We can even group by several variables, creating more detailed summaries:
 
 
-```r
+``` r
 starwars %>%
   group_by(homeworld, sex) %>%
   summarise(mean_height = mean(height, na.rm = TRUE))
-#> # A tibble: 61 × 3
+#> # A tibble: 60 × 3
 #> # Groups:   homeworld [49]
 #>    homeworld      sex    mean_height
 #>    <chr>          <chr>        <dbl>
@@ -373,13 +373,13 @@ starwars %>%
 #>  2 Alderaan       male          190.
 #>  3 Aleen Minor    male           79 
 #>  4 Bespin         male          175 
-#>  5 Bestine IV     male          180 
+#>  5 Bestine IV     <NA>          180 
 #>  6 Cato Neimoidia male          191 
 #>  7 Cerea          male          198 
 #>  8 Champala       male          196 
 #>  9 Chandrila      female        150 
 #> 10 Concord Dawn   male          183 
-#> # ℹ 51 more rows
+#> # ℹ 50 more rows
 ```
 
 Now you get two groups for homeworld Alderaan, one with males and one with females. For the following homeworld groups there are only males (except Chandrila, with only females), so you just get one group for each (giving a pretty accurate picture of the gender balance in Star Wars).
@@ -389,7 +389,7 @@ Now you get two groups for homeworld Alderaan, one with males and one with femal
 When we have created our groups, we can also use the `tally()` function to count the number of observations we have in the groups:
 
 
-```r
+``` r
 starwars %>% 
   group_by(species) %>%
   tally()
@@ -428,7 +428,7 @@ One advantage of pipes is that you can do everything you want in a single operat
 [^exercise2-4]: In practice, it's probably smart to make an object of your intermediary results every now and then.
 
 
-```r
+``` r
 starwars %>%
   select(-films, -vehicles, -starships) %>%
   filter(species == "Human") %>%
@@ -437,7 +437,7 @@ starwars %>%
 #> # A tibble: 2 × 2
 #>   sex    mean_height
 #>   <chr>        <dbl>
-#> 1 female        160.
+#> 1 female        164.
 #> 2 male          182.
 ```
 
@@ -459,7 +459,7 @@ You can supply the mean height to the logical statement inside `filter()`. Your 
 
 ::: {.fold .s}
 
-```r
+``` r
 starwars %>%
   filter(height < mean(height, na.rm = TRUE)) %>%
   group_by(homeworld) %>%
@@ -476,7 +476,7 @@ starwars %>%
 #>  7 Iridonia           171 
 #>  8 Malastare          112 
 #>  9 Mirial             168 
-#> 10 Naboo              151.
+#> 10 Naboo              147 
 #> 11 Rodia              173 
 #> 12 Sullust            160 
 #> 13 Tatooine           153.
@@ -515,7 +515,7 @@ Let's now use these three elements step-by-step to build up our plot. In our exa
 First, we try supplying our data, `starwars`. The data is provided as an argument to the `ggplot()` function.
 
 
-```r
+``` r
 ggplot(data = starwars)
 ```
 
@@ -528,7 +528,7 @@ As you can see, this results in a completely empty plot (because, like I said, w
 The variables are provided to the `mapping` argument of `ggplot()`. For reasons we won't discuss here, **all variables always have to be contained within the function `aes()`**. Let's try providing variables to our plot:
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass))
 ```
 
@@ -541,7 +541,7 @@ Now we're getting somewhere! We have axes now, but we're still missing our point
 The geometry of a ggplot aren't provided to the `ggplot()` function as arguments. Instead, a separate function is added to the plot using `+`. All the functions for adding geometry start with `geom_`, and the one for points is called `geom_point()`. We add this to our plot:
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) + geom_point()
 ```
 
@@ -552,7 +552,7 @@ Wohoo, we now have the plot we set out to make! There's an obvious outlier in th
 The philosophy behind adding geometry with a `+` is that you build up your plot, layer by layer. We could for example add a regression line in addition to points in our plot:
 
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
   geom_point() + #add points
   geom_smooth()  #add regression line
@@ -565,7 +565,7 @@ We could keep adding layers like this forever, as long as we felt we had some me
 [^exercise2-6]: Like this!
 
     
-    ```r
+    ``` r
     ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
       geom_point() + 
       geom_line() +
@@ -608,7 +608,7 @@ You know that the individual in question is really heavy. Use `filter()` on the 
 
 ::: {.fold .s .o}
 
-```r
+``` r
 # find individuals with mass larger than 1000
 starwars %>% filter(mass > 1000) %>%
   select(name, mass)
@@ -616,6 +616,9 @@ starwars %>% filter(mass > 1000) %>%
 #>   name                   mass
 #>   <chr>                 <dbl>
 #> 1 Jabba Desilijic Tiure  1358
+```
+
+``` r
 
 # If you’ve seen Star Wars, the answer to this shouldn’t be a huge surprise… 
 # Let’s filter him out of the data
@@ -635,7 +638,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass)) + geom_point()
 A very useful feature of ggplots is that they can be stored in objects just like any other data. We will test this with the `starwars2` data frame we created above.
 
 
-```r
+``` r
 sw_plot <- ggplot(data = starwars2, mapping = aes(x = height, y = mass))
 sw_plot
 ```
@@ -646,21 +649,21 @@ We can now use this object as a base, and make different plots by adding `geom`s
 
 ::: {.fold .o}
 
-```r
+``` r
 # plot with points
 sw_plot + geom_point()
 ```
 
 <img src="Exercise2_files/figure-html/unnamed-chunk-34-1.png" width="672" />
 
-```r
+``` r
 # plot with line
 sw_plot + geom_line()
 ```
 
 <img src="Exercise2_files/figure-html/unnamed-chunk-34-2.png" width="672" />
 
-```r
+``` r
 # plot with regression line
 sw_plot + geom_smooth()
 ```
@@ -677,7 +680,7 @@ If you plan to make several plots with the same data and variables, you should s
 So far, we've been using the `geom_` functions without arguments, but they actually take many of the same arguments as `plot()`. This means that you can use `col` to change color, `pch` to change point shape and `lty` to change line type:
 
 
-```r
+``` r
 # create basic plot object
 sw_plot <- ggplot(data = starwars2, mapping = aes(x = height, y = mass))
 
@@ -697,7 +700,7 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
 [^exercise2-7]: Notice how our plot is built up layer by layer. Just to remind you, here's how the code for our plot would look without creating intermediary objects:
 
     
-    ```r
+    ``` r
     ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
       geom_line(col = "steelblue", lty = 2) +
       geom_point(col = "firebrick", pch = 3) +
@@ -712,7 +715,7 @@ Adding title and labels can be done by adding a separate function, `labs()`. `la
 
 
 
-```r
+``` r
 sw_pts_ln +
   labs(x = "Height (cm)",
        y = "Mass (kg)",
@@ -727,7 +730,7 @@ sw_pts_ln +
 The modifications you've learned so far are nice for making plots pretty, but the real power of using colors and other aesthetics comes when they can contain additional information about your data. Here we introduce a powerful concept in `ggplot2` for doing this: **You can map data to more than just your axis labels**. In the following plot, the points are colored by their value in the `species` column, rather than all having the same color:
 
 
-```r
+``` r
 ggplot(data = starwars2, mapping = aes(x = height, y = mass, col = species)) +
   geom_point()
 ```
@@ -744,7 +747,7 @@ In this sense, mapping variables to e.g. color is no different than mapping to y
 As indicated above, other things than color can be mapped to aesthetics:
 
 
-```r
+``` r
 ggplot(data = starwars2, mapping = aes(x = height, y = mass, pch = sex, lty = sex)) +
   geom_point() +
   # method=lm creates LINEAR regression, se=FALSE removes the grey confidence intervals
@@ -756,7 +759,7 @@ ggplot(data = starwars2, mapping = aes(x = height, y = mass, pch = sex, lty = se
 If you e.g. want to group your points by `sex`, but you don't want that same grouping for your lines, you can use the `mapping` argument of your `geom` instead:
 
 
-```r
+``` r
 ggplot(data = starwars2, mapping = aes(x = height, y = mass)) +
   geom_point(mapping = aes(col = sex)) +
   geom_smooth(method = "lm", se = FALSE)
@@ -785,7 +788,7 @@ Map color within the `geom_point()` function in order to avoid having your regre
 
 ::: {.fold .s .o}
 
-```r
+``` r
 ggplot(data = starwars, mapping = aes(x = birth_year, y = height)) +
   geom_point(mapping = aes(col = species)) +
   geom_smooth(method = "lm", se = FALSE)
@@ -806,7 +809,7 @@ This means that `ggplot(data = starwars, mapping = aes(x = height, y = mass))` c
 You can save your ggplot to a file using the function `ggsave()`. At the very least, you need to provide a plot object and a file name (with extension).
 
 
-```r
+``` r
 # create our plot
 sw_plot <- ggplot(data = starwars, mapping = aes(x = height, y = mass)) + 
   geom_point()
@@ -851,7 +854,7 @@ Use the `read.table()` function. The data is tabulator separated with a header. 
 
 ::: {.fold .s}
 
-```r
+``` r
 copepods <- read.table("copepods.txt", header = TRUE, sep = "\t")
 ```
 :::
@@ -861,7 +864,7 @@ copepods <- read.table("copepods.txt", header = TRUE, sep = "\t")
 Take a look at the data and how it's structured:
 
 
-```r
+``` r
 copepods
 #>   depth acartia calanus harpacticoida oithona oncaea temora
 #> 1     0       0       3             0       2      0      0
@@ -880,7 +883,7 @@ copepods
 As you hopefully figured out, this data is in so-called wide format, and we need to make it long with `pivot_longer()`. `pivot_longer()` has two important arguments called `names_to` and `values_to`. In our case `names_to` is the name of the new column of species, and `values_to` is the name of the new column where our values go. In addition, you need to provide the columns that you want to reshape. We can reshape this data like this:
 
 
-```r
+``` r
 copepods_long <- copepods %>%
   pivot_longer(c(acartia, calanus, harpacticoida, oithona, oncaea, temora),
                names_to = "species", values_to = "count")
@@ -905,7 +908,7 @@ copepods_long
 Note that `pivot_longer()` has the same way of selecting columns as `select()`, meaning we can use the minus sign to choose all columns except depth. The following code does the same as the one above:
 
 
-```r
+``` r
 copepods_long <- copepods %>%
   pivot_longer(-depth, names_to = "species", values_to = "count")
 ```
@@ -987,7 +990,7 @@ depthplot + geom_area(aes(fill = species))
 I'm settling on `geom_area()` since it nicely shows both total abundance and the relationship between the taxa (plus, it looks cool). Some additional tricks I do: flip the coordinates with `coord_flip()` to get depth on the y-axis, and plotting `-depth` instead of `depth` to plot depth downwards. I do this because it is how depth data is usually shown in marine biology, and because I wanted to show you that there are lots of options on customising plots that you will encounter as you learn more about ggplot.
 
 
-```r
+``` r
 copeplot <- ggplot(copepods_long, aes(-depth, count)) + 
   geom_area(aes(fill = species)) +
   labs(title = "Number of individuals by depth",

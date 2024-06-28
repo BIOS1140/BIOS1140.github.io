@@ -1,4 +1,4 @@
-# Week 10 assignment {- #w10}
+# Week 9 assignment 7 {- #w10}
 
 _These study questions are meant only to test yourself. Hand-in is not required and will not count on the required number of approved hands-in. We will, however, provide a hand-in folder for those who would like feedback from one of the group teachers_
 
@@ -33,7 +33,7 @@ a) Create a function that takes a vector as an argument, and returns the last el
 For the next assignment, run the following code to create an example list:
 
 
-```r
+``` r
 numbers <- list(
   c(1,2,3),
   c(14, 36, 60, 78),
@@ -47,7 +47,7 @@ b) Use `lapply()` or `sapply()` to apply the function you created in a. to `numb
 For the next part of the assignment, download the file [gdp_year.rds](https://bios1140.github.io/data/gdp_year.rds). This data is also from Gapminder, and shows the development in GDP per capita from 1900 to 2020 by country. Load the data with `readRDS()`:
 
 
-```r
+``` r
 data <- readRDS("gdp_year.rds")
 ```
 
@@ -58,7 +58,7 @@ c) Use `sapply()` to apply the function you made in a. to the data you just load
     Next, convert your vector to a data frame with the following code (assuming your vector is named `gdp_change`):
     
     
-    ```r
+    ``` r
     gdp_df <- data.frame(gdp_change) %>% rownames_to_column("Country")
     ```
     

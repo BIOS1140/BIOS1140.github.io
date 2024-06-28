@@ -4,33 +4,33 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Week 7 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo</title>
+  <title>Week 6 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.25 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Week 7 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta property="og:title" content="Week 6 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Week 7 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta name="twitter:title" content="Week 6 Inferring Evolutionary Processes from Sequence Data | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann. Revamped again in 2024 by Emily Enevoldsen and Marius F. Maurstad" />
 
 
-<meta name="date" content="2023-06-25" />
+<meta name="date" content="2024-06-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="going-further-5.html"/>
+<link rel="prev" href="going-further-4.html"/>
 <link rel="next" href="working-with-dna-sequence-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -56,7 +56,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -119,6 +119,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -136,278 +140,258 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">R tutorials for the course BIOS1140</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#preface">Preface<span></span></a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
 <ul>
-<li><a href="how-to-use-these-tutorials.html#how-to-use-these-tutorials">How to use these tutorials<span></span></a></li>
+<li class="chapter" data-level="" data-path="how-to-use-these-tutorials.html"><a href="how-to-use-these-tutorials.html"><i class="fa fa-check"></i>How to use these tutorials</a></li>
 </ul></li>
-<li class="part"><span><b>I Introductory R course<span></span></b></span></li>
-<li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R<span></span></a>
+<li class="part"><span><b>I Introductory R course</b></span></li>
+<li class="chapter" data-level="1" data-path="ch01.html"><a href="ch01.html"><i class="fa fa-check"></i><b>1</b> Introduction to R</a>
 <ul>
-<li><a href="ch01.html#what-to-expect">What to expect<span></span></a></li>
-<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!<span></span></a>
+<li class="chapter" data-level="" data-path="ch01.html"><a href="ch01.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="1.1" data-path="start-using-r.html"><a href="start-using-r.html"><i class="fa fa-check"></i><b>1.1</b> Start using R!</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio<span></span></a></li>
-<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console<span></span></a></li>
-<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts<span></span></a></li>
+<li class="chapter" data-level="1.1.1" data-path="start-using-r.html"><a href="start-using-r.html#install-r-and-rstudio"><i class="fa fa-check"></i><b>1.1.1</b> Install R and Rstudio</a></li>
+<li class="chapter" data-level="1.1.2" data-path="start-using-r.html"><a href="start-using-r.html#getting-familiar-with-r-and-the-console"><i class="fa fa-check"></i><b>1.1.2</b> Getting familiar with R and the console</a></li>
+<li class="chapter" data-level="1.1.3" data-path="start-using-r.html"><a href="start-using-r.html#scripts"><i class="fa fa-check"></i><b>1.1.3</b> Scripts</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials<span></span></a>
+<li class="chapter" data-level="1.2" data-path="r-essentials.html"><a href="r-essentials.html"><i class="fa fa-check"></i><b>1.2</b> R essentials</a>
 <ul>
-<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects<span></span></a></li>
-<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors<span></span></a></li>
-<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings<span></span></a></li>
-<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values<span></span></a></li>
-<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions<span></span></a></li>
-<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames<span></span></a></li>
+<li class="chapter" data-level="1.2.1" data-path="r-essentials.html"><a href="r-essentials.html#assigning-to-objects"><i class="fa fa-check"></i><b>1.2.1</b> Assigning to objects</a></li>
+<li class="chapter" data-level="1.2.2" data-path="r-essentials.html"><a href="r-essentials.html#vectors"><i class="fa fa-check"></i><b>1.2.2</b> Vectors</a></li>
+<li class="chapter" data-level="1.2.3" data-path="r-essentials.html"><a href="r-essentials.html#strings"><i class="fa fa-check"></i><b>1.2.3</b> Strings</a></li>
+<li class="chapter" data-level="1.2.4" data-path="r-essentials.html"><a href="r-essentials.html#logical"><i class="fa fa-check"></i><b>1.2.4</b> Logical values</a></li>
+<li class="chapter" data-level="1.2.5" data-path="r-essentials.html"><a href="r-essentials.html#functions"><i class="fa fa-check"></i><b>1.2.5</b> Functions</a></li>
+<li class="chapter" data-level="1.2.6" data-path="r-essentials.html"><a href="r-essentials.html#data-frames"><i class="fa fa-check"></i><b>1.2.6</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import<span></span></a>
+<li class="chapter" data-level="1.3" data-path="dataimport.html"><a href="dataimport.html"><i class="fa fa-check"></i><b>1.3</b> Data import</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats<span></span></a></li>
-<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories<span></span></a></li>
-<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing<span></span></a></li>
+<li class="chapter" data-level="1.3.1" data-path="dataimport.html"><a href="dataimport.html#data-formats"><i class="fa fa-check"></i><b>1.3.1</b> Data formats</a></li>
+<li class="chapter" data-level="1.3.2" data-path="dataimport.html"><a href="dataimport.html#working-directories"><i class="fa fa-check"></i><b>1.3.2</b> Working directories</a></li>
+<li class="chapter" data-level="1.3.3" data-path="dataimport.html"><a href="dataimport.html#importing"><i class="fa fa-check"></i><b>1.3.3</b> Importing</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting<span></span></a>
+<li class="chapter" data-level="1.4" data-path="plotting.html"><a href="plotting.html"><i class="fa fa-check"></i><b>1.4</b> Plotting</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors<span></span></a></li>
-<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots<span></span></a></li>
+<li class="chapter" data-level="1.4.1" data-path="plotting.html"><a href="plotting.html#plotting-vectors"><i class="fa fa-check"></i><b>1.4.1</b> Plotting vectors</a></li>
+<li class="chapter" data-level="1.4.2" data-path="plotting.html"><a href="plotting.html#customizing-your-plots"><i class="fa fa-check"></i><b>1.4.2</b> Customizing your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages<span></span></a></li>
-<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="1.5" data-path="installing-and-loading-packages.html"><a href="installing-and-loading-packages.html"><i class="fa fa-check"></i><b>1.5</b> Installing and loading packages</a></li>
+<li class="chapter" data-level="1.6" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.6</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="ch02.html"><a href="ch02.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R<span></span></a>
+<li class="chapter" data-level="2" data-path="ch02.html"><a href="ch02.html"><i class="fa fa-check"></i><b>2</b> Building on your foundations: going further with R</a>
 <ul>
-<li><a href="ch02.html#what-to-expect-1">What to expect<span></span></a></li>
-<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse<span></span></a>
+<li class="chapter" data-level="" data-path="ch02.html"><a href="ch02.html#what-to-expect-1"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="2.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html"><i class="fa fa-check"></i><b>2.1</b> Intro to data manipulation with tidyverse</a>
 <ul>
-<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?<span></span></a></li>
-<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package<span></span></a></li>
+<li class="chapter" data-level="2.1.1" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#what-is-the-tidyverse"><i class="fa fa-check"></i><b>2.1.1</b> What is the tidyverse?</a></li>
+<li class="chapter" data-level="2.1.2" data-path="intro-to-data-manipulation-with-tidyverse.html"><a href="intro-to-data-manipulation-with-tidyverse.html#the-dplyr-package"><i class="fa fa-check"></i><b>2.1.2</b> The dplyr package</a></li>
 </ul></li>
-<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data<span></span></a>
+<li class="chapter" data-level="2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html"><i class="fa fa-check"></i><b>2.2</b> Using dplyr to work with your data</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe<span></span></a></li>
-<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code><span></span></a></li>
-<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise<span></span></a></li>
+<li class="chapter" data-level="2.2.1" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#the-pipe"><i class="fa fa-check"></i><b>2.2.1</b> The pipe</a></li>
+<li class="chapter" data-level="2.2.2" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#selecting-columns-with-select"><i class="fa fa-check"></i><b>2.2.2</b> Selecting columns with <code>select()</code></a></li>
+<li class="chapter" data-level="2.2.3" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#filtering-colums-using-filter"><i class="fa fa-check"></i><b>2.2.3</b> Filtering colums using <code>filter()</code></a></li>
+<li class="chapter" data-level="2.2.4" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#grouped-summaries-with-group_by-and-summarise"><i class="fa fa-check"></i><b>2.2.4</b> Grouped summaries with <code>group_by()</code> and <code>summarise()</code></a></li>
+<li class="chapter" data-level="2.2.5" data-path="using-dplyr-to-work-with-your-data.html"><a href="using-dplyr-to-work-with-your-data.html#using-everything-weve-learned-in-a-single-pipe-and-a-dplyr-exercise"><i class="fa fa-check"></i><b>2.2.5</b> Using everything we’ve learned in a single pipe, and a <code>dplyr</code> exercise</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code><span></span></a>
+<li class="chapter" data-level="2.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html"><i class="fa fa-check"></i><b>2.3</b> Plotting your data with <code>ggplot2</code></a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot<span></span></a></li>
-<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects<span></span></a></li>
-<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots<span></span></a></li>
-<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots<span></span></a></li>
+<li class="chapter" data-level="2.3.1" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#the-three-things-you-need-in-a-ggplot"><i class="fa fa-check"></i><b>2.3.1</b> The three things you need in a ggplot</a></li>
+<li class="chapter" data-level="2.3.2" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#storing-ggplots-in-objects"><i class="fa fa-check"></i><b>2.3.2</b> Storing ggplots in objects</a></li>
+<li class="chapter" data-level="2.3.3" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#customizing-your-plots-1"><i class="fa fa-check"></i><b>2.3.3</b> Customizing your plots</a></li>
+<li class="chapter" data-level="2.3.4" data-path="plotting-your-data-with-ggplot2.html"><a href="plotting-your-data-with-ggplot2.html#saving-your-plots"><i class="fa fa-check"></i><b>2.3.4</b> Saving your plots</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()<span></span></a>
+<li class="chapter" data-level="2.4" data-path="pivot-longer.html"><a href="pivot-longer.html"><i class="fa fa-check"></i><b>2.4</b> Reshaping data with pivot_longer()</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format<span></span></a></li>
-<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data<span></span></a></li>
-<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data<span></span></a></li>
-<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data<span></span></a></li>
+<li class="chapter" data-level="2.4.1" data-path="pivot-longer.html"><a href="pivot-longer.html#wide-and-long-format"><i class="fa fa-check"></i><b>2.4.1</b> Wide and long format</a></li>
+<li class="chapter" data-level="2.4.2" data-path="pivot-longer.html"><a href="pivot-longer.html#import-example-data"><i class="fa fa-check"></i><b>2.4.2</b> Import example data</a></li>
+<li class="chapter" data-level="2.4.3" data-path="pivot-longer.html"><a href="pivot-longer.html#reshape-the-data"><i class="fa fa-check"></i><b>2.4.3</b> Reshape the data</a></li>
+<li class="chapter" data-level="2.4.4" data-path="pivot-longer.html"><a href="pivot-longer.html#plot-the-data"><i class="fa fa-check"></i><b>2.4.4</b> Plot the data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="2.5" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>2.5</b> Study questions</a></li>
+<li class="chapter" data-level="2.6" data-path="going-further-1.html"><a href="going-further-1.html"><i class="fa fa-check"></i><b>2.6</b> Going further</a></li>
 </ul></li>
-<li class="part"><span><b>II Evolutionary genetics with R<span></span></b></span></li>
-<li class="chapter" data-level="3" data-path="ch03.html"><a href="ch03.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency<span></span></a>
+<li class="part"><span><b>II Evolutionary genetics with R</b></span></li>
+<li class="chapter" data-level="3" data-path="ch03.html"><a href="ch03.html"><i class="fa fa-check"></i><b>3</b> Changes in Allele and Genotype Frequency</a>
 <ul>
-<li><a href="ch03.html#what-to-expect-2">What to expect<span></span></a></li>
-<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops<span></span></a>
+<li class="chapter" data-level="" data-path="ch03.html"><a href="ch03.html#what-to-expect-2"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="3.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html"><i class="fa fa-check"></i><b>3.1</b> R programming: for-loops</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?<span></span></a></li>
-<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works<span></span></a></li>
-<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops<span></span></a></li>
-<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem<span></span></a></li>
-<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop<span></span></a></li>
+<li class="chapter" data-level="3.1.1" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#motivation-why-loop"><i class="fa fa-check"></i><b>3.1.1</b> Motivation: why loop?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#how-a-for-loop-works"><i class="fa fa-check"></i><b>3.1.2</b> How a for-loop works</a></li>
+<li class="chapter" data-level="3.1.3" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#indexing"><i class="fa fa-check"></i><b>3.1.3</b> Indexing with for-loops</a></li>
+<li class="chapter" data-level="3.1.4" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#solving-our-problem"><i class="fa fa-check"></i><b>3.1.4</b> Solving our problem</a></li>
+<li class="chapter" data-level="3.1.5" data-path="r-programming-for-loops.html"><a href="r-programming-for-loops.html#storing-values-from-a-for-loop"><i class="fa fa-check"></i><b>3.1.5</b> Storing values from a for-loop</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology<span></span></a>
+<li class="chapter" data-level="3.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html"><i class="fa fa-check"></i><b>3.2</b> Evolutionary biology</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model<span></span></a></li>
-<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation<span></span></a></li>
-<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift<span></span></a></li>
+<li class="chapter" data-level="3.2.1" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#the-hardy-weinberg-model"><i class="fa fa-check"></i><b>3.2.1</b> The Hardy-Weinberg Model</a></li>
+<li class="chapter" data-level="3.2.2" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#testing-for-deviations-from-the-hardy-weinberg-expectation"><i class="fa fa-check"></i><b>3.2.2</b> Testing for deviations from the Hardy Weinberg Expectation</a></li>
+<li class="chapter" data-level="3.2.3" data-path="evolutionary-biology.html"><a href="evolutionary-biology.html#simulating-genetic-drift"><i class="fa fa-check"></i><b>3.2.3</b> Simulating genetic drift</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>3.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further<span></span></a></li>
+<li class="chapter" data-level="3.3" data-path="study-questions-1.html"><a href="study-questions-1.html"><i class="fa fa-check"></i><b>3.3</b> Study questions</a></li>
+<li class="chapter" data-level="3.4" data-path="going-further-2.html"><a href="going-further-2.html"><i class="fa fa-check"></i><b>3.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="ch04.html"><a href="ch04.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection<span></span></a>
+<li class="chapter" data-level="4" data-path="ch04.html"><a href="ch04.html"><i class="fa fa-check"></i><b>4</b> The Theory of Natural Selection</a>
 <ul>
-<li><a href="ch04.html#what-to-expect-3">What to expect<span></span></a></li>
-<li><a href="ch04.html#getting-started">Getting started<span></span></a></li>
-<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions<span></span></a>
+<li class="chapter" data-level="" data-path="ch04.html"><a href="ch04.html#what-to-expect-3"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch04.html"><a href="ch04.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="4.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html"><i class="fa fa-check"></i><b>4.1</b> R programming: Making custom functions</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation<span></span></a></li>
-<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics<span></span></a></li>
-<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example<span></span></a></li>
-<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties<span></span></a></li>
-<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example<span></span></a></li>
-<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies<span></span></a></li>
-<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation<span></span></a></li>
+<li class="chapter" data-level="4.1.1" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#motivation"><i class="fa fa-check"></i><b>4.1.1</b> Motivation</a></li>
+<li class="chapter" data-level="4.1.2" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#function-basics"><i class="fa fa-check"></i><b>4.1.2</b> Function basics</a></li>
+<li class="chapter" data-level="4.1.3" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-simple-example"><i class="fa fa-check"></i><b>4.1.3</b> A simple example</a></li>
+<li class="chapter" data-level="4.1.4" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#some-important-function-properties"><i class="fa fa-check"></i><b>4.1.4</b> Some important function properties</a></li>
+<li class="chapter" data-level="4.1.5" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#a-slightly-more-useful-example"><i class="fa fa-check"></i><b>4.1.5</b> A slightly more useful example</a></li>
+<li class="chapter" data-level="4.1.6" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#example-calculating-genotype-frequencies"><i class="fa fa-check"></i><b>4.1.6</b> Example: calculating genotype frequencies</a></li>
+<li class="chapter" data-level="4.1.7" data-path="r-programming-making-custom-functions.html"><a href="r-programming-making-custom-functions.html#creating-a-function-of-the-drift-simulation"><i class="fa fa-check"></i><b>4.1.7</b> Creating a function of the drift simulation</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness<span></span></a>
+<li class="chapter" data-level="4.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html"><i class="fa fa-check"></i><b>4.2</b> Evolutionary biology: fitness</a>
 <ul>
-<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness<span></span></a></li>
-<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection<span></span></a></li>
-<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance<span></span></a></li>
+<li class="chapter" data-level="4.2.1" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#understanding-fitness"><i class="fa fa-check"></i><b>4.2.1</b> Understanding fitness</a></li>
+<li class="chapter" data-level="4.2.2" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#one-locus-model-of-viability-selection"><i class="fa fa-check"></i><b>4.2.2</b> One-locus model of viability selection</a></li>
+<li class="chapter" data-level="4.2.3" data-path="evolutionary-biology-fitness.html"><a href="evolutionary-biology-fitness.html#over-and-underdominance"><i class="fa fa-check"></i><b>4.2.3</b> Over and underdominance</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further<span></span></a></li>
+<li class="chapter" data-level="4.3" data-path="study-questions-2.html"><a href="study-questions-2.html"><i class="fa fa-check"></i><b>4.3</b> Study questions</a></li>
+<li class="chapter" data-level="4.4" data-path="going-further-3.html"><a href="going-further-3.html"><i class="fa fa-check"></i><b>4.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch05.html"><a href="ch05.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection<span></span></a>
+<li class="chapter" data-level="5" data-path="ch05.html"><a href="ch05.html"><i class="fa fa-check"></i><b>5</b> Detecting Natural Selection</a>
 <ul>
-<li><a href="ch05.html#what-to-expect-4">What to expect<span></span></a></li>
-<li><a href="ch05.html#getting-started-1">Getting started<span></span></a></li>
-<li class="chapter" data-level="5.1" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> More on functions: Vectorisation<span></span></a>
+<li class="chapter" data-level="" data-path="ch05.html"><a href="ch05.html#what-to-expect-4"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch05.html"><a href="ch05.html#getting-started-1"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="5.1" data-path="vectorisation.html"><a href="vectorisation.html"><i class="fa fa-check"></i><b>5.1</b> More on functions: Vectorisation</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="vectorisation.html"><a href="vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.1</b> The <code>apply()</code> function<span></span></a></li>
-<li class="chapter" data-level="5.1.2" data-path="vectorisation.html"><a href="vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.2</b> The <code>ifelse()</code> function<span></span></a></li>
+<li class="chapter" data-level="5.1.1" data-path="vectorisation.html"><a href="vectorisation.html#the-apply-function"><i class="fa fa-check"></i><b>5.1.1</b> The <code>apply()</code> function</a></li>
+<li class="chapter" data-level="5.1.2" data-path="vectorisation.html"><a href="vectorisation.html#ifelse"><i class="fa fa-check"></i><b>5.1.2</b> The <code>ifelse()</code> function</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html"><i class="fa fa-check"></i><b>5.2</b> Understanding <em>F</em><sub>ST</sub> - the fixation index<span></span></a>
+<li class="chapter" data-level="5.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html"><i class="fa fa-check"></i><b>5.2</b> Understanding <em>F</em><sub>ST</sub> - the fixation index</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#a-worked-example-of-fst-in-humans"><i class="fa fa-check"></i><b>5.2.1</b> A worked example of <em>F</em><sub>ST</sub> in humans<span></span></a></li>
-<li class="chapter" data-level="5.2.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#writing-a-set-of-fst-functions"><i class="fa fa-check"></i><b>5.2.2</b> Writing a set of <em>F</em><sub>ST</sub> functions<span></span></a></li>
-<li class="chapter" data-level="5.2.3" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#applying-functions-to-matrices-and-data-frames"><i class="fa fa-check"></i><b>5.2.3</b> Applying functions to matrices and data frames<span></span></a></li>
+<li class="chapter" data-level="5.2.1" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#a-worked-example-of-fst-in-humans"><i class="fa fa-check"></i><b>5.2.1</b> A worked example of <em>F</em><sub>ST</sub> in humans</a></li>
+<li class="chapter" data-level="5.2.2" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#writing-a-set-of-fst-functions"><i class="fa fa-check"></i><b>5.2.2</b> Writing a set of <em>F</em><sub>ST</sub> functions</a></li>
+<li class="chapter" data-level="5.2.3" data-path="understanding-fst---the-fixation-index.html"><a href="understanding-fst---the-fixation-index.html#applying-functions-to-matrices-and-data-frames"><i class="fa fa-check"></i><b>5.2.3</b> Applying functions to matrices and data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html"><i class="fa fa-check"></i><b>5.3</b> Visualising <em>F</em><sub>ST</sub> along a chromosome<span></span></a>
+<li class="chapter" data-level="5.3" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html"><i class="fa fa-check"></i><b>5.3</b> Visualising <em>F</em><sub>ST</sub> along a chromosome</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html#identifying-outliers-in-our-fst-distribution"><i class="fa fa-check"></i><b>5.3.1</b> Identifying outliers in our <em>F</em><sub>ST</sub> distribution<span></span></a></li>
+<li class="chapter" data-level="5.3.1" data-path="visualising-fst-along-a-chromosome.html"><a href="visualising-fst-along-a-chromosome.html#identifying-outliers-in-our-fst-distribution"><i class="fa fa-check"></i><b>5.3.1</b> Identifying outliers in our <em>F</em><sub>ST</sub> distribution</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>5.4</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="5.5" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.5</b> Going further<span></span></a></li>
+<li class="chapter" data-level="5.4" data-path="study-questions-3.html"><a href="study-questions-3.html"><i class="fa fa-check"></i><b>5.4</b> Study questions</a></li>
+<li class="chapter" data-level="5.5" data-path="going-further-4.html"><a href="going-further-4.html"><i class="fa fa-check"></i><b>5.5</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="ch06.html"><a href="ch06.html"><i class="fa fa-check"></i><b>6</b> Multilocus Evolution<span></span></a>
+<li class="chapter" data-level="6" data-path="ch07.html"><a href="ch07.html"><i class="fa fa-check"></i><b>6</b> Inferring Evolutionary Processes from Sequence Data</a>
 <ul>
-<li><a href="ch06.html#what-to-expect-5">What to expect<span></span></a></li>
-<li><a href="ch06.html#getting-started-2">Getting started<span></span></a></li>
-<li class="chapter" data-level="6.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html"><i class="fa fa-check"></i><b>6.1</b> Tools for investigating differences between groups<span></span></a>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="6.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>6.1</b> Working with DNA sequence data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#exploring-group-differences"><i class="fa fa-check"></i><b>6.1.1</b> Exploring group differences<span></span></a></li>
-<li class="chapter" data-level="6.1.2" data-path="tools-for-investigating-differences-between-groups.html"><a href="tools-for-investigating-differences-between-groups.html#analysis-of-variance-anova"><i class="fa fa-check"></i><b>6.1.2</b> Analysis of variance (ANOVA)<span></span></a></li>
+<li class="chapter" data-level="6.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>6.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="6.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>6.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="6.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>6.1.3</b> Calculating basic sequence statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html"><i class="fa fa-check"></i><b>6.2</b> Performing a QTL analysis in bedbugs<span></span></a>
+<li class="chapter" data-level="6.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>6.2</b> Working with a larger dataset</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#bedbugs-pesticide-resistance-and-study-design"><i class="fa fa-check"></i><b>6.2.1</b> Bedbugs, pesticide resistance and study design<span></span></a></li>
-<li class="chapter" data-level="6.2.2" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#linking-anova-to-our-qtl-analysis"><i class="fa fa-check"></i><b>6.2.2</b> Linking ANOVA to our QTL analysis<span></span></a></li>
-<li class="chapter" data-level="6.2.3" data-path="performing-a-qtl-analysis-in-bedbugs.html"><a href="performing-a-qtl-analysis-in-bedbugs.html#testing-the-same-genotype-phenotype-association-with-anova"><i class="fa fa-check"></i><b>6.2.3</b> Testing the same genotype phenotype association with ANOVA<span></span></a></li>
+<li class="chapter" data-level="6.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>6.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="6.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>6.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="6.4" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.4</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="ch07.html"><a href="ch07.html"><i class="fa fa-check"></i><b>7</b> Inferring Evolutionary Processes from Sequence Data<span></span></a>
+<li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
-<li><a href="ch07.html#what-to-expect-6">What to expect<span></span></a></li>
-<li><a href="ch07.html#getting-started-3">Getting started<span></span></a></li>
-<li class="chapter" data-level="7.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>7.1</b> Working with DNA sequence data<span></span></a>
+<li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
+<li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch08.html"><a href="ch08.html"><i class="fa fa-check"></i><b>7</b> Speciation Genomics</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>7.1.1</b> Reading sequence data into R.<span></span></a></li>
-<li class="chapter" data-level="7.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>7.1.2</b> Exploring DNA sequence data<span></span></a></li>
-<li class="chapter" data-level="7.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>7.1.3</b> Calculating basic sequence statistics<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="7.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Working with a larger dataset<span></span></a>
+<li class="chapter" data-level="" data-path="ch08.html"><a href="ch08.html#what-to-expect-6"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch08.html"><a href="ch08.html#getting-started-3"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="7.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html"><i class="fa fa-check"></i><b>7.1</b> Visualizing complex data</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>7.2.1</b> Sample size and sequence statistics<span></span></a></li>
-<li class="chapter" data-level="7.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>7.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em><span></span></a></li>
+<li class="chapter" data-level="7.1.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>7.1.1</b> Faceting</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>7.3</b> Calculating statistics at the whole genome level<span></span></a>
+<li class="chapter" data-level="7.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Returning to the sparrow dataset</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>7.3.1</b> Reading in variant data<span></span></a></li>
-<li class="chapter" data-level="7.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>7.3.2</b> Calculating nucleotide diversity statistics<span></span></a></li>
-<li class="chapter" data-level="7.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>7.3.3</b> Visualising nucleotide diversity along the chromosome<span></span></a></li>
-<li class="chapter" data-level="7.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>7.3.4</b> Performing a sliding window analysis<span></span></a></li>
+<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Reading in the sparrow vcf</a></li>
+<li class="chapter" data-level="7.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>7.2.2</b> Examining the variant data</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>7.4</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="7.5" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.5</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="ch08.html"><a href="ch08.html"><i class="fa fa-check"></i><b>8</b> Speciation Genomics<span></span></a>
+<li class="chapter" data-level="7.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>7.3</b> Setting up sliding windows</a>
 <ul>
-<li><a href="ch08.html#what-to-expect-7">What to expect<span></span></a></li>
-<li><a href="ch08.html#getting-started-4">Getting started<span></span></a></li>
-<li class="chapter" data-level="8.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html"><i class="fa fa-check"></i><b>8.1</b> Visualizing complex data<span></span></a>
+<li class="chapter" data-level="7.3.1" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>7.3.1</b> Calculating sliding window estimates of nucleotide diversity and differentiation</a></li>
+<li class="chapter" data-level="7.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#sparrow-data"><i class="fa fa-check"></i><b>7.3.2</b> Extracting statistics for visualisation</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="sparrow-viz.html"><a href="sparrow-viz.html"><i class="fa fa-check"></i><b>7.4</b> Visualising the data</a>
 <ul>
-<li class="chapter" data-level="8.1.1" data-path="visualizing-complex-data.html"><a href="visualizing-complex-data.html#faceting"><i class="fa fa-check"></i><b>8.1.1</b> Faceting<span></span></a></li>
+<li class="chapter" data-level="7.4.1" data-path="sparrow-viz.html"><a href="sparrow-viz.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>7.4.1</b> Visualising patterns along the chromosome</a></li>
+<li class="chapter" data-level="7.4.2" data-path="sparrow-viz.html"><a href="sparrow-viz.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>7.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity</a></li>
+<li class="chapter" data-level="7.4.3" data-path="sparrow-viz.html"><a href="sparrow-viz.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>7.4.3</b> Investigating recombination rate variation</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>8.2</b> Returning to the sparrow dataset<span></span></a>
+<li class="chapter" data-level="7.5" data-path="study-questions-5.html"><a href="study-questions-5.html"><i class="fa fa-check"></i><b>7.5</b> Study questions</a></li>
+<li class="chapter" data-level="7.6" data-path="going-further-6.html"><a href="going-further-6.html"><i class="fa fa-check"></i><b>7.6</b> Going further</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="ch09.html"><a href="ch09.html"><i class="fa fa-check"></i><b>8</b> Reconstructing the Past</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>8.2.1</b> Reading in the sparrow vcf<span></span></a></li>
-<li class="chapter" data-level="8.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>8.2.2</b> Examining the variant data<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>8.3</b> Setting up sliding windows<span></span></a>
+<li class="chapter" data-level="" data-path="ch09.html"><a href="ch09.html#what-to-expect-7"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch09.html"><a href="ch09.html#getting-started-4"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="8.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>8.1</b> Phylogenetics in R</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#calculating-sliding-window-estimates-of-nucleotide-diversity-and-differentiation"><i class="fa fa-check"></i><b>8.3.1</b> Calculating sliding window estimates of nucleotide diversity and differentiation<span></span></a></li>
-<li class="chapter" data-level="8.3.2" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html#sparrow-data"><i class="fa fa-check"></i><b>8.3.2</b> Extracting statistics for visualisation<span></span></a></li>
+<li class="chapter" data-level="8.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>8.1.1</b> Storing trees in R</a></li>
+<li class="chapter" data-level="8.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>8.1.2</b> Plotting trees</a></li>
+<li class="chapter" data-level="8.1.3" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>8.1.3</b> A simple example with real data - avian phylogenetics</a></li>
+<li class="chapter" data-level="8.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>8.1.4</b> Constructing trees with R</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="sparrow-viz.html"><a href="sparrow-viz.html"><i class="fa fa-check"></i><b>8.4</b> Visualising the data<span></span></a>
+<li class="chapter" data-level="8.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>8.2</b> Population structure</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="sparrow-viz.html"><a href="sparrow-viz.html#visualising-patterns-along-the-chromosome"><i class="fa fa-check"></i><b>8.4.1</b> Visualising patterns along the chromosome<span></span></a></li>
-<li class="chapter" data-level="8.4.2" data-path="sparrow-viz.html"><a href="sparrow-viz.html#interlude-relative-vs.-absolute-measures-of-nucleotide-diversity"><i class="fa fa-check"></i><b>8.4.2</b> Interlude: relative vs. absolute measures of nucleotide diversity<span></span></a></li>
-<li class="chapter" data-level="8.4.3" data-path="sparrow-viz.html"><a href="sparrow-viz.html#investigating-recombination-rate-variation"><i class="fa fa-check"></i><b>8.4.3</b> Investigating recombination rate variation<span></span></a></li>
+<li class="chapter" data-level="8.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>8.2.1</b> Village dogs as an insight to dog domestication</a></li>
+<li class="chapter" data-level="8.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>8.2.2</b> Reading the data into R</a></li>
+<li class="chapter" data-level="8.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>8.2.3</b> Performing a PCA</a></li>
+<li class="chapter" data-level="8.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>8.2.4</b> Visualising the PCA</a></li>
+<li class="chapter" data-level="8.2.5" data-path="population-structure.html"><a href="population-structure.html#eigenvalues"><i class="fa fa-check"></i><b>8.2.5</b> Eigenvalues</a></li>
+<li class="chapter" data-level="8.2.6" data-path="population-structure.html"><a href="population-structure.html#the-full-data-set"><i class="fa fa-check"></i><b>8.2.6</b> The full data set</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>8.5</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="8.6" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.6</b> Going further<span></span></a></li>
+<li class="chapter" data-level="8.3" data-path="study-questions-6.html"><a href="study-questions-6.html"><i class="fa fa-check"></i><b>8.3</b> Study questions</a></li>
+<li class="chapter" data-level="8.4" data-path="going-further-7.html"><a href="going-further-7.html"><i class="fa fa-check"></i><b>8.4</b> Going further</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="ch09.html"><a href="ch09.html"><i class="fa fa-check"></i><b>9</b> Reconstructing the Past<span></span></a>
+<li class="chapter" data-level="9" data-path="ch10.html"><a href="ch10.html"><i class="fa fa-check"></i><b>9</b> Advancing Further in R</a>
 <ul>
-<li><a href="ch09.html#what-to-expect-8">What to expect<span></span></a></li>
-<li><a href="ch09.html#getting-started-5">Getting started<span></span></a></li>
-<li class="chapter" data-level="9.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html"><i class="fa fa-check"></i><b>9.1</b> Phylogenetics in R<span></span></a>
+<li class="chapter" data-level="" data-path="ch10.html"><a href="ch10.html#what-to-expect-8"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch10.html"><a href="ch10.html#getting-started-5"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="9.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>9.1</b> Advanced features of RStudio</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#storing-trees-in-r"><i class="fa fa-check"></i><b>9.1.1</b> Storing trees in R<span></span></a></li>
-<li class="chapter" data-level="9.1.2" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#plotting-trees"><i class="fa fa-check"></i><b>9.1.2</b> Plotting trees<span></span></a></li>
-<li class="chapter" data-level="9.1.3" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#a-simple-example-with-real-data---avian-phylogenetics"><i class="fa fa-check"></i><b>9.1.3</b> A simple example with real data - avian phylogenetics<span></span></a></li>
-<li class="chapter" data-level="9.1.4" data-path="phylogenetics-in-r.html"><a href="phylogenetics-in-r.html#constructing-trees-with-r"><i class="fa fa-check"></i><b>9.1.4</b> Constructing trees with R<span></span></a></li>
+<li class="chapter" data-level="9.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>9.1.1</b> Projects, projects, projects</a></li>
+<li class="chapter" data-level="9.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>9.1.2</b> Everyone has a history</a></li>
+<li class="chapter" data-level="9.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>9.1.3</b> Tab complete and other hotkeys</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="population-structure.html"><a href="population-structure.html"><i class="fa fa-check"></i><b>9.2</b> Population structure<span></span></a>
+<li class="chapter" data-level="9.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>9.2</b> More on data handling: categorising and joining</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="population-structure.html"><a href="population-structure.html#village-dogs-as-an-insight-to-dog-domestication"><i class="fa fa-check"></i><b>9.2.1</b> Village dogs as an insight to dog domestication<span></span></a></li>
-<li class="chapter" data-level="9.2.2" data-path="population-structure.html"><a href="population-structure.html#reading-the-data-into-r"><i class="fa fa-check"></i><b>9.2.2</b> Reading the data into R<span></span></a></li>
-<li class="chapter" data-level="9.2.3" data-path="population-structure.html"><a href="population-structure.html#performing-a-pca"><i class="fa fa-check"></i><b>9.2.3</b> Performing a PCA<span></span></a></li>
-<li class="chapter" data-level="9.2.4" data-path="population-structure.html"><a href="population-structure.html#visualising-the-pca"><i class="fa fa-check"></i><b>9.2.4</b> Visualising the PCA<span></span></a></li>
-<li class="chapter" data-level="9.2.5" data-path="population-structure.html"><a href="population-structure.html#eigenvalues"><i class="fa fa-check"></i><b>9.2.5</b> Eigenvalues<span></span></a></li>
-<li class="chapter" data-level="9.2.6" data-path="population-structure.html"><a href="population-structure.html#the-full-data-set"><i class="fa fa-check"></i><b>9.2.6</b> The full data set<span></span></a></li>
+<li class="chapter" data-level="9.2.1" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>9.2.1</b> <code>ifelse()</code> for making categories</a></li>
+<li class="chapter" data-level="9.2.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#joining"><i class="fa fa-check"></i><b>9.2.2</b> Joining</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>9.3</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="9.4" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.4</b> Going further<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="ch10.html"><a href="ch10.html"><i class="fa fa-check"></i><b>10</b> Advancing Further in R<span></span></a>
+<li class="chapter" data-level="9.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>9.3</b> Lists</a></li>
+<li class="chapter" data-level="9.4" data-path="vectorisation2.html"><a href="vectorisation2.html"><i class="fa fa-check"></i><b>9.4</b> Vectorisation</a>
 <ul>
-<li><a href="ch10.html#what-to-expect-9">What to expect<span></span></a></li>
-<li><a href="ch10.html#getting-started-6">Getting started<span></span></a></li>
-<li class="chapter" data-level="10.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html"><i class="fa fa-check"></i><b>10.1</b> Advanced features of RStudio<span></span></a>
+<li class="chapter" data-level="9.4.1" data-path="vectorisation2.html"><a href="vectorisation2.html#using-lapply-to-vectorise"><i class="fa fa-check"></i><b>9.4.1</b> Using <code>lapply()</code> to vectorise</a></li>
+<li class="chapter" data-level="9.4.2" data-path="vectorisation2.html"><a href="vectorisation2.html#sapply"><i class="fa fa-check"></i><b>9.4.2</b> <code>sapply()</code></a></li>
+<li class="chapter" data-level="9.4.3" data-path="vectorisation2.html"><a href="vectorisation2.html#anonymous-functions"><i class="fa fa-check"></i><b>9.4.3</b> Anonymous functions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>9.5</b> Concluding remarks</a></li>
+<li class="chapter" data-level="9.6" data-path="study-questions-7.html"><a href="study-questions-7.html"><i class="fa fa-check"></i><b>9.6</b> Study questions</a></li>
+<li class="chapter" data-level="9.7" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.7</b> Going further</a></li>
+</ul></li>
+<li class="part"><span><b>III Assignments</b></span></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment 1</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment 2</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment 3</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment 4</a></li>
+<li class="chapter" data-level="" data-path="w07.html"><a href="w07.html"><i class="fa fa-check"></i>Week 6-7 assignment 5</a></li>
+<li class="chapter" data-level="" data-path="w09.html"><a href="w09.html"><i class="fa fa-check"></i>Week 8 assignment 6</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 9 assignment 7</a></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#projects-projects-projects"><i class="fa fa-check"></i><b>10.1.1</b> Projects, projects, projects<span></span></a></li>
-<li class="chapter" data-level="10.1.2" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#everyone-has-a-history"><i class="fa fa-check"></i><b>10.1.2</b> Everyone has a history<span></span></a></li>
-<li class="chapter" data-level="10.1.3" data-path="advanced-features-of-rstudio.html"><a href="advanced-features-of-rstudio.html#tab-complete-and-other-hotkeys"><i class="fa fa-check"></i><b>10.1.3</b> Tab complete and other hotkeys<span></span></a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
+<li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html"><i class="fa fa-check"></i><b>10.2</b> More on data handling: categorising and joining<span></span></a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#ifelse-for-making-categories"><i class="fa fa-check"></i><b>10.2.1</b> <code>ifelse()</code> for making categories<span></span></a></li>
-<li class="chapter" data-level="10.2.2" data-path="more-on-data-handling-categorising-and-joining.html"><a href="more-on-data-handling-categorising-and-joining.html#joining"><i class="fa fa-check"></i><b>10.2.2</b> Joining<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="lists.html"><a href="lists.html"><i class="fa fa-check"></i><b>10.3</b> Lists<span></span></a></li>
-<li class="chapter" data-level="10.4" data-path="vectorisation2.html"><a href="vectorisation2.html"><i class="fa fa-check"></i><b>10.4</b> Vectorisation<span></span></a>
-<ul>
-<li class="chapter" data-level="10.4.1" data-path="vectorisation2.html"><a href="vectorisation2.html#using-lapply-to-vectorise"><i class="fa fa-check"></i><b>10.4.1</b> Using <code>lapply()</code> to vectorise<span></span></a></li>
-<li class="chapter" data-level="10.4.2" data-path="vectorisation2.html"><a href="vectorisation2.html#sapply"><i class="fa fa-check"></i><b>10.4.2</b> <code>sapply()</code><span></span></a></li>
-<li class="chapter" data-level="10.4.3" data-path="vectorisation2.html"><a href="vectorisation2.html#anonymous-functions"><i class="fa fa-check"></i><b>10.4.3</b> Anonymous functions<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="10.5" data-path="concluding-remarks.html"><a href="concluding-remarks.html"><i class="fa fa-check"></i><b>10.5</b> Concluding remarks<span></span></a></li>
-<li class="chapter" data-level="10.6" data-path="study-questions-8.html"><a href="study-questions-8.html"><i class="fa fa-check"></i><b>10.6</b> Study questions<span></span></a></li>
-<li class="chapter" data-level="10.7" data-path="going-further-9.html"><a href="going-further-9.html"><i class="fa fa-check"></i><b>10.7</b> Going further<span></span></a></li>
-</ul></li>
-<li class="part"><span><b>III Assignments<span></span></b></span></li>
-<li><a href="w01.html#w01">Week 1-2 assignment<span></span></a></li>
-<li><a href="w03.html#w03">Week 3 Assignment<span></span></a></li>
-<li><a href="w04.html#w04">Week 4 assignment<span></span></a></li>
-<li><a href="w05.html#w05">Week 5 assignment<span></span></a></li>
-<li><a href="w06.html#w06">Week 6 assignment<span></span></a></li>
-<li><a href="w07.html#w07">Week 7 assignment<span></span></a></li>
-<li><a href="w08.html#w08">Week 8 assignment<span></span></a></li>
-<li><a href="w09.html#w09">Week 9 assignment<span></span></a></li>
-<li><a href="w10.html#w10">Week 10 assignment<span></span></a></li>
-<li class="appendix"><span><b>Appendix<span></span></b></span></li>
-<li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown<span></span></a>
-<ul>
-<li><a href="rmarkdown.html#r-markdown">R Markdown<span></span></a></li>
-<li><a href="rmarkdown.html#getting-started-7">Getting started<span></span></a></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information<span></span></a></li>
+<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -428,13 +412,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ch07" class="section level1 hasAnchor" number="7">
-<h1><span class="header-section-number">Week 7</span> Inferring Evolutionary Processes from Sequence Data<a href="ch07.html#ch07" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="ch07" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Week 6</span> Inferring Evolutionary Processes from Sequence Data<a href="ch07.html#ch07" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <script src="js/hideOutput.js"></script>
 <p>In this session, we will be learning how to work with DNA sequence data in R. So far, much of the work we have done has used allelic based models where we have considered individual markers, rather than sequences as a whole. However, DNA sequence data allows us to take into account information at more than a single site - i.e. we also incorporate our understanding of invariant sites too. For this reason, a number of different statistics are often used when handling sequencing data.</p>
 <p>Today we will focus on inferring the number of segregating sites, nucleotide diversity and Tajima’s D. We focus on simpler statistics because the aim of today is also to familiarise you with working with large-scale, genome datasets. So we will begin with a relatively straightforward example with just a few sequences, before moving onto a larger dataset and then eventually looking at patterns of nucleotide diversity at the scale of an entire chromosome. This is an important precursor for what is to come in the following two sessions, where we will be focusing more and more on genomic data.</p>
-<div id="what-to-expect-6" class="section level3 unnumbered hasAnchor">
-<h3>What to expect<a href="ch07.html#what-to-expect-6" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="what-to-expect-5" class="section level3 unnumbered hasAnchor">
+<h3>What to expect<a href="ch07.html#what-to-expect-5" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Today we won’t introduce any new R-concepts, but jump straight into the action with some tools for handling sequence data. In this section we will:</p>
 <ul>
 <li>reinforce our understanding of basic population genetic statistics estimated from nucleotide data</li>
@@ -442,21 +426,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>perform a genome scan analysis using these statistics</li>
 </ul>
 </div>
-<div id="getting-started-3" class="section level3 unnumbered hasAnchor">
-<h3>Getting started<a href="ch07.html#getting-started-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="getting-started-2" class="section level3 unnumbered hasAnchor">
+<h3>Getting started<a href="ch07.html#getting-started-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first thing we need to do is set up the R environment. Today we’ll be using <code>tidyverse</code> but also we will need three additional packages for this session - <code>ape</code>, <code>pegas</code> and <code>PopGenome</code>. To install these packages, use the following commands:</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="ch07.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
-<span id="cb279-2"><a href="ch07.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pegas&quot;</span>)</span>
-<span id="cb279-3"><a href="ch07.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
-<span id="cb279-4"><a href="ch07.html#cb279-4" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;pievos101/PopGenome&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="ch07.html#cb296-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ape&quot;</span>)</span>
+<span id="cb296-2"><a href="ch07.html#cb296-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;pegas&quot;</span>)</span>
+<span id="cb296-3"><a href="ch07.html#cb296-3" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;devtools&quot;</span>)</span>
+<span id="cb296-4"><a href="ch07.html#cb296-4" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;pievos101/PopGenome&quot;</span>)</span></code></pre></div>
 <p>Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the <code>devtools</code> package first, then <code>PopGenome</code>, you should have no issues.</p>
 <p>Once these packages are installed installed, we will clear the R environment with <code>rm(list = ls())</code> and then load everything we need for this session.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="ch07.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
-<span id="cb280-2"><a href="ch07.html#cb280-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
-<span id="cb280-3"><a href="ch07.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb280-4"><a href="ch07.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
-<span id="cb280-5"><a href="ch07.html#cb280-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pegas)</span>
-<span id="cb280-6"><a href="ch07.html#cb280-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(PopGenome)</span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="ch07.html#cb297-1" tabindex="-1"></a><span class="co"># clear the R environment</span></span>
+<span id="cb297-2"><a href="ch07.html#cb297-2" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span>
+<span id="cb297-3"><a href="ch07.html#cb297-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb297-4"><a href="ch07.html#cb297-4" tabindex="-1"></a><span class="fu">library</span>(ape)</span>
+<span id="cb297-5"><a href="ch07.html#cb297-5" tabindex="-1"></a><span class="fu">library</span>(pegas)</span>
+<span id="cb297-6"><a href="ch07.html#cb297-6" tabindex="-1"></a><span class="fu">library</span>(PopGenome)</span></code></pre></div>
 <p>Remember that clearing the R environment when you start a script is good practice to make sure you don’t have any conflicts with previously loaded data. All three packages <a href="http://ape-package.ird.fr/"><code>ape</code></a>, <a href="http://ape-package.ird.fr/pegas.html"><code>pegas</code></a> and <a href="https://popgenome.weebly.com/"><code>PopGenome</code></a> are really useful for handling genetic data in R - follow the links for more information about each of them. Remember that you always can access the help page of any function with <code>?</code>.</p>
 </div>
 </div>
@@ -465,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="going-further-5.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="going-further-4.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="working-with-dna-sequence-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -526,7 +510,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

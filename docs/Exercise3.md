@@ -43,7 +43,7 @@ In this section we will learn about for-loops, which is an important concept for
 Let's start by making a numeric vector that we want do do some operations on.
 
 
-```r
+``` r
 x <- seq(2, 20, 2)
 x
 #>  [1]  2  4  6  8 10 12 14 16 18 20
@@ -52,7 +52,7 @@ x
 Say you want to multiply every element by 5. You've already learned to do that in R:
 
 
-```r
+``` r
 x * 5
 #>  [1]  10  20  30  40  50  60  70  80  90 100
 ```
@@ -60,7 +60,7 @@ x * 5
 However, what if we want to add two and two elements of the vector together? With our vector `x`, this would be `2+4`, `4+6`, `6+8` and so on. There is no simple way to do this that you've learned yet. We could use the square brackets to extract individual elements and do 9 calculations like this:
 
 
-```r
+``` r
 x[1] + x[2]
 x[2] + x[3]
 x[3] + x[4]
@@ -81,7 +81,7 @@ But this is a lot of typing for doing a repetitive task, which we want to avoid[
 Before we go into solving our example, we have to learn a bit about for-loops. A for-loop in R conceptually looks like this:
 
 
-```r
+``` r
 for (variable in vector){ # variable starts as the first element of vector
   
   # do something involving variable
@@ -98,7 +98,7 @@ This might be easier to understand if you see a real example of a for loop[^exer
 [^exercise3-2]: Note that to print your result to console inside a for-loop, you explicitly have to use `print()`, unlike what you've done so far. Something like
 
     
-    ```r
+    ``` r
     for (element in 1:10){
     element
     }
@@ -107,7 +107,7 @@ This might be easier to understand if you see a real example of a for loop[^exer
     won't actually print anything.
 
 
-```r
+``` r
 for (element in 1:10){
   print(element)
 }
@@ -127,7 +127,7 @@ Here you can see more of what's actually happening. In the first round, `element
 
 ::: {.fold .c}
 
-```r
+``` r
 print(1) # round 1, element is 1
 print(2) # round 2, element is 2
 print(3) # round 3, element is 3
@@ -144,7 +144,7 @@ print(10)
 Notice how many lines you saved by writing a loop! The power here comes from that it doesn't matter how long your vector is, and you can do any operation on the elements of the vector. Say we want to multiply each element of our vector `x` with 5, which we did in the start of this tutorial.
 
 
-```r
+``` r
 for(element in x){
   print(element * 5)
 }
@@ -163,7 +163,7 @@ for(element in x){
 You can also use this with other kinds of vectors, e.g. a vector of strings.
 
 
-```r
+``` r
 animals <- c("cat", "dog", "horse", "badger", "unicorn")
 
 for (animal in animals){
@@ -181,7 +181,7 @@ for (animal in animals){
 Use a for-loop to do the same operation over and over on the elements of your vector. The basic structure of a for-loop looks like this:
 
 
-```r
+``` r
 for (variable in vector){
   # do something
 }
@@ -194,7 +194,7 @@ for (variable in vector){
 You may have noticed that I've called the variable that is changing for each iteration different things in all the examples, namely `variable`, `element` and `animal`. Actually, you can call this variable anything (within reason). All you have to remember is to call it the same thing within the loop as when starting it. In other words, this works[^exercise3-3]:
 
 
-```r
+``` r
 for (whatever_you_want_to_call_the_variable in 1:10){
   print(whatever_you_want_to_call_the_variable)
 }
@@ -203,7 +203,7 @@ for (whatever_you_want_to_call_the_variable in 1:10){
 But this doesn't:
 
 
-```r
+``` r
 for (some_name in 1:10){
   print(another_name)
 }
@@ -219,7 +219,7 @@ for (some_name in 1:10){
 To solve our initial problem (and also for the things we will be doing later), we need to introduce one more concept: using the changing variable in your for-loop as an index for your vectors. If we look once more at our `animals` vector above, there are actually two ways of printing every element:
 
 
-```r
+``` r
 # printing the element like we did earlier
 for (animal in animals){
   print(animal)
@@ -235,7 +235,7 @@ for (index in 1:5){
 The execution of the latter for-loop looks like this:
 
 
-```r
+``` r
 print(animals[1])
 print(animals[2])
 print(animals[3])
@@ -246,7 +246,7 @@ print(animals[5])
 Note that rather than looping over the `animals` vector itself, we loop over a vector from 1 to 5, using those numbers to access the values inside `animals`. Here we made this vector by writing `1:5`, but a better way would be writing `1:length(animals)` so we can be sure that the index vector is the same length as the `animals` vector. Looping this way has the advantage that we can loop over several vectors at the same time:
 
 
-```r
+``` r
 score <- c("good", "great", "fine", "best", "probably not real")
 
 # looping over both animals and score
@@ -268,7 +268,7 @@ for (index in 1:length(animals)){
 We can also access more than one element of a vector at once, by using e.g. `index - 1` to access the previous element.
 
 
-```r
+``` r
 for (index in 2:length(animals)){ #note: starting on 2
   friends <- paste(animals[index], "and", animals[index - 1], "are friends")
   print(friends)
@@ -283,7 +283,7 @@ Show the code below to see how this would look if done manually.
 
 ::: {.fold .c}
 
-```r
+``` r
 # first round, remember that writing animals[2 - 1] is
 # exactly the same as writing animals[1]
 friends <- paste(animals[2], "and", animals[2 - 1], "are friends")
@@ -317,7 +317,7 @@ Use for-loops with indexing when you want to access several elements of one or m
 To remind you of where we started: we want to add the adjacent elements of our vector `x` together in the smartest way possible.
 
 
-```r
+``` r
 x <- seq(2, 20, 2)
 ```
 
@@ -339,7 +339,7 @@ Hint: Loop over the vector `2:length(x)`[^exercise3-4]. For every round, add `x[
 
 ::: {.fold .s .o}
 
-```r
+``` r
 for (index in 2:length(x)){
   added <- x[index] + x[index - 1]
   print(added)
@@ -363,7 +363,7 @@ One final concept before going on to work with evolutionary biology. In the last
 First we use the `rep()` function to create a vector containing `NA`. You can read the following `rep(NA, 10)` as "repeat `NA`, 10 times", i.e. you get a vector of 10 `NA`. We use `NA` for our vector because our calculations within the loop will not produce any `NA` (unless something goes horribly wrong). This way, we can easily see if something went wrong in our loop (if there are any `NA` left in our `results` vector after our loop, something is probably off).
 
 
-```r
+``` r
 # repeat 0, 10 times
 results <- rep(NA, 10)
 
@@ -374,7 +374,7 @@ results <- rep(NA, length(x))
 Then, we loop over the same index as before, but instead of printing our result, we store it as an element of our `results` vector.
 
 
-```r
+``` r
 for (index in 2:length(x)){
   results[index] <- x[index] + x[index - 1]
 }
@@ -383,7 +383,7 @@ for (index in 2:length(x)){
 This doesn't print anything yet, but the results are now stored in the `results` vector.
 
 
-```r
+``` r
 results
 #>  [1] NA  6 10 14 18 22 26 30 34 38
 ```
@@ -401,7 +401,7 @@ That concludes this week's R-focused part of the tutorial. Some of the Evolution
 For this part of the tutorial, we need to load the `tidyverse` package.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -426,7 +426,7 @@ It is quite simple to determine these probabilities. With 2 alleles $A_1$ and $A
 Another way to look at these probabilities is as the expected frequencies of the three genotypes at Hardy-Weinberg equilibrium given the allele frequencies. Let's use some R code to actually demonstrate how we might calculate these expected frequencies. For our test example, we will use a simple case where the frequency of $A_1$, $p$ is 0.8 and the frequency of $A_2$, $q$ is 0.2.
 
 
-```r
+``` r
 # first we set the frequencies
 p <- 0.8
 q <- 1 - p 
@@ -449,7 +449,7 @@ So you can see it is quite easy to calculate the frequencies you need for the HW
 The first thing we need to do is generate a range of allele frequencies to visualize the expected genotype frequencies across. We'll do this in the simplest way first, before going into how you might take a programming approach to the same problem. Either way, generating a range is simple - we just need to do it for a single allele, $A_1$ and then we can very easily derive the frequency of $A_2$. We will do this like so:
 
 
-```r
+``` r
 # generate a range for p
 p <- seq(0, 1, 0.01)
 # and also for q
@@ -459,7 +459,7 @@ q <- 1 - p
 Here we used the `seq()` function, which we first saw back in [Chapter 1](#ch01). Remember, we only have to do it once because $q$ is the inverse of $p$. Next we need to generate the expected frequencies. Because R is great at handling vectors, the code for this is identical for if we were using a single value.
 
 
-```r
+``` r
 # generate the expected genotype frequencies
 A1A1_e <- p^2
 A1A2_e <- 2 * (p * q)
@@ -469,7 +469,7 @@ A2A2_e <- q^2
 So now we have the expected frequencies at HWE of our different genotypes across a range of allele frequencies with a little vector calculation. However, recalling from before that we often need to get our data into a `data.frame` in order to use `ggplot2`, we need to do a bit of work on this first. We'll now get our data into a `data.frame` ready for working on...
 
 
-```r
+``` r
 # arrange allele frequencies into a tibble/data.frame
 geno_freq <- data.frame(p, q, A1A1_e, A1A2_e, A2A2_e)
 ```
@@ -477,7 +477,7 @@ geno_freq <- data.frame(p, q, A1A1_e, A1A2_e, A2A2_e)
 You also might remember from the previous session that we need to sometimes do some data manipulation to get the data into a form that we can easily plot. Luckily, this is quite straightforward in this case as we can use the `pivot_longer` function to do it quickly and easily.
 
 
-```r
+``` r
 # Use pivot_longer to reshape the data.frame for straightforward plotting
 geno_freq <- pivot_longer(geno_freq, c(A1A1_e, A1A2_e, A2A2_e), 
                           names_to = "genotype", 
@@ -489,7 +489,7 @@ geno_freq <- pivot_longer(geno_freq, c(A1A1_e, A1A2_e, A2A2_e),
 Now it is really straightforward to make a plot that shows the expected HW---frequencies across our allele frequencies.
 
 
-```r
+``` r
 # plot the expected genotype frequencies
 a <- ggplot(geno_freq, aes(p, freq, colour = genotype)) + 
   geom_line() +
@@ -513,7 +513,7 @@ We've already learned that the HW model is essentially an idealised scenario whe
 We can work through an example of this together. Once again we'll assume a locus $A$ with two alleles, $A_1$ and $A_2$. This means three genotypes, $A_1A_1$, $A_1A_2$ and $A_2A_2$. We sample 150 individuals from a population. The next block of R code shows the numbers of each genotype we collected and also combines them into an `observed` vector - for later use.
 
 
-```r
+``` r
 # numbers of genotypes
 A1A1 <- 80
 A1A2 <- 15
@@ -530,7 +530,7 @@ In order to go further here, we need to work out the allele frequencies from our
 Where the genotype notation here represents the number of genotype class and $n$ is the total number of alleles. We can calculate the frequency the alleles in R like so:
 
 
-```r
+``` r
 # calculate total number of alleles
 n <- 2*sum(observed)
 # calculate frequency of A1 or p
@@ -544,7 +544,7 @@ c(p, q)
 Note that with the code above, we summed the number of observed genotypes and then multiplied by 2 as there are 2 alleles for each individual (i.e. there are 150 individuals and 300 alleles). We now have the allele frequencies, so we can use the code we worked out in the previous section to calculate the expected Hardy-Weinberg frequencies for this population.
 
 
-```r
+``` r
 # generate the expected genotype frequencies
 A1A1_e <- p^2
 A1A2_e <- 2 * (p * q)
@@ -556,7 +556,7 @@ expected_freq <- c(A1A1_e, A1A2_e, A2A2_e)
 So now that we have the expected genotype **frequencies**, the last thing we need to do before testing whether there is a deviation from HWE in our data is calculate the expected **number** of each genotype. This is easy - we just multiply the frequencies by the number of individuals we sampled - 150.
 
 
-```r
+``` r
 # calculate observed genotype frequencies
 expected <- expected_freq * 150
 ```
@@ -564,7 +564,7 @@ expected <- expected_freq * 150
 The next thing we'd like to do is see whether our observed genotypes deviate from the expected. We will test this formally, but first let's just look at the differences between them. The simplest way to do this is combine them into a matrix:
 
 
-```r
+``` r
 # combine observed and expected frequencies into a matrix
 mydata <- cbind(observed, expected)
 # add rownames
@@ -596,7 +596,7 @@ We typically say that if the p-value is below 0.05, the results are _statistical
 In the book, we calculated our chi-squared manually. In R, we can simply use the function chisq.test():
 
 
-```r
+``` r
 # perform a chi-squared test
 mychi <- chisq.test(observed, p = expected_freq)
 ```
@@ -606,7 +606,7 @@ Note that what we put into the function is the **number** of observed genotypes 
 Then we can have a look at the results:
 
 
-```r
+``` r
 mychi
 #> 
 #> 	Chi-squared test for given probabilities
@@ -632,7 +632,7 @@ In the book you will recall we used a coin-flipping experiment to sample our all
 This is a form of binomial sampling, and to do it ir R we can use the `rbinom()` function. `rbinom()` essentially simulates a coin flip. However, while in a regular coin flip the probability of heads and tails is always 0.5, `rbinom()` allows for changing these probabilities. Simplified, the following code says: "flip 1 coin (`n`) 16 times (`size`) with a probability of 0.5 (`prob`) for getting heads". The output is the number of heads we got.
 
 
-```r
+``` r
 # recreate coin flipping experiment using binomial sampling
 rbinom(n = 1, size = 16, prob = 0.5)
 ```
@@ -642,7 +642,7 @@ Run this code a few times, and observe that the results are different each time,
 In our example, the output of `rbinom` could represent the number of $A_1$ alleles in the next generation -- so we could easily work out $p´$ and $q´$, (i.e. $p$ and $q$ in the next generation). We can use the following code to sample the number of $A_1$ in generation 2:
 
 
-```r
+``` r
 # set population size
 N <- 8
 # set allele frequency
@@ -654,7 +654,7 @@ nA1 <- rbinom(1, size = 2*N, prob = p)
 Remember since we are sampling alleles for diploid individuals, we need to multiply `N` by 2. The value of `nA1` will differ for everyone since this is a **random** sample of the binomial distribution. We can now easily work out the value of $p´$ - i.e. the new frequency of the $A_1$ in the next generation. Note that R doesn't allow the prime notation so for the actual R code, we will use `p2`.
 
 
-```r
+``` r
 # calculate p in generation 2
 p2 <- nA1/(2*N)
 ```
@@ -662,7 +662,7 @@ p2 <- nA1/(2*N)
 OK, so now we have a value for `p2` -- again it will differ for everyone because we performed random sampling. You will see though that `p2` is likely different to `p` solely because of random sampling - i.e. we have demonstrated drift over a single generation. Then we can go on to calculate $p$ in the third generation. Our new `p2` will then be the `prob` argument of `rbinom()`, and everything else can be left unchanged:
 
 
-```r
+``` r
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p2)
 # calculate p in generation 3
@@ -675,27 +675,36 @@ If we were to to properly understand drift over more than one generation, we cou
 
 ::: {.fold .c}
 
-```r
+``` r
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p3)
 # calculate p in generation 4
 p4 <- nA1/(2*N)
 p4
-#> [1] 0.75
+#> [1] 0.625
+```
+
+``` r
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p4)
 # calculate p in generation 5
 p5 <- nA1/(2*N)
 p5
-#> [1] 0.75
+#> [1] 0.8125
+```
+
+``` r
 
 # draw a new random sample
 nA1 <- rbinom(1, size = 2*N, prob = p5)
 # calculate p in generation 5
 p6 <- nA1/(2*N)
 p6
-#> [1] 0.8125
+#> [1] 0.9375
+```
+
+``` r
 
 # and so on ...
 ```
@@ -708,7 +717,7 @@ But hopefully, you're thinking: "that sounds like a lot of work, maybe we can us
 Let's do try to wrap all that tedious code in a for loop instead. If we simplify our problem by a lot, what we want to do is: "use p from the previous generation to calculate p in this generation". If your p-values are in a vector `p`, and you are using indexing like we learned in section \@ref(indexing), "p from the previous generation" is `p[i-1]`, and "p in this generation" is `p[i]`. The contents of our for-loop would then be:
 
 
-```r
+``` r
 nA1 <- rbinom(1, size = 2*N, prob = p[i - 1])
 p[i] <- nA1/(2*N)
 ```
@@ -741,7 +750,7 @@ Hint: start the vector you're looping over at 2, and end at the number of genera
 
 ::: {.fold .c}
 
-```r
+``` r
 # set population size
 N <- 8
 
@@ -766,16 +775,16 @@ for (i in 2:ngen){
 }
 
 p
-#>   [1] 0.5000 0.1875 0.0625 0.1250 0.0625 0.0625 0.0000 0.0000 0.0000 0.0000
-#>  [11] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [21] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [31] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [41] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [51] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [61] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [71] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [81] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
-#>  [91] 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000 0.0000
+#>   [1] 0.5000 0.6250 0.7500 0.6875 0.5000 0.6250 0.6875 0.8125 0.9375 1.0000
+#>  [11] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [21] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [31] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [41] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [51] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [61] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [71] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [81] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
+#>  [91] 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000 1.0000
 ```
 :::
 
@@ -788,7 +797,7 @@ Now that we our for-loop to simulate data across generations, we can easily do t
 First, for a population size of 10, storing the results to an object called `n10`
 
 
-```r
+``` r
 # Population size 10
 N <- 10
 ngen <- 1000
@@ -806,7 +815,7 @@ for (i in 2:ngen){
 Then we do the same for a population size of 100.
 
 
-```r
+``` r
 # Population size 100
 N <- 100
 ngen <- 1000
@@ -824,7 +833,7 @@ for (i in 2:ngen){
 And finally for population size 1000.
 
 
-```r
+``` r
 # Population size 1000
 N <- 1000
 ngen <- 1000
@@ -842,7 +851,7 @@ for (i in 2:ngen){
 As you may remember, we need to make it into a data frame in order to plot it with `ggplot2`. We also add a column called `g` that contains the number of generations.
 
 
-```r
+``` r
 # get number of generations
 g <- seq(1, 1000, 1)
 
@@ -853,7 +862,7 @@ mydrift <- data.frame(g, n10, n100, n1000)
 Anyway, what we ultimately want to do is *visualise* drift over time. So we need to get our data in a position to plot it using `ggplot2` - once again, we turn to `pivot_longer()`. `pivot_longer()` in this case takes all our simulations (which at the moment are in different columns) and combines them into a single column `p`. A new column `pop_size` is made which indicates the name of the column where the data came from.
 
 
-```r
+``` r
 # use pivot_longer to get data ready for plotting
 mydrift_long <- pivot_longer(mydrift, -g, names_to = "pop_size", values_to = "p")
 ```
@@ -861,7 +870,7 @@ mydrift_long <- pivot_longer(mydrift, -g, names_to = "pop_size", values_to = "p"
 Now we will plot our data using the following code:
 
 
-```r
+``` r
 # plot data
 p <- ggplot(mydrift_long, aes(g, p, colour = pop_size)) +
   geom_line() +

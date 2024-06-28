@@ -4,23 +4,23 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.3 Calculating statistics at the whole genome level | R tutorials for the course BIOS1140 at the University of Oslo</title>
+  <title>6.1 some new chapter | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.3 Calculating statistics at the whole genome level | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta property="og:title" content="6.1 some new chapter | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.3 Calculating statistics at the whole genome level | R tutorials for the course BIOS1140 at the University of Oslo" />
+  <meta name="twitter:title" content="6.1 some new chapter | R tutorials for the course BIOS1140 at the University of Oslo" />
   
   <meta name="twitter:description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
   
 
-<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann. Revamped again in 2024 by Emily Enevoldsen and Marius F. Maurstad" />
+<meta name="author" content="Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann." />
 
 
 <meta name="date" content="2024-06-28" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="working-with-a-larger-dataset.html"/>
-<link rel="next" href="study-questions-4.html"/>
+<link rel="prev" href="ch07.html"/>
+<link rel="next" href="working-with-dna-sequence-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -280,26 +280,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#what-to-expect-5"><i class="fa fa-check"></i>What to expect</a></li>
 <li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#getting-started-2"><i class="fa fa-check"></i>Getting started</a></li>
-<li class="chapter" data-level="6.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>6.1</b> Working with DNA sequence data</a>
+<li class="chapter" data-level="6.1" data-path="some-new-chapter.html"><a href="some-new-chapter.html"><i class="fa fa-check"></i><b>6.1</b> some new chapter</a></li>
+<li class="chapter" data-level="6.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>6.2</b> Working with DNA sequence data</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>6.1.1</b> Reading sequence data into R.</a></li>
-<li class="chapter" data-level="6.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>6.1.2</b> Exploring DNA sequence data</a></li>
-<li class="chapter" data-level="6.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>6.1.3</b> Calculating basic sequence statistics</a></li>
+<li class="chapter" data-level="6.2.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>6.2.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="6.2.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>6.2.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="6.2.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>6.2.3</b> Calculating basic sequence statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>6.2</b> Working with a larger dataset</a>
+<li class="chapter" data-level="6.3" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>6.3</b> Working with a larger dataset</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>6.2.1</b> Sample size and sequence statistics</a></li>
-<li class="chapter" data-level="6.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>6.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
+<li class="chapter" data-level="6.3.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>6.3.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="6.3.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>6.3.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
+<li class="chapter" data-level="6.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.4</b> Calculating statistics at the whole genome level</a>
 <ul>
-<li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
-<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
-<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+<li class="chapter" data-level="6.4.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.4.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="6.4.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.4.2</b> Calculating nucleotide diversity statistics</a></li>
+<li class="chapter" data-level="6.4.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.4.3</b> Visualising nucleotide diversity along the chromosome</a></li>
+<li class="chapter" data-level="6.4.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.4.4</b> Performing a sliding window analysis</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
-<li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
+<li class="chapter" data-level="6.5" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.5</b> Study questions</a></li>
+<li class="chapter" data-level="6.6" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.6</b> Going further</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ch08.html"><a href="ch08.html"><i class="fa fa-check"></i><b>7</b> Speciation Genomics</a>
 <ul>
@@ -378,13 +379,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="going-further-8.html"><a href="going-further-8.html"><i class="fa fa-check"></i><b>9.7</b> Going further</a></li>
 </ul></li>
 <li class="part"><span><b>III Assignments</b></span></li>
-<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment 1</a></li>
-<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment 2</a></li>
-<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment 3</a></li>
-<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment 4</a></li>
-<li class="chapter" data-level="" data-path="w07.html"><a href="w07.html"><i class="fa fa-check"></i>Week 6-7 assignment 5</a></li>
-<li class="chapter" data-level="" data-path="w09.html"><a href="w09.html"><i class="fa fa-check"></i>Week 8 assignment 6</a></li>
-<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 9 assignment 7</a></li>
+<li class="chapter" data-level="" data-path="w01.html"><a href="w01.html"><i class="fa fa-check"></i>Week 1-2 assignment</a></li>
+<li class="chapter" data-level="" data-path="w03.html"><a href="w03.html"><i class="fa fa-check"></i>Week 3 Assignment</a></li>
+<li class="chapter" data-level="" data-path="w04.html"><a href="w04.html"><i class="fa fa-check"></i>Week 4 assignment</a></li>
+<li class="chapter" data-level="" data-path="w05.html"><a href="w05.html"><i class="fa fa-check"></i>Week 5 assignment</a></li>
+<li class="chapter" data-level="" data-path="w07.html"><a href="w07.html"><i class="fa fa-check"></i>Week 7-8 assignment</a></li>
+<li class="chapter" data-level="" data-path="w08.html"><a href="w08.html"><i class="fa fa-check"></i>Week 8 assignment</a></li>
+<li class="chapter" data-level="" data-path="w09.html"><a href="w09.html"><i class="fa fa-check"></i>Week 9 assignment</a></li>
+<li class="chapter" data-level="" data-path="w10.html"><a href="w10.html"><i class="fa fa-check"></i>Week 10 assignment</a></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>A</b> About assignments and RMarkdown</a>
 <ul>
@@ -412,105 +414,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="calculating-statistics-at-the-whole-genome-level" class="section level2 hasAnchor" number="6.3">
-<h2><span class="header-section-number">6.3</span> Calculating statistics at the whole genome level<a href="calculating-statistics-at-the-whole-genome-level.html#calculating-statistics-at-the-whole-genome-level" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<script src="js/hideOutput.js"></script>
-<p>So far we have calculated descriptive statistics from two sets of sequence data. This is obviously useful to demonstrate how these statistics work and reinforcing our understanding of them. However, in modern evolutionary genetics, we are often working with much larger datasets than what we have dealt with so far. As sequencing technology becomes cheaper, faster and more accessible, we are regularly working with genome-scale data. This has implications for how we handle data and also how we interpret it and use it to test hypotheses or make some form of evolutionary inference.</p>
-<p>In this section of the tutorial, we will use a package called <code>PopGenome</code> to read variants called from <strong>whole genome resequencing data</strong> into R and then we will calculate nucleotide diversity within and among populations and also along a single chromosome. <strong>A word of caution:</strong> <code>PopGenome</code> is a very useful package, but it is not always the most user friendly, so we have done our best to simplify matters as much as possible here.</p>
-<div id="reading-in-variant-data" class="section level3 hasAnchor" number="6.3.1">
-<h3><span class="header-section-number">6.3.1</span> Reading in variant data<a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The data we are going to be working with for this section is a set of <strong>SNP</strong> calls from whole-genome resequencing of <em>Passer</em> sparrows. It was originally used in a study on the evolution of human commensalism in the house sparrow by <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. In the dataset there are SNPs from four sparrow species - the house sparrow, the Italian sparrow, the Spanish sparrow, the tree sparrow and also data from a house sparrow sub-species known as the Bactrianus sparrow.</p>
-<p>The data comes in two parts. We’ll deal with the actual SNP data first. This is stored in a file called a VCF, which stands for <a href="https://samtools.github.io/hts-specs/VCFv4.2.pdf">variant call format</a>.</p>
-<p>VCF files can quickly become very very big, so the one we are using today is a much smaller, randomly sampled version of the true dataset <strong>from a single chromosome only</strong>. However it is still quite a large file size, so the file is compressed, and there are some preprocessing steps you will need to do before you can open in it in R.</p>
-<ul>
-<li>First, download the <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">VCF</a></li>
-<li>Next, make a directory in your working directory (use <code>getwd</code> if you don’t know where that is) and call it <code>sparrow_snps</code></li>
-<li>Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the <a href="https://theunarchiver.com/">Unarchiver</a> (Mac OS X) or <a href="https://www.7-zip.org/">7zip</a> (Windows).</li>
-<li>Make sure <strong>only</strong> the uncompressed file is present in the directory.</li>
-</ul>
-<p>With these steps carried out, you can then read this data in like so:</p>
-<p><strong>ON MAC</strong></p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb322-1" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><strong>ON WINDOWS</strong></p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb323-1" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the <a href="https://bios1140.github.io/data/sparrow_pops.txt">population data</a> and put it in your working directory. The following code reads in the population data, and updates the <code>sparrows</code> object.</p>
-<div class="yellow">
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb324-1" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb324-2"><a href="calculating-statistics-at-the-whole-genome-level.html#cb324-2" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
-<span id="cb324-3"><a href="calculating-statistics-at-the-whole-genome-level.html#cb324-3" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
-</div>
-<p>So we just read a variant data from an entire chromosome into R. Before we move on, let’s take a look at what we have actually created with our <code>sparrows</code> object. If you call the <code>sparrows</code> object, you will not really see anything that informative, since it is a very complex data structure. However with the <code>get.sum.data</code> function, we can learn a bit more about it.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb325-1" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
-<p>This just gives us a quick summary of what we read in. <strong>A word of warning here</strong> - the <code>n.sites</code> value here is <em>NOT</em> the number of SNPs we read in - it is simply the position of the furthest SNP in our dataset on chromosome 8. We can essentially ignore this value. To get the number of variants or SNPs in our VCF, we need to add together <code>n.biallelic.sites</code> (i.e. SNP sites with only two alleles) and <code>n.polyallelic.sites</code> (i.e. SNP sites with three or four alleles).</p>
-<p>You can do this by hand or using R code like so:</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb326-1" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
-<p>This also demonstrates one other important point about <code>PopGenome</code>, the <code>sparrows</code> object is a complicated structure called a <code>GENOME</code> object (use <code>class(sparrows)</code> to see this). Unlike other R structures we have seen so far, we need to use <code>@</code> to access some parts of it. This is a little confusing, but you can think of it in acting in a similar way to the <code>$</code> operator we used to access columns of a <code>data.frame</code>.</p>
-</div>
-<div id="calculating-nucleotide-diversity-statistics" class="section level3 hasAnchor" number="6.3.2">
-<h3><span class="header-section-number">6.3.2</span> Calculating nucleotide diversity statistics<a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>So, let’s recap so far. We have over 90,000 SNPs from chromsome 8 of 129 sparrows from five different species. With the <code>PopGenome</code> package, we can now very quickly and easily calculate nucleotide diversity for every single one of these SNPs. We will do this like so:</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb327-1" tabindex="-1"></a><span class="co"># calculate nucleotide diversity</span></span>
-<span id="cb327-2"><a href="calculating-statistics-at-the-whole-genome-level.html#cb327-2" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">diversity.stats</span>(sparrows, <span class="at">pi =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>A nice, simple function that just requires us to specify that we want to calculate <span class="math inline">\(\pi\)</span> using <code>pi = TRUE</code>. Let’s try and get at the data. Unfortunately, this is where things become a little more tricky since the <code>GENOME</code> object data structure is quite complicated. The following code extracts the nucleotide diversity data, and converts it into a data frame for plotting.</p>
-<div class="yellow">
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-1" tabindex="-1"></a><span class="co"># extract the pi data</span></span>
-<span id="cb328-2"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-2" tabindex="-1"></a>sparrow_nuc_div <span class="ot">&lt;-</span> <span class="fu">t</span>(sparrows<span class="sc">@</span>region.stats<span class="sc">@</span>nuc.diversity.within[[<span class="dv">1</span>]])</span>
-<span id="cb328-3"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-3" tabindex="-1"></a><span class="co"># get the SNP positions from the rownames - note we need to make them numeric here</span></span>
-<span id="cb328-4"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-4" tabindex="-1"></a>position <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(sparrow_nuc_div))</span>
-<span id="cb328-5"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-5" tabindex="-1"></a><span class="co"># rename the matrix columns after the species</span></span>
-<span id="cb328-6"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-6" tabindex="-1"></a><span class="fu">colnames</span>(sparrow_nuc_div) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bactrianus&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;italian&quot;</span>, <span class="st">&quot;spanish&quot;</span>, <span class="st">&quot;tree&quot;</span>)</span>
-<span id="cb328-7"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-7" tabindex="-1"></a><span class="co"># combine into a data.frame and remove the row.names</span></span>
-<span id="cb328-8"><a href="calculating-statistics-at-the-whole-genome-level.html#cb328-8" tabindex="-1"></a>sparrow_nd <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(position, sparrow_nuc_div, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code></pre></div>
-</div>
-<p>Take a look at the <code>sparrows_nd</code> data frame. One thing to note here: our <code>sparrow_nd</code> data.frame is 91,312 rows - this is the same as the number of biallelic SNPs, which tells us that <code>PopGenome</code> only calculates nucleotide diversity on these positions, not those with more than two alleles.</p>
-</div>
-<div id="visualising-nucleotide-diversity-along-the-chromosome" class="section level3 hasAnchor" number="6.3.3">
-<h3><span class="header-section-number">6.3.3</span> Visualising nucleotide diversity along the chromosome<a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We can now visualise the nucleotide diversity for the house sparrow along the whole of chromosome 8. Since we set up a data.frame in the last section, this can readily be done with <code>ggplot2</code>.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb329-1" tabindex="-1"></a><span class="fu">ggplot</span>(sparrow_nd, <span class="fu">aes</span>(position, house)) <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="Exercise7_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
-<p>Hmm - this is not the most visually appealing figure and it is also not particularly informative. Why is that? Well one of the issues here is that we have calculated nucleotide diversity for each biallelic SNP position so there is a lot of noise and the signal from the data is not clear.</p>
-<p>This is often the case when working with high-density genome data. One solution is to use a sliding window analyis in order to try and capture the average variation across a chromosome. We will learn how to do this in the next section.</p>
-</div>
-<div id="performing-a-sliding-window-analysis" class="section level3 hasAnchor" number="6.3.4">
-<h3><span class="header-section-number">6.3.4</span> Performing a sliding window analysis<a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We will learn more about sliding windows next week, so in this section we will more or less rush through the code and focus on the results. A sliding window analysis groups the data into (overlapping) bins, or “windows”. We can then calculate some summary statistic—<span class="math inline">\(\pi\)</span> in our example—on each window instead of on each singe nucleotide. With our data, this means that instead of 90,000 plus estimates of nucleotide diversity, we will get as many as we have windows! This kind of summary significantly reduces noise in the data, so it is possible to visualise the trends along the genome.</p>
-<p>The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates <span class="math inline">\(\Pi\)</span> in each window, and divides it with window length to obtain the length standardised measure <span class="math inline">\(\pi\)</span>. Finally, we transform the data to be ready for plotting</p>
-<div class="yellow">
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-1" tabindex="-1"></a><span class="co"># generate sliding windows</span></span>
-<span id="cb330-2"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-2" tabindex="-1"></a>sparrows_sw <span class="ot">&lt;-</span> <span class="fu">sliding.window.transform</span>(sparrows, <span class="at">width =</span> <span class="dv">100000</span>, <span class="at">jump =</span> <span class="dv">25000</span>, <span class="at">type =</span> <span class="dv">2</span>)</span>
-<span id="cb330-3"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-3" tabindex="-1"></a><span class="co"># calculate pi in each window</span></span>
-<span id="cb330-4"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-4" tabindex="-1"></a>sparrows_sw <span class="ot">&lt;-</span> <span class="fu">diversity.stats</span>(sparrows_sw, <span class="at">pi =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb330-5"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-5" tabindex="-1"></a><span class="co"># extract diversity stats and divide by window length</span></span>
-<span id="cb330-6"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-6" tabindex="-1"></a>sparrow_nuc_div_sw <span class="ot">&lt;-</span> sparrows_sw<span class="sc">@</span>nuc.diversity.within</span>
-<span id="cb330-7"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-7" tabindex="-1"></a>sparrow_nuc_div_sw <span class="ot">&lt;-</span> sparrow_nuc_div_sw<span class="sc">/</span><span class="dv">100000</span></span>
-<span id="cb330-8"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-8" tabindex="-1"></a><span class="co"># get midpoint of each window (for plotting)</span></span>
-<span id="cb330-9"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-9" tabindex="-1"></a>position <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">49575001</span>, <span class="at">by =</span> <span class="dv">25000</span>) <span class="sc">+</span> <span class="dv">50000</span></span>
-<span id="cb330-10"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-10" tabindex="-1"></a><span class="co"># rename the matrix columns after the species</span></span>
-<span id="cb330-11"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-11" tabindex="-1"></a><span class="fu">colnames</span>(sparrow_nuc_div_sw) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;bactrianus&quot;</span>, <span class="st">&quot;house&quot;</span>, <span class="st">&quot;italian&quot;</span>, <span class="st">&quot;spanish&quot;</span>, <span class="st">&quot;tree&quot;</span>)</span>
-<span id="cb330-12"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-12" tabindex="-1"></a><span class="co"># combine into a data.frame and remove the row.names</span></span>
-<span id="cb330-13"><a href="calculating-statistics-at-the-whole-genome-level.html#cb330-13" tabindex="-1"></a>sparrow_nd_sw <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(position, sparrow_nuc_div_sw, <span class="at">row.names =</span> <span class="cn">NULL</span>)</span></code></pre></div>
-</div>
-<p>Look at the generated data frame. This time, the number of rows in the data frame corresponds to number of windows, rather than number of SNPs. Now we can make a more informative visualisation than the previous one, using <code>ggplot2</code>. We choose the <code>house</code> column (house sparrow population) for this visualisation, but feel free to test out with the other populations as well<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="calculating-statistics-at-the-whole-genome-level.html#cb331-1" tabindex="-1"></a><span class="fu">ggplot</span>(sparrow_nd_sw, <span class="fu">aes</span>(position, house)) <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">colour =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code></pre></div>
-<p><img src="Exercise7_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
-<p>This is much more informative than our per SNP figure from before. What is more, we can see clearly there are several regions on this chromosome where there is a signficant reduction in nucleotide diversity, particularly around 30 Mb. We cannot say exactly what might be causing this without inferring other statistics or examining other data, but one possibility is that this is a region of reduced recombination where selection has led to a reduction in diversity. If it is shared with other sparrow species, it might suggest some kind of genome structure such as a centromere - where recombination rates are usually lower.</p>
-<p>The point is that sliding window information like this can be extremely informative for evolutionary analysis. Although we only got a quick introduction to genomic data in today’s tutorial, we will return to this sort of dataset again in the next session and explore more fully how we can use it to infer processes that might shape the distribution of these sorts of statistics in the genome.</p>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="23">
-<li id="fn23"><p>Next week you will learn how to visualise all at once! Yay!<a href="calculating-statistics-at-the-whole-genome-level.html#fnref23" class="footnote-back">↩︎</a></p></li>
-</ol>
+<div id="some-new-chapter" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> some new chapter<a href="some-new-chapter.html#some-new-chapter" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="working-with-a-larger-dataset.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="study-questions-4.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="ch07.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-dna-sequence-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

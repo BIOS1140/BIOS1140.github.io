@@ -19,14 +19,14 @@ R Markdown is a way to work where you can write, code and show output in the sam
 Before using R Markdown, you need to install it. You install it like you would any normal R package.
 
 
-```r
+``` r
 install.packages("rmarkdown")
 ```
 
 When you write R Markdown documents, you write within RStudio, before converting your text and code to either a HTML, PDF or Word document (known as "knitting"). For this course you need to deliver assignments either in PDF or Word format. PDF requires $\LaTeX$, and can thus be a bit tricky sometimes. The simplest way to download Latex is by installing [TinyTex](https://yihui.org/tinytex/) with the following code:
 
 
-```r
+``` r
 install.packages('tinytex')
 tinytex::install_tinytex()
 ```
@@ -71,7 +71,7 @@ When you're done with the document, you can press the tiny yarnball at the top o
 
 
 
-These tutorials were made using Rmarkdown version 2.13 and Bookdown version 0.25. All code was executed in R programming language version 4.1.0.
+These tutorials were made using Rmarkdown version 2.27 and Bookdown version 0.39. All code was executed in R programming language version 4.4.1.
 
 The following packages and versions were used for the current tutorials:
 
@@ -80,13 +80,13 @@ Table: (\#tab:unnamed-chunk-4)Packages needed to run all the tutorials, and the 
 
 |Package   |Version |
 |:---------|:-------|
-|adegenet  |2.1.7   |
-|ape       |5.6-2   |
-|parallel  |4.1.0   |
-|pegas     |1.1     |
-|phangorn  |2.9.0   |
-|PopGenome |2.7.7   |
-|qtl       |1.52    |
+|adegenet  |2.1.10  |
+|ape       |5.8     |
+|parallel  |4.4.1   |
+|pegas     |1.3     |
+|phangorn  |2.11.1  |
+|PopGenome |2.7.5   |
+|qtl       |1.66    |
 |tidyverse |2.0.0   |
 
 The specific versions of the tidyverse packages are outlined below:
@@ -96,12 +96,12 @@ Table: (\#tab:unnamed-chunk-5)Package versions of core Tidyverse packages
 
 |Package |Version |
 |:-------|:-------|
-|ggplot2 |3.4.2   |
-|dplyr   |1.1.1   |
-|tidyr   |1.3.0   |
-|readr   |2.1.4   |
-|purrr   |1.0.1   |
+|ggplot2 |3.5.1   |
+|dplyr   |1.1.4   |
+|tidyr   |1.3.1   |
+|readr   |2.1.5   |
+|purrr   |1.0.2   |
 |tibble  |3.2.1   |
-|stringr |1.5.0   |
+|stringr |1.5.1   |
 |forcats |1.0.0   |
 

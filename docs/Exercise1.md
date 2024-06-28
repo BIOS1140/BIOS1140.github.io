@@ -45,7 +45,7 @@ With both R and RStudio installed, start Rstudio and we will begin!
 In the bottom left you will see a `>` where you can input text. This is called the console, and you can directly interact with R through this. Try inputting a number, or any calculation you can think of, and then press `enter`. For example:
 
 
-```r
+``` r
 4
 4+3
 11-5
@@ -59,9 +59,12 @@ You will see that if you input a single number, R will return that same number t
 You can also use parentheses as you would on a normal scientific calculator:
 
 
-```r
+``` r
 10*3+4
 #> [1] 34
+```
+
+``` r
 10*(3+4)
 #> [1] 70
 ```
@@ -73,7 +76,7 @@ You have now learned how R can be used as a calculator!
 If you input text into the console, however, you will get the following:
 
 
-```r
+``` r
 hello
 #> Error in eval(expr, envir, enclos): object 'hello' not found
 ```
@@ -81,9 +84,12 @@ hello
 The error message reason for this will be apparent later in this tutorial. To get R to return text, you have to enclose the text in single or double quotes (`"` or `'`) like so:
 
 
-```r
+``` r
 "hello"
 #> [1] "hello"
+```
+
+``` r
 'hello'
 #> [1] "hello"
 ```
@@ -104,7 +110,7 @@ Above, you got an error message saying "Error: object 'hello' not found". Errors
 If you input a `#`, R will ignore whatever comes after on the same line. This means you can write entire lines of comments, or write comments after your calculations:
 
 
-```r
+``` r
 # This entire line is a comment, and that is fine!
 
 6 + 4 # add a meaningful comment on why you're doing this
@@ -158,7 +164,7 @@ If you were able to do this, great work! Your solution probably looked something
 
 ::: {.fold .s .o}
 
-```r
+``` r
 # Norwegian population
 5465387 / (5456387 + 10185555)
 # Swedish population
@@ -175,7 +181,7 @@ Now we're finally getting to the first taste of why R is more powerful than a re
 What if you could write some text instead of our stupidly large numbers? Something like `norway_pop` instead of 5465387? Luckily, you can! You can do the following to give your variables a name:
 
 
-```r
+``` r
 # store the number to an object called norway_pop
 norway_pop <- 5465387
 # store another number to an object called sweden_pop
@@ -187,9 +193,12 @@ This is called assignment, and is done using the arrow `<-`[^exercise1-2]. You h
 [^exercise1-2]: You can also use `=` instead of `<-` . If you know another programming language already, like Python, this may feel more natural. I like to use the arrow to remind my muscle memory that I'm working in R, but it makes absolutely no difference which you use, so use whichever you like!
 
 
-```r
+``` r
 norway_pop / (norway_pop + sweden_pop)
 #> [1] 0.349205
+```
+
+``` r
 sweden_pop / (norway_pop + sweden_pop)
 #> [1] 0.650795
 ```
@@ -199,7 +208,7 @@ Notice how similar this is to the conceptual version we saw earlier! This is muc
 To make things even easier, we could store `norway_pop + sweden_pop` as `total_pop`, and also store our results with a name as well:
 
 
-```r
+``` r
 # make total population object
 total_pop <- norway_pop + sweden_pop
 
@@ -208,6 +217,9 @@ norway_proportion <- norway_pop / total_pop
 # print the result
 norway_proportion
 #> [1] 0.349205
+```
+
+``` r
 
 # make object for Sweden's population
 sweden_proportion <- sweden_pop / total_pop
@@ -233,7 +245,7 @@ Another thing to note about variable names is that they are case sensitive, for 
 [^exercise1-3]: As a side note, whenever you wonder "what happens if I do ...", try it! The worst thing that can happen if you try something is that you get an error, the best thing is that you learn something useful.
 
 
-```r
+``` r
 Norway_pop
 #> Error in eval(expr, envir, enclos): object 'Norway_pop' not found
 ```
@@ -250,6 +262,7 @@ Assign any and all variables to named objects. It's easier to read, and you're l
 Let's expand our little Norway-Sweden project to all the Nordic countries. Table \@ref(tab:nordpop) shows the populations of all the Nordic countries.
 
 
+
 Table: (\#tab:nordpop)Population sizes of the nordic countries.
 
 |Country | Population|
@@ -260,11 +273,13 @@ Table: (\#tab:nordpop)Population sizes of the nordic countries.
 |Norway  |    5465387|
 |Sweden  |   10185555|
 
+
+
 Now, if we were to calculate the proportion of the total for all countries, like we did for Norway and Sweden earlier, the code would quickly become very long:
 
 ::: {.fold .c}
 
-```r
+``` r
 denmark_pop <- 5868927
 finland_pop <- 5572355
 iceland_pop <- 350773
@@ -295,7 +310,7 @@ That is a lot of typing! And remember that this is only for the Nordic countries
 R has a data type called vector, which can store multiple values at once. In our case, this means that we can store the populations of all the Nordic countries in one vector. Let's look at some different ways to make a vector. The following lines all create a vector containing the numbers 1 through 10.
 
 
-```r
+``` r
 # create a vector with c()
 c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
@@ -316,10 +331,13 @@ As a side note, `c()` and `seq()` are what we call functions. We'll get back to 
 Like numbers, vectors can be assigned to objects. This works in exactly the same way, using the arrow `<-`.
 
 
-```r
+``` r
 arbitrary_numbers <- c(56, 789, 109, 76)
 arbitrary_numbers
 #> [1]  56 789 109  76
+```
+
+``` r
 
 my_sequence <- seq(from = 0, to = 60, by = 5)
 my_sequence
@@ -330,7 +348,7 @@ my_sequence
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic <- c(5868927, 5572355, 350773, 5465387, 10185555)
 ```
 :::
@@ -347,13 +365,16 @@ Those of you who learned programming in BIOS1100 might remember that in python w
 When you have a vector of numbers, you can apply all the same mathematical operations that you can on a single number. The operation is then applied to each element of the vector separately. Try it!
 
 
-```r
+``` r
 # create a vector from 1 to 10
 my_vector <- 1:10
 
 # multiply each element by 2
 my_vector * 2
 #>  [1]  2  4  6  8 10 12 14 16 18 20
+```
+
+``` r
 
 # add 5 to each element
 my_vector + 5
@@ -363,13 +384,16 @@ my_vector + 5
 If you have two vectors of equal length, you can do mathematical operations on both, e.g. multiply two vectors. The first element of the first vector is then multiplied with the first element of the second vector, the second element with the second and so on. You can do the same for division, addition, subtraction and any operation you can think of.
 
 
-```r
+``` r
 # create another vector
 my_vector2 <- 11:20
 
 # mutliply them together
 my_vector * my_vector2
 #>  [1]  11  24  39  56  75  96 119 144 171 200
+```
+
+``` r
 
 # add them
 my_vector + my_vector2
@@ -379,10 +403,13 @@ my_vector + my_vector2
 If the two vectors aren't of the same length, you will get a warning, but R will still try to perform the operation. The shorter vector will then start over when it runs out of numbers.
 
 
-```r
+``` r
 # multiplying two vectors of unequal length
 1:10 * 1:9
 #>  [1]  1  4  9 16 25 36 49 64 81 10
+```
+
+``` r
 
 # this is what R does:
 #1*1
@@ -400,9 +427,12 @@ If the two vectors aren't of the same length, you will get a warning, but R will
 Remember to keep all your vectors the same length, or something unexpected might happen! To check the length of a vector, you can use the `length()` function.
 
 
-```r
+``` r
 length(my_vector)
 #> [1] 10
+```
+
+``` r
 length(my_vector2)
 #> [1] 10
 ```
@@ -411,7 +441,7 @@ length(my_vector2)
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic / 10^6
 ```
 :::
@@ -421,7 +451,7 @@ nordic / 10^6
 Having all numbers stored in one place is great, but what if you want to use just one of them? We use square brackets `[]` to access numbers inside vectors. You put the index of the element you want to extract inside the square brackets like this: `my_vector[1]`. This will extract the first element from the vector, `my_vector[2]` will extract the second. On our `nordic` vector, we could for instance do the following:
 
 
-```r
+``` r
 # extract the third element (Iceland) from the nordic vector
 nordic[3]
 #> [1] 350773
@@ -441,9 +471,12 @@ If you're familiar with Python or another programming language, you are probably
 You can do a variety of operations on vectors in addition to using the mathemathical operators `+`, `-`, `*` and `/`. Two of the most common operations are calculating the sum and the mean of all the numbers in the vector. With the `sum()` and `mean()` functions.
 
 
-```r
+``` r
 sum(my_vector)
 #> [1] 55
+```
+
+``` r
 mean(my_vector)
 #> [1] 5.5
 ```
@@ -456,7 +489,7 @@ The solution to the exercise shows how powerful working with vectors can be.
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic_prop <- nordic / sum(nordic)
 nordic_prop
 #> [1] 0.21385882 0.20305198 0.01278188 0.19915416 0.37115316
@@ -475,12 +508,18 @@ If you have many values that go together, store them together in a vector. You c
 As mentioned way back in section \@ref(textinput), you have to write `"hello"` rather than `hello` to get the actual text "hello". Now you may have figured out that this is because we have to separate objects from plain text in some way. Text within quotes in R (and any programming language) is called strings. These can be stored in objects and combined into vectors just like you can with numbers.
 
 
-```r
+``` r
 "Hello, world!"
 #> [1] "Hello, world!"
+```
+
+``` r
 greeting <- "Hello, world!"
 greeting
 #> [1] "Hello, world!"
+```
+
+``` r
 string_vector <- c("this", "is", "a", "vector", "of", "strings!")
 string_vector
 #> [1] "this"     "is"       "a"        "vector"   "of"       "strings!"
@@ -489,9 +528,12 @@ string_vector
 To combine several strings into one, or even combine numbers and strings, you can use the function `paste()`:
 
 
-```r
+``` r
 paste("These two strings", "become one")
 #> [1] "These two strings become one"
+```
+
+``` r
 
 nordic_sum <- sum(nordic)
 paste("The total population of the nordic countries is", nordic_sum, "people.")
@@ -502,7 +544,7 @@ paste("The total population of the nordic countries is", nordic_sum, "people.")
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic_names <- c("Denmark", "Finland", "Iceland", "Norway", "Sweden")
 ```
 :::
@@ -510,7 +552,7 @@ nordic_names <- c("Denmark", "Finland", "Iceland", "Norway", "Sweden")
 One of many uses for strings is to give names to a vector. You can use the `names()` function to see a vectors names.
 
 
-```r
+``` r
 names(nordic)
 #> NULL
 ```
@@ -518,7 +560,7 @@ names(nordic)
 As you can see, we get `NULL` here, which means that the vector elements don't have any names. We can set the names like this:
 
 
-```r
+``` r
 names(nordic) <- nordic_names
 nordic
 #>  Denmark  Finland  Iceland   Norway   Sweden 
@@ -528,10 +570,13 @@ nordic
 Now, when we print our `nordic` vector, we can see which population size belongs to which country! Neat! We can also extract values from our vector based on names rather than just position.
 
 
-```r
+``` r
 nordic["Denmark"] # equivalent to nordic[1]
 #> Denmark 
 #> 5868927
+```
+
+``` r
 nordic[c("Finland", "Norway")] # equivalent to nordic[c(2, 4)]
 #> Finland  Norway 
 #> 5572355 5465387
@@ -541,10 +586,13 @@ nordic[c("Finland", "Norway")] # equivalent to nordic[c(2, 4)]
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic / sum(nordic)
 #>    Denmark    Finland    Iceland     Norway     Sweden 
 #> 0.21385882 0.20305198 0.01278188 0.19915416 0.37115316
+```
+
+``` r
 
 # The names carry over to the new vector
 ```
@@ -557,13 +605,19 @@ R has some words that have special meaning, two of these are what we call logica
 The most important logical operators in R are larger than `>`, smaller than `<`, equal to `==`, equal or larger/smaller `>=`/`<=` and not equal to `!=`. They return `TRUE` if the condition is true, and `FALSE` if the condition is false. In its simplest form, we can write:
 
 
-```r
+``` r
 # is 3 smaller than 4?
 3 < 4
 #> [1] TRUE
+```
+
+``` r
 # is 3 exactly equal to 3.01?
 3 == 3.01
 #> [1] FALSE
+```
+
+``` r
 # are these two strings the same?
 "Norway" == "norway"
 #> [1] FALSE
@@ -572,14 +626,20 @@ The most important logical operators in R are larger than `>`, smaller than `<`,
 The operators also work on vectors. Then, every element of the vector is checked, and we get a vector of `TRUE` and `FALSE`.
 
 
-```r
+``` r
 # which numbers from 1 to 5 are larger than 3?
 1:5 > 3
 #> [1] FALSE FALSE FALSE  TRUE  TRUE
+```
+
+``` r
 # which countries has a population larger than 5000000?
 nordic > 5*10^6
 #> Denmark Finland Iceland  Norway  Sweden 
 #>    TRUE    TRUE   FALSE    TRUE    TRUE
+```
+
+``` r
 # which countries in our vector are not named "Norway"?
 names(nordic) != "Norway"
 #> [1]  TRUE  TRUE  TRUE FALSE  TRUE
@@ -588,7 +648,7 @@ names(nordic) != "Norway"
 A neat property of logical values is that they behave as numbers in certain contexts. For example, if you use the `sum()` function on them, each `TRUE` is counted as 1, and each `FALSE` is counted as 0.
 
 
-```r
+``` r
 sum(c(TRUE, FALSE, TRUE))
 #> [1] 2
 ```
@@ -596,13 +656,19 @@ sum(c(TRUE, FALSE, TRUE))
 We can use this to check how many elements in our vector match a certain condition:
 
 
-```r
+``` r
 # how many numbers from 1 to 5 are larger than 3?
 sum(1:5 > 3)
 #> [1] 2
+```
+
+``` r
 # how many countries has a population larger than 5000000?
 sum(nordic > 5*10^6)
 #> [1] 4
+```
+
+``` r
 # how many countries in our vector are not named "Norway"?
 sum(names(nordic) != "Norway")
 #> [1] 4
@@ -615,11 +681,17 @@ sum(names(nordic) != "Norway")
 R also has another important special value, `NA`, which stands for "not available". It is mostly used to indicate missing data in data sets. One important property of `NA` is that any operation involving `NA` returns `NA`.
 
 
-```r
+``` r
 5 * NA
 #> [1] NA
+```
+
+``` r
 sum(c(5, 6, 10, NA, 1))
 #> [1] NA
+```
+
+``` r
 mean(c(3, 5, 10, NA))
 #> [1] NA
 ```
@@ -627,9 +699,12 @@ mean(c(3, 5, 10, NA))
 You can write `na.rm = TRUE` within the `sum()` and `mean()` functions to ignore `NA`s.
 
 
-```r
+``` r
 sum(c(5, 6, 10, NA, 1), na.rm = TRUE)
 #> [1] 22
+```
+
+``` r
 mean(c(3, 5, 10, NA), na.rm = TRUE)
 #> [1] 6
 ```
@@ -651,9 +726,12 @@ If you want to know more about what a function does, you can write `?` and then 
 Functions mostly have 1 or more arguments (sometimes 0), which go inside of the parentheses separated by comma, conceptually: `function(arg1, arg2, arg3)`. The arguments can either be input in a set order, or you can name them. Consider the following:
 
 
-```r
+``` r
 seq(1, 10, 2) # "from" is argument no. 1, "to" is argument no. 2 etc.
 #> [1] 1 3 5 7 9
+```
+
+``` r
 seq(from = 1, to = 10, by = 2)
 #> [1] 1 3 5 7 9
 ```
@@ -666,7 +744,7 @@ These are exactly the same, but one uses argument order, and the other the argum
 A tip for making code more readable is that as long as we are inside a parenthesis, we can have line breaks in our code. This means that we can put each argument on a separate line. Instead of the code above, we could also have written:
 
 
-```r
+``` r
 seq(from = 1,
     to = 10,
     by = 2)
@@ -682,6 +760,7 @@ This may not matter much for such a simple function, but it gets way easier to r
 Let's return to investigating more aspects of the Nordic countries, after all there's more to a country than just it's population size. Table \@ref(tab:nord-more) shows some additional information about the Nordic countries:
 
 
+
 Table: (\#tab:nord-more)More information on the nordic countries.
 
 |Country | Population size| Area (km^2^)| Life expectancy|
@@ -692,10 +771,12 @@ Table: (\#tab:nord-more)More information on the nordic countries.
 |Norway  |         5465387|       304282|           82.14|
 |Sweden  |        10185555|       410335|           82.40|
 
+
+
 What if you want to use some more information about the countries, e.g. the area? One solution is to store the new information in a vector:
 
 
-```r
+``` r
 nordic_area <- c(42434, 303815, 100250, 304282, 410335)
 ```
 
@@ -708,7 +789,7 @@ A data frame is conceptually similar to the table above. You have columns of dif
 [^exercise1-4]: You can see here that the names of `nordic` carries over when making the data frame. This results in the names of the countries stored in what seems to be a nameless column. These are the row names, and can be accessed with `row.names(nordic_df)`
 
 
-```r
+``` r
 nordic_df <- data.frame(country = nordic_names, 
                         population = nordic, 
                         area = nordic_area)
@@ -728,7 +809,7 @@ The arguments of `data.frame()` are kind of special in that you can name them wh
 You previously learned that you can access data in a vector using square brackets `[]`, and the same goes for data frames. However, we now have two dimensions (rows and columns) instead of just 1. The syntax for extracting from a data frame is `df[row, column]`. For instance, to get the area (column 3) of Finland (row 2), we can run:
 
 
-```r
+``` r
 # extract row 2, column 3
 nordic_df[2, 3]
 #> [1] 303815
@@ -737,7 +818,7 @@ nordic_df[2, 3]
 You can also use the name of the column instead of the position (remember quotes!).
 
 
-```r
+``` r
 nordic_df[2, "area"]
 #> [1] 303815
 ```
@@ -745,14 +826,20 @@ nordic_df[2, "area"]
 If you leave the row field empty, you will get all rows, and if you leave the column field empty you will get all columns.
 
 
-```r
+``` r
 # Get area of all countries
 nordic_df[,"area"]
 #> [1]  42434 303815 100250 304282 410335
+```
+
+``` r
 # Get all the information about Iceland
 nordic_df[3,]
 #>         country population   area
 #> Iceland Iceland     350773 100250
+```
+
+``` r
 # get all rows and columns (useless, but it works!)
 nordic_df[,]
 #>         country population   area
@@ -766,7 +853,7 @@ nordic_df[,]
 Another way of getting data from your data frame is with the `$` operator. Writing something like `df$column` returns the entire column as a vector.
 
 
-```r
+``` r
 nordic_df$population
 #> [1]  5868927  5572355   350773  5465387 10185555
 ```
@@ -774,13 +861,22 @@ nordic_df$population
 This is very useful, as you can do the same operations on these vectors that you can on any vector.
 
 
-```r
+``` r
 nordic_df$population / 10^6
 #> [1]  5.868927  5.572355  0.350773  5.465387 10.185555
+```
+
+``` r
 mean(nordic_df$area)
 #> [1] 232223.2
+```
+
+``` r
 nordic_df$area + nordic_df$population
 #> [1]  5911361  5876170   451023  5769669 10595890
+```
+
+``` r
 nordic_df$population > 5*10^6
 #> [1]  TRUE  TRUE FALSE  TRUE  TRUE
 ```
@@ -791,7 +887,7 @@ Note that the `$` syntax only works for columns, not for rows.
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic_df$population / nordic_df$area
 #> [1] 138.307183  18.341277   3.498983  17.961585  24.822535
 ```
@@ -802,7 +898,7 @@ nordic_df$population / nordic_df$area
 Adding data to the data frame can also be done with the `$` operator. Instead of referencing an existing column, you can simply write a new name after the `$`, and assign to it as a variable like so: `df$newcolumn <- c(1, 2, 3, 4, 5)`.
 
 
-```r
+``` r
 nordic_df$is_norway <- c("no", "no", "no", "yes", "no")
 nordic_df
 #>         country population   area is_norway
@@ -819,7 +915,7 @@ Now you have added a column named "is_norway" to your data frame, which is kind 
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic_df$pop_density <- nordic_df$population / nordic_df$area
 ```
 :::
@@ -831,7 +927,7 @@ Sometimes you don't know exactly which rows you want to extract from your data. 
 If you want to figure out which countries have an area less than 300 000 km^2^, you have learned that you can do the following:
 
 
-```r
+``` r
 # which elements have an area less than 300000?
 nordic_df$area < 300000
 #> [1]  TRUE FALSE  TRUE FALSE FALSE
@@ -840,7 +936,7 @@ nordic_df$area < 300000
 The result shows that element 1 and 3 are `TRUE`, while the rest are `FALSE`. If you put this same statement within square brackets (before the comma) to index your data frame, R will return all rows that are `TRUE`, and discard all rows that are `FALSE`.
 
 
-```r
+``` r
 # get all countries with an area below 300 000 km^2
 nordic_df[nordic_df$area < 300000, ]
 #>         country population   area is_norway pop_density
@@ -851,7 +947,7 @@ nordic_df[nordic_df$area < 300000, ]
 We could do the same to get all rows where the country isn't Norway:
 
 
-```r
+``` r
 # get all countries except Norway
 nordic_df[nordic_df$country != "Norway", ] 
 #>         country population   area is_norway pop_density
@@ -867,7 +963,7 @@ Two important things to note here is that you have to explicitly write `nordic_d
 
 ::: {.fold .s}
 
-```r
+``` r
 nordic_df[nordic_df$pop_density > 18, ]
 #>         country population   area is_norway pop_density
 #> Denmark Denmark    5868927  42434        no   138.30718
@@ -900,14 +996,14 @@ Start by downloading the file [worlddata.csv](https://bios1140.github.io/data/wo
 The next step is to make R look in the same folder that your data is in. An important concept is that **R only works in one folder at a time**. You can get the folder where R is currently looking, called the working directory, by running the command
 
 
-```r
+``` r
 getwd()
 ```
 
 This may or may not be the folder where your text file (and/or R script) is located (probably it isn't). If R is looking in a different folder than you want it to, you need to tell it where to look, this can be done in a variety of ways, the most manual being the function `setwd()`:
 
 
-```r
+``` r
 # set the working directory to the BIOS1140 folder within "Documents"
 setwd("C:/Documents/BIOS1140")
 ```
@@ -943,14 +1039,14 @@ Now you should be able to import the data! I've made some skeleton code for you 
 **Exercise: import `worlddata.csv` into R by filling in the blanks in the code below.**
 
 
-```r
+``` r
 # fill in the blanks (after "=")
 world_data <- read.table("worlddata.csv", header = , sep = , dec = )
 ```
 
 ::: {.fold .s}
 
-```r
+``` r
 world_data <- read.table("worlddata.csv", header = TRUE, sep = ",", dec = ".")
 ```
 :::
@@ -981,7 +1077,7 @@ The basic function for plotting in R is simply `plot()`. This function will gues
 The simplest way of plotting in R is by plotting two vectors of equal length. One vector gives the x-value, and another gives the y-value.
 
 
-```r
+``` r
 # make two vectors of equal length
 x <- 1:50
 y <- 51:100
@@ -997,7 +1093,7 @@ plot(x, y)
 As you can see, it makes a simple plot of our data, using points as the default. If we want to make a line graph we have to specify `type = "l"`:
 
 
-```r
+``` r
 plot(x, y, type = "l")
 ```
 
@@ -1011,7 +1107,7 @@ For all the different ´type´ arguments, see the plot-function's help page by r
 You can use the functions `lines()` and `points()` to add elements to an existing plot instead of creating a new one:
 
 
-```r
+``` r
 
 plot(x, y, type = "l")
 lines(x, y - 5, col = "red")
@@ -1026,7 +1122,7 @@ points(c(0, 10, 15), c(60, 80, 70), col = "blue")
 You can use the `hist()` function to create simple histograms, as shown with the `Total_Fertility_Rate` column of `world_data` in the example below
 
 
-```r
+``` r
 hist(world_data$Total_Fertility_Rate)
 ```
 
@@ -1048,7 +1144,7 @@ The `plot()` (and `lines()` and `points()`) function contains a lot of arguments
 Below is an example that uses all these arguments in a single plot, see if you can follow what happens.
 
 
-```r
+``` r
 plot(x, y, 
      type = "l",
      main = "customization options",
@@ -1079,14 +1175,14 @@ So far, all the functions we have used in this tutorial is part of your R instal
 Packages in R can be installed with the function `install.packages()`. **You will only have to install a package once per computer**. Here is how to install the `ggplot2` package, which we will use next week:
 
 
-```r
+``` r
 install.packages("ggplot2")
 ```
 
 When a package has been installed, you have to load it in order to use it. **You have to load a package each time you want to use it in a script.** You load a package using the function `library()`:
 
 
-```r
+``` r
 library(ggplot2)
 ```
 

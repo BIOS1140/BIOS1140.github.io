@@ -1,6 +1,16 @@
-# Week 7 assignment {- #w07}
+# Week 6-7 assignment 5 {- #w07}
 
-#### 1. Working with DNA sequence data {-}
+#### 1. Visualising complex data {-}
+
+This part of the assignment uses the `iris` data set which is already available in R.
+
+a) Make a scatterplot of `Sepal.Length` against `Sepal.Width`. Facet the plot by `Species`, and arrange the plots so that they are below each other. Color the points by `Petal.Length`
+
+b) **Optional** Let's try to visualise all the `iris` data at once. Use `pivot_longer()` to get all measurements (i.e. all columns except `Species`) in a single column. Make a boxplot of species against measurement value, and facet the plot by measurement type.
+
+
+
+#### 2. Working with DNA sequence data {-}
 
 For this part of the assignment, you need to download the assignment-7.fasta file [here](https://bios1140.github.io/data/assignment-7.fasta).
 
@@ -10,7 +20,9 @@ b) How long are the sequences, and what are the base frequencies?
 
 c) Calculate standardised segregating sites and nucleotide diversity of the data.
 
-#### 2. The woodmouse data {-}
+d) Describe the two file formats: FASTA and VCF
+
+#### 3. The woodmouse data {-}
 
 a) How many segregating sites (i.e. actual number) are there if we subset the woodmouse dataset to 12 individuals and 500 basepairs? What is the nucleotide diversity?
 
@@ -18,8 +30,19 @@ The Tajima's D test we performed on the woodmouse data is not significantly diff
 
 b) What was the value of Tajima's D, and how do you interpret this? There are several factors influencing the sign of Tajima's D, and you need to argue for which you think is most likely in this specific case. Recall that the data is from mitochondrial DNA (believed to be neutral) and was used in a study of the woodmouse's demographic history since the last ice age, where it seems likely that they survived in a refugia in Southern Europe and then recolonised Northern Europe following ice retreat.
 
-#### 3. Sparrows {-}
+#### 4. Sparrows {-}
+
+For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data [here](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)(VCF) and [here](https://bios1140.github.io/data/sparrow_pops.txt)(population data). See section XX in the tutorial on how to download and import the data.
+
 
 a) In your own words, what is a sliding window analysis? Why did we need to use a sliding window analysis to visualise this data?
 
 b) Plot the sliding window nucleotide diversity for both the spanish sparrow (using red) and the italian sparrow (using gold). Do you see the same region of reduced diversity as with the house sparrow? If there is a shared pattern, what might explain it?
+
+c) Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the different species comparisons. _N.B. if you use a tidyverse solution, it may be easier to use t() to transpose and see the final result_
+
+d) Use a boxplot to visualise the distribution of $F_{ST}$ and $d_{XY}$ for all the different species comparisons. _Hint: You need to use pivot_longer on the columns containing_ $F_{ST}$ _and_ $d_{XY}$ _data respectively._
+
+e) Draw a composite plot (fst, nucleotide diversity, dxy) for the house versus italian comparison. Is there a similar pattern to the house/spanish data we examined in the tutorial?
+
+f) Plot the relationship between $d_{XY}$ for house vs spanish and recombination rate (similar to the very last plot in the tutorial (NOT the one in the footnotes!), but with $d_{XY}$ instead of $F_{ST}$). Is it the same as that for Fst? Explain why/why not.

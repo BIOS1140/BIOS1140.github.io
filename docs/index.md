@@ -1,7 +1,7 @@
 --- 
 title: "R tutorials for the course BIOS1140 at the University of Oslo"
-date: "2023-06-25"
-author: "Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann."
+date: "2024-06-28"
+author: "Original tutorials written by Mark Ravinet. Revamped in 2021 by Even Sletteng Garvang and Solveig Brochmann. Revamped again in 2024 by Emily Enevoldsen and Marius F. Maurstad"
 site: bookdown::bookdown_site
 documentclass: book
 link-citations: yes
@@ -27,7 +27,7 @@ _Oslo, October 2018_
 
 #### 2021 version {-}
 
-This version is a revamped version of Mark Ravinet's original tutorials, edited by Even Sletteng Garvang and Solveig Brochmann based on the feedback during the three years the course has been run at the University of Oslo. Even contributed with new code, revised sections and wrote a new tutorial for chapter 1. Solveig contributed with edits and feedback, and revised sections.
+This version is a revamped version of Mark Ravinet's original tutorials, edited by Even Sletteng Garvang and Solveig Brochmann based on the feedback during the three years the course has been run at the University of Oslo. Even contributed with new code, revised sections and wrote a new tutorial for chapter 1. Solveig contributed with edits and feedback, and revised sections. In 2024 the tutorials were shortened to 7 assignments by Emily Enevoldsen and Marius F. Maurstad.
 
 The code used to create this book can be found at <https://github.com/BIOS1140/BIOS1140.github.io>. The R and package versions used can be found in Appendix \@ref(tech).
 

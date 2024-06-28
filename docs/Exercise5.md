@@ -22,7 +22,7 @@ In this section we will:
 The first thing we need to do is set up the R environment. We won't be using anything other than base R and the `tidyverse` package today. So you'll need to load the latter.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -36,7 +36,7 @@ Last week you learned a bit about creating your own functions, and hopefully saw
 As an example, let's use a simple function that takes radius and height as an input, and calculates the volume of a cylinder ($\pi r^2h$).
 
 
-```r
+``` r
 cyl_vol <- function(r, h){
   return(pi * r^2 * h)
 }
@@ -45,7 +45,7 @@ cyl_vol <- function(r, h){
 First, let's use it for a single value of `r` and `h`.
 
 
-```r
+``` r
 # radius 3, height 8
 r <- 3
 h <- 8
@@ -56,7 +56,7 @@ cyl_vol(r, h)
 Let's say we want to calculate the volume of 10 cylinders with radius 3, and heights ranging from 1 through 10. In R, we can supply a vector of heights as the second argument, and do these 10 calculations in a single operation!
 
 
-```r
+``` r
 # radius 3, height 1:10
 r <- 3
 h <- 1:10
@@ -70,7 +70,7 @@ This is part of what we call *vectorisation*, taking a single function and apply
 We can even supply two vectors, one for `r` and 1 for `h` if we want to vary both radius and height.
 
 
-```r
+``` r
 r <- 10:1
 h <- 1:10
 cyl_vol(r, h)
@@ -97,7 +97,7 @@ Notice that you could also have used a for loop to use the function on a range o
 The `apply()` function is a tool to further vectorise your functions that works with matrices and data frames. `apply()` will *apply a function to either each row or each column of your data frame/matrix*. The general structure of using `apply()` is:
 
 
-```r
+``` r
 apply(data, row_or_colwise, function_name)
 ```
 
@@ -108,7 +108,7 @@ Where the second argument is either `1` for operating on each row or `2` for ope
 The best way to show how it works is probably through an example. Consider if you have the following data frame of species counts, where each column contains counts for a species, and each row is a location.
 
 
-```r
+``` r
 species <- data.frame(
   sp_1 = c(0, 3, 2, 6, 7),
   sp_2 = c(4, 2, 3, 0, 1),
@@ -125,7 +125,7 @@ species
 What if you want to take the mean count for each location? I.e. calculate the mean of each row in the data set. You can't simply use `mean()` on your data frame:
 
 
-```r
+``` r
 mean(species)
 #> [1] NA
 ```
@@ -133,7 +133,7 @@ mean(species)
 R doesn't understand what to do in this case. However, this is a perfect opportunity for using `apply()`! Remember that the second argument should be `1` since we want to work on rows here.
 
 
-```r
+``` r
 apply(species, 1, mean)
 #> [1] 2.000000 2.333333 1.666667 2.000000 3.000000
 ```
@@ -156,7 +156,7 @@ Use `2` as the second argument to work with columns instead of rows.
 
 ::: {.fold .s}
 
-```r
+``` r
 apply(species, 2, mean)
 #> sp_1 sp_2 sp_3 
 #>  3.6  2.0  1.0
@@ -178,7 +178,7 @@ Say that you have a vector with values, and you want to group them somehow. For 
 
 ::: yellow
 
-```r
+``` r
 # generate 10 numbers between 0 and 10
 
 set.seed(14) # ensure same result of random drawing each time
@@ -191,7 +191,7 @@ x
 Now, you may remember from the first week that you can check which numbers are more than 5 by using a logical statement:
 
 
-```r
+``` r
 x > 5
 #>  [1]  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE FALSE
 ```
@@ -199,14 +199,14 @@ x > 5
 However, what if you want to label the values "high" and "low", respectively? For this, you can use the `ifelse()` function. Conceptually, `ifelse()` works like this:
 
 
-```r
+``` r
 ifelse(logical_statement, value_if_TRUE, value_if_FALSE)
 ```
 
 This means that to get "high" and "low" for our values, we can write:
 
 
-```r
+``` r
 ifelse(x > 5, "high", "low")
 #>  [1] "high" "high" "low"  "low"  "low"  "high" "high" "low"  "high" "low"
 ```
@@ -218,7 +218,7 @@ ifelse(x > 5, "high", "low")
 Check if a value is higher than the mean:
 
 
-```r
+``` r
 ifelse(x > mean(x), "above mean", "below_mean")
 #>  [1] "above mean" "above mean" "below_mean" "below_mean" "below_mean"
 #>  [6] "above mean" "above mean" "below_mean" "above mean" "below_mean"
@@ -227,7 +227,7 @@ ifelse(x > mean(x), "above mean", "below_mean")
 Convert a value from count to binary presence/absence:
 
 
-```r
+``` r
 ifelse(x > 0, 1, 0)
 #>  [1] 1 1 1 1 1 1 1 1 1 0
 ```
@@ -235,7 +235,7 @@ ifelse(x > 0, 1, 0)
 We can also use it for character vectors, looking for a specific word to make groups:
 
 
-```r
+``` r
 animals <- c("horse", "donkey", "zebra", "horse", "zebra", "mule")
 ifelse(animals == "horse", "actual horse", "almost horse")
 #> [1] "actual horse" "almost horse" "almost horse" "actual horse" "almost horse"
@@ -271,7 +271,7 @@ As an illustrative example, we will calculate *F*~ST~ for the SNP rs4988235 asso
 Knowing these numbers, we will first calculate the allele frequences in each population. We will use $p$ to denote the frequency of the T allele at this locus.
 
 
-```r
+``` r
 # set up genotype counts
 a <- c(48, 28, 4) # americans
 d <- c(0, 3, 77) # druze
@@ -293,7 +293,7 @@ q_d <- 1 - p_d
 Next we can calculate the allele frequencies for the metapopulation - i.e. Americans of European descent and Druze considered as a single population. This is as simple as taking the mean of the two allele frequencies.
 
 
-```r
+``` r
 # calculate total allele frequency
 p_t <- (p_a + p_d)/2
 q_t <- 1 - p_t
@@ -302,7 +302,7 @@ q_t <- 1 - p_t
 With these allele frequencies calculated, we can very easily calculate expected heterozygosities - remember this is just $2pq$.
 
 
-```r
+``` r
 # first calculate expected heterozygosity for the two populations
 # americans
 hs_a <- 2*p_a*q_a
@@ -318,7 +318,7 @@ ht <- 2*p_t*q_t
 With all the relevant expected heterozygosities in place, we are now ready to calculate *F*~ST~ which we can do like so:
 
 
-```r
+``` r
 # calculate fst
 fst <- (ht - hs)/ht
 ```
@@ -332,7 +332,7 @@ The code in the previous section was useful to demonstrate how we can calculate 
 First, we will write a function called `calc_p` which will take genotype counts from a population and calculate allele frequencies. This will probably be similar to the function you made in last week's assignment.
 
 
-```r
+``` r
 # a simple function to calculate allele frequencies in two populations
 calc_p <- function(counts){
   # get the number of samples
@@ -346,7 +346,7 @@ calc_p <- function(counts){
 Since it is very straightforward for use to calculate the frequency of the second allele once we have the frequency of the first (i.e. $q = 1- p$), our `calc_p` function will only calculate $p$ for both populations. Let's test it on the data from our previous example.
 
 
-```r
+``` r
 # testing our function on the american/druze example
 af_american <- calc_p(c(48, 28, 4))
 af_druze <- calc_p(c(0, 3, 77))
@@ -355,7 +355,7 @@ af_druze <- calc_p(c(0, 3, 77))
 So now that we have a function that calculates allele frequencies in the two populations, we can write our `calc_fst` function to take these frequencies and calculate *F*~ST~ from them.
 
 
-```r
+``` r
 # a function to calculate fst
 calc_fst <- function(p_1, p_2){
   
@@ -390,7 +390,7 @@ calc_fst <- function(p_1, p_2){
 Let's test our function on the allele frequencies we calculated with our `calc_p` function.
 
 
-```r
+``` r
 # testing our function on the american/druze example
 calc_fst(af_american, af_druze)
 ```
@@ -417,7 +417,7 @@ The data is separated by tabulator (`"\t"`), and has a header.
 
 ::: {.fold .s}
 
-```r
+``` r
 lct_counts <- read.table("lct_count.tsv", header = TRUE, sep = "\t")
 ```
 :::
@@ -429,21 +429,21 @@ You should now have a data frame in your R environment with allele counts for th
 What we have is the counts of allleles but what we actually want is the allele frequency for T - that is how we can calculate *F*~ST~. We can use our `calc_p()` function for this, so let's try this function out on counts for a single population. We use indexing here to select the first row and only columns 2:4, since our function is only expecting the count data, not the population name.
 
 
-```r
+``` r
 calc_p(lct_counts[1, 2:4])
 ```
 
 Great! So this works well. Now let's get $p$ (the frequency of the T allele) for all the populations. We can do this using the `apply()` function that you learned about in the R-section. Note that the data needs to be columns 2 through 4 of the data, and the second argument needs to be `1` since we're working on rows.
 
 
-```r
+``` r
 p <- apply(lct_counts[,2:4], 1, calc_p)
 ```
 
 We can now combine our vector of allele frequencies with the population names to create a data.frame of frequencies. Like so
 
 
-```r
+``` r
 lct_freq <- data.frame(pop = lct_counts$pop, p)
 ```
 
@@ -452,7 +452,7 @@ Now we can calculate a pairwise *F*~ST~ with our `calc_fst` function. For exampl
 [^exercise5-3]: Tip: to better understand this code, try printing the objects `af_euram` and `af_eastasian`, as well as the columns `af_euram$p` and `af_eastasian$p`. This way you can follow what the code is doing.
 
 
-```r
+``` r
 # extract frequencies
 af_euram <- filter(lct_freq, pop == "European_American")
 af_eastasian <- filter(lct_freq, pop == "East_Asian")
@@ -463,7 +463,7 @@ calc_fst(af_euram$p, af_eastasian$p)
 As with our previous example, we can see *F*~ST~ is actually pretty high between these populations for this SNP. What about if we compared East Asians with the Bedouin people from Israel?
 
 
-```r
+``` r
 # extract frequencies
 af_bedouin <- filter(lct_freq, pop == "Bedouin_Negev_Israel")
 # calculate fst
@@ -483,7 +483,7 @@ Next, we will combine vectorisation and our custom functions to calculate *F*~ST
 
 ::: {.fold .s}
 
-```r
+``` r
 lct_snps <- read.table("LCT_snps.tsv", header = TRUE, sep = "\t")
 ```
 :::
@@ -495,21 +495,21 @@ This data is also from [Bersaglieri et al. 2002](https://www.sciencedirect.com/s
 Since we have the allele frequencies, we can easily calculate *F*~ST~ for each of these SNPs. For our example here, we will do this between `european_americans` and `east_asians`. First of all, let's use our `calc_fst` function on just a single SNP.
 
 
-```r
+``` r
 calc_fst(lct_snps[1, "european_americans"], lct_snps[1, "east_asians"])
 ```
 
 So it works great for a single row. Actually, `calc_fst()` will work with vectors of values as well, so to calculate the F~ST~ for all loci simultaneously, we can supply the entire columns as arguments with the `$` operator.
 
 
-```r
+``` r
 calc_fst(lct_snps$european_americans, lct_snps$east_asians)
 ```
 
 It works equally great for the entire data set! Let's add these F~ST~s as a column in the `lct_snps` data frame.
 
 
-```r
+``` r
 # make an fst column
 lct_snps$fst <- calc_fst(lct_snps$european_americans, lct_snps$east_asians)
 ```
@@ -517,7 +517,7 @@ lct_snps$fst <- calc_fst(lct_snps$european_americans, lct_snps$east_asians)
 Now that we have *F*~ST~ estimates for each of our SNPs, we can visualise the variation along the chromosome with `ggplot2`.
 
 
-```r
+``` r
 a <- ggplot(lct_snps, aes(coord, fst)) + geom_point()
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a <- a + theme_light()
@@ -529,7 +529,7 @@ a
 What are we seeing here? Quite clearly, there is a an increase in *F*~ST~ along the chromosome, with a few SNPs showing extremely high values. It might make things a bit clearer if we mark on our plot the midpoint of the *LCT* gene. We know the gene occurs between 136,261,885 bp and 136,311,220 bp on Chromsome 2 ([from the UCSC Genome Browser](https://genome.ucsc.edu/cgi-bin/hgTracks?db=hg18&lastVirtModeType=default&lastVirtModeExtraState=&virtModeType=default&virtMode=0&nonVirtPosition=&position=chr2%3A136261885-136311220&hgsid=690775201_Cttqx4oVutDVGra183ZtAUFm6z2W)). So first we will find the midpoint of the gene.
 
 
-```r
+``` r
 # define the start and stop positions of the gene
 lct_start <- 136261885
 lct_stop <- 136311220
@@ -540,7 +540,7 @@ lct_mid <- (lct_start + lct_stop)/2
 All we need to do to add it to our plot is add the `geom_vline()` geom.
 
 
-```r
+``` r
 a <- a + geom_vline(xintercept = lct_mid, lty = 2, col = "blue")
 a
 ```
@@ -579,7 +579,7 @@ The logical statement you need to use is `lct_snps$snp_id == "rs4988235"`
 
 ::: {.fold .s}
 
-```r
+``` r
 lct_snps$status <- if_else(lct_snps$snp_id == "rs4988235", "Yes", "No")
 ```
 :::
@@ -587,7 +587,7 @@ lct_snps$status <- if_else(lct_snps$snp_id == "rs4988235", "Yes", "No")
 Now to highlight the SNP on our plot. We can make it big and colored this by mapping it to both the `col` and `size` aesthetic.
 
 
-```r
+``` r
 a <- ggplot(lct_snps, aes(coord, fst, col = status, size = status)) + geom_point()
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a <- a + geom_vline(xintercept = lct_mid, lty = 2, col = "blue")
@@ -600,7 +600,7 @@ a
 Now we see, our focal SNP is highlighted in the plot. We'll change the colours to make it a little bit clearer.
 
 
-```r
+``` r
 a + scale_colour_manual(values = c("black", "red"))
 ```
 
@@ -613,7 +613,7 @@ In the next section, we'll demonstrate how we can use the distribution of *F*~ST
 How can we identify outliers in our *F*~ST~ data? First of all, we can look at the distribution of our data by making a histogram of `fst`.
 
 
-```r
+``` r
 ggplot(lct_snps, aes(fst)) + geom_histogram(binwidth = 0.05)
 ```
 
@@ -624,7 +624,7 @@ Now, it's apparent that some values are way larger than the rest, but where do w
 In the following example, we make a vector of numbers from 0 to 200, and use the quantile function to find the highest 5% (or lowest 95%).
 
 
-```r
+``` r
 x <- 0:200
 quantile(x, 0.95)
 #> 95% 
@@ -636,7 +636,7 @@ The function returns `190`, which means that 95% of the values are below 190, an
 Now we use the `quantile()` function on our data to set the outlier threshold. Note that this time we need to add `na.rm = T` in order to ignore some loci which have no *F*~ST~ estimates.
 
 
-```r
+``` r
 # set threshold
 threshold <- quantile(lct_snps$fst, 0.95, na.rm = T)
 # plot histogram with threshold marked
@@ -649,14 +649,14 @@ a + geom_vline(xintercept = threshold, colour = "red", lty = 2, size = 1)
 Now what if we want to visualise this on our chromosome-wide plot? Once again, we need to use the `ifelse()` function.
 
 
-```r
+``` r
 lct_snps$outlier <- ifelse(lct_snps$fst > threshold, "Outlier", "Non-outlier")
 ```
 
 Take a look at the `lct_snps` data frame - you should now see an additional column which is a character vector with the status of each locus as either outlier or non-outlier. Next we can incorporate this into our plotting:
 
 
-```r
+``` r
 a <- ggplot(lct_snps, aes(coord, fst, colour = outlier)) + geom_point()
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a <- a + geom_vline(xintercept = lct_mid, lty = 2, col = "blue")

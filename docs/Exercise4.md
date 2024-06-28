@@ -23,7 +23,7 @@ In this section we will:
 The first thing we need to do is set up the R environment. We won't be using anything other than base R and the `tidyverse` package today. So you'll need to load the latter.
 
 
-```r
+``` r
 library(tidyverse)
 ```
 
@@ -38,7 +38,7 @@ library(tidyverse)
 In last week's tutorial and assignment, you used a for-loop to simulate genetic drift. If you did the assignment, you are probably tired of seeing code-snippets looking like this or similar:
 
 
-```r
+``` r
 N <- 10
 ngen <- 1000
 p_init <- 0.5
@@ -65,7 +65,7 @@ You have already used a lot of functions in R, with names like `mean()`, `sum()`
 A basic custom function typically looks like this:
 
 
-```r
+``` r
 
 function_name <- function(argument){
   #the body of the function is inside curly brackets
@@ -90,7 +90,7 @@ Custom functions makes a piece of code reusable, either for doing something many
 Let's make a simple function that allows you to see clearly what the function is doing. The following function takes an argument, and prints it in a sentence:
 
 
-```r
+``` r
 print_arg <- function(argument){
   
   # make a string explaining what the argument is
@@ -104,14 +104,20 @@ print_arg <- function(argument){
 When you run this code, nothing is printed, but the function has been saved. You can now call your new function with any argument.
 
 
-```r
+``` r
 print_arg(5)
 #> [1] "the argument is: 5"
+```
+
+``` r
 
 # you can store the returned value to an object and print it
 horse_sentence <- print_arg("horse")
 horse_sentence
 #> [1] "the argument is: horse"
+```
+
+``` r
 
 # you can put any expression as the argument,
 # for example a logical statement
@@ -122,7 +128,7 @@ print_arg(pi > exp(1))
 You can also reference the argument by name when calling the function, like you learned about in week 1.
 
 
-```r
+``` r
 print_arg(argument = "zebra")
 #> [1] "the argument is: zebra"
 ```
@@ -133,7 +139,7 @@ While this particular function is quite useless, notice how much typing you have
 
 ::: {.fold .s}
 
-```r
+``` r
 print_args <- function(argument1, argument2){
   # make a string
   sentence <- paste("the first argument is:", argument1, "and the second is", argument2)
@@ -153,7 +159,7 @@ print_args(5, "horse")
 One important thing about functions is that any objects you create **only exist inside the function**. This means that even though the above function creates an object named `sentence`, and we've run the function many times, there is no object called sentence in your R session:
 
 
-```r
+``` r
 sentence
 #> Error in eval(expr, envir, enclos): object 'sentence' not found
 ```
@@ -163,12 +169,15 @@ This means that you don't need to worry about naming conflicts when running a fu
 Another important thing is that **you can only return 1 thing from a function**. This means that if you want to return multiple objects, you need to make these into a vector. In the following three examples, only the last function will work as intended:
 
 
-```r
+``` r
 return_2 <- function(x, y){
   return(x, y) # will produce an error, you can only return a single object!
 }
 return_2(2, 4)
 #> Error in return(x, y): multi-argument returns are not permitted
+```
+
+``` r
 
 return_twice <- function(x, y){
   return(x) # x is returned, and the function stops
@@ -176,6 +185,9 @@ return_twice <- function(x, y){
 }
 return_twice(2, 4)
 #> [1] 2
+```
+
+``` r
 
 return_vector <- function(x, y){
   return_vec <- c(x, y)
@@ -198,7 +210,7 @@ return_vector(2, 4)
 A more useful function is often one that does some calculations and returns the result. Here's an example of a function that takes two arguments and divides the first by the other.
 
 
-```r
+``` r
 divide <- function(numerator, denominator){
   result <- numerator/denominator
   return(result)
@@ -206,8 +218,14 @@ divide <- function(numerator, denominator){
 
 divide(5, 3)
 #> [1] 1.666667
+```
+
+``` r
 divide(10, 0)
 #> [1] Inf
+```
+
+``` r
 # oops
 ```
 
@@ -215,7 +233,7 @@ divide(10, 0)
 
 ::: {.fold .s}
 
-```r
+``` r
 add <- function(x, y){
   result <- x + y
   return(result)
@@ -228,7 +246,7 @@ add <- function(x, y){
 In last week's tutorial, you used the following snippet of code to calculate genotype frequencies from allele frequencies:
 
 
-```r
+``` r
 # first we set the frequencies
 p <- 0.8
 q <- 1 - p 
@@ -272,7 +290,7 @@ Remember that you can only return 1 object, so you need to make the genotype fre
 
 ::: {.fold .s}
 
-```r
+``` r
 calc_geno <- function(p){
   
   # calculate q from p
@@ -293,11 +311,17 @@ calc_geno <- function(p){
 When testing your function, it should show the following output:
 
 
-```r
+``` r
 calc_geno(0.2)
 #> [1] 0.04 0.32 0.64
+```
+
+``` r
 calc_geno(0.5)
 #> [1] 0.25 0.50 0.25
+```
+
+``` r
 calc_geno(0.7)
 #> [1] 0.49 0.42 0.09
 ```
@@ -318,7 +342,7 @@ Making a function isn't all that hard when you get used to it. A general recipe 
 Now we're ready to make a function to simulate drift. Just to remind you, this is the code we used last week for the simulation:
 
 
-```r
+``` r
 # set population size
 N <- 8
 
@@ -363,7 +387,7 @@ Use the three steps from the previous section: paste the code into the body, tur
 
 ::: {.fold .s}
 
-```r
+``` r
 drift_sim <- function(N, ngen, p_init){
 
   # create vector for storing results
@@ -404,7 +428,7 @@ What do we mean by **fitness**? In its simplest form, fitness is defined as whet
 So we might talk about **absolute fitness** - e.g. the expected reproductive success of $A_1A_1$. In population genetic models though, we more often than not refer to **relative fitness** - i.e. how fit genotypes are relative to one another. To denote relative fitness, we will follow the notation in the main text - i.e. $w_{ij}$ for $A_iA_j$. Assuming locus $A$ with two alleles, on average genotypes $A_1A_1$ and $A_1A_2$ produce 16 offspring each, whereas $A_2A_2$ produces 11 offspring on average. We calculate relative fitness as follows:
 
 
-```r
+``` r
 # define the number of offspring per genotype
 a <- c(A1A1 = 16, A1A2 = 16, A2A2 = 11)
 # find the maximum fitness
@@ -420,7 +444,7 @@ When calculating relative fitness, we define fitness relative to the maximum fit
 We might also want to calculate the **mean population fitness**, denoted as $\overline{w}$. This is essentially the sum of the relative fitness of each genotype multiplied by the genotype frequency. With R, calculating this is simple - we simply multiply a vector of genotype frequencies with the relative fitness and sum the result. We do this below:
 
 
-```r
+``` r
 # define the genotype frequencies - note different way to define!
 geno_freq <- c(A1A1 = 0.65, A1A2 = 0.15, A2A2 = 0.2)
 # calculate mean population fitness
@@ -437,7 +461,7 @@ To account for this, we estimate **marginal fitness** for a given allele $i$ as 
 Where $p$ and $q$ are the frequencies for $A_1$ and $A_2$ respectively. In other words, marginal fitness is a component of the fitness of the genotypes an allele occurs in *AND* the frequency of those genotypes. Let's calculate the fitness of our alleles using R.
 
 
-```r
+``` r
 ## first calculate the allele frequencies
 # define the total number of alleles
 
@@ -455,7 +479,7 @@ w2 <- (p*rel_fit["A1A2"]) + (q*rel_fit["A2A2"])
 Note again that we are explicitly naming elements of the vector to make the mathematics here clearer to you. However this can cause some annoying names to follow around your data. Take a look at `w1` and `w2` - you should see they have genotype names. The names still hang about because we used them right from the start, so we also remove them here by assigning a `NULL`:
 
 
-```r
+``` r
 # strip names
 names(w1) <- NULL
 names(w2) <- NULL
@@ -484,14 +508,14 @@ $P_{t+1} = \displaystyle \frac{pw_1^*}{\overline{w}}$
 We will use our previous results to calculate how $p$ changes after a round of selection:
 
 
-```r
+``` r
 p_t <- (p*w1)/w_bar
 ```
 
 If you compare `p` and `p_t`, you will see how the frequency in `p` changed as a result of selection. In fact, this is $\Delta p$. In R, we can easily calculate it as:
 
 
-```r
+``` r
 delta_p <- p_t - p 
 ```
 
@@ -504,7 +528,7 @@ So far, we have recreated the model for a single generation to try and understan
 We will now write a function that takes the initial frequency of p and a vector consisting of the relative fitness of each genotype. This function will then calculate the allele frequencies, the mean population fitness and the marginal fitness of the alleles. Note how this is essentially all the code we have made so far pasted into the body of a function, and `p` and `rel_fit` is turned into arguments.
 
 
-```r
+``` r
 # a simple function to demonstrate the one locus selection model
 selection_model_simple <- function(p, rel_fit){
   # define q
@@ -530,7 +554,7 @@ selection_model_simple <- function(p, rel_fit){
 With this function, we can play around with the initial frequency of the $A_1$ allele and the relative fitness of the 3 genotypes. Try a few different values for yourself to see.
 
 
-```r
+``` r
 # keeping the initial frequency constant
 selection_model_simple(p = 0.5, rel_fit = c(1, 1, 0.75))
 selection_model_simple(p = 0.5, rel_fit = c(1, 1, 0.5))
@@ -540,7 +564,7 @@ selection_model_simple(p = 0.5, rel_fit = c(1, 1, 0.3))
 We now have a function that calculates the change in p after one generation. To get a better idea of how the model works, we want to see how p changes over multiple generations. We will initialise three values -- the intial frequency `p`, the number of generations we want to simulate selection for, `n_gen`, and a vector of relative fitness. Like the simulation we made last week, this can be done with a for-loop.
 
 
-```r
+``` r
 # first initialise the values
 p_init <- 0.5
 ngen <- 100
@@ -576,7 +600,7 @@ p
 The change in allele frequency is now stored in your object `p`. This can easily be plotted straight away with base R's `plot()`:
 
 
-```r
+``` r
 plot(p, type = "l", xlab = "Generation")
 ```
 
@@ -589,7 +613,7 @@ Now, let's combine our programming and visualisation skills to demonstrate how v
 First things first, we will take our simulation from the previous section and make it into it's own function `selection_sim`. Like before, paste the entire code into the body, and convert the relevant objects to arguments.
 
 
-```r
+``` r
 ## make a simulator function
 selection_sim_simple <- function(p_init, rel_fit, ngen){
   
@@ -609,14 +633,14 @@ Note here how we have a custom function wrapped inside another custom function. 
 Anyway, now we can easily simulate selection over multiple generations. For example:
 
 
-```r
+``` r
 selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.75), ngen = 1000)
 ```
 
 So, now we will perform 4 simulations for 200 generations, keeping our initial frequency of `p` at 0.5. However, we will alter the relative fitness of the $A_2A_2$ genotype from 0.2 to 0.8.
 
 
-```r
+``` r
 
 sim_02 <- selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.2), ngen = 200)
 sim_04 <- selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.4), ngen = 200)
@@ -628,7 +652,7 @@ sim_08 <- selection_sim_simple(p_init = 0.5, rel_fit = c(1, 1, 0.8), ngen = 200)
 Now we have made 4 simulations. To plot these with `ggplot()`, we need to make them into a data frame and convert them to long form with `pivot_longer()`. See the [tutorial from week 2](#pivot-longer) if you're unsure about why we do this.
 
 
-```r
+``` r
 sel_sims <- data.frame(
   g = 1:200, # number of generations
   sim_02,
@@ -645,7 +669,7 @@ sel_sims_l <- pivot_longer(sel_sims, -g, names_to = "rel_fit", values_to = "p")
 Then we can plot the data.
 
 
-```r
+``` r
 
 ggplot(sel_sims_l, aes(x = g, y = p, col = rel_fit)) +
   geom_line() + ylim(c(0,1))
@@ -660,7 +684,7 @@ So you can see from this plot that as the difference between the marginal fitnes
 Let's take another look at our `selection_model_simple()` function.
 
 
-```r
+``` r
 # keeping the initial frequency constant
 selection_model_simple(p = 0.5, rel_fit = c(0.8, 1, 0.7))
 ```
@@ -674,7 +698,7 @@ What if we want to extend our function to give us everything we calculated? This
 *You need to run this code to complete the tutorial, but you don't need to understand it.*
 
 
-```r
+``` r
 selection_model <- function(p, rel_fit){
   # define q
   q <- 1 - p
@@ -701,7 +725,7 @@ selection_model <- function(p, rel_fit){
 ```
 
 
-```r
+``` r
 selection_sim <- function(p_init, rel_fit, ngen){
   
   # Set first generation
@@ -726,7 +750,7 @@ selection_sim <- function(p_init, rel_fit, ngen){
 Our new `selection_model()` outputs a vector of useful values. The element `p_t` denotes $p$ in the next generation, which was the output of the old `selection_model_simple()`.
 
 
-```r
+``` r
 selection_model(p = 0.5, rel_fit = c(0.8, 1, 0.7))
 #>         p         q     w_bar        w1        w2       p_t 
 #> 0.5000000 0.5000000 0.8750000 0.9000000 0.8500000 0.5142857
@@ -735,7 +759,7 @@ selection_model(p = 0.5, rel_fit = c(0.8, 1, 0.7))
 The new `selection_sim()` returns a data frame, with 1 generation per row, and the fitness parameters in columns.
 
 
-```r
+``` r
 selection_sim(p_init = 0.5, rel_fit = c(0.8, 1, 0.7), ngen = 5)
 #>   g         p         q     w_bar        w1        w2       p_t
 #> 1 1 0.5000000 0.5000000 0.8750000 0.9000000 0.8500000 0.5142857
@@ -754,7 +778,7 @@ To understand a selection model like the one we have just developed, it can be u
 We can do this using a case where heterozygotes have a greater advantage than homozygotes. Using our newly modified `selection_model` function, we can test this by setting our relative fitness to show a higher relative fitness in heterozygotes and setting `p` to a high frequency, close to 1.
 
 
-```r
+``` r
 # keeping the initial frequency constant
 selection_model(p = 0.99, rel_fit = c(0.7, 1, 0.8))
 ```
@@ -764,7 +788,7 @@ We see here that `w_bar` is around 0.7 - which we would expect given the frequen
 When invasion fitness is greater than resident mean population fitness, the model is not at a stable equilibrium as an allele can easily invade and increase in frequency. What would happen if the frequency of $A_2$ was almost fixed?
 
 
-```r
+``` r
 # keeping the initial frequency constant
 selection_model(p = 0.01, rel_fit = c(0.7, 1, 0.8))
 ```
@@ -782,7 +806,7 @@ Previously we simulated data but this time, we are going to run our selection mo
 We run the function for a range of values of $p$ using a for-loop. Notice how the result for each $p$ is added as a row of an empty data.frame.
 
 
-```r
+``` r
 # set the range of p and relative fitnesses
 p_range <- seq(0, 1, 0.01)
 rel_fit_overdom <- c(0.2, 1, 0.4)
@@ -812,7 +836,7 @@ head(overdom)
 Now this can be visualised with ggplot to see the stable equilibrium.
 
 
-```r
+``` r
 # initialise plot
 a <- ggplot(overdom, aes(p, w_bar)) + geom_line(colour = "blue", size = 1.5)
 a <- a + xlim(0, 1) + ylim(0, 1)
@@ -831,7 +855,7 @@ We can see mean population fitness is maximised at around 0.4. This is the stabl
 ::: {.fold .s .o}
 
 
-```r
+``` r
 # set the range of p and relative fitnesses
 p_range <- seq(0, 1, 0.01)
 rel_fit_underdom <- c(0.9, 0.3, 1)
@@ -856,6 +880,9 @@ head(underdom)
 #> 4 0.03 0.97 0.95917 0.318 0.979 0.009946099
 #> 5 0.04 0.96 0.94608 0.324 0.972 0.013698630
 #> 6 0.05 0.95 0.93325 0.330 0.965 0.017680150
+```
+
+``` r
 
 # then visualize
 

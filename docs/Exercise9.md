@@ -25,7 +25,7 @@ In this section we will:
 As always, we need to set up our R environment. We'll load `tidyverse` as usual, but we will also need a few more packages today to help us handle different types of data. Chief among these is `ape` which is the basis for a lot of phylogenetic analysis in R. We will also load another phylogenetic package, `phangorn` (which has an extremely [geeky reference](https://en.wikipedia.org/wiki/Fangorn) in its name). The package `adegenet` will also be used to perform some population genomic analyses and since these are quite computationally intensive, we will also install and load `parallel` - a package that allows R to run computations in parallel to speed up analysis.
 
 
-```r
+``` r
 # clear the R environment
 rm(list = ls())
 
@@ -58,7 +58,7 @@ R has a number of extremely powerful packages for performing phylogenetic analys
 The backbone of most phylogenetic analysis in R comes from the functions that are part of the `ape` package. `ape` stores trees as `phylo` objects, which are easy to access and manipulate. The easiest way to understand this is to have a look at a simple phylogeny, so we'll create a random tree now.
 
 
-```r
+``` r
 # set seed to ensure the same tree is produced
 set.seed(32)
 # generate a tree
@@ -72,7 +72,7 @@ What you need to focus on is the second line of code that uses the `rtree` funct
 Let's take a closer look at our `tree` object. It is a `phylo` object - you can demonstrate this to yourself with `class(tree)`.
 
 
-```r
+``` r
 tree
 #> 
 #> Phylogenetic tree with 4 tips and 3 internal nodes.
@@ -88,7 +88,7 @@ By printing `tree` to the console, we see it is a tree with 4 tips and 3 interna
 You can actually look more deeply into the data stored within the `tree` object if you want to. Try the following code and see what is inside.
 
 
-```r
+``` r
 str(tree)
 objects(tree)
 tree$edge
@@ -98,7 +98,7 @@ tree$edge.length
 It is of course, much easier to understand a tree when we visualise it. Luckily this is easy in R.
 
 
-```r
+``` r
 plot(tree)
 ```
 
@@ -113,7 +113,7 @@ We can do a lot with our trees in R using a few simple plot commands. We will us
 First, let's generate another random tree, this time with 5 taxa.
 
 
-```r
+``` r
 # set seed to ensure the same tree is produced
 set.seed(32)
 # generate a tree
@@ -142,7 +142,7 @@ See the help pages for the functions to find out more about how they work. Now, 
 So far, we have only looked at randomly generated trees. Let's have a look at some data stored within `ape`---a phylogeny of birds at the order level.
 
 
-```r
+``` r
 # get bird order data
 data("bird.orders")
 ```
@@ -150,7 +150,7 @@ data("bird.orders")
 Let's plot the phylogeny to have a look at it. We will also add some annotation to make sense of the phylogeny.
 
 
-```r
+``` r
 # no.margin = TRUE gives prettier plots
 plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
@@ -166,10 +166,13 @@ Here, the `segments` and `text` functions specify the bars and names of the two 
 Let's focus on the Neoaves clade for now. Perhaps we want to test whether certain families within Neoaves form a monophyletic group? We can do this with the `is.monophyletic` function.
 
 
-```r
+``` r
 # Parrots and Passerines?
 is.monophyletic(bird.orders, c("Passeriformes", "Psittaciformes"))
 #> [1] FALSE
+```
+
+``` r
 # hummingbirds and swifts?
 is.monophyletic(bird.orders, c("Trochiliformes", "Apodiformes"))
 #> [1] TRUE
@@ -178,7 +181,7 @@ is.monophyletic(bird.orders, c("Trochiliformes", "Apodiformes"))
 If we want to look at just the Neoaves, we can subset our tree using `extract.clade()`. We need to supply a node from our tree to `extract.clade`, so let's find the correct node first. The nodes in the tree can be found by running the `nodelabels()` function after using `plot()`:
 
 
-```r
+``` r
 plot(bird.orders, no.margin = TRUE)
 segments(38, 1, 38, 5, lwd = 2)
 text(39, 3, "Proaves", srt = 270)
@@ -192,7 +195,7 @@ nodelabels()
 We can see that the Neoaves start at node 29, so let's extract that one.
 
 
-```r
+``` r
 # extract clade
 neoaves <- extract.clade(bird.orders, 29)
 # plot
@@ -209,7 +212,7 @@ So far, we have only looked at examples of trees that are already constructed in
 
 ::: {.yellow}
 
-```r
+``` r
 # get phangorn primates data
 fdir <- system.file("extdata/trees", package = "phangorn")
 primates <- read.dna(file.path(fdir, "primates.dna"), format = "interleaved")
@@ -223,7 +226,7 @@ We have seen the structure this data is stored in before - it is a `DNA.bin` obj
 Print `primates` to your screen and have a look at it. For the next section, we will use just four species - the hominidae (i.e. Orangutan, Gorilla, Chimpanzee and Human). Let's subset our data in order to do that.
 
 
-```r
+``` r
 # subset data to get hominidae
 hominidae <- primates[11:14, ]
 ```
@@ -231,7 +234,7 @@ hominidae <- primates[11:14, ]
 We also need to convert our dataset so that `phangorn` is able to use it properly. The package uses a data structure called `phyDAT`. Luckily conversion is very easy indeed:
 
 
-```r
+``` r
 # convert data
 hominidae <- as.phyDat(hominidae)
 ```
@@ -239,11 +242,12 @@ hominidae <- as.phyDat(hominidae)
 We are going to create two types of trees - UPGMA and Neighbour Joining. These are distance based measures and so we must first make a distance matrix among our taxa, which requires a substitution model. The default substitution model is the Jukes & Cantor model, but we can also use Felsenstein's 1981 model. Which is the best to apply here? To find that out, we should first test the different models using `modelTest`:
 
 
-```r
+``` r
 # perform model selection
 hominidae_mt <- modelTest(hominidae, model = c("JC", "F81"), G = FALSE, I = FALSE)
-#> [1] "JC"
-#> [1] "F81"
+#> Model        df  logLik   AIC      BIC
+#>           JC 5 -862.0267 1734.053 1751.287 
+#>          F81 8 -787.2579 1590.516 1618.09
 ```
 
 Take a look at the `hominidae_mt` table. What we have done here is performed a maximum likelihood analysis and a form of model selection to determine which of the two models we tested - JC69 and F81 (specified by `model = c("JC", "F81")`) best fits our data. We also set `G` and `I` to false in order to simplify the output. Don't worry too much about what these are for now, but feel free to use `?modelTest` if you wish to learn more.
@@ -253,7 +257,7 @@ Anyway, how can we interpret this table? Well, we are looking for the model with
 We can now calculate evolutionary distance using `dist.ml` - a function that compares pairwise distances among sequences the substitution model we chose.
 
 
-```r
+``` r
 # first generate a distance matrix
 hominidae_dist <- dist.ml(hominidae, model = "F81")
 ```
@@ -263,7 +267,7 @@ Take a look at `hominidae_dist`. You will see it is a matrix of the distance or 
 Next we can create our trees. For an UPGMA tree, we use the `upgma` function:
 
 
-```r
+``` r
 # upgma tree
 hom_upgma <- upgma(hominidae_dist)
 ```
@@ -271,7 +275,7 @@ hom_upgma <- upgma(hominidae_dist)
 Next we will make a neighbour joining tree. This is easily done with the `NJ` function.
 
 
-```r
+``` r
 # NJ tree
 hom_nj <- NJ(hominidae_dist)
 ```
@@ -279,7 +283,7 @@ hom_nj <- NJ(hominidae_dist)
 Now that we have created both of our trees, we should plot them to have a look at them. 
 
 
-```r
+``` r
 # plot them both
 par(mfrow = c(2, 1)) # 2 plots in same window
 plot(hom_upgma, no.margin = TRUE)
@@ -294,7 +298,7 @@ Note that when we plot the NJ tree, we add an extra argument to get an unrooted 
 We can verify that the tree is unrooted (compared to the UPGMA tree) using the `is.rooted()` function.
 
 
-```r
+``` r
 # check whether the tree is rooted
 is.rooted(hom_nj)
 is.rooted(hom_upgma)
@@ -305,7 +309,7 @@ We can also set a root on our tree, if we know what we should set the outgroup t
 We will set the root of our neighbour joining tree below using the `root` function and we'll then plot it to see how it looks.
 
 
-```r
+``` r
 # plot nj rooted
 hom_nj_r <- root(hom_nj, "Orang")
 plot(hom_nj_r, no.margin = TRUE)
@@ -318,7 +322,7 @@ In this case, it hasn't actually made a huge difference to our tree topology, bu
 As a final point here, we might want to try and compare our two trees and see which we should accept as the best model for the evolutionary relationships among our taxa. One way to do this is to use the **parsimony score** of a phylogeny. Essentially, the lower the parsimony score is for a tree, the more parsimonious explanation of the data it might be. This is very easy to achieve with the `parsimony` function.
 
 
-```r
+``` r
 # calculate parsimony
 parsimony(hom_upgma, hominidae)
 parsimony(hom_nj_r, hominidae)
@@ -352,7 +356,7 @@ We will need a [**plink raw file**](https://bios1140.github.io/data/village_subs
 
 ::: {.yellow}
 
-```r
+``` r
 # read in the dog data
 dogs <- read.PLINK(file = "./village_subsample.raw", 
                    map.file = "./village_subsample.map", parallel = FALSE,
@@ -369,7 +373,7 @@ Running the function will create a `genlight` object - a special data structure 
 With `adegenet`, we can perform PCA on our genomic data with the `glPCA` function.
 
 
-```r
+``` r
 # perform pca on dogs
 dogs_pca <- glPca(dogs, parallel = TRUE, nf = 20)
 ```
@@ -379,7 +383,7 @@ Here again Mac and Linux users can benefit from parallel processing with `parall
 Let's take a moment to look at the output of our PCA analysis.
 
 
-```r
+``` r
 # look at pca object
 objects(dogs_pca)
 ```
@@ -392,7 +396,7 @@ Our `dogs_pca` object is a list with four elements. We can ignore `call` - that 
 Plotting a PCA is the best way to properly interpret it, so we will do this now. The first thing we should do is extract the **principal component scores** from the data. Remember that ggplot needs data to be in a data frame, so we will begin by converting `dogs_pca$scores` to a data frame. The ID of each dog is stored as row names, but we want it in a regular column, so we have to add an `id` column as well.
 
 
-```r
+``` r
 pca_df <- data.frame(dogs_pca$scores)
 pca_df$id <- rownames(dogs_pca$scores)
 ```
@@ -400,7 +404,7 @@ pca_df$id <- rownames(dogs_pca$scores)
 We can then plot the first 2 axes using `ggplot()`^[since distances between points matter, as we explain below, we use `coord_fixed()` to make sure that the distance between values are the same on both axes].
 
 
-```r
+``` r
 # plot with ggplot2
 ggplot(pca_df, aes(PC1, PC2)) + 
   geom_point() + 
@@ -428,7 +432,7 @@ Another thing to note is that the principal components are ordered after how muc
 OK, so the above plot looks interesting. We can see that one group of points in particular forms a cluster in the bottom right corner. But which dogs form this cluster? Are they from the same population? To investigate this we need to add some more information to our plot, namely the population each dog belongs to. We have prepared that information for you and you can download it [here](https://bios1140.github.io/data/village_dogs.tsv). Then read it in like so:
 
 
-```r
+``` r
 # read in village dog data
 village_data <- read.table("./village_dogs.tsv", sep = "\t", header = TRUE)
 ```
@@ -441,7 +445,7 @@ Take a moment to look at this. It has three columns, `id`, `breed` and `location
 :::{.yellow}
 
 
-```r
+``` r
 # join pca and village dog data
 village_pca <- left_join(pca_df, village_data, by = "id")
 ```
@@ -453,7 +457,7 @@ Now we have added location to our data set. This means we can plot the PCA using
 :::{.fold .c}
 
 
-```r
+``` r
 # plot with ggplot2
 ggplot(village_pca, aes(PC1, PC2, col = location)) + 
   geom_point() + 
@@ -474,7 +478,7 @@ How much of the variance in the data set is captured by the PCA? For this, we ca
 These numbers are not easy to interpret by themselves, but are useful if we view them as a fraction of the total. For example, we can see how much of the total variation is explained by PC1 like this:
 
 
-```r
+``` r
 dogs_pca$eig[1] / sum(dogs_pca$eig)
 #> [1] 0.04596527
 ```
@@ -482,7 +486,7 @@ dogs_pca$eig[1] / sum(dogs_pca$eig)
 And see that PC1 explains around 4.6 % of the variation of the data. Due to R treating vectors as it would single numbers in many cases, we can calculate variance explained for all principal components in a single operation like this:
 
 
-```r
+``` r
 eig <- (dogs_pca$eig / sum(dogs_pca$eig))
 eig
 ```
@@ -497,7 +501,7 @@ Since the full data set is very large, we cannot perform PCA on this in R. Howev
 
 ## Study questions
 
-The study questions for week 9 are found [here](#w09). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
+The study questions for week 8 are found [here](#w09). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

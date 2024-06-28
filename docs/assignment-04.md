@@ -1,4 +1,4 @@
-# Week 4 assignment {- #w04}
+# Week 4 assignment 3 {- #w04}
 
 
 <script src="js/hideOutput.js"></script>
@@ -10,7 +10,7 @@ You need to define the `calc_geno()` function from the tutorial to complete this
 :::{.fold .c}
 
 
-```r
+``` r
 calc_geno <- function(p){
   
   # calculate q from p
@@ -34,7 +34,7 @@ a) Create a function with two arguments, `x` and `y`, that checks whether `x` is
 The goal of functions is to make life easier for yourself, by having to repeat yourself less, and making your code more readable and maintainable. In the R-part of the tutorial, we created the function `calc_geno`, which uses $p$ to calculate expected genotype frequencies under Hardy-Weinberg equilibrium. If you want to calculate this, but only have the genotype counts (number of individuals $A_1 A_1$, $A_1 A_2$ and $A_2A_2$), not $p$, it makes sense to create a function that does this for you. If you do that, you can simply write:
 
 
-```r
+``` r
 p <- calc_p(geno_counts)
 geno_freq <- calc_geno(p)
 ```
@@ -44,7 +44,7 @@ Or even `calc_geno(calc_p(geno_counts))` if you prefer! Notice how easy it is to
 b) Create a function `calc_p()` that takes a vector of genotype counts  as an argument and returns the allele frequency of $A_1$ (i.e., $p$). To test your code, run the following:
 
     
-    ```r
+    ``` r
     geno <- c(6, 33, 81)
     p <- calc_p(geno)
     geno_freq <- calc_geno(p)
@@ -81,7 +81,7 @@ You need to define the functions `selection_model()` and `selection_sim()` to co
 :::{.fold .c}
 
 
-```r
+``` r
 selection_model <- function(p, rel_fit){
   # define q
   q <- 1 - p
@@ -108,7 +108,7 @@ selection_model <- function(p, rel_fit){
 ```
 
 
-```r
+``` r
 selection_sim <- function(p_init, rel_fit, ngen){
   
   # Set first generation

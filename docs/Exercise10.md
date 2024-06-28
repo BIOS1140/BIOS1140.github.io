@@ -22,7 +22,7 @@ In this section we will:
 As always, we need to set up our R environment. We'll load `tidyverse` as usual and that's the only package we will use today.
 
 
-```r
+``` r
 # clear the R environment
 rm(list = ls())
 
@@ -50,7 +50,7 @@ You can see here for [a more detailed explanation on how to manage projects in R
 Another useful feature of RStudio (and also the standard R distribution) is the fact that every command, function and input you type to the console is stored as a history. You can access this very easily using the function `history`. For example:
 
 
-```r
+``` r
 # show recent command history
 history()
 ```
@@ -81,7 +81,7 @@ Handling large amounts of data with few lines of code is one of R's strong point
 Let's first review what the `ifelse()` function does. As you learned back in [chapter 5](#ifelse), `ifelse()` takes a logical statement, and returns something different depending on whether the condition is `TRUE` or `FALSE`:
 
 
-```r
+``` r
 # make a small vector
 y <- c(20, 30, 50)
 # use ifelse to evaluate it
@@ -91,7 +91,7 @@ ifelse(y > 25, "Greater than 25", "Not greater than 25")
 This function can be extremely useful for creating new variables in datasets. Let's return to the familiar `starwars` data from `dplyr` in order to use the function in this way.
 
 
-```r
+``` r
 starwars
 #> # A tibble: 87 × 14
 #>    name     height  mass hair_color skin_color eye_color birth_year sex   gender
@@ -114,7 +114,7 @@ starwars
 Now we can take a look at the `starwars$species` vector. There are a lot of different species, so what if we wanted to create a vector that simply states whether an individual is a droid or not?
 
 
-```r
+``` r
 # if else to identify droids and non-droids
 ifelse(starwars$species == "Droid", "Droid", "Non-Droid")
 ```
@@ -122,14 +122,14 @@ ifelse(starwars$species == "Droid", "Droid", "Non-Droid")
 This can be useful e.g. for comparing droids and non-droids in a plot or table. Say we want to label our species based on whether they are a droid, human or neither of the two. A useful thing with `ifelse()` is that the third argument can be *another* `ifelse()` function! So we can actually chain `ifelse()` commands like this:
 
 
-```r
+``` r
 ifelse(starwars$species == "Droid", "Droid", ifelse(starwars$species == "Human", "Human", "Neither human nor droid"))
 ```
 
 This is useful, but quickly becomes convoluted. Imagine how the code would look if we threw in a third and fourth category there! In cases like this, remember to use linebreaks to make the code more readable. You can have a linebreak anywhere after starting a function, and R will still understand that it's part of the same function. A suggestion for better formatting than above:
 
 
-```r
+``` r
 ifelse(
   starwars$species == "Droid", "Droid", 
   ifelse(
@@ -148,7 +148,7 @@ For this section we will revisit the [copepods.txt](https://BIOS1140.github.io/d
 
 
 
-```r
+``` r
 copepods
 #>   depth acartia calanus harpacticoida oithona oncaea temora
 #> 1     0       0       3             0       2      0      0
@@ -166,7 +166,7 @@ Next, we use `pivot_longer()` to get all taxa in a single column, i.e., convert 
 
 ::: {.fold .c}
 
-```r
+``` r
 copepods_long <- pivot_longer(copepods, 
                               -depth, 
                               names_to = "taxon", 
@@ -175,7 +175,7 @@ copepods_long <- pivot_longer(copepods,
 :::
 
 
-```r
+``` r
 copepods_long
 #> # A tibble: 54 × 3
 #>    depth taxon         count
@@ -196,7 +196,7 @@ copepods_long
 Now, say that you have recorded the temperature at each depth, and want to add that information to your copepod data. How would you go about doing that? First, here is the data in a data frame:
 
 
-```r
+``` r
 temps <- data.frame(
   depth = c(0,2,4,6,8,10,12,14,16),
   temp = c(15.5, 15.4, 15.2, 14.7, 11.4, 8.3, 7.6, 7.0, 6.8)
@@ -218,7 +218,7 @@ One way would be using nested `ifelse()` functions, like we learned in the previ
 
 ::: {.fold .c}
 
-```r
+``` r
 copepods_long$depthtemp <- ifelse(
   copepods_long$depth == 0, 15.5,
   ifelse(
@@ -254,7 +254,7 @@ copepods_long$depthtemp <- ifelse(
 Instead, you can use the `left_join()` function from `dplyr`. You have to supply it the original data, the data you want to join with, and a vector of column names to join by (here "depth").
 
 
-```r
+``` r
 copepods_temp <- left_join(copepods_long, temps, by = "depth")
 copepods_temp
 #> # A tibble: 54 × 5
@@ -292,7 +292,7 @@ A list in R, on the other hand, has none of these limitations. It can contain va
 You can make a list with the `list()` function:
 
 
-```r
+``` r
 my_list <- list(names = c("Ask", "Embla"),
                 numbers = c(11, 15, 6, 8),
                 condition = TRUE)
@@ -310,10 +310,13 @@ my_list
 You can access list elements with `$`, or with double square brackets `[[]]`:
 
 
-```r
+``` r
 # access list element 1
 my_list$names
 #> [1] "Ask"   "Embla"
+```
+
+``` r
 my_list[[1]]
 #> [1] "Ask"   "Embla"
 ```
@@ -321,7 +324,7 @@ my_list[[1]]
 You can access elements within the vector within the list by adding a second set of (single) square brackets.
 
 
-```r
+``` r
 # access element 1 of the vector in list element 1
 my_list[[1]][1]
 #> [1] "Ask"
@@ -339,7 +342,7 @@ During the tutorials in this course, you have encountered the term "vectorisatio
 Just to remind you, here is the example we used in chapter 5:
 
 
-```r
+``` r
 # define function to calculate volume of a cylinder
 cyl_vol <- function(r, h){
   return(pi * r^2 * h)
@@ -350,6 +353,9 @@ r <- 3
 h <- 8
 cyl_vol(r, h)
 #> [1] 226.1947
+```
+
+``` r
 
 # use the function on vectors of values
 r <- 10:1
@@ -362,7 +368,7 @@ cyl_vol(r, h)
 An equivalent for-loop to the last example would be:
 
 
-```r
+``` r
 # create empty vector
 vols <- rep(NA, length(r))
 # do calculations in loop
@@ -387,7 +393,7 @@ Say you have a simple function that takes a vector as input, and rescales each e
 
 ::: {.fold .s}
 
-```r
+``` r
 # define function
 calc_proportion <- function(x){
   return(x/sum(x))
@@ -396,6 +402,9 @@ calc_proportion <- function(x){
 # test it
 calc_proportion(c(1, 3, 6))
 #> [1] 0.1 0.3 0.6
+```
+
+``` r
 calc_proportion(c(17, 36, 24, 55))
 #> [1] 0.1287879 0.2727273 0.1818182 0.4166667
 ```
@@ -404,7 +413,7 @@ calc_proportion(c(17, 36, 24, 55))
 Now, what if we want to do this with several vectors? We may for example have a list of vectors, and want to apply this function to all of them:
 
 
-```r
+``` r
 numbers_list <- list(
   c(1, 3, 6),
   c(17, 36, 24, 55),
@@ -424,7 +433,7 @@ numbers_list
 If we simply try to use the function on the list directly, we get an error. R has no way of using `sum()` on a list!
 
 
-```r
+``` r
 calc_proportion(numbers_list)
 #> Error in sum(x): invalid 'type' (list) of argument
 ```
@@ -432,7 +441,7 @@ calc_proportion(numbers_list)
 This is where `lapply()` comes in. `lapply()` (or "list apply") takes a list or vector as input, and applies a function to each element of the list/vector. The syntax is `lapply(list, function)`. Like with `apply()`, the function should not have parentheses after its name. Let's use this to apply `calc_proportion()` to `numbers_list`:
 
 
-```r
+``` r
 lapply(numbers_list, calc_proportion)
 #> [[1]]
 #> [1] 0.1 0.3 0.6
@@ -449,7 +458,7 @@ Now we get a list of our rescaled vectors! Note that `lapply()` always returns a
 [^exercise10-1]: Of course, this can also be achieved with a for-loop, which looks like this:
 
     
-    ```r
+    ``` r
     # create empty list, confusingly with the vector() function ...
     proportion_list <- vector(mode = "list", length = length(numbers_list))
     
@@ -480,7 +489,7 @@ Now we get a list of our rescaled vectors! Note that `lapply()` always returns a
 `sapply()` (or "simplified apply") is very similar to `lapply()` in that it takes a list or vector and a function as arguments, and applies the function to the list/vector. The key difference is that where `lapply()` always returns a list, `sapply()` returns the simplest possible object. For example, say we want to use `sum()` on each vector in `numbers_list`. With `lapply()` we get:
 
 
-```r
+``` r
 lapply(numbers_list, sum)
 #> [[1]]
 #> [1] 10
@@ -495,7 +504,7 @@ lapply(numbers_list, sum)
 However, each list element only contains one value. Wouldn't it be easier to have it stored in a vector? This is what we get with `sapply()`:
 
 
-```r
+``` r
 sapply(numbers_list, sum)
 #> [1]   10  132 1113
 ```
@@ -512,7 +521,7 @@ A concept that is often used together with `lapply()` and `sapply()` is *anonymo
 [^exercise10-2]: Note that the function here is defined without the use of curly brackets and `return()`. This is not unique to anonymous functions (but most often used there), but an equivalent way to define a function in R. This means that all these four functions are exactly equal:
 
     
-    ```r
+    ``` r
     f1 <- function(x) x/sum(x)
     f2 <- function(x) return(x/sum(x))
     f3 <- function(x){
@@ -526,7 +535,7 @@ A concept that is often used together with `lapply()` and `sapply()` is *anonymo
     When the function is more than a single line, you should always use the curly brackets. I personally prefer to use an explicit `return()` in more complicated functions, but you will encounter both in code you read.
 
 
-```r
+``` r
 lapply(numbers_list, function(x) x/sum(x))
 #> [[1]]
 #> [1] 0.1 0.3 0.6
@@ -548,7 +557,7 @@ Good luck!
 
 ## Study questions
 
-The study questions for week 10 are found [here](#w10). These are meant only to test yourself. Hand-in is not required and will not count on the required number of approved hands-in. We will, however, provide a hand-in folder for those who would like feedback from one of the group teachers.
+The study questions for week 9 are found [here](#w10). These are meant only to test yourself. Hand-in is not required and will not count on the required number of approved hands-in. We will, however, provide a hand-in folder for those who would like feedback from one of the group teachers.
 
 ## Going further
 

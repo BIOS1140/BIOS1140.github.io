@@ -1,4 +1,4 @@
-# Week 3 Assignment {- #w03}
+# Week 3 Assignment 2 {- #w03}
 
 #### 1. for-loops {-}
 

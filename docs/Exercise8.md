@@ -22,7 +22,7 @@ In this section we will:
 The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` and the `PopGenome` package that we installed and loaded in the [last session](#ch07).
 
 
-```r
+``` r
 # clear the R environment
 rm(list = ls())
 library(tidyverse)
@@ -40,7 +40,7 @@ We start by reading in the data (see if you manage to do this yourself before lo
 
 ::: {.fold .c}
 
-```r
+``` r
 d <- read.table("worlddata.csv", header = TRUE, sep = ",")
 ```
 :::
@@ -53,7 +53,7 @@ For this tutorial, we will briefly investigate the correlation between fertility
 
 ::: {.fold .s .o}
 
-```r
+``` r
 g <- ggplot(d, aes(Total_Fertility_Rate, Life_Expectancy_at_Birth))
 # note: adding alpha = 0.5 to better see all points
 g + geom_point(alpha = 0.5)
@@ -68,7 +68,7 @@ This shows a negative correlation between the variables: in countries with lower
 
 ::: {.fold .s .o}
 
-```r
+``` r
 h <- g + geom_point(aes(col = Continent, size = Population), alpha = 0.5)
 h
 ```
@@ -85,7 +85,7 @@ Faceting in `ggplot` can be done by adding the function `facet_wrap()`. The synt
 [^exercise8-1]: Which can be read as "modeled by" or simply "by", i.e., "facet by `Variable`".
 
 
-```r
+``` r
 h + facet_wrap(~Continent)
 ```
 
@@ -95,13 +95,13 @@ You can control the layout by using the `nrow` and `ncol` arguments to specify n
 
 ::: {.fold .o}
 
-```r
+``` r
 h + facet_wrap(~Continent, nrow = 3)
 ```
 
 <img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" />
 
-```r
+``` r
 h + facet_wrap(~Continent, ncol = 1)
 ```
 
@@ -110,7 +110,7 @@ h + facet_wrap(~Continent, ncol = 1)
 Note that all axes are the same across the facets. This can be changed with the argument `scales`, where you can specify "free", "free_y" or "free_x". Be aware that this can be misleading in some cases (like this one, I would argue), so use it with caution! "free_x" is shown below, but try the others yourself to see what happens!
 
 
-```r
+``` r
 h + facet_wrap(~Continent, scales = "free_x")
 ```
 
@@ -140,14 +140,14 @@ With these steps carried out, you can read this data in like so:
 **MAC**
 
 
-```r
+``` r
 sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
 **WINDOWS**
 
 
-```r
+``` r
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
@@ -157,7 +157,7 @@ Like last time, we then need to read the file with population information, and a
 
 ::: {.yellow}
 
-```r
+``` r
 sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
@@ -171,7 +171,7 @@ sparrows <- set.populations(sparrows, populations, diploid = T)
 Remember, you can look at the data we have read in using the following command:
 
 
-```r
+``` r
 get.sum.data(sparrows)
 ```
 
@@ -180,7 +180,7 @@ In this case, you can see that from the `n.sites` that the final site is at posi
 Nonetheless, it is still substantial, from the `n.biallelic.sites` we can see there are 91,312 bilallelic SNPs and from `n.polyallelic.sites`, there are 1092 positions with more than two alleles. So in total we have:
 
 
-```r
+``` r
 sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
 ```
 
@@ -196,7 +196,7 @@ So far, this will start to seem quite familiar! We learned in the last session t
 We know already that chromosome 8 is 49,693,984 bp long, so we can get an idea of how many sliding windows we would generate by using some R code. We'll set our sliding window to be 100,000 bp wide - or 100 Kb. We will also set a **step** or **jump** for our window of 25,000 bp - or 25Kb.
 
 
-```r
+``` r
 # set chromosome size
 chr8 <- 49693984
 
@@ -208,7 +208,7 @@ window_jump <- 25000
 We use these values to set up our sliding windows for our sparrows dataset using the `PopGenome` function, `sliding.window.transform`
 
 
-```r
+``` r
 # make a sliding window dataset
 sparrows_sw <- sliding.window.transform(sparrows, width = window_size, jump = window_jump, type = 2)
 ```
@@ -216,7 +216,7 @@ sparrows_sw <- sliding.window.transform(sparrows, width = window_size, jump = wi
 Last week we calculated the window positions along the chromosome for you (inside a yellow box). This week, however, we will show you how you can use basic R commands to find these. We begin by making a sequence from 1 to the length of chromosome 8, with steps equal to our window size using `seq()`.
 
 
-```r
+``` r
 # use seq to find the start points of each window
 window_start <- seq(from = 1, to = chr8, by = window_jump)
 ```
@@ -224,7 +224,7 @@ window_start <- seq(from = 1, to = chr8, by = window_jump)
 Then we can find the end point of each window by adding the window size to each element of the vector.
 
 
-```r
+``` r
 # add the size of the window to each start point 
 window_stop <- window_start + window_size
 ```
@@ -238,7 +238,7 @@ Now we have generated two vectors: `window_start` and `window_stop`. The windows
 [^exercise8-3]: remember that `window_stop > chr8` gives a vector of the same length as `window_stop`, containing `TRUE` if the corresponding element of `window_stop` is larger than`chr8`, and `FALSE` if it is smaller. `sum()` treats each `TRUE` as 1 and each `FALSE` as 0, so it can effectively be used to count the number of `TRUE`s in a vector, as we do here.
 
 
-```r
+``` r
 # no windows start after the end of chromosome 8
 sum(window_start > chr8)
 # but some window stop positions do occur past the final point
@@ -248,7 +248,7 @@ sum(window_stop > chr8)
 In fact, there are 4 windows that are beyond the end of the chromosome. To remove them, we can use the same logical operations as above, just this time within square brackets to drop those positions.
 
 
-```r
+``` r
 # remove windows from the start and stop vectors
 window_start <- window_start[window_stop < chr8]
 window_stop <- window_stop[window_stop < chr8]
@@ -259,7 +259,7 @@ Here we wrapped our logical operation `window_stop < chr8` in square brackets, w
 Actually, this highlights an important point, our final window actually falls **short** of the end of the chromosome. You can check this like so:
 
 
-```r
+``` r
 chr8 - window_stop[length(window_stop)]
 ```
 
@@ -268,7 +268,7 @@ This is something to be aware of, since our final window falls short of the end 
 Anyway, although a little long-winded, this sliding window section is important as it will be useful for plotting later. For now, we will save our sliding window start/stop positions as a `data.frame`. We'll also calculate the midpoint for each window.
 
 
-```r
+``` r
 # save as a data.frame
 windows <- data.frame(start = window_start, stop = window_stop, 
                       mid = window_start + (window_stop-window_start)/2)
@@ -281,7 +281,7 @@ Now that we have set up the data, the population information and the sliding win
 First we will calculate $\pi$. Handily, the following command also sets up what we need for *d*~XY~.
 
 
-```r
+``` r
 # calculate diversity statistics
 sparrows_sw <- diversity.stats(sparrows_sw, pi = TRUE)
 ```
@@ -289,7 +289,7 @@ sparrows_sw <- diversity.stats(sparrows_sw, pi = TRUE)
 Next we will calculate *F*~ST~, which again is very straight forward with a single command.
 
 
-```r
+``` r
 # calculate diversity statistics
 sparrows_sw <- F_ST.stats(sparrows_sw, mode = "nucleotide")
 ```
@@ -304,7 +304,7 @@ The extraction process involves extracting data and manipulating strings to labe
 
 ::: {.yellow}
 
-```r
+``` r
 # extract nucleotide diversity and correct for window size
 nd <- sparrows_sw@nuc.diversity.within/100000
 # make population name vector
@@ -346,7 +346,7 @@ We now have the data frame `sparrow_data`, take a look at it to ensure that it l
 For the purposes of this session, we will focus mainly on the difference between house and spanish sparrows. However, since we now have all our data in a tidy `data.frame`, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let's say we want to look at mean nucleotide diversity, we can do that like so:
 
 
-```r
+``` r
 # select nucleotide diversity data and calculate means
 sparrow_data %>% select(contains("pi")) %>% summarise_all(mean)
 ```
@@ -358,7 +358,7 @@ We could also quite easily plot if we wanted to. However, to do this, we need to
 [^exercise8-4]: It may have been a while since the last time you saw `pivot_longer()`. If you have forgotten how it works or why we use it, remember that you can always go back to [Week 2](#pivot-longer).
 
 
-```r
+``` r
 # gather the data
 pi_g <- sparrow_data %>%
   pivot_longer(contains("pi"), names_to = "species", values_to = "pi")
@@ -376,7 +376,7 @@ This makes it much clearer how nucleotide diversity differs among the species.
 Let's have a look at how *F*~ST~ between house and spanish sparrows varies along chromosome 8. Note that we plot the mid-point of each window, and divide the position by $10^6$ to get megabases on the x-axis.
 
 
-```r
+``` r
 a <- ggplot(sparrow_data, aes(mid/10^6, house_spanish_fst)) + geom_line(colour = "red")
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
@@ -391,7 +391,7 @@ How can we investigate this? The easiest thing to do is to plot $\pi$, *F*~ST~ a
 First, let's get the data we are interested in:
 
 
-```r
+``` r
 # select data of interest
 hs <- sparrow_data %>% select(mid, house_pi, spanish_pi, house_spanish_fst, house_spanish_dxy)
 ```
@@ -399,7 +399,7 @@ hs <- sparrow_data %>% select(mid, house_pi, spanish_pi, house_spanish_fst, hous
 To keep things simple, we've thrown everything out we don't need. Next, we need to use `pivot_longer` in order to rearrange our `data.frame` so that we can plot it properly.
 
 
-```r
+``` r
 # use pivot_longer to rearrange everything
 hs_g <- pivot_longer(hs, -mid, names_to = "stat", values_to = "value")
 ```
@@ -409,7 +409,7 @@ Here, we use `-mid` to tell the function we want to leave this out of the pivoti
 Now we can plot everything together:
 
 
-```r
+``` r
 a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
 a <- a + xlab("Position (Mb)")
 a + theme_light()
@@ -422,7 +422,7 @@ OK so it should be immediately obvious that this plot is really unhelpful. We se
 
 
 
-```r
+``` r
 # construct a plot with facets
 a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
 a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
@@ -437,7 +437,7 @@ a + theme_light() + theme(legend.position = "none")
     In this case, the plot might be easier to interpret if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
     
     
-    ```r
+    ``` r
     new_order <- c("house_spanish_fst", "house_pi", "spanish_pi", "house_spanish_dxy")
     hs_g$stat <- fct_relevel(hs_g$stat, new_order)
     ```
@@ -445,7 +445,7 @@ a + theme_light() + theme(legend.position = "none")
     We can now replot our figure with the new order:
     
     
-    ```r
+    ``` r
     # construct a plot with facets
     a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
     a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
@@ -478,7 +478,7 @@ In other words, *F*~ST~ is sensitive to the variation within each population, wh
 To check whether variation in recombination might explain the pattern we observed, we will read in the recombination rate estimated for 100 Kb windows with a 25 Kb step on chromosme 8. This was originally estimated from a house sparrow linkage map, published by [Elgvin et al (2018)](http://advances.sciencemag.org/content/3/6/e1602996) and you can download the data [here](https://bios1140.github.io/data/chr8_recomb.tsv). We will read the data in like normal
 
 
-```r
+``` r
 rrate <- read.table("chr8_recomb.tsv", sep = "\t", header = TRUE)
 ```
 
@@ -487,7 +487,7 @@ rrate <- read.table("chr8_recomb.tsv", sep = "\t", header = TRUE)
 Since the recombination rate is the same number of rows as our main dataset, we can just add it as a column.
 
 
-```r
+``` r
 # assign recombination rate to full sparrow dataset
 sparrow_data$recomb <- rrate$recomb
 ```
@@ -495,7 +495,7 @@ sparrow_data$recomb <- rrate$recomb
 Now we are ready to see whether the variation in nucleotide diversity and *F*~ST~ can be explained by recombination rate. Let's plot how it varies along the genome.
 
 
-```r
+``` r
 # construct a plot for recombination rate
 a <- ggplot(sparrow_data, aes(mid/10^6, recomb)) + geom_line()
 a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
@@ -507,7 +507,7 @@ a + theme_light()
 To explain this a little, we have plotted recombination rate in **centiMorgans per Megabase** - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our *F*~ST~ peak occurs. to confirm this, we will plot both statistics together.
 
 
-```r
+``` r
 # subset data and gather
 hr <- sparrow_data %>% 
   select(mid, house_spanish_fst, recomb) %>%
@@ -526,7 +526,7 @@ When we plot our data like this, it is actually more clear that perhaps both of 
 Now that we have recombination data read into R, we can also explore the relationships between recombination rate and other statistics in more detail. To demonstrate this, we will plot the joint distribution of recombination rate and *F*~ST~ between house and Spanish sparrows.
 
 
-```r
+``` r
 # plot recombination rate and fst
 a <- ggplot(sparrow_data, aes(recomb, house_spanish_fst)) + geom_point()
 a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
@@ -539,7 +539,7 @@ Clearly there is a bias here - higher *F*~ST~ values are found in regions of low
 
 ## Study questions
 
-The study questions for week 8 are found [here](#w08). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
+The study questions for week 6-7 can be found [here](#w07). Deliver them in Canvas before the deadline after week 7 as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

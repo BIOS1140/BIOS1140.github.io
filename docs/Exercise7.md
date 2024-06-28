@@ -23,7 +23,7 @@ Today we won't introduce any new R-concepts, but jump straight into the action w
 The first thing we need to do is set up the R environment. Today we'll be using `tidyverse` but also we will need three additional packages for this session - `ape`, `pegas` and `PopGenome`. To install these packages, use the following commands:
 
 
-```r
+``` r
 install.packages("ape")
 install.packages("pegas")
 install.packages("devtools")
@@ -35,7 +35,7 @@ Note that PopGenome is installed in a slightly different way than what you are u
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
 
 
-```r
+``` r
 # clear the R environment
 rm(list = ls())
 library(tidyverse)
@@ -61,7 +61,7 @@ The first thing we will learn to do today is to read seqeunce data into R. Unlik
 Before we actually read this file into R, let's take a look at it:
 
 
-```r
+``` r
 file.show("example.fas")
 ```
 
@@ -70,7 +70,7 @@ The `file.show` function is quite self-explanatory. You can also click on the FA
 Next we will actually read our FASTA file in. To do this, we will use `read.dna()` like so:
 
 
-```r
+``` r
 mydna <- read.dna("example.fas", format = "fasta")
 ```
 
@@ -83,7 +83,7 @@ In the meantime, have a look at the `mydna` object and see what information is p
 As you will have just seen, when you call the `mydna` object, you only get a summary in the R console. What if you actually want to look at the sequences? One way to do this is to use the `as.alignment` function - like so:
 
 
-```r
+``` r
 myalign <- as.alignment(mydna)
 ```
 
@@ -92,14 +92,14 @@ This function converts our `DNAbin` object into an `alignment` - which is essent
 `alignment` object is convenient in that you can access information the way you are used to, e.g. with the `$` operator. You can look at the sequences as a character vector using the following R code:
 
 
-```r
+``` r
 myalign$seq
 ```
 
 However, if you want to compare sequences, using the `alview()` function may be a better method:
 
 
-```r
+``` r
 alview(mydna)
 ```
 
@@ -114,21 +114,21 @@ Note that in this case, we used `alview` directly on our `mydna` object - **not*
 Using a couple of standard `pegas` functions, we can get some more information about our sequences. For example, we can calculate the frequency of the four nucleotides in our dataset:
 
 
-```r
+``` r
 base.freq(mydna)
 ```
 
 We can also calculate the GC content - i.e. the proportion of the sequence that is either a G or C nucleotide.
 
 
-```r
+``` r
 GC.content(mydna)
 ```
 
 To break down GC content even further, this is equivalent to:
 
 
-```r
+``` r
 sum(base.freq(mydna)[c(2, 3)])
 ```
 
@@ -137,14 +137,14 @@ sum(base.freq(mydna)[c(2, 3)])
 Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the `seg.sites` function, we can find the segregating sites:
 
 
-```r
+``` r
 seg.sites(mydna)
 ```
 
 `seg.sites` returns the position in the sequence where polymorphisms occur in our 40 base pair sequence alignment. The positions are stored in a vector, and we can count the number of elements in the vector with the `length()` function to get the number of segregating sites.
 
 
-```r
+``` r
 length(seg.sites(mydna))
 ```
 
@@ -153,7 +153,7 @@ As this function makes pretty clear, segregating sites is just the number of pol
 One last thing about the segrating sites we calculated here - it is not standardised to the length of sequences (i.e., the capitalised $S$ rather than $s$). To achieve that we need to do the following.
 
 
-```r
+``` r
 # get segregating sites
 S <- length(seg.sites(mydna))
 # set sequence length
@@ -175,7 +175,7 @@ From `seg.sites(mydna)`, we know there are two polymorphic positions at sites 35
 We can use R to calculate our nucleotide diversity by hand:
 
 
-```r
+``` r
 # set n sequences
 n <- 3
 # set differences
@@ -190,7 +190,7 @@ Pi <- sum(Pi_ij)/np
 You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. What we have here is the average number of nucleotide differences between our three sequences. This is *not* standardised to the sequence length (i.e., $\Pi$, not $\pi$), so we need to do that next.
 
 
-```r
+``` r
 # calculate standarised nucleotide diversity
 L <- 40
 pi <- Pi/L
@@ -199,7 +199,7 @@ pi <- Pi/L
 Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly). Luckily, we can also calculate nucleotide diversity using the function `nuc.div` from `pegas`.
 
 
-```r
+``` r
 nuc.div(mydna)
 ```
 
@@ -216,7 +216,7 @@ The `nuc.div` function therefore corrects for these missing bases and shortens t
 As we have seen in previous tutorials, R packages often come with nice, ready-to-use datasets. `ape` and `pegas` are no exception. We will turn to the `woodmouse` dataset next to learn how we can work with larger data than just 3, 40 bp sequences. To load the data, you need to do the following:
 
 
-```r
+``` r
 data(woodmouse)
 woodmouse
 ```
@@ -226,7 +226,7 @@ What is this data? It is 15 sequences the mitochondrial cytochrome b gene of the
 We can easily view the `woodmouse` sequences using `alview`.
 
 
-```r
+``` r
 alview(woodmouse)
 ```
 
@@ -235,14 +235,14 @@ However, you can see already that with this much data, looking at the alignment 
 With a larger dataset, we can also manipulate our `woodmouse` `DNAbin` object a bit more directly. Although we do not see a matrix of aligned DNA sequences when we call `woodmouse`, we can still treat it like one - including using R indices. In this sense, the rows of our matrix are our individuals and the columns are the number of base pairs in our sequence. So for example:
 
 
-```r
+``` r
 woodmouse[1:10, ]
 ```
 
 This command will return only the first 10 sequences. Manipulating the columns will also change how much of the sequence we retain:
 
 
-```r
+``` r
 woodmouse[, 1:100]
 ```
 
@@ -255,7 +255,7 @@ First of all, let's turn our attention to the number of segregating sites. How d
 [^exercise7-1]: Take a look at the code and see if you understand the following: why did we initialise the `ss` vector with 14 values, not 15? Why do we use `i+1` for subsetting the `woodmouse` data? Are there other ways we could have done this?
 
 
-```r
+``` r
 
 # initialise vector for storing values
 # we start by comparing 2 sequences, then increase to 3 etc.
@@ -276,7 +276,7 @@ for(i in 1:(length(ss))){
 Have a look at the `ss` vector this creates - it is the number of segregating sites for each maximum number of sequences. However, the relationship is a lot easier if we plot it:
 
 
-```r
+``` r
 # plot figure
 plot(2:15, ss, col = "red", xlab = "No of sequences", ylab = "Segregating sites", las = 1)
 ```
@@ -288,7 +288,7 @@ From the figure, we can see that the number of segregating sites grows as we inc
 So what do we see if we repeat the same code, but this time for nucleotide diversity or $\pi$?
 
 
-```r
+``` r
 nd <- rep(NA, 14)
 
 # get segregating sites for an increasing number of sequences
@@ -306,7 +306,7 @@ for(i in 1:(length(nd))){
 This loop is similar to the previous one, except this time we use the `nuc.div` function instead. We can also plot the relationship here:
 
 
-```r
+``` r
 # plot figure
 plot(2:15, nd, col = "blue", xlab = "No of sequences", ylab = expression(pi), las = 1)
 ```
@@ -322,7 +322,7 @@ The number of segregating sites and $\pi$ are essentially estimates of the popul
 **Tajima's *D*** is a statistical test that allows us to actually investigate this. We can calculate it very easily in R using the `tajima.test` function in `pegas`.
 
 
-```r
+``` r
 # calculate Tajima's D for the woodmouse data
 tajima.test(woodmouse)
 ```
@@ -383,14 +383,14 @@ With these steps carried out, you can then read this data in like so:
 **ON MAC**
 
 
-```r
+``` r
 sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
 **ON WINDOWS**
 
 
-```r
+``` r
 sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
@@ -401,7 +401,7 @@ We eventually want to investigate differences between populations, but the data 
 
 ::: {.yellow}
 
-```r
+``` r
 sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
 populations <- split(sparrow_info$ind, sparrow_info$pop)
 sparrows <- set.populations(sparrows, populations, diploid = T)
@@ -413,7 +413,7 @@ sparrows <- set.populations(sparrows, populations, diploid = T)
 So we just read a variant data from an entire chromosome into R. Before we move on, let's take a look at what we have actually created with our `sparrows` object. If you call the `sparrows` object, you will not really see anything that informative, since it is a very complex data structure. However with the `get.sum.data` function, we can learn a bit more about it.
 
 
-```r
+``` r
 get.sum.data(sparrows)
 ```
 
@@ -422,7 +422,7 @@ This just gives us a quick summary of what we read in. **A word of warning here*
 You can do this by hand or using R code like so:
 
 
-```r
+``` r
 sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
 ```
 
@@ -433,7 +433,7 @@ This also demonstrates one other important point about `PopGenome`, the `sparrow
 So, let's recap so far. We have over 90,000 SNPs from chromsome 8 of 129 sparrows from five different species. With the `PopGenome` package, we can now very quickly and easily calculate nucleotide diversity for every single one of these SNPs. We will do this like so:
 
 
-```r
+``` r
 # calculate nucleotide diversity
 sparrows <- diversity.stats(sparrows, pi = TRUE)
 ```
@@ -442,7 +442,7 @@ A nice, simple function that just requires us to specify that we want to calcula
 
 ::: {.yellow}
 
-```r
+``` r
 # extract the pi data
 sparrow_nuc_div <- t(sparrows@region.stats@nuc.diversity.within[[1]])
 # get the SNP positions from the rownames - note we need to make them numeric here
@@ -461,7 +461,7 @@ Take a look at the `sparrows_nd` data frame. One thing to note here: our `sparro
 We can now visualise the nucleotide diversity for the house sparrow along the whole of chromosome 8. Since we set up a data.frame in the last section, this can readily be done with `ggplot2`.
 
 
-```r
+``` r
 ggplot(sparrow_nd, aes(position, house)) + geom_point()
 ```
 
@@ -481,7 +481,7 @@ The following code creates windows that are 100,000 bp long, with a distance of 
 
 ::: {.yellow}
 
-```r
+``` r
 # generate sliding windows
 sparrows_sw <- sliding.window.transform(sparrows, width = 100000, jump = 25000, type = 2)
 # calculate pi in each window
@@ -503,7 +503,7 @@ Look at the generated data frame. This time, the number of rows in the data fram
 [^exercise7-3]: Next week you will learn how to visualise all at once! Yay!
 
 
-```r
+``` r
 ggplot(sparrow_nd_sw, aes(position, house)) + geom_line(colour = "blue") + theme_light()
 ```
 
@@ -515,7 +515,7 @@ The point is that sliding window information like this can be extremely informat
 
 ## Study questions
 
-The study questions for week 7 are found [here](#w07). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
+The study questions for week 6-7 can be found [here](#w07). Deliver them in Canvas before the deadline after week 7 as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

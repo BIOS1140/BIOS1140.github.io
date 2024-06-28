@@ -135,7 +135,7 @@ sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, F
 ```
 
 ```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
-sparrows <- readData("docs/data/sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
+sparrows <- readData("docs/data/sparrow_snps/", format = "VCF", include.unknown = TRUE, FAST = TRUE)
 ```
 
 Like last time, we then need to read the file with population information, and attach that to our `sparrows` object. You should have the file available from last week's tutorial, otherwise it can be downloaded [here](https://bios1140.github.io/data/sparrow_pops.txt).
@@ -486,7 +486,7 @@ Clearly there is a bias here - higher *F*~ST~ values are found in regions of low
 
 ## Study questions
 
-The study questions for week 8 are found [here](#w08). Deliver them in Canvas before the deadline as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
+The study questions for week 6-7 can be found [here](#w07). Deliver them in Canvas before the deadline after week 7 as a word or pdf document. See [the appendix](#rmarkdown) for some important points on how the assignments should be delivered. There, you will also find an introduction to R Markdown, a good way to combine code, output and text for a report.
 
 ## Going further
 

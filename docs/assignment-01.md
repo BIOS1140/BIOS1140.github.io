@@ -1,6 +1,6 @@
 # (PART) Assignments {-}
 
-# Week 1-2 assignment {- #w01}
+# Week 1-2 assignment 1 {- #w01}
 
 Solve all the problems below using R. Some questions have optional parts that are a little more difficult. We encourage you to do these, but feel free to skip them if the mandatory tasks offers sufficient challenge. You can solve the problems in any way you want (as long as you're using R!) unless otherwise stated.
 
@@ -15,7 +15,7 @@ d) Combine all your scores in a vector and assign it to an object. Add names to 
 e) **Optional:** Combine your scores into a data frame with one column for the name and one for the score. Add a column with the average weight of your animals, and another with their top speeds.
 
 
-```r
+``` r
 grevling <- 6
 rur <- 1
 torsk <- mean(c(grevling, rur))
@@ -44,7 +44,7 @@ a) Check if the number $e$ is larger than the number $\pi$.
     Create a vector of random numbers with the following code:  
     
     
-    ```r
+    ``` r
     set.seed(645)
     rnumbers <- rpois(100, lambda = 2)
     ```
@@ -116,7 +116,7 @@ e) **Optional** Use your model from 2.2 e. to add a line of best fit to your plo
 Look at the code below:
 
 
-```r
+``` r
 a = 5
 a == 6
 ```
@@ -146,12 +146,12 @@ What is the most probable cause of the error message? How can you fix it?
 You tried to extract the `Sepal.Length` column from the iris data set as follows, but got an error:
 
 
-```r
+``` r
 iris[,Sepal.Length]
 ```
 
 ```
-## Error in `[.data.frame`(iris, , Sepal.Length): object 'Sepal.Length' not found
+## Error in eval(expr, envir, enclos): object 'Sepal.Length' not found
 ```
 
 What caused the error? How can you fix it?
