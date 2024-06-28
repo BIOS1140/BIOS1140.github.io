@@ -32,7 +32,7 @@ b) What was the value of Tajima's D, and how do you interpret this? There are se
 
 #### 4. Sparrows {-}
 
-For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data [here](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)(VCF) and [here](https://bios1140.github.io/data/sparrow_pops.txt)(population data). See section 6.3 in the tutorial on how to download and import the data.
+For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data [here](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz) (VCF) and [here](https://bios1140.github.io/data/sparrow_pops.txt) (population data). See section 6.3 in the tutorial on how to download and import the data.
 
 
 a) In your own words, what is a sliding window analysis? Why did we need to use a sliding window analysis to visualise this data?
