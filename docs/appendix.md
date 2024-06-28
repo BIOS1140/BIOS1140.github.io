@@ -86,7 +86,6 @@ Table: (\#tab:unnamed-chunk-4)Packages needed to run all the tutorials, and the 
 |pegas     |1.3     |
 |phangorn  |2.11.1  |
 |PopGenome |2.7.5   |
-|qtl       |1.66    |
 |tidyverse |2.0.0   |
 
 The specific versions of the tidyverse packages are outlined below:

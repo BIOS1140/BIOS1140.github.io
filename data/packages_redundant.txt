@@ -14,11 +14,6 @@ tidyverse
 tidyverse
 tidyverse
 tidyverse
-qtl
-tidyverse
-qtl
-tidyverse
-tidyverse
 ape
 pegas
 PopGenome
