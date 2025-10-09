@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 # Inferring Evolutionary Processes from Sequence Data {#ch07}
 
 
@@ -26,11 +31,10 @@ The first thing we need to do is set up the R environment. Today we'll be using 
 ``` r
 install.packages("ape")
 install.packages("pegas")
-install.packages("devtools")
-devtools::install_github("pievos101/PopGenome")
+install.packages("GenoPop", dependencies = T)
+BiocManager::install("GenomicRanges")
+BiocManager::install("Rsamtools")
 ```
-
-Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the `devtools` package first, then `PopGenome`, you should have no issues.
 
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
 
@@ -41,7 +45,7 @@ rm(list = ls())
 library(tidyverse)
 library(ape)
 library(pegas)
-library(PopGenome)
+library(GenoPop)
 ```
 
 Remember that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data. All three packages [`ape`](http://ape-package.ird.fr/), [`pegas`](http://ape-package.ird.fr/pegas.html) and [`PopGenome`](https://popgenome.weebly.com/) are really useful for handling genetic data in R - follow the links for more information about each of them. Remember that you always can access the help page of any function with `?`.
@@ -271,6 +275,7 @@ for(i in 1:(length(ss))){
   # calculate n seg.sites in the subset
   ss[i] <- length(seg.sites(woodmouse_sub))
 }
+
 ```
 
 Have a look at the `ss` vector this creates - it is the number of segregating sites for each maximum number of sequences. However, the relationship is a lot easier if we plot it:
@@ -373,143 +378,90 @@ The data comes in two parts. We'll deal with the actual SNP data first. This is 
 
 VCF files can quickly become very very big, so the one we are using today is a much smaller, randomly sampled version of the true dataset **from a single chromosome only**. However it is still quite a large file size, so the file is compressed, and there are some preprocessing steps you will need to do before you can open in it in R.
 
--   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz)
--   Next, make a directory in your working directory (use `getwd` if you don't know where that is) and call it `sparrow_snps`
--   Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the [Unarchiver](https://theunarchiver.com/) (Mac OS X) or [7zip](https://www.7-zip.org/) (Windows).
--   Make sure **only** the uncompressed file is present in the directory.
+-   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz) and it's [index](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz.tbi) (we need this to read it in to R)
+-   Move the downloaded VCF into your working directory (use `getwd` if you don't know where that is)
 
-With these steps carried out, you can then read this data in like so:
-
-**ON MAC**
-
-
-``` r
-sparrows <- readData("./sparrow_snps/", format = "VCF", include.unknown = TRUE, FAST = TRUE)
-```
-
-**ON WINDOWS**
-
-
-``` r
-sparrows <- readData("./sparrow_snps", format = "VCF", include.unknown = TRUE, FAST = TRUE)
-```
-
-
-
-
-We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data, and updates the `sparrows` object.
+We will work with this file soon, but first some housekeeping. We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data and creates a vector of individuals which are house sparrows.
 
 ::: {.yellow}
 
 ``` r
-sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
-populations <- split(sparrow_info$ind, sparrow_info$pop)
-sparrows <- set.populations(sparrows, populations, diploid = T)
+sparrow_info <- read.table("sparrow_pops.txt", sep = "\t", header = TRUE)
+house <- sparrow_info$ind[sparrow_info$pop == "House"]
 ```
 :::
 
 
 
-So we just read a variant data from an entire chromosome into R. Before we move on, let's take a look at what we have actually created with our `sparrows` object. If you call the `sparrows` object, you will not really see anything that informative, since it is a very complex data structure. However with the `get.sum.data` function, we can learn a bit more about it.
+
+You can also create these vectors for each of the other species present. Have a look at the `sparrow_info` object to see what they are. We will also do this below. 
 
 
 ``` r
-get.sum.data(sparrows)
+bactrianus <- sparrow_info$ind[sparrow_info$pop == "Bactrianus"]
+spanish <- sparrow_info$ind[sparrow_info$pop == "Spanish"]
+italian <- sparrow_info$ind[sparrow_info$pop == "Italian"]
+tree <- sparrow_info$ind[sparrow_info$pop == "Tree"]
 ```
 
-This just gives us a quick summary of what we read in. **A word of warning here** - the `n.sites` value here is *NOT* the number of SNPs we read in - it is simply the position of the furthest SNP in our dataset on chromosome 8. We can essentially ignore this value. To get the number of variants or SNPs in our VCF, we need to add together `n.biallelic.sites` (i.e. SNP sites with only two alleles) and `n.polyallelic.sites` (i.e. SNP sites with three or four alleles).
+Now you are done, we are ready to calculate some parameters on genomic data!
 
-You can do this by hand or using R code like so:
+### Calculating nucleotide diversity statistics across sliding windows
 
-
-``` r
-sparrows@n.biallelic.sites + sparrows@n.polyallelic.sites
-```
-
-This also demonstrates one other important point about `PopGenome`, the `sparrows` object is a complicated structure called a `GENOME` object (use `class(sparrows)` to see this). Unlike other R structures we have seen so far, we need to use `@` to access some parts of it. This is a little confusing, but you can think of it in acting in a similar way to the `$` operator we used to access columns of a `data.frame`.
-
-### Calculating nucleotide diversity statistics
-
-So, let's recap so far. We have over 90,000 SNPs from chromsome 8 of 129 sparrows from five different species. With the `PopGenome` package, we can now very quickly and easily calculate nucleotide diversity for every single one of these SNPs. We will do this like so:
+With `GenoPop`, it is straightforward to calculate nucleotide diversity in windows. We can run the code below and it will likely take a few minutes to run.
 
 
 ``` r
 # calculate nucleotide diversity
-sparrows <- diversity.stats(sparrows, pi = TRUE)
+pi_windows <- Pi("./sparrow_chr8_downsample.vcf.gz", exclude_ind = c(bactrianus, spanish, italian, tree),
+                 seq_length = 49693984, window_size = 100000, skip_size = 25000)
 ```
 
-A nice, simple function that just requires us to specify that we want to calculate $\pi$ using `pi = TRUE`. Let's try and get at the data. Unfortunately, this is where things become a little more tricky since the `GENOME` object data structure is quite complicated. The following code extracts the nucleotide diversity data, and converts it into a data frame for plotting.
-
-::: {.yellow}
-
-``` r
-# extract the pi data
-sparrow_nuc_div <- t(sparrows@region.stats@nuc.diversity.within[[1]])
-# get the SNP positions from the rownames - note we need to make them numeric here
-position <- as.numeric(rownames(sparrow_nuc_div))
-# rename the matrix columns after the species
-colnames(sparrow_nuc_div) <- c("bactrianus", "house", "italian", "spanish", "tree")
-# combine into a data.frame and remove the row.names
-sparrow_nd <- data.frame(position, sparrow_nuc_div, row.names = NULL)
-```
-:::
-
-Take a look at the `sparrows_nd` data frame. One thing to note here: our `sparrow_nd` data.frame is 91,312 rows - this is the same as the number of biallelic SNPs, which tells us that `PopGenome` only calculates nucleotide diversity on these positions, not those with more than two alleles.
-
-### Visualising nucleotide diversity along the chromosome
-
-We can now visualise the nucleotide diversity for the house sparrow along the whole of chromosome 8. Since we set up a data.frame in the last section, this can readily be done with `ggplot2`.
 
 
-``` r
-ggplot(sparrow_nd, aes(position, house)) + geom_point()
-```
+While we wait we can break this down:
+  - `vcf_file` - just defines the path to our vcf file
+  - `exclude_ind` - sets individuals to leave out of the analysis (i..e everything but house here)
+  - `seq_length` - this is the length of the chromosome, taken from the genome information
+  - `window_size` is the size of the windows we examine, here 100Kb
+  - `skip_size` is the step size for our sliding windows - 25Kb in this instance. 
 
-<img src="Exercise7_files/figure-html/unnamed-chunk-35-1.png" width="672" />
-
-Hmm - this is not the most visually appealing figure and it is also not particularly informative. Why is that? Well one of the issues here is that we have calculated nucleotide diversity for each biallelic SNP position so there is a lot of noise and the signal from the data is not clear.
-
-This is often the case when working with high-density genome data. One solution is to use a sliding window analyis in order to try and capture the average variation across a chromosome. We will learn how to do this in the next section.
-
-### Performing a sliding window analysis
+So, let's recap so far. We have over 90,000 SNPs from chromsome 8 of 129 sparrows from five different species. With the `GenoPop` package, we have now relatively quickly and very easily calculated nucleotide diversity for the entire chromosome, in 100 Kb windows with a 25 Kb "step" between each of them. 
 
 We will learn more about sliding windows next week, so in this section we will more or less rush through the code and focus on the results. A sliding window analysis groups the data into (overlapping) bins, or "windows". We can then calculate some summary statistic---$\pi$ in our example---on each window instead of on each singe nucleotide. With our data, this means that instead of 90,000 plus estimates of nucleotide diversity, we will get as many as we have windows! This kind of summary significantly reduces noise in the data, so it is possible to visualise the trends along the genome.
 
-The following code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$.  Finally, we transform the data to be ready for plotting
+The preceding code creates windows that are 100,000 bp long, with a distance of 25,000 bp between the start of each window (i.e., two adjacent windows overlaps with 75,000 bp). It then calculates $\Pi$ in each window, and divides it with window length to obtain the length standardised measure $\pi$.  
 
-
-
-::: {.yellow}
-
-``` r
-# generate sliding windows
-sparrows_sw <- sliding.window.transform(sparrows, width = 100000, jump = 25000, type = 2)
-# calculate pi in each window
-sparrows_sw <- diversity.stats(sparrows_sw, pi = TRUE)
-# extract diversity stats and divide by window length
-sparrow_nuc_div_sw <- sparrows_sw@nuc.diversity.within
-sparrow_nuc_div_sw <- sparrow_nuc_div_sw/100000
-# get midpoint of each window (for plotting)
-position <- seq(from = 1, to = 49575001, by = 25000) + 50000
-# rename the matrix columns after the species
-colnames(sparrow_nuc_div_sw) <- c("bactrianus", "house", "italian", "spanish", "tree")
-# combine into a data.frame and remove the row.names
-sparrow_nd_sw <- data.frame(position, sparrow_nuc_div_sw, row.names = NULL)
-```
-:::
-
-Look at the generated data frame. This time, the number of rows in the data frame corresponds to number of windows, rather than number of SNPs. Now we can make a more informative visualisation than the previous one, using `ggplot2`. We choose the `house` column (house sparrow population) for this visualisation, but feel free to test out with the other populations as well[^exercise7-3].
-
-[^exercise7-3]: Next week you will learn how to visualise all at once! Yay!
+We can take a look at the data we created by examining the `pi_windows` object.
 
 
 ``` r
-ggplot(sparrow_nd_sw, aes(position, house)) + geom_line(colour = "blue") + theme_light()
+head(pi_windows)
 ```
 
-<img src="Exercise7_files/figure-html/unnamed-chunk-37-1.png" width="672" />
+So now we have a data.frame with the chromosome, the start and end positions for our windows and an estimate of nucleotide diversity. Because of the way the package works, we need to slightly alter this data.frame to make it easier to use. We can do that like so:
 
-This is much more informative than our per SNP figure from before. What is more, we can see clearly there are several regions on this chromosome where there is a signficant reduction in nucleotide diversity, particularly around 30 Mb. We cannot say exactly what might be causing this without inferring other statistics or examining other data, but one possibility is that this is a region of reduced recombination where selection has led to a reduction in diversity. If it is shared with other sparrow species, it might suggest some kind of genome structure such as a centromere - where recombination rates are usually lower.
+
+``` r
+# first we make a tibble
+pi_windows <- as_tibble(pi_windows)
+# ensure data is numeric
+pi_windows <- pi_windows %>% 
+  mutate(start = as.numeric(Start)) %>%
+  mutate(end = as.numeric(End)) %>% 
+  mutate(pi = as.numeric(Pi))
+```
+
+With this done, it is now very simple to visualise the sliding window data.
+
+
+``` r
+ggplot(pi_windows, aes(start, pi)) + geom_line()
+```
+
+<img src="Exercise7_files/figure-html/unnamed-chunk-33-1.png" width="672" />
+
+With our plot we can see clearly there are several regions on this chromosome where there is a signficant reduction in nucleotide diversity, particularly around 30 Mb. We cannot say exactly what might be causing this without inferring other statistics or examining other data, but one possibility is that this is a region of reduced recombination where selection has led to a reduction in diversity. If it is shared with other sparrow species, it might suggest some kind of genome structure such as a centromere - where recombination rates are usually lower.
 
 The point is that sliding window information like this can be extremely informative for evolutionary analysis. Although we only got a quick introduction to genomic data in today's tutorial, we will return to this sort of dataset again in the next session and explore more fully how we can use it to infer processes that might shape the distribution of these sorts of statistics in the genome.
 

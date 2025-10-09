@@ -11,6 +11,7 @@ editor_options:
 ```{r setup, include=FALSE}
 source("setup.R")
 library(tidyverse)
+
 ```
 
 
@@ -33,11 +34,10 @@ The first thing we need to do is set up the R environment. Today we'll be using 
 ```{r, eval = FALSE, echo = TRUE, results = "hide", warning = FALSE}
 install.packages("ape")
 install.packages("pegas")
-install.packages("devtools")
-devtools::install_github("pievos101/PopGenome")
+install.packages("GenoPop", dependencies = T)
+BiocManager::install("GenomicRanges")
+BiocManager::install("Rsamtools")
 ```
-
-Note that PopGenome is installed in a slightly different way than what you are used to. As long as you install the `devtools` package first, then `PopGenome`, you should have no issues.
 
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
 
@@ -47,7 +47,7 @@ rm(list = ls())
 library(tidyverse)
 library(ape)
 library(pegas)
-library(PopGenome)
+library(GenoPop)
 ```
 
 Remember that clearing the R environment when you start a script is good practice to make sure you don't have any conflicts with previously loaded data. All three packages [`ape`](http://ape-package.ird.fr/), [`pegas`](http://ape-package.ird.fr/pegas.html) and [`PopGenome`](https://popgenome.weebly.com/) are really useful for handling genetic data in R - follow the links for more information about each of them. Remember that you always can access the help page of any function with `?`.
@@ -357,25 +357,24 @@ VCF files can quickly become very very big, so the one we are using today is a m
 -   First, download the [VCF](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz) and it's [index](https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz.tbi) (we need this to read it in to R)
 -   Move the downloaded VCF into your working directory (use `getwd` if you don't know where that is)
 
-With these steps carried out, you can then establish the vcf path like so:
-
-```{r, eval = FALSE, echo = TRUE, results = 'hide', message = FALSE, warning = FALSE, error = FALSE}
-vcf_file <- system.file("./sparrow_chr8_downsample.vcf.gz", package = "GenoPop")
-```
-
-We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data and creates a vector of individuals which are house sparrows.
+We will work with this file soon, but first some housekeeping. We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data and creates a vector of individuals which are house sparrows.
 
 ::: {.yellow}
 ```{r, eval = FALSE, results = 'hide'}
-sparrow_info <- read.table("./sparrow_pops.txt", sep = "\t", header = TRUE)
+sparrow_info <- read.table("sparrow_pops.txt", sep = "\t", header = TRUE)
 house <- sparrow_info$ind[sparrow_info$pop == "House"]
-
 ```
 :::
 
+```{r, eval = TRUE, echo = FALSE, results = 'hide'}
+sparrow_info <- read.table("./docs/data/sparrow_pops.txt", sep = "\t", header = TRUE)
+house <- sparrow_info$ind[sparrow_info$pop == "House"]
+```
+
+
 You can also create these vectors for each of the other species present. Have a look at the `sparrow_info` object to see what they are. We will also do this below. 
 
-```{r, echo = FALSE, results = 'hide'}
+```{r, eval = TRUE, echo = TRUE, results = 'hide'}
 bactrianus <- sparrow_info$ind[sparrow_info$pop == "Bactrianus"]
 spanish <- sparrow_info$ind[sparrow_info$pop == "Spanish"]
 italian <- sparrow_info$ind[sparrow_info$pop == "Italian"]
@@ -388,9 +387,15 @@ Now you are done, we are ready to calculate some parameters on genomic data!
 
 With `GenoPop`, it is straightforward to calculate nucleotide diversity in windows. We can run the code below and it will likely take a few minutes to run.
 
-```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hide', message = FALSE}
 # calculate nucleotide diversity
-pi_windows <- Pi(vcf_file, exclude_ind = c(bactrianus, spanish, italian, tree),
+pi_windows <- Pi("./sparrow_chr8_downsample.vcf.gz", exclude_ind = c(bactrianus, spanish, italian, tree),
+                 seq_length = 49693984, window_size = 100000, skip_size = 25000)
+```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE}
+# calculate nucleotide diversity
+pi_windows <- Pi("./docs/data/sparrow_chr8_downsample.vcf.gz", exclude_ind = c(bactrianus, spanish, italian, tree),
                  seq_length = 49693984, window_size = 100000, skip_size = 25000)
 ```
 
@@ -409,7 +414,7 @@ The preceding code creates windows that are 100,000 bp long, with a distance of 
 
 We can take a look at the data we created by examining the `pi_windows` object.
 
-```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hide', message = FALSE}
 head(pi_windows)
 ```
 
@@ -417,7 +422,7 @@ So now we have a data.frame with the chromosome, the start and end positions for
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hide', message = FALSE}
 # first we make a tibble
-pi_windows <- as_tibble(test_windows)
+pi_windows <- as_tibble(pi_windows)
 # ensure data is numeric
 pi_windows <- pi_windows %>% 
   mutate(start = as.numeric(Start)) %>%

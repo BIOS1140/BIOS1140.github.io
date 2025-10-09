@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Working with a larger dataset | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Working with a larger dataset | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -294,9 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
-<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
-<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics-across-sliding-windows"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics across sliding windows</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
 <li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
@@ -391,7 +389,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -416,55 +413,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.2</span> Working with a larger dataset<a href="working-with-a-larger-dataset.html#working-with-a-larger-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <script src="js/hideOutput.js"></script>
 <p>As we have seen in previous tutorials, R packages often come with nice, ready-to-use datasets. <code>ape</code> and <code>pegas</code> are no exception. We will turn to the <code>woodmouse</code> dataset next to learn how we can work with larger data than just 3, 40 bp sequences. To load the data, you need to do the following:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="working-with-a-larger-dataset.html#cb312-1" tabindex="-1"></a><span class="fu">data</span>(woodmouse)</span>
-<span id="cb312-2"><a href="working-with-a-larger-dataset.html#cb312-2" tabindex="-1"></a>woodmouse</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="working-with-a-larger-dataset.html#cb17-1" tabindex="-1"></a><span class="fu">data</span>(woodmouse)</span>
+<span id="cb17-2"><a href="working-with-a-larger-dataset.html#cb17-2" tabindex="-1"></a>woodmouse</span></code></pre></div>
 <p>What is this data? It is 15 sequences the mitochondrial cytochrome b gene of the woodmouse (<em>Apodemus sylvaticus</em>), <a href="https://en.wikipedia.org/wiki/Wood_mouse">a very cute and widespread rodent in Europe</a>. The data is a subset of <a href="https://onlinelibrary.wiley.com/doi/full/10.1046/j.1365-294X.2003.01752.x">a study</a> by the authors of <code>pegas</code>.</p>
 <p>We can easily view the <code>woodmouse</code> sequences using <code>alview</code>.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="working-with-a-larger-dataset.html#cb313-1" tabindex="-1"></a><span class="fu">alview</span>(woodmouse)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="working-with-a-larger-dataset.html#cb18-1" tabindex="-1"></a><span class="fu">alview</span>(woodmouse)</span></code></pre></div>
 <p>However, you can see already that with this much data, looking at the alignment directly is not that practical - and we certainly wouldn’t ask you to count all the polymorphic sites here! Instead it makes much more sense to use the R functions we just covered to calculate the statistics of interest.</p>
 <p>With a larger dataset, we can also manipulate our <code>woodmouse</code> <code>DNAbin</code> object a bit more directly. Although we do not see a matrix of aligned DNA sequences when we call <code>woodmouse</code>, we can still treat it like one - including using R indices. In this sense, the rows of our matrix are our individuals and the columns are the number of base pairs in our sequence. So for example:</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="working-with-a-larger-dataset.html#cb314-1" tabindex="-1"></a>woodmouse[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="working-with-a-larger-dataset.html#cb19-1" tabindex="-1"></a>woodmouse[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ]</span></code></pre></div>
 <p>This command will return only the first 10 sequences. Manipulating the columns will also change how much of the sequence we retain:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="working-with-a-larger-dataset.html#cb315-1" tabindex="-1"></a>woodmouse[, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="working-with-a-larger-dataset.html#cb20-1" tabindex="-1"></a>woodmouse[, <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>]</span></code></pre></div>
 <p>In the next section, we will use this to demonstrate how sample size can influence our estimates of nucleotide diversity and segregating sites.</p>
 <div id="sample-size-and-sequence-statistics" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> Sample size and sequence statistics<a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>First of all, let’s turn our attention to the number of segregating sites. How does using different numbers of sequences effect this? We can loop through different values of the maximum number of sequences. So we will first use 2 sequences, then 3, then 4 and so on, until we use all 15.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="working-with-a-larger-dataset.html#cb316-1" tabindex="-1"></a></span>
-<span id="cb316-2"><a href="working-with-a-larger-dataset.html#cb316-2" tabindex="-1"></a><span class="co"># initialise vector for storing values</span></span>
-<span id="cb316-3"><a href="working-with-a-larger-dataset.html#cb316-3" tabindex="-1"></a><span class="co"># we start by comparing 2 sequences, then increase to 3 etc.</span></span>
-<span id="cb316-4"><a href="working-with-a-larger-dataset.html#cb316-4" tabindex="-1"></a><span class="co"># so we will end up with 14 comparisons</span></span>
-<span id="cb316-5"><a href="working-with-a-larger-dataset.html#cb316-5" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
-<span id="cb316-6"><a href="working-with-a-larger-dataset.html#cb316-6" tabindex="-1"></a></span>
-<span id="cb316-7"><a href="working-with-a-larger-dataset.html#cb316-7" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
-<span id="cb316-8"><a href="working-with-a-larger-dataset.html#cb316-8" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(ss))){</span>
-<span id="cb316-9"><a href="working-with-a-larger-dataset.html#cb316-9" tabindex="-1"></a>  </span>
-<span id="cb316-10"><a href="working-with-a-larger-dataset.html#cb316-10" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
-<span id="cb316-11"><a href="working-with-a-larger-dataset.html#cb316-11" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
-<span id="cb316-12"><a href="working-with-a-larger-dataset.html#cb316-12" tabindex="-1"></a>  </span>
-<span id="cb316-13"><a href="working-with-a-larger-dataset.html#cb316-13" tabindex="-1"></a>  <span class="co"># calculate n seg.sites in the subset</span></span>
-<span id="cb316-14"><a href="working-with-a-larger-dataset.html#cb316-14" tabindex="-1"></a>  ss[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(woodmouse_sub))</span>
-<span id="cb316-15"><a href="working-with-a-larger-dataset.html#cb316-15" tabindex="-1"></a>}</span></code></pre></div>
+<p>First of all, let’s turn our attention to the number of segregating sites. How does using different numbers of sequences effect this? We can loop through different values of the maximum number of sequences. So we will first use 2 sequences, then 3, then 4 and so on, until we use all 15.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="working-with-a-larger-dataset.html#cb21-1" tabindex="-1"></a></span>
+<span id="cb21-2"><a href="working-with-a-larger-dataset.html#cb21-2" tabindex="-1"></a><span class="co"># initialise vector for storing values</span></span>
+<span id="cb21-3"><a href="working-with-a-larger-dataset.html#cb21-3" tabindex="-1"></a><span class="co"># we start by comparing 2 sequences, then increase to 3 etc.</span></span>
+<span id="cb21-4"><a href="working-with-a-larger-dataset.html#cb21-4" tabindex="-1"></a><span class="co"># so we will end up with 14 comparisons</span></span>
+<span id="cb21-5"><a href="working-with-a-larger-dataset.html#cb21-5" tabindex="-1"></a>ss <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
+<span id="cb21-6"><a href="working-with-a-larger-dataset.html#cb21-6" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="working-with-a-larger-dataset.html#cb21-7" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
+<span id="cb21-8"><a href="working-with-a-larger-dataset.html#cb21-8" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(ss))){</span>
+<span id="cb21-9"><a href="working-with-a-larger-dataset.html#cb21-9" tabindex="-1"></a>  </span>
+<span id="cb21-10"><a href="working-with-a-larger-dataset.html#cb21-10" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
+<span id="cb21-11"><a href="working-with-a-larger-dataset.html#cb21-11" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
+<span id="cb21-12"><a href="working-with-a-larger-dataset.html#cb21-12" tabindex="-1"></a>  </span>
+<span id="cb21-13"><a href="working-with-a-larger-dataset.html#cb21-13" tabindex="-1"></a>  <span class="co"># calculate n seg.sites in the subset</span></span>
+<span id="cb21-14"><a href="working-with-a-larger-dataset.html#cb21-14" tabindex="-1"></a>  ss[i] <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(woodmouse_sub))</span>
+<span id="cb21-15"><a href="working-with-a-larger-dataset.html#cb21-15" tabindex="-1"></a>}</span></code></pre></div>
 <p>Have a look at the <code>ss</code> vector this creates - it is the number of segregating sites for each maximum number of sequences. However, the relationship is a lot easier if we plot it:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="working-with-a-larger-dataset.html#cb317-1" tabindex="-1"></a><span class="co"># plot figure</span></span>
-<span id="cb317-2"><a href="working-with-a-larger-dataset.html#cb317-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, ss, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;No of sequences&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Segregating sites&quot;</span>, <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="working-with-a-larger-dataset.html#cb22-1" tabindex="-1"></a><span class="co"># plot figure</span></span>
+<span id="cb22-2"><a href="working-with-a-larger-dataset.html#cb22-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, ss, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;No of sequences&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Segregating sites&quot;</span>, <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="Exercise7_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
 <p>From the figure, we can see that the number of segregating sites grows as we increase the number of sequences, i.e., segregating sites are biased by sample size. It increases our probability of observing a polymorphism, and since all polymorphisms are given equal weighting in the calculation of the number of segregating sites, any polymorphism will increase the value by 1.</p>
 <p>So what do we see if we repeat the same code, but this time for nucleotide diversity or <span class="math inline">\(\pi\)</span>?</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="working-with-a-larger-dataset.html#cb318-1" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
-<span id="cb318-2"><a href="working-with-a-larger-dataset.html#cb318-2" tabindex="-1"></a></span>
-<span id="cb318-3"><a href="working-with-a-larger-dataset.html#cb318-3" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
-<span id="cb318-4"><a href="working-with-a-larger-dataset.html#cb318-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(nd))){</span>
-<span id="cb318-5"><a href="working-with-a-larger-dataset.html#cb318-5" tabindex="-1"></a>  </span>
-<span id="cb318-6"><a href="working-with-a-larger-dataset.html#cb318-6" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
-<span id="cb318-7"><a href="working-with-a-larger-dataset.html#cb318-7" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
-<span id="cb318-8"><a href="working-with-a-larger-dataset.html#cb318-8" tabindex="-1"></a>  </span>
-<span id="cb318-9"><a href="working-with-a-larger-dataset.html#cb318-9" tabindex="-1"></a>  <span class="co"># calculate nuc.div in the subset</span></span>
-<span id="cb318-10"><a href="working-with-a-larger-dataset.html#cb318-10" tabindex="-1"></a>  nd[i] <span class="ot">&lt;-</span> <span class="fu">nuc.div</span>(woodmouse_sub)</span>
-<span id="cb318-11"><a href="working-with-a-larger-dataset.html#cb318-11" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="working-with-a-larger-dataset.html#cb23-1" tabindex="-1"></a>nd <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">14</span>)</span>
+<span id="cb23-2"><a href="working-with-a-larger-dataset.html#cb23-2" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="working-with-a-larger-dataset.html#cb23-3" tabindex="-1"></a><span class="co"># get segregating sites for an increasing number of sequences</span></span>
+<span id="cb23-4"><a href="working-with-a-larger-dataset.html#cb23-4" tabindex="-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(nd))){</span>
+<span id="cb23-5"><a href="working-with-a-larger-dataset.html#cb23-5" tabindex="-1"></a>  </span>
+<span id="cb23-6"><a href="working-with-a-larger-dataset.html#cb23-6" tabindex="-1"></a>  <span class="co"># subset to only the first i+1 sequences</span></span>
+<span id="cb23-7"><a href="working-with-a-larger-dataset.html#cb23-7" tabindex="-1"></a>  woodmouse_sub <span class="ot">&lt;-</span> woodmouse[<span class="dv">1</span><span class="sc">:</span>i<span class="sc">+</span><span class="dv">1</span>,]</span>
+<span id="cb23-8"><a href="working-with-a-larger-dataset.html#cb23-8" tabindex="-1"></a>  </span>
+<span id="cb23-9"><a href="working-with-a-larger-dataset.html#cb23-9" tabindex="-1"></a>  <span class="co"># calculate nuc.div in the subset</span></span>
+<span id="cb23-10"><a href="working-with-a-larger-dataset.html#cb23-10" tabindex="-1"></a>  nd[i] <span class="ot">&lt;-</span> <span class="fu">nuc.div</span>(woodmouse_sub)</span>
+<span id="cb23-11"><a href="working-with-a-larger-dataset.html#cb23-11" tabindex="-1"></a>}</span></code></pre></div>
 <p>This loop is similar to the previous one, except this time we use the <code>nuc.div</code> function instead. We can also plot the relationship here:</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="working-with-a-larger-dataset.html#cb319-1" tabindex="-1"></a><span class="co"># plot figure</span></span>
-<span id="cb319-2"><a href="working-with-a-larger-dataset.html#cb319-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, nd, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;No of sequences&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(pi), <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="working-with-a-larger-dataset.html#cb24-1" tabindex="-1"></a><span class="co"># plot figure</span></span>
+<span id="cb24-2"><a href="working-with-a-larger-dataset.html#cb24-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">15</span>, nd, <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;No of sequences&quot;</span>, <span class="at">ylab =</span> <span class="fu">expression</span>(pi), <span class="at">las =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p><img src="Exercise7_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 <p>There is no obvious relationship here - nucleotide diversity is an estimate of the average difference among sequences so it only becomes more precise with increased numbers of sequences - it is not so easily biased. Unlike segregating sites, polymorphisms are also not equally weighted; rare polymorphisms only contribute slightly to nucleotide diversity as most sequences will be similar at this position, whereas more common polymorphisms mean most sequences will differ at a position.</p>
 </div>
@@ -472,8 +469,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.2</span> Inferring evolutionary processes using Tajima’s <em>D</em><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The number of segregating sites and <span class="math inline">\(\pi\)</span> are essentially estimates of the population mutation rate <span class="math inline">\(\theta\)</span> - i.e. <span class="math inline">\(4N_e\mu\)</span>. Under ideal conditions - i.e. neutrality, our two estimates of <span class="math inline">\(\theta\)</span> should be equivalent to one another. Differences between these estimates suggest either the action of selection or some kind of demographic change.</p>
 <p><strong>Tajima’s <em>D</em></strong> is a statistical test that allows us to actually investigate this. We can calculate it very easily in R using the <code>tajima.test</code> function in <code>pegas</code>.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="working-with-a-larger-dataset.html#cb320-1" tabindex="-1"></a><span class="co"># calculate Tajima&#39;s D for the woodmouse data</span></span>
-<span id="cb320-2"><a href="working-with-a-larger-dataset.html#cb320-2" tabindex="-1"></a><span class="fu">tajima.test</span>(woodmouse)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="working-with-a-larger-dataset.html#cb25-1" tabindex="-1"></a><span class="co"># calculate Tajima&#39;s D for the woodmouse data</span></span>
+<span id="cb25-2"><a href="working-with-a-larger-dataset.html#cb25-2" tabindex="-1"></a><span class="fu">tajima.test</span>(woodmouse)</span></code></pre></div>
 <p>This produces a list with three elements. The first is an estimate of Tajima’s <em>D</em> and the other two are p-values assessing the significance of the statistic. Remember that to say whether a statistic is significant or not, the commonly used (arbitrary) threshold is p&lt;0.05. The two p-values are both similar here and also both show that there is no significant deviation from zero.</p>
 <div id="a-bit-more-about-pi-s-and-tajimas-d" class="section level4 hasAnchor green" number="6.2.2.1">
 <h4><span class="header-section-number">6.2.2.1</span> A bit more about <span class="math inline">\(\pi\)</span>, <span class="math inline">\(s\)</span> and Tajima’s D<a href="working-with-a-larger-dataset.html#a-bit-more-about-pi-s-and-tajimas-d" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -498,8 +495,8 @@ AATAAG</code></pre>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="22">
-<li id="fn22"><p>Take a look at the code and see if you understand the following: why did we initialise the <code>ss</code> vector with 14 values, not 15? Why do we use <code>i+1</code> for subsetting the <code>woodmouse</code> data? Are there other ways we could have done this?<a href="working-with-a-larger-dataset.html#fnref22" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Take a look at the code and see if you understand the following: why did we initialise the <code>ss</code> vector with 14 values, not 15? Why do we use <code>i+1</code> for subsetting the <code>woodmouse</code> data? Are there other ways we could have done this?<a href="working-with-a-larger-dataset.html#fnref1" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -522,42 +519,42 @@ AATAAG</code></pre>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.5 Going further | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.5 Going further | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -294,9 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
-<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
-<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics-across-sliding-windows"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics across sliding windows</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
 <li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
@@ -391,7 +389,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -442,42 +439,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
