@@ -31,9 +31,10 @@ The first thing we need to do is set up the R environment. Today we'll be using 
 ``` r
 install.packages("ape")
 install.packages("pegas")
-install.packages("GenoPop", dependencies = T)
+install.packages("BiocManager")
 BiocManager::install("GenomicRanges")
 BiocManager::install("Rsamtools")
+install.packages("GenoPop", dependencies = T)
 ```
 
 Once these packages are installed installed, we will clear the R environment with `rm(list = ls())` and then load everything we need for this session.
