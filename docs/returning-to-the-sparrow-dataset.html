@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -66,7 +66,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -294,9 +294,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
-<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
-<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics-across-sliding-windows"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics across sliding windows</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
 <li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
@@ -311,8 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Returning to the sparrow dataset</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Reading in the sparrow vcf</a></li>
-<li class="chapter" data-level="7.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>7.2.2</b> Examining the variant data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#preparing-to-read-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Preparing to read in the sparrow vcf</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>7.3</b> Setting up sliding windows</a>
 <ul>
@@ -391,7 +388,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -415,36 +411,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="returning-to-the-sparrow-dataset" class="section level2 hasAnchor" number="7.2">
 <h2><span class="header-section-number">7.2</span> Returning to the sparrow dataset<a href="returning-to-the-sparrow-dataset.html#returning-to-the-sparrow-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <script src="js/hideOutput.js"></script>
-<p>In the last session, we used the <code>PopGenome</code> package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house, Italian and Spanish sparrows with data from <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.</p>
-<div id="reading-in-the-sparrow-vcf" class="section level3 hasAnchor" number="7.2.1">
-<h3><span class="header-section-number">7.2.1</span> Reading in the sparrow vcf<a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the <a href="ch07.html#ch07">last session</a> but just in case you missed those steps, here they are again. Remember that becasue the VCF is large, the file is compressed and there are some preprocessing steps you will need to do before you can open in it in R.</p>
+<p>In the last session, we used the <code>GenoPop</code> package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.</p>
+<div id="preparing-to-read-in-the-sparrow-vcf" class="section level3 hasAnchor" number="7.2.1">
+<h3><span class="header-section-number">7.2.1</span> Preparing to read in the sparrow vcf<a href="returning-to-the-sparrow-dataset.html#preparing-to-read-in-the-sparrow-vcf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the <a href="ch07.html#ch07">last session</a> but just in case you missed those steps, here they are again.</p>
 <ul>
-<li>First, download the <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">VCF</a></li>
-<li>Next, make a directory in your working directory (use <code>getwd</code> if you don’t know where that is) and call it <code>sparrow_snps</code></li>
-<li>Move the downloaded VCF into this new directory and then uncompress it. If you do not have an program for this, you can either use the <a href="https://theunarchiver.com/">Unarchiver</a> (Mac OS X) or <a href="https://www.7-zip.org/">7zip</a> (Windows).</li>
-<li>Make sure <strong>only</strong> the uncompressed file is present in the directory.</li>
+<li>First, download the <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">VCF</a> and it’s <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz.tbi">index</a> (we need this to read it in to R)</li>
+<li>Move the downloaded VCF into your working directory (use <code>getwd</code> if you don’t know where that is)</li>
 </ul>
-<p>With these steps carried out, you can read this data in like so:</p>
-<p><strong>MAC</strong></p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="returning-to-the-sparrow-dataset.html#cb340-1" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps/&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><strong>WINDOWS</strong></p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="returning-to-the-sparrow-dataset.html#cb341-1" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">readData</span>(<span class="st">&quot;./sparrow_snps&quot;</span>, <span class="at">format =</span> <span class="st">&quot;VCF&quot;</span>, <span class="at">include.unknown =</span> <span class="cn">TRUE</span>, <span class="at">FAST =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p>Like last time, we then need to read the file with population information, and attach that to our <code>sparrows</code> object. You should have the file available from last week’s tutorial, otherwise it can be downloaded <a href="https://bios1140.github.io/data/sparrow_pops.txt">here</a>.</p>
+<p>We will work with this file soon, but first some housekeeping. We should set a variable to the path of this VCF. Once it is in your working directory:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="returning-to-the-sparrow-dataset.html#cb9-1" tabindex="-1"></a>vcf_path <span class="ot">=</span> <span class="st">&quot;./sparrow_chr8_downsample.vcf.gz&quot;</span><span class="er">)</span></span></code></pre></div>
+<p>We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the <a href="https://bios1140.github.io/data/sparrow_pops.txt">population data</a> and put it in your working directory. The following code reads in the population data and creates a vector of individuals which are house sparrows.</p>
 <div class="yellow">
-<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="returning-to-the-sparrow-dataset.html#cb342-1" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./sparrow_pops.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb342-2"><a href="returning-to-the-sparrow-dataset.html#cb342-2" tabindex="-1"></a>populations <span class="ot">&lt;-</span> <span class="fu">split</span>(sparrow_info<span class="sc">$</span>ind, sparrow_info<span class="sc">$</span>pop)</span>
-<span id="cb342-3"><a href="returning-to-the-sparrow-dataset.html#cb342-3" tabindex="-1"></a>sparrows <span class="ot">&lt;-</span> <span class="fu">set.populations</span>(sparrows, populations, <span class="at">diploid =</span> T)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="returning-to-the-sparrow-dataset.html#cb10-1" tabindex="-1"></a>sparrow_info <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;sparrow_pops.txt&quot;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb10-2"><a href="returning-to-the-sparrow-dataset.html#cb10-2" tabindex="-1"></a>house <span class="ot">&lt;-</span> sparrow_info<span class="sc">$</span>ind[sparrow_info<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;House&quot;</span>]</span></code></pre></div>
 </div>
-</div>
-<div id="examining-the-variant-data" class="section level3 hasAnchor" number="7.2.2">
-<h3><span class="header-section-number">7.2.2</span> Examining the variant data<a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Remember, you can look at the data we have read in using the following command:</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="returning-to-the-sparrow-dataset.html#cb343-1" tabindex="-1"></a><span class="fu">get.sum.data</span>(sparrows)</span></code></pre></div>
-<p>In this case, you can see that from the <code>n.sites</code> that the final site is at position 49,693,117. The actual chromosome is 49,693,984 long - so this confirms variants span the entire chromosome. Note that <code>n.sites</code> is a bit counter-intuitive here, it would only make sense as the number of sites if we had called nucleotides at <strong>every single position in the genome</strong> - but since this is a variant call format, only containing polymorphic positions then obviously this is not the case. Furthermore, the data has actually been subset in order to make it more manageable for our purposes today.</p>
-<p>Nonetheless, it is still substantial, from the <code>n.biallelic.sites</code> we can see there are 91,312 bilallelic SNPs and from <code>n.polyallelic.sites</code>, there are 1092 positions with more than two alleles. So in total we have:</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="returning-to-the-sparrow-dataset.html#cb344-1" tabindex="-1"></a>sparrows<span class="sc">@</span>n.biallelic.sites <span class="sc">+</span> sparrows<span class="sc">@</span>n.polyallelic.sites</span></code></pre></div>
-<p>A total of 92,404 SNPs - a big dataset which requires some specific approaches to handling the data.</p>
+<p>You can also create these vectors for each of the other species present. Have a look at the <code>sparrow_info</code> object to see what they are. We will also do this below.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="returning-to-the-sparrow-dataset.html#cb11-1" tabindex="-1"></a>bactrianus <span class="ot">&lt;-</span> sparrow_info<span class="sc">$</span>ind[sparrow_info<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;Bactrianus&quot;</span>]</span>
+<span id="cb11-2"><a href="returning-to-the-sparrow-dataset.html#cb11-2" tabindex="-1"></a>spanish <span class="ot">&lt;-</span> sparrow_info<span class="sc">$</span>ind[sparrow_info<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;Spanish&quot;</span>]</span>
+<span id="cb11-3"><a href="returning-to-the-sparrow-dataset.html#cb11-3" tabindex="-1"></a>italian <span class="ot">&lt;-</span> sparrow_info<span class="sc">$</span>ind[sparrow_info<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;Italian&quot;</span>]</span>
+<span id="cb11-4"><a href="returning-to-the-sparrow-dataset.html#cb11-4" tabindex="-1"></a>tree <span class="ot">&lt;-</span> sparrow_info<span class="sc">$</span>ind[sparrow_info<span class="sc">$</span>pop <span class="sc">==</span> <span class="st">&quot;Tree&quot;</span>]</span></code></pre></div>
+<p>Now you are done, we are ready to calculate some parameters on genomic data!</p>
 </div>
 </div>
             </section>
@@ -467,42 +454,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
