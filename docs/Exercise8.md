@@ -142,7 +142,7 @@ We will work with this file soon, but first some housekeeping. We should set a v
 
 
 ``` r
-vcf_path = "./sparrow_chr8_downsample.vcf.gz")
+vcf_path = "./sparrow_chr8_downsample.vcf.gz"
 ```
 
 We eventually want to investigate differences between populations, but the data does not currently contain information about the populations, only individuals. Download the [population data](https://bios1140.github.io/data/sparrow_pops.txt) and put it in your working directory. The following code reads in the population data and creates a vector of individuals which are house sparrows.
