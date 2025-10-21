@@ -161,7 +161,7 @@ Now you are done, we are ready to calculate some parameters on genomic data!
 
 So far, this will start to seem quite familiar! We learned in the last session that per-SNP estimates of statistics such as $\pi$ can often be extremely noisy when you are calculating them on very large numbers of markers. As well as this, there are issues with the fact that SNP positions in close proximity are not always independent due to recombination - this is a theme we will return too shortly. So for this reason, it is often better to use a **sliding-window** approach - i.e. split the genome into windows of a particular size and then calculate the mean for a statistic within that window.
 
-We know already that chromosome 8 is 49,693,984 bp long, so we can get an idea of how many sliding windows we would generate by using some R code. We'll set our sliding window to be 100,000 bp wide - or 100 Kb. We will also set a **step** or **jump** for our window of 25,000 bp - or 25Kb.
+We know already that chromosome 8 is 49,693,984 bp long, so we can get an idea of how many sliding windows we would generate by using some R code. We'll set our sliding window to be 100,000 bp wide - or 100 Kb. We will also set a **step** or **jump** for our window of 25,000 bp - or 25Kb. **N.B** For the the functions in `GenoPop` to properly overlap, we need to set this value to a negative one. 
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # set chromosome size
@@ -169,7 +169,7 @@ chr8 <- 49693984
 
 # set window size and window jump
 window_size <- 100000
-window_jump <- 25000
+window_jump <- -25000
 ```
 
 We will shortly be using these objects to run our analysis. 
