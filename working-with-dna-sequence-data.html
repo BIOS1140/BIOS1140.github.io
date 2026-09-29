@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1.1 Working with DNA sequence data | Exercise7.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1.1 Working with DNA sequence data | Exercise7.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1.1 Working with DNA sequence data | Exercise7.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch07.html"/>
+<link rel="next" href="working-with-a-larger-dataset.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">R tutorials for the course BIOS1140</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="ch07.html"><a href="ch07.html"><i class="fa fa-check"></i><b>1</b> Inferring Evolutionary Processes from Sequence Data</a>
+<ul>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#what-to-expect"><i class="fa fa-check"></i>What to expect</a></li>
+<li class="chapter" data-level="" data-path="ch07.html"><a href="ch07.html#getting-started"><i class="fa fa-check"></i>Getting started</a></li>
+<li class="chapter" data-level="1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html"><i class="fa fa-check"></i><b>1.1</b> Working with DNA sequence data</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r."><i class="fa fa-check"></i><b>1.1.1</b> Reading sequence data into R.</a></li>
+<li class="chapter" data-level="1.1.2" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data"><i class="fa fa-check"></i><b>1.1.2</b> Exploring DNA sequence data</a></li>
+<li class="chapter" data-level="1.1.3" data-path="working-with-dna-sequence-data.html"><a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics"><i class="fa fa-check"></i><b>1.1.3</b> Calculating basic sequence statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html"><i class="fa fa-check"></i><b>1.2</b> Working with a larger dataset</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#sample-size-and-sequence-statistics"><i class="fa fa-check"></i><b>1.2.1</b> Sample size and sequence statistics</a></li>
+<li class="chapter" data-level="1.2.2" data-path="working-with-a-larger-dataset.html"><a href="working-with-a-larger-dataset.html#inferring-evolutionary-processes-using-tajimas-d"><i class="fa fa-check"></i><b>1.2.2</b> Inferring evolutionary processes using Tajima’s <em>D</em></a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>1.3</b> Calculating statistics at the whole genome level</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>1.3.1</b> Reading in variant data</a></li>
+<li class="chapter" data-level="1.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics-across-sliding-windows"><i class="fa fa-check"></i><b>1.3.2</b> Calculating nucleotide diversity statistics across sliding windows</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="study-questions.html"><a href="study-questions.html"><i class="fa fa-check"></i><b>1.4</b> Study questions</a></li>
+<li class="chapter" data-level="1.5" data-path="going-further.html"><a href="going-further.html"><i class="fa fa-check"></i><b>1.5</b> Going further</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="working-with-dna-sequence-data" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Working with DNA sequence data<a href="working-with-dna-sequence-data.html#working-with-dna-sequence-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<script src="js/hideOutput.js"></script>
+<p>For the first part of the tutorial, we learn about how to handle <strong>DNA sequence</strong> data in R. To keep things simple at this stage, we will use a relatively small dataset. Once we have some familiarity with sequence data and the statistics we can calculate from it, we will learn how to handle data derived from whole genome sequencing. For much of this first part of the tutorial, we will use a series of functions in <code>ape</code> and also some from <code>pegas</code>.</p>
+<div id="reading-sequence-data-into-r." class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Reading sequence data into R.<a href="working-with-dna-sequence-data.html#reading-sequence-data-into-r." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first thing we will learn to do today is to read seqeunce data into R. Unlike in the previous tutorials, it doesn’t make much sense to store sequence data as a <code>data.frame</code>, so we need to use functions specifically designed for the purpose such as <code>read.dna</code>. We will be reading in a <a href="https://en.wikipedia.org/wiki/FASTA_format"><strong>FASTA</strong> which is a standard file format for sequencing data</a>. FASTA files can vary slightly, but the basic format is the same. The file we will use today can be downloaded <a href="https://bios1140.github.io/data/example.fas">here</a>.</p>
+<p>Before we actually read this file into R, let’s take a look at it:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="working-with-dna-sequence-data.html#cb3-1" tabindex="-1"></a><span class="fu">file.show</span>(<span class="st">&quot;example.fas&quot;</span>)</span></code></pre></div>
+<p>The <code>file.show</code> function is quite self-explanatory. You can also click on the FASTA in the <code>Files</code> pane in R Studio and have a look at it in the console. In this FASTA file, there are two lines for each sequence - the sequence name and then the sequence itself. The sequence name line starts with <code>&gt;</code> and then after it are the base calls. Again, it is worth checking out the wikipedia page for <a href="https://en.wikipedia.org/wiki/FASTA_format">FASTA</a> as it contains more information on how these files are formatted.</p>
+<p>Next we will actually read our FASTA file in. To do this, we will use <code>read.dna()</code> like so:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="working-with-dna-sequence-data.html#cb4-1" tabindex="-1"></a>mydna <span class="ot">&lt;-</span> <span class="fu">read.dna</span>(<span class="st">&quot;example.fas&quot;</span>, <span class="at">format =</span> <span class="st">&quot;fasta&quot;</span>)</span></code></pre></div>
+<p>This will create an object, <code>mydna</code> which is an <code>ape</code> specific structure called a <code>DNAbin</code> - i.e. DNA data stored in binary. You don’t need to worry too much about the specifics of this data structure although you might want to check it for yourself. Try <code>class(mydna)</code> and <code>?DNAbin</code> to get more information.</p>
+<p>In the meantime, have a look at the <code>mydna</code> object and see what information is printed to the R console.</p>
+</div>
+<div id="exploring-dna-sequence-data" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Exploring DNA sequence data<a href="working-with-dna-sequence-data.html#exploring-dna-sequence-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As you will have just seen, when you call the <code>mydna</code> object, you only get a summary in the R console. What if you actually want to look at the sequences? One way to do this is to use the <code>as.alignment</code> function - like so:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="working-with-dna-sequence-data.html#cb5-1" tabindex="-1"></a>myalign <span class="ot">&lt;-</span> <span class="fu">as.alignment</span>(mydna)</span></code></pre></div>
+<p>This function converts our <code>DNAbin</code> object into an <code>alignment</code> - which is essentially a list with different elements - i.e <code>nb</code> - the number of sequences, <code>seq</code> - the actual sequences themselves, <code>nam</code> - the names of the sequences.</p>
+<p><code>alignment</code> object is convenient in that you can access information the way you are used to, e.g. with the <code>$</code> operator. You can look at the sequences as a character vector using the following R code:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="working-with-dna-sequence-data.html#cb6-1" tabindex="-1"></a>myalign<span class="sc">$</span>seq</span></code></pre></div>
+<p>However, if you want to compare sequences, using the <code>alview()</code> function may be a better method:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="working-with-dna-sequence-data.html#cb7-1" tabindex="-1"></a><span class="fu">alview</span>(mydna)</span></code></pre></div>
+<p>Note that in this case, we used <code>alview</code> directly on our <code>mydna</code> object - <strong>not</strong> on the <code>myalign</code> alignment object. This prints our alignment to the screen and it makes it immediately obvious where there are nucleotide polymorphisms in our data. You should note however that the <code>N</code> bases in the first sequence are bases which could not be called by the sequencing machine - they are not valid base calls.</p>
+<p><strong>NOTE</strong> In this case, these sequences were read into R as an alignment already - meaning that each position in the sequences corresponds to one another. We did not actually align the sequences in R itself.</p>
+</div>
+<div id="calculating-basic-sequence-statistics" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Calculating basic sequence statistics<a href="working-with-dna-sequence-data.html#calculating-basic-sequence-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="base-composition" class="section level4 hasAnchor" number="1.1.3.1">
+<h4><span class="header-section-number">1.1.3.1</span> Base composition<a href="working-with-dna-sequence-data.html#base-composition" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Using a couple of standard <code>pegas</code> functions, we can get some more information about our sequences. For example, we can calculate the frequency of the four nucleotides in our dataset:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="working-with-dna-sequence-data.html#cb8-1" tabindex="-1"></a><span class="fu">base.freq</span>(mydna)</span></code></pre></div>
+<p>We can also calculate the GC content - i.e. the proportion of the sequence that is either a G or C nucleotide.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="working-with-dna-sequence-data.html#cb9-1" tabindex="-1"></a><span class="fu">GC.content</span>(mydna)</span></code></pre></div>
+<p>To break down GC content even further, this is equivalent to:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="working-with-dna-sequence-data.html#cb10-1" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">base.freq</span>(mydna)[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>)])</span></code></pre></div>
+</div>
+<div id="segregating-sites" class="section level4 hasAnchor" number="1.1.3.2">
+<h4><span class="header-section-number">1.1.3.2</span> Segregating sites<a href="working-with-dna-sequence-data.html#segregating-sites" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Looking at our aligned sequences, we can see that there are several positions whether there is a polymorphism. Using the <code>seg.sites</code> function, we can find the segregating sites:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="working-with-dna-sequence-data.html#cb11-1" tabindex="-1"></a><span class="fu">seg.sites</span>(mydna)</span></code></pre></div>
+<p><code>seg.sites</code> returns the position in the sequence where polymorphisms occur in our 40 base pair sequence alignment. The positions are stored in a vector, and we can count the number of elements in the vector with the <code>length()</code> function to get the number of segregating sites.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="working-with-dna-sequence-data.html#cb12-1" tabindex="-1"></a><span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span></code></pre></div>
+<p>As this function makes pretty clear, segregating sites is just the number of polymorphic positions in a sequence. However, it is also something that scales with sample size - i.e. the more sequences we add, the higher the probability of finding segregating sites in our data. This is a point we will return to later.</p>
+<p>One last thing about the segrating sites we calculated here - it is not standardised to the length of sequences (i.e., the capitalised <span class="math inline">\(S\)</span> rather than <span class="math inline">\(s\)</span>). To achieve that we need to do the following.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="working-with-dna-sequence-data.html#cb13-1" tabindex="-1"></a><span class="co"># get segregating sites</span></span>
+<span id="cb13-2"><a href="working-with-dna-sequence-data.html#cb13-2" tabindex="-1"></a>S <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">seg.sites</span>(mydna))</span>
+<span id="cb13-3"><a href="working-with-dna-sequence-data.html#cb13-3" tabindex="-1"></a><span class="co"># set sequence length</span></span>
+<span id="cb13-4"><a href="working-with-dna-sequence-data.html#cb13-4" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb13-5"><a href="working-with-dna-sequence-data.html#cb13-5" tabindex="-1"></a><span class="co"># standardise segregating sites by sequence length</span></span>
+<span id="cb13-6"><a href="working-with-dna-sequence-data.html#cb13-6" tabindex="-1"></a>s <span class="ot">&lt;-</span> S<span class="sc">/</span>L</span></code></pre></div>
+</div>
+<div id="nucleotide-diversity" class="section level4 hasAnchor" number="1.1.3.3">
+<h4><span class="header-section-number">1.1.3.3</span> Nucleotide diversity<a href="working-with-dna-sequence-data.html#nucleotide-diversity" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Nucleotide diversity or <span class="math inline">\(\Pi\)</span> is the average number of pairwise differences between sequences in a population or sample. We can calculate it using the following formula:</p>
+<p><span class="math inline">\(\Pi = \displaystyle \frac{1}{[n(n-1)]/2} \sum_{i&lt;j}\Pi_{ij}\)</span></p>
+<p>Where <span class="math inline">\(\Pi_{ij}\)</span> is the number of nucleotide differences between sequence <span class="math inline">\(i\)</span> and sequence <span class="math inline">\(j\)</span> and <span class="math inline">\({[n(n-1)]/2}\)</span> is the number of possible pairwise sequence comparisons from all <span class="math inline">\(n\)</span> sequences. In other words, it is the sum of pairwise differences between each pair of sequences, divided by the number of pairs.</p>
+<p>From <code>seg.sites(mydna)</code>, we know there are two polymorphic positions at sites 35 and 36 in our 40 bp alignment. Using <code>alview(mydna)</code> we can visualise these and also actually count the differences. There are 2 nucleotide differences between sequences <code>No305</code> and <code>No304</code>, 1 between <code>304</code> and <code>306</code> and then finally, 1 again between <code>305</code> and <code>306</code>.</p>
+<p>We can use R to calculate our nucleotide diversity by hand:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="working-with-dna-sequence-data.html#cb14-1" tabindex="-1"></a><span class="co"># set n sequences</span></span>
+<span id="cb14-2"><a href="working-with-dna-sequence-data.html#cb14-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-3"><a href="working-with-dna-sequence-data.html#cb14-3" tabindex="-1"></a><span class="co"># set differences</span></span>
+<span id="cb14-4"><a href="working-with-dna-sequence-data.html#cb14-4" tabindex="-1"></a><span class="co"># 2 differences between 304 and 305, 1 difference in the other comparisons</span></span>
+<span id="cb14-5"><a href="working-with-dna-sequence-data.html#cb14-5" tabindex="-1"></a>Pi_ij <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>) </span>
+<span id="cb14-6"><a href="working-with-dna-sequence-data.html#cb14-6" tabindex="-1"></a><span class="co"># calculate the number of pairwise comparisons</span></span>
+<span id="cb14-7"><a href="working-with-dna-sequence-data.html#cb14-7" tabindex="-1"></a>np <span class="ot">&lt;-</span> (n<span class="sc">*</span>(n<span class="dv">-1</span>))<span class="sc">/</span><span class="dv">2</span></span>
+<span id="cb14-8"><a href="working-with-dna-sequence-data.html#cb14-8" tabindex="-1"></a><span class="co"># calculate the nucleotide diversity</span></span>
+<span id="cb14-9"><a href="working-with-dna-sequence-data.html#cb14-9" tabindex="-1"></a>Pi <span class="ot">&lt;-</span> <span class="fu">sum</span>(Pi_ij)<span class="sc">/</span>np</span></code></pre></div>
+<p>You can compare this to the calculations in Chapter 7 of the textbook - as they are essentially identical. What we have here is the average number of nucleotide differences between our three sequences. This is <em>not</em> standardised to the sequence length (i.e., <span class="math inline">\(\Pi\)</span>, not <span class="math inline">\(\pi\)</span>), so we need to do that next.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="working-with-dna-sequence-data.html#cb15-1" tabindex="-1"></a><span class="co"># calculate standarised nucleotide diversity</span></span>
+<span id="cb15-2"><a href="working-with-dna-sequence-data.html#cb15-2" tabindex="-1"></a>L <span class="ot">&lt;-</span> <span class="dv">40</span></span>
+<span id="cb15-3"><a href="working-with-dna-sequence-data.html#cb15-3" tabindex="-1"></a>pi <span class="ot">&lt;-</span> Pi<span class="sc">/</span>L</span></code></pre></div>
+<p>Of course, calculating nucleotide diversity by hand is not that useful when we have more than even a few sequences (as we will shortly). Luckily, we can also calculate nucleotide diversity using the function <code>nuc.div</code> from <code>pegas</code>.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="working-with-dna-sequence-data.html#cb16-1" tabindex="-1"></a><span class="fu">nuc.div</span>(mydna)</span></code></pre></div>
+<p>Unlike the number of segregating sites, this estimate is already standardised to the length of our sequence. Take a moment to compare the output previous command with our hand calculated value of <code>pi</code>. They are different! Why is this? Well using <code>alview</code> again we can see that there are actually two sites where in the first sequence, <code>No305</code>, the base call is <code>N</code>. As we learned earlier, this means we do not have a reliable call for this position in the sequence (perhaps a sequencing error or an ambigous base).</p>
+<p>The <code>nuc.div</code> function therefore corrects for these missing bases and shortens the total length of our sequence by two. This therefore changes the final estimate of <span class="math inline">\(\pi\)</span> it produces. Of course, manually counting differences between sequences and finding sequence lengths and adjusting for Ns is time-consuming and error-prone, so you will always be using the <code>nuc.div()</code> function directly when working with large data sets (doing it manually, however, may help you understand the theory behind).</p>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch07.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-a-larger-dataset.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": false,
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
