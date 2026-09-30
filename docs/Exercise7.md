@@ -415,7 +415,7 @@ With `GenoPop`, it is straightforward to calculate nucleotide diversity in windo
 ``` r
 # calculate nucleotide diversity
 pi_windows <- Pi("./sparrow_chr8_downsample.vcf.gz", exclude_ind = c(bactrianus, spanish, italian, tree),
-                 seq_length = 49693984, window_size = 100000, skip_size = 25000)
+                 seq_length = 49693984, window_size = 100000, skip_size = -25000)
 ```
 
 
