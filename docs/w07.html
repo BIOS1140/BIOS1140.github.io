@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Week 6-7 assignment 5 | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.39 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Week 6-7 assignment 5 | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -54,70 +54,6 @@
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 
 
-<style type="text/css">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-</style>
 
 <style type="text/css">
   
@@ -294,9 +230,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html"><i class="fa fa-check"></i><b>6.3</b> Calculating statistics at the whole genome level</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#reading-in-variant-data"><i class="fa fa-check"></i><b>6.3.1</b> Reading in variant data</a></li>
-<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics</a></li>
-<li class="chapter" data-level="6.3.3" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#visualising-nucleotide-diversity-along-the-chromosome"><i class="fa fa-check"></i><b>6.3.3</b> Visualising nucleotide diversity along the chromosome</a></li>
-<li class="chapter" data-level="6.3.4" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#performing-a-sliding-window-analysis"><i class="fa fa-check"></i><b>6.3.4</b> Performing a sliding window analysis</a></li>
+<li class="chapter" data-level="6.3.2" data-path="calculating-statistics-at-the-whole-genome-level.html"><a href="calculating-statistics-at-the-whole-genome-level.html#calculating-nucleotide-diversity-statistics-across-sliding-windows"><i class="fa fa-check"></i><b>6.3.2</b> Calculating nucleotide diversity statistics across sliding windows</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="study-questions-4.html"><a href="study-questions-4.html"><i class="fa fa-check"></i><b>6.4</b> Study questions</a></li>
 <li class="chapter" data-level="6.5" data-path="going-further-5.html"><a href="going-further-5.html"><i class="fa fa-check"></i><b>6.5</b> Going further</a></li>
@@ -311,8 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html"><i class="fa fa-check"></i><b>7.2</b> Returning to the sparrow dataset</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#reading-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Reading in the sparrow vcf</a></li>
-<li class="chapter" data-level="7.2.2" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#examining-the-variant-data"><i class="fa fa-check"></i><b>7.2.2</b> Examining the variant data</a></li>
+<li class="chapter" data-level="7.2.1" data-path="returning-to-the-sparrow-dataset.html"><a href="returning-to-the-sparrow-dataset.html#preparing-to-read-in-the-sparrow-vcf"><i class="fa fa-check"></i><b>7.2.1</b> Preparing to read in the sparrow vcf</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="setting-up-sliding-windows.html"><a href="setting-up-sliding-windows.html"><i class="fa fa-check"></i><b>7.3</b> Setting up sliding windows</a>
 <ul>
@@ -391,7 +324,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#r-markdown"><i class="fa fa-check"></i>R Markdown</a></li>
 <li class="chapter" data-level="" data-path="rmarkdown.html"><a href="rmarkdown.html#getting-started-6"><i class="fa fa-check"></i>Getting started</a></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="tech.html"><a href="tech.html"><i class="fa fa-check"></i><b>B</b> Technical information</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Made with bookdown</a></li>
 
@@ -444,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="sparrows" class="section level4 unnumbered hasAnchor">
 <h4>4. Sparrows<a href="w07.html#sparrows" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>For this part of the assignment you will work with the sparrow dataset that you have already worked with during the tutorial, you can continue with the sparrows dataframe that you have in your environment or download the data <a href="https://bios1140.github.io/data/sparrow_chr8_downsample.vcf.gz">here</a> (VCF) and <a href="https://bios1140.github.io/data/sparrow_pops.txt">here</a> (population data). See section 6.3 in the tutorial on how to download and import the data.</p>
+<p>For this part of the assignment you should start out with the <code>sparrow_data</code> data frame that we created in section <a href="setting-up-sliding-windows.html#sparrow-data">7.3.2</a>. A lot of the operations you need to do is covered in section <a href="sparrow-viz.html#sparrow-viz">7.4</a>, so look there if you don’t know where to start! You can also use <a href="https://bios1140.github.io/data/sparrow_chr8_pop_genome_stats.csv">the data</a>) we have provided for this assignment. You do not need to run the <code>GenoPop</code> commands to achieve this.</p>
 <ol style="list-style-type: lower-alpha">
 <li><p>In your own words, what is a sliding window analysis? Why did we need to use a sliding window analysis to visualise this data?</p></li>
 <li><p>Calculate the mean pairwise Fst and also the mean pairwise dxy for all of the different species comparisons. <em>N.B. if you use a tidyverse solution, it may be easier to use t() to transpose and see the final result</em></p></li>
@@ -475,42 +407,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": null,
-"text": null
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": null,
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
