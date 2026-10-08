@@ -131,13 +131,9 @@ Now you have learned some tools for visualising various statistics across the sp
 
 In the last session, we used the `GenoPop` package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.
 
-**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these here:
+**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these in a single data.frame [here](https://bios1140.github.io/data/sparrow_chr8_pop_genome_stats.csv). 
 
-- [$\pi$](https://bios1140.github.io/data/sparrow_chr8_pi_by_species.csv)
-- [*F*~ST~](https://bios1140.github.io/data/sparrow_chr8_fst_pairwise.csv)
-- [*d*~XY~](https://bios1140.github.io/data/sparrow_chr8_dxy_pairwise.csv)
-
-With these downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
+With this downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
 
 ### Preparing to read in the sparrow vcf
 
@@ -285,6 +281,14 @@ We now have the data frame `sparrow_data`, take a look at it to ensure that it l
 
 
 <script src="js/hideOutput.js"></script>
+If you downloaded the data we provided, you can read it into R with the following code:
+
+
+``` r
+sparrow_data <- read_csv("./docs/data/sparrow_chr8_pop_genome_stats.csv")
+```
+
+
 
 For the purposes of this session, we will focus mainly on the difference between house and bactrianus sparrows. Now have all our data in a tidy `data.frame`, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let's say we want to look at mean nucleotide diversity, we can do that like so:
 
@@ -310,7 +314,7 @@ a <- ggplot(pi_g, aes(species, pi)) + geom_boxplot() + theme_light() + xlab(NULL
 a
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-23-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-25-1.png" alt="" width="768" />
 
 This makes it much clearer how nucleotide diversity differs between the two lineages.
 
@@ -320,12 +324,12 @@ Let's have a look at how *F*~ST~ between house and bactrianus sparrows varies al
 
 
 ``` r
-a <- ggplot(sparrow_data, aes(mid/10^6, fst)) + geom_line(colour = "purple")
+a <- ggplot(sparrow_data, aes(Midpoint/10^6, House_vs_Bactrianus_fst)) + geom_line(colour = "purple")
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-24-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-26-1.png" alt="" width="768" />
 
 From this plot, it is clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
@@ -336,7 +340,7 @@ First, let's get the data we are interested in:
 
 ``` r
 # select data of interest
-hs <- sparrow_data %>% select(mid, pi_house, pi_bac, fst, dxy)
+hs <- sparrow_data %>% select(Midpoint, House_pi, Bactrianus_pi, House_vs_Bactrianus_fst, House_vs_Bactrianus_dxy)
 ```
 
 To keep things simple, we've thrown everything out we don't need. Next, we need to use `pivot_longer` in order to rearrange our `data.frame` so that we can plot it properly.
@@ -344,21 +348,21 @@ To keep things simple, we've thrown everything out we don't need. Next, we need 
 
 ``` r
 # use pivot_longer to rearrange everything
-hs_g <- pivot_longer(hs, -mid, names_to = "stat", values_to = "value")
+hs_g <- pivot_longer(hs, -Midpoint, names_to = "stat", values_to = "value")
 ```
 
-Here, we use `-mid` to tell the function we want to leave this out of the pivoting and use `names_to = "stat"` to make it clear we are arranging our data by the statistics we have calculated, `values_to = "value"` is just a name for the values of each of our statistics.
+Here, we use `-Midpoint` to tell the function we want to leave this out of the pivoting and use `names_to = "stat"` to make it clear we are arranging our data by the statistics we have calculated, `values_to = "value"` is just a name for the values of each of our statistics.
 
 Now we can plot everything together:
 
 
 ``` r
-a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
 a <- a + xlab("Position (Mb)")
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-27-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-29-1.png" alt="" width="768" />
 
 OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.[^exercise8-5]
 
@@ -367,13 +371,13 @@ OK so it should be immediately obvious that this plot is really unhelpful. We se
 
 ``` r
 # construct a plot with facets
-a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
 a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
 a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-28-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" alt="" width="768" />
 
 [^exercise8-5]:
 
@@ -381,7 +385,7 @@ a + theme_light() + theme(legend.position = "none")
     
     
     ``` r
-    new_order <- c("fst", "pi_house", "bac_pi", "dxy")
+    new_order <- c("House_vs_Bactrianus_fst", "House_pi", "Bactrianus_pi", "House_vs_Bactrianus_dxy")
     hs_g$stat <- fct_relevel(hs_g$stat, new_order)
     ```
     
@@ -390,13 +394,13 @@ a + theme_light() + theme(legend.position = "none")
     
     ``` r
     # construct a plot with facets
-    a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+    a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
     a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
     a <- a + xlab("Position (Mb)")
     a + theme_light() + theme(legend.position = "none")
     ```
     
-    <img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" alt="" width="768" />
+    <img src="Exercise8_files/figure-html/unnamed-chunk-32-1.png" alt="" width="768" />
 
 Examining the plot we created, it is pretty clear that the large peak in *F*~ST~ on our chromosome is matched by two regions of low nucleotide diversity in the house and bactrianius sparrow, *d*~XY~ is also very low in the same region.
 
@@ -434,9 +438,9 @@ Unfortunately, the recombination rate data has more rows than our dataset. So we
 # First make a tibble
 rrate <- as_tibble(rrate)
 # ensure midpoints match
-rrate <- rrate %>% mutate(mid = mid - 1)
+rrate <- rrate %>% mutate(Midpoint = mid - 1)
 # match to the sparrow_data
-sparrow_data <- left_join(sparrow_data, rrate %>% select(-chr), by = "mid")
+sparrow_data <- left_join(sparrow_data, rrate %>% select(-chr), by = "Midpoint")
 ```
 
 Now we are ready to see whether the variation in nucleotide diversity and *F*~ST~ can be explained by recombination rate. Let's plot how it varies along the genome.
@@ -444,12 +448,12 @@ Now we are ready to see whether the variation in nucleotide diversity and *F*~ST
 
 ``` r
 # construct a plot for recombination rate
-a <- ggplot(sparrow_data, aes(mid/10^6, recomb)) + geom_line()
+a <- ggplot(sparrow_data, aes(Midpoint/10^6, recomb)) + geom_line()
 a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" alt="" width="768" />
 
 To explain this a little, we have plotted recombination rate in **centiMorgans per Megabase** - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our *F*~ST~ peak occurs. to confirm this, we will plot both statistics together.
 
@@ -457,16 +461,16 @@ To explain this a little, we have plotted recombination rate in **centiMorgans p
 ``` r
 # subset data and gather
 hr <- sparrow_data %>% 
-  select(mid, fst, recomb) %>%
-  pivot_longer(-mid, names_to = "stat", values_to = "value")
+  select(Midpoint, House_vs_Bactrianus_fst, recomb) %>%
+  pivot_longer(-Midpoint, names_to = "stat", values_to = "value")
 # make a facet plot
-a <- ggplot(hr, aes(mid/10^6, value)) + geom_line()
+a <- ggplot(hr, aes(Midpoint/10^6, value)) + geom_line()
 a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
 a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-35-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-37-1.png" alt="" width="768" />
 
 When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the [centromere](https://en.wikipedia.org/wiki/Centromere) is likely to be present here.
 
@@ -475,12 +479,12 @@ Now that we have recombination data read into R, we can also explore the relatio
 
 ``` r
 # plot recombination rate and fst
-a <- ggplot(sparrow_data, aes(recomb, fst)) + geom_point()
+a <- ggplot(sparrow_data, aes(recomb, House_vs_Bactrianus_fst)) + geom_point()
 a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" alt="" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-38-1.png" alt="" width="768" />
 
 Clearly there is a bias here - higher *F*~ST~ values are found in regions of low recombination. Although this doesn't completely invalidate the use of *F*~ST~ in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and bactrianus sparrows.
 

@@ -116,13 +116,9 @@ Now you have learned some tools for visualising various statistics across the sp
 
 In the last session, we used the `GenoPop` package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.
 
-**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these here:
+**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these in a single data.frame [here](https://bios1140.github.io/data/sparrow_chr8_pop_genome_stats.csv). 
 
-- [$\pi$](https://bios1140.github.io/data/sparrow_chr8_pi_by_species.csv)
-- [*F*~ST~](https://bios1140.github.io/data/sparrow_chr8_fst_pairwise.csv)
-- [*d*~XY~](https://bios1140.github.io/data/sparrow_chr8_dxy_pairwise.csv)
-
-With these downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
+With this downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
 
 ### Preparing to read in the sparrow vcf
 
@@ -146,14 +142,14 @@ house <- sparrow_info$ind[sparrow_info$pop == "House"]
 ```
 :::
 
-```{r, eval = TRUE, echo = FALSE, results = 'hide'}
+```{r, eval = FALSE, echo = FALSE, results = 'hide'}
 sparrow_info <- read.table("./docs/data/sparrow_pops.txt", sep = "\t", header = TRUE)
 house <- sparrow_info$ind[sparrow_info$pop == "House"]
 ```
 
 You can also create these vectors for each of the other species present. Have a look at the `sparrow_info` object to see what they are. We will also do this below. 
 
-```{r, eval = TRUE, echo = TRUE, results = 'hide'}
+```{r, eval = FALSE, echo = TRUE, results = 'hide'}
 bactrianus <- sparrow_info$ind[sparrow_info$pop == "Bactrianus"]
 spanish <- sparrow_info$ind[sparrow_info$pop == "Spanish"]
 italian <- sparrow_info$ind[sparrow_info$pop == "Italian"]
@@ -197,7 +193,7 @@ pi_windows_bac <- Pi("./sparrow_chr8_downsample.vcf.gz", exclude_ind = c(house, 
                  seq_length = chr8, window_size = window_size, skip_size = window_jump)
 ```
 
-```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE}
+```{r, eval = FALSE, echo = FALSE, results = 'hide', message = FALSE}
 # calculate nucleotide diversity - house
 pi_windows_house <- Pi("./docs/data/sparrow_chr8_downsample.vcf.gz", exclude_ind = c(bactrianus, spanish, italian, tree),
                  seq_length = chr8, window_size = window_size, skip_size = window_jump)
@@ -221,7 +217,7 @@ fst_windows_house_bac <- Fst(vcf_path = vcf_path, pop1_individuals = house, pop2
                              weighted = TRUE, window_size = window_size, skip_size = window_jump)
 ```
 
-```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE}
+```{r, eval = FALSE, echo = FALSE, results = 'hide', message = FALSE}
 # calculate Fst
 fst_windows_house_bac <- Fst("./docs/data/sparrow_chr8_downsample.vcf.gz", pop1_individuals = house, pop2_individuals = bactrianus,
                              weighted = TRUE, window_size = window_size, skip_size = window_jump)
@@ -238,7 +234,7 @@ dxy_windows_house_bac <- Dxy(vcf_path = vcf_path, pop1_individuals = house, pop2
                              seq_length = chr8, window_size = window_size, skip_size = window_jump)
 ```
 
-```{r, eval = TRUE, echo = FALSE, results = 'hide', message = FALSE}
+```{r, eval = FALSE, echo = FALSE, results = 'hide', message = FALSE}
 # calculate Dxy
 dxy_windows_house_bac <- Dxy(vcf_path = "./docs/data/sparrow_chr8_downsample.vcf.gz", pop1_individuals = house, pop2_individuals = bactrianus,
                              seq_length = chr8, window_size = window_size, skip_size = window_jump)
@@ -255,7 +251,7 @@ Since we ran our analysis on a sliding-window basis, we should have estimates of
 First up, we will combine all our statistics into a single data.frame, sort out the classes of some of the data and then make it a tibble for easier access. One issue we have to deal with is that the analysis produces `NA` for windows with no SNPs - this means the values of $\pi$ differ for the house and bactrianus analyses. Below we first merge the $\pi$ datasets to deal with this and then create our master dataset for visualisation. The last step just adds a midpoint value for all our windows for plotting later on. 
 
 ::: {.yellow}
-```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
 # Join the pi datasets
 pi <- left_join(pi_windows_house, pi_windows_bac, by = "Start", suffix = c("_house", "_bac"))
 
@@ -281,6 +277,15 @@ We now have the data frame `sparrow_data`, take a look at it to ensure that it l
 ## Visualising the data {#sparrow-viz}
 
 ```{r html-doc, child="html_doc.Rmd", echo = FALSE}
+```
+If you downloaded the data we provided, you can read it into R with the following code:
+
+```{r, eval = FALSE, echo = TRUE, results = 'hidden', message = FALSE}
+sparrow_data <- read_csv("./docs/data/sparrow_chr8_pop_genome_stats.csv")
+```
+
+```{r, eval = TRUE, echo = FALSE, results = 'hidden', message = FALSE}
+sparrow_data <- read_csv("./sparrow_chr8_pop_genome_stats.csv")
 ```
 
 For the purposes of this session, we will focus mainly on the difference between house and bactrianus sparrows. Now have all our data in a tidy `data.frame`, it is very easy to calculate things like the mean values of our statistics among all the different species. For example, let's say we want to look at mean nucleotide diversity, we can do that like so:
@@ -312,7 +317,7 @@ This makes it much clearer how nucleotide diversity differs between the two line
 Let's have a look at how *F*~ST~ between house and bactrianus sparrows varies along chromosome 8. Note that we plot the mid-point of each window, and divide the position by $10^6$ to get megabases on the x-axis.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-a <- ggplot(sparrow_data, aes(mid/10^6, fst)) + geom_line(colour = "purple")
+a <- ggplot(sparrow_data, aes(Midpoint/10^6, House_vs_Bactrianus_fst)) + geom_line(colour = "purple")
 a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
@@ -325,22 +330,22 @@ First, let's get the data we are interested in:
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # select data of interest
-hs <- sparrow_data %>% select(mid, pi_house, pi_bac, fst, dxy)
+hs <- sparrow_data %>% select(Midpoint, House_pi, Bactrianus_pi, House_vs_Bactrianus_fst, House_vs_Bactrianus_dxy)
 ```
 
 To keep things simple, we've thrown everything out we don't need. Next, we need to use `pivot_longer` in order to rearrange our `data.frame` so that we can plot it properly.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # use pivot_longer to rearrange everything
-hs_g <- pivot_longer(hs, -mid, names_to = "stat", values_to = "value")
+hs_g <- pivot_longer(hs, -Midpoint, names_to = "stat", values_to = "value")
 ```
 
-Here, we use `-mid` to tell the function we want to leave this out of the pivoting and use `names_to = "stat"` to make it clear we are arranging our data by the statistics we have calculated, `values_to = "value"` is just a name for the values of each of our statistics.
+Here, we use `-Midpoint` to tell the function we want to leave this out of the pivoting and use `names_to = "stat"` to make it clear we are arranging our data by the statistics we have calculated, `values_to = "value"` is just a name for the values of each of our statistics.
 
 Now we can plot everything together:
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
 a <- a + xlab("Position (Mb)")
 a + theme_light()
 ```
@@ -351,7 +356,7 @@ OK so it should be immediately obvious that this plot is really unhelpful. We se
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # construct a plot with facets
-a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
 a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
 a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
@@ -362,7 +367,7 @@ a + theme_light() + theme(legend.position = "none")
     In this case, the plot might be easier to interpret if we rearranged everything so *F*~ST~ came at the top, $\pi$ beneath it and then finally, *d*\_XY\_. We can use the function `fct_relevel()` for manually reordering the factors to achieve this:
     
     ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
-    new_order <- c("fst", "pi_house", "bac_pi", "dxy")
+    new_order <- c("House_vs_Bactrianus_fst", "House_pi", "Bactrianus_pi", "House_vs_Bactrianus_dxy")
     hs_g$stat <- fct_relevel(hs_g$stat, new_order)
     ```
     
@@ -370,7 +375,7 @@ a + theme_light() + theme(legend.position = "none")
     
     ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
     # construct a plot with facets
-    a <- ggplot(hs_g, aes(mid/10^6, value, colour = stat)) + geom_line()
+    a <- ggplot(hs_g, aes(Midpoint/10^6, value, colour = stat)) + geom_line()
     a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
     a <- a + xlab("Position (Mb)")
     a + theme_light() + theme(legend.position = "none")
@@ -412,16 +417,16 @@ Unfortunately, the recombination rate data has more rows than our dataset. So we
 # First make a tibble
 rrate <- as_tibble(rrate)
 # ensure midpoints match
-rrate <- rrate %>% mutate(mid = mid - 1)
+rrate <- rrate %>% mutate(Midpoint = mid - 1)
 # match to the sparrow_data
-sparrow_data <- left_join(sparrow_data, rrate %>% select(-chr), by = "mid")
+sparrow_data <- left_join(sparrow_data, rrate %>% select(-chr), by = "Midpoint")
 ```
 
 Now we are ready to see whether the variation in nucleotide diversity and *F*~ST~ can be explained by recombination rate. Let's plot how it varies along the genome.
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # construct a plot for recombination rate
-a <- ggplot(sparrow_data, aes(mid/10^6, recomb)) + geom_line()
+a <- ggplot(sparrow_data, aes(Midpoint/10^6, recomb)) + geom_line()
 a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
@@ -431,10 +436,10 @@ To explain this a little, we have plotted recombination rate in **centiMorgans p
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # subset data and gather
 hr <- sparrow_data %>% 
-  select(mid, fst, recomb) %>%
-  pivot_longer(-mid, names_to = "stat", values_to = "value")
+  select(Midpoint, House_vs_Bactrianus_fst, recomb) %>%
+  pivot_longer(-Midpoint, names_to = "stat", values_to = "value")
 # make a facet plot
-a <- ggplot(hr, aes(mid/10^6, value)) + geom_line()
+a <- ggplot(hr, aes(Midpoint/10^6, value)) + geom_line()
 a <- a + facet_wrap(~stat, scales = "free_y", ncol = 1)
 a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
@@ -446,7 +451,7 @@ Now that we have recombination data read into R, we can also explore the relatio
 
 ```{r, eval = TRUE, echo = TRUE, results = 'hidden', message = FALSE}
 # plot recombination rate and fst
-a <- ggplot(sparrow_data, aes(recomb, fst)) + geom_point()
+a <- ggplot(sparrow_data, aes(recomb, House_vs_Bactrianus_fst)) + geom_point()
 a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
 a + theme_light() 
 ```
