@@ -116,6 +116,14 @@ Now you have learned some tools for visualising various statistics across the sp
 
 In the last session, we used the `GenoPop` package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.
 
+**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these here:
+
+- [$\pi$](https://bios1140.github.io/data/sparrow_chr8_pi_by_species.csv)
+- [*F*~ST~](https://bios1140.github.io/data/sparrow_chr8_fst_pairwise.csv)
+- [*d*~XY~](https://bios1140.github.io/data/sparrow_chr8_dxy_pairwise.csv)
+
+With these downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
+
 ### Preparing to read in the sparrow vcf
 
 The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the [last session](#ch07) but just in case you missed those steps, here they are again.

@@ -64,7 +64,7 @@ g <- ggplot(d, aes(Total_Fertility_Rate, Life_Expectancy_at_Birth))
 g + geom_point(alpha = 0.5)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-5-1.png" alt="" width="768" />
 :::
 
 This shows a negative correlation between the variables: in countries with lower life expectancy, more children are born per woman. We can investigate this further by dividing the data by continent, and gain some additional perspective by showing the population sizes of each country.
@@ -78,7 +78,7 @@ h <- g + geom_point(aes(col = Continent, size = Population), alpha = 0.5)
 h
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-6-1.png" alt="" width="768" />
 :::
 
 ### Faceting
@@ -94,7 +94,7 @@ Faceting in `ggplot` can be done by adding the function `facet_wrap()`. The synt
 h + facet_wrap(~Continent)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-7-1.png" alt="" width="768" />
 
 You can control the layout by using the `nrow` and `ncol` arguments to specify numbers of rows and/or columns:
 
@@ -104,13 +104,13 @@ You can control the layout by using the `nrow` and `ncol` arguments to specify n
 h + facet_wrap(~Continent, nrow = 3)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-8-1.png" alt="" width="768" />
 
 ``` r
 h + facet_wrap(~Continent, ncol = 1)
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-8-2.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-8-2.png" alt="" width="768" />
 
 Note that all axes are the same across the facets. This can be changed with the argument `scales`, where you can specify "free", "free_y" or "free_x". Be aware that this can be misleading in some cases (like this one, I would argue), so use it with caution! "free_x" is shown below, but try the others yourself to see what happens!
 
@@ -119,7 +119,7 @@ Note that all axes are the same across the facets. This can be changed with the 
 h + facet_wrap(~Continent, scales = "free_x")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-9-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-9-1.png" alt="" width="768" />
 :::
 
 Now you have learned some tools for visualising various statistics across the sparrow genome for later. Let's jump into the evolutionary biology part!
@@ -130,6 +130,14 @@ Now you have learned some tools for visualising various statistics across the sp
 <script src="js/hideOutput.js"></script>
 
 In the last session, we used the `GenoPop` package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from [Ravinet *et al.* (2018)](http://rspb.royalsocietypublishing.org/content/285/1884/20181246). We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.
+
+**Note for 2026** - unfortunately the `GenoPop` package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all $\pi$, *F*~ST~ and *d*~XY~ values for you, for all populations and all pairwise combinations of populations. You can download these here:
+
+- [$\pi$](https://bios1140.github.io/data/sparrow_chr8_pi_by_species.csv)
+- [*F*~ST~](https://bios1140.github.io/data/sparrow_chr8_fst_pairwise.csv)
+- [*d*~XY~](https://bios1140.github.io/data/sparrow_chr8_dxy_pairwise.csv)
+
+With these downloaded, you can skip ahead to \@ref(sparrow-viz) if you want to get straight into visualising your data.
 
 ### Preparing to read in the sparrow vcf
 
@@ -302,7 +310,7 @@ a <- ggplot(pi_g, aes(species, pi)) + geom_boxplot() + theme_light() + xlab(NULL
 a
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-23-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-23-1.png" alt="" width="768" />
 
 This makes it much clearer how nucleotide diversity differs between the two lineages.
 
@@ -317,7 +325,7 @@ a <- a + xlab("Position (Mb)") + ylab(expression(italic(F)[ST]))
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-24-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-24-1.png" alt="" width="768" />
 
 From this plot, it is clear there is a huge peak in *F*~ST~ around 30 Mb. Actually, there are several large peaks on this genome but is this one a potential region that might harbour a speciation gene? Well you might recall from the previous session that there is a drop in nucleotide diversity in this region...
 
@@ -350,7 +358,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light()
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-27-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-27-1.png" alt="" width="768" />
 
 OK so it should be immediately obvious that this plot is really unhelpful. We see the *F*~ST~ data again, but since that is on such a different scale to estimates of $\pi$ and *d*~XY~, we can't see anything! Instead, it would make a lot more sense to split our plot into facets - i.e. a plot panel for each statistic. Lucky for us, we learned to facet plots with `facet_grid` in the beginning of this tutorial! Remember that we can specify independent y-axes with `scales = "free_y"`, and set `ncol = 1` to get all plots below each other.[^exercise8-5]
 
@@ -365,7 +373,7 @@ a <- a + xlab("Position (Mb)")
 a + theme_light() + theme(legend.position = "none")
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-28-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-28-1.png" alt="" width="768" />
 
 [^exercise8-5]:
 
@@ -388,7 +396,7 @@ a + theme_light() + theme(legend.position = "none")
     a + theme_light() + theme(legend.position = "none")
     ```
     
-    <img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" width="768" />
+    <img src="Exercise8_files/figure-html/unnamed-chunk-30-1.png" alt="" width="768" />
 
 Examining the plot we created, it is pretty clear that the large peak in *F*~ST~ on our chromosome is matched by two regions of low nucleotide diversity in the house and bactrianius sparrow, *d*~XY~ is also very low in the same region.
 
@@ -441,7 +449,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-34-1.png" alt="" width="768" />
 
 To explain this a little, we have plotted recombination rate in **centiMorgans per Megabase** - i.e. essentially the probability that a recombination event can occur. The higher this value is, the higher the probability of recombination. The first obvious point to take home from this figure is that our recombination rate varies quite significantly across the genome. Secondly, we see quite a drastic reduction in recombination rate between about 23 Mb and 30 Mb. This is exactly where our *F*~ST~ peak occurs. to confirm this, we will plot both statistics together.
 
@@ -458,7 +466,7 @@ a <- a + xlab("Position (Mb)") + ylab("Recombination rate (cM/Mb)")
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-35-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-35-1.png" alt="" width="768" />
 
 When we plot our data like this, it is actually more clear that perhaps both of the large peaks on chromosome 8 occur in an area of very low recombination. What could be causing such low recombination? Well one possibility is the [centromere](https://en.wikipedia.org/wiki/Centromere) is likely to be present here.
 
@@ -472,7 +480,7 @@ a <- a + xlab("Recombination rate (cM/Mb)") + ylab(expression(italic(F[ST])))
 a + theme_light() 
 ```
 
-<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" width="768" />
+<img src="Exercise8_files/figure-html/unnamed-chunk-36-1.png" alt="" width="768" />
 
 Clearly there is a bias here - higher *F*~ST~ values are found in regions of low recombination. Although this doesn't completely invalidate the use of *F*~ST~ in speciation genomics, it does mean we must be cautious when using it to identify genes involved in speciation. If we had not done so here, it would have been quite easy to mistake the peak on chromosome 8 as having an important role in maintaining reproductive isolation between house and bactrianus sparrows.
 

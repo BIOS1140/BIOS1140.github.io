@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo</title>
   <meta name="description" content="This is a set of R tutorials connected to the course BIOS1140 at the University of Oslo, and are meant as a companion to the book Evolutionary Genetics (Ravinet &amp; Sætre, 2018). They do not assume any prior R knowledge." />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Returning to the sparrow dataset | R tutorials for the course BIOS1140 at the University of Oslo" />
   <meta property="og:type" content="book" />
@@ -55,8 +55,9 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -66,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -412,6 +413,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">7.2</span> Returning to the sparrow dataset<a href="returning-to-the-sparrow-dataset.html#returning-to-the-sparrow-dataset" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <script src="js/hideOutput.js"></script>
 <p>In the last session, we used the <code>GenoPop</code> package to calculate sliding window estimates of nucleotide diversity across chromosome 8 of the house sparrow with data from <a href="http://rspb.royalsocietypublishing.org/content/285/1884/20181246">Ravinet <em>et al.</em> (2018)</a>. We will now return to this example and use it to demonstrate why we must interpret the genomic landscape of differentiation with caution.</p>
+<p><strong>Note for 2026</strong> - unfortunately the <code>GenoPop</code> package is a little slow and the analyses shown here are quite time consuming. You are more than welcome to try them and we encourage you to try at least one analysis to ensure that you have an understanding of what it is trying to achieve. However, so that you can explore the data as much as possible, and also answer the assignment, we have already calculated all <span class="math inline">\(\pi\)</span>, <em>F</em><sub>ST</sub> and <em>d</em><sub>XY</sub> values for you, for all populations and all pairwise combinations of populations. You can download these here:</p>
+<ul>
+<li><a href="https://bios1140.github.io/data/sparrow_chr8_pi_by_species.csv"><span class="math inline">\(\pi\)</span></a></li>
+<li><a href="https://bios1140.github.io/data/sparrow_chr8_fst_pairwise.csv"><em>F</em><sub>ST</sub></a></li>
+<li><a href="https://bios1140.github.io/data/sparrow_chr8_dxy_pairwise.csv"><em>d</em><sub>XY</sub></a></li>
+</ul>
+<p>With these downloaded, you can skip ahead to <a href="sparrow-viz.html#sparrow-viz">7.4</a> if you want to get straight into visualising your data.</p>
 <div id="preparing-to-read-in-the-sparrow-vcf" class="section level3 hasAnchor" number="7.2.1">
 <h3><span class="header-section-number">7.2.1</span> Preparing to read in the sparrow vcf<a href="returning-to-the-sparrow-dataset.html#preparing-to-read-in-the-sparrow-vcf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The first step we need to take is to read our VCF of the sparrow chromosome 8 into the R environment. This is exactly the same procedure as the <a href="ch07.html#ch07">last session</a> but just in case you missed those steps, here they are again.</p>
